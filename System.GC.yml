@@ -1,0 +1,652 @@
+items:
+- uid: System.GC
+  id: GC
+  parent: System
+  children:
+  - System.GC.AddMemoryPressure(System.Int64)
+  - System.GC.Collect
+  - System.GC.Collect(System.Int32)
+  - System.GC.Collect(System.Int32,System.GCCollectionMode)
+  - System.GC.Collect(System.Int32,System.GCCollectionMode,System.Boolean)
+  - System.GC.CollectionCount(System.Int32)
+  - System.GC.GetGeneration(System.Object)
+  - System.GC.GetTotalMemory(System.Boolean)
+  - System.GC.KeepAlive(System.Object)
+  - System.GC.MaxGeneration
+  - System.GC.RemoveMemoryPressure(System.Int64)
+  - System.GC.ReRegisterForFinalize(System.Object)
+  - System.GC.SuppressFinalize(System.Object)
+  - System.GC.WaitForPendingFinalizers
+  href: System.GC.yml
+  name: GC
+  fullName: System.GC
+  type: Class
+  source:
+    remote: &o0
+      path: src/System.Runtime/ref/System.Runtime.cs
+      branch: master
+      repo: https://vicancy@github.com/dotnet/corefx.git
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 895
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Controls the system garbage collector, a service that automatically reclaims unused memory.
+  syntax:
+    content: public class GC
+    content.vb: Public Class GC
+  inheritance:
+  - System.Object
+  inheritedMembers:
+  - System.Object.ToString
+  - System.Object.Equals(System.Object)
+  - System.Object.Equals(System.Object,System.Object)
+  - System.Object.ReferenceEquals(System.Object,System.Object)
+  - System.Object.GetHashCode
+  - System.Object.GetType
+  - System.Object.MemberwiseClone
+- uid: System.GC.MaxGeneration
+  id: MaxGeneration
+  parent: System.GC
+  href: System.GC.yml
+  name: MaxGeneration
+  fullName: System.GC.MaxGeneration
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 897
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Gets the maximum number of generations that the system currently supports.
+  syntax:
+    content: public static int MaxGeneration { get; }
+    content.vb: Public Shared ReadOnly Property MaxGeneration As Integer
+    parameters: []
+    return:
+      type: System.Int32
+      description: A value that ranges from zero to the maximum number of supported generations.
+- uid: System.GC.AddMemoryPressure(System.Int64)
+  id: AddMemoryPressure(System.Int64)
+  parent: System.GC
+  href: System.GC.yml
+  name: AddMemoryPressure(Int64)
+  fullName: System.GC.AddMemoryPressure(System.Int64)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 898
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Informs the runtime of a large allocation of unmanaged memory that should be taken into account when scheduling garbage collection.
+  syntax:
+    content: public static void AddMemoryPressure(long bytesAllocated)
+    content.vb: Public Shared Sub AddMemoryPressure(bytesAllocated As Long)
+    parameters:
+    - id: bytesAllocated
+      type: System.Int64
+      description: The incremental amount of unmanaged memory that has been allocated.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*bytesAllocated* is less than or equal to 0.-or-On a 32-bit computer, *bytesAllocated* is larger than @''System.Int32.MaxValue''.'
+- uid: System.GC.Collect
+  id: Collect
+  parent: System.GC
+  href: System.GC.yml
+  name: Collect()
+  fullName: System.GC.Collect()
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 900
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Forces an immediate garbage collection of all generations.
+  syntax:
+    content: public static void Collect()
+    content.vb: Public Shared Sub Collect
+- uid: System.GC.Collect(System.Int32)
+  id: Collect(System.Int32)
+  parent: System.GC
+  href: System.GC.yml
+  name: Collect(Int32)
+  fullName: System.GC.Collect(System.Int32)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 901
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Forces an immediate garbage collection from generation 0 through a specified generation.
+  syntax:
+    content: public static void Collect(int generation)
+    content.vb: Public Shared Sub Collect(generation As Integer)
+    parameters:
+    - id: generation
+      type: System.Int32
+      description: The number of the oldest generation to be garbage collected.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*generation* is not valid.'
+- uid: System.GC.Collect(System.Int32,System.GCCollectionMode)
+  id: Collect(System.Int32,System.GCCollectionMode)
+  parent: System.GC
+  href: System.GC.yml
+  name: Collect(Int32, GCCollectionMode)
+  fullName: System.GC.Collect(System.Int32, System.GCCollectionMode)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 902
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Forces a garbage collection from generation 0 through a specified generation, at a time specified by a @'System.GCCollectionMode' value.
+  syntax:
+    content: public static void Collect(int generation, GCCollectionMode mode)
+    content.vb: Public Shared Sub Collect(generation As Integer, mode As GCCollectionMode)
+    parameters:
+    - id: generation
+      type: System.Int32
+      description: The number of the oldest generation to be garbage collected.
+    - id: mode
+      type: System.GCCollectionMode
+      description: An enumeration value that specifies whether the garbage collection is forced (@'System.GCCollectionMode.Default' or @'System.GCCollectionMode.Forced') or optimized (@'System.GCCollectionMode.Optimized').
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*generation* is not valid.-or-*mode* is not one of the @''System.GCCollectionMode'' values.'
+- uid: System.GC.Collect(System.Int32,System.GCCollectionMode,System.Boolean)
+  id: Collect(System.Int32,System.GCCollectionMode,System.Boolean)
+  parent: System.GC
+  href: System.GC.yml
+  name: Collect(Int32, GCCollectionMode, Boolean)
+  fullName: System.GC.Collect(System.Int32, System.GCCollectionMode, System.Boolean)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 903
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Forces a garbage collection from generation 0 through a specified generation, at a time specified by a @'System.GCCollectionMode' value, with a value specifying whether the collection should be blocking.
+  syntax:
+    content: public static void Collect(int generation, GCCollectionMode mode, bool blocking)
+    content.vb: Public Shared Sub Collect(generation As Integer, mode As GCCollectionMode, blocking As Boolean)
+    parameters:
+    - id: generation
+      type: System.Int32
+      description: The number of the oldest generation to be garbage collected.
+    - id: mode
+      type: System.GCCollectionMode
+      description: An enumeration value that specifies whether the garbage collection is forced (@'System.GCCollectionMode.Default' or @'System.GCCollectionMode.Forced') or optimized (@'System.GCCollectionMode.Optimized').
+    - id: blocking
+      type: System.Boolean
+      description: true to perform a blocking garbage collection; false to perform a background garbage collection where possible.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*generation* is not valid.-or-*mode* is not one of the @''System.GCCollectionMode'' values.'
+- uid: System.GC.CollectionCount(System.Int32)
+  id: CollectionCount(System.Int32)
+  parent: System.GC
+  href: System.GC.yml
+  name: CollectionCount(Int32)
+  fullName: System.GC.CollectionCount(System.Int32)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 904
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Returns the number of times garbage collection has occurred for the specified generation of objects.
+  syntax:
+    content: public static int CollectionCount(int generation)
+    content.vb: Public Shared Function CollectionCount(generation As Integer) As Integer
+    parameters:
+    - id: generation
+      type: System.Int32
+      description: The generation of objects for which the garbage collection count is to be determined.
+    return:
+      type: System.Int32
+      description: The number of times garbage collection has occurred for the specified generation since the process was started.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*generation* is less than 0.'
+- uid: System.GC.GetGeneration(System.Object)
+  id: GetGeneration(System.Object)
+  parent: System.GC
+  href: System.GC.yml
+  name: GetGeneration(Object)
+  fullName: System.GC.GetGeneration(System.Object)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 905
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Returns the current generation number of the specified object.
+  syntax:
+    content: public static int GetGeneration(object obj)
+    content.vb: Public Shared Function GetGeneration(obj As Object) As Integer
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object that generation information is retrieved for.
+    return:
+      type: System.Int32
+      description: The current generation number of *obj*.
+- uid: System.GC.GetTotalMemory(System.Boolean)
+  id: GetTotalMemory(System.Boolean)
+  parent: System.GC
+  href: System.GC.yml
+  name: GetTotalMemory(Boolean)
+  fullName: System.GC.GetTotalMemory(System.Boolean)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 906
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Retrieves the number of bytes currently thought to be allocated. A parameter indicates whether this method can wait a short interval before returning, to allow the system to collect garbage and finalize objects.
+  syntax:
+    content: public static long GetTotalMemory(bool forceFullCollection)
+    content.vb: Public Shared Function GetTotalMemory(forceFullCollection As Boolean) As Long
+    parameters:
+    - id: forceFullCollection
+      type: System.Boolean
+      description: true to indicate that this method can wait for garbage collection to occur before returning; otherwise, false.
+    return:
+      type: System.Int64
+      description: A number that is the best available approximation of the number of bytes currently allocated in managed memory.
+- uid: System.GC.KeepAlive(System.Object)
+  id: KeepAlive(System.Object)
+  parent: System.GC
+  href: System.GC.yml
+  name: KeepAlive(Object)
+  fullName: System.GC.KeepAlive(System.Object)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 907
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: References the specified object, which makes it ineligible for garbage collection from the start of the current routine to the point where this method is called.
+  syntax:
+    content: public static void KeepAlive(object obj)
+    content.vb: Public Shared Sub KeepAlive(obj As Object)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object to reference.
+- uid: System.GC.RemoveMemoryPressure(System.Int64)
+  id: RemoveMemoryPressure(System.Int64)
+  parent: System.GC
+  href: System.GC.yml
+  name: RemoveMemoryPressure(Int64)
+  fullName: System.GC.RemoveMemoryPressure(System.Int64)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 908
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Informs the runtime that unmanaged memory has been released and no longer needs to be taken into account when scheduling garbage collection.
+  syntax:
+    content: public static void RemoveMemoryPressure(long bytesAllocated)
+    content.vb: Public Shared Sub RemoveMemoryPressure(bytesAllocated As Long)
+    parameters:
+    - id: bytesAllocated
+      type: System.Int64
+      description: The amount of unmanaged memory that has been released.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*bytesAllocated* is less than or equal to 0. -or- On a 32-bit computer, *bytesAllocated* is larger than @''System.Int32.MaxValue''.'
+- uid: System.GC.ReRegisterForFinalize(System.Object)
+  id: ReRegisterForFinalize(System.Object)
+  parent: System.GC
+  href: System.GC.yml
+  name: ReRegisterForFinalize(Object)
+  fullName: System.GC.ReRegisterForFinalize(System.Object)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 910
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Requests that the system call the finalizer for the specified object for which @'System.GC.SuppressFinalize(System.Object)' has previously been called.
+  syntax:
+    content: public static void ReRegisterForFinalize(object obj)
+    content.vb: Public Shared Sub ReRegisterForFinalize(obj As Object)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object that a finalizer must be called for.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*obj* is null.'
+- uid: System.GC.SuppressFinalize(System.Object)
+  id: SuppressFinalize(System.Object)
+  parent: System.GC
+  href: System.GC.yml
+  name: SuppressFinalize(Object)
+  fullName: System.GC.SuppressFinalize(System.Object)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 911
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Requests that the common language runtime not call the finalizer for the specified object.
+  syntax:
+    content: public static void SuppressFinalize(object obj)
+    content.vb: Public Shared Sub SuppressFinalize(obj As Object)
+    parameters:
+    - id: obj
+      type: System.Object
+      description: The object whose finalizer must not be executed.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*obj* is null.'
+- uid: System.GC.WaitForPendingFinalizers
+  id: WaitForPendingFinalizers
+  parent: System.GC
+  href: System.GC.yml
+  name: WaitForPendingFinalizers()
+  fullName: System.GC.WaitForPendingFinalizers()
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Runtime/ref/System.Runtime.cs
+    startLine: 912
+  assemblies:
+  - System.Runtime
+  namespace: System
+  summary: Suspends the current thread until the thread that is processing the queue of finalizers has emptied that queue.
+  syntax:
+    content: public static void WaitForPendingFinalizers()
+    content.vb: Public Shared Sub WaitForPendingFinalizers
+references:
+- uid: System
+  isExternal: false
+  name: System
+  fullName: System
+  type: Namespace
+- uid: System.Object
+  parent: System
+  isExternal: false
+  href: System.Object.yml
+  name: Object
+  fullName: System.Object
+  type: Class
+- uid: System.Object.ToString
+  parent: System.Object
+  isExternal: true
+  name: ToString()
+  fullName: System.Object.ToString()
+  spec.csharp:
+  - uid: System.Object.ToString
+    name: ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ToString
+    name: ToString
+    fullName: System.Object.ToString
+    isExternal: true
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+- uid: System.Object.Equals(System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object)
+  fullName: System.Object.Equals(System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object)
+    name: Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    fullName: )
+- uid: System.Object.Equals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: Equals(Object, Object)
+  fullName: System.Object.Equals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.Equals(System.Object,System.Object)
+    name: Equals
+    fullName: System.Object.Equals
+    isExternal: true
+  - name: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    fullName: )
+- uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  parent: System.Object
+  isExternal: true
+  name: ReferenceEquals(Object, Object)
+  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
+  spec.csharp:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+    name: ReferenceEquals
+    fullName: System.Object.ReferenceEquals
+    isExternal: true
+  - name: (
+    fullName: (
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ', '
+    fullName: ', '
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+    isExternal: true
+  - name: )
+    fullName: )
+- uid: System.Object.GetHashCode
+  parent: System.Object
+  isExternal: true
+  name: GetHashCode()
+  fullName: System.Object.GetHashCode()
+  spec.csharp:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetHashCode
+    name: GetHashCode
+    fullName: System.Object.GetHashCode
+    isExternal: true
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+- uid: System.Object.GetType
+  parent: System.Object
+  isExternal: true
+  name: GetType()
+  fullName: System.Object.GetType()
+  spec.csharp:
+  - uid: System.Object.GetType
+    name: GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.GetType
+    name: GetType
+    fullName: System.Object.GetType
+    isExternal: true
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+- uid: System.Object.MemberwiseClone
+  parent: System.Object
+  isExternal: true
+  name: MemberwiseClone()
+  fullName: System.Object.MemberwiseClone()
+  spec.csharp:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Object.MemberwiseClone
+    name: MemberwiseClone
+    fullName: System.Object.MemberwiseClone
+    isExternal: true
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+- uid: System.Int32
+  parent: System
+  isExternal: false
+  href: System.Int32.yml
+  name: Int32
+  fullName: System.Int32
+  type: Struct
+- uid: System.Int64
+  parent: System
+  isExternal: false
+  href: System.Int64.yml
+  name: Int64
+  fullName: System.Int64
+  type: Struct
+- uid: System.GCCollectionMode
+  parent: System
+  isExternal: false
+  href: System.GCCollectionMode.yml
+  name: GCCollectionMode
+  fullName: System.GCCollectionMode
+  type: Enum
+- uid: System.Boolean
+  parent: System
+  isExternal: false
+  href: System.Boolean.yml
+  name: Boolean
+  fullName: System.Boolean
+  type: Struct
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
