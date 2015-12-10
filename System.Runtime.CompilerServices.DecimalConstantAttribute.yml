@@ -20,6 +20,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Stores the value of a @'System.Decimal' constant in metadata. This class cannot be inherited.
   syntax:
     content: 'public sealed class DecimalConstantAttribute : Attribute'
     content.vb: Public NotInheritable Class DecimalConstantAttribute Inherits Attribute
@@ -48,20 +49,26 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Initializes a new instance of the @'System.Runtime.CompilerServices.DecimalConstantAttribute' class with the specified signed integer values.
   syntax:
     content: public DecimalConstantAttribute(byte scale, byte sign, int hi, int mid, int low)
     content.vb: Public Sub New(scale As Byte, sign As Byte, hi As Integer, mid As Integer, low As Integer)
     parameters:
     - id: scale
       type: System.Byte
+      description: The power of 10 scaling factor that indicates the number of digits to the right of the decimal point. Valid values are 0 through 28 inclusive.
     - id: sign
       type: System.Byte
+      description: A value of 0 indicates a positive value, and a value of 1 indicates a negative value.
     - id: hi
       type: System.Int32
+      description: The high 32 bits of the 96-bit @'System.Runtime.CompilerServices.DecimalConstantAttribute.Value'.
     - id: mid
       type: System.Int32
+      description: The middle 32 bits of the 96-bit @'System.Runtime.CompilerServices.DecimalConstantAttribute.Value'.
     - id: low
       type: System.Int32
+      description: The low 32 bits of the 96-bit @'System.Runtime.CompilerServices.DecimalConstantAttribute.Value'.
 - uid: System.Runtime.CompilerServices.DecimalConstantAttribute.#ctor(System.Byte,System.Byte,System.UInt32,System.UInt32,System.UInt32)
   id: '#ctor(System.Byte,System.Byte,System.UInt32,System.UInt32,System.UInt32)'
   parent: System.Runtime.CompilerServices.DecimalConstantAttribute
@@ -76,20 +83,29 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Initializes a new instance of the @'System.Runtime.CompilerServices.DecimalConstantAttribute' class with the specified unsigned integer values.
   syntax:
     content: public DecimalConstantAttribute(byte scale, byte sign, uint hi, uint mid, uint low)
     content.vb: Public Sub New(scale As Byte, sign As Byte, hi As UInteger, mid As UInteger, low As UInteger)
     parameters:
     - id: scale
       type: System.Byte
+      description: The power of 10 scaling factor that indicates the number of digits to the right of the decimal point. Valid values are 0 through 28 inclusive.
     - id: sign
       type: System.Byte
+      description: A value of 0 indicates a positive value, and a value of 1 indicates a negative value.
     - id: hi
       type: System.UInt32
+      description: The high 32 bits of the 96-bit @'System.Runtime.CompilerServices.DecimalConstantAttribute.Value'.
     - id: mid
       type: System.UInt32
+      description: The middle 32 bits of the 96-bit @'System.Runtime.CompilerServices.DecimalConstantAttribute.Value'.
     - id: low
       type: System.UInt32
+      description: The low 32 bits of the 96-bit @'System.Runtime.CompilerServices.DecimalConstantAttribute.Value'.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*scale* > 28.'
 - uid: System.Runtime.CompilerServices.DecimalConstantAttribute.Value
   id: Value
   parent: System.Runtime.CompilerServices.DecimalConstantAttribute
@@ -104,12 +120,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Gets the decimal constant stored in this attribute.
   syntax:
     content: public decimal Value { get; }
     content.vb: Public ReadOnly Property Value As Decimal
     parameters: []
     return:
       type: System.Decimal
+      description: The decimal constant stored in this attribute.
 references:
 - uid: System.Runtime.CompilerServices
   isExternal: false
@@ -374,3 +392,10 @@ references:
   name: Decimal
   fullName: System.Decimal
   type: Struct
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.

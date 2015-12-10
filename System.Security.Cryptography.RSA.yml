@@ -79,7 +79,7 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: Initializes a new instance of @'System.Security.Cryptography.RSA'.
+  summary: Initializes a new instance of the @'System.Security.Cryptography.RSA' class.
   syntax:
     content: protected RSA()
     content.vb: Protected Sub New
@@ -99,16 +99,23 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: When overridden in a derived class, decrypts the input data using the specified padding mode.
   syntax:
     content: public abstract byte[] Decrypt(byte[] data, RSAEncryptionPadding padding)
     content.vb: Public MustOverride Function Decrypt(data As Byte(), padding As RSAEncryptionPadding) As Byte()
     parameters:
     - id: data
       type: System.Byte[]
+      description: The data to decrypt.
     - id: padding
       type: System.Security.Cryptography.RSAEncryptionPadding
+      description: The padding mode.
     return:
       type: System.Byte[]
+      description: The decrypted data.
+  exceptions:
+  - type: System.NotImplementedException
+    description: A derived class must override this method.
 - uid: System.Security.Cryptography.RSA.Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)
   id: Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)
   parent: System.Security.Cryptography.RSA
@@ -125,16 +132,23 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: When overridden in a derived class, encrypts the input data using the specified padding mode.
   syntax:
     content: public abstract byte[] Encrypt(byte[] data, RSAEncryptionPadding padding)
     content.vb: Public MustOverride Function Encrypt(data As Byte(), padding As RSAEncryptionPadding) As Byte()
     parameters:
     - id: data
       type: System.Byte[]
+      description: The data to encrypt.
     - id: padding
       type: System.Security.Cryptography.RSAEncryptionPadding
+      description: The padding mode.
     return:
       type: System.Byte[]
+      description: The encrypted data.
+  exceptions:
+  - type: System.NotImplementedException
+    description: A derived class must override this method.
 - uid: System.Security.Cryptography.RSA.ExportParameters(System.Boolean)
   id: ExportParameters(System.Boolean)
   parent: System.Security.Cryptography.RSA
@@ -176,20 +190,29 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: When overridden in a derived class, computes the hash value of a specified portion of a byte array by using a specified hashing algorithm.
   syntax:
     content: protected abstract byte[] HashData(byte[] data, int offset, int count, HashAlgorithmName hashAlgorithm)
     content.vb: Protected MustOverride Function HashData(data As Byte(), offset As Integer, count As Integer, hashAlgorithm As HashAlgorithmName) As Byte()
     parameters:
     - id: data
       type: System.Byte[]
+      description: The data to be hashed.
     - id: offset
       type: System.Int32
+      description: The index of the first byte in *data* that is to be hashed.
     - id: count
       type: System.Int32
+      description: The number of bytes to hash.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The algorithm to use in hash the data.
     return:
       type: System.Byte[]
+      description: The hashed data.
+  exceptions:
+  - type: System.NotImplementedException
+    description: A derived class must override this method.
 - uid: System.Security.Cryptography.RSA.HashData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName)
   id: HashData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName)
   parent: System.Security.Cryptography.RSA
@@ -204,16 +227,23 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: When overridden in a derived class, computes the hash value of a specified binary stream by using a specified hashing algorithm.
   syntax:
     content: protected abstract byte[] HashData(Stream data, HashAlgorithmName hashAlgorithm)
     content.vb: Protected MustOverride Function HashData(data As Stream, hashAlgorithm As HashAlgorithmName) As Byte()
     parameters:
     - id: data
       type: System.IO.Stream
+      description: The binary stream to hash.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm.
     return:
       type: System.Byte[]
+      description: The hashed data.
+  exceptions:
+  - type: System.NotImplementedException
+    description: A derived class must override this method.
 - uid: System.Security.Cryptography.RSA.ImportParameters(System.Security.Cryptography.RSAParameters)
   id: ImportParameters(System.Security.Cryptography.RSAParameters)
   parent: System.Security.Cryptography.RSA
@@ -252,22 +282,36 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: Computes the hash value of a portion of the specified byte array using the specified hash algorithm and padding mode, and signs the resulting hash value.
   syntax:
     content: public virtual byte[] SignData(byte[] data, int offset, int count, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
     content.vb: Public Overridable Function SignData(data As Byte(), offset As Integer, count As Integer, hashAlgorithm As HashAlgorithmName, padding As RSASignaturePadding) As Byte()
     parameters:
     - id: data
       type: System.Byte[]
+      description: The input data for which to compute the hash.
     - id: offset
       type: System.Int32
+      description: The offset into the array at which to begin using data.
     - id: count
       type: System.Int32
+      description: The number of bytes in the array to use as data.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm to use to create the hash value.
     - id: padding
       type: System.Security.Cryptography.RSASignaturePadding
+      description: The padding mode.
     return:
       type: System.Byte[]
+      description: The RSA signature for the specified data.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*data* is null. -or-*padding* is null.'
+  - type: System.ArgumentException
+    description: '*hashAlgorithm*.@''System.Security.Cryptography.HashAlgorithmName.Name'' is null or @''System.String.Empty''.'
+  - type: System.ArgumentOutOfRangeException
+    description: "*offset* is less than zero. -or-*count* is less than zero. -or-*offset* + *count* – 1 results in an index that is beyond the upper bound of *data*."
 - uid: System.Security.Cryptography.RSA.SignData(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   id: SignData(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   parent: System.Security.Cryptography.RSA
@@ -284,18 +328,28 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: Computes the hash value of the specified byte array using the specified hash algorithm and padding mode, and signs the resulting hash value.
   syntax:
     content: public byte[] SignData(byte[] data, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
     content.vb: Public Function SignData(data As Byte(), hashAlgorithm As HashAlgorithmName, padding As RSASignaturePadding) As Byte()
     parameters:
     - id: data
       type: System.Byte[]
+      description: The input data for which to compute the hash.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm to use to create the hash value.
     - id: padding
       type: System.Security.Cryptography.RSASignaturePadding
+      description: The padding mode.
     return:
       type: System.Byte[]
+      description: The RSA signature for the specified data.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*data* is null. -or-*padding* is null.'
+  - type: System.ArgumentException
+    description: '*hashAlgorithm*.@''System.Security.Cryptography.HashAlgorithmName.Name'' is null or @''System.String.Empty''.'
 - uid: System.Security.Cryptography.RSA.SignData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   id: SignData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   parent: System.Security.Cryptography.RSA
@@ -310,18 +364,28 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: Computes the hash value of the specified stream using the specified hash algorithm and padding mode, and signs the resulting hash value.
   syntax:
     content: public virtual byte[] SignData(Stream data, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
     content.vb: Public Overridable Function SignData(data As Stream, hashAlgorithm As HashAlgorithmName, padding As RSASignaturePadding) As Byte()
     parameters:
     - id: data
       type: System.IO.Stream
+      description: The input stream for which to compute the hash.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm to use to create the hash value.
     - id: padding
       type: System.Security.Cryptography.RSASignaturePadding
+      description: The padding mode.
     return:
       type: System.Byte[]
+      description: The RSA signature for the specified data.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*data* is null. -or-*padding* is null.'
+  - type: System.ArgumentException
+    description: '*hashAlgorithm*.@''System.Security.Cryptography.HashAlgorithmName.Name'' is null or @''System.String.Empty''.'
 - uid: System.Security.Cryptography.RSA.SignHash(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   id: SignHash(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   parent: System.Security.Cryptography.RSA
@@ -338,18 +402,26 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: When overridden in a derived class, computes the signature for the specified hash value by encrypting it with the private key using the specified padding.
   syntax:
     content: public abstract byte[] SignHash(byte[] hash, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
     content.vb: Public MustOverride Function SignHash(hash As Byte(), hashAlgorithm As HashAlgorithmName, padding As RSASignaturePadding) As Byte()
     parameters:
     - id: hash
       type: System.Byte[]
+      description: The hash value of the data to be signed.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm used to create the hash value of the data.
     - id: padding
       type: System.Security.Cryptography.RSASignaturePadding
+      description: The padding.
     return:
       type: System.Byte[]
+      description: The RSA signature for the specified hash value.
+  exceptions:
+  - type: System.NotImplementedException
+    description: A derived class must override this method.
 - uid: System.Security.Cryptography.RSA.VerifyData(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   id: VerifyData(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   parent: System.Security.Cryptography.RSA
@@ -366,20 +438,31 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: Verifies that a digital signature is valid by calculating the hash value of the specified data using the specified hash algorithm and padding, and comparing it to the provided signature.
   syntax:
     content: public bool VerifyData(byte[] data, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
     content.vb: Public Function VerifyData(data As Byte(), signature As Byte(), hashAlgorithm As HashAlgorithmName, padding As RSASignaturePadding) As Boolean
     parameters:
     - id: data
       type: System.Byte[]
+      description: The signed data.
     - id: signature
       type: System.Byte[]
+      description: The signature data to be verified.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm used to create the hash value of the data.
     - id: padding
       type: System.Security.Cryptography.RSASignaturePadding
+      description: The padding mode.
     return:
       type: System.Boolean
+      description: true if the signature is valid; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*data* is null. -or-*signature* is null.-or-*padding* is null.'
+  - type: System.ArgumentException
+    description: '*hashAlgorithm*.@''System.Security.Cryptography.HashAlgorithmName.Name'' is null or @''System.String.Empty''.'
 - uid: System.Security.Cryptography.RSA.VerifyData(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   id: VerifyData(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   parent: System.Security.Cryptography.RSA
@@ -396,24 +479,39 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: Verifies that a digital signature is valid by calculating the hash value of the data in a portion of a byte array using the specified hash algorithm and padding, and comparing it to the provided signature.
   syntax:
     content: public virtual bool VerifyData(byte[] data, int offset, int count, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
     content.vb: Public Overridable Function VerifyData(data As Byte(), offset As Integer, count As Integer, signature As Byte(), hashAlgorithm As HashAlgorithmName, padding As RSASignaturePadding) As Boolean
     parameters:
     - id: data
       type: System.Byte[]
+      description: The signed data.
     - id: offset
       type: System.Int32
+      description: The starting index at which to compute the hash.
     - id: count
       type: System.Int32
+      description: The number of bytes to hash.
     - id: signature
       type: System.Byte[]
+      description: The signature data to be verified.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm used to create the hash value of the data.
     - id: padding
       type: System.Security.Cryptography.RSASignaturePadding
+      description: The padding mode.
     return:
       type: System.Boolean
+      description: true if the signature is valid; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*data* is null. -or-*signature* is null.-or-*padding* is null.'
+  - type: System.ArgumentException
+    description: '*hashAlgorithm*.@''System.Security.Cryptography.HashAlgorithmName.Name'' is null or @''System.String.Empty''.'
+  - type: System.ArgumentOutOfRangeException
+    description: "*offset* is less than zero. -or-*count* is less than zero.-or-*offset* + *count* – 1 results in an index that is beyond the upper bound of *data*."
 - uid: System.Security.Cryptography.RSA.VerifyData(System.IO.Stream,System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   id: VerifyData(System.IO.Stream,System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   parent: System.Security.Cryptography.RSA
@@ -430,20 +528,31 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: Verifies that a digital signature is valid by calculating the hash value of the specified stream using the specified hash algorithm and padding, and comparing it to the provided signature.
   syntax:
     content: public bool VerifyData(Stream data, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
     content.vb: Public Function VerifyData(data As Stream, signature As Byte(), hashAlgorithm As HashAlgorithmName, padding As RSASignaturePadding) As Boolean
     parameters:
     - id: data
       type: System.IO.Stream
+      description: The signed data.
     - id: signature
       type: System.Byte[]
+      description: The signature data to be verified.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm used to create the hash value of the data.
     - id: padding
       type: System.Security.Cryptography.RSASignaturePadding
+      description: The padding mode.
     return:
       type: System.Boolean
+      description: true if the signature is valid; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*data* is null. -or-*signature* is null.-or-*padding* is null.'
+  - type: System.ArgumentException
+    description: '*hashAlgorithm*.@''System.Security.Cryptography.HashAlgorithmName.Name'' is null or @''System.String.Empty''.'
 - uid: System.Security.Cryptography.RSA.VerifyHash(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   id: VerifyHash(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
   parent: System.Security.Cryptography.RSA
@@ -460,20 +569,29 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
+  summary: Verifies that a digital signature is valid by determining the hash value in the signature using the specified hash algorithm and padding, and comparing it to the provided hash value.
   syntax:
     content: public abstract bool VerifyHash(byte[] hash, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
     content.vb: Public MustOverride Function VerifyHash(hash As Byte(), signature As Byte(), hashAlgorithm As HashAlgorithmName, padding As RSASignaturePadding) As Boolean
     parameters:
     - id: hash
       type: System.Byte[]
+      description: The hash value of the signed data.
     - id: signature
       type: System.Byte[]
+      description: The signature data to be verified.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm used to create the hash value.
     - id: padding
       type: System.Security.Cryptography.RSASignaturePadding
+      description: The padding mode.
     return:
       type: System.Boolean
+      description: true if the signature is valid; otherwise, false.
+  exceptions:
+  - type: System.NotImplementedException
+    description: A derived class must override this method.
 references:
 - uid: System.Security.Cryptography
   isExternal: false
@@ -1005,3 +1123,32 @@ references:
   name: RSASignaturePadding
   fullName: System.Security.Cryptography.RSASignaturePadding
   type: Class
+- uid: System.NotImplementedException
+  isExternal: false
+  href: System.NotImplementedException.yml
+  name: NotImplementedException
+  fullName: System.NotImplementedException
+  type: Class
+  summary: The exception that is thrown when a requested method or operation is not implemented.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.

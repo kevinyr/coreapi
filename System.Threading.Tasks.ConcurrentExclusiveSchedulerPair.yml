@@ -25,6 +25,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Provides task schedulers that coordinate to execute tasks while ensuring that concurrent tasks may run concurrently and exclusive tasks never do.
   syntax:
     content: public class ConcurrentExclusiveSchedulerPair
     content.vb: Public Class ConcurrentExclusiveSchedulerPair
@@ -52,6 +53,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new instance of the @'System.Threading.Tasks.ConcurrentExclusiveSchedulerPair' class.
   syntax:
     content: public ConcurrentExclusiveSchedulerPair()
     content.vb: Public Sub New
@@ -69,12 +71,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new instance of the @'System.Threading.Tasks.ConcurrentExclusiveSchedulerPair' class that targets the specified scheduler.
   syntax:
     content: public ConcurrentExclusiveSchedulerPair(TaskScheduler taskScheduler)
     content.vb: Public Sub New(taskScheduler As TaskScheduler)
     parameters:
     - id: taskScheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The target scheduler on which this pair should execute.
 - uid: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair.#ctor(System.Threading.Tasks.TaskScheduler,System.Int32)
   id: '#ctor(System.Threading.Tasks.TaskScheduler,System.Int32)'
   parent: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair
@@ -89,14 +93,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new instance of the @'System.Threading.Tasks.ConcurrentExclusiveSchedulerPair' class that targets the specified scheduler with a maximum concurrency level.
   syntax:
     content: public ConcurrentExclusiveSchedulerPair(TaskScheduler taskScheduler, int maxConcurrencyLevel)
     content.vb: Public Sub New(taskScheduler As TaskScheduler, maxConcurrencyLevel As Integer)
     parameters:
     - id: taskScheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The target scheduler on which this pair should execute.
     - id: maxConcurrencyLevel
       type: System.Int32
+      description: The maximum number of tasks to run concurrently.
 - uid: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair.#ctor(System.Threading.Tasks.TaskScheduler,System.Int32,System.Int32)
   id: '#ctor(System.Threading.Tasks.TaskScheduler,System.Int32,System.Int32)'
   parent: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair
@@ -111,16 +118,20 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new instance of the @'System.Threading.Tasks.ConcurrentExclusiveSchedulerPair' class that targets the specified scheduler with a maximum concurrency level and a maximum number of scheduled tasks that may be processed as a unit.
   syntax:
     content: public ConcurrentExclusiveSchedulerPair(TaskScheduler taskScheduler, int maxConcurrencyLevel, int maxItemsPerTask)
     content.vb: Public Sub New(taskScheduler As TaskScheduler, maxConcurrencyLevel As Integer, maxItemsPerTask As Integer)
     parameters:
     - id: taskScheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The target scheduler on which this pair should execute.
     - id: maxConcurrencyLevel
       type: System.Int32
+      description: The maximum number of tasks to run concurrently.
     - id: maxItemsPerTask
       type: System.Int32
+      description: The maximum number of tasks to process for each underlying scheduled task used by the pair.
 - uid: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair.Completion
   id: Completion
   parent: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair
@@ -135,12 +146,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets a @'System.Threading.Tasks.Task' that will complete when the scheduler has completed processing.
   syntax:
     content: public Task Completion { get; }
     content.vb: Public ReadOnly Property Completion As Task
     parameters: []
     return:
       type: System.Threading.Tasks.Task
+      description: The asynchronous operation that will complete when the scheduler finishes processing.
 - uid: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair.ConcurrentScheduler
   id: ConcurrentScheduler
   parent: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair
@@ -155,12 +168,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets a @'System.Threading.Tasks.TaskScheduler' that can be used to schedule tasks to this pair that may run concurrently with other tasks on this pair.
   syntax:
     content: public TaskScheduler ConcurrentScheduler { get; }
     content.vb: Public ReadOnly Property ConcurrentScheduler As TaskScheduler
     parameters: []
     return:
       type: System.Threading.Tasks.TaskScheduler
+      description: An object that can be used to schedule tasks concurrently.
 - uid: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair.ExclusiveScheduler
   id: ExclusiveScheduler
   parent: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair
@@ -175,12 +190,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets a @'System.Threading.Tasks.TaskScheduler' that can be used to schedule tasks to this pair that must run exclusively with regards to other tasks on this pair.
   syntax:
     content: public TaskScheduler ExclusiveScheduler { get; }
     content.vb: Public ReadOnly Property ExclusiveScheduler As TaskScheduler
     parameters: []
     return:
       type: System.Threading.Tasks.TaskScheduler
+      description: An object that can be used to schedule tasks that do not run concurrently with other tasks.
 - uid: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair.Complete
   id: Complete
   parent: System.Threading.Tasks.ConcurrentExclusiveSchedulerPair
@@ -195,6 +212,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Informs the scheduler pair that it should not accept any more tasks.
   syntax:
     content: public void Complete()
     content.vb: Public Sub Complete

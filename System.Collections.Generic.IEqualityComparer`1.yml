@@ -21,6 +21,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections.Generic
+  summary: Defines methods to support the comparison of objects for equality.
   syntax:
     content: public interface IEqualityComparer<in T>
     content.vb: Public Interface IEqualityComparer(Of In T)
@@ -41,16 +42,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections.Generic
+  summary: Determines whether the specified objects are equal.
   syntax:
     content: bool Equals(T x, T y)
     content.vb: Function Equals(x As T, y As T) As Boolean
     parameters:
     - id: x
       type: '{T}'
+      description: The first object of type *T* to compare.
     - id: y
       type: '{T}'
+      description: The second object of type *T* to compare.
     return:
       type: System.Boolean
+      description: true if the specified objects are equal; otherwise, false.
 - uid: System.Collections.Generic.IEqualityComparer`1.GetHashCode(`0)
   id: GetHashCode(`0)
   parent: System.Collections.Generic.IEqualityComparer`1
@@ -66,14 +71,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections.Generic
+  summary: Returns a hash code for the specified object.
   syntax:
     content: int GetHashCode(T obj)
     content.vb: Function GetHashCode(obj As T) As Integer
     parameters:
     - id: obj
       type: '{T}'
+      description: The @'System.Object' for which a hash code is to be returned.
     return:
       type: System.Int32
+      description: A hash code for the specified object.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The type of *obj* is a reference type and *obj* is null.
 references:
 - uid: System.Collections.Generic
   isExternal: false
@@ -103,3 +114,10 @@ references:
   name: Int32
   fullName: System.Int32
   type: Struct
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.

@@ -21,6 +21,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Provides an awaiter for switching into a target environment.
   syntax:
     content: 'public struct YieldAwaiter : ICriticalNotifyCompletion, INotifyCompletion'
     content.vb: Public Structure YieldAwaiter Implements ICriticalNotifyCompletion, INotifyCompletion
@@ -48,12 +49,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Gets a value that indicates whether a yield is not required.
   syntax:
     content: public bool IsCompleted { get; }
     content.vb: Public ReadOnly Property IsCompleted As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: Always false, which indicates that a yield is always required for @'System.Runtime.CompilerServices.YieldAwaitable.YieldAwaiter'.
 - uid: System.Runtime.CompilerServices.YieldAwaitable.YieldAwaiter.GetResult
   id: GetResult
   parent: System.Runtime.CompilerServices.YieldAwaitable.YieldAwaiter
@@ -68,6 +71,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Ends the await operation.
   syntax:
     content: public void GetResult()
     content.vb: Public Sub GetResult
@@ -85,12 +89,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Sets the continuation to invoke.
   syntax:
     content: public void OnCompleted(Action continuation)
     content.vb: Public Sub OnCompleted(continuation As Action)
     parameters:
     - id: continuation
       type: System.Action
+      description: The action to invoke asynchronously.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*continuation* is null.'
 - uid: System.Runtime.CompilerServices.YieldAwaitable.YieldAwaiter.UnsafeOnCompleted(System.Action)
   id: UnsafeOnCompleted(System.Action)
   parent: System.Runtime.CompilerServices.YieldAwaitable.YieldAwaiter
@@ -105,12 +114,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Posts the *continuation* back to the current context.
   syntax:
     content: public void UnsafeOnCompleted(Action continuation)
     content.vb: Public Sub UnsafeOnCompleted(continuation As Action)
     parameters:
     - id: continuation
       type: System.Action
+      description: The action to invoke asynchronously.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuation* argument is null.
 references:
 - uid: System.Runtime.CompilerServices
   isExternal: false
@@ -339,3 +353,10 @@ references:
   name: Action
   fullName: System.Action
   type: Delegate
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.

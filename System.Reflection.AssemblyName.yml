@@ -31,6 +31,7 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Describes an assembly's unique identity in full.
   syntax:
     content: public sealed class AssemblyName
     content.vb: Public NotInheritable Class AssemblyName
@@ -57,6 +58,7 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Initializes a new instance of the @'System.Reflection.AssemblyName' class.
   syntax:
     content: public AssemblyName()
     content.vb: Public Sub New
@@ -74,12 +76,21 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Initializes a new instance of the @'System.Reflection.AssemblyName' class with the specified display name.
   syntax:
     content: public AssemblyName(string assemblyName)
     content.vb: Public Sub New(assemblyName As String)
     parameters:
     - id: assemblyName
       type: System.String
+      description: The display name of the assembly, as returned by the @'System.Reflection.AssemblyName.FullName' property.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*assemblyName* is null.'
+  - type: System.ArgumentException
+    description: '*assemblyName* is a zero length string.'
+  - type: System.IO.FileLoadException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.IO.IOException', instead.The referenced assembly could not be found, or could not be loaded.
 - uid: System.Reflection.AssemblyName.ContentType
   id: ContentType
   parent: System.Reflection.AssemblyName
@@ -94,12 +105,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets or sets a value that indicates what type of content the assembly contains.
   syntax:
     content: public AssemblyContentType ContentType { get; set; }
     content.vb: Public Property ContentType As AssemblyContentType
     parameters: []
     return:
       type: System.Reflection.AssemblyContentType
+      description: A value that indicates what type of content the assembly contains.
 - uid: System.Reflection.AssemblyName.CultureName
   id: CultureName
   parent: System.Reflection.AssemblyName
@@ -114,12 +127,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets or sets the name of the culture associated with the assembly.
   syntax:
     content: public string CultureName { get; set; }
     content.vb: Public Property CultureName As String
     parameters: []
     return:
       type: System.String
+      description: The culture name.
 - uid: System.Reflection.AssemblyName.Flags
   id: Flags
   parent: System.Reflection.AssemblyName
@@ -134,12 +149,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets or sets the attributes of the assembly.
   syntax:
     content: public AssemblyNameFlags Flags { get; set; }
     content.vb: Public Property Flags As AssemblyNameFlags
     parameters: []
     return:
       type: System.Reflection.AssemblyNameFlags
+      description: A value that represents the attributes of the assembly.
 - uid: System.Reflection.AssemblyName.FullName
   id: FullName
   parent: System.Reflection.AssemblyName
@@ -154,12 +171,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets the full name of the assembly, also known as the display name.
   syntax:
     content: public string FullName { get; }
     content.vb: Public ReadOnly Property FullName As String
     parameters: []
     return:
       type: System.String
+      description: A string that is the full name of the assembly, also known as the display name.
 - uid: System.Reflection.AssemblyName.Name
   id: Name
   parent: System.Reflection.AssemblyName
@@ -174,12 +193,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets or sets the simple name of the assembly. This is usually, but not necessarily, the file name of the manifest file of the assembly, minus its extension.
   syntax:
     content: public string Name { get; set; }
     content.vb: Public Property Name As String
     parameters: []
     return:
       type: System.String
+      description: The simple name of the assembly.
 - uid: System.Reflection.AssemblyName.ProcessorArchitecture
   id: ProcessorArchitecture
   parent: System.Reflection.AssemblyName
@@ -194,12 +215,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets or sets a value that identifies the processor and bits-per-word of the platform targeted by an executable.
   syntax:
     content: public ProcessorArchitecture ProcessorArchitecture { get; set; }
     content.vb: Public Property ProcessorArchitecture As ProcessorArchitecture
     parameters: []
     return:
       type: System.Reflection.ProcessorArchitecture
+      description: One of the enumeration values that identifies the processor and bits-per-word of the platform targeted by an executable.
 - uid: System.Reflection.AssemblyName.Version
   id: Version
   parent: System.Reflection.AssemblyName
@@ -214,12 +237,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets or sets the major, minor, build, and revision numbers of the assembly.
   syntax:
     content: public Version Version { get; set; }
     content.vb: Public Property Version As Version
     parameters: []
     return:
       type: System.Version
+      description: An object that represents the major, minor, build, and revision numbers of the assembly.
 - uid: System.Reflection.AssemblyName.GetPublicKey
   id: GetPublicKey
   parent: System.Reflection.AssemblyName
@@ -234,11 +259,16 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets the public key of the assembly.
   syntax:
     content: public byte[] GetPublicKey()
     content.vb: Public Function GetPublicKey As Byte()
     return:
       type: System.Byte[]
+      description: A byte array that contains the public key of the assembly.
+  exceptions:
+  - type: System.Security.SecurityException
+    description: A public key was provided (for example, by using the @'System.Reflection.AssemblyName.SetPublicKey(System.Byte[])' method), but no public key token was provided.
 - uid: System.Reflection.AssemblyName.GetPublicKeyToken
   id: GetPublicKeyToken
   parent: System.Reflection.AssemblyName
@@ -253,11 +283,13 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets the public key token, which is the last 8 bytes of the SHA-1 hash of the public key under which the application or assembly is signed.
   syntax:
     content: public byte[] GetPublicKeyToken()
     content.vb: Public Function GetPublicKeyToken As Byte()
     return:
       type: System.Byte[]
+      description: A byte array that contains the public key token.
 - uid: System.Reflection.AssemblyName.SetPublicKey(System.Byte[])
   id: SetPublicKey(System.Byte[])
   parent: System.Reflection.AssemblyName
@@ -274,12 +306,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Sets the public key identifying the assembly.
   syntax:
     content: public void SetPublicKey(byte[] publicKey)
     content.vb: Public Sub SetPublicKey(publicKey As Byte())
     parameters:
     - id: publicKey
       type: System.Byte[]
+      description: A byte array containing the public key of the assembly.
 - uid: System.Reflection.AssemblyName.SetPublicKeyToken(System.Byte[])
   id: SetPublicKeyToken(System.Byte[])
   parent: System.Reflection.AssemblyName
@@ -296,12 +330,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Sets the public key token, which is the last 8 bytes of the SHA-1 hash of the public key under which the application or assembly is signed.
   syntax:
     content: public void SetPublicKeyToken(byte[] publicKeyToken)
     content.vb: Public Sub SetPublicKeyToken(publicKeyToken As Byte())
     parameters:
     - id: publicKeyToken
       type: System.Byte[]
+      description: A byte array containing the public key token of the assembly.
 - uid: System.Reflection.AssemblyName.ToString
   id: ToString
   parent: System.Reflection.AssemblyName
@@ -316,11 +352,13 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Returns the full name of the assembly, also known as the display name.
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
+      description: The full name of the assembly, or the class name if the full name cannot be determined.
   overridden: System.Object.ToString
 references:
 - uid: System.Reflection
@@ -604,3 +642,32 @@ references:
     fullName: (
   - name: )
     fullName: )
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.IO.FileLoadException
+  isExternal: false
+  href: System.IO.FileLoadException.yml
+  name: FileLoadException
+  fullName: System.IO.FileLoadException
+  type: Class
+  summary: The exception that is thrown when a managed assembly is found but cannot be loaded.
+- uid: System.Security.SecurityException
+  isExternal: false
+  href: System.Security.SecurityException.yml
+  name: SecurityException
+  fullName: System.Security.SecurityException
+  type: Class
+  summary: The exception that is thrown when a security error is detected.

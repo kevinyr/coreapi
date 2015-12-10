@@ -29,6 +29,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Represents an object that handles the low-level work of queuing tasks onto threads.
   syntax:
     content: public abstract class TaskScheduler
     content.vb: Public MustInherit Class TaskScheduler
@@ -56,6 +57,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes the @'System.Threading.Tasks.TaskScheduler'.
   syntax:
     content: protected TaskScheduler()
     content.vb: Protected Sub New
@@ -73,12 +75,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets the @'System.Threading.Tasks.TaskScheduler' associated with the currently executing task.
   syntax:
     content: public static TaskScheduler Current { get; }
     content.vb: Public Shared ReadOnly Property Current As TaskScheduler
     parameters: []
     return:
       type: System.Threading.Tasks.TaskScheduler
+      description: Returns the @'System.Threading.Tasks.TaskScheduler' associated with the currently executing task.
 - uid: System.Threading.Tasks.TaskScheduler.Default
   id: Default
   parent: System.Threading.Tasks.TaskScheduler
@@ -93,12 +97,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets the default @'System.Threading.Tasks.TaskScheduler' instance that is provided by the .NET Framework.
   syntax:
     content: public static TaskScheduler Default { get; }
     content.vb: Public Shared ReadOnly Property Default As TaskScheduler
     parameters: []
     return:
       type: System.Threading.Tasks.TaskScheduler
+      description: Returns the default @'System.Threading.Tasks.TaskScheduler' instance.
 - uid: System.Threading.Tasks.TaskScheduler.Id
   id: Id
   parent: System.Threading.Tasks.TaskScheduler
@@ -113,12 +119,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets the unique ID for this @'System.Threading.Tasks.TaskScheduler'.
   syntax:
     content: public int Id { get; }
     content.vb: Public ReadOnly Property Id As Integer
     parameters: []
     return:
       type: System.Int32
+      description: Returns the unique ID for this @'System.Threading.Tasks.TaskScheduler'.
 - uid: System.Threading.Tasks.TaskScheduler.MaximumConcurrencyLevel
   id: MaximumConcurrencyLevel
   parent: System.Threading.Tasks.TaskScheduler
@@ -133,12 +141,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Indicates the maximum concurrency level this @'System.Threading.Tasks.TaskScheduler' is able to support.
   syntax:
     content: public virtual int MaximumConcurrencyLevel { get; }
     content.vb: Public Overridable ReadOnly Property MaximumConcurrencyLevel As Integer
     parameters: []
     return:
       type: System.Int32
+      description: Returns an integer that represents the maximum concurrency level. The default scheduler returns @'System.Int32.MaxValue'.
 - uid: System.Threading.Tasks.TaskScheduler.UnobservedTaskException
   id: UnobservedTaskException
   parent: System.Threading.Tasks.TaskScheduler
@@ -153,6 +163,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Occurs when a faulted task's unobserved exception is about to trigger exception escalation policy, which, by default, would terminate the process.
   syntax:
     content: public static event EventHandler<UnobservedTaskExceptionEventArgs> UnobservedTaskException
     content.vb: Public Shared Event UnobservedTaskException As EventHandler(Of UnobservedTaskExceptionEventArgs)
@@ -170,11 +181,16 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a @'System.Threading.Tasks.TaskScheduler' associated with the current @'System.Threading.SynchronizationContext'.
   syntax:
     content: public static TaskScheduler FromCurrentSynchronizationContext()
     content.vb: Public Shared Function FromCurrentSynchronizationContext As TaskScheduler
     return:
       type: System.Threading.Tasks.TaskScheduler
+      description: A @'System.Threading.Tasks.TaskScheduler' associated with the current @'System.Threading.SynchronizationContext', as determined by @'System.Threading.SynchronizationContext.Current'.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The current SynchronizationContext may not be used as a TaskScheduler.
 - uid: System.Threading.Tasks.TaskScheduler.GetScheduledTasks
   id: GetScheduledTasks
   parent: System.Threading.Tasks.TaskScheduler
@@ -189,11 +205,16 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: For debugger support only, generates an enumerable of @'System.Threading.Tasks.Task' instances currently queued to the scheduler waiting to be executed.
   syntax:
     content: protected abstract IEnumerable<Task> GetScheduledTasks()
     content.vb: Protected MustOverride Function GetScheduledTasks As IEnumerable(Of Task)
     return:
       type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: An enumerable that allows a debugger to traverse the tasks currently queued to this scheduler.
+  exceptions:
+  - type: System.NotSupportedException
+    description: This scheduler is unable to generate a list of queued tasks at this time.
 - uid: System.Threading.Tasks.TaskScheduler.QueueTask(System.Threading.Tasks.Task)
   id: QueueTask(System.Threading.Tasks.Task)
   parent: System.Threading.Tasks.TaskScheduler
@@ -208,12 +229,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Queues a @'System.Threading.Tasks.Task' to the scheduler.
   syntax:
     content: protected abstract void QueueTask(Task task)
     content.vb: Protected MustOverride Sub QueueTask(task As Task)
     parameters:
     - id: task
       type: System.Threading.Tasks.Task
+      description: The @'System.Threading.Tasks.Task' to be queued.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *task* argument is null.
 - uid: System.Threading.Tasks.TaskScheduler.TryDequeue(System.Threading.Tasks.Task)
   id: TryDequeue(System.Threading.Tasks.Task)
   parent: System.Threading.Tasks.TaskScheduler
@@ -228,14 +254,20 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Attempts to dequeue a @'System.Threading.Tasks.Task' that was previously queued to this scheduler.
   syntax:
     content: protected virtual bool TryDequeue(Task task)
     content.vb: Protected Overridable Function TryDequeue(task As Task) As Boolean
     parameters:
     - id: task
       type: System.Threading.Tasks.Task
+      description: The @'System.Threading.Tasks.Task' to be dequeued.
     return:
       type: System.Boolean
+      description: A Boolean denoting whether the *task* argument was successfully dequeued.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *task* argument is null.
 - uid: System.Threading.Tasks.TaskScheduler.TryExecuteTask(System.Threading.Tasks.Task)
   id: TryExecuteTask(System.Threading.Tasks.Task)
   parent: System.Threading.Tasks.TaskScheduler
@@ -250,14 +282,20 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Attempts to execute the provided @'System.Threading.Tasks.Task' on this scheduler.
   syntax:
     content: protected bool TryExecuteTask(Task task)
     content.vb: Protected Function TryExecuteTask(task As Task) As Boolean
     parameters:
     - id: task
       type: System.Threading.Tasks.Task
+      description: A @'System.Threading.Tasks.Task' object to be executed.
     return:
       type: System.Boolean
+      description: A Boolean that is true if *task* was successfully executed, false if it was not. A common reason for execution failure is that the task had previously been executed or is in the process of being executed by another thread.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The *task* is not associated with this scheduler.
 - uid: System.Threading.Tasks.TaskScheduler.TryExecuteTaskInline(System.Threading.Tasks.Task,System.Boolean)
   id: TryExecuteTaskInline(System.Threading.Tasks.Task,System.Boolean)
   parent: System.Threading.Tasks.TaskScheduler
@@ -272,16 +310,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Determines whether the provided @'System.Threading.Tasks.Task' can be executed synchronously in this call, and if it can, executes it.
   syntax:
     content: protected abstract bool TryExecuteTaskInline(Task task, bool taskWasPreviouslyQueued)
     content.vb: Protected MustOverride Function TryExecuteTaskInline(task As Task, taskWasPreviouslyQueued As Boolean) As Boolean
     parameters:
     - id: task
       type: System.Threading.Tasks.Task
+      description: The @'System.Threading.Tasks.Task' to be executed.
     - id: taskWasPreviouslyQueued
       type: System.Boolean
+      description: A Boolean denoting whether or not task has previously been queued. If this parameter is True, then the task may have been previously queued (scheduled); if False, then the task is known not to have been queued, and this call is being made in order to execute the task inline without queuing it.
     return:
       type: System.Boolean
+      description: A Boolean value indicating whether the task was executed inline.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *task* argument is null.
+  - type: System.InvalidOperationException
+    description: The *task* was already executed.
 references:
 - uid: System.Threading.Tasks
   isExternal: false
@@ -607,3 +654,26 @@ references:
   name: Boolean
   fullName: System.Boolean
   type: Struct
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.NotSupportedException
+  parent: System
+  isExternal: false
+  href: System.NotSupportedException.yml
+  name: NotSupportedException
+  fullName: System.NotSupportedException
+  type: Class
+  summary: The exception that is thrown when an invoked method is not supported, or when there is an attempt to read, seek, or write to a stream that does not support the invoked functionality.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.

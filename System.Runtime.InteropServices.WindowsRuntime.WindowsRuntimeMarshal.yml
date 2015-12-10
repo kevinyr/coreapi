@@ -24,6 +24,7 @@ items:
   assemblies:
   - System.Runtime.InteropServices.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
+  summary: Provides helper methods for marshaling data between the .NET Framework and the Windows Runtime.
   syntax:
     content: public class WindowsRuntimeMarshal
     content.vb: Public Class WindowsRuntimeMarshal
@@ -53,18 +54,25 @@ items:
   assemblies:
   - System.Runtime.InteropServices.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
+  summary: Adds the specified event handler to a Windows Runtime event.
   syntax:
     content: public static void AddEventHandler<T>(Func<T, EventRegistrationToken> addMethod, Action<EventRegistrationToken> removeMethod, T handler)
     content.vb: Public Shared Sub AddEventHandler(Of T)(addMethod As Func(Of T, EventRegistrationToken), removeMethod As Action(Of EventRegistrationToken), handler As T)
     parameters:
     - id: addMethod
       type: System.Func{{T},System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken}
+      description: A delegate that represents the method that adds event handlers to the Windows Runtime event.
     - id: removeMethod
       type: System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken}
+      description: A delegate that represents the method that removes event handlers from the Windows Runtime event.
     - id: handler
       type: '{T}'
+      description: A delegate the represents the event handler that is added.
     typeParameters:
     - id: T
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*addMethod* is null. -or-*removeMethod* is null.'
 - uid: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.FreeHString(System.IntPtr)
   id: FreeHString(System.IntPtr)
   parent: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal
@@ -79,12 +87,17 @@ items:
   assemblies:
   - System.Runtime.InteropServices.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
+  summary: Frees the specified Windows Runtime HSTRING.
   syntax:
     content: public static void FreeHString(IntPtr ptr)
     content.vb: Public Shared Sub FreeHString(ptr As IntPtr)
     parameters:
     - id: ptr
       type: System.IntPtr
+      description: The address of the HSTRING to free.
+  exceptions:
+  - type: System.PlatformNotSupportedException
+    description: The Windows Runtime is not supported on the current version of the operating system.
 - uid: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.GetActivationFactory(System.Type)
   id: GetActivationFactory(System.Type)
   parent: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal
@@ -99,14 +112,24 @@ items:
   assemblies:
   - System.Runtime.InteropServices.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
+  summary: Returns an object that implements the activation factory interface for the specified Windows Runtime type.
   syntax:
     content: public static IActivationFactory GetActivationFactory(Type type)
     content.vb: Public Shared Function GetActivationFactory(type As Type) As IActivationFactory
     parameters:
     - id: type
       type: System.Type
+      description: The Windows Runtime type to get the activation factory interface for.
     return:
       type: System.Runtime.InteropServices.WindowsRuntime.IActivationFactory
+      description: An object that implements the activation factory interface.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*type* does not represent a Windows Runtime type (that is, belonging to the Windows Runtime itself or defined in a Windows Runtime component). -or-The object specified for *type* was not provided by the common language runtime type system.'
+  - type: System.ArgumentNullException
+    description: '*type* is null.'
+  - type: System.TypeLoadException
+    description: The specified Windows Runtime class is not properly registered. For example, the .winmd file was located, but the Windows Runtime failed to locate the implementation.
 - uid: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.PtrToStringHString(System.IntPtr)
   id: PtrToStringHString(System.IntPtr)
   parent: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal
@@ -121,14 +144,20 @@ items:
   assemblies:
   - System.Runtime.InteropServices.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
+  summary: Returns a managed string that contains a copy of the specified Windows Runtime HSTRING.
   syntax:
     content: public static string PtrToStringHString(IntPtr ptr)
     content.vb: Public Shared Function PtrToStringHString(ptr As IntPtr) As String
     parameters:
     - id: ptr
       type: System.IntPtr
+      description: An unmanaged pointer to the HSTRING to copy.
     return:
       type: System.String
+      description: A managed string that contains a copy of the HSTRING if *ptr* is not @'System.IntPtr.Zero'; otherwise, @'System.String.Empty'.
+  exceptions:
+  - type: System.PlatformNotSupportedException
+    description: The Windows Runtime is not supported on the current version of the operating system.
 - uid: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveAllEventHandlers(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken})
   id: RemoveAllEventHandlers(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken})
   parent: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal
@@ -145,12 +174,17 @@ items:
   assemblies:
   - System.Runtime.InteropServices.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
+  summary: Removes all the event handlers that can be removed by using the specified method.
   syntax:
     content: public static void RemoveAllEventHandlers(Action<EventRegistrationToken> removeMethod)
     content.vb: Public Shared Sub RemoveAllEventHandlers(removeMethod As Action(Of EventRegistrationToken))
     parameters:
     - id: removeMethod
       type: System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken}
+      description: A delegate that represents the method that removes event handlers from the Windows Runtime event.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*removeMethod* is null.'
 - uid: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.RemoveEventHandler``1(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)
   id: RemoveEventHandler``1(System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken},``0)
   parent: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal
@@ -167,16 +201,22 @@ items:
   assemblies:
   - System.Runtime.InteropServices.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
+  summary: Removes the specified event handler from a Windows Runtime event.
   syntax:
     content: public static void RemoveEventHandler<T>(Action<EventRegistrationToken> removeMethod, T handler)
     content.vb: Public Shared Sub RemoveEventHandler(Of T)(removeMethod As Action(Of EventRegistrationToken), handler As T)
     parameters:
     - id: removeMethod
       type: System.Action{System.Runtime.InteropServices.WindowsRuntime.EventRegistrationToken}
+      description: A delegate that represents the method that removes event handlers from the Windows Runtime event.
     - id: handler
       type: '{T}'
+      description: The event handler that is removed.
     typeParameters:
     - id: T
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*removeMethod* is null.'
 - uid: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal.StringToHString(System.String)
   id: StringToHString(System.String)
   parent: System.Runtime.InteropServices.WindowsRuntime.WindowsRuntimeMarshal
@@ -191,14 +231,22 @@ items:
   assemblies:
   - System.Runtime.InteropServices.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
+  summary: Allocates a Windows Runtime HSTRING and copies the specified managed string to it.
   syntax:
     content: public static IntPtr StringToHString(string s)
     content.vb: Public Shared Function StringToHString(s As String) As IntPtr
     parameters:
     - id: s
       type: System.String
+      description: The managed string to copy.
     return:
       type: System.IntPtr
+      description: An unmanaged pointer to the new HSTRING, or @'System.IntPtr.Zero' if *s* is @'System.String.Empty'.
+  exceptions:
+  - type: System.PlatformNotSupportedException
+    description: The Windows Runtime is not supported on the current version of the operating system.
+  - type: System.ArgumentNullException
+    description: '*s* is null.'
 references:
 - uid: System.Runtime.InteropServices.WindowsRuntime
   isExternal: false
@@ -604,3 +652,33 @@ references:
   name: String
   fullName: System.String
   type: Class
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.PlatformNotSupportedException
+  isExternal: false
+  href: System.PlatformNotSupportedException.yml
+  name: PlatformNotSupportedException
+  fullName: System.PlatformNotSupportedException
+  type: Class
+  summary: The exception that is thrown when a feature does not run on a particular platform.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.TypeLoadException
+  parent: System
+  isExternal: false
+  href: System.TypeLoadException.yml
+  name: TypeLoadException
+  fullName: System.TypeLoadException
+  type: Class
+  summary: The exception that is thrown when type-loading failures occur.

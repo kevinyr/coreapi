@@ -19,6 +19,7 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Wraps objects the marshaler should marshal as a VT_DISPATCH.
   syntax:
     content: public sealed class DispatchWrapper
     content.vb: Public NotInheritable Class DispatchWrapper
@@ -46,12 +47,19 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Initializes a new instance of the @'System.Runtime.InteropServices.DispatchWrapper' class with the object being wrapped.
   syntax:
     content: public DispatchWrapper(object obj)
     content.vb: Public Sub New(obj As Object)
     parameters:
     - id: obj
       type: System.Object
+      description: The object to be wrapped and converted to @'System.Runtime.InteropServices.VarEnum.VT_DISPATCH'.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*obj* is not a class or an array.-or- *obj* does not support IDispatch.'
+  - type: System.InvalidOperationException
+    description: The *obj* parameter was marked with a @'System.Runtime.InteropServices.ComVisibleAttribute'  attribute that was passed a value of false.-or-The *obj* parameter inherits from a type marked with a @'System.Runtime.InteropServices.ComVisibleAttribute'  attribute that was passed a value of false.
 - uid: System.Runtime.InteropServices.DispatchWrapper.WrappedObject
   id: WrappedObject
   parent: System.Runtime.InteropServices.DispatchWrapper
@@ -66,12 +74,14 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Gets the object wrapped by the @'System.Runtime.InteropServices.DispatchWrapper'.
   syntax:
     content: public object WrappedObject { get; }
     content.vb: Public ReadOnly Property WrappedObject As Object
     parameters: []
     return:
       type: System.Object
+      description: The object wrapped by the @'System.Runtime.InteropServices.DispatchWrapper'.
 references:
 - uid: System.Runtime.InteropServices
   isExternal: false
@@ -299,3 +309,19 @@ references:
   name: System
   fullName: System
   type: Namespace
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.

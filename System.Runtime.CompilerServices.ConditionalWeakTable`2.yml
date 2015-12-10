@@ -26,6 +26,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Enables compilers to dynamically attach object fields to managed objects.
   syntax:
     content: 'public sealed class ConditionalWeakTable<TKey, TValue> where TKey : class where TValue : class'
     content.vb: Public NotInheritable Class ConditionalWeakTable(Of TKey As Class, TValue As Class)
@@ -57,6 +58,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Initializes a new instance of the @'System.Runtime.CompilerServices.ConditionalWeakTable`2' class.
   syntax:
     content: public ConditionalWeakTable()
     content.vb: Public Sub New
@@ -75,14 +77,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Adds a key to the table.
   syntax:
     content: public void Add(TKey key, TValue value)
     content.vb: Public Sub Add(key As TKey, value As TValue)
     parameters:
     - id: key
       type: '{TKey}'
+      description: The key to add. *key* represents the object to which the property is attached.
     - id: value
       type: '{TValue}'
+      description: The key's property value.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*key* is null.'
+  - type: System.ArgumentException
+    description: '*key* already exists.'
 - uid: System.Runtime.CompilerServices.ConditionalWeakTable`2.Finalize
   id: Finalize
   parent: System.Runtime.CompilerServices.ConditionalWeakTable`2
@@ -98,6 +108,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Ensures that resources are freed and other cleanup operations are performed when the garbage collector reclaims the @'System.Runtime.CompilerServices.ConditionalWeakTable`2' object.
   syntax:
     content: protected void Finalize()
     content.vb: Protected Sub Finalize
@@ -116,14 +127,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Atomically searches for a specified key in the table and returns the corresponding value. If the key does not exist in the table, the method invokes the default constructor of the class that represents the table's value to create a value that is bound to the specified key.
   syntax:
     content: public TValue GetOrCreateValue(TKey key)
     content.vb: Public Function GetOrCreateValue(key As TKey) As TValue
     parameters:
     - id: key
       type: '{TKey}'
+      description: The key to search for. *key* represents the object to which the property is attached.
     return:
       type: '{TValue}'
+      description: The value that corresponds to *key*, if *key* already exists in the table; otherwise, a new value created by the default constructor of the class defined by the *TValue* generic type parameter.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*key* is null.'
+  - type: System.MissingMethodException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.MissingMemberException', instead.The class that represents the table's value does not define a default constructor.
 - uid: System.Runtime.CompilerServices.ConditionalWeakTable`2.GetValue(`0,System.Runtime.CompilerServices.ConditionalWeakTable{`0,`1}.CreateValueCallback)
   id: GetValue(`0,System.Runtime.CompilerServices.ConditionalWeakTable{`0,`1}.CreateValueCallback)
   parent: System.Runtime.CompilerServices.ConditionalWeakTable`2
@@ -140,16 +159,23 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Atomically searches for a specified key in the table and returns the corresponding value. If the key does not exist in the table, the method invokes a callback method to create a value that is bound to the specified key.
   syntax:
     content: public TValue GetValue(TKey key, ConditionalWeakTable<TKey, TValue>.CreateValueCallback createValueCallback)
     content.vb: Public Function GetValue(key As TKey, createValueCallback As ConditionalWeakTable(Of TKey, TValue).CreateValueCallback) As TValue
     parameters:
     - id: key
       type: '{TKey}'
+      description: The key to search for. *key* represents the object to which the property is attached.
     - id: createValueCallback
       type: System.Runtime.CompilerServices.ConditionalWeakTable`2.CreateValueCallback
+      description: A delegate to a method that can create a value for the given *key*. It has a single parameter of type *TKey*, and returns a value of type *TValue*.
     return:
       type: '{TValue}'
+      description: The value attached to *key*, if *key* already exists in the table; otherwise, the new value returned by the *createValueCallback* delegate.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*key* or *createValueCallback* is null.'
 - uid: System.Runtime.CompilerServices.ConditionalWeakTable`2.Remove(`0)
   id: Remove(`0)
   parent: System.Runtime.CompilerServices.ConditionalWeakTable`2
@@ -165,14 +191,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Removes a key and its value from the table.
   syntax:
     content: public bool Remove(TKey key)
     content.vb: Public Function Remove(key As TKey) As Boolean
     parameters:
     - id: key
       type: '{TKey}'
+      description: The key to remove.
     return:
       type: System.Boolean
+      description: true if the key is found and removed; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*key* is null.'
 - uid: System.Runtime.CompilerServices.ConditionalWeakTable`2.TryGetValue(`0,`1@)
   id: TryGetValue(`0,`1@)
   parent: System.Runtime.CompilerServices.ConditionalWeakTable`2
@@ -189,16 +221,23 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
+  summary: Gets the value of the specified key.
   syntax:
     content: public bool TryGetValue(TKey key, out TValue value)
     content.vb: Public Function TryGetValue(key As TKey, ByRef value As TValue) As Boolean
     parameters:
     - id: key
       type: '{TKey}'
+      description: The key that represents an object with an attached property.
     - id: value
       type: '{TValue}'
+      description: When this method returns, contains the attached property value. If *key* is not found, *value* contains the default value.
     return:
       type: System.Boolean
+      description: true if *key* is found; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*key* is null.'
 references:
 - uid: System.Runtime.CompilerServices
   isExternal: false
@@ -468,3 +507,25 @@ references:
   name: Boolean
   fullName: System.Boolean
   type: Struct
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.MissingMethodException
+  isExternal: false
+  href: System.MissingMethodException.yml
+  name: MissingMethodException
+  fullName: System.MissingMethodException
+  type: Class
+  summary: The exception that is thrown when there is an attempt to dynamically access a method that does not exist.

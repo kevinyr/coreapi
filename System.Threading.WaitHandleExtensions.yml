@@ -19,6 +19,7 @@ items:
   assemblies:
   - System.Runtime.Handles
   namespace: System.Threading
+  summary: Provides convenience methods to for working with a safe handle for a wait handle.
   syntax:
     content: public class WaitHandleExtensions
     content.vb: Public Class WaitHandleExtensions
@@ -46,14 +47,20 @@ items:
   assemblies:
   - System.Runtime.Handles
   namespace: System.Threading
+  summary: Gets the safe handle for a native operating system wait handle.
   syntax:
     content: public static SafeWaitHandle GetSafeWaitHandle(WaitHandle waitHandle)
     content.vb: Public Shared Function GetSafeWaitHandle(waitHandle As WaitHandle) As SafeWaitHandle
     parameters:
     - id: waitHandle
       type: System.Threading.WaitHandle
+      description: A native operating system handle.
     return:
       type: Microsoft.Win32.SafeHandles.SafeWaitHandle
+      description: The safe wait handle that wraps the native operating system wait handle.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*waitHandle* is null.'
 - uid: System.Threading.WaitHandleExtensions.SetSafeWaitHandle(System.Threading.WaitHandle,Microsoft.Win32.SafeHandles.SafeWaitHandle)
   id: SetSafeWaitHandle(System.Threading.WaitHandle,Microsoft.Win32.SafeHandles.SafeWaitHandle)
   parent: System.Threading.WaitHandleExtensions
@@ -68,14 +75,20 @@ items:
   assemblies:
   - System.Runtime.Handles
   namespace: System.Threading
+  summary: Sets a safe handle for a native operating system wait handle.
   syntax:
     content: public static void SetSafeWaitHandle(WaitHandle waitHandle, SafeWaitHandle value)
     content.vb: Public Shared Sub SetSafeWaitHandle(waitHandle As WaitHandle, value As SafeWaitHandle)
     parameters:
     - id: waitHandle
       type: System.Threading.WaitHandle
+      description: A wait handle that encapsulates an operating system-specific object that waits for exclusive access to a shared resource.
     - id: value
       type: Microsoft.Win32.SafeHandles.SafeWaitHandle
+      description: The safe handle to wrap the operating system handle.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*waitHandle* is null.'
 references:
 - uid: System.Threading
   isExternal: false
@@ -322,3 +335,10 @@ references:
   name: Microsoft.Win32.SafeHandles
   fullName: Microsoft.Win32.SafeHandles
   type: Namespace
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.

@@ -26,6 +26,7 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Discovers the attributes of a method and provides access to method metadata.
   syntax:
     content: 'public abstract class MethodInfo : MethodBase'
     content.vb: Public MustInherit Class MethodInfo Inherits MethodBase
@@ -80,12 +81,17 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets a @'System.Reflection.ParameterInfo' object that contains information about the return type of the method, such as whether the return type has custom modifiers.
   syntax:
     content: public virtual ParameterInfo ReturnParameter { get; }
     content.vb: Public Overridable ReadOnly Property ReturnParameter As ParameterInfo
     parameters: []
     return:
       type: System.Reflection.ParameterInfo
+      description: A @'System.Reflection.ParameterInfo' object that contains information about the return type.
+  exceptions:
+  - type: System.NotImplementedException
+    description: This method is not implemented.
 - uid: System.Reflection.MethodInfo.ReturnType
   id: ReturnType
   parent: System.Reflection.MethodInfo
@@ -100,12 +106,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets the return type of this method.
   syntax:
     content: public virtual Type ReturnType { get; }
     content.vb: Public Overridable ReadOnly Property ReturnType As Type
     parameters: []
     return:
       type: System.Type
+      description: The return type of this method.
 - uid: System.Reflection.MethodInfo.CreateDelegate(System.Type)
   id: CreateDelegate(System.Type)
   parent: System.Reflection.MethodInfo
@@ -120,14 +128,17 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Creates a delegate of the specified type from this method.
   syntax:
     content: public virtual Delegate CreateDelegate(Type delegateType)
     content.vb: Public Overridable Function CreateDelegate(delegateType As Type) As
     parameters:
     - id: delegateType
       type: System.Type
+      description: The type of the delegate to create.
     return:
       type: System.Delegate
+      description: The delegate for this method.
 - uid: System.Reflection.MethodInfo.CreateDelegate(System.Type,System.Object)
   id: CreateDelegate(System.Type,System.Object)
   parent: System.Reflection.MethodInfo
@@ -142,16 +153,20 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Creates a delegate of the specified type with the specified target from this method.
   syntax:
     content: public virtual Delegate CreateDelegate(Type delegateType, object target)
     content.vb: Public Overridable Function CreateDelegate(delegateType As Type, target As Object) As
     parameters:
     - id: delegateType
       type: System.Type
+      description: The type of the delegate to create.
     - id: target
       type: System.Object
+      description: The object targeted by the delegate.
     return:
       type: System.Delegate
+      description: The delegate for this method.
 - uid: System.Reflection.MethodInfo.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.Reflection.MethodInfo
@@ -166,14 +181,17 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Returns a value that indicates whether this instance is equal to a specified object.
   syntax:
     content: public override bool Equals(object obj)
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
     parameters:
     - id: obj
       type: System.Object
+      description: An object to compare with this instance, or null.
     return:
       type: System.Boolean
+      description: true if *obj* equals the type and value of this instance; otherwise, false.
   overridden: System.Reflection.MethodBase.Equals(System.Object)
 - uid: System.Reflection.MethodInfo.GetGenericArguments
   id: GetGenericArguments
@@ -189,12 +207,17 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Returns an array of @'System.Type' objects that represent the type arguments of a generic method or the type parameters of a generic method definition.
   syntax:
     content: public override Type[] GetGenericArguments()
     content.vb: Public Overrides Function GetGenericArguments As Type()
     return:
       type: System.Type[]
+      description: An array of @'System.Type' objects that represent the type arguments of a generic method or the type parameters of a generic method definition. Returns an empty array if the current method is not a generic method.
   overridden: System.Reflection.MethodBase.GetGenericArguments
+  exceptions:
+  - type: System.NotSupportedException
+    description: This method is not supported.
 - uid: System.Reflection.MethodInfo.GetGenericMethodDefinition
   id: GetGenericMethodDefinition
   parent: System.Reflection.MethodInfo
@@ -209,11 +232,18 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Returns a @'System.Reflection.MethodInfo' object that represents a generic method definition from which the current method can be constructed.
   syntax:
     content: public virtual MethodInfo GetGenericMethodDefinition()
     content.vb: Public Overridable Function GetGenericMethodDefinition As MethodInfo
     return:
       type: System.Reflection.MethodInfo
+      description: A @'System.Reflection.MethodInfo' object representing a generic method definition from which the current method can be constructed.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The current method is not a generic method. That is, @'System.Reflection.MethodInfo.IsGenericMethod' returns false.
+  - type: System.NotSupportedException
+    description: This method is not supported.
 - uid: System.Reflection.MethodInfo.GetHashCode
   id: GetHashCode
   parent: System.Reflection.MethodInfo
@@ -228,11 +258,13 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Returns the hash code for this instance.
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
+      description: A 32-bit signed integer hash code.
   overridden: System.Reflection.MethodBase.GetHashCode
 - uid: System.Reflection.MethodInfo.MakeGenericMethod(System.Type[])
   id: MakeGenericMethod(System.Type[])
@@ -250,14 +282,26 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Substitutes the elements of an array of types for the type parameters of the current generic method definition, and returns a @'System.Reflection.MethodInfo' object representing the resulting constructed method.
   syntax:
     content: public virtual MethodInfo MakeGenericMethod(params Type[] typeArguments)
     content.vb: Public Overridable Function MakeGenericMethod(ParamArray typeArguments As Type()) As MethodInfo
     parameters:
     - id: typeArguments
       type: System.Type[]
+      description: An array of types to be substituted for the type parameters of the current generic method definition.
     return:
       type: System.Reflection.MethodInfo
+      description: A @'System.Reflection.MethodInfo' object that represents the constructed method formed by substituting the elements of *typeArguments* for the type parameters of the current generic method definition.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The current @'System.Reflection.MethodInfo' does not represent a generic method definition. That is, @'System.Reflection.MethodInfo.IsGenericMethodDefinition' returns false.
+  - type: System.ArgumentNullException
+    description: '*typeArguments* is null.-or- Any element of *typeArguments* is null.'
+  - type: System.ArgumentException
+    description: The number of elements in *typeArguments* is not the same as the number of type parameters of the current generic method definition.-or- An element of *typeArguments* does not satisfy the constraints specified for the corresponding type parameter of the current generic method definition.
+  - type: System.NotSupportedException
+    description: This method is not supported.
 references:
 - uid: System.Reflection
   isExternal: false
@@ -876,3 +920,41 @@ references:
   name: Int32
   fullName: System.Int32
   type: Struct
+- uid: System.NotImplementedException
+  isExternal: false
+  href: System.NotImplementedException.yml
+  name: NotImplementedException
+  fullName: System.NotImplementedException
+  type: Class
+  summary: The exception that is thrown when a requested method or operation is not implemented.
+- uid: System.NotSupportedException
+  parent: System
+  isExternal: false
+  href: System.NotSupportedException.yml
+  name: NotSupportedException
+  fullName: System.NotSupportedException
+  type: Class
+  summary: The exception that is thrown when an invoked method is not supported, or when there is an attempt to read, seek, or write to a stream that does not support the invoked functionality.
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.

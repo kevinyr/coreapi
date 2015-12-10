@@ -36,6 +36,7 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Represents a dynamic operation.
   syntax:
     content: 'public class DynamicExpression : Expression, IArgumentProvider, IDynamicExpression'
     content.vb: Public Class DynamicExpression Inherits Expression Implements IArgumentProvider, IDynamicExpression
@@ -58,12 +59,14 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Gets the arguments to the dynamic operation.
   syntax:
     content: public ReadOnlyCollection<Expression> Arguments { get; }
     content.vb: Public ReadOnly Property Arguments As ReadOnlyCollection(Of Expression)
     parameters: []
     return:
       type: System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression}
+      description: The read-only collections containing the arguments to the dynamic operation.
 - uid: System.Linq.Expressions.DynamicExpression.Binder
   id: Binder
   parent: System.Linq.Expressions.DynamicExpression
@@ -78,12 +81,14 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Gets the @'System.Runtime.CompilerServices.CallSiteBinder', which determines the run-time behavior of the dynamic site.
   syntax:
     content: public CallSiteBinder Binder { get; }
     content.vb: Public ReadOnly Property Binder As CallSiteBinder
     parameters: []
     return:
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The @'System.Runtime.CompilerServices.CallSiteBinder', which determines the run-time behavior of the dynamic site.
 - uid: System.Linq.Expressions.DynamicExpression.DelegateType
   id: DelegateType
   parent: System.Linq.Expressions.DynamicExpression
@@ -98,12 +103,14 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Gets the type of the delegate used by the @'System.Runtime.CompilerServices.CallSite'.
   syntax:
     content: public Type DelegateType { get; }
     content.vb: Public ReadOnly Property DelegateType As Type
     parameters: []
     return:
       type: System.Type
+      description: The @'System.Type' object representing the type of the delegate used by the @'System.Runtime.CompilerServices.CallSite'.
 - uid: System.Linq.Expressions.DynamicExpression.NodeType
   id: NodeType
   parent: System.Linq.Expressions.DynamicExpression
@@ -118,12 +125,14 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Returns the node type of this expression. Extension nodes should return @'System.Linq.Expressions.ExpressionType.Extension' when overriding this method.
   syntax:
     content: public override sealed ExpressionType NodeType { get; }
     content.vb: Public NotOverridable Overrides ReadOnly Property NodeType As ExpressionType
     parameters: []
     return:
       type: System.Linq.Expressions.ExpressionType
+      description: The @'System.Linq.Expressions.ExpressionType' of the expression.
 - uid: System.Linq.Expressions.DynamicExpression.Type
   id: Type
   parent: System.Linq.Expressions.DynamicExpression
@@ -138,12 +147,14 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Gets the static type of the expression that this @'System.Linq.Expressions.Expression' represents.
   syntax:
     content: public override Type Type { get; }
     content.vb: Public Overrides ReadOnly Property Type As Type
     parameters: []
     return:
       type: System.Type
+      description: The @'System.Linq.Expressions.DynamicExpression.Type' that represents the static type of the expression.
 - uid: System.Linq.Expressions.DynamicExpression.Accept(System.Linq.Expressions.ExpressionVisitor)
   id: Accept(System.Linq.Expressions.ExpressionVisitor)
   parent: System.Linq.Expressions.DynamicExpression
@@ -161,14 +172,17 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Dispatches to the specific visit method for this node type. For example, @'System.Linq.Expressions.MethodCallExpression' calls the @'System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)'.
   syntax:
     content: protected override Expression Accept(ExpressionVisitor visitor)
     content.vb: Protected Overrides Function Accept(visitor As ExpressionVisitor) As Expression
     parameters:
     - id: visitor
       type: System.Linq.Expressions.ExpressionVisitor
+      description: The visitor to visit this node with.
     return:
       type: System.Linq.Expressions.Expression
+      description: The result of visiting this node.
 - uid: System.Linq.Expressions.DynamicExpression.Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Collections.Generic.IEnumerable{System.Linq.Expressions.Expression})
   id: Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Collections.Generic.IEnumerable{System.Linq.Expressions.Expression})
   parent: System.Linq.Expressions.DynamicExpression
@@ -185,18 +199,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder'.
   syntax:
     content: public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, IEnumerable<Expression> arguments)
     content.vb: Public Shared Function Dynamic(binder As CallSiteBinder, returnType As Type, arguments As IEnumerable(Of Expression)) As DynamicExpression
     parameters:
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: returnType
       type: System.Type
+      description: The result type of the dynamic expression.
     - id: arguments
       type: System.Collections.Generic.IEnumerable{System.Linq.Expressions.Expression}
+      description: The arguments to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic',  and has the @'System.Linq.Expressions.DynamicExpression.Binder' and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Linq.Expressions.Expression)
   id: Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Linq.Expressions.Expression)
   parent: System.Linq.Expressions.DynamicExpression
@@ -211,18 +230,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder'.
   syntax:
     content: public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0)
     content.vb: Public Shared Function Dynamic(binder As CallSiteBinder, returnType As Type, arg0 As Expression) As DynamicExpression
     parameters:
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: returnType
       type: System.Type
+      description: The result type of the dynamic expression.
     - id: arg0
       type: System.Linq.Expressions.Expression
+      description: The first argument to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic',  and has the @'System.Linq.Expressions.DynamicExpression.Binder' and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   id: Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   parent: System.Linq.Expressions.DynamicExpression
@@ -237,20 +261,26 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder'.
   syntax:
     content: public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0, Expression arg1)
     content.vb: Public Shared Function Dynamic(binder As CallSiteBinder, returnType As Type, arg0 As Expression, arg1 As Expression) As DynamicExpression
     parameters:
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: returnType
       type: System.Type
+      description: The result type of the dynamic expression.
     - id: arg0
       type: System.Linq.Expressions.Expression
+      description: The first argument to the dynamic operation.
     - id: arg1
       type: System.Linq.Expressions.Expression
+      description: The second argument to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic', and has the @'System.Linq.Expressions.DynamicExpression.Binder' and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   id: Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   parent: System.Linq.Expressions.DynamicExpression
@@ -265,22 +295,29 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder'.
   syntax:
     content: public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0, Expression arg1, Expression arg2)
     content.vb: Public Shared Function Dynamic(binder As CallSiteBinder, returnType As Type, arg0 As Expression, arg1 As Expression, arg2 As Expression) As DynamicExpression
     parameters:
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: returnType
       type: System.Type
+      description: The result type of the dynamic expression.
     - id: arg0
       type: System.Linq.Expressions.Expression
+      description: The first argument to the dynamic operation.
     - id: arg1
       type: System.Linq.Expressions.Expression
+      description: The second argument to the dynamic operation.
     - id: arg2
       type: System.Linq.Expressions.Expression
+      description: The third argument to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic', and has the @'System.Linq.Expressions.DynamicExpression.Binder' and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   id: Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   parent: System.Linq.Expressions.DynamicExpression
@@ -295,24 +332,32 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder'.
   syntax:
     content: public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, Expression arg0, Expression arg1, Expression arg2, Expression arg3)
     content.vb: Public Shared Function Dynamic(binder As CallSiteBinder, returnType As Type, arg0 As Expression, arg1 As Expression, arg2 As Expression, arg3 As Expression) As DynamicExpression
     parameters:
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: returnType
       type: System.Type
+      description: The result type of the dynamic expression.
     - id: arg0
       type: System.Linq.Expressions.Expression
+      description: The first argument to the dynamic operation.
     - id: arg1
       type: System.Linq.Expressions.Expression
+      description: The second argument to the dynamic operation.
     - id: arg2
       type: System.Linq.Expressions.Expression
+      description: The third argument to the dynamic operation.
     - id: arg3
       type: System.Linq.Expressions.Expression
+      description: The fourth argument to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic', and has the @'System.Linq.Expressions.DynamicExpression.Binder' and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Linq.Expressions.Expression[])
   id: Dynamic(System.Runtime.CompilerServices.CallSiteBinder,System.Type,System.Linq.Expressions.Expression[])
   parent: System.Linq.Expressions.DynamicExpression
@@ -329,18 +374,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder'.
   syntax:
     content: public static DynamicExpression Dynamic(CallSiteBinder binder, Type returnType, params Expression[] arguments)
     content.vb: Public Shared Function Dynamic(binder As CallSiteBinder, returnType As Type, ParamArray arguments As Expression()) As DynamicExpression
     parameters:
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: returnType
       type: System.Type
+      description: The result type of the dynamic expression.
     - id: arguments
       type: System.Linq.Expressions.Expression[]
+      description: The arguments to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic', and has the @'System.Linq.Expressions.DynamicExpression.Binder' and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Collections.Generic.IEnumerable{System.Linq.Expressions.Expression})
   id: MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Collections.Generic.IEnumerable{System.Linq.Expressions.Expression})
   parent: System.Linq.Expressions.DynamicExpression
@@ -357,18 +407,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder'.
   syntax:
     content: public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, IEnumerable<Expression> arguments)
     content.vb: Public Shared Function MakeDynamic(delegateType As Type, binder As CallSiteBinder, arguments As IEnumerable(Of Expression)) As DynamicExpression
     parameters:
     - id: delegateType
       type: System.Type
+      description: The type of the delegate used by the @'System.Runtime.CompilerServices.CallSite'.
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: arguments
       type: System.Collections.Generic.IEnumerable{System.Linq.Expressions.Expression}
+      description: The arguments to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic', and has the @'System.Linq.Expressions.DynamicExpression.DelegateType', @'System.Linq.Expressions.DynamicExpression.Binder', and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Linq.Expressions.Expression)
   id: MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Linq.Expressions.Expression)
   parent: System.Linq.Expressions.DynamicExpression
@@ -383,18 +438,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder' and one argument.
   syntax:
     content: public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0)
     content.vb: Public Shared Function MakeDynamic(delegateType As Type, binder As CallSiteBinder, arg0 As Expression) As DynamicExpression
     parameters:
     - id: delegateType
       type: System.Type
+      description: The type of the delegate used by the @'System.Runtime.CompilerServices.CallSite'.
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: arg0
       type: System.Linq.Expressions.Expression
+      description: The argument to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic', and has the @'System.Linq.Expressions.DynamicExpression.DelegateType', @'System.Linq.Expressions.DynamicExpression.Binder', and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   id: MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   parent: System.Linq.Expressions.DynamicExpression
@@ -409,20 +469,26 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder' and two arguments.
   syntax:
     content: public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0, Expression arg1)
     content.vb: Public Shared Function MakeDynamic(delegateType As Type, binder As CallSiteBinder, arg0 As Expression, arg1 As Expression) As DynamicExpression
     parameters:
     - id: delegateType
       type: System.Type
+      description: The type of the delegate used by the @'System.Runtime.CompilerServices.CallSite'.
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: arg0
       type: System.Linq.Expressions.Expression
+      description: The first argument to the dynamic operation.
     - id: arg1
       type: System.Linq.Expressions.Expression
+      description: The second argument to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic', and has the @'System.Linq.Expressions.DynamicExpression.DelegateType', @'System.Linq.Expressions.DynamicExpression.Binder', and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   id: MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   parent: System.Linq.Expressions.DynamicExpression
@@ -437,22 +503,29 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder' and three arguments.
   syntax:
     content: public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0, Expression arg1, Expression arg2)
     content.vb: Public Shared Function MakeDynamic(delegateType As Type, binder As CallSiteBinder, arg0 As Expression, arg1 As Expression, arg2 As Expression) As DynamicExpression
     parameters:
     - id: delegateType
       type: System.Type
+      description: The type of the delegate used by the @'System.Runtime.CompilerServices.CallSite'.
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: arg0
       type: System.Linq.Expressions.Expression
+      description: The first argument to the dynamic operation.
     - id: arg1
       type: System.Linq.Expressions.Expression
+      description: The second argument to the dynamic operation.
     - id: arg2
       type: System.Linq.Expressions.Expression
+      description: The third argument to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic', and has the @'System.Linq.Expressions.DynamicExpression.DelegateType', @'System.Linq.Expressions.DynamicExpression.Binder', and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   id: MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression,System.Linq.Expressions.Expression)
   parent: System.Linq.Expressions.DynamicExpression
@@ -467,24 +540,32 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder' and four arguments.
   syntax:
     content: public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, Expression arg0, Expression arg1, Expression arg2, Expression arg3)
     content.vb: Public Shared Function MakeDynamic(delegateType As Type, binder As CallSiteBinder, arg0 As Expression, arg1 As Expression, arg2 As Expression, arg3 As Expression) As DynamicExpression
     parameters:
     - id: delegateType
       type: System.Type
+      description: The type of the delegate used by the @'System.Runtime.CompilerServices.CallSite'.
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: arg0
       type: System.Linq.Expressions.Expression
+      description: The first argument to the dynamic operation.
     - id: arg1
       type: System.Linq.Expressions.Expression
+      description: The second argument to the dynamic operation.
     - id: arg2
       type: System.Linq.Expressions.Expression
+      description: The third argument to the dynamic operation.
     - id: arg3
       type: System.Linq.Expressions.Expression
+      description: The fourth argument to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic', and has the @'System.Linq.Expressions.DynamicExpression.DelegateType', @'System.Linq.Expressions.DynamicExpression.Binder', and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Linq.Expressions.Expression[])
   id: MakeDynamic(System.Type,System.Runtime.CompilerServices.CallSiteBinder,System.Linq.Expressions.Expression[])
   parent: System.Linq.Expressions.DynamicExpression
@@ -501,18 +582,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Creates a @'System.Linq.Expressions.DynamicExpression' that represents a dynamic operation bound by the provided @'System.Runtime.CompilerServices.CallSiteBinder'.
   syntax:
     content: public static DynamicExpression MakeDynamic(Type delegateType, CallSiteBinder binder, params Expression[] arguments)
     content.vb: Public Shared Function MakeDynamic(delegateType As Type, binder As CallSiteBinder, ParamArray arguments As Expression()) As DynamicExpression
     parameters:
     - id: delegateType
       type: System.Type
+      description: The type of the delegate used by the @'System.Runtime.CompilerServices.CallSite'.
     - id: binder
       type: System.Runtime.CompilerServices.CallSiteBinder
+      description: The runtime binder for the dynamic operation.
     - id: arguments
       type: System.Linq.Expressions.Expression[]
+      description: The arguments to the dynamic operation.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: A @'System.Linq.Expressions.DynamicExpression' that has @'System.Linq.Expressions.DynamicExpression.NodeType' equal to @'System.Linq.Expressions.ExpressionType.Dynamic', and has the @'System.Linq.Expressions.DynamicExpression.DelegateType', @'System.Linq.Expressions.DynamicExpression.Binder', and @'System.Linq.Expressions.DynamicExpression.Arguments' set to the specified values.
 - uid: System.Linq.Expressions.DynamicExpression.Update(System.Collections.Generic.IEnumerable{System.Linq.Expressions.Expression})
   id: Update(System.Collections.Generic.IEnumerable{System.Linq.Expressions.Expression})
   parent: System.Linq.Expressions.DynamicExpression
@@ -529,14 +615,17 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Linq.Expressions
+  summary: Compares the value sent to the parameter, arguments, to the Arguments property of the current instance of DynamicExpression. If the values of the parameter and the property are equal, the current instance is returned. If they are not equal, a new DynamicExpression instance is returned that is identical to the current instance except that the Arguments property is set to the value of parameter arguments.
   syntax:
     content: public DynamicExpression Update(IEnumerable<Expression> arguments)
     content.vb: Public Function Update(arguments As IEnumerable(Of Expression)) As DynamicExpression
     parameters:
     - id: arguments
       type: System.Collections.Generic.IEnumerable{System.Linq.Expressions.Expression}
+      description: The @'System.Linq.Expressions.DynamicExpression.Arguments' property of the result.
     return:
       type: System.Linq.Expressions.DynamicExpression
+      description: This expression if no children are changed or an expression with the updated children.
 references:
 - uid: System.Linq.Expressions
   isExternal: false

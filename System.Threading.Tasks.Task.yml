@@ -105,6 +105,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Represents an asynchronous operation.To browse the .NET Framework source code for this type, see the Reference Source.
   syntax:
     content: 'public class Task : IAsyncResult'
     content.vb: Public Class Task Implements IAsyncResult
@@ -134,12 +135,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task' with the specified action.
   syntax:
     content: public Task(Action action)
     content.vb: Public Sub New(action As Action)
     parameters:
     - id: action
       type: System.Action
+      description: The delegate that represents the code to execute in the task.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *action* argument is null.
 - uid: System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.CancellationToken)
   id: '#ctor(System.Action,System.Threading.CancellationToken)'
   parent: System.Threading.Tasks.Task
@@ -154,14 +160,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task' with the specified action and @'System.Threading.CancellationToken'.
   syntax:
     content: public Task(Action action, CancellationToken cancellationToken)
     content.vb: Public Sub New(action As Action, cancellationToken As CancellationToken)
     parameters:
     - id: action
       type: System.Action
+      description: The delegate that represents the code to execute in the task.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that the new  task will observe.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The provided @'System.Threading.CancellationToken' has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *action* argument is null.
 - uid: System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Action,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)'
   parent: System.Threading.Tasks.Task
@@ -176,16 +190,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task' with the specified action and creation options.
   syntax:
     content: public Task(Action action, CancellationToken cancellationToken, TaskCreationOptions creationOptions)
     content.vb: Public Sub New(action As Action, cancellationToken As CancellationToken, creationOptions As TaskCreationOptions)
     parameters:
     - id: action
       type: System.Action
+      description: The delegate that represents the code to execute in the task.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.Tasks.TaskFactory.CancellationToken' that the new task will observe.
     - id: creationOptions
       type: System.Threading.Tasks.TaskCreationOptions
+      description: The @'System.Threading.Tasks.TaskCreationOptions' used to customize the task's behavior.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' that created *cancellationToken* has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *action* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *creationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskCreationOptions'.
 - uid: System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Action,System.Threading.Tasks.TaskCreationOptions)'
   parent: System.Threading.Tasks.Task
@@ -200,14 +225,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task' with the specified action and creation options.
   syntax:
     content: public Task(Action action, TaskCreationOptions creationOptions)
     content.vb: Public Sub New(action As Action, creationOptions As TaskCreationOptions)
     parameters:
     - id: action
       type: System.Action
+      description: The delegate that represents the code to execute in the task.
     - id: creationOptions
       type: System.Threading.Tasks.TaskCreationOptions
+      description: The @'System.Threading.Tasks.TaskCreationOptions' used to customize the task's behavior.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *action* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *creationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskCreationOptions'.
 - uid: System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object)
   id: '#ctor(System.Action{System.Object},System.Object)'
   parent: System.Threading.Tasks.Task
@@ -224,14 +257,20 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task' with the specified action and state.
   syntax:
     content: public Task(Action<object> action, object state)
     content.vb: Public Sub New(action As Action(Of Object), state As Object)
     parameters:
     - id: action
       type: System.Action{System.Object}
+      description: The delegate that represents the code to execute in the task.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the action.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *action* argument is null.
 - uid: System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object,System.Threading.CancellationToken)
   id: '#ctor(System.Action{System.Object},System.Object,System.Threading.CancellationToken)'
   parent: System.Threading.Tasks.Task
@@ -248,16 +287,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task' with the specified action, state, and options.
   syntax:
     content: public Task(Action<object> action, object state, CancellationToken cancellationToken)
     content.vb: Public Sub New(action As Action(Of Object), state As Object, cancellationToken As CancellationToken)
     parameters:
     - id: action
       type: System.Action{System.Object}
+      description: The delegate that represents the code to execute in the task.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the action.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.Tasks.TaskFactory.CancellationToken' that that the new task will observe.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' that created *cancellationToken* has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *action* argument is null.
 - uid: System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Action{System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)'
   parent: System.Threading.Tasks.Task
@@ -274,18 +322,30 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task' with the specified action, state, and options.
   syntax:
     content: public Task(Action<object> action, object state, CancellationToken cancellationToken, TaskCreationOptions creationOptions)
     content.vb: Public Sub New(action As Action(Of Object), state As Object, cancellationToken As CancellationToken, creationOptions As TaskCreationOptions)
     parameters:
     - id: action
       type: System.Action{System.Object}
+      description: The delegate that represents the code to execute in the task.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the action.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.Tasks.TaskFactory.CancellationToken' that that the new task will observe..
     - id: creationOptions
       type: System.Threading.Tasks.TaskCreationOptions
+      description: The @'System.Threading.Tasks.TaskCreationOptions' used to customize the task's behavior.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' that created *cancellationToken* has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *action* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *creationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskCreationOptions'.
 - uid: System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Action{System.Object},System.Object,System.Threading.Tasks.TaskCreationOptions)'
   parent: System.Threading.Tasks.Task
@@ -302,16 +362,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task' with the specified action, state, and options.
   syntax:
     content: public Task(Action<object> action, object state, TaskCreationOptions creationOptions)
     content.vb: Public Sub New(action As Action(Of Object), state As Object, creationOptions As TaskCreationOptions)
     parameters:
     - id: action
       type: System.Action{System.Object}
+      description: The delegate that represents the code to execute in the task.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the action.
     - id: creationOptions
       type: System.Threading.Tasks.TaskCreationOptions
+      description: The @'System.Threading.Tasks.TaskCreationOptions' used to customize the task's behavior.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *action* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *creationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskCreationOptions'.
 - uid: System.Threading.Tasks.Task.AsyncState
   id: AsyncState
   parent: System.Threading.Tasks.Task
@@ -326,12 +395,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets the state object supplied when the @'System.Threading.Tasks.Task' was created, or null if none was supplied.
   syntax:
     content: public object AsyncState { get; }
     content.vb: Public ReadOnly Property AsyncState As Object
     parameters: []
     return:
       type: System.Object
+      description: An @'System.Object' that represents the state data that was passed in to the task when it was created.
 - uid: System.Threading.Tasks.Task.CompletedTask
   id: CompletedTask
   parent: System.Threading.Tasks.Task
@@ -346,12 +417,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets a task that has already completed successfully.
   syntax:
     content: public static Task CompletedTask { get; }
     content.vb: Public Shared ReadOnly Property CompletedTask As Task
     parameters: []
     return:
       type: System.Threading.Tasks.Task
+      description: The successfully completed task.
 - uid: System.Threading.Tasks.Task.CreationOptions
   id: CreationOptions
   parent: System.Threading.Tasks.Task
@@ -366,12 +439,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets the @'System.Threading.Tasks.TaskCreationOptions' used to create this task.
   syntax:
     content: public TaskCreationOptions CreationOptions { get; }
     content.vb: Public ReadOnly Property CreationOptions As TaskCreationOptions
     parameters: []
     return:
       type: System.Threading.Tasks.TaskCreationOptions
+      description: The @'System.Threading.Tasks.TaskCreationOptions' used to create this task.
 - uid: System.Threading.Tasks.Task.CurrentId
   id: CurrentId
   parent: System.Threading.Tasks.Task
@@ -386,12 +461,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Returns the ID of the currently executing @'System.Threading.Tasks.Task'.
   syntax:
     content: public static int ? CurrentId { get; }
     content.vb: Public Shared ReadOnly Property CurrentId As Integer?
     parameters: []
     return:
       type: System.Nullable{System.Int32}
+      description: An integer that was assigned by the system to the currently-executing task.
 - uid: System.Threading.Tasks.Task.Exception
   id: Exception
   parent: System.Threading.Tasks.Task
@@ -406,12 +483,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets the @'System.AggregateException' that caused the @'System.Threading.Tasks.Task' to end prematurely. If the @'System.Threading.Tasks.Task' completed successfully or has not yet thrown any exceptions, this will return null.
   syntax:
     content: public AggregateException Exception { get; }
     content.vb: Public ReadOnly Property Exception As AggregateException
     parameters: []
     return:
       type: System.AggregateException
+      description: The @'System.AggregateException' that caused the @'System.Threading.Tasks.Task' to end prematurely.
 - uid: System.Threading.Tasks.Task.Factory
   id: Factory
   parent: System.Threading.Tasks.Task
@@ -426,12 +505,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Provides access to factory methods for creating and configuring @'System.Threading.Tasks.Task' and @'System.Threading.Tasks.Task`1' instances.
   syntax:
     content: public static TaskFactory Factory { get; }
     content.vb: Public Shared ReadOnly Property Factory As TaskFactory
     parameters: []
     return:
       type: System.Threading.Tasks.TaskFactory
+      description: A factory object that can create a variety of @'System.Threading.Tasks.Task' and @'System.Threading.Tasks.Task`1' objects.
 - uid: System.Threading.Tasks.Task.Id
   id: Id
   parent: System.Threading.Tasks.Task
@@ -446,12 +527,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets an ID for this @'System.Threading.Tasks.Task' instance.
   syntax:
     content: public int Id { get; }
     content.vb: Public ReadOnly Property Id As Integer
     parameters: []
     return:
       type: System.Int32
+      description: The identifier that is assigned by the system to this @'System.Threading.Tasks.Task' instance.
 - uid: System.Threading.Tasks.Task.IsCanceled
   id: IsCanceled
   parent: System.Threading.Tasks.Task
@@ -466,12 +549,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets whether this @'System.Threading.Tasks.Task' instance has completed execution due to being canceled.
   syntax:
     content: public bool IsCanceled { get; }
     content.vb: Public ReadOnly Property IsCanceled As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the task has completed due to being canceled; otherwise false.
 - uid: System.Threading.Tasks.Task.IsCompleted
   id: IsCompleted
   parent: System.Threading.Tasks.Task
@@ -486,12 +571,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets whether this @'System.Threading.Tasks.Task' has completed.
   syntax:
     content: public bool IsCompleted { get; }
     content.vb: Public ReadOnly Property IsCompleted As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the task has completed; otherwise false.
 - uid: System.Threading.Tasks.Task.IsFaulted
   id: IsFaulted
   parent: System.Threading.Tasks.Task
@@ -506,12 +593,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets whether the @'System.Threading.Tasks.Task' completed due to an unhandled exception.
   syntax:
     content: public bool IsFaulted { get; }
     content.vb: Public ReadOnly Property IsFaulted As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the task has thrown an unhandled exception; otherwise false.
 - uid: System.Threading.Tasks.Task.Status
   id: Status
   parent: System.Threading.Tasks.Task
@@ -526,12 +615,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets the @'System.Threading.Tasks.TaskStatus' of this task.
   syntax:
     content: public TaskStatus Status { get; }
     content.vb: Public ReadOnly Property Status As TaskStatus
     parameters: []
     return:
       type: System.Threading.Tasks.TaskStatus
+      description: The current @'System.Threading.Tasks.TaskStatus' of this task instance.
 - uid: System.Threading.Tasks.Task.System#IAsyncResult#AsyncWaitHandle
   id: System#IAsyncResult#AsyncWaitHandle
   parent: System.Threading.Tasks.Task
@@ -547,12 +638,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets a @'System.Threading.WaitHandle' that can be used to wait for the task to complete.
   syntax:
     content: WaitHandle IAsyncResult.AsyncWaitHandle { get; }
     content.vb: ReadOnly WriteOnly Property System.IAsyncResult.AsyncWaitHandle As WaitHandle Implements IAsyncResult.AsyncWaitHandle
     parameters: []
     return:
       type: System.Threading.WaitHandle
+      description: A @'System.Threading.WaitHandle' that can be used to wait for the task to complete.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
 - uid: System.Threading.Tasks.Task.System#IAsyncResult#CompletedSynchronously
   id: System#IAsyncResult#CompletedSynchronously
   parent: System.Threading.Tasks.Task
@@ -568,12 +664,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets an indication of whether the operation completed synchronously.
   syntax:
     content: bool IAsyncResult.CompletedSynchronously { get; }
     content.vb: ReadOnly WriteOnly Property System.IAsyncResult.CompletedSynchronously As Boolean Implements IAsyncResult.CompletedSynchronously
     parameters: []
     return:
       type: System.Boolean
+      description: true if the operation completed synchronously; otherwise, false.
 - uid: System.Threading.Tasks.Task.ConfigureAwait(System.Boolean)
   id: ConfigureAwait(System.Boolean)
   parent: System.Threading.Tasks.Task
@@ -588,14 +686,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Configures an awaiter used to await this @'System.Threading.Tasks.Task'.
   syntax:
     content: public ConfiguredTaskAwaitable ConfigureAwait(bool continueOnCapturedContext)
     content.vb: Public Function ConfigureAwait(continueOnCapturedContext As Boolean) As ConfiguredTaskAwaitable
     parameters:
     - id: continueOnCapturedContext
       type: System.Boolean
+      description: true to attempt to marshal the continuation back to the original context captured; otherwise, false.
     return:
       type: System.Runtime.CompilerServices.ConfiguredTaskAwaitable
+      description: An object used to await this task.
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object)
   parent: System.Threading.Tasks.Task
@@ -612,16 +713,23 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that receives caller-supplied state information and executes when the target @'System.Threading.Tasks.Task' completes.
   syntax:
     content: public Task ContinueWith(Action<Task, object> continuationAction, object state)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task, Object), state As Object) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task,System.Object}
+      description: An action to run when the task completes. When run, the delegate is passed the completed task and a caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation action.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation task.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.CancellationToken)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -638,18 +746,28 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that receives caller-supplied state information and a cancellation token and that executes asynchronously when the target @'System.Threading.Tasks.Task' completes.
   syntax:
     content: public Task ContinueWith(Action<Task, object> continuationAction, object state, CancellationToken cancellationToken)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task, Object), state As Object, cancellationToken As CancellationToken) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task,System.Object}
+      description: An action to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation action.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new continuation task.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
+  - type: System.ObjectDisposedException
+    description: The provided @'System.Threading.CancellationToken' has already been disposed.
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task
@@ -666,22 +784,38 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that receives caller-supplied state information and a cancellation token and that executes when the target @'System.Threading.Tasks.Task' completes. The continuation executes based on a set of specified conditions and uses a specified scheduler.
   syntax:
     content: public Task ContinueWith(Action<Task, object> continuationAction, object state, CancellationToken cancellationToken, TaskContinuationOptions continuationOptions, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task, Object), state As Object, cancellationToken As CancellationToken, continuationOptions As TaskContinuationOptions, scheduler As TaskScheduler) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task,System.Object}
+      description: An action to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation action.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new continuation task.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its  execution.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
+  - type: System.ArgumentNullException
+    description: The *scheduler* argument is null.
+  - type: System.ObjectDisposedException
+    description: The provided @'System.Threading.CancellationToken' has already been disposed.
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   parent: System.Threading.Tasks.Task
@@ -698,18 +832,28 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that receives caller-supplied state information and executes when the target @'System.Threading.Tasks.Task' completes. The continuation executes based on a set of specified conditions.
   syntax:
     content: public Task ContinueWith(Action<Task, object> continuationAction, object state, TaskContinuationOptions continuationOptions)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task, Object), state As Object, continuationOptions As TaskContinuationOptions) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task,System.Object}
+      description: An action to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation action.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task
@@ -726,18 +870,28 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that receives caller-supplied state information and executes asynchronously when the target @'System.Threading.Tasks.Task' completes. The continuation uses a specified scheduler.
   syntax:
     content: public Task ContinueWith(Action<Task, object> continuationAction, object state, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task, Object), state As Object, scheduler As TaskScheduler) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task,System.Object}
+      description: An action to run when the @'System.Threading.Tasks.Task' completes.  When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation action.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
+  - type: System.ArgumentNullException
+    description: The *scheduler* argument is null.
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task})
   id: ContinueWith(System.Action{System.Threading.Tasks.Task})
   parent: System.Threading.Tasks.Task
@@ -754,14 +908,20 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task' completes.
   syntax:
     content: public Task ContinueWith(Action<Task> continuationAction)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task)) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task}
+      description: An action to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be passed the completed task as an argument.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.CancellationToken)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -778,16 +938,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that receives a cancellation token and executes asynchronously when the target @'System.Threading.Tasks.Task' completes.
   syntax:
     content: public Task ContinueWith(Action<Task> continuationAction, CancellationToken cancellationToken)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task), cancellationToken As CancellationToken) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task}
+      description: An action to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be passed the completed task as an argument.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.Tasks.TaskFactory.CancellationToken' that will be assigned to the new continuation task.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' that created the token has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task
@@ -804,20 +973,33 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target task competes according to the specified @'System.Threading.Tasks.TaskContinuationOptions'. The continuation receives a cancellation token and uses a specified scheduler.
   syntax:
     content: public Task ContinueWith(Action<Task> continuationAction, CancellationToken cancellationToken, TaskContinuationOptions continuationOptions, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task), cancellationToken As CancellationToken, continuationOptions As TaskContinuationOptions, scheduler As TaskScheduler) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task}
+      description: An action to run according to the specified *continuationOptions*. When run, the delegate will be passed the completed task as an argument.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.Tasks.TaskFactory.CancellationToken' that will be assigned to the new continuation task.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' that created the token has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.-or-The *scheduler* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.Tasks.TaskContinuationOptions)
   parent: System.Threading.Tasks.Task
@@ -834,16 +1016,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target task completes according to the specified @'System.Threading.Tasks.TaskContinuationOptions'.
   syntax:
     content: public Task ContinueWith(Action<Task> continuationAction, TaskContinuationOptions continuationOptions)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task), continuationOptions As TaskContinuationOptions) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task}
+      description: An action to run according to the specified *continuationOptions*. When run, the delegate will be passed the completed task as an argument.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task
@@ -860,16 +1051,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task' completes. The continuation uses a specified scheduler.
   syntax:
     content: public Task ContinueWith(Action<Task> continuationAction, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task), scheduler As TaskScheduler) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task}
+      description: An action to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be passed the completed task as an argument.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null. -or-The *scheduler* argument is null.
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0})
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0})
   parent: System.Threading.Tasks.Task
@@ -886,16 +1086,24 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task`1' completes and returns a value.
   syntax:
     content: public Task<TResult> ContinueWith<TResult>(Func<Task, TResult> continuationFunction)
     content.vb: Public Function ContinueWith(Of TResult)(continuationFunction As Func(Of Task, TResult)) As Task(Of TResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task,{TResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task`1'  completes. When run, the delegate will be passed the completed task as an argument.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A new continuation task.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -912,18 +1120,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task' completes and returns a value. The continuation receives a cancellation token.
   syntax:
     content: public Task<TResult> ContinueWith<TResult>(Func<Task, TResult> continuationFunction, CancellationToken cancellationToken)
     content.vb: Public Function ContinueWith(Of TResult)(continuationFunction As Func(Of Task, TResult), cancellationToken As CancellationToken) As Task(Of TResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task,{TResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be passed the completed task as an argument.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.Tasks.TaskFactory.CancellationToken' that will be assigned to the new continuation task.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.-or-The @'System.Threading.CancellationTokenSource' that created the token has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task
@@ -940,22 +1157,35 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes according to the specified continuation options and returns a value. The continuation is passed a cancellation token and uses a specified scheduler.
   syntax:
     content: public Task<TResult> ContinueWith<TResult>(Func<Task, TResult> continuationFunction, CancellationToken cancellationToken, TaskContinuationOptions continuationOptions, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(Of TResult)(continuationFunction As Func(Of Task, TResult), cancellationToken As CancellationToken, continuationOptions As TaskContinuationOptions, scheduler As TaskScheduler) As Task(Of TResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task,{TResult}}
+      description: A function to run according to the specified *continuationOptions.* When run, the delegate will be passed the completed task as an argument.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.Tasks.TaskFactory.CancellationToken' that will be assigned to the new continuation task.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.-or-The @'System.Threading.CancellationTokenSource' that created the token has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.-or-The *scheduler* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.Tasks.TaskContinuationOptions)
   parent: System.Threading.Tasks.Task
@@ -972,18 +1202,29 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes according to the specified continuation options and returns a value.
   syntax:
     content: public Task<TResult> ContinueWith<TResult>(Func<Task, TResult> continuationFunction, TaskContinuationOptions continuationOptions)
     content.vb: Public Function ContinueWith(Of TResult)(continuationFunction As Func(Of Task, TResult), continuationOptions As TaskContinuationOptions) As Task(Of TResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task,{TResult}}
+      description: A function to run according to the condition specified in *continuationOptions*. When run, the delegate will be passed the completed task as an argument.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task
@@ -1000,18 +1241,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task' completes and returns a value. The continuation uses a specified scheduler.
   syntax:
     content: public Task<TResult> ContinueWith<TResult>(Func<Task, TResult> continuationFunction, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(Of TResult)(continuationFunction As Func(Of Task, TResult), scheduler As TaskScheduler) As Task(Of TResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task,{TResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be passed the completed task as an argument.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.-or-The *scheduler* argument is null.
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object)
   parent: System.Threading.Tasks.Task
@@ -1028,18 +1278,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that receives caller-supplied state information and executes asynchronously when the target @'System.Threading.Tasks.Task' completes and returns a value.
   syntax:
     content: public Task<TResult> ContinueWith<TResult>(Func<Task, object, TResult> continuationFunction, object state)
     content.vb: Public Function ContinueWith(Of TResult)(continuationFunction As Func(Of Task, Object, TResult), state As Object) As Task(Of TResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task,System.Object,{TResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation function.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.CancellationToken)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1056,20 +1313,30 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task' completes and returns a value. The continuation receives caller-supplied state information and a cancellation token.
   syntax:
     content: public Task<TResult> ContinueWith<TResult>(Func<Task, object, TResult> continuationFunction, object state, CancellationToken cancellationToken)
     content.vb: Public Function ContinueWith(Of TResult)(continuationFunction As Func(Of Task, Object, TResult), state As Object, cancellationToken As CancellationToken) As Task(Of TResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task,System.Object,{TResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation function.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new continuation task.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
+  - type: System.ObjectDisposedException
+    description: The provided @'System.Threading.CancellationToken' has already been disposed.
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task
@@ -1086,24 +1353,40 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes based on the specified task continuation options when the target @'System.Threading.Tasks.Task' completes and returns a value. The continuation receives caller-supplied state information and a cancellation token and uses the specified scheduler.
   syntax:
     content: public Task<TResult> ContinueWith<TResult>(Func<Task, object, TResult> continuationFunction, object state, CancellationToken cancellationToken, TaskContinuationOptions continuationOptions, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(Of TResult)(continuationFunction As Func(Of Task, Object, TResult), state As Object, cancellationToken As CancellationToken, continuationOptions As TaskContinuationOptions, scheduler As TaskScheduler) As Task(Of TResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task,System.Object,{TResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation function.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new continuation task.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its  execution.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
+  - type: System.ArgumentNullException
+    description: The *scheduler* argument is null.
+  - type: System.ObjectDisposedException
+    description: The provided @'System.Threading.CancellationToken' has already been disposed.
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   parent: System.Threading.Tasks.Task
@@ -1120,20 +1403,30 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes based on the specified task continuation options when the target @'System.Threading.Tasks.Task' completes. The continuation receives caller-supplied state information.
   syntax:
     content: public Task<TResult> ContinueWith<TResult>(Func<Task, object, TResult> continuationFunction, object state, TaskContinuationOptions continuationOptions)
     content.vb: Public Function ContinueWith(Of TResult)(continuationFunction As Func(Of Task, Object, TResult), state As Object, continuationOptions As TaskContinuationOptions) As Task(Of TResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task,System.Object,{TResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task' completes. When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation function.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task
@@ -1150,20 +1443,30 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task' completes. The continuation receives caller-supplied state information and uses a specified scheduler.
   syntax:
     content: public Task<TResult> ContinueWith<TResult>(Func<Task, object, TResult> continuationFunction, object state, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(Of TResult)(continuationFunction As Func(Of Task, Object, TResult), state As Object, scheduler As TaskScheduler) As Task(Of TResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task,System.Object,{TResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task' completes.  When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation function.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
+  - type: System.ArgumentNullException
+    description: The *scheduler* argument is null.
 - uid: System.Threading.Tasks.Task.Delay(System.Int32)
   id: Delay(System.Int32)
   parent: System.Threading.Tasks.Task
@@ -1178,14 +1481,20 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a task that completes after a time delay.
   syntax:
     content: public static Task Delay(int millisecondsDelay)
     content.vb: Public Shared Function Delay(millisecondsDelay As Integer) As Task
     parameters:
     - id: millisecondsDelay
       type: System.Int32
+      description: The number of milliseconds to wait before completing the returned task, or -1 to wait indefinitely.
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents the time delay.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: The *millisecondsDelay* argument is less than -1.
 - uid: System.Threading.Tasks.Task.Delay(System.Int32,System.Threading.CancellationToken)
   id: Delay(System.Int32,System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1200,16 +1509,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a cancellable task that completes after a time delay.
   syntax:
     content: public static Task Delay(int millisecondsDelay, CancellationToken cancellationToken)
     content.vb: Public Shared Function Delay(millisecondsDelay As Integer, cancellationToken As CancellationToken) As Task
     parameters:
     - id: millisecondsDelay
       type: System.Int32
+      description: The number of milliseconds to wait before completing the returned task, or -1 to wait indefinitely.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The cancellation token that will be checked prior to completing the returned task.
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents the time delay.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: The *millisecondsDelay* argument is less than -1.
+  - type: System.Threading.Tasks.TaskCanceledException
+    description: The task has been canceled.
+  - type: System.ObjectDisposedException
+    description: The provided *cancellationToken* has already been disposed.
 - uid: System.Threading.Tasks.Task.Delay(System.TimeSpan)
   id: Delay(System.TimeSpan)
   parent: System.Threading.Tasks.Task
@@ -1224,14 +1544,20 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a task that completes after a specified time interval.
   syntax:
     content: public static Task Delay(TimeSpan delay)
     content.vb: Public Shared Function Delay(delay As TimeSpan) As Task
     parameters:
     - id: delay
       type: System.TimeSpan
+      description: The time span to wait before completing the returned task, or TimeSpan.FromMilliseconds(-1) to wait indefinitely.
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents the time delay.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*delay* represents a negative time interval other than TimeSpan.FromMillseconds(-1). -or-The *delay* argument''s @''System.TimeSpan.TotalMilliseconds'' property is greater than @''System.Int32.MaxValue''.'
 - uid: System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)
   id: Delay(System.TimeSpan,System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1246,16 +1572,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a cancellable task that completes after a specified time interval.
   syntax:
     content: public static Task Delay(TimeSpan delay, CancellationToken cancellationToken)
     content.vb: Public Shared Function Delay(delay As TimeSpan, cancellationToken As CancellationToken) As Task
     parameters:
     - id: delay
       type: System.TimeSpan
+      description: The time span to wait before completing the returned task, or TimeSpan.FromMilliseconds(-1) to wait indefinitely.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The cancellation token that will be checked prior to completing the returned task.
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents the time delay.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*delay* represents a negative time interval other than TimeSpan.FromMillseconds(-1). -or-The *delay* argument''s @''System.TimeSpan.TotalMilliseconds'' property is greater than @''System.Int32.MaxValue''.'
+  - type: System.Threading.Tasks.TaskCanceledException
+    description: The task has been canceled.
+  - type: System.ObjectDisposedException
+    description: The provided *cancellationToken* has already been disposed.
 - uid: System.Threading.Tasks.Task.FromCanceled(System.Threading.CancellationToken)
   id: FromCanceled(System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1270,14 +1607,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a @'System.Threading.Tasks.Task' that's completed due to cancellation with a specified cancellation token.
   syntax:
     content: public static Task FromCanceled(CancellationToken cancellationToken)
     content.vb: Public Shared Function FromCanceled(cancellationToken As CancellationToken) As Task
     parameters:
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The cancellation token with which to complete the task.
     return:
       type: System.Threading.Tasks.Task
+      description: The canceled task.
 - uid: System.Threading.Tasks.Task.FromCanceled``1(System.Threading.CancellationToken)
   id: FromCanceled``1(System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1294,16 +1634,19 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a @'System.Threading.Tasks.Task`1' that's completed due to cancellation with a specified cancellation token.
   syntax:
     content: public static Task<TResult> FromCanceled<TResult>(CancellationToken cancellationToken)
     content.vb: Public Shared Function FromCanceled(Of TResult)(cancellationToken As CancellationToken) As Task(Of TResult)
     parameters:
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The cancellation token with which to complete the task.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: The canceled task.
 - uid: System.Threading.Tasks.Task.FromException(System.Exception)
   id: FromException(System.Exception)
   parent: System.Threading.Tasks.Task
@@ -1318,14 +1661,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a @'System.Threading.Tasks.Task' that has completed with a specified exception.
   syntax:
     content: public static Task FromException(Exception exception)
     content.vb: Public Shared Function FromException(exception As Exception) As Task
     parameters:
     - id: exception
       type: System.Exception
+      description: The exception with which to complete the task.
     return:
       type: System.Threading.Tasks.Task
+      description: The faulted task.
 - uid: System.Threading.Tasks.Task.FromException``1(System.Exception)
   id: FromException``1(System.Exception)
   parent: System.Threading.Tasks.Task
@@ -1342,16 +1688,19 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a @'System.Threading.Tasks.Task`1' that's completed with a specified exception.
   syntax:
     content: public static Task<TResult> FromException<TResult>(Exception exception)
     content.vb: Public Shared Function FromException(Of TResult)(exception As Exception) As Task(Of TResult)
     parameters:
     - id: exception
       type: System.Exception
+      description: The exception with which to complete the task.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: The faulted task.
 - uid: System.Threading.Tasks.Task.FromResult``1(``0)
   id: FromResult``1(``0)
   parent: System.Threading.Tasks.Task
@@ -1368,16 +1717,19 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a @'System.Threading.Tasks.Task`1' that's completed successfully with the specified result.
   syntax:
     content: public static Task<TResult> FromResult<TResult>(TResult result)
     content.vb: Public Shared Function FromResult(Of TResult)(result As TResult) As Task(Of TResult)
     parameters:
     - id: result
       type: '{TResult}'
+      description: The result to store into the completed task.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: The successfully completed task.
 - uid: System.Threading.Tasks.Task.GetAwaiter
   id: GetAwaiter
   parent: System.Threading.Tasks.Task
@@ -1392,11 +1744,13 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets an awaiter used to await this @'System.Threading.Tasks.Task'.
   syntax:
     content: public TaskAwaiter GetAwaiter()
     content.vb: Public Function GetAwaiter As TaskAwaiter
     return:
       type: System.Runtime.CompilerServices.TaskAwaiter
+      description: An awaiter instance.
 - uid: System.Threading.Tasks.Task.Run(System.Action)
   id: Run(System.Action)
   parent: System.Threading.Tasks.Task
@@ -1411,14 +1765,20 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Queues the specified work to run on the ThreadPool and returns a task handle for that work.
   syntax:
     content: public static Task Run(Action action)
     content.vb: Public Shared Function Run(action As Action) As Task
     parameters:
     - id: action
       type: System.Action
+      description: The work to execute asynchronously
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents the work queued to execute in the ThreadPool.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *action* parameter was null.
 - uid: System.Threading.Tasks.Task.Run(System.Action,System.Threading.CancellationToken)
   id: Run(System.Action,System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1433,16 +1793,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Queues the specified work to run on the ThreadPool and returns a task handle for that work.
   syntax:
     content: public static Task Run(Action action, CancellationToken cancellationToken)
     content.vb: Public Shared Function Run(action As Action, cancellationToken As CancellationToken) As Task
     parameters:
     - id: action
       type: System.Action
+      description: The work to execute asynchronously
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: A cancellation token that should be used to cancel the work
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents the work queued to execute in the ThreadPool.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *action* parameter was null.
+  - type: System.Threading.Tasks.TaskCanceledException
+    description: The task has been canceled.
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' associated with *cancellationToken* was disposed.
 - uid: System.Threading.Tasks.Task.Run(System.Func{System.Threading.Tasks.Task})
   id: Run(System.Func{System.Threading.Tasks.Task})
   parent: System.Threading.Tasks.Task
@@ -1459,14 +1830,20 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Queues the specified work to run on the ThreadPool and returns a proxy for the  task returned by *function*.
   syntax:
     content: public static Task Run(Func<Task> function)
     content.vb: Public Shared Function Run(function As Func(Of Task)) As Task
     parameters:
     - id: function
       type: System.Func{System.Threading.Tasks.Task}
+      description: The work to execute asynchronously
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents a proxy for the task returned by *function*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *function* parameter was null.
 - uid: System.Threading.Tasks.Task.Run(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)
   id: Run(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1483,16 +1860,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Queues the specified work to run on the ThreadPool and returns a proxy for the task returned by *function*.
   syntax:
     content: public static Task Run(Func<Task> function, CancellationToken cancellationToken)
     content.vb: Public Shared Function Run(function As Func(Of Task), cancellationToken As CancellationToken) As Task
     parameters:
     - id: function
       type: System.Func{System.Threading.Tasks.Task}
+      description: The work to execute asynchronously.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: A cancellation token that should be used to cancel the work.
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents a proxy for the task returned by *function*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *function* parameter was null.
+  - type: System.Threading.Tasks.TaskCanceledException
+    description: The task has been canceled.
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' associated with *cancellationToken* was disposed.
 - uid: System.Threading.Tasks.Task.Run``1(System.Func{``0})
   id: Run``1(System.Func{``0})
   parent: System.Threading.Tasks.Task
@@ -1509,16 +1897,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Queues the specified work to run on the thread pool and returns a @'System.Threading.Tasks.Task`1' object that represents that work.
   syntax:
     content: public static Task<TResult> Run<TResult>(Func<TResult> function)
     content.vb: Public Shared Function Run(Of TResult)(function As Func(Of TResult)) As Task(Of TResult)
     parameters:
     - id: function
       type: System.Func{{TResult}}
+      description: The work to execute asynchronously.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A task object that represents the work queued to execute in the thread pool.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *function* parameter is null.
 - uid: System.Threading.Tasks.Task.Run``1(System.Func{``0},System.Threading.CancellationToken)
   id: Run``1(System.Func{``0},System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1535,18 +1929,29 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Queues the specified work to run on the thread pool and returns a Task(TResult) handle for that work.
   syntax:
     content: public static Task<TResult> Run<TResult>(Func<TResult> function, CancellationToken cancellationToken)
     content.vb: Public Shared Function Run(Of TResult)(function As Func(Of TResult), cancellationToken As CancellationToken) As Task(Of TResult)
     parameters:
     - id: function
       type: System.Func{{TResult}}
+      description: The work to execute asynchronously
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: A cancellation token that should be used to cancel the work
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A Task(TResult) that represents the work queued to execute in the ThreadPool.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *function* parameter was null.
+  - type: System.Threading.Tasks.TaskCanceledException
+    description: The task has been canceled.
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' associated with *cancellationToken* was disposed.
 - uid: System.Threading.Tasks.Task.Run``1(System.Func{System.Threading.Tasks.Task{``0}})
   id: Run``1(System.Func{System.Threading.Tasks.Task{``0}})
   parent: System.Threading.Tasks.Task
@@ -1563,16 +1968,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Queues the specified work to run on the ThreadPool and returns a proxy for the  Task(TResult) returned by *function*.
   syntax:
     content: public static Task<TResult> Run<TResult>(Func<Task<TResult>> function)
     content.vb: Public Shared Function Run(Of TResult)(function As Func(Of Task(Of TResult))) As Task(Of TResult)
     parameters:
     - id: function
       type: System.Func{System.Threading.Tasks.Task{{TResult}}}
+      description: The work to execute asynchronously
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A Task(TResult) that represents a proxy for the Task(TResult) returned by *function*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *function* parameter was null.
 - uid: System.Threading.Tasks.Task.Run``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)
   id: Run``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1589,18 +2000,29 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Queues the specified work to run on the ThreadPool and returns a proxy for the  Task(TResult) returned by *function*.
   syntax:
     content: public static Task<TResult> Run<TResult>(Func<Task<TResult>> function, CancellationToken cancellationToken)
     content.vb: Public Shared Function Run(Of TResult)(function As Func(Of Task(Of TResult)), cancellationToken As CancellationToken) As Task(Of TResult)
     parameters:
     - id: function
       type: System.Func{System.Threading.Tasks.Task{{TResult}}}
+      description: The work to execute asynchronously
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: A cancellation token that should be used to cancel the work
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}}
+      description: A Task(TResult) that represents a proxy for the Task(TResult) returned by *function*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *function* parameter was null.
+  - type: System.Threading.Tasks.TaskCanceledException
+    description: The task has been canceled.
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' associated with *cancellationToken* was disposed.
 - uid: System.Threading.Tasks.Task.RunSynchronously
   id: RunSynchronously
   parent: System.Threading.Tasks.Task
@@ -1615,9 +2037,15 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Runs the @'System.Threading.Tasks.Task' synchronously on the current @'System.Threading.Tasks.TaskScheduler'.
   syntax:
     content: public void RunSynchronously()
     content.vb: Public Sub RunSynchronously
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' instance has been disposed.
+  - type: System.InvalidOperationException
+    description: The @'System.Threading.Tasks.Task' is not in a valid state to be started. It may have already been started, executed, or canceled, or it may have been created in a manner that doesn't support direct scheduling.
 - uid: System.Threading.Tasks.Task.RunSynchronously(System.Threading.Tasks.TaskScheduler)
   id: RunSynchronously(System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task
@@ -1632,12 +2060,21 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Runs the @'System.Threading.Tasks.Task' synchronously on the @'System.Threading.Tasks.TaskScheduler' provided.
   syntax:
     content: public void RunSynchronously(TaskScheduler scheduler)
     content.vb: Public Sub RunSynchronously(scheduler As TaskScheduler)
     parameters:
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The scheduler on which to attempt to run this task inline.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' instance has been disposed.
+  - type: System.ArgumentNullException
+    description: The *scheduler* argument is null.
+  - type: System.InvalidOperationException
+    description: The @'System.Threading.Tasks.Task' is not in a valid state to be started. It may have already been started, executed, or canceled, or it may have been created in a manner that doesn't support direct scheduling.
 - uid: System.Threading.Tasks.Task.Start
   id: Start
   parent: System.Threading.Tasks.Task
@@ -1652,9 +2089,15 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Starts the @'System.Threading.Tasks.Task', scheduling it for execution to the current @'System.Threading.Tasks.TaskScheduler'.
   syntax:
     content: public void Start()
     content.vb: Public Sub Start
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' instance has been disposed.
+  - type: System.InvalidOperationException
+    description: The @'System.Threading.Tasks.Task' is not in a valid state to be started. It may have already been started, executed, or canceled, or it may have been created in a manner that doesn't support direct scheduling.
 - uid: System.Threading.Tasks.Task.Start(System.Threading.Tasks.TaskScheduler)
   id: Start(System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task
@@ -1669,12 +2112,21 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Starts the @'System.Threading.Tasks.Task', scheduling it for execution to the specified @'System.Threading.Tasks.TaskScheduler'.
   syntax:
     content: public void Start(TaskScheduler scheduler)
     content.vb: Public Sub Start(scheduler As TaskScheduler)
     parameters:
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' with which to associate and execute this task.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' instance has been disposed.
+  - type: System.ArgumentNullException
+    description: The *scheduler* argument is null.
+  - type: System.InvalidOperationException
+    description: The @'System.Threading.Tasks.Task' is not in a valid state to be started. It may have already been started, executed, or canceled, or it may have been created in a manner that doesn't support direct scheduling.
 - uid: System.Threading.Tasks.Task.Wait
   id: Wait
   parent: System.Threading.Tasks.Task
@@ -1689,9 +2141,15 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for the @'System.Threading.Tasks.Task' to complete execution.
   syntax:
     content: public void Wait()
     content.vb: Public Sub Wait
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.AggregateException
+    description: The task was canceled. The @'System.AggregateException.InnerExceptions' collection contains a @'System.Threading.Tasks.TaskCanceledException' object. -or-An exception was thrown during the execution of the task. The @'System.AggregateException.InnerExceptions' collection contains information about the exception or exceptions.
 - uid: System.Threading.Tasks.Task.Wait(System.Int32)
   id: Wait(System.Int32)
   parent: System.Threading.Tasks.Task
@@ -1706,14 +2164,24 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for the @'System.Threading.Tasks.Task' to complete execution within a specified number of milliseconds.
   syntax:
     content: public bool Wait(int millisecondsTimeout)
     content.vb: Public Function Wait(millisecondsTimeout As Integer) As Boolean
     parameters:
     - id: millisecondsTimeout
       type: System.Int32
+      description: The number of milliseconds to wait, or @'System.Threading.Timeout.Infinite' (-1) to wait indefinitely.
     return:
       type: System.Boolean
+      description: true if the @'System.Threading.Tasks.Task' completed execution within the allotted time; otherwise, false.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: '*millisecondsTimeout* is a negative number other than -1, which represents an infinite time-out.'
+  - type: System.AggregateException
+    description: The task was canceled. The @'System.AggregateException.InnerExceptions' collection contains a @'System.Threading.Tasks.TaskCanceledException' object. -or-An exception was thrown during the execution of the task. The @'System.AggregateException.InnerExceptions' collection contains information about the exception or exceptions.
 - uid: System.Threading.Tasks.Task.Wait(System.Int32,System.Threading.CancellationToken)
   id: Wait(System.Int32,System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1728,16 +2196,29 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for the @'System.Threading.Tasks.Task' to complete execution. The wait terminates if a timeout interval elapses or a cancellation token is canceled before the task completes.
   syntax:
     content: public bool Wait(int millisecondsTimeout, CancellationToken cancellationToken)
     content.vb: Public Function Wait(millisecondsTimeout As Integer, cancellationToken As CancellationToken) As Boolean
     parameters:
     - id: millisecondsTimeout
       type: System.Int32
+      description: The number of milliseconds to wait, or @'System.Threading.Timeout.Infinite' (-1) to wait indefinitely.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: A cancellation token to observe while waiting for the task to complete.
     return:
       type: System.Boolean
+      description: true if the @'System.Threading.Tasks.Task' completed execution within the allotted time; otherwise, false.
+  exceptions:
+  - type: System.OperationCanceledException
+    description: The *cancellationToken* was canceled.
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: '*millisecondsTimeout* is a negative number other than -1, which represents an infinite time-out.'
+  - type: System.AggregateException
+    description: The task was canceled. The @'System.AggregateException.InnerExceptions' collection contains a @'System.Threading.Tasks.TaskCanceledException' object. -or-An exception was thrown during the execution of the task. The @'System.AggregateException.InnerExceptions' collection contains information about the exception or exceptions.
 - uid: System.Threading.Tasks.Task.Wait(System.Threading.CancellationToken)
   id: Wait(System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1752,12 +2233,21 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for the @'System.Threading.Tasks.Task' to complete execution. The wait terminates if a cancellation token is canceled before the task completes.
   syntax:
     content: public void Wait(CancellationToken cancellationToken)
     content.vb: Public Sub Wait(cancellationToken As CancellationToken)
     parameters:
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: A cancellation token to observe while waiting for the task to complete.
+  exceptions:
+  - type: System.OperationCanceledException
+    description: The *cancellationToken* was canceled.
+  - type: System.ObjectDisposedException
+    description: The task has been disposed.
+  - type: System.AggregateException
+    description: The task was canceled. The @'System.AggregateException.InnerExceptions' collection contains a @'System.Threading.Tasks.TaskCanceledException' object. -or-An exception was thrown during the execution of the task. The @'System.AggregateException.InnerExceptions' collection contains information about the exception or exceptions.
 - uid: System.Threading.Tasks.Task.Wait(System.TimeSpan)
   id: Wait(System.TimeSpan)
   parent: System.Threading.Tasks.Task
@@ -1772,14 +2262,24 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for the @'System.Threading.Tasks.Task' to complete execution within a specified time interval.
   syntax:
     content: public bool Wait(TimeSpan timeout)
     content.vb: Public Function Wait(timeout As TimeSpan) As Boolean
     parameters:
     - id: timeout
       type: System.TimeSpan
+      description: A @'System.TimeSpan' that represents the number of milliseconds to wait, or a @'System.TimeSpan' that represents -1 milliseconds to wait indefinitely.
     return:
       type: System.Boolean
+      description: true if the @'System.Threading.Tasks.Task' completed execution within the allotted time; otherwise, false.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: '*timeout* is a negative number other than -1 milliseconds, which represents an infinite time-out. -or-*timeout* is greater than @''System.Int32.MaxValue''.'
+  - type: System.AggregateException
+    description: The task was canceled. The @'System.AggregateException.InnerExceptions' collection contains a @'System.Threading.Tasks.TaskCanceledException' object. -or-An exception was thrown during the execution of the task. The @'System.AggregateException.InnerExceptions' collection contains information about the exception or exceptions.
 - uid: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])
   id: WaitAll(System.Threading.Tasks.Task[])
   parent: System.Threading.Tasks.Task
@@ -1796,12 +2296,21 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for all of the provided @'System.Threading.Tasks.Task' objects to complete execution.
   syntax:
     content: public static void WaitAll(params Task[] tasks)
     content.vb: Public Shared Sub WaitAll(ParamArray tasks As Task())
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: An array of @'System.Threading.Tasks.Task' instances on which to wait.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: One or more of the @'System.Threading.Tasks.Task' objects in *tasks* has been disposed.
+  - type: System.ArgumentNullException
+    description: The *tasks* argument is null.-or-The *tasks* argument contains a null element.
+  - type: System.AggregateException
+    description: At least one of the @'System.Threading.Tasks.Task' instances was canceled. If a task was canceled, the @'System.AggregateException' exception contains an @'System.OperationCanceledException' exception in its @'System.AggregateException.InnerExceptions' collection.-or-An exception was thrown during the execution of at least one of the @'System.Threading.Tasks.Task' instances.
 - uid: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.Int32)
   id: WaitAll(System.Threading.Tasks.Task[],System.Int32)
   parent: System.Threading.Tasks.Task
@@ -1818,16 +2327,31 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for all of the provided @'System.Threading.Tasks.Task' objects to complete execution within a specified number of milliseconds.
   syntax:
     content: public static bool WaitAll(Task[] tasks, int millisecondsTimeout)
     content.vb: Public Shared Function WaitAll(tasks As Task(), millisecondsTimeout As Integer) As Boolean
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: An array of @'System.Threading.Tasks.Task' instances on which to wait.
     - id: millisecondsTimeout
       type: System.Int32
+      description: The number of milliseconds to wait, or @'System.Threading.Timeout.Infinite' (-1) to wait indefinitely.
     return:
       type: System.Boolean
+      description: true if all of the @'System.Threading.Tasks.Task' instances completed execution within the allotted time; otherwise, false.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: One or more of the @'System.Threading.Tasks.Task' objects in *tasks* has been disposed.
+  - type: System.ArgumentNullException
+    description: The *tasks* argument is null.
+  - type: System.AggregateException
+    description: At least one of the @'System.Threading.Tasks.Task' instances was canceled. If a task was canceled, the @'System.AggregateException' contains an @'System.OperationCanceledException' in its @'System.AggregateException.InnerExceptions' collection. -or-An exception was thrown during the execution of at least one of the @'System.Threading.Tasks.Task' instances.
+  - type: System.ArgumentOutOfRangeException
+    description: '*millisecondsTimeout* is a negative number other than -1, which represents an infinite time-out.'
+  - type: System.ArgumentException
+    description: The *tasks* argument contains a null element.
 - uid: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
   id: WaitAll(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1844,18 +2368,36 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for all of the provided @'System.Threading.Tasks.Task' objects to complete execution within a specified number of milliseconds or until the wait is cancelled.
   syntax:
     content: public static bool WaitAll(Task[] tasks, int millisecondsTimeout, CancellationToken cancellationToken)
     content.vb: Public Shared Function WaitAll(tasks As Task(), millisecondsTimeout As Integer, cancellationToken As CancellationToken) As Boolean
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: An array of @'System.Threading.Tasks.Task' instances on which to wait.
     - id: millisecondsTimeout
       type: System.Int32
+      description: The number of milliseconds to wait, or @'System.Threading.Timeout.Infinite' (-1) to wait indefinitely.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: A @'System.Threading.Tasks.TaskFactory.CancellationToken' to observe while waiting for the tasks to complete.
     return:
       type: System.Boolean
+      description: true if all of the @'System.Threading.Tasks.Task' instances completed execution within the allotted time; otherwise, false.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: One or more of the @'System.Threading.Tasks.Task' objects in *tasks* has been disposed.
+  - type: System.ArgumentNullException
+    description: The *tasks* argument is null.
+  - type: System.AggregateException
+    description: At least one of the @'System.Threading.Tasks.Task' instances was canceled. If a task was canceled, the @'System.AggregateException' contains an @'System.OperationCanceledException' in its @'System.AggregateException.InnerExceptions' collection.-or-An exception was thrown during the execution of at least one of the @'System.Threading.Tasks.Task' instances.
+  - type: System.ArgumentOutOfRangeException
+    description: '*millisecondsTimeout* is a negative number other than -1, which represents an infinite time-out.'
+  - type: System.ArgumentException
+    description: The *tasks* argument contains a null element.
+  - type: System.OperationCanceledException
+    description: The *cancellationToken* was canceled.
 - uid: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
   id: WaitAll(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1872,14 +2414,28 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for all of the provided @'System.Threading.Tasks.Task' objects to complete execution unless the wait is cancelled.
   syntax:
     content: public static void WaitAll(Task[] tasks, CancellationToken cancellationToken)
     content.vb: Public Shared Sub WaitAll(tasks As Task(), cancellationToken As CancellationToken)
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: An array of @'System.Threading.Tasks.Task' instances on which to wait.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: A @'System.Threading.Tasks.TaskFactory.CancellationToken' to observe while waiting for the tasks to complete.
+  exceptions:
+  - type: System.OperationCanceledException
+    description: The *cancellationToken* was canceled.
+  - type: System.ArgumentNullException
+    description: The *tasks* argument is null.
+  - type: System.AggregateException
+    description: At least one of the @'System.Threading.Tasks.Task' instances was canceled. If a task was canceled, the @'System.AggregateException' contains an @'System.OperationCanceledException' in its @'System.AggregateException.InnerExceptions' collection.-or-An exception was thrown during the execution of at least one of the @'System.Threading.Tasks.Task' instances.
+  - type: System.ArgumentException
+    description: The *tasks* argument contains a null element.
+  - type: System.ObjectDisposedException
+    description: One or more of the @'System.Threading.Tasks.Task' objects in *tasks* has been disposed.
 - uid: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.TimeSpan)
   id: WaitAll(System.Threading.Tasks.Task[],System.TimeSpan)
   parent: System.Threading.Tasks.Task
@@ -1896,16 +2452,31 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for all of the provided cancellable @'System.Threading.Tasks.Task' objects to complete execution within a specified time interval.
   syntax:
     content: public static bool WaitAll(Task[] tasks, TimeSpan timeout)
     content.vb: Public Shared Function WaitAll(tasks As Task(), timeout As TimeSpan) As Boolean
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: An array of @'System.Threading.Tasks.Task' instances on which to wait.
     - id: timeout
       type: System.TimeSpan
+      description: A @'System.TimeSpan' that represents the number of milliseconds to wait, or a @'System.TimeSpan' that represents -1 milliseconds to wait indefinitely.
     return:
       type: System.Boolean
+      description: true if all of the @'System.Threading.Tasks.Task' instances completed execution within the allotted time; otherwise, false.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: One or more of the @'System.Threading.Tasks.Task' objects in *tasks* has been disposed.
+  - type: System.ArgumentNullException
+    description: The *tasks* argument is null.
+  - type: System.AggregateException
+    description: At least one of the @'System.Threading.Tasks.Task' instances was canceled. If a task was canceled, the @'System.AggregateException' contains an @'System.OperationCanceledException' in its @'System.AggregateException.InnerExceptions' collection.-or-An exception was thrown during the execution of at least one of the @'System.Threading.Tasks.Task' instances.
+  - type: System.ArgumentOutOfRangeException
+    description: '*timeout* is a negative number other than -1 milliseconds, which represents an infinite time-out. -or-*timeout* is greater than @''System.Int32.MaxValue''.'
+  - type: System.ArgumentException
+    description: The *tasks* argument contains a null element.
 - uid: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[])
   id: WaitAny(System.Threading.Tasks.Task[])
   parent: System.Threading.Tasks.Task
@@ -1922,14 +2493,24 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for any of the provided @'System.Threading.Tasks.Task' objects to complete execution.
   syntax:
     content: public static int WaitAny(params Task[] tasks)
     content.vb: Public Shared Function WaitAny(ParamArray tasks As Task()) As Integer
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: An array of @'System.Threading.Tasks.Task' instances on which to wait.
     return:
       type: System.Int32
+      description: The index of the completed task in the *tasks* array argument.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *tasks* argument is null.
+  - type: System.ArgumentException
+    description: The *tasks* argument contains a null element.
 - uid: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.Int32)
   id: WaitAny(System.Threading.Tasks.Task[],System.Int32)
   parent: System.Threading.Tasks.Task
@@ -1946,16 +2527,29 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for any of the provided @'System.Threading.Tasks.Task' objects to complete execution within a specified number of milliseconds.
   syntax:
     content: public static int WaitAny(Task[] tasks, int millisecondsTimeout)
     content.vb: Public Shared Function WaitAny(tasks As Task(), millisecondsTimeout As Integer) As Integer
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: An array of @'System.Threading.Tasks.Task' instances on which to wait.
     - id: millisecondsTimeout
       type: System.Int32
+      description: The number of milliseconds to wait, or @'System.Threading.Timeout.Infinite' (-1) to wait indefinitely.
     return:
       type: System.Int32
+      description: The index of the completed task in the *tasks* array argument, or -1 if the timeout occurred.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *tasks* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: '*millisecondsTimeout* is a negative number other than -1, which represents an infinite time-out.'
+  - type: System.ArgumentException
+    description: The *tasks* argument contains a null element.
 - uid: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
   id: WaitAny(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -1972,18 +2566,34 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for any of the provided @'System.Threading.Tasks.Task' objects to complete execution within a specified number of milliseconds or until a cancellation token is cancelled.
   syntax:
     content: public static int WaitAny(Task[] tasks, int millisecondsTimeout, CancellationToken cancellationToken)
     content.vb: Public Shared Function WaitAny(tasks As Task(), millisecondsTimeout As Integer, cancellationToken As CancellationToken) As Integer
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: An array of @'System.Threading.Tasks.Task' instances on which to wait.
     - id: millisecondsTimeout
       type: System.Int32
+      description: The number of milliseconds to wait, or @'System.Threading.Timeout.Infinite' (-1) to wait indefinitely.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: A @'System.Threading.Tasks.TaskFactory.CancellationToken' to observe while waiting for a task to complete.
     return:
       type: System.Int32
+      description: The index of the completed task in the *tasks* array argument, or -1 if the timeout occurred.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *tasks* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: '*millisecondsTimeout* is a negative number other than -1, which represents an infinite time-out.'
+  - type: System.ArgumentException
+    description: The *tasks* argument contains a null element.
+  - type: System.OperationCanceledException
+    description: The *cancellationToken* was canceled.
 - uid: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
   id: WaitAny(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task
@@ -2000,16 +2610,29 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for any of the provided @'System.Threading.Tasks.Task' objects to complete execution unless the wait is cancelled.
   syntax:
     content: public static int WaitAny(Task[] tasks, CancellationToken cancellationToken)
     content.vb: Public Shared Function WaitAny(tasks As Task(), cancellationToken As CancellationToken) As Integer
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: An array of @'System.Threading.Tasks.Task' instances on which to wait.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: A @'System.Threading.Tasks.TaskFactory.CancellationToken' to observe while waiting for a task to complete.
     return:
       type: System.Int32
+      description: The index of the completed task in the *tasks* array argument.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *tasks* argument is null.
+  - type: System.ArgumentException
+    description: The *tasks* argument contains a null element.
+  - type: System.OperationCanceledException
+    description: The *cancellationToken* was canceled.
 - uid: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.TimeSpan)
   id: WaitAny(System.Threading.Tasks.Task[],System.TimeSpan)
   parent: System.Threading.Tasks.Task
@@ -2026,16 +2649,29 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Waits for any of the provided @'System.Threading.Tasks.Task' objects to complete execution within a specified time interval.
   syntax:
     content: public static int WaitAny(Task[] tasks, TimeSpan timeout)
     content.vb: Public Shared Function WaitAny(tasks As Task(), timeout As TimeSpan) As Integer
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: An array of @'System.Threading.Tasks.Task' instances on which to wait.
     - id: timeout
       type: System.TimeSpan
+      description: A @'System.TimeSpan' that represents the number of milliseconds to wait, or a @'System.TimeSpan' that represents -1 milliseconds to wait indefinitely.
     return:
       type: System.Int32
+      description: The index of the completed task in the *tasks* array argument, or -1 if the timeout occurred.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *tasks* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: '*timeout* is a negative number other than -1 milliseconds, which represents an infinite time-out. -or-*timeout* is greater than @''System.Int32.MaxValue''.'
+  - type: System.ArgumentException
+    description: The *tasks* argument contains a null element.
 - uid: System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
   id: WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
   parent: System.Threading.Tasks.Task
@@ -2052,14 +2688,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a task that will complete when all of the @'System.Threading.Tasks.Task' objects in an enumerable collection have completed.
   syntax:
     content: public static Task WhenAll(IEnumerable<Task> tasks)
     content.vb: Public Shared Function WhenAll(tasks As IEnumerable(Of Task)) As Task
     parameters:
     - id: tasks
       type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: The tasks to wait on for completion.
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents the completion of all of the supplied tasks.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *tasks* argument was null.
+  - type: System.ArgumentException
+    description: The *tasks* collection contained a null task.
 - uid: System.Threading.Tasks.Task.WhenAll(System.Threading.Tasks.Task[])
   id: WhenAll(System.Threading.Tasks.Task[])
   parent: System.Threading.Tasks.Task
@@ -2076,14 +2720,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a task that will complete when all of the @'System.Threading.Tasks.Task' objects in an array have completed.
   syntax:
     content: public static Task WhenAll(params Task[] tasks)
     content.vb: Public Shared Function WhenAll(ParamArray tasks As Task()) As Task
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: The tasks to wait on for completion.
     return:
       type: System.Threading.Tasks.Task
+      description: A task that represents the completion of all of the supplied tasks.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *tasks* argument was null.
+  - type: System.ArgumentException
+    description: The *tasks* array contained a null task.
 - uid: System.Threading.Tasks.Task.WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
   id: WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
   parent: System.Threading.Tasks.Task
@@ -2100,16 +2752,24 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a task that will complete when all of the @'System.Threading.Tasks.Task`1' objects in an enumerable collection have completed.
   syntax:
     content: public static Task<TResult[]> WhenAll<TResult>(IEnumerable<Task<TResult>> tasks)
     content.vb: Public Shared Function WhenAll(Of TResult)(tasks As IEnumerable(Of Task(Of TResult))) As Task(Of TResult())
     parameters:
     - id: tasks
       type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{{TResult}}}
+      description: The tasks to wait on for completion.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}[]}
+      description: A task that represents the completion of all of the supplied tasks.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *tasks* argument was null.
+  - type: System.ArgumentException
+    description: The *tasks* collection contained a null task.
 - uid: System.Threading.Tasks.Task.WhenAll``1(System.Threading.Tasks.Task{``0}[])
   id: WhenAll``1(System.Threading.Tasks.Task{``0}[])
   parent: System.Threading.Tasks.Task
@@ -2126,16 +2786,24 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a task that will complete when all of the @'System.Threading.Tasks.Task`1' objects in an array have completed.
   syntax:
     content: public static Task<TResult[]> WhenAll<TResult>(params Task<TResult>[] tasks)
     content.vb: Public Shared Function WhenAll(Of TResult)(ParamArray tasks As Task(Of TResult)()) As Task(Of TResult())
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task{{TResult}}[]
+      description: The tasks to wait on for completion.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{{TResult}[]}
+      description: A task that represents the completion of all of the supplied tasks.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *tasks* argument was null.
+  - type: System.ArgumentException
+    description: The *tasks* array contained a null task.
 - uid: System.Threading.Tasks.Task.WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
   id: WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
   parent: System.Threading.Tasks.Task
@@ -2152,14 +2820,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a task that will complete when any of the supplied tasks have completed.
   syntax:
     content: public static Task<Task> WhenAny(IEnumerable<Task> tasks)
     content.vb: Public Shared Function WhenAny(tasks As IEnumerable(Of Task)) As Task(Of Task)
     parameters:
     - id: tasks
       type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
+      description: The tasks to wait on for completion.
     return:
       type: System.Threading.Tasks.Task{System.Threading.Tasks.Task}
+      description: A task that represents the completion of one of the supplied tasks.  The return task's Result is the task that completed.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *tasks* argument was null.
+  - type: System.ArgumentException
+    description: The *tasks* array contained a null task, or was empty.
 - uid: System.Threading.Tasks.Task.WhenAny(System.Threading.Tasks.Task[])
   id: WhenAny(System.Threading.Tasks.Task[])
   parent: System.Threading.Tasks.Task
@@ -2176,14 +2852,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a task that will complete when any of the supplied tasks have completed.
   syntax:
     content: public static Task<Task> WhenAny(params Task[] tasks)
     content.vb: Public Shared Function WhenAny(ParamArray tasks As Task()) As Task(Of Task)
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task[]
+      description: The tasks to wait on for completion.
     return:
       type: System.Threading.Tasks.Task{System.Threading.Tasks.Task}
+      description: A task that represents the completion of one of the supplied tasks.  The return task's Result is the task that completed.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *tasks* argument was null.
+  - type: System.ArgumentException
+    description: The *tasks* array contained a null task, or was empty.
 - uid: System.Threading.Tasks.Task.WhenAny``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
   id: WhenAny``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
   parent: System.Threading.Tasks.Task
@@ -2200,16 +2884,24 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a task that will complete when any of the supplied tasks have completed.
   syntax:
     content: public static Task<Task<TResult>> WhenAny<TResult>(IEnumerable<Task<TResult>> tasks)
     content.vb: Public Shared Function WhenAny(Of TResult)(tasks As IEnumerable(Of Task(Of TResult))) As Task(Of Task(Of TResult))
     parameters:
     - id: tasks
       type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{{TResult}}}
+      description: The tasks to wait on for completion.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{System.Threading.Tasks.Task{{TResult}}}
+      description: A task that represents the completion of one of the supplied tasks.  The return task's Result is the task that completed.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *tasks* argument was null.
+  - type: System.ArgumentException
+    description: The *tasks* array contained a null task, or was empty.
 - uid: System.Threading.Tasks.Task.WhenAny``1(System.Threading.Tasks.Task{``0}[])
   id: WhenAny``1(System.Threading.Tasks.Task{``0}[])
   parent: System.Threading.Tasks.Task
@@ -2226,16 +2918,24 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a task that will complete when any of the supplied tasks have completed.
   syntax:
     content: public static Task<Task<TResult>> WhenAny<TResult>(params Task<TResult>[] tasks)
     content.vb: Public Shared Function WhenAny(Of TResult)(ParamArray tasks As Task(Of TResult)()) As Task(Of Task(Of TResult))
     parameters:
     - id: tasks
       type: System.Threading.Tasks.Task{{TResult}}[]
+      description: The tasks to wait on for completion.
     typeParameters:
     - id: TResult
     return:
       type: System.Threading.Tasks.Task{System.Threading.Tasks.Task{{TResult}}}
+      description: A task that represents the completion of one of the supplied tasks.  The return task's Result is the task that completed.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *tasks* argument was null.
+  - type: System.ArgumentException
+    description: The *tasks* array contained a null task, or was empty.
 - uid: System.Threading.Tasks.Task.Yield
   id: Yield
   parent: System.Threading.Tasks.Task
@@ -2250,11 +2950,13 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates an awaitable task that asynchronously yields back to the current context when awaited.
   syntax:
     content: public static YieldAwaitable Yield()
     content.vb: Public Shared Function Yield As YieldAwaitable
     return:
       type: System.Runtime.CompilerServices.YieldAwaitable
+      description: A context that, when awaited, will asynchronously transition back into the current context at the time of the await. If the current @'System.Threading.SynchronizationContext' is non-null, it is treated as the current context. Otherwise, the task scheduler that is associated with the currently executing task is treated as the current context.
 references:
 - uid: System.Threading.Tasks
   isExternal: false
@@ -3529,3 +4231,55 @@ references:
   name: YieldAwaitable
   fullName: System.Runtime.CompilerServices.YieldAwaitable
   type: Struct
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ObjectDisposedException
+  isExternal: false
+  href: System.ObjectDisposedException.yml
+  name: ObjectDisposedException
+  fullName: System.ObjectDisposedException
+  type: Class
+  summary: The exception that is thrown when an operation is performed on a disposed object.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.Threading.Tasks.TaskCanceledException
+  isExternal: false
+  href: System.Threading.Tasks.TaskCanceledException.yml
+  name: TaskCanceledException
+  fullName: System.Threading.Tasks.TaskCanceledException
+  type: Class
+  summary: Represents an exception used to communicate task cancellation.
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.OperationCanceledException
+  parent: System
+  isExternal: false
+  href: System.OperationCanceledException.yml
+  name: OperationCanceledException
+  fullName: System.OperationCanceledException
+  type: Class
+  summary: The exception that is thrown in a thread upon cancellation of an operation that the thread was executing.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.

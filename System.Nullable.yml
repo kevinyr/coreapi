@@ -20,6 +20,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Supports a value type that can be assigned null. This class cannot be inherited.
   syntax:
     content: public class Nullable
     content.vb: Public Class Nullable
@@ -49,18 +50,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Compares the relative values of two @'System.Nullable`1' objects.
   syntax:
     content: 'public static int Compare<T>(Nullable<T> n1, Nullable<T> n2)where T : struct'
     content.vb: Public Shared Function Compare(Of T As Structure)(n1 As Nullable(Of T), n2 As Nullable(Of T)) As Integer
     parameters:
     - id: n1
       type: System.Nullable{{T}}
+      description: A @'System.Nullable`1' object.
     - id: n2
       type: System.Nullable{{T}}
+      description: A @'System.Nullable`1' object.
     typeParameters:
     - id: T
     return:
       type: System.Int32
+      description: An integer that indicates the relative values of the *n1* and *n2* parameters.Return ValueDescriptionLess than zeroThe @'System.Nullable`1.HasValue' property for *n1* is false, and the @'System.Nullable`1.HasValue' property for *n2* is true.-or-The @'System.Nullable`1.HasValue' properties for *n1* and *n2* are true, and the value of the @'System.Nullable`1.Value' property for *n1* is less than the value of the @'System.Nullable`1.Value' property for *n2*.ZeroThe @'System.Nullable`1.HasValue' properties for *n1* and *n2* are false.-or-The @'System.Nullable`1.HasValue' properties for *n1* and *n2* are true, and the value of the @'System.Nullable`1.Value' property for *n1* is equal to the value of the @'System.Nullable`1.Value' property for *n2*.Greater than zeroThe @'System.Nullable`1.HasValue' property for *n1* is true, and the @'System.Nullable`1.HasValue' property for *n2* is false.-or-The @'System.Nullable`1.HasValue' properties for *n1* and *n2* are true, and the value of the @'System.Nullable`1.Value' property for *n1* is greater than the value of the @'System.Nullable`1.Value' property for *n2*.
 - uid: System.Nullable.Equals``1(System.Nullable{``0},System.Nullable{``0})
   id: Equals``1(System.Nullable{``0},System.Nullable{``0})
   parent: System.Nullable
@@ -77,18 +82,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Indicates whether two specified @'System.Nullable`1' objects are equal.
   syntax:
     content: 'public static bool Equals<T>(Nullable<T> n1, Nullable<T> n2)where T : struct'
     content.vb: Public Shared Function Equals(Of T As Structure)(n1 As Nullable(Of T), n2 As Nullable(Of T)) As Boolean
     parameters:
     - id: n1
       type: System.Nullable{{T}}
+      description: A @'System.Nullable`1' object.
     - id: n2
       type: System.Nullable{{T}}
+      description: A @'System.Nullable`1' object.
     typeParameters:
     - id: T
     return:
       type: System.Boolean
+      description: true if the *n1* parameter is equal to the *n2* parameter; otherwise, false. The return value depends on the @'System.Nullable`1.HasValue' and @'System.Nullable`1.Value' properties of the two parameters that are compared.Return ValueDescriptiontrueThe @'System.Nullable`1.HasValue' properties for *n1* and *n2* are false. -or-The @'System.Nullable`1.HasValue' properties for *n1* and *n2* are true, and the @'System.Nullable`1.Value' properties of the parameters are equal.falseThe @'System.Nullable`1.HasValue' property is true for one parameter and false for the other parameter.-or-The @'System.Nullable`1.HasValue' properties for *n1* and *n2* are true, and the @'System.Nullable`1.Value' properties of the parameters are unequal.
 - uid: System.Nullable.GetUnderlyingType(System.Type)
   id: GetUnderlyingType(System.Type)
   parent: System.Nullable
@@ -103,14 +112,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns the underlying type argument of the specified nullable type.
   syntax:
     content: public static Type GetUnderlyingType(Type nullableType)
     content.vb: Public Shared Function GetUnderlyingType(nullableType As Type) As Type
     parameters:
     - id: nullableType
       type: System.Type
+      description: A @'System.Type' object that describes a closed generic nullable type.
     return:
       type: System.Type
+      description: The type argument of the *nullableType* parameter, if the *nullableType* parameter is a closed generic nullable type; otherwise, null.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*nullableType* is null.'
 references:
 - uid: System
   isExternal: false
@@ -415,3 +430,10 @@ references:
   name: Type
   fullName: System.Type
   type: Class
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.

@@ -24,6 +24,7 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Represents a thread synchronization event.
   syntax:
     content: 'public class EventWaitHandle : WaitHandle, IDisposable'
     content.vb: Public Class EventWaitHandle Inherits WaitHandle Implements IDisposable
@@ -84,14 +85,17 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Initializes a new instance of the @'System.Threading.EventWaitHandle' class, specifying whether the wait handle is initially signaled, and whether it resets automatically or manually.
   syntax:
     content: public EventWaitHandle(bool initialState, EventResetMode mode)
     content.vb: Public Sub New(initialState As Boolean, mode As EventResetMode)
     parameters:
     - id: initialState
       type: System.Boolean
+      description: true to set the initial state to signaled; false to set it to nonsignaled.
     - id: mode
       type: System.Threading.EventResetMode
+      description: One of the @'System.Threading.EventResetMode' values that determines whether the event resets automatically or manually.
 - uid: System.Threading.EventWaitHandle.#ctor(System.Boolean,System.Threading.EventResetMode,System.String)
   id: '#ctor(System.Boolean,System.Threading.EventResetMode,System.String)'
   parent: System.Threading.EventWaitHandle
@@ -106,16 +110,29 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Initializes a new instance of the @'System.Threading.EventWaitHandle' class, specifying whether the wait handle is initially signaled if created as a result of this call, whether it resets automatically or manually, and the name of a system synchronization event.
   syntax:
     content: public EventWaitHandle(bool initialState, EventResetMode mode, string name)
     content.vb: Public Sub New(initialState As Boolean, mode As EventResetMode, name As String)
     parameters:
     - id: initialState
       type: System.Boolean
+      description: true to set the initial state to signaled if the named event is created as a result of this call; false to set it to nonsignaled.
     - id: mode
       type: System.Threading.EventResetMode
+      description: One of the @'System.Threading.EventResetMode' values that determines whether the event resets automatically or manually.
     - id: name
       type: System.String
+      description: The name of a system-wide synchronization event.
+  exceptions:
+  - type: System.IO.IOException
+    description: A Win32 error occurred.
+  - type: System.UnauthorizedAccessException
+    description: The named event exists and has access control security, but the user does not have @'System.Security.AccessControl.EventWaitHandleRights.FullControl'.
+  - type: System.Threading.WaitHandleCannotBeOpenedException
+    description: The named event cannot be created, perhaps because a wait handle of a different type has the same name.
+  - type: System.ArgumentException
+    description: '*name* is longer than 260 characters.'
 - uid: System.Threading.EventWaitHandle.#ctor(System.Boolean,System.Threading.EventResetMode,System.String,System.Boolean@)
   id: '#ctor(System.Boolean,System.Threading.EventResetMode,System.String,System.Boolean@)'
   parent: System.Threading.EventWaitHandle
@@ -132,18 +149,32 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Initializes a new instance of the @'System.Threading.EventWaitHandle' class, specifying whether the wait handle is initially signaled if created as a result of this call, whether it resets automatically or manually, the name of a system synchronization event, and a Boolean variable whose value after the call indicates whether the named system event was created.
   syntax:
     content: public EventWaitHandle(bool initialState, EventResetMode mode, string name, out bool createdNew)
     content.vb: Public Sub New(initialState As Boolean, mode As EventResetMode, name As String, ByRef createdNew As Boolean)
     parameters:
     - id: initialState
       type: System.Boolean
+      description: true to set the initial state to signaled if the named event is created as a result of this call; false to set it to nonsignaled.
     - id: mode
       type: System.Threading.EventResetMode
+      description: One of the @'System.Threading.EventResetMode' values that determines whether the event resets automatically or manually.
     - id: name
       type: System.String
+      description: The name of a system-wide synchronization event.
     - id: createdNew
       type: System.Boolean
+      description: When this method returns, contains true if a local event was created (that is, if *name* is null or an empty string) or if the specified named system event was created; false if the specified named system event already existed. This parameter is passed uninitialized.
+  exceptions:
+  - type: System.IO.IOException
+    description: A Win32 error occurred.
+  - type: System.UnauthorizedAccessException
+    description: The named event exists and has access control security, but the user does not have @'System.Security.AccessControl.EventWaitHandleRights.FullControl'.
+  - type: System.Threading.WaitHandleCannotBeOpenedException
+    description: The named event cannot be created, perhaps because a wait handle of a different type has the same name.
+  - type: System.ArgumentException
+    description: '*name* is longer than 260 characters.'
 - uid: System.Threading.EventWaitHandle.OpenExisting(System.String)
   id: OpenExisting(System.String)
   parent: System.Threading.EventWaitHandle
@@ -158,14 +189,28 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Opens the specified named synchronization event, if it already exists.
   syntax:
     content: public static EventWaitHandle OpenExisting(string name)
     content.vb: Public Shared Function OpenExisting(name As String) As EventWaitHandle
     parameters:
     - id: name
       type: System.String
+      description: The name of the system synchronization event to open.
     return:
       type: System.Threading.EventWaitHandle
+      description: An  object that represents the named system event.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*name* is an empty string. -or-*name* is longer than 260 characters.'
+  - type: System.ArgumentNullException
+    description: '*name* is null.'
+  - type: System.Threading.WaitHandleCannotBeOpenedException
+    description: The named system event does not exist.
+  - type: System.IO.IOException
+    description: A Win32 error occurred.
+  - type: System.UnauthorizedAccessException
+    description: The named event exists, but the user does not have the security access required to use it.
 - uid: System.Threading.EventWaitHandle.Reset
   id: Reset
   parent: System.Threading.EventWaitHandle
@@ -180,11 +225,16 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Sets the state of the event to nonsignaled, causing threads to block.
   syntax:
     content: public bool Reset()
     content.vb: Public Function Reset As Boolean
     return:
       type: System.Boolean
+      description: true if the operation succeeds; otherwise, false.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.EventWaitHandle.Close' method was previously called on this @'System.Threading.EventWaitHandle'.
 - uid: System.Threading.EventWaitHandle.Set
   id: Set
   parent: System.Threading.EventWaitHandle
@@ -199,11 +249,16 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Sets the state of the event to signaled, allowing one or more waiting threads to proceed.
   syntax:
     content: public bool Set()
     content.vb: Public Function Set As Boolean
     return:
       type: System.Boolean
+      description: true if the operation succeeds; otherwise, false.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.EventWaitHandle.Close' method was previously called on this @'System.Threading.EventWaitHandle'.
 - uid: System.Threading.EventWaitHandle.TryOpenExisting(System.String,System.Threading.EventWaitHandle@)
   id: TryOpenExisting(System.String,System.Threading.EventWaitHandle@)
   parent: System.Threading.EventWaitHandle
@@ -220,16 +275,29 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Opens the specified named synchronization event, if it already exists, and returns a value that indicates whether the operation succeeded.
   syntax:
     content: public static bool TryOpenExisting(string name, out EventWaitHandle result)
     content.vb: Public Shared Function TryOpenExisting(name As String, ByRef result As EventWaitHandle) As Boolean
     parameters:
     - id: name
       type: System.String
+      description: The name of the system synchronization event to open.
     - id: result
       type: System.Threading.EventWaitHandle
+      description: When this method returns, contains a @'System.Threading.EventWaitHandle' object that represents the named synchronization event if the call succeeded, or null if the call failed. This parameter is treated as uninitialized.
     return:
       type: System.Boolean
+      description: true if the named synchronization event was opened successfully; otherwise, false.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*name* is an empty string.-or-*name* is longer than 260 characters.'
+  - type: System.ArgumentNullException
+    description: '*name* is null.'
+  - type: System.IO.IOException
+    description: A Win32 error occurred.
+  - type: System.UnauthorizedAccessException
+    description: The named event exists, but the user does not have the desired security access.
 references:
 - uid: System.Threading
   isExternal: false
@@ -1564,3 +1632,48 @@ references:
   name: EventWaitHandle
   fullName: System.Threading.EventWaitHandle
   type: Class
+- uid: System.IO.IOException
+  parent: System.IO
+  isExternal: false
+  href: System.IO.IOException.yml
+  name: IOException
+  fullName: System.IO.IOException
+  type: Class
+  summary: The exception that is thrown when an I/O error occurs.
+- uid: System.UnauthorizedAccessException
+  parent: System
+  isExternal: false
+  href: System.UnauthorizedAccessException.yml
+  name: UnauthorizedAccessException
+  fullName: System.UnauthorizedAccessException
+  type: Class
+  summary: The exception that is thrown when the operating system denies access because of an I/O error or a specific type of security error.
+- uid: System.Threading.WaitHandleCannotBeOpenedException
+  isExternal: false
+  href: System.Threading.WaitHandleCannotBeOpenedException.yml
+  name: WaitHandleCannotBeOpenedException
+  fullName: System.Threading.WaitHandleCannotBeOpenedException
+  type: Class
+  summary: The exception that is thrown when an attempt is made to open a system mutex or semaphore that does not exist.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ObjectDisposedException
+  isExternal: false
+  href: System.ObjectDisposedException.yml
+  name: ObjectDisposedException
+  fullName: System.ObjectDisposedException
+  type: Class
+  summary: The exception that is thrown when an operation is performed on a disposed object.

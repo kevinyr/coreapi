@@ -24,6 +24,7 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Provides an @'System.IProgress`1' that invokes callbacks for each reported progress value.
   syntax:
     content: 'public class Progress<T> : IProgress<T>'
     content.vb: Public Class Progress(Of T) Implements IProgress(Of T)
@@ -56,6 +57,7 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Initializes the @'System.Progress`1' object.
   syntax:
     content: public Progress()
     content.vb: Public Sub New
@@ -75,12 +77,14 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Initializes the @'System.Progress`1' object with the specified callback.
   syntax:
     content: public Progress(Action<T> handler)
     content.vb: Public Sub New(handler As Action(Of T))
     parameters:
     - id: handler
       type: System.Action{{T}}
+      description: A handler to invoke for each reported progress value. This handler will be invoked in addition to any delegates registered with the @'System.Progress`1.ProgressChanged' event. Depending on the @'System.Threading.SynchronizationContext' instance captured by the @'System.Progress`1' at construction, it is possible that this handler instance could be invoked concurrently with itself.
 - uid: System.Progress`1.ProgressChanged
   id: ProgressChanged
   parent: System.Progress`1
@@ -96,6 +100,7 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Raised for each reported progress value.
   syntax:
     content: public event EventHandler<T> ProgressChanged
     content.vb: Public Event ProgressChanged As EventHandler(Of T)
@@ -114,12 +119,14 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Reports a progress change.
   syntax:
     content: protected virtual void OnReport(T value)
     content.vb: Protected Overridable Sub OnReport(value As T)
     parameters:
     - id: value
       type: '{T}'
+      description: The value of the updated progress.
 - uid: System.Progress`1.System#IProgress{T}#Report(`0)
   id: System#IProgress{T}#Report(`0)
   parent: System.Progress`1
@@ -136,12 +143,14 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Reports a progress change.
   syntax:
     content: void IProgress<T>.Report(T value)
     content.vb: Sub System.IProgress<T>.Report(value As T) Implements IProgress(Of T).Report
     parameters:
     - id: value
       type: '{T}'
+      description: The value of the updated progress.
 references:
 - uid: System
   isExternal: false

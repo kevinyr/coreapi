@@ -19,6 +19,7 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Manages the execution context for the current thread. This class cannot be inherited.
   syntax:
     content: public sealed class ExecutionContext
     content.vb: Public NotInheritable Class ExecutionContext
@@ -46,11 +47,13 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Captures the execution context from the current thread.
   syntax:
     content: public static ExecutionContext Capture()
     content.vb: Public Shared Function Capture As ExecutionContext
     return:
       type: System.Threading.ExecutionContext
+      description: An @'System.Threading.ExecutionContext' object representing the execution context for the current thread.
 - uid: System.Threading.ExecutionContext.Run(System.Threading.ExecutionContext,System.Threading.ContextCallback,System.Object)
   id: Run(System.Threading.ExecutionContext,System.Threading.ContextCallback,System.Object)
   parent: System.Threading.ExecutionContext
@@ -65,16 +68,23 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Runs a method in a specified execution context on the current thread.
   syntax:
     content: public static void Run(ExecutionContext executionContext, ContextCallback callback, object state)
     content.vb: Public Shared Sub Run(executionContext As ExecutionContext, callback As ContextCallback, state As Object)
     parameters:
     - id: executionContext
       type: System.Threading.ExecutionContext
+      description: The @'System.Threading.ExecutionContext' to set.
     - id: callback
       type: System.Threading.ContextCallback
+      description: A @'System.Threading.ContextCallback' delegate that represents the method to be run in the provided execution context.
     - id: state
       type: System.Object
+      description: The object to pass to the callback method.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: '*executionContext* is null.-or-*executionContext* was not acquired through a capture operation. -or-*executionContext* has already been used as the argument to a @''System.Threading.ExecutionContext.Run(System.Threading.ExecutionContext,System.Threading.ContextCallback,System.Object)'' call.'
 references:
 - uid: System.Threading
   isExternal: false
@@ -316,3 +326,11 @@ references:
   name: ContextCallback
   fullName: System.Threading.ContextCallback
   type: Delegate
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.

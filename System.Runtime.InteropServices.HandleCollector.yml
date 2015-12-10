@@ -25,6 +25,7 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Tracks outstanding handles and forces a garbage collection when the specified threshold is reached.
   syntax:
     content: public sealed class HandleCollector
     content.vb: Public NotInheritable Class HandleCollector
@@ -52,14 +53,20 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Initializes a new instance of the @'System.Runtime.InteropServices.HandleCollector' class using a name and a threshold at which to begin handle collection.
   syntax:
     content: public HandleCollector(string name, int initialThreshold)
     content.vb: Public Sub New(name As String, initialThreshold As Integer)
     parameters:
     - id: name
       type: System.String
+      description: A name for the collector. This parameter allows you to name collectors that track handle types separately.
     - id: initialThreshold
       type: System.Int32
+      description: A value that specifies the point at which collections should begin.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: The *initialThreshold* parameter is less than 0.
 - uid: System.Runtime.InteropServices.HandleCollector.#ctor(System.String,System.Int32,System.Int32)
   id: '#ctor(System.String,System.Int32,System.Int32)'
   parent: System.Runtime.InteropServices.HandleCollector
@@ -74,16 +81,25 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Initializes a new instance of the @'System.Runtime.InteropServices.HandleCollector' class using a name, a threshold at which to begin handle collection, and a threshold at which handle collection must occur.
   syntax:
     content: public HandleCollector(string name, int initialThreshold, int maximumThreshold)
     content.vb: Public Sub New(name As String, initialThreshold As Integer, maximumThreshold As Integer)
     parameters:
     - id: name
       type: System.String
+      description: A name for the collector.  This parameter allows you to name collectors that track handle types separately.
     - id: initialThreshold
       type: System.Int32
+      description: A value that specifies the point at which collections should begin.
     - id: maximumThreshold
       type: System.Int32
+      description: A value that specifies the point at which collections must occur. This should be set to the maximum number of available handles.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: The *initialThreshold* parameter is less than 0.-or-The *maximumThreshold* parameter is less than 0.
+  - type: System.ArgumentException
+    description: The *maximumThreshold* parameter is less than the *initialThreshold* parameter.
 - uid: System.Runtime.InteropServices.HandleCollector.Count
   id: Count
   parent: System.Runtime.InteropServices.HandleCollector
@@ -98,12 +114,14 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Gets the number of handles collected.
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
     parameters: []
     return:
       type: System.Int32
+      description: The number of handles collected.
 - uid: System.Runtime.InteropServices.HandleCollector.InitialThreshold
   id: InitialThreshold
   parent: System.Runtime.InteropServices.HandleCollector
@@ -118,12 +136,14 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Gets a value that specifies the point at which collections should begin.
   syntax:
     content: public int InitialThreshold { get; }
     content.vb: Public ReadOnly Property InitialThreshold As Integer
     parameters: []
     return:
       type: System.Int32
+      description: A value that specifies the point at which collections should begin.
 - uid: System.Runtime.InteropServices.HandleCollector.MaximumThreshold
   id: MaximumThreshold
   parent: System.Runtime.InteropServices.HandleCollector
@@ -138,12 +158,14 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Gets a value that specifies the point at which collections must occur.
   syntax:
     content: public int MaximumThreshold { get; }
     content.vb: Public ReadOnly Property MaximumThreshold As Integer
     parameters: []
     return:
       type: System.Int32
+      description: A value that specifies the point at which collections must occur.
 - uid: System.Runtime.InteropServices.HandleCollector.Name
   id: Name
   parent: System.Runtime.InteropServices.HandleCollector
@@ -158,12 +180,14 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Gets the name of a @'System.Runtime.InteropServices.HandleCollector' object.
   syntax:
     content: public string Name { get; }
     content.vb: Public ReadOnly Property Name As String
     parameters: []
     return:
       type: System.String
+      description: This @'System.Runtime.InteropServices.HandleCollector.Name' property allows you to name collectors that track handle types separately.
 - uid: System.Runtime.InteropServices.HandleCollector.Add
   id: Add
   parent: System.Runtime.InteropServices.HandleCollector
@@ -178,9 +202,13 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Increments the current handle count.
   syntax:
     content: public void Add()
     content.vb: Public Sub Add
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The @'System.Runtime.InteropServices.HandleCollector.Count' property is less than 0.
 - uid: System.Runtime.InteropServices.HandleCollector.Remove
   id: Remove
   parent: System.Runtime.InteropServices.HandleCollector
@@ -195,9 +223,13 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Decrements the current handle count.
   syntax:
     content: public void Remove()
     content.vb: Public Sub Remove
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The @'System.Runtime.InteropServices.HandleCollector.Count' property is less than 0.
 references:
 - uid: System.Runtime.InteropServices
   isExternal: false
@@ -439,3 +471,26 @@ references:
   name: Int32
   fullName: System.Int32
   type: Struct
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.

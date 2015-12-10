@@ -18,6 +18,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Represents an awaiter that schedules continuations when an await operation completes.
   syntax:
     content: 'public interface ICriticalNotifyCompletion : INotifyCompletion'
     content.vb: Public Interface ICriticalNotifyCompletion Inherits INotifyCompletion
@@ -37,12 +38,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Schedules the continuation action that's invoked when the instance completes.
   syntax:
     content: void UnsafeOnCompleted(Action continuation)
     content.vb: Sub UnsafeOnCompleted(continuation As Action)
     parameters:
     - id: continuation
       type: System.Action
+      description: The action to invoke when the operation completes.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuation* argument is null (Nothing in Visual Basic).
 references:
 - uid: System.Runtime.CompilerServices
   isExternal: false
@@ -100,3 +106,10 @@ references:
   name: System
   fullName: System
   type: Namespace
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.

@@ -20,6 +20,7 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Provides an internal interface for accessing the arguments of DynamicExpression tree nodes as well as CallSite and Rewriting functionality.  You should not use this API.  It is only public due to DLL refactoring and exists only for internal performance optimizations.
   syntax:
     content: 'public interface IDynamicExpression : IArgumentProvider'
     content.vb: Public Interface IDynamicExpression Inherits IArgumentProvider
@@ -40,12 +41,14 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: "Gets the delegate type used by the CallSite, which is the type of the rules used in the dynamic expression’s polymorhphic inline cache."
   syntax:
     content: Type DelegateType { get; }
     content.vb: ReadOnly Property DelegateType As Type
     parameters: []
     return:
       type: System.Type
+      description: The delegate type used by the CallSite.
 - uid: System.Linq.Expressions.IDynamicExpression.CreateCallSite
   id: CreateCallSite
   parent: System.Linq.Expressions.IDynamicExpression
@@ -60,11 +63,13 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: "Optionally creates the CallSite and returns the CallSite for the DynamicExpression’s polymorphic inline cache.  You should not use this type.  It is only public due to assembly refactoring, and it is used internally for performance optimizations."
   syntax:
     content: object CreateCallSite()
     content.vb: Function CreateCallSite As Object
     return:
       type: System.Object
+      description: "The CallSite for the DynamicExpression’s polymorphic inline cache."
 - uid: System.Linq.Expressions.IDynamicExpression.Rewrite(System.Linq.Expressions.Expression[])
   id: Rewrite(System.Linq.Expressions.Expression[])
   parent: System.Linq.Expressions.IDynamicExpression
@@ -81,14 +86,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: "Rewrites this node replacing the dynamic expression’s arguments with the provided values.  The number of args needs to match the number of the current expression.  You should not use this type.  It is only public due to assembly refactoring, and it is used internally for performance optimizations.  This helper method allows re-writing of nodes to be independent of the specific implementation class deriving from DynamicExpression that is being used at the call site."
   syntax:
     content: Expression Rewrite(Expression[] args)
     content.vb: Function Rewrite(args As Expression()) As Expression
     parameters:
     - id: args
       type: System.Linq.Expressions.Expression[]
+      description: The arguments used to replace this node.
     return:
       type: System.Linq.Expressions.Expression
+      description: The rewritten node, but if no changes were made, then returns the same node.
 references:
 - uid: System.Linq.Expressions
   isExternal: false

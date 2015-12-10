@@ -30,6 +30,7 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Provides thread-local storage of data.
   syntax:
     content: 'public class ThreadLocal<T> : IDisposable'
     content.vb: Public Class ThreadLocal(Of T) Implements IDisposable
@@ -61,6 +62,7 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Initializes the @'System.Threading.ThreadLocal`1' instance.
   syntax:
     content: public ThreadLocal()
     content.vb: Public Sub New
@@ -79,12 +81,14 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Initializes the @'System.Threading.ThreadLocal`1' instance.
   syntax:
     content: public ThreadLocal(bool trackAllValues)
     content.vb: Public Sub New(trackAllValues As Boolean)
     parameters:
     - id: trackAllValues
       type: System.Boolean
+      description: Whether to track all values set on the instance and expose them through the @'System.Threading.ThreadLocal`1.Values' property.
 - uid: System.Threading.ThreadLocal`1.#ctor(System.Func{`0})
   id: '#ctor(System.Func{`0})'
   parent: System.Threading.ThreadLocal`1
@@ -101,12 +105,17 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Initializes the @'System.Threading.ThreadLocal`1' instance with the specified *valueFactory* function.
   syntax:
     content: public ThreadLocal(Func<T> valueFactory)
     content.vb: Public Sub New(valueFactory As Func(Of T))
     parameters:
     - id: valueFactory
       type: System.Func{{T}}
+      description: The  @'System.Func`1' invoked to produce a lazily-initialized value when an attempt is made to retrieve @'System.Threading.ThreadLocal`1.Value' without it having been previously initialized.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*valueFactory* is a null reference (Nothing in Visual Basic).'
 - uid: System.Threading.ThreadLocal`1.#ctor(System.Func{`0},System.Boolean)
   id: '#ctor(System.Func{`0},System.Boolean)'
   parent: System.Threading.ThreadLocal`1
@@ -123,14 +132,20 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Initializes the @'System.Threading.ThreadLocal`1' instance with the specified *valueFactory* function.
   syntax:
     content: public ThreadLocal(Func<T> valueFactory, bool trackAllValues)
     content.vb: Public Sub New(valueFactory As Func(Of T), trackAllValues As Boolean)
     parameters:
     - id: valueFactory
       type: System.Func{{T}}
+      description: The @'System.Func`1' invoked to produce a lazily-initialized value when an attempt is made to retrieve @'System.Threading.ThreadLocal`1.Value' without it having been previously initialized.
     - id: trackAllValues
       type: System.Boolean
+      description: Whether to track all values set on the instance and expose them via the @'System.Threading.ThreadLocal`1.Values' property.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*valueFactory* is a null reference (Nothing in Visual Basic).'
 - uid: System.Threading.ThreadLocal`1.IsValueCreated
   id: IsValueCreated
   parent: System.Threading.ThreadLocal`1
@@ -146,12 +161,17 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Gets whether @'System.Threading.ThreadLocal`1.Value' is initialized on the current thread.
   syntax:
     content: public bool IsValueCreated { get; }
     content.vb: Public ReadOnly Property IsValueCreated As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if @'System.Threading.ThreadLocal`1.Value' is initialized on the current thread; otherwise false.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.ThreadLocal`1' instance has been disposed.
 - uid: System.Threading.ThreadLocal`1.Value
   id: Value
   parent: System.Threading.ThreadLocal`1
@@ -167,12 +187,21 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Gets or sets the value of this instance for the current thread.
   syntax:
     content: public T Value { get; set; }
     content.vb: Public Property Value As T
     parameters: []
     return:
       type: '{T}'
+      description: Returns an instance of the object that this ThreadLocal is responsible for initializing.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.ThreadLocal`1' instance has been disposed.
+  - type: System.InvalidOperationException
+    description: The initialization function attempted to reference @'System.Threading.ThreadLocal`1.Value' recursively.
+  - type: System.MissingMemberException
+    description: No default constructor is provided and no value factory is supplied.
 - uid: System.Threading.ThreadLocal`1.Values
   id: Values
   parent: System.Threading.ThreadLocal`1
@@ -188,12 +217,17 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Gets a list for all of the values currently stored by all of the threads that have accessed this instance.
   syntax:
     content: public IList<T> Values { get; }
     content.vb: Public ReadOnly Property Values As IList(Of T)
     parameters: []
     return:
       type: System.Collections.Generic.IList{{T}}
+      description: A list for all of the values currently stored by all of the threads that have accessed this instance.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.ThreadLocal`1' instance has been disposed.
 - uid: System.Threading.ThreadLocal`1.Dispose
   id: Dispose
   parent: System.Threading.ThreadLocal`1
@@ -209,6 +243,7 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Releases all resources used by the current instance of the @'System.Threading.ThreadLocal`1' class.
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
@@ -227,12 +262,14 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Releases the resources used by this @'System.Threading.ThreadLocal`1' instance.
   syntax:
     content: protected virtual void Dispose(bool disposing)
     content.vb: Protected Overridable Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
+      description: A Boolean value that indicates whether this method is being called due to a call to @'System.Threading.ThreadLocal`1.Dispose'.
 - uid: System.Threading.ThreadLocal`1.Finalize
   id: Finalize
   parent: System.Threading.ThreadLocal`1
@@ -248,6 +285,7 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Releases the resources used by this @'System.Threading.ThreadLocal`1' instance.
   syntax:
     content: protected void Finalize()
     content.vb: Protected Sub Finalize
@@ -266,12 +304,23 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Creates and returns a string representation of this instance for the current thread.
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
+      description: The result of calling @'System.Object.ToString' on the @'System.Threading.ThreadLocal`1.Value'.
   overridden: System.Object.ToString
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.ThreadLocal`1' instance has been disposed.
+  - type: System.NullReferenceException
+    description: The @'System.Threading.ThreadLocal`1.Value' for the current thread is a null reference (Nothing in Visual Basic).
+  - type: System.InvalidOperationException
+    description: The initialization function attempted to reference @'System.Threading.ThreadLocal`1.Value' recursively.
+  - type: System.MissingMemberException
+    description: No default constructor is provided and no value factory is supplied.
 references:
 - uid: System.Threading
   isExternal: false
@@ -644,3 +693,40 @@ references:
   name: String
   fullName: System.String
   type: Class
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ObjectDisposedException
+  isExternal: false
+  href: System.ObjectDisposedException.yml
+  name: ObjectDisposedException
+  fullName: System.ObjectDisposedException
+  type: Class
+  summary: The exception that is thrown when an operation is performed on a disposed object.
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.MissingMemberException
+  parent: System
+  isExternal: false
+  href: System.MissingMemberException.yml
+  name: MissingMemberException
+  fullName: System.MissingMemberException
+  type: Class
+  summary: The exception that is thrown when there is an attempt to dynamically access a class member that does not exist.
+- uid: System.NullReferenceException
+  isExternal: false
+  href: System.NullReferenceException.yml
+  name: NullReferenceException
+  fullName: System.NullReferenceException
+  type: Class
+  summary: The exception that is thrown when there is an attempt to dereference a null object reference.

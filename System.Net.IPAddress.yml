@@ -49,6 +49,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Provides an Internet Protocol (IP) address.
   syntax:
     content: public class IPAddress
     content.vb: Public Class IPAddress
@@ -73,6 +74,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Provides an IP address that indicates that the server must listen for client activity on all network interfaces. This field is read-only.
   syntax:
     content: public static readonly IPAddress Any
     content.vb: Public Shared ReadOnly Any As IPAddress
@@ -90,6 +92,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Provides the IP broadcast address. This field is read-only.
   syntax:
     content: public static readonly IPAddress Broadcast
     content.vb: Public Shared ReadOnly Broadcast As IPAddress
@@ -107,6 +110,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: The @'System.Net.Sockets.Socket.Bind(System.Net.EndPoint)' method uses the @'System.Net.IPAddress.IPv6Any' field to indicate that a @'System.Net.Sockets.Socket' must listen for client activity on all network interfaces.
   syntax:
     content: public static readonly IPAddress IPv6Any
     content.vb: Public Shared ReadOnly IPv6Any As IPAddress
@@ -124,6 +128,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Provides the IP loopback address. This property is read-only.
   syntax:
     content: public static readonly IPAddress IPv6Loopback
     content.vb: Public Shared ReadOnly IPv6Loopback As IPAddress
@@ -141,6 +146,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Provides an IP address that indicates that no network interface should be used. This property is read-only.
   syntax:
     content: public static readonly IPAddress IPv6None
     content.vb: Public Shared ReadOnly IPv6None As IPAddress
@@ -158,6 +164,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Provides the IP loopback address. This field is read-only.
   syntax:
     content: public static readonly IPAddress Loopback
     content.vb: Public Shared ReadOnly Loopback As IPAddress
@@ -175,6 +182,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Provides an IP address that indicates that no network interface should be used. This field is read-only.
   syntax:
     content: public static readonly IPAddress None
     content.vb: Public Shared ReadOnly None As IPAddress
@@ -194,12 +202,19 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Initializes a new instance of the @'System.Net.IPAddress' class with the address specified as a @'System.Byte' array.
   syntax:
     content: public IPAddress(byte[] address)
     content.vb: Public Sub New(address As Byte())
     parameters:
     - id: address
       type: System.Byte[]
+      description: The byte array value of the IP address.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*address* is null.'
+  - type: System.ArgumentException
+    description: '*address* contains a bad IP address.'
 - uid: System.Net.IPAddress.#ctor(System.Byte[],System.Int64)
   id: '#ctor(System.Byte[],System.Int64)'
   parent: System.Net.IPAddress
@@ -216,14 +231,24 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Initializes a new instance of the @'System.Net.IPAddress' class with the address specified as a @'System.Byte' array and the specified scope identifier.
   syntax:
     content: public IPAddress(byte[] address, long scopeid)
     content.vb: Public Sub New(address As Byte(), scopeid As Long)
     parameters:
     - id: address
       type: System.Byte[]
+      description: The byte array value of the IP address.
     - id: scopeid
       type: System.Int64
+      description: The long value of the scope identifier.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*address* is null.'
+  - type: System.ArgumentException
+    description: '*address* contains a bad IP address.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*scopeid* < 0 or *scopeid* > 0x00000000FFFFFFFF'
 - uid: System.Net.IPAddress.#ctor(System.Int64)
   id: '#ctor(System.Int64)'
   parent: System.Net.IPAddress
@@ -238,12 +263,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Initializes a new instance of the @'System.Net.IPAddress' class with the address specified as an @'System.Int64'.
   syntax:
     content: public IPAddress(long newAddress)
     content.vb: Public Sub New(newAddress As Long)
     parameters:
     - id: newAddress
       type: System.Int64
+      description: The long value of the IP address. For example, the value 0x2414188f in big-endian format would be the IP address "143.24.20.36".
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*newAddress* < 0 or *newAddress* > 0x00000000FFFFFFFF'
 - uid: System.Net.IPAddress.AddressFamily
   id: AddressFamily
   parent: System.Net.IPAddress
@@ -258,12 +288,14 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets the address family of the IP address.
   syntax:
     content: public AddressFamily AddressFamily { get; }
     content.vb: Public ReadOnly Property AddressFamily As AddressFamily
     parameters: []
     return:
       type: System.Net.Sockets.AddressFamily
+      description: Returns @'System.Net.Sockets.AddressFamily.InterNetwork' for IPv4 or @'System.Net.Sockets.AddressFamily.InterNetworkV6' for IPv6.
 - uid: System.Net.IPAddress.IsIPv4MappedToIPv6
   id: IsIPv4MappedToIPv6
   parent: System.Net.IPAddress
@@ -278,12 +310,14 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets whether the IP address is an IPv4-mapped IPv6 address.
   syntax:
     content: public bool IsIPv4MappedToIPv6 { get; }
     content.vb: Public ReadOnly Property IsIPv4MappedToIPv6 As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: Returns @'System.Boolean'.true if the IP address is an IPv4-mapped IPv6 address; otherwise, false.
 - uid: System.Net.IPAddress.IsIPv6LinkLocal
   id: IsIPv6LinkLocal
   parent: System.Net.IPAddress
@@ -298,12 +332,14 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets whether the address is an IPv6 link local address.
   syntax:
     content: public bool IsIPv6LinkLocal { get; }
     content.vb: Public ReadOnly Property IsIPv6LinkLocal As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the IP address is an IPv6 link local address; otherwise, false.
 - uid: System.Net.IPAddress.IsIPv6Multicast
   id: IsIPv6Multicast
   parent: System.Net.IPAddress
@@ -318,12 +354,14 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets whether the address is an IPv6 multicast global address.
   syntax:
     content: public bool IsIPv6Multicast { get; }
     content.vb: Public ReadOnly Property IsIPv6Multicast As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the IP address is an IPv6 multicast global address; otherwise, false.
 - uid: System.Net.IPAddress.IsIPv6SiteLocal
   id: IsIPv6SiteLocal
   parent: System.Net.IPAddress
@@ -338,12 +376,14 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets whether the address is an IPv6 site local address.
   syntax:
     content: public bool IsIPv6SiteLocal { get; }
     content.vb: Public ReadOnly Property IsIPv6SiteLocal As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the IP address is an IPv6 site local address; otherwise, false.
 - uid: System.Net.IPAddress.IsIPv6Teredo
   id: IsIPv6Teredo
   parent: System.Net.IPAddress
@@ -358,12 +398,14 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets whether the address is an IPv6 Teredo address.
   syntax:
     content: public bool IsIPv6Teredo { get; }
     content.vb: Public ReadOnly Property IsIPv6Teredo As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the IP address is an IPv6 Teredo address; otherwise, false.
 - uid: System.Net.IPAddress.ScopeId
   id: ScopeId
   parent: System.Net.IPAddress
@@ -378,12 +420,19 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets or sets the IPv6 address scope identifier.
   syntax:
     content: public long ScopeId { get; set; }
     content.vb: Public Property ScopeId As Long
     parameters: []
     return:
       type: System.Int64
+      description: A long integer that specifies the scope of the address.
+  exceptions:
+  - type: System.Net.Sockets.SocketException
+    description: AddressFamily = InterNetwork.
+  - type: System.ArgumentOutOfRangeException
+    description: '*scopeId* < 0- or -*scopeId* > 0x00000000FFFFFFFF'
 - uid: System.Net.IPAddress.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.Net.IPAddress
@@ -398,14 +447,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Compares two IP addresses.
   syntax:
     content: public override bool Equals(object comparand)
     content.vb: Public Overrides Function Equals(comparand As Object) As Boolean
     parameters:
     - id: comparand
       type: System.Object
+      description: An @'System.Net.IPAddress' instance to compare to the current instance.
     return:
       type: System.Boolean
+      description: true if the two addresses are equal; otherwise, false.
   overridden: System.Object.Equals(System.Object)
 - uid: System.Net.IPAddress.GetAddressBytes
   id: GetAddressBytes
@@ -421,11 +473,13 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Provides a copy of the @'System.Net.IPAddress' as an array of bytes.
   syntax:
     content: public byte[] GetAddressBytes()
     content.vb: Public Function GetAddressBytes As Byte()
     return:
       type: System.Byte[]
+      description: A @'System.Byte' array.
 - uid: System.Net.IPAddress.GetHashCode
   id: GetHashCode
   parent: System.Net.IPAddress
@@ -440,11 +494,13 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Returns a hash value for an IP address.
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
+      description: An integer hash value.
   overridden: System.Object.GetHashCode
 - uid: System.Net.IPAddress.HostToNetworkOrder(System.Int16)
   id: HostToNetworkOrder(System.Int16)
@@ -460,14 +516,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Converts a short value from host byte order to network byte order.
   syntax:
     content: public static short HostToNetworkOrder(short host)
     content.vb: Public Shared Function HostToNetworkOrder(host As Short) As Short
     parameters:
     - id: host
       type: System.Int16
+      description: The number to convert, expressed in host byte order.
     return:
       type: System.Int16
+      description: A short value, expressed in network byte order.
 - uid: System.Net.IPAddress.HostToNetworkOrder(System.Int32)
   id: HostToNetworkOrder(System.Int32)
   parent: System.Net.IPAddress
@@ -482,14 +541,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Converts an integer value from host byte order to network byte order.
   syntax:
     content: public static int HostToNetworkOrder(int host)
     content.vb: Public Shared Function HostToNetworkOrder(host As Integer) As Integer
     parameters:
     - id: host
       type: System.Int32
+      description: The number to convert, expressed in host byte order.
     return:
       type: System.Int32
+      description: An integer value, expressed in network byte order.
 - uid: System.Net.IPAddress.HostToNetworkOrder(System.Int64)
   id: HostToNetworkOrder(System.Int64)
   parent: System.Net.IPAddress
@@ -504,14 +566,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Converts a long value from host byte order to network byte order.
   syntax:
     content: public static long HostToNetworkOrder(long host)
     content.vb: Public Shared Function HostToNetworkOrder(host As Long) As Long
     parameters:
     - id: host
       type: System.Int64
+      description: The number to convert, expressed in host byte order.
     return:
       type: System.Int64
+      description: A long value, expressed in network byte order.
 - uid: System.Net.IPAddress.IsLoopback(System.Net.IPAddress)
   id: IsLoopback(System.Net.IPAddress)
   parent: System.Net.IPAddress
@@ -526,14 +591,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Indicates whether the specified IP address is the loopback address.
   syntax:
     content: public static bool IsLoopback(IPAddress address)
     content.vb: Public Shared Function IsLoopback(address As IPAddress) As Boolean
     parameters:
     - id: address
       type: System.Net.IPAddress
+      description: An IP address.
     return:
       type: System.Boolean
+      description: true if *address* is the loopback address; otherwise, false.
 - uid: System.Net.IPAddress.MapToIPv4
   id: MapToIPv4
   parent: System.Net.IPAddress
@@ -548,11 +616,13 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Maps the @'System.Net.IPAddress' object to an IPv4 address.
   syntax:
     content: public IPAddress MapToIPv4()
     content.vb: Public Function MapToIPv4 As IPAddress
     return:
       type: System.Net.IPAddress
+      description: Returns @'System.Net.IPAddress'.An IPv4 address.
 - uid: System.Net.IPAddress.MapToIPv6
   id: MapToIPv6
   parent: System.Net.IPAddress
@@ -567,11 +637,13 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Maps the @'System.Net.IPAddress' object to an IPv6 address.
   syntax:
     content: public IPAddress MapToIPv6()
     content.vb: Public Function MapToIPv6 As IPAddress
     return:
       type: System.Net.IPAddress
+      description: Returns @'System.Net.IPAddress'.An IPv6 address.
 - uid: System.Net.IPAddress.NetworkToHostOrder(System.Int16)
   id: NetworkToHostOrder(System.Int16)
   parent: System.Net.IPAddress
@@ -586,14 +658,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Converts a short value from network byte order to host byte order.
   syntax:
     content: public static short NetworkToHostOrder(short network)
     content.vb: Public Shared Function NetworkToHostOrder(network As Short) As Short
     parameters:
     - id: network
       type: System.Int16
+      description: The number to convert, expressed in network byte order.
     return:
       type: System.Int16
+      description: A short value, expressed in host byte order.
 - uid: System.Net.IPAddress.NetworkToHostOrder(System.Int32)
   id: NetworkToHostOrder(System.Int32)
   parent: System.Net.IPAddress
@@ -608,14 +683,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Converts an integer value from network byte order to host byte order.
   syntax:
     content: public static int NetworkToHostOrder(int network)
     content.vb: Public Shared Function NetworkToHostOrder(network As Integer) As Integer
     parameters:
     - id: network
       type: System.Int32
+      description: The number to convert, expressed in network byte order.
     return:
       type: System.Int32
+      description: An integer value, expressed in host byte order.
 - uid: System.Net.IPAddress.NetworkToHostOrder(System.Int64)
   id: NetworkToHostOrder(System.Int64)
   parent: System.Net.IPAddress
@@ -630,14 +708,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Converts a long value from network byte order to host byte order.
   syntax:
     content: public static long NetworkToHostOrder(long network)
     content.vb: Public Shared Function NetworkToHostOrder(network As Long) As Long
     parameters:
     - id: network
       type: System.Int64
+      description: The number to convert, expressed in network byte order.
     return:
       type: System.Int64
+      description: A long value, expressed in host byte order.
 - uid: System.Net.IPAddress.Parse(System.String)
   id: Parse(System.String)
   parent: System.Net.IPAddress
@@ -652,14 +733,22 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Converts an IP address string to an @'System.Net.IPAddress' instance.
   syntax:
     content: public static IPAddress Parse(string ipString)
     content.vb: Public Shared Function Parse(ipString As String) As IPAddress
     parameters:
     - id: ipString
       type: System.String
+      description: A string that contains an IP address in dotted-quad notation for IPv4 and in colon-hexadecimal notation for IPv6.
     return:
       type: System.Net.IPAddress
+      description: An @'System.Net.IPAddress' instance.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*ipString* is null.'
+  - type: System.FormatException
+    description: '*ipString* is not a valid IP address.'
 - uid: System.Net.IPAddress.ToString
   id: ToString
   parent: System.Net.IPAddress
@@ -674,12 +763,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Converts an Internet address to its standard notation.
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
+      description: A string that contains the IP address in either IPv4 dotted-quad or in IPv6 colon-hexadecimal notation.
   overridden: System.Object.ToString
+  exceptions:
+  - type: System.Net.Sockets.SocketException
+    description: The address family is @'System.Net.Sockets.AddressFamily.InterNetworkV6' and the address is bad.
 - uid: System.Net.IPAddress.TryParse(System.String,System.Net.IPAddress@)
   id: TryParse(System.String,System.Net.IPAddress@)
   parent: System.Net.IPAddress
@@ -696,16 +790,20 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Determines whether a string is a valid IP address.
   syntax:
     content: public static bool TryParse(string ipString, out IPAddress address)
     content.vb: Public Shared Function TryParse(ipString As String, ByRef address As IPAddress) As Boolean
     parameters:
     - id: ipString
       type: System.String
+      description: The string to validate.
     - id: address
       type: System.Net.IPAddress
+      description: The @'System.Net.IPAddress' version of the string.
     return:
       type: System.Boolean
+      description: true if *ipString* is a valid IP address; otherwise, false.
 references:
 - uid: System.Net
   isExternal: false
@@ -1007,3 +1105,40 @@ references:
     fullName: (
   - name: )
     fullName: )
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.Net.Sockets.SocketException
+  isExternal: false
+  href: System.Net.Sockets.SocketException.yml
+  name: SocketException
+  fullName: System.Net.Sockets.SocketException
+  type: Class
+  summary: The exception that is thrown when a socket error occurs.
+- uid: System.FormatException
+  parent: System
+  isExternal: false
+  href: System.FormatException.yml
+  name: FormatException
+  fullName: System.FormatException
+  type: Class
+  summary: The exception that is thrown when the format of an argument is invalid, or when a composite format string is not well formed.

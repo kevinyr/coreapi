@@ -25,6 +25,7 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Represents a pseudo-random number generator, which is a device that produces a sequence of numbers that meet certain statistical requirements for randomness.To browse the .NET Framework source code for this type, see the Reference Source.
   syntax:
     content: public class Random
     content.vb: Public Class Random
@@ -52,6 +53,7 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Initializes a new instance of the @'System.Random' class, using a time-dependent default seed value.
   syntax:
     content: public Random()
     content.vb: Public Sub New
@@ -69,12 +71,14 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Initializes a new instance of the @'System.Random' class, using the specified seed value.
   syntax:
     content: public Random(int Seed)
     content.vb: Public Sub New(Seed As Integer)
     parameters:
     - id: Seed
       type: System.Int32
+      description: A number used to calculate a starting value for the pseudo-random number sequence. If a negative number is specified, the absolute value of the number is used.
 - uid: System.Random.Next
   id: Next
   parent: System.Random
@@ -89,11 +93,13 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Returns a non-negative random integer.
   syntax:
     content: public virtual int Next()
     content.vb: Public Overridable Function Next As Integer
     return:
       type: System.Int32
+      description: A 32-bit signed integer that is greater than or equal to 0 and less than @'System.Int32.MaxValue'.
 - uid: System.Random.Next(System.Int32)
   id: Next(System.Int32)
   parent: System.Random
@@ -108,14 +114,20 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Returns a non-negative random integer that is less than the specified maximum.
   syntax:
     content: public virtual int Next(int maxValue)
     content.vb: Public Overridable Function Next(maxValue As Integer) As Integer
     parameters:
     - id: maxValue
       type: System.Int32
+      description: The exclusive upper bound of the random number to be generated. *maxValue* must be greater than or equal to 0.
     return:
       type: System.Int32
+      description: A 32-bit signed integer that is greater than or equal to 0, and less than *maxValue*; that is, the range of return values ordinarily includes 0 but not *maxValue*. However, if *maxValue* equals 0, *maxValue* is returned.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*maxValue* is less than 0.'
 - uid: System.Random.Next(System.Int32,System.Int32)
   id: Next(System.Int32,System.Int32)
   parent: System.Random
@@ -130,16 +142,23 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Returns a random integer that is within a specified range.
   syntax:
     content: public virtual int Next(int minValue, int maxValue)
     content.vb: Public Overridable Function Next(minValue As Integer, maxValue As Integer) As Integer
     parameters:
     - id: minValue
       type: System.Int32
+      description: The inclusive lower bound of the random number returned.
     - id: maxValue
       type: System.Int32
+      description: The exclusive upper bound of the random number returned. *maxValue* must be greater than or equal to *minValue*.
     return:
       type: System.Int32
+      description: A 32-bit signed integer greater than or equal to *minValue* and less than *maxValue*; that is, the range of return values includes *minValue* but not *maxValue*. If *minValue* equals *maxValue*, *minValue* is returned.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*minValue* is greater than *maxValue*.'
 - uid: System.Random.NextBytes(System.Byte[])
   id: NextBytes(System.Byte[])
   parent: System.Random
@@ -156,12 +175,17 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Fills the elements of a specified array of bytes with random numbers.
   syntax:
     content: public virtual void NextBytes(byte[] buffer)
     content.vb: Public Overridable Sub NextBytes(buffer As Byte())
     parameters:
     - id: buffer
       type: System.Byte[]
+      description: An array of bytes to contain random numbers.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*buffer* is null.'
 - uid: System.Random.NextDouble
   id: NextDouble
   parent: System.Random
@@ -176,11 +200,13 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Returns a random floating-point number that is greater than or equal to 0.0, and less than 1.0.
   syntax:
     content: public virtual double NextDouble()
     content.vb: Public Overridable Function NextDouble As Double
     return:
       type: System.Double
+      description: A double-precision floating point number that is greater than or equal to 0.0, and less than 1.0.
 - uid: System.Random.Sample
   id: Sample
   parent: System.Random
@@ -195,11 +221,13 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System
+  summary: Returns a random floating-point number between 0.0 and 1.0.
   syntax:
     content: protected virtual double Sample()
     content.vb: Protected Overridable Function Sample As Double
     return:
       type: System.Double
+      description: A double-precision floating point number that is greater than or equal to 0.0, and less than 1.0.
 references:
 - uid: System
   isExternal: false
@@ -456,3 +484,17 @@ references:
   name: Double
   fullName: System.Double
   type: Struct
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.

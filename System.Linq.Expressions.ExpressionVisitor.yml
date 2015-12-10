@@ -56,6 +56,7 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Represents a visitor or rewriter for expression trees.
   syntax:
     content: public abstract class ExpressionVisitor
     content.vb: Public MustInherit Class ExpressionVisitor
@@ -83,6 +84,7 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Initializes a new instance of @'System.Linq.Expressions.ExpressionVisitor'.
   syntax:
     content: protected ExpressionVisitor()
     content.vb: Protected Sub New
@@ -102,14 +104,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Dispatches the list of expressions to one of the more specialized visit methods in this class.
   syntax:
     content: public ReadOnlyCollection<Expression> Visit(ReadOnlyCollection<Expression> nodes)
     content.vb: Public Function Visit(nodes As ReadOnlyCollection(Of Expression)) As ReadOnlyCollection(Of Expression)
     parameters:
     - id: nodes
       type: System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression}
+      description: The expressions to visit.
     return:
       type: System.Collections.ObjectModel.ReadOnlyCollection{System.Linq.Expressions.Expression}
+      description: The modified expression list, if any one of the elements were modified; otherwise, returns the original expression list.
 - uid: System.Linq.Expressions.ExpressionVisitor.Visit(System.Linq.Expressions.Expression)
   id: Visit(System.Linq.Expressions.Expression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -124,14 +129,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Dispatches the expression to one of the more specialized visit methods in this class.
   syntax:
     content: public virtual Expression Visit(Expression node)
     content.vb: Public Overridable Function Visit(node As Expression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.Expression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.Func{``0,``0})
   id: Visit``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.Func{``0,``0})
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -148,18 +156,22 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits all nodes in the collection using a specified element visitor.
   syntax:
     content: public static ReadOnlyCollection<T> Visit<T>(ReadOnlyCollection<T> nodes, Func<T, T> elementVisitor)
     content.vb: Public Shared Function Visit(Of T)(nodes As ReadOnlyCollection(Of T), elementVisitor As Func(Of T, T)) As ReadOnlyCollection(Of T)
     parameters:
     - id: nodes
       type: System.Collections.ObjectModel.ReadOnlyCollection{{T}}
+      description: The nodes to visit.
     - id: elementVisitor
       type: System.Func{{T},{T}}
+      description: A delegate that visits a single element, optionally replacing it with a new element.
     typeParameters:
     - id: T
     return:
       type: System.Collections.ObjectModel.ReadOnlyCollection{{T}}
+      description: The modified node list, if any of the elements were modified; otherwise, returns the original node list.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(``0,System.String)
   id: VisitAndConvert``1(``0,System.String)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -176,18 +188,25 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits an expression, casting the result back to the original expression type.
   syntax:
     content: 'public T VisitAndConvert<T>(T node, string callerName)where T : Expression'
     content.vb: Public Function VisitAndConvert(Of T As Expression)(node As T, callerName As String) As T
     parameters:
     - id: node
       type: '{T}'
+      description: The expression to visit.
     - id: callerName
       type: System.String
+      description: The name of the calling method; used to report to report a better error message.
     typeParameters:
     - id: T
     return:
       type: '{T}'
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The visit method for this node returned a different type.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.String)
   id: VisitAndConvert``1(System.Collections.ObjectModel.ReadOnlyCollection{``0},System.String)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -204,18 +223,25 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits an expression, casting the result back to the original expression type.
   syntax:
     content: 'public ReadOnlyCollection<T> VisitAndConvert<T>(ReadOnlyCollection<T> nodes, string callerName)where T : Expression'
     content.vb: Public Function VisitAndConvert(Of T As Expression)(nodes As ReadOnlyCollection(Of T), callerName As String) As ReadOnlyCollection(Of T)
     parameters:
     - id: nodes
       type: System.Collections.ObjectModel.ReadOnlyCollection{{T}}
+      description: The expression to visit.
     - id: callerName
       type: System.String
+      description: The name of the calling method; used to report to report a better error message.
     typeParameters:
     - id: T
     return:
       type: System.Collections.ObjectModel.ReadOnlyCollection{{T}}
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The visit method for this node returned a different type.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitBinary(System.Linq.Expressions.BinaryExpression)
   id: VisitBinary(System.Linq.Expressions.BinaryExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -230,14 +256,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.BinaryExpression'.
   syntax:
     content: protected virtual Expression VisitBinary(BinaryExpression node)
     content.vb: Protected Overridable Function VisitBinary(node As BinaryExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.BinaryExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitBlock(System.Linq.Expressions.BlockExpression)
   id: VisitBlock(System.Linq.Expressions.BlockExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -252,14 +281,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.BlockExpression'.
   syntax:
     content: protected virtual Expression VisitBlock(BlockExpression node)
     content.vb: Protected Overridable Function VisitBlock(node As BlockExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.BlockExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitCatchBlock(System.Linq.Expressions.CatchBlock)
   id: VisitCatchBlock(System.Linq.Expressions.CatchBlock)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -274,14 +306,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.CatchBlock'.
   syntax:
     content: protected virtual CatchBlock VisitCatchBlock(CatchBlock node)
     content.vb: Protected Overridable Function VisitCatchBlock(node As CatchBlock) As CatchBlock
     parameters:
     - id: node
       type: System.Linq.Expressions.CatchBlock
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.CatchBlock
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitConditional(System.Linq.Expressions.ConditionalExpression)
   id: VisitConditional(System.Linq.Expressions.ConditionalExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -296,14 +331,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.ConditionalExpression'.
   syntax:
     content: protected virtual Expression VisitConditional(ConditionalExpression node)
     content.vb: Protected Overridable Function VisitConditional(node As ConditionalExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.ConditionalExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitConstant(System.Linq.Expressions.ConstantExpression)
   id: VisitConstant(System.Linq.Expressions.ConstantExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -318,14 +356,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the @'System.Linq.Expressions.ConstantExpression'.
   syntax:
     content: protected virtual Expression VisitConstant(ConstantExpression node)
     content.vb: Protected Overridable Function VisitConstant(node As ConstantExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.ConstantExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitDebugInfo(System.Linq.Expressions.DebugInfoExpression)
   id: VisitDebugInfo(System.Linq.Expressions.DebugInfoExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -340,14 +381,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the @'System.Linq.Expressions.DebugInfoExpression'.
   syntax:
     content: protected virtual Expression VisitDebugInfo(DebugInfoExpression node)
     content.vb: Protected Overridable Function VisitDebugInfo(node As DebugInfoExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.DebugInfoExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitDefault(System.Linq.Expressions.DefaultExpression)
   id: VisitDefault(System.Linq.Expressions.DefaultExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -362,14 +406,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the @'System.Linq.Expressions.DefaultExpression'.
   syntax:
     content: protected virtual Expression VisitDefault(DefaultExpression node)
     content.vb: Protected Overridable Function VisitDefault(node As DefaultExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.DefaultExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitElementInit(System.Linq.Expressions.ElementInit)
   id: VisitElementInit(System.Linq.Expressions.ElementInit)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -384,14 +431,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.ElementInit'.
   syntax:
     content: protected virtual ElementInit VisitElementInit(ElementInit node)
     content.vb: Protected Overridable Function VisitElementInit(node As ElementInit) As ElementInit
     parameters:
     - id: node
       type: System.Linq.Expressions.ElementInit
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.ElementInit
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitExtension(System.Linq.Expressions.Expression)
   id: VisitExtension(System.Linq.Expressions.Expression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -406,14 +456,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the extension expression.
   syntax:
     content: protected virtual Expression VisitExtension(Expression node)
     content.vb: Protected Overridable Function VisitExtension(node As Expression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.Expression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitGoto(System.Linq.Expressions.GotoExpression)
   id: VisitGoto(System.Linq.Expressions.GotoExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -428,14 +481,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.GotoExpression'.
   syntax:
     content: protected virtual Expression VisitGoto(GotoExpression node)
     content.vb: Protected Overridable Function VisitGoto(node As GotoExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.GotoExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitIndex(System.Linq.Expressions.IndexExpression)
   id: VisitIndex(System.Linq.Expressions.IndexExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -450,14 +506,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.IndexExpression'.
   syntax:
     content: protected virtual Expression VisitIndex(IndexExpression node)
     content.vb: Protected Overridable Function VisitIndex(node As IndexExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.IndexExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitInvocation(System.Linq.Expressions.InvocationExpression)
   id: VisitInvocation(System.Linq.Expressions.InvocationExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -472,14 +531,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.InvocationExpression'.
   syntax:
     content: protected virtual Expression VisitInvocation(InvocationExpression node)
     content.vb: Protected Overridable Function VisitInvocation(node As InvocationExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.InvocationExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabel(System.Linq.Expressions.LabelExpression)
   id: VisitLabel(System.Linq.Expressions.LabelExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -494,14 +556,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.LabelExpression'.
   syntax:
     content: protected virtual Expression VisitLabel(LabelExpression node)
     content.vb: Protected Overridable Function VisitLabel(node As LabelExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.LabelExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitLabelTarget(System.Linq.Expressions.LabelTarget)
   id: VisitLabelTarget(System.Linq.Expressions.LabelTarget)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -516,14 +581,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the @'System.Linq.Expressions.LabelTarget'.
   syntax:
     content: protected virtual LabelTarget VisitLabelTarget(LabelTarget node)
     content.vb: Protected Overridable Function VisitLabelTarget(node As LabelTarget) As LabelTarget
     parameters:
     - id: node
       type: System.Linq.Expressions.LabelTarget
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.LabelTarget
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitLambda``1(System.Linq.Expressions.Expression{``0})
   id: VisitLambda``1(System.Linq.Expressions.Expression{``0})
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -540,16 +608,19 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.Expression`1'.
   syntax:
     content: protected virtual Expression VisitLambda<T>(Expression<T> node)
     content.vb: Protected Overridable Function VisitLambda(Of T)(node As Expression(Of T)) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.Expression{{T}}
+      description: The expression to visit.
     typeParameters:
     - id: T
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitListInit(System.Linq.Expressions.ListInitExpression)
   id: VisitListInit(System.Linq.Expressions.ListInitExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -564,14 +635,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.ListInitExpression'.
   syntax:
     content: protected virtual Expression VisitListInit(ListInitExpression node)
     content.vb: Protected Overridable Function VisitListInit(node As ListInitExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.ListInitExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitLoop(System.Linq.Expressions.LoopExpression)
   id: VisitLoop(System.Linq.Expressions.LoopExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -586,14 +660,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.LoopExpression'.
   syntax:
     content: protected virtual Expression VisitLoop(LoopExpression node)
     content.vb: Protected Overridable Function VisitLoop(node As LoopExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.LoopExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitMember(System.Linq.Expressions.MemberExpression)
   id: VisitMember(System.Linq.Expressions.MemberExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -608,14 +685,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.MemberExpression'.
   syntax:
     content: protected virtual Expression VisitMember(MemberExpression node)
     content.vb: Protected Overridable Function VisitMember(node As MemberExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.MemberExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberAssignment(System.Linq.Expressions.MemberAssignment)
   id: VisitMemberAssignment(System.Linq.Expressions.MemberAssignment)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -630,14 +710,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.MemberAssignment'.
   syntax:
     content: protected virtual MemberAssignment VisitMemberAssignment(MemberAssignment node)
     content.vb: Protected Overridable Function VisitMemberAssignment(node As MemberAssignment) As MemberAssignment
     parameters:
     - id: node
       type: System.Linq.Expressions.MemberAssignment
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.MemberAssignment
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberBinding(System.Linq.Expressions.MemberBinding)
   id: VisitMemberBinding(System.Linq.Expressions.MemberBinding)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -652,14 +735,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.MemberBinding'.
   syntax:
     content: protected virtual MemberBinding VisitMemberBinding(MemberBinding node)
     content.vb: Protected Overridable Function VisitMemberBinding(node As MemberBinding) As MemberBinding
     parameters:
     - id: node
       type: System.Linq.Expressions.MemberBinding
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.MemberBinding
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberInit(System.Linq.Expressions.MemberInitExpression)
   id: VisitMemberInit(System.Linq.Expressions.MemberInitExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -674,14 +760,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.MemberInitExpression'.
   syntax:
     content: protected virtual Expression VisitMemberInit(MemberInitExpression node)
     content.vb: Protected Overridable Function VisitMemberInit(node As MemberInitExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.MemberInitExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberListBinding(System.Linq.Expressions.MemberListBinding)
   id: VisitMemberListBinding(System.Linq.Expressions.MemberListBinding)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -696,14 +785,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.MemberListBinding'.
   syntax:
     content: protected virtual MemberListBinding VisitMemberListBinding(MemberListBinding node)
     content.vb: Protected Overridable Function VisitMemberListBinding(node As MemberListBinding) As MemberListBinding
     parameters:
     - id: node
       type: System.Linq.Expressions.MemberListBinding
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.MemberListBinding
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitMemberMemberBinding(System.Linq.Expressions.MemberMemberBinding)
   id: VisitMemberMemberBinding(System.Linq.Expressions.MemberMemberBinding)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -718,14 +810,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.MemberMemberBinding'.
   syntax:
     content: protected virtual MemberMemberBinding VisitMemberMemberBinding(MemberMemberBinding node)
     content.vb: Protected Overridable Function VisitMemberMemberBinding(node As MemberMemberBinding) As MemberMemberBinding
     parameters:
     - id: node
       type: System.Linq.Expressions.MemberMemberBinding
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.MemberMemberBinding
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitMethodCall(System.Linq.Expressions.MethodCallExpression)
   id: VisitMethodCall(System.Linq.Expressions.MethodCallExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -740,14 +835,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.MethodCallExpression'.
   syntax:
     content: protected virtual Expression VisitMethodCall(MethodCallExpression node)
     content.vb: Protected Overridable Function VisitMethodCall(node As MethodCallExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.MethodCallExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitNew(System.Linq.Expressions.NewExpression)
   id: VisitNew(System.Linq.Expressions.NewExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -762,14 +860,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.NewExpression'.
   syntax:
     content: protected virtual Expression VisitNew(NewExpression node)
     content.vb: Protected Overridable Function VisitNew(node As NewExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.NewExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitNewArray(System.Linq.Expressions.NewArrayExpression)
   id: VisitNewArray(System.Linq.Expressions.NewArrayExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -784,14 +885,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.NewArrayExpression'.
   syntax:
     content: protected virtual Expression VisitNewArray(NewArrayExpression node)
     content.vb: Protected Overridable Function VisitNewArray(node As NewArrayExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.NewArrayExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitParameter(System.Linq.Expressions.ParameterExpression)
   id: VisitParameter(System.Linq.Expressions.ParameterExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -806,14 +910,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the @'System.Linq.Expressions.ParameterExpression'.
   syntax:
     content: protected virtual Expression VisitParameter(ParameterExpression node)
     content.vb: Protected Overridable Function VisitParameter(node As ParameterExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.ParameterExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
   id: VisitRuntimeVariables(System.Linq.Expressions.RuntimeVariablesExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -828,14 +935,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.RuntimeVariablesExpression'.
   syntax:
     content: protected virtual Expression VisitRuntimeVariables(RuntimeVariablesExpression node)
     content.vb: Protected Overridable Function VisitRuntimeVariables(node As RuntimeVariablesExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.RuntimeVariablesExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitch(System.Linq.Expressions.SwitchExpression)
   id: VisitSwitch(System.Linq.Expressions.SwitchExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -850,14 +960,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.SwitchExpression'.
   syntax:
     content: protected virtual Expression VisitSwitch(SwitchExpression node)
     content.vb: Protected Overridable Function VisitSwitch(node As SwitchExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.SwitchExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitSwitchCase(System.Linq.Expressions.SwitchCase)
   id: VisitSwitchCase(System.Linq.Expressions.SwitchCase)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -872,14 +985,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.SwitchCase'.
   syntax:
     content: protected virtual SwitchCase VisitSwitchCase(SwitchCase node)
     content.vb: Protected Overridable Function VisitSwitchCase(node As SwitchCase) As SwitchCase
     parameters:
     - id: node
       type: System.Linq.Expressions.SwitchCase
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.SwitchCase
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitTry(System.Linq.Expressions.TryExpression)
   id: VisitTry(System.Linq.Expressions.TryExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -894,14 +1010,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.TryExpression'.
   syntax:
     content: protected virtual Expression VisitTry(TryExpression node)
     content.vb: Protected Overridable Function VisitTry(node As TryExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.TryExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitTypeBinary(System.Linq.Expressions.TypeBinaryExpression)
   id: VisitTypeBinary(System.Linq.Expressions.TypeBinaryExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -916,14 +1035,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.TypeBinaryExpression'.
   syntax:
     content: protected virtual Expression VisitTypeBinary(TypeBinaryExpression node)
     content.vb: Protected Overridable Function VisitTypeBinary(node As TypeBinaryExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.TypeBinaryExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 - uid: System.Linq.Expressions.ExpressionVisitor.VisitUnary(System.Linq.Expressions.UnaryExpression)
   id: VisitUnary(System.Linq.Expressions.UnaryExpression)
   parent: System.Linq.Expressions.ExpressionVisitor
@@ -938,14 +1060,17 @@ items:
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
+  summary: Visits the children of the @'System.Linq.Expressions.UnaryExpression'.
   syntax:
     content: protected virtual Expression VisitUnary(UnaryExpression node)
     content.vb: Protected Overridable Function VisitUnary(node As UnaryExpression) As Expression
     parameters:
     - id: node
       type: System.Linq.Expressions.UnaryExpression
+      description: The expression to visit.
     return:
       type: System.Linq.Expressions.Expression
+      description: The modified expression, if it or any subexpression was modified; otherwise, returns the original expression.
 references:
 - uid: System.Linq.Expressions
   isExternal: false
@@ -1642,3 +1767,11 @@ references:
   name: UnaryExpression
   fullName: System.Linq.Expressions.UnaryExpression
   type: Class
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.

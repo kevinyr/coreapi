@@ -31,6 +31,7 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Provides a way to access a managed object from unmanaged memory.
   syntax:
     content: public struct GCHandle
     content.vb: Public Structure GCHandle
@@ -53,12 +54,14 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Gets a value indicating whether the handle is allocated.
   syntax:
     content: public bool IsAllocated { get; }
     content.vb: Public ReadOnly Property IsAllocated As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the handle is allocated; otherwise, false.
 - uid: System.Runtime.InteropServices.GCHandle.Target
   id: Target
   parent: System.Runtime.InteropServices.GCHandle
@@ -73,12 +76,17 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Gets or sets the object this handle represents.
   syntax:
     content: public object Target { get; set; }
     content.vb: Public Property Target As Object
     parameters: []
     return:
       type: System.Object
+      description: The object this handle represents.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The handle was freed, or never initialized.
 - uid: System.Runtime.InteropServices.GCHandle.AddrOfPinnedObject
   id: AddrOfPinnedObject
   parent: System.Runtime.InteropServices.GCHandle
@@ -93,11 +101,16 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Retrieves the address of an object in a @'System.Runtime.InteropServices.GCHandleType.Pinned' handle.
   syntax:
     content: public IntPtr AddrOfPinnedObject()
     content.vb: Public Function AddrOfPinnedObject As IntPtr
     return:
       type: System.IntPtr
+      description: The address of the pinned object as an @'System.IntPtr'.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The handle is any type other than @'System.Runtime.InteropServices.GCHandleType.Pinned'.
 - uid: System.Runtime.InteropServices.GCHandle.Alloc(System.Object)
   id: Alloc(System.Object)
   parent: System.Runtime.InteropServices.GCHandle
@@ -112,14 +125,20 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Allocates a @'System.Runtime.InteropServices.GCHandleType.Normal' handle for the specified object.
   syntax:
     content: public static GCHandle Alloc(object value)
     content.vb: Public Shared Function Alloc(value As Object) As GCHandle
     parameters:
     - id: value
       type: System.Object
+      description: The object that uses the @'System.Runtime.InteropServices.GCHandle'.
     return:
       type: System.Runtime.InteropServices.GCHandle
+      description: A new @'System.Runtime.InteropServices.GCHandle' that protects the object from garbage collection. This @'System.Runtime.InteropServices.GCHandle' must be released with @'System.Runtime.InteropServices.GCHandle.Free' when it is no longer needed.
+  exceptions:
+  - type: System.ArgumentException
+    description: An instance with nonprimitive (non-blittable) members cannot be pinned.
 - uid: System.Runtime.InteropServices.GCHandle.Alloc(System.Object,System.Runtime.InteropServices.GCHandleType)
   id: Alloc(System.Object,System.Runtime.InteropServices.GCHandleType)
   parent: System.Runtime.InteropServices.GCHandle
@@ -134,16 +153,23 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Allocates a handle of the specified type for the specified object.
   syntax:
     content: public static GCHandle Alloc(object value, GCHandleType type)
     content.vb: Public Shared Function Alloc(value As Object, type As GCHandleType) As GCHandle
     parameters:
     - id: value
       type: System.Object
+      description: The object that uses the @'System.Runtime.InteropServices.GCHandle'.
     - id: type
       type: System.Runtime.InteropServices.GCHandleType
+      description: One of the @'System.Runtime.InteropServices.GCHandleType' values, indicating the type of @'System.Runtime.InteropServices.GCHandle' to create.
     return:
       type: System.Runtime.InteropServices.GCHandle
+      description: A new @'System.Runtime.InteropServices.GCHandle' of the specified type. This @'System.Runtime.InteropServices.GCHandle' must be released with @'System.Runtime.InteropServices.GCHandle.Free' when it is no longer needed.
+  exceptions:
+  - type: System.ArgumentException
+    description: An instance with nonprimitive (non-blittable) members cannot be pinned.
 - uid: System.Runtime.InteropServices.GCHandle.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.Runtime.InteropServices.GCHandle
@@ -158,14 +184,17 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Determines whether the specified @'System.Runtime.InteropServices.GCHandle' object is equal to the current @'System.Runtime.InteropServices.GCHandle' object.
   syntax:
     content: public override bool Equals(object o)
     content.vb: Public Overrides Function Equals(o As Object) As Boolean
     parameters:
     - id: o
       type: System.Object
+      description: The @'System.Runtime.InteropServices.GCHandle' object to compare with the current @'System.Runtime.InteropServices.GCHandle' object.
     return:
       type: System.Boolean
+      description: true if the specified @'System.Runtime.InteropServices.GCHandle' object is equal to the current @'System.Runtime.InteropServices.GCHandle' object; otherwise, false.
   overridden: System.ValueType.Equals(System.Object)
 - uid: System.Runtime.InteropServices.GCHandle.Free
   id: Free
@@ -181,9 +210,13 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Releases a @'System.Runtime.InteropServices.GCHandle'.
   syntax:
     content: public void Free()
     content.vb: Public Sub Free
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The handle was freed or never initialized.
 - uid: System.Runtime.InteropServices.GCHandle.FromIntPtr(System.IntPtr)
   id: FromIntPtr(System.IntPtr)
   parent: System.Runtime.InteropServices.GCHandle
@@ -198,14 +231,20 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Returns a new @'System.Runtime.InteropServices.GCHandle' object created from a handle to a managed object.
   syntax:
     content: public static GCHandle FromIntPtr(IntPtr value)
     content.vb: Public Shared Function FromIntPtr(value As IntPtr) As GCHandle
     parameters:
     - id: value
       type: System.IntPtr
+      description: An @'System.IntPtr' handle to a managed object to create a @'System.Runtime.InteropServices.GCHandle' object from.
     return:
       type: System.Runtime.InteropServices.GCHandle
+      description: A new @'System.Runtime.InteropServices.GCHandle' object that corresponds to the value parameter.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The value of the *value* parameter is @'System.IntPtr.Zero'.
 - uid: System.Runtime.InteropServices.GCHandle.GetHashCode
   id: GetHashCode
   parent: System.Runtime.InteropServices.GCHandle
@@ -220,11 +259,13 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Returns an identifier for the current @'System.Runtime.InteropServices.GCHandle' object.
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
+      description: An identifier for the current @'System.Runtime.InteropServices.GCHandle' object.
   overridden: System.ValueType.GetHashCode
 - uid: System.Runtime.InteropServices.GCHandle.op_Equality(System.Runtime.InteropServices.GCHandle,System.Runtime.InteropServices.GCHandle)
   id: op_Equality(System.Runtime.InteropServices.GCHandle,System.Runtime.InteropServices.GCHandle)
@@ -240,16 +281,20 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Returns a value indicating whether two @'System.Runtime.InteropServices.GCHandle' objects are equal.
   syntax:
     content: public static bool operator ==(GCHandle a, GCHandle b)
     content.vb: Public Shared Operator =(a As GCHandle, b As GCHandle) As Boolean
     parameters:
     - id: a
       type: System.Runtime.InteropServices.GCHandle
+      description: A @'System.Runtime.InteropServices.GCHandle' object to compare with the *b* parameter.
     - id: b
       type: System.Runtime.InteropServices.GCHandle
+      description: A @'System.Runtime.InteropServices.GCHandle' object to compare with the *a* parameter.
     return:
       type: System.Boolean
+      description: true if the *a* and *b* parameters are equal; otherwise, false.
 - uid: System.Runtime.InteropServices.GCHandle.op_Explicit(System.IntPtr)~System.Runtime.InteropServices.GCHandle
   id: op_Explicit(System.IntPtr)~System.Runtime.InteropServices.GCHandle
   parent: System.Runtime.InteropServices.GCHandle
@@ -266,14 +311,17 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: A @'System.Runtime.InteropServices.GCHandle' is stored using an internal integer representation.
   syntax:
     content: public static explicit operator GCHandle(IntPtr value)
     content.vb: Public Shared Narrowing Operator CType(value As IntPtr) As GCHandle
     parameters:
     - id: value
       type: System.IntPtr
+      description: An @'System.IntPtr' that indicates the handle for which the conversion is required.
     return:
       type: System.Runtime.InteropServices.GCHandle
+      description: The stored @'System.Runtime.InteropServices.GCHandle' object using an internal integer representation.
 - uid: System.Runtime.InteropServices.GCHandle.op_Explicit(System.Runtime.InteropServices.GCHandle)~System.IntPtr
   id: op_Explicit(System.Runtime.InteropServices.GCHandle)~System.IntPtr
   parent: System.Runtime.InteropServices.GCHandle
@@ -290,14 +338,17 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: A @'System.Runtime.InteropServices.GCHandle' is stored using an internal integer representation.
   syntax:
     content: public static explicit operator IntPtr(GCHandle value)
     content.vb: Public Shared Narrowing Operator CType(value As GCHandle) As IntPtr
     parameters:
     - id: value
       type: System.Runtime.InteropServices.GCHandle
+      description: The @'System.Runtime.InteropServices.GCHandle' for which the integer is required.
     return:
       type: System.IntPtr
+      description: The integer value.
 - uid: System.Runtime.InteropServices.GCHandle.op_Inequality(System.Runtime.InteropServices.GCHandle,System.Runtime.InteropServices.GCHandle)
   id: op_Inequality(System.Runtime.InteropServices.GCHandle,System.Runtime.InteropServices.GCHandle)
   parent: System.Runtime.InteropServices.GCHandle
@@ -312,16 +363,20 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Returns a value indicating whether two @'System.Runtime.InteropServices.GCHandle' objects are not equal.
   syntax:
     content: public static bool operator !=(GCHandle a, GCHandle b)
     content.vb: Public Shared Operator <>(a As GCHandle, b As GCHandle) As Boolean
     parameters:
     - id: a
       type: System.Runtime.InteropServices.GCHandle
+      description: A @'System.Runtime.InteropServices.GCHandle' object to compare with the *b* parameter.
     - id: b
       type: System.Runtime.InteropServices.GCHandle
+      description: A @'System.Runtime.InteropServices.GCHandle' object to compare with the *a* parameter.
     return:
       type: System.Boolean
+      description: true if the *a* and *b* parameters are not equal; otherwise, false.
 - uid: System.Runtime.InteropServices.GCHandle.ToIntPtr(System.Runtime.InteropServices.GCHandle)
   id: ToIntPtr(System.Runtime.InteropServices.GCHandle)
   parent: System.Runtime.InteropServices.GCHandle
@@ -336,14 +391,17 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
+  summary: Returns the internal integer representation of a @'System.Runtime.InteropServices.GCHandle' object.
   syntax:
     content: public static IntPtr ToIntPtr(GCHandle value)
     content.vb: Public Shared Function ToIntPtr(value As GCHandle) As IntPtr
     parameters:
     - id: value
       type: System.Runtime.InteropServices.GCHandle
+      description: A @'System.Runtime.InteropServices.GCHandle' object to retrieve an internal integer representation from.
     return:
       type: System.IntPtr
+      description: An @'System.IntPtr' object that represents a @'System.Runtime.InteropServices.GCHandle' object.
 references:
 - uid: System.Runtime.InteropServices
   isExternal: false
@@ -593,3 +651,19 @@ references:
   name: Int32
   fullName: System.Int32
   type: Struct
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.

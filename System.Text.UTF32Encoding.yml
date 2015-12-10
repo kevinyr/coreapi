@@ -38,6 +38,7 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Represents a UTF-32 encoding of Unicode characters.
   syntax:
     content: 'public sealed class UTF32Encoding : Encoding, ICloneable'
     content.vb: Public NotInheritable Class UTF32Encoding Inherits Encoding Implements ICloneable
@@ -107,6 +108,7 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Initializes a new instance of the @'System.Text.UTF32Encoding' class.
   syntax:
     content: public UTF32Encoding()
     content.vb: Public Sub New
@@ -124,14 +126,17 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Initializes a new instance of the @'System.Text.UTF32Encoding' class. Parameters specify whether to use the big endian byte order and whether the @'System.Text.UTF32Encoding.GetPreamble' method returns a Unicode Unicode byte order mark.
   syntax:
     content: public UTF32Encoding(bool bigEndian, bool byteOrderMark)
     content.vb: Public Sub New(bigEndian As Boolean, byteOrderMark As Boolean)
     parameters:
     - id: bigEndian
       type: System.Boolean
+      description: true to use the big endian byte order (most significant byte first), or false to use the little endian byte order (least significant byte first).
     - id: byteOrderMark
       type: System.Boolean
+      description: true to specify that a Unicode byte order mark is provided; otherwise, false.
 - uid: System.Text.UTF32Encoding.#ctor(System.Boolean,System.Boolean,System.Boolean)
   id: '#ctor(System.Boolean,System.Boolean,System.Boolean)'
   parent: System.Text.UTF32Encoding
@@ -146,16 +151,20 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Initializes a new instance of the @'System.Text.UTF32Encoding' class. Parameters specify whether to use the big endian byte order, whether to provide a Unicode byte order mark, and whether to throw an exception when an invalid encoding is detected.
   syntax:
     content: public UTF32Encoding(bool bigEndian, bool byteOrderMark, bool throwOnInvalidCharacters)
     content.vb: Public Sub New(bigEndian As Boolean, byteOrderMark As Boolean, throwOnInvalidCharacters As Boolean)
     parameters:
     - id: bigEndian
       type: System.Boolean
+      description: true to use the big endian byte order (most significant byte first), or false to use the little endian byte order (least significant byte first).
     - id: byteOrderMark
       type: System.Boolean
+      description: true to specify that a Unicode byte order mark is provided; otherwise, false.
     - id: throwOnInvalidCharacters
       type: System.Boolean
+      description: true to specify that an exception should be thrown when an invalid encoding is detected; otherwise, false.
 - uid: System.Text.UTF32Encoding.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.Text.UTF32Encoding
@@ -170,14 +179,17 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Determines whether the specified @'System.Object' is equal to the current @'System.Text.UTF32Encoding' object.
   syntax:
     content: public override bool Equals(object value)
     content.vb: Public Overrides Function Equals(value As Object) As Boolean
     parameters:
     - id: value
       type: System.Object
+      description: The @'System.Object' to compare with the current object.
     return:
       type: System.Boolean
+      description: true if *value* is an instance of @'System.Text.UTF32Encoding' and is equal to the current object; otherwise, false.
   overridden: System.Text.Encoding.Equals(System.Object)
 - uid: System.Text.UTF32Encoding.GetByteCount(System.Char*,System.Int32)
   id: GetByteCount(System.Char*,System.Int32)
@@ -193,17 +205,30 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Calculates the number of bytes produced by encoding a set of characters starting at the specified character pointer.
   syntax:
     content: public override int GetByteCount(char *chars, int count)
     content.vb: Public Overrides Function GetByteCount(chars As Char *, count As Integer) As Integer
     parameters:
     - id: chars
       type: System.Char*
+      description: A pointer to the first character to encode.
     - id: count
       type: System.Int32
+      description: The number of characters to encode.
     return:
       type: System.Int32
+      description: The number of bytes produced by encoding the specified characters.
   overridden: System.Text.Encoding.GetByteCount(System.Char*,System.Int32)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*chars* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*count* is less than zero.-or- The resulting number of bytes is greater than the maximum number that can be returned as an integer.'
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *chars* contains an invalid sequence of characters.
+  - type: System.Text.EncoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.EncoderFallback' is set to @'System.Text.EncoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetByteCount(System.Char[],System.Int32,System.Int32)
   id: GetByteCount(System.Char[],System.Int32,System.Int32)
   parent: System.Text.UTF32Encoding
@@ -220,19 +245,33 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Calculates the number of bytes produced by encoding a set of characters from the specified character array.
   syntax:
     content: public override int GetByteCount(char[] chars, int index, int count)
     content.vb: Public Overrides Function GetByteCount(chars As Char(), index As Integer, count As Integer) As Integer
     parameters:
     - id: chars
       type: System.Char[]
+      description: The character array containing the set of characters to encode.
     - id: index
       type: System.Int32
+      description: The index of the first character to encode.
     - id: count
       type: System.Int32
+      description: The number of characters to encode.
     return:
       type: System.Int32
+      description: The number of bytes produced by encoding the specified characters.
   overridden: System.Text.Encoding.GetByteCount(System.Char[],System.Int32,System.Int32)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*chars* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*index* or *count* is less than zero.-or- *index* and *count* do not denote a valid range in *chars*.-or- The resulting number of bytes is greater than the maximum number that can be returned as an integer.'
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *chars* contains an invalid sequence of characters.
+  - type: System.Text.EncoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.EncoderFallback' is set to @'System.Text.EncoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetByteCount(System.String)
   id: GetByteCount(System.String)
   parent: System.Text.UTF32Encoding
@@ -247,15 +286,27 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Calculates the number of bytes produced by encoding the characters in the specified @'System.String'.
   syntax:
     content: public override int GetByteCount(string s)
     content.vb: Public Overrides Function GetByteCount(s As String) As Integer
     parameters:
     - id: s
       type: System.String
+      description: The @'System.String' containing the set of characters to encode.
     return:
       type: System.Int32
+      description: The number of bytes produced by encoding the specified characters.
   overridden: System.Text.Encoding.GetByteCount(System.String)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*s* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: The resulting number of bytes is greater than the maximum number that can be returned as an integer.
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *s* contains an invalid sequence of characters.
+  - type: System.Text.EncoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.EncoderFallback' is set to @'System.Text.EncoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetBytes(System.Char*,System.Int32,System.Byte*,System.Int32)
   id: GetBytes(System.Char*,System.Int32,System.Byte*,System.Int32)
   parent: System.Text.UTF32Encoding
@@ -270,21 +321,36 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Encodes a set of characters starting at the specified character pointer into a sequence of bytes that are stored starting at the specified byte pointer.
   syntax:
     content: public override int GetBytes(char *chars, int charCount, byte *bytes, int byteCount)
     content.vb: Public Overrides Function GetBytes(chars As Char *, charCount As Integer, bytes As Byte *, byteCount As Integer) As Integer
     parameters:
     - id: chars
       type: System.Char*
+      description: A pointer to the first character to encode.
     - id: charCount
       type: System.Int32
+      description: The number of characters to encode.
     - id: bytes
       type: System.Byte*
+      description: A pointer to the location at which to start writing the resulting sequence of bytes.
     - id: byteCount
       type: System.Int32
+      description: The maximum number of bytes to write.
     return:
       type: System.Int32
+      description: The actual number of bytes written at the location indicated by the *bytes* parameter.
   overridden: System.Text.Encoding.GetBytes(System.Char*,System.Int32,System.Byte*,System.Int32)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*chars* is null.-or- *bytes* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*charCount* or *byteCount* is less than zero.'
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *chars* contains an invalid sequence of characters.-or- *byteCount* is less than the resulting number of bytes.
+  - type: System.Text.EncoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.EncoderFallback' is set to @'System.Text.EncoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetBytes(System.Char[],System.Int32,System.Int32,System.Byte[],System.Int32)
   id: GetBytes(System.Char[],System.Int32,System.Int32,System.Byte[],System.Int32)
   parent: System.Text.UTF32Encoding
@@ -301,23 +367,39 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Encodes a set of characters from the specified character array into the specified byte array.
   syntax:
     content: public override int GetBytes(char[] chars, int charIndex, int charCount, byte[] bytes, int byteIndex)
     content.vb: Public Overrides Function GetBytes(chars As Char(), charIndex As Integer, charCount As Integer, bytes As Byte(), byteIndex As Integer) As Integer
     parameters:
     - id: chars
       type: System.Char[]
+      description: The character array containing the set of characters to encode.
     - id: charIndex
       type: System.Int32
+      description: The index of the first character to encode.
     - id: charCount
       type: System.Int32
+      description: The number of characters to encode.
     - id: bytes
       type: System.Byte[]
+      description: The byte array to contain the resulting sequence of bytes.
     - id: byteIndex
       type: System.Int32
+      description: The index at which to start writing the resulting sequence of bytes.
     return:
       type: System.Int32
+      description: The actual number of bytes written into *bytes*.
   overridden: System.Text.Encoding.GetBytes(System.Char[],System.Int32,System.Int32,System.Byte[],System.Int32)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*chars* is null.-or- *bytes* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*charIndex* or *charCount* or *byteIndex* is less than zero.-or- *charIndex* and *charCount* do not denote a valid range in *chars*.-or- *byteIndex* is not a valid index in *bytes*.'
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *chars* contains an invalid sequence of characters.-or- *bytes* does not have enough capacity from *byteIndex* to the end of the array to accommodate the resulting bytes.
+  - type: System.Text.EncoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.EncoderFallback' is set to @'System.Text.EncoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)
   id: GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)
   parent: System.Text.UTF32Encoding
@@ -334,23 +416,39 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Encodes a set of characters from the specified @'System.String' into the specified byte array.
   syntax:
     content: public override int GetBytes(string s, int charIndex, int charCount, byte[] bytes, int byteIndex)
     content.vb: Public Overrides Function GetBytes(s As String, charIndex As Integer, charCount As Integer, bytes As Byte(), byteIndex As Integer) As Integer
     parameters:
     - id: s
       type: System.String
+      description: The @'System.String' containing the set of characters to encode.
     - id: charIndex
       type: System.Int32
+      description: The index of the first character to encode.
     - id: charCount
       type: System.Int32
+      description: The number of characters to encode.
     - id: bytes
       type: System.Byte[]
+      description: The byte array to contain the resulting sequence of bytes.
     - id: byteIndex
       type: System.Int32
+      description: The index at which to start writing the resulting sequence of bytes.
     return:
       type: System.Int32
+      description: The actual number of bytes written into *bytes*.
   overridden: System.Text.Encoding.GetBytes(System.String,System.Int32,System.Int32,System.Byte[],System.Int32)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*s* is null.-or- *bytes* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*charIndex* or *charCount* or *byteIndex* is less than zero.-or- *charIndex* and *charCount* do not denote a valid range in *chars*.-or- *byteIndex* is not a valid index in *bytes*.'
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *s* contains an invalid sequence of characters.-or- *bytes* does not have enough capacity from *byteIndex* to the end of the array to accommodate the resulting bytes.
+  - type: System.Text.EncoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.EncoderFallback' is set to @'System.Text.EncoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetCharCount(System.Byte*,System.Int32)
   id: GetCharCount(System.Byte*,System.Int32)
   parent: System.Text.UTF32Encoding
@@ -365,17 +463,30 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Calculates the number of characters produced by decoding a sequence of bytes starting at the specified byte pointer.
   syntax:
     content: public override int GetCharCount(byte *bytes, int count)
     content.vb: Public Overrides Function GetCharCount(bytes As Byte *, count As Integer) As Integer
     parameters:
     - id: bytes
       type: System.Byte*
+      description: A pointer to the first byte to decode.
     - id: count
       type: System.Int32
+      description: The number of bytes to decode.
     return:
       type: System.Int32
+      description: The number of characters produced by decoding the specified sequence of bytes.
   overridden: System.Text.Encoding.GetCharCount(System.Byte*,System.Int32)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*bytes* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*count* is less than zero.-or- The resulting number of bytes is greater than the maximum number that can be returned as an integer.'
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *bytes* contains an invalid sequence of bytes.
+  - type: System.Text.DecoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.DecoderFallback' is set to @'System.Text.DecoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetCharCount(System.Byte[],System.Int32,System.Int32)
   id: GetCharCount(System.Byte[],System.Int32,System.Int32)
   parent: System.Text.UTF32Encoding
@@ -392,19 +503,33 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Calculates the number of characters produced by decoding a sequence of bytes from the specified byte array.
   syntax:
     content: public override int GetCharCount(byte[] bytes, int index, int count)
     content.vb: Public Overrides Function GetCharCount(bytes As Byte(), index As Integer, count As Integer) As Integer
     parameters:
     - id: bytes
       type: System.Byte[]
+      description: The byte array containing the sequence of bytes to decode.
     - id: index
       type: System.Int32
+      description: The index of the first byte to decode.
     - id: count
       type: System.Int32
+      description: The number of bytes to decode.
     return:
       type: System.Int32
+      description: The number of characters produced by decoding the specified sequence of bytes.
   overridden: System.Text.Encoding.GetCharCount(System.Byte[],System.Int32,System.Int32)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*bytes* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*index* or *count* is less than zero.-or- *index* and *count* do not denote a valid range in *bytes*.-or- The resulting number of bytes is greater than the maximum number that can be returned as an integer.'
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *bytes* contains an invalid sequence of bytes.
+  - type: System.Text.DecoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.DecoderFallback' is set to @'System.Text.DecoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetChars(System.Byte*,System.Int32,System.Char*,System.Int32)
   id: GetChars(System.Byte*,System.Int32,System.Char*,System.Int32)
   parent: System.Text.UTF32Encoding
@@ -419,21 +544,36 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Decodes a sequence of bytes starting at the specified byte pointer into a set of characters that are stored starting at the specified character pointer.
   syntax:
     content: public override int GetChars(byte *bytes, int byteCount, char *chars, int charCount)
     content.vb: Public Overrides Function GetChars(bytes As Byte *, byteCount As Integer, chars As Char *, charCount As Integer) As Integer
     parameters:
     - id: bytes
       type: System.Byte*
+      description: A pointer to the first byte to decode.
     - id: byteCount
       type: System.Int32
+      description: The number of bytes to decode.
     - id: chars
       type: System.Char*
+      description: A pointer to the location at which to start writing the resulting set of characters.
     - id: charCount
       type: System.Int32
+      description: The maximum number of characters to write.
     return:
       type: System.Int32
+      description: The actual number of characters written at the location indicated by *chars*.
   overridden: System.Text.Encoding.GetChars(System.Byte*,System.Int32,System.Char*,System.Int32)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*bytes* is null.-or- *chars* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*byteCount* or *charCount* is less than zero.'
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *bytes* contains an invalid sequence of bytes.-or- *charCount* is less than the resulting number of characters.
+  - type: System.Text.DecoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.DecoderFallback' is set to @'System.Text.DecoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetChars(System.Byte[],System.Int32,System.Int32,System.Char[],System.Int32)
   id: GetChars(System.Byte[],System.Int32,System.Int32,System.Char[],System.Int32)
   parent: System.Text.UTF32Encoding
@@ -450,23 +590,39 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Decodes a sequence of bytes from the specified byte array into the specified character array.
   syntax:
     content: public override int GetChars(byte[] bytes, int byteIndex, int byteCount, char[] chars, int charIndex)
     content.vb: Public Overrides Function GetChars(bytes As Byte(), byteIndex As Integer, byteCount As Integer, chars As Char(), charIndex As Integer) As Integer
     parameters:
     - id: bytes
       type: System.Byte[]
+      description: The byte array containing the sequence of bytes to decode.
     - id: byteIndex
       type: System.Int32
+      description: The index of the first byte to decode.
     - id: byteCount
       type: System.Int32
+      description: The number of bytes to decode.
     - id: chars
       type: System.Char[]
+      description: The character array to contain the resulting set of characters.
     - id: charIndex
       type: System.Int32
+      description: The index at which to start writing the resulting set of characters.
     return:
       type: System.Int32
+      description: The actual number of characters written into *chars*.
   overridden: System.Text.Encoding.GetChars(System.Byte[],System.Int32,System.Int32,System.Char[],System.Int32)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*bytes* is null.-or- *chars* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*byteIndex* or *byteCount* or *charIndex* is less than zero.-or- *byteindex* and *byteCount* do not denote a valid range in *bytes*.-or- *charIndex* is not a valid index in *chars*.'
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *bytes* contains an invalid sequence of bytes.-or- *chars* does not have enough capacity from *charIndex* to the end of the array to accommodate the resulting characters.
+  - type: System.Text.DecoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.DecoderFallback' is set to @'System.Text.DecoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetDecoder
   id: GetDecoder
   parent: System.Text.UTF32Encoding
@@ -481,11 +637,13 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Obtains a decoder that converts a UTF-32 encoded sequence of bytes into a sequence of Unicode characters.
   syntax:
     content: public override Decoder GetDecoder()
     content.vb: Public Overrides Function GetDecoder As Decoder
     return:
       type: System.Text.Decoder
+      description: A @'System.Text.Decoder' that converts a UTF-32 encoded sequence of bytes into a sequence of Unicode characters.
   overridden: System.Text.Encoding.GetDecoder
 - uid: System.Text.UTF32Encoding.GetEncoder
   id: GetEncoder
@@ -501,11 +659,13 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Obtains an encoder that converts a sequence of Unicode characters into a UTF-32 encoded sequence of bytes.
   syntax:
     content: public override Encoder GetEncoder()
     content.vb: Public Overrides Function GetEncoder As Encoder
     return:
       type: System.Text.Encoder
+      description: A @'System.Text.Encoder' that converts a sequence of Unicode characters into a UTF-32 encoded sequence of bytes.
   overridden: System.Text.Encoding.GetEncoder
 - uid: System.Text.UTF32Encoding.GetHashCode
   id: GetHashCode
@@ -521,11 +681,13 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Returns the hash code for the current instance.
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
+      description: The hash code for the current @'System.Text.UTF32Encoding' object.
   overridden: System.Text.Encoding.GetHashCode
 - uid: System.Text.UTF32Encoding.GetMaxByteCount(System.Int32)
   id: GetMaxByteCount(System.Int32)
@@ -541,15 +703,23 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Calculates the maximum number of bytes produced by encoding the specified number of characters.
   syntax:
     content: public override int GetMaxByteCount(int charCount)
     content.vb: Public Overrides Function GetMaxByteCount(charCount As Integer) As Integer
     parameters:
     - id: charCount
       type: System.Int32
+      description: The number of characters to encode.
     return:
       type: System.Int32
+      description: The maximum number of bytes produced by encoding the specified number of characters.
   overridden: System.Text.Encoding.GetMaxByteCount(System.Int32)
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*charCount* is less than zero.-or- The resulting number of bytes is greater than the maximum number that can be returned as an integer.'
+  - type: System.Text.EncoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.EncoderFallback' is set to @'System.Text.EncoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetMaxCharCount(System.Int32)
   id: GetMaxCharCount(System.Int32)
   parent: System.Text.UTF32Encoding
@@ -564,15 +734,23 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Calculates the maximum number of characters produced by decoding the specified number of bytes.
   syntax:
     content: public override int GetMaxCharCount(int byteCount)
     content.vb: Public Overrides Function GetMaxCharCount(byteCount As Integer) As Integer
     parameters:
     - id: byteCount
       type: System.Int32
+      description: The number of bytes to decode.
     return:
       type: System.Int32
+      description: The maximum number of characters produced by decoding the specified number of bytes.
   overridden: System.Text.Encoding.GetMaxCharCount(System.Int32)
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*byteCount* is less than zero.-or- The resulting number of bytes is greater than the maximum number that can be returned as an integer.'
+  - type: System.Text.DecoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for complete explanation)-and-@'System.Text.Encoding.DecoderFallback' is set to @'System.Text.DecoderExceptionFallback'.
 - uid: System.Text.UTF32Encoding.GetPreamble
   id: GetPreamble
   parent: System.Text.UTF32Encoding
@@ -587,11 +765,13 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Returns a Unicode byte order mark encoded in UTF-32 format, if the @'System.Text.UTF32Encoding' object is configured to supply one.
   syntax:
     content: public override byte[] GetPreamble()
     content.vb: Public Overrides Function GetPreamble As Byte()
     return:
       type: System.Byte[]
+      description: A byte array containing the Unicode byte order mark, if the @'System.Text.UTF32Encoding' object is configured to supply one. Otherwise, this method returns a zero-length byte array.
   overridden: System.Text.Encoding.GetPreamble
 - uid: System.Text.UTF32Encoding.GetString(System.Byte[],System.Int32,System.Int32)
   id: GetString(System.Byte[],System.Int32,System.Int32)
@@ -609,19 +789,33 @@ items:
   assemblies:
   - System.Text.Encoding.Extensions
   namespace: System.Text
+  summary: Decodes a range of bytes from a byte array into a string.
   syntax:
     content: public override string GetString(byte[] bytes, int index, int count)
     content.vb: Public Overrides Function GetString(bytes As Byte(), index As Integer, count As Integer) As String
     parameters:
     - id: bytes
       type: System.Byte[]
+      description: The byte array containing the sequence of bytes to decode.
     - id: index
       type: System.Int32
+      description: The index of the first byte to decode.
     - id: count
       type: System.Int32
+      description: The number of bytes to decode.
     return:
       type: System.String
+      description: A string that contains the results of decoding the specified sequence of bytes.
   overridden: System.Text.Encoding.GetString(System.Byte[],System.Int32,System.Int32)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*bytes* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*index* or *count* is less than zero.-or- *index* and *count* do not denote a valid range in *bytes*.'
+  - type: System.ArgumentException
+    description: Error detection is enabled, and *bytes* contains an invalid sequence of bytes.
+  - type: System.Text.DecoderFallbackException
+    description: A fallback occurred (see Character Encoding in the .NET Framework for a complete explanation)-and-@'System.Text.Encoding.DecoderFallback' is set to @'System.Text.DecoderExceptionFallback'.
 references:
 - uid: System.Text
   isExternal: false
@@ -2758,3 +2952,39 @@ references:
     isExternal: true
   - name: )
     fullName: )
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.Text.EncoderFallbackException
+  isExternal: false
+  href: System.Text.EncoderFallbackException.yml
+  name: EncoderFallbackException
+  fullName: System.Text.EncoderFallbackException
+  type: Class
+  summary: The exception that is thrown when an encoder fallback operation fails. This class cannot be inherited.
+- uid: System.Text.DecoderFallbackException
+  isExternal: false
+  href: System.Text.DecoderFallbackException.yml
+  name: DecoderFallbackException
+  fullName: System.Text.DecoderFallbackException
+  type: Class
+  summary: The exception that is thrown when a decoder fallback operation fails. This class cannot be inherited.

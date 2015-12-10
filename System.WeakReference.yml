@@ -23,6 +23,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Represents a weak reference, which references an object while still allowing that object to be reclaimed by garbage collection.
   syntax:
     content: public class WeakReference
     content.vb: Public Class WeakReference
@@ -50,12 +51,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Initializes a new instance of the @'System.WeakReference' class, referencing the specified object.
   syntax:
     content: public WeakReference(object target)
     content.vb: Public Sub New(target As Object)
     parameters:
     - id: target
       type: System.Object
+      description: The object to track or null.
 - uid: System.WeakReference.#ctor(System.Object,System.Boolean)
   id: '#ctor(System.Object,System.Boolean)'
   parent: System.WeakReference
@@ -70,14 +73,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Initializes a new instance of the @'System.WeakReference' class, referencing the specified object and using the specified resurrection tracking.
   syntax:
     content: public WeakReference(object target, bool trackResurrection)
     content.vb: Public Sub New(target As Object, trackResurrection As Boolean)
     parameters:
     - id: target
       type: System.Object
+      description: An object to track.
     - id: trackResurrection
       type: System.Boolean
+      description: Indicates when to stop tracking the object. If true, the object is tracked after finalization; if false, the object is only tracked until finalization.
 - uid: System.WeakReference.IsAlive
   id: IsAlive
   parent: System.WeakReference
@@ -91,12 +97,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets an indication whether the object referenced by the current @'System.WeakReference' object has been garbage collected.
   syntax:
     content: public virtual bool IsAlive { get; }
     content.vb: Public Overridable ReadOnly Property IsAlive As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the object referenced by the current @'System.WeakReference' object has not been garbage collected and is still accessible; otherwise, false.
 - uid: System.WeakReference.Target
   id: Target
   parent: System.WeakReference
@@ -110,12 +118,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets or sets the object (the target) referenced by the current @'System.WeakReference' object.
   syntax:
     content: public virtual object Target { get; set; }
     content.vb: Public Overridable Property Target As Object
     parameters: []
     return:
       type: System.Object
+      description: null if the object referenced by the current @'System.WeakReference' object has been garbage collected; otherwise, a reference to the object referenced by the current @'System.WeakReference' object.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The reference to the target object is invalid. This exception can be thrown while setting this property if the value is a null reference or if the object has been finalized during the set operation.
 - uid: System.WeakReference.TrackResurrection
   id: TrackResurrection
   parent: System.WeakReference
@@ -130,12 +143,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets an indication whether the object referenced by the current @'System.WeakReference' object is tracked after it is finalized.
   syntax:
     content: public virtual bool TrackResurrection { get; }
     content.vb: Public Overridable ReadOnly Property TrackResurrection As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the object the current @'System.WeakReference' object refers to is tracked after finalization; or false if the object is only tracked until finalization.
 - uid: System.WeakReference.Finalize
   id: Finalize
   parent: System.WeakReference
@@ -149,6 +164,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Discards the reference to the target represented by the current @'System.WeakReference' object.
   syntax:
     content: protected void Finalize()
     content.vb: Protected Sub Finalize
@@ -381,3 +397,11 @@ references:
   name: Boolean
   fullName: System.Boolean
   type: Struct
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.

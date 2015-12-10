@@ -23,6 +23,7 @@ items:
   assemblies:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
+  summary: Enables iterations of parallel loops to interact with other iterations. An instance of this class is provided by the @'System.Threading.Tasks.Parallel' class to each loop; you can not create instances in your code.
   syntax:
     content: public class ParallelLoopState
     content.vb: Public Class ParallelLoopState
@@ -50,12 +51,14 @@ items:
   assemblies:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
+  summary: Gets whether any iteration of the loop has thrown an exception that went unhandled by that iteration.
   syntax:
     content: public bool IsExceptional { get; }
     content.vb: Public ReadOnly Property IsExceptional As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if an unhandled exception was thrown; otherwise, false.
 - uid: System.Threading.Tasks.ParallelLoopState.IsStopped
   id: IsStopped
   parent: System.Threading.Tasks.ParallelLoopState
@@ -70,12 +73,14 @@ items:
   assemblies:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
+  summary: Gets whether any iteration of the loop has called the @'System.Threading.Tasks.ParallelLoopState.Stop' method.
   syntax:
     content: public bool IsStopped { get; }
     content.vb: Public ReadOnly Property IsStopped As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if any iteration has stopped the loop by calling the @'System.Threading.Tasks.ParallelLoopState.Stop' method; otherwise, false.
 - uid: System.Threading.Tasks.ParallelLoopState.LowestBreakIteration
   id: LowestBreakIteration
   parent: System.Threading.Tasks.ParallelLoopState
@@ -90,12 +95,14 @@ items:
   assemblies:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
+  summary: Gets the lowest iteration of the loop from which @'System.Threading.Tasks.ParallelLoopState.Break' was called.
   syntax:
     content: public long ? LowestBreakIteration { get; }
     content.vb: Public ReadOnly Property LowestBreakIteration As Long?
     parameters: []
     return:
       type: System.Nullable{System.Int64}
+      description: The lowest iteration from which @'System.Threading.Tasks.ParallelLoopState.Break' was called. In the case of a @'System.Threading.Tasks.Parallel.ForEach``1(System.Collections.Concurrent.Partitioner{``0},System.Action{``0})' loop, the value is based on an internally-generated index.
 - uid: System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration
   id: ShouldExitCurrentIteration
   parent: System.Threading.Tasks.ParallelLoopState
@@ -110,12 +117,14 @@ items:
   assemblies:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
+  summary: Gets whether the current iteration of the loop should exit based on requests made by this or other iterations.
   syntax:
     content: public bool ShouldExitCurrentIteration { get; }
     content.vb: Public ReadOnly Property ShouldExitCurrentIteration As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the current iteration should exit; otherwise, false.
 - uid: System.Threading.Tasks.ParallelLoopState.Break
   id: Break
   parent: System.Threading.Tasks.ParallelLoopState
@@ -130,9 +139,13 @@ items:
   assemblies:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
+  summary: Communicates that the @'System.Threading.Tasks.Parallel' loop should cease execution of iterations beyond the current iteration at the system's earliest convenience.
   syntax:
     content: public void Break()
     content.vb: Public Sub Break
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The @'System.Threading.Tasks.ParallelLoopState.Stop' method was previously called. @'System.Threading.Tasks.ParallelLoopState.Break' and @'System.Threading.Tasks.ParallelLoopState.Stop' may not be used in combination by iterations of the same loop.
 - uid: System.Threading.Tasks.ParallelLoopState.Stop
   id: Stop
   parent: System.Threading.Tasks.ParallelLoopState
@@ -147,9 +160,13 @@ items:
   assemblies:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
+  summary: Communicates that the @'System.Threading.Tasks.Parallel' loop should cease execution at the system's earliest convenience.
   syntax:
     content: public void Stop()
     content.vb: Public Sub Stop
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The @'System.Threading.Tasks.ParallelLoopState.Break' method was called previously. @'System.Threading.Tasks.ParallelLoopState.Break' and @'System.Threading.Tasks.ParallelLoopState.Stop' may not be used in combination by iterations of the same loop.
 references:
 - uid: System.Threading.Tasks
   isExternal: false
@@ -448,3 +465,11 @@ references:
     fullName: T
   - name: )
     fullName: )
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.

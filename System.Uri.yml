@@ -62,6 +62,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Provides an object representation of a uniform resource identifier (URI) and easy access to the parts of the URI.
   syntax:
     content: public class Uri
     content.vb: Public Class Uri
@@ -89,12 +90,19 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Initializes a new instance of the @'System.Uri' class with the specified URI.
   syntax:
     content: public Uri(string uriString)
     content.vb: Public Sub New(uriString As String)
     parameters:
     - id: uriString
       type: System.String
+      description: A URI.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*uriString* is null.'
+  - type: System.UriFormatException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.FormatException', instead.*uriString* is empty.-or- The scheme specified in *uriString* is not correctly formed. See @'System.Uri.CheckSchemeName(System.String)'.-or- *uriString* contains too many slashes.-or- The password specified in *uriString* is not valid.-or- The host name specified in *uriString* is not valid.-or- The file name specified in *uriString* is not valid. -or- The user name specified in *uriString* is not valid.-or- The host or authority name specified in *uriString* cannot be terminated by backslashes.-or- The port number specified in *uriString* is not valid or cannot be parsed.-or- The length of *uriString* exceeds 65519 characters.-or- The length of the scheme specified in *uriString* exceeds 1023 characters.-or- There is an invalid character sequence in *uriString*.-or- The MS-DOS path specified in *uriString* must start with c:\\.
 - uid: System.Uri.#ctor(System.String,System.UriKind)
   id: '#ctor(System.String,System.UriKind)'
   parent: System.Uri
@@ -109,14 +117,24 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Initializes a new instance of the @'System.Uri' class with the specified URI. This constructor allows you to specify if the URI string is a relative URI, absolute URI, or is indeterminate.
   syntax:
     content: public Uri(string uriString, UriKind uriKind)
     content.vb: Public Sub New(uriString As String, uriKind As UriKind)
     parameters:
     - id: uriString
       type: System.String
+      description: A string that identifies the resource to be represented by the @'System.Uri' instance.
     - id: uriKind
       type: System.UriKind
+      description: Specifies whether the URI string is a relative URI, absolute URI, or is indeterminate.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*uriKind* is invalid.'
+  - type: System.ArgumentNullException
+    description: '*uriString* is null.'
+  - type: System.UriFormatException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.FormatException', instead.*uriString* contains a relative URI and *uriKind* is @'System.UriKind.Absolute'.or*uriString* contains an absolute URI and *uriKind* is @'System.UriKind.Relative'.or*uriString* is empty.-or- The scheme specified in *uriString* is not correctly formed. See @'System.Uri.CheckSchemeName(System.String)'.-or- *uriString* contains too many slashes.-or- The password specified in *uriString* is not valid.-or- The host name specified in *uriString* is not valid.-or- The file name specified in *uriString* is not valid. -or- The user name specified in *uriString* is not valid.-or- The host or authority name specified in *uriString* cannot be terminated by backslashes.-or- The port number specified in *uriString* is not valid or cannot be parsed.-or- The length of *uriString* exceeds 65519 characters.-or- The length of the scheme specified in *uriString* exceeds 1023 characters.-or- There is an invalid character sequence in *uriString*.-or- The MS-DOS path specified in *uriString* must start with c:\\.
 - uid: System.Uri.#ctor(System.Uri,System.String)
   id: '#ctor(System.Uri,System.String)'
   parent: System.Uri
@@ -131,14 +149,24 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Initializes a new instance of the @'System.Uri' class based on the specified base URI and relative URI string.
   syntax:
     content: public Uri(Uri baseUri, string relativeUri)
     content.vb: Public Sub New(baseUri As Uri, relativeUri As String)
     parameters:
     - id: baseUri
       type: System.Uri
+      description: The base URI.
     - id: relativeUri
       type: System.String
+      description: The relative URI to add to the base URI.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*baseUri* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*baseUri* is not an absolute @''System.Uri'' instance.'
+  - type: System.UriFormatException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.FormatException', instead.The URI formed by combining *baseUri* and *relativeUri* is empty or contains only spaces.-or- The scheme specified in the URI formed by combining *baseUri* and *relativeUri* is not valid.-or- The URI formed by combining *baseUri* and *relativeUri* contains too many slashes.-or- The password specified in the URI formed by combining *baseUri* and *relativeUri* is not valid.-or- The host name specified in the URI formed by combining *baseUri* and *relativeUri* is not valid.-or- The file name specified in the URI formed by combining *baseUri* and *relativeUri* is not valid. -or- The user name specified in the URI formed by combining *baseUri* and *relativeUri* is not valid.-or- The host or authority name specified in the URI formed by combining *baseUri* and *relativeUri* cannot be terminated by backslashes.-or- The port number specified in the URI formed by combining *baseUri* and *relativeUri* is not valid or cannot be parsed.-or- The length of the URI formed by combining *baseUri* and *relativeUri* exceeds 65519 characters.-or- The length of the scheme specified in the URI formed by combining *baseUri* and *relativeUri* exceeds 1023 characters.-or- There is an invalid character sequence in the URI formed by combining *baseUri* and *relativeUri*.-or- The MS-DOS path specified in *uriString* must start with c:\\.
 - uid: System.Uri.#ctor(System.Uri,System.Uri)
   id: '#ctor(System.Uri,System.Uri)'
   parent: System.Uri
@@ -153,14 +181,26 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Initializes a new instance of the @'System.Uri' class based on the combination of a specified base @'System.Uri' instance and a relative @'System.Uri' instance.
   syntax:
     content: public Uri(Uri baseUri, Uri relativeUri)
     content.vb: Public Sub New(baseUri As Uri, relativeUri As Uri)
     parameters:
     - id: baseUri
       type: System.Uri
+      description: An absolute @'System.Uri' that is the base for the new @'System.Uri' instance.
     - id: relativeUri
       type: System.Uri
+      description: A relative @'System.Uri' instance that is combined with *baseUri*.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*baseUri* is not an absolute @''System.Uri'' instance.'
+  - type: System.ArgumentNullException
+    description: '*baseUri* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*baseUri* is not an absolute @''System.Uri'' instance.'
+  - type: System.UriFormatException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.FormatException', instead.The URI formed by combining *baseUri* and *relativeUri* is empty or contains only spaces.-or- The scheme specified in the URI formed by combining *baseUri* and *relativeUri* is not valid.-or- The URI formed by combining *baseUri* and *relativeUri* contains too many slashes.-or- The password specified in the URI formed by combining *baseUri* and *relativeUri* is not valid.-or- The host name specified in the URI formed by combining *baseUri* and *relativeUri* is not valid.-or- The file name specified in the URI formed by combining *baseUri* and *relativeUri* is not valid. -or- The user name specified in the URI formed by combining *baseUri* and *relativeUri* is not valid.-or- The host or authority name specified in the URI formed by combining *baseUri* and *relativeUri* cannot be terminated by backslashes.-or- The port number specified in the URI formed by combining *baseUri* and *relativeUri* is not valid or cannot be parsed.-or- The length of the URI formed by combining *baseUri* and *relativeUri* exceeds 65519 characters.-or- The length of the scheme specified in the URI formed by combining *baseUri* and *relativeUri* exceeds 1023 characters.-or- There is an invalid character sequence in the URI formed by combining *baseUri* and *relativeUri*.-or- The MS-DOS path specified in *uriString* must start with c:\\.
 - uid: System.Uri.AbsolutePath
   id: AbsolutePath
   parent: System.Uri
@@ -175,12 +215,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the absolute path of the URI.
   syntax:
     content: public string AbsolutePath { get; }
     content.vb: Public ReadOnly Property AbsolutePath As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' containing the absolute path to the resource.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.AbsoluteUri
   id: AbsoluteUri
   parent: System.Uri
@@ -195,12 +240,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the absolute URI.
   syntax:
     content: public string AbsoluteUri { get; }
     content.vb: Public ReadOnly Property AbsoluteUri As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' containing the entire URI.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.Authority
   id: Authority
   parent: System.Uri
@@ -215,12 +265,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the Domain Name System (DNS) host name or IP address and the port number for a server.
   syntax:
     content: public string Authority { get; }
     content.vb: Public ReadOnly Property Authority As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' containing the authority component of the URI represented by this instance.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.DnsSafeHost
   id: DnsSafeHost
   parent: System.Uri
@@ -235,12 +290,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets an unescaped host name that is safe to use for DNS resolution.
   syntax:
     content: public string DnsSafeHost { get; }
     content.vb: Public ReadOnly Property DnsSafeHost As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' that contains the unescaped host part of the URI that is suitable for DNS resolution; or the original unescaped host string, if it is already suitable for resolution.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.Fragment
   id: Fragment
   parent: System.Uri
@@ -255,12 +315,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the escaped URI fragment.
   syntax:
     content: public string Fragment { get; }
     content.vb: Public ReadOnly Property Fragment As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' that contains any URI fragment information.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.Host
   id: Host
   parent: System.Uri
@@ -275,12 +340,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the host component of this instance.
   syntax:
     content: public string Host { get; }
     content.vb: Public ReadOnly Property Host As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' that contains the host name. This is usually the DNS host name or IP address of the server.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.HostNameType
   id: HostNameType
   parent: System.Uri
@@ -295,12 +365,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the type of the host name specified in the URI.
   syntax:
     content: public UriHostNameType HostNameType { get; }
     content.vb: Public ReadOnly Property HostNameType As UriHostNameType
     parameters: []
     return:
       type: System.UriHostNameType
+      description: A member of the @'System.UriHostNameType' enumeration.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.IdnHost
   id: IdnHost
   parent: System.Uri
@@ -315,12 +390,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: The RFC 3490 compliant International Domain Name of the host, using Punycode as appropriate.
   syntax:
     content: public string IdnHost { get; }
     content.vb: Public ReadOnly Property IdnHost As String
     parameters: []
     return:
       type: System.String
+      description: Returns the hostname, formatted with Punycode according to the IDN standard.@'System.String'.
 - uid: System.Uri.IsAbsoluteUri
   id: IsAbsoluteUri
   parent: System.Uri
@@ -335,12 +412,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets whether the @'System.Uri' instance is absolute.
   syntax:
     content: public bool IsAbsoluteUri { get; }
     content.vb: Public ReadOnly Property IsAbsoluteUri As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the @'System.Uri' instance is absolute; otherwise, false.
 - uid: System.Uri.IsDefaultPort
   id: IsDefaultPort
   parent: System.Uri
@@ -355,12 +434,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets whether the port value of the URI is the default for this scheme.
   syntax:
     content: public bool IsDefaultPort { get; }
     content.vb: Public ReadOnly Property IsDefaultPort As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the value in the @'System.Uri.Port' property is the default port for this scheme; otherwise, false.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.IsFile
   id: IsFile
   parent: System.Uri
@@ -375,12 +459,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets a value indicating whether the specified @'System.Uri' is a file URI.
   syntax:
     content: public bool IsFile { get; }
     content.vb: Public ReadOnly Property IsFile As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the @'System.Uri' is a file URI; otherwise, false.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.IsLoopback
   id: IsLoopback
   parent: System.Uri
@@ -395,12 +484,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets whether the specified @'System.Uri' references the local host.
   syntax:
     content: public bool IsLoopback { get; }
     content.vb: Public ReadOnly Property IsLoopback As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if this @'System.Uri' references the local host; otherwise, false.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.IsUnc
   id: IsUnc
   parent: System.Uri
@@ -415,12 +509,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets whether the specified @'System.Uri' is a universal naming convention (UNC) path.
   syntax:
     content: public bool IsUnc { get; }
     content.vb: Public ReadOnly Property IsUnc As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the @'System.Uri' is a UNC path; otherwise, false.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.LocalPath
   id: LocalPath
   parent: System.Uri
@@ -435,12 +534,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets a local operating-system representation of a file name.
   syntax:
     content: public string LocalPath { get; }
     content.vb: Public ReadOnly Property LocalPath As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' that contains the local operating-system representation of a file name.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.OriginalString
   id: OriginalString
   parent: System.Uri
@@ -455,12 +559,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the original URI string that was passed to the @'System.Uri' constructor.
   syntax:
     content: public string OriginalString { get; }
     content.vb: Public ReadOnly Property OriginalString As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' containing the exact URI specified when this instance was constructed; otherwise, @'System.String.Empty'.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.PathAndQuery
   id: PathAndQuery
   parent: System.Uri
@@ -475,12 +584,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the @'System.Uri.AbsolutePath' and @'System.Uri.Query' properties separated by a question mark (?).
   syntax:
     content: public string PathAndQuery { get; }
     content.vb: Public ReadOnly Property PathAndQuery As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' that contains the @'System.Uri.AbsolutePath' and @'System.Uri.Query' properties separated by a question mark (?).
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.Port
   id: Port
   parent: System.Uri
@@ -495,12 +609,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the port number of this URI.
   syntax:
     content: public int Port { get; }
     content.vb: Public ReadOnly Property Port As Integer
     parameters: []
     return:
       type: System.Int32
+      description: An @'System.Int32' value that contains the port number for this URI.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.Query
   id: Query
   parent: System.Uri
@@ -515,12 +634,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets any query information included in the specified URI.
   syntax:
     content: public string Query { get; }
     content.vb: Public ReadOnly Property Query As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' that contains any query information included in the specified URI.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.Scheme
   id: Scheme
   parent: System.Uri
@@ -535,12 +659,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the scheme name for this URI.
   syntax:
     content: public string Scheme { get; }
     content.vb: Public ReadOnly Property Scheme As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' that contains the scheme for this URI, converted to lowercase.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.Segments
   id: Segments
   parent: System.Uri
@@ -555,12 +684,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets an array containing the path segments that make up the specified URI.
   syntax:
     content: public string[] Segments { get; }
     content.vb: Public ReadOnly Property Segments As String()
     parameters: []
     return:
       type: System.String[]
+      description: A @'System.String' array that contains the path segments that make up the specified URI.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.UserEscaped
   id: UserEscaped
   parent: System.Uri
@@ -575,12 +709,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Indicates that the URI string was completely escaped before the @'System.Uri' instance was created.
   syntax:
     content: public bool UserEscaped { get; }
     content.vb: Public ReadOnly Property UserEscaped As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the *dontEscape* parameter was set to true when the @'System.Uri' instance was created; otherwise, false.
 - uid: System.Uri.UserInfo
   id: UserInfo
   parent: System.Uri
@@ -595,12 +731,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the user name, password, or other user-specific information associated with the specified URI.
   syntax:
     content: public string UserInfo { get; }
     content.vb: Public ReadOnly Property UserInfo As String
     parameters: []
     return:
       type: System.String
+      description: A @'System.String' that contains the user information associated with the URI. The returned value does not include the '@' character reserved for delimiting the user information part of the URI.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.CheckHostName(System.String)
   id: CheckHostName(System.String)
   parent: System.Uri
@@ -615,14 +756,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Determines whether the specified host name is a valid DNS name.
   syntax:
     content: public static UriHostNameType CheckHostName(string name)
     content.vb: Public Shared Function CheckHostName(name As String) As UriHostNameType
     parameters:
     - id: name
       type: System.String
+      description: The host name to validate. This can be an IPv4 or IPv6 address or an Internet host name.
     return:
       type: System.UriHostNameType
+      description: A @'System.UriHostNameType' that indicates the type of the host name. If the type of the host name cannot be determined or if the host name is null or a zero-length string, this method returns @'System.UriHostNameType.Unknown'.
 - uid: System.Uri.CheckSchemeName(System.String)
   id: CheckSchemeName(System.String)
   parent: System.Uri
@@ -637,14 +781,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Determines whether the specified scheme name is valid.
   syntax:
     content: public static bool CheckSchemeName(string schemeName)
     content.vb: Public Shared Function CheckSchemeName(schemeName As String) As Boolean
     parameters:
     - id: schemeName
       type: System.String
+      description: The scheme name to validate.
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the scheme name is valid; otherwise, false.
 - uid: System.Uri.Compare(System.Uri,System.Uri,System.UriComponents,System.UriFormat,System.StringComparison)
   id: Compare(System.Uri,System.Uri,System.UriComponents,System.UriFormat,System.StringComparison)
   parent: System.Uri
@@ -659,22 +806,32 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Compares the specified parts of two URIs using the specified comparison rules.
   syntax:
     content: public static int Compare(Uri uri1, Uri uri2, UriComponents partsToCompare, UriFormat compareFormat, StringComparison comparisonType)
     content.vb: Public Shared Function Compare(uri1 As Uri, uri2 As Uri, partsToCompare As UriComponents, compareFormat As UriFormat, comparisonType As StringComparison) As Integer
     parameters:
     - id: uri1
       type: System.Uri
+      description: The first @'System.Uri'.
     - id: uri2
       type: System.Uri
+      description: The second @'System.Uri'.
     - id: partsToCompare
       type: System.UriComponents
+      description: A bitwise combination of the @'System.UriComponents' values that specifies the parts of *uri1* and *uri2* to compare.
     - id: compareFormat
       type: System.UriFormat
+      description: One of the @'System.UriFormat' values that specifies the character escaping used when the URI components are compared.
     - id: comparisonType
       type: System.StringComparison
+      description: One of the @'System.StringComparison' values.
     return:
       type: System.Int32
+      description: An @'System.Int32' value that indicates the lexical relationship between the compared @'System.Uri' components.ValueMeaningLess than zero*uri1* is less than *uri2*.Zero*uri1* equals *uri2*.Greater than zero*uri1* is greater than *uri2*.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*comparisonType* is not a valid @''System.StringComparison'' value.'
 - uid: System.Uri.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.Uri
@@ -689,14 +846,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Compares two @'System.Uri' instances for equality.
   syntax:
     content: public override bool Equals(object comparand)
     content.vb: Public Overrides Function Equals(comparand As Object) As Boolean
     parameters:
     - id: comparand
       type: System.Object
+      description: The @'System.Uri' instance or a URI identifier to compare with the current instance.
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the two instances represent the same URI; otherwise, false.
   overridden: System.Object.Equals(System.Object)
 - uid: System.Uri.EscapeDataString(System.String)
   id: EscapeDataString(System.String)
@@ -712,14 +872,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts a string to its escaped representation.
   syntax:
     content: public static string EscapeDataString(string stringToEscape)
     content.vb: Public Shared Function EscapeDataString(stringToEscape As String) As String
     parameters:
     - id: stringToEscape
       type: System.String
+      description: The string to escape.
     return:
       type: System.String
+      description: A @'System.String' that contains the escaped representation of *stringToEscape*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*stringToEscape* is null.'
+  - type: System.UriFormatException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.FormatException', instead.The length of *stringToEscape* exceeds 32766 characters.
 - uid: System.Uri.EscapeUriString(System.String)
   id: EscapeUriString(System.String)
   parent: System.Uri
@@ -734,14 +902,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts a URI string to its escaped representation.
   syntax:
     content: public static string EscapeUriString(string stringToEscape)
     content.vb: Public Shared Function EscapeUriString(stringToEscape As String) As String
     parameters:
     - id: stringToEscape
       type: System.String
+      description: The string to escape.
     return:
       type: System.String
+      description: A @'System.String' that contains the escaped representation of *stringToEscape*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*stringToEscape* is null.'
+  - type: System.UriFormatException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.FormatException', instead.The length of *stringToEscape* exceeds 32766 characters.
 - uid: System.Uri.GetComponents(System.UriComponents,System.UriFormat)
   id: GetComponents(System.UriComponents,System.UriFormat)
   parent: System.Uri
@@ -756,16 +932,25 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the specified components of the current instance using the specified escaping for special characters.
   syntax:
     content: public string GetComponents(UriComponents components, UriFormat format)
     content.vb: Public Function GetComponents(components As UriComponents, format As UriFormat) As String
     parameters:
     - id: components
       type: System.UriComponents
+      description: A bitwise combination of the @'System.UriComponents' values that specifies which parts of the current instance to return to the caller.
     - id: format
       type: System.UriFormat
+      description: One of the @'System.UriFormat' values that controls how special characters are escaped.
     return:
       type: System.String
+      description: A @'System.String' that contains the components.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*uriComponents* is not a combination of valid @''System.UriComponents'' values.'
+  - type: System.InvalidOperationException
+    description: The current @'System.Uri' is not an absolute URI. Relative URIs cannot be used with this method.
 - uid: System.Uri.GetHashCode
   id: GetHashCode
   parent: System.Uri
@@ -780,11 +965,13 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the hash code for the URI.
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
+      description: An @'System.Int32' containing the hash value generated for this URI.
   overridden: System.Object.GetHashCode
 - uid: System.Uri.IsBaseOf(System.Uri)
   id: IsBaseOf(System.Uri)
@@ -800,14 +987,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Determines whether the current @'System.Uri' instance is a base of the specified @'System.Uri' instance.
   syntax:
     content: public bool IsBaseOf(Uri uri)
     content.vb: Public Function IsBaseOf(uri As Uri) As Boolean
     parameters:
     - id: uri
       type: System.Uri
+      description: The specified @'System.Uri' instance to test.
     return:
       type: System.Boolean
+      description: true if the current @'System.Uri' instance is a base of *uri*; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*uri* is null.'
 - uid: System.Uri.IsWellFormedOriginalString
   id: IsWellFormedOriginalString
   parent: System.Uri
@@ -822,11 +1015,13 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Indicates whether the string used to construct this @'System.Uri' was well-formed and is not required to be further escaped.
   syntax:
     content: public bool IsWellFormedOriginalString()
     content.vb: Public Function IsWellFormedOriginalString As Boolean
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the string was well-formed; else false.
 - uid: System.Uri.IsWellFormedUriString(System.String,System.UriKind)
   id: IsWellFormedUriString(System.String,System.UriKind)
   parent: System.Uri
@@ -841,16 +1036,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Indicates whether the string is well-formed by attempting to construct a URI with the string and ensures that the string does not require further escaping.
   syntax:
     content: public static bool IsWellFormedUriString(string uriString, UriKind uriKind)
     content.vb: Public Shared Function IsWellFormedUriString(uriString As String, uriKind As UriKind) As Boolean
     parameters:
     - id: uriString
       type: System.String
+      description: The string used to attempt to construct a @'System.Uri'.
     - id: uriKind
       type: System.UriKind
+      description: The type of the @'System.Uri' in *uriString*.
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the string was well-formed; else false.
 - uid: System.Uri.MakeRelativeUri(System.Uri)
   id: MakeRelativeUri(System.Uri)
   parent: System.Uri
@@ -865,14 +1064,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Determines the difference between two @'System.Uri' instances.
   syntax:
     content: public Uri MakeRelativeUri(Uri uri)
     content.vb: Public Function MakeRelativeUri(uri As Uri) As Uri
     parameters:
     - id: uri
       type: System.Uri
+      description: The URI to compare to the current URI.
     return:
       type: System.Uri
+      description: If the hostname and scheme of this URI instance and *uri* are the same, then this method returns a relative @'System.Uri' that, when appended to the current URI instance, yields *uri*.If the hostname or scheme is different, then this method returns a @'System.Uri'  that represents the *uri* parameter.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*uri* is null.'
+  - type: System.InvalidOperationException
+    description: This instance represents a relative URI, and this property is valid only for absolute URIs.
 - uid: System.Uri.op_Equality(System.Uri,System.Uri)
   id: op_Equality(System.Uri,System.Uri)
   parent: System.Uri
@@ -887,16 +1094,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Determines whether two @'System.Uri' instances have the same value.
   syntax:
     content: public static bool operator ==(Uri uri1, Uri uri2)
     content.vb: Public Shared Operator =(uri1 As Uri, uri2 As Uri) As Boolean
     parameters:
     - id: uri1
       type: System.Uri
+      description: A @'System.Uri' instance to compare with *uri2*.
     - id: uri2
       type: System.Uri
+      description: A @'System.Uri' instance to compare with *uri1*.
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the @'System.Uri' instances are equivalent; otherwise, false.
 - uid: System.Uri.op_Inequality(System.Uri,System.Uri)
   id: op_Inequality(System.Uri,System.Uri)
   parent: System.Uri
@@ -911,16 +1122,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Determines whether two @'System.Uri' instances do not have the same value.
   syntax:
     content: public static bool operator !=(Uri uri1, Uri uri2)
     content.vb: Public Shared Operator <>(uri1 As Uri, uri2 As Uri) As Boolean
     parameters:
     - id: uri1
       type: System.Uri
+      description: A @'System.Uri' instance to compare with *uri2*.
     - id: uri2
       type: System.Uri
+      description: A @'System.Uri' instance to compare with *uri1*.
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the two @'System.Uri' instances are not equal; otherwise, false. If either parameter is null, this method returns true.
 - uid: System.Uri.ToString
   id: ToString
   parent: System.Uri
@@ -935,11 +1150,13 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets a canonical string representation for the specified @'System.Uri' instance.
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
+      description: 'A @''System.String'' instance that contains the unescaped canonical representation of the @''System.Uri'' instance. All characters are unescaped except #, ?, and %.'
   overridden: System.Object.ToString
 - uid: System.Uri.TryCreate(System.String,System.UriKind,System.Uri@)
   id: TryCreate(System.String,System.UriKind,System.Uri@)
@@ -957,18 +1174,23 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Creates a new @'System.Uri' using the specified @'System.String' instance and a @'System.UriKind'.
   syntax:
     content: public static bool TryCreate(string uriString, UriKind uriKind, out Uri result)
     content.vb: Public Shared Function TryCreate(uriString As String, uriKind As UriKind, ByRef result As Uri) As Boolean
     parameters:
     - id: uriString
       type: System.String
+      description: The @'System.String' representing the @'System.Uri'.
     - id: uriKind
       type: System.UriKind
+      description: The type of the Uri.
     - id: result
       type: System.Uri
+      description: When this method returns, contains the constructed @'System.Uri'.
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the @'System.Uri' was successfully created; otherwise, false.
 - uid: System.Uri.TryCreate(System.Uri,System.String,System.Uri@)
   id: TryCreate(System.Uri,System.String,System.Uri@)
   parent: System.Uri
@@ -985,18 +1207,23 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Creates a new @'System.Uri' using the specified base and relative @'System.String' instances.
   syntax:
     content: public static bool TryCreate(Uri baseUri, string relativeUri, out Uri result)
     content.vb: Public Shared Function TryCreate(baseUri As Uri, relativeUri As String, ByRef result As Uri) As Boolean
     parameters:
     - id: baseUri
       type: System.Uri
+      description: The base @'System.Uri'.
     - id: relativeUri
       type: System.String
+      description: The relative @'System.Uri', represented as a @'System.String', to add to the base @'System.Uri'.
     - id: result
       type: System.Uri
+      description: When this method returns, contains a @'System.Uri' constructed from *baseUri* and *relativeUri*. This parameter is passed uninitialized.
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the @'System.Uri' was successfully created; otherwise, false.
 - uid: System.Uri.TryCreate(System.Uri,System.Uri,System.Uri@)
   id: TryCreate(System.Uri,System.Uri,System.Uri@)
   parent: System.Uri
@@ -1013,18 +1240,26 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Creates a new @'System.Uri' using the specified base and relative @'System.Uri' instances.
   syntax:
     content: public static bool TryCreate(Uri baseUri, Uri relativeUri, out Uri result)
     content.vb: Public Shared Function TryCreate(baseUri As Uri, relativeUri As Uri, ByRef result As Uri) As Boolean
     parameters:
     - id: baseUri
       type: System.Uri
+      description: The base @'System.Uri'.
     - id: relativeUri
       type: System.Uri
+      description: The relative @'System.Uri' to add to the base @'System.Uri'.
     - id: result
       type: System.Uri
+      description: When this method returns, contains a @'System.Uri' constructed from *baseUri* and *relativeUri*. This parameter is passed uninitialized.
     return:
       type: System.Boolean
+      description: A @'System.Boolean' value that is true if the @'System.Uri' was successfully created; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*baseUri* is null.'
 - uid: System.Uri.UnescapeDataString(System.String)
   id: UnescapeDataString(System.String)
   parent: System.Uri
@@ -1039,14 +1274,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts a string to its unescaped representation.
   syntax:
     content: public static string UnescapeDataString(string stringToUnescape)
     content.vb: Public Shared Function UnescapeDataString(stringToUnescape As String) As String
     parameters:
     - id: stringToUnescape
       type: System.String
+      description: The string to unescape.
     return:
       type: System.String
+      description: A @'System.String' that contains the unescaped representation of *stringToUnescape*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*stringToUnescape* is null.'
 references:
 - uid: System
   isExternal: false
@@ -1352,3 +1593,40 @@ references:
     fullName: (
   - name: )
     fullName: )
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.UriFormatException
+  isExternal: false
+  href: System.UriFormatException.yml
+  name: UriFormatException
+  fullName: System.UriFormatException
+  type: Class
+  summary: The exception that is thrown when an invalid Uniform Resource Identifier (URI) is detected.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.

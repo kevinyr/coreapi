@@ -32,6 +32,7 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Discovers the attributes of a property and provides access to property metadata.
   syntax:
     content: 'public abstract class PropertyInfo : MemberInfo'
     content.vb: Public MustInherit Class PropertyInfo Inherits MemberInfo
@@ -62,12 +63,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets the attributes for this property.
   syntax:
     content: public abstract PropertyAttributes Attributes { get; }
     content.vb: Public MustOverride ReadOnly Property Attributes As PropertyAttributes
     parameters: []
     return:
       type: System.Reflection.PropertyAttributes
+      description: Attributes of this property.
 - uid: System.Reflection.PropertyInfo.CanRead
   id: CanRead
   parent: System.Reflection.PropertyInfo
@@ -82,12 +85,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets a value indicating whether the property can be read.
   syntax:
     content: public abstract bool CanRead { get; }
     content.vb: Public MustOverride ReadOnly Property CanRead As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if this property can be read; otherwise, false.
 - uid: System.Reflection.PropertyInfo.CanWrite
   id: CanWrite
   parent: System.Reflection.PropertyInfo
@@ -102,12 +107,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets a value indicating whether the property can be written to.
   syntax:
     content: public abstract bool CanWrite { get; }
     content.vb: Public MustOverride ReadOnly Property CanWrite As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if this property can be written to; otherwise, false.
 - uid: System.Reflection.PropertyInfo.GetMethod
   id: GetMethod
   parent: System.Reflection.PropertyInfo
@@ -122,12 +129,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets the get accessor for this property.
   syntax:
     content: public virtual MethodInfo GetMethod { get; }
     content.vb: Public Overridable ReadOnly Property GetMethod As MethodInfo
     parameters: []
     return:
       type: System.Reflection.MethodInfo
+      description: The get accessor for this property.
 - uid: System.Reflection.PropertyInfo.IsSpecialName
   id: IsSpecialName
   parent: System.Reflection.PropertyInfo
@@ -142,12 +151,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets a value indicating whether the property is the special name.
   syntax:
     content: public bool IsSpecialName { get; }
     content.vb: Public ReadOnly Property IsSpecialName As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if this property is the special name; otherwise, false.
 - uid: System.Reflection.PropertyInfo.PropertyType
   id: PropertyType
   parent: System.Reflection.PropertyInfo
@@ -162,12 +173,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets the type of this property.
   syntax:
     content: public abstract Type PropertyType { get; }
     content.vb: Public MustOverride ReadOnly Property PropertyType As Type
     parameters: []
     return:
       type: System.Type
+      description: The type of this property.
 - uid: System.Reflection.PropertyInfo.SetMethod
   id: SetMethod
   parent: System.Reflection.PropertyInfo
@@ -182,12 +195,14 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Gets the set accessor for this property.
   syntax:
     content: public virtual MethodInfo SetMethod { get; }
     content.vb: Public Overridable ReadOnly Property SetMethod As MethodInfo
     parameters: []
     return:
       type: System.Reflection.MethodInfo
+      description: The set accessor for this property, or null if the property is read-only.
 - uid: System.Reflection.PropertyInfo.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.Reflection.PropertyInfo
@@ -202,14 +217,17 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Returns a value that indicates whether this instance is equal to a specified object.
   syntax:
     content: public override bool Equals(object obj)
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
     parameters:
     - id: obj
       type: System.Object
+      description: An object to compare with this instance, or null.
     return:
       type: System.Boolean
+      description: true if *obj* equals the type and value of this instance; otherwise, false.
   overridden: System.Reflection.MemberInfo.Equals(System.Object)
 - uid: System.Reflection.PropertyInfo.GetConstantValue
   id: GetConstantValue
@@ -225,11 +243,18 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Returns a literal value associated with the property by a compiler.
   syntax:
     content: public virtual object GetConstantValue()
     content.vb: Public Overridable Function GetConstantValue As Object
     return:
       type: System.Object
+      description: An @'System.Object' that contains the literal value associated with the property. If the literal value is a class type with an element value of zero, the return value is null.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The Constant table in unmanaged metadata does not contain a constant value for the current property.
+  - type: System.FormatException
+    description: The type of the value is not one of the types permitted by the Common Language Specification (CLS). See the ECMA Partition II specification, Metadata.
 - uid: System.Reflection.PropertyInfo.GetHashCode
   id: GetHashCode
   parent: System.Reflection.PropertyInfo
@@ -244,11 +269,13 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Returns the hash code for this instance.
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
+      description: A 32-bit signed integer hash code.
   overridden: System.Reflection.MemberInfo.GetHashCode
 - uid: System.Reflection.PropertyInfo.GetIndexParameters
   id: GetIndexParameters
@@ -264,11 +291,13 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: When overridden in a derived class, returns an array of all the index parameters for the property.
   syntax:
     content: public abstract ParameterInfo[] GetIndexParameters()
     content.vb: Public MustOverride Function GetIndexParameters As ParameterInfo()
     return:
       type: System.Reflection.ParameterInfo[]
+      description: An array of type ParameterInfo containing the parameters for the indexes. If the property is not indexed, the array has 0 (zero) elements.
 - uid: System.Reflection.PropertyInfo.GetValue(System.Object)
   id: GetValue(System.Object)
   parent: System.Reflection.PropertyInfo
@@ -283,14 +312,17 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Returns the property value of a specified object.
   syntax:
     content: public object GetValue(object obj)
     content.vb: Public Function GetValue(obj As Object) As Object
     parameters:
     - id: obj
       type: System.Object
+      description: The object whose property value will be returned.
     return:
       type: System.Object
+      description: The property value of the specified object.
 - uid: System.Reflection.PropertyInfo.GetValue(System.Object,System.Object[])
   id: GetValue(System.Object,System.Object[])
   parent: System.Reflection.PropertyInfo
@@ -307,16 +339,31 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Returns the property value of a specified object with optional index values for indexed properties.
   syntax:
     content: public virtual object GetValue(object obj, object[] index)
     content.vb: Public Overridable Function GetValue(obj As Object, index As Object()) As Object
     parameters:
     - id: obj
       type: System.Object
+      description: The object whose property value will be returned.
     - id: index
       type: System.Object[]
+      description: Optional index values for indexed properties. The indexes of indexed properties are zero-based. This value should be null for non-indexed properties.
     return:
       type: System.Object
+      description: The property value of the specified object.
+  exceptions:
+  - type: System.ArgumentException
+    description: The *index* array does not contain the type of arguments needed.-or- The property's get accessor is not found.
+  - type: System.Reflection.TargetException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch @'System.Exception' instead.The object does not match the target type, or a property is an instance property but *obj* is null.
+  - type: System.Reflection.TargetParameterCountException
+    description: The number of parameters in *index* does not match the number of parameters the indexed property takes.
+  - type: System.MethodAccessException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.MemberAccessException', instead.There was an illegal attempt to access a private or protected method inside a class.
+  - type: System.Reflection.TargetInvocationException
+    description: An error occurred while retrieving the property value. For example, an index value specified for an indexed property is out of range. The @'System.Exception.InnerException' property indicates the reason for the error.
 - uid: System.Reflection.PropertyInfo.SetValue(System.Object,System.Object)
   id: SetValue(System.Object,System.Object)
   parent: System.Reflection.PropertyInfo
@@ -331,14 +378,26 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Sets the property value of a specified object.
   syntax:
     content: public void SetValue(object obj, object value)
     content.vb: Public Sub SetValue(obj As Object, value As Object)
     parameters:
     - id: obj
       type: System.Object
+      description: The object whose property value will be set.
     - id: value
       type: System.Object
+      description: The new property value.
+  exceptions:
+  - type: System.ArgumentException
+    description: The property's set accessor is not found. -or-*value* cannot be converted to the type of @'System.Reflection.PropertyInfo.PropertyType'.
+  - type: System.Reflection.TargetException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch @'System.Exception' instead.The type of *obj* does not match the target type, or a property is an instance property but *obj* is null.
+  - type: System.MethodAccessException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.MemberAccessException', instead. There was an illegal attempt to access a private or protected method inside a class.
+  - type: System.Reflection.TargetInvocationException
+    description: An error occurred while setting the property value. The @'System.Exception.InnerException' property indicates the reason for the error.
 - uid: System.Reflection.PropertyInfo.SetValue(System.Object,System.Object,System.Object[])
   id: SetValue(System.Object,System.Object,System.Object[])
   parent: System.Reflection.PropertyInfo
@@ -355,16 +414,31 @@ items:
   assemblies:
   - System.Reflection
   namespace: System.Reflection
+  summary: Sets the property value of a specified object with optional index values for index properties.
   syntax:
     content: public virtual void SetValue(object obj, object value, object[] index)
     content.vb: Public Overridable Sub SetValue(obj As Object, value As Object, index As Object())
     parameters:
     - id: obj
       type: System.Object
+      description: The object whose property value will be set.
     - id: value
       type: System.Object
+      description: The new property value.
     - id: index
       type: System.Object[]
+      description: Optional index values for indexed properties. This value should be null for non-indexed properties.
+  exceptions:
+  - type: System.ArgumentException
+    description: The *index* array does not contain the type of arguments needed.-or- The property's set accessor is not found. -or-*value* cannot be converted to the type of @'System.Reflection.PropertyInfo.PropertyType'.
+  - type: System.Reflection.TargetException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch @'System.Exception' instead.The object does not match the target type, or a property is an instance property but *obj* is null.
+  - type: System.Reflection.TargetParameterCountException
+    description: The number of parameters in *index* does not match the number of parameters the indexed property takes.
+  - type: System.MethodAccessException
+    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, @'System.MemberAccessException', instead.There was an illegal attempt to access a private or protected method inside a class.
+  - type: System.Reflection.TargetInvocationException
+    description: An error occurred while setting the property value. For example, an index value specified for an indexed property is out of range. The @'System.Exception.InnerException' property indicates the reason for the error.
 references:
 - uid: System.Reflection
   isExternal: false
@@ -701,3 +775,49 @@ references:
     isExternal: true
   - name: ()
     fullName: ()
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.FormatException
+  parent: System
+  isExternal: false
+  href: System.FormatException.yml
+  name: FormatException
+  fullName: System.FormatException
+  type: Class
+  summary: The exception that is thrown when the format of an argument is invalid, or when a composite format string is not well formed.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.Reflection.TargetException
+- uid: System.Reflection.TargetParameterCountException
+  isExternal: false
+  href: System.Reflection.TargetParameterCountException.yml
+  name: TargetParameterCountException
+  fullName: System.Reflection.TargetParameterCountException
+  type: Class
+  summary: The exception that is thrown when the number of parameters for an invocation does not match the number expected. This class cannot be inherited.
+- uid: System.MethodAccessException
+  isExternal: false
+  href: System.MethodAccessException.yml
+  name: MethodAccessException
+  fullName: System.MethodAccessException
+  type: Class
+  summary: The exception that is thrown when there is an invalid attempt to access a method, such as accessing a private method from partially trusted code.
+- uid: System.Reflection.TargetInvocationException
+  isExternal: false
+  href: System.Reflection.TargetInvocationException.yml
+  name: TargetInvocationException
+  fullName: System.Reflection.TargetInvocationException
+  type: Class
+  summary: The exception that is thrown by methods invoked through reflection. This class cannot be inherited.

@@ -27,6 +27,7 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Provides a mutual exclusion lock primitive where a thread trying to acquire the lock waits in a loop repeatedly checking until the lock becomes available.
   syntax:
     content: public struct SpinLock
     content.vb: Public Structure SpinLock
@@ -51,12 +52,14 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Initializes a new instance of the @'System.Threading.SpinLock' structure with the option to track thread IDs to improve debugging.
   syntax:
     content: public SpinLock(bool enableThreadOwnerTracking)
     content.vb: Public Sub New(enableThreadOwnerTracking As Boolean)
     parameters:
     - id: enableThreadOwnerTracking
       type: System.Boolean
+      description: Whether to capture and use thread IDs for debugging purposes.
 - uid: System.Threading.SpinLock.IsHeld
   id: IsHeld
   parent: System.Threading.SpinLock
@@ -71,12 +74,14 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Gets whether the lock is currently held by any thread.
   syntax:
     content: public bool IsHeld { get; }
     content.vb: Public ReadOnly Property IsHeld As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the lock is currently held by any thread; otherwise false.
 - uid: System.Threading.SpinLock.IsHeldByCurrentThread
   id: IsHeldByCurrentThread
   parent: System.Threading.SpinLock
@@ -91,12 +96,17 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Gets whether the lock is held by the current thread.
   syntax:
     content: public bool IsHeldByCurrentThread { get; }
     content.vb: Public ReadOnly Property IsHeldByCurrentThread As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if the lock is held by the current thread; otherwise false.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: Thread ownership tracking is disabled.
 - uid: System.Threading.SpinLock.IsThreadOwnerTrackingEnabled
   id: IsThreadOwnerTrackingEnabled
   parent: System.Threading.SpinLock
@@ -111,12 +121,14 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Gets whether thread ownership tracking is enabled for this instance.
   syntax:
     content: public bool IsThreadOwnerTrackingEnabled { get; }
     content.vb: Public ReadOnly Property IsThreadOwnerTrackingEnabled As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if thread ownership tracking is enabled for this instance; otherwise false.
 - uid: System.Threading.SpinLock.Enter(System.Boolean@)
   id: Enter(System.Boolean@)
   parent: System.Threading.SpinLock
@@ -133,12 +145,19 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Acquires the lock in a reliable manner, such that even if an exception occurs within the method call, *lockTaken* can be examined reliably to determine whether the lock was acquired.
   syntax:
     content: public void Enter(ref bool lockTaken)
     content.vb: Public Sub Enter(ByRef lockTaken As Boolean)
     parameters:
     - id: lockTaken
       type: System.Boolean
+      description: True if the lock is acquired; otherwise, false. *lockTaken* must be initialized to false prior to calling this method.
+  exceptions:
+  - type: System.ArgumentException
+    description: The *lockTaken* argument must be initialized to false prior to calling Enter.
+  - type: System.Threading.LockRecursionException
+    description: Thread ownership tracking is enabled, and the current thread has already acquired this lock.
 - uid: System.Threading.SpinLock.Exit
   id: Exit
   parent: System.Threading.SpinLock
@@ -153,9 +172,13 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Releases the lock.
   syntax:
     content: public void Exit()
     content.vb: Public Sub Exit
+  exceptions:
+  - type: System.Threading.SynchronizationLockException
+    description: Thread ownership tracking is enabled, and the current thread is not the owner of this lock.
 - uid: System.Threading.SpinLock.Exit(System.Boolean)
   id: Exit(System.Boolean)
   parent: System.Threading.SpinLock
@@ -170,12 +193,17 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Releases the lock.
   syntax:
     content: public void Exit(bool useMemoryBarrier)
     content.vb: Public Sub Exit(useMemoryBarrier As Boolean)
     parameters:
     - id: useMemoryBarrier
       type: System.Boolean
+      description: A Boolean value that indicates whether a memory fence should be issued in order to immediately publish the exit operation to other threads.
+  exceptions:
+  - type: System.Threading.SynchronizationLockException
+    description: Thread ownership tracking is enabled, and the current thread is not the owner of this lock.
 - uid: System.Threading.SpinLock.TryEnter(System.Boolean@)
   id: TryEnter(System.Boolean@)
   parent: System.Threading.SpinLock
@@ -192,12 +220,19 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Attempts to acquire the lock in a reliable manner, such that even if an exception occurs within the method call, *lockTaken* can be examined reliably to determine whether the lock was acquired.
   syntax:
     content: public void TryEnter(ref bool lockTaken)
     content.vb: Public Sub TryEnter(ByRef lockTaken As Boolean)
     parameters:
     - id: lockTaken
       type: System.Boolean
+      description: True if the lock is acquired; otherwise, false. *lockTaken* must be initialized to false prior to calling this method.
+  exceptions:
+  - type: System.ArgumentException
+    description: The *lockTaken* argument must be initialized to false prior to calling TryEnter.
+  - type: System.Threading.LockRecursionException
+    description: Thread ownership tracking is enabled, and the current thread has already acquired this lock.
 - uid: System.Threading.SpinLock.TryEnter(System.Int32,System.Boolean@)
   id: TryEnter(System.Int32,System.Boolean@)
   parent: System.Threading.SpinLock
@@ -214,14 +249,24 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Attempts to acquire the lock in a reliable manner, such that even if an exception occurs within the method call, *lockTaken* can be examined reliably to determine whether the lock was acquired.
   syntax:
     content: public void TryEnter(int millisecondsTimeout, ref bool lockTaken)
     content.vb: Public Sub TryEnter(millisecondsTimeout As Integer, ByRef lockTaken As Boolean)
     parameters:
     - id: millisecondsTimeout
       type: System.Int32
+      description: The number of milliseconds to wait, or @'System.Threading.Timeout.Infinite' (-1) to wait indefinitely.
     - id: lockTaken
       type: System.Boolean
+      description: True if the lock is acquired; otherwise, false. *lockTaken* must be initialized to false prior to calling this method.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*millisecondsTimeout* is a negative number other than -1, which represents an infinite time-out.'
+  - type: System.ArgumentException
+    description: The *lockTaken* argument must be initialized to false prior to calling TryEnter.
+  - type: System.Threading.LockRecursionException
+    description: Thread ownership tracking is enabled, and the current thread has already acquired this lock.
 - uid: System.Threading.SpinLock.TryEnter(System.TimeSpan,System.Boolean@)
   id: TryEnter(System.TimeSpan,System.Boolean@)
   parent: System.Threading.SpinLock
@@ -238,14 +283,24 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Attempts to acquire the lock in a reliable manner, such that even if an exception occurs within the method call, *lockTaken* can be examined reliably to determine whether the lock was acquired.
   syntax:
     content: public void TryEnter(TimeSpan timeout, ref bool lockTaken)
     content.vb: Public Sub TryEnter(timeout As TimeSpan, ByRef lockTaken As Boolean)
     parameters:
     - id: timeout
       type: System.TimeSpan
+      description: A @'System.TimeSpan' that represents the number of milliseconds to wait, or a @'System.TimeSpan' that represents -1 milliseconds to wait indefinitely.
     - id: lockTaken
       type: System.Boolean
+      description: True if the lock is acquired; otherwise, false. *lockTaken* must be initialized to false prior to calling this method.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*timeout* is a negative number other than -1 milliseconds, which represents an infinite time-out -or- timeout is greater than @''System.Int32.MaxValue'' milliseconds.'
+  - type: System.ArgumentException
+    description: The *lockTaken* argument must be initialized to false prior to calling TryEnter.
+  - type: System.Threading.LockRecursionException
+    description: Thread ownership tracking is enabled, and the current thread has already acquired this lock.
 references:
 - uid: System.Threading
   isExternal: false
@@ -481,3 +536,40 @@ references:
   name: TimeSpan
   fullName: System.TimeSpan
   type: Struct
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.Threading.LockRecursionException
+  isExternal: false
+  href: System.Threading.LockRecursionException.yml
+  name: LockRecursionException
+  fullName: System.Threading.LockRecursionException
+  type: Class
+  summary: The exception that is thrown when recursive entry into a lock is not compatible with the recursion policy for the lock.
+- uid: System.Threading.SynchronizationLockException
+  isExternal: false
+  href: System.Threading.SynchronizationLockException.yml
+  name: SynchronizationLockException
+  fullName: System.Threading.SynchronizationLockException
+  type: Class
+  summary: The exception that is thrown when a method requires the caller to own the lock on a given Monitor, and the method is invoked by a caller that does not own that lock.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.

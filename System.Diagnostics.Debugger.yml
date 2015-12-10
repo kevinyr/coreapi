@@ -20,6 +20,7 @@ items:
   assemblies:
   - System.Diagnostics.Debug
   namespace: System.Diagnostics
+  summary: Enables communication with a debugger. This class cannot be inherited.
   syntax:
     content: public class Debugger
     content.vb: Public Class Debugger
@@ -46,12 +47,14 @@ items:
   assemblies:
   - System.Diagnostics.Debug
   namespace: System.Diagnostics
+  summary: Gets a value that indicates whether a debugger is attached to the process.
   syntax:
     content: public static bool IsAttached { get; }
     content.vb: Public Shared ReadOnly Property IsAttached As Boolean
     parameters: []
     return:
       type: System.Boolean
+      description: true if a debugger is attached; otherwise, false.
 - uid: System.Diagnostics.Debugger.Break
   id: Break
   parent: System.Diagnostics.Debugger
@@ -66,9 +69,13 @@ items:
   assemblies:
   - System.Diagnostics.Debug
   namespace: System.Diagnostics
+  summary: Signals a breakpoint to an attached debugger.
   syntax:
     content: public static void Break()
     content.vb: Public Shared Sub Break
+  exceptions:
+  - type: System.Security.SecurityException
+    description: The @'System.Security.Permissions.UIPermission' is not set to break into the debugger.
 - uid: System.Diagnostics.Debugger.Launch
   id: Launch
   parent: System.Diagnostics.Debugger
@@ -83,11 +90,16 @@ items:
   assemblies:
   - System.Diagnostics.Debug
   namespace: System.Diagnostics
+  summary: Launches and attaches a debugger to the process.
   syntax:
     content: public static bool Launch()
     content.vb: Public Shared Function Launch As Boolean
     return:
       type: System.Boolean
+      description: true if the startup is successful or if the debugger is already attached; otherwise, false.
+  exceptions:
+  - type: System.Security.SecurityException
+    description: The @'System.Security.Permissions.UIPermission' is not set to start the debugger.
 references:
 - uid: System.Diagnostics
   isExternal: false
@@ -322,3 +334,10 @@ references:
   name: Boolean
   fullName: System.Boolean
   type: Struct
+- uid: System.Security.SecurityException
+  isExternal: false
+  href: System.Security.SecurityException.yml
+  name: SecurityException
+  fullName: System.Security.SecurityException
+  type: Class
+  summary: The exception that is thrown when a security error is detected.

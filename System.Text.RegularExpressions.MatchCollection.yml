@@ -15,14 +15,15 @@ items:
   type: Class
   source:
     remote: &o0
-      path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatchCollection.cs
+      path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
       branch: master
       repo: https://vicancy@github.com/dotnet/corefx.git
-    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatchCollection.cs
-    startLine: 21
+    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+    startLine: 52
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
+  summary: Represents the set of successful matches found by iteratively applying a regular expression pattern to the input string.
   syntax:
     content: 'public class MatchCollection : ICollection, IEnumerable'
     content.vb: Public Class MatchCollection Implements ICollection, IEnumerable
@@ -48,17 +49,22 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatchCollection.cs
-    startLine: 50
+    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+    startLine: 55
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
+  summary: Gets the number of matches.
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
     parameters: []
     return:
       type: System.Int32
+      description: The number of matches.
+  exceptions:
+  - type: System.Text.RegularExpressions.RegexMatchTimeoutException
+    description: A time-out occurred.
 - uid: System.Text.RegularExpressions.MatchCollection.Item(System.Int32)
   id: Item(System.Int32)
   parent: System.Text.RegularExpressions.MatchCollection
@@ -70,19 +76,27 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatchCollection.cs
-    startLine: 62
+    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+    startLine: 56
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
+  summary: Gets an individual member of the collection.
   syntax:
     content: public virtual Match this[int i] { get; }
     content.vb: Public Overridable ReadOnly Property Item(i As Integer) As Match
     parameters:
     - id: i
       type: System.Int32
+      description: Index into the @'System.Text.RegularExpressions.Match' collection.
     return:
       type: System.Text.RegularExpressions.Match
+      description: The captured substring at position *i* in the collection.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*i* is less than 0 or greater than or equal to @''System.Text.RegularExpressions.MatchCollection.Count''.'
+  - type: System.Text.RegularExpressions.RegexMatchTimeoutException
+    description: A time-out occurred.
 - uid: System.Text.RegularExpressions.MatchCollection.System#Collections#ICollection#IsSynchronized
   id: System#Collections#ICollection#IsSynchronized
   parent: System.Text.RegularExpressions.MatchCollection
@@ -93,8 +107,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatchCollection.cs
-    startLine: 125
+    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+    startLine: 57
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
@@ -114,8 +128,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatchCollection.cs
-    startLine: 130
+    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+    startLine: 58
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
@@ -134,16 +148,21 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatchCollection.cs
-    startLine: 81
+    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+    startLine: 59
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
+  summary: Provides an enumerator that iterates through the collection.
   syntax:
     content: public IEnumerator GetEnumerator()
     content.vb: Public Function GetEnumerator As IEnumerator
     return:
       type: System.Collections.IEnumerator
+      description: An object that contains all @'System.Text.RegularExpressions.Match' objects within the @'System.Text.RegularExpressions.MatchCollection'.
+  exceptions:
+  - type: System.Text.RegularExpressions.RegexMatchTimeoutException
+    description: A time-out occurred.
 - uid: System.Text.RegularExpressions.MatchCollection.System#Collections#ICollection#CopyTo(System.Array,System.Int32)
   id: System#Collections#ICollection#CopyTo(System.Array,System.Int32)
   parent: System.Text.RegularExpressions.MatchCollection
@@ -154,8 +173,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatchCollection.cs
-    startLine: 135
+    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+    startLine: 60
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
@@ -434,3 +453,17 @@ references:
   name: Array
   fullName: System.Array
   type: Class
+- uid: System.Text.RegularExpressions.RegexMatchTimeoutException
+  isExternal: false
+  href: System.Text.RegularExpressions.RegexMatchTimeoutException.yml
+  name: RegexMatchTimeoutException
+  fullName: System.Text.RegularExpressions.RegexMatchTimeoutException
+  type: Class
+  summary: The exception that is thrown when the execution time of a regular expression pattern-matching method exceeds its time-out interval.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.

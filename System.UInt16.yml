@@ -50,6 +50,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Represents a 16-bit unsigned integer.
   syntax:
     content: 'public struct UInt16 : IComparable, IComparable<ushort>, IConvertible, IEquatable<ushort>, IFormattable'
     content.vb: Public Structure UInt16 Implements IComparable, IComparable(Of UShort), IConvertible, IEquatable(Of UShort), IFormattable
@@ -77,6 +78,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Represents the largest possible value of @'System.UInt16'. This field is constant.
   syntax:
     content: public const ushort MaxValue
     content.vb: Public Const MaxValue As UShort = 65535
@@ -94,6 +96,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Represents the smallest possible value of @'System.UInt16'. This field is constant.
   syntax:
     content: public const ushort MinValue
     content.vb: Public Const MinValue As UShort = 0
@@ -111,14 +114,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Compares this instance to a specified 16-bit unsigned integer and returns an indication of their relative values.
   syntax:
     content: public int CompareTo(ushort value)
     content.vb: Public Function CompareTo(value As UShort) As Integer
     parameters:
     - id: value
       type: System.UInt16
+      description: An unsigned integer to compare.
     return:
       type: System.Int32
+      description: A signed number indicating the relative values of this instance and *value*.Return Value Description Less than zero This instance is less than *value*. Zero This instance is equal to *value*. Greater than zero This instance is greater than *value*.
 - uid: System.UInt16.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.UInt16
@@ -133,14 +139,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns a value indicating whether this instance is equal to a specified object.
   syntax:
     content: public override bool Equals(object obj)
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
     parameters:
     - id: obj
       type: System.Object
+      description: An object to compare to this instance.
     return:
       type: System.Boolean
+      description: true if *obj* is an instance of @'System.UInt16' and equals the value of this instance; otherwise, false.
   overridden: System.ValueType.Equals(System.Object)
 - uid: System.UInt16.Equals(System.UInt16)
   id: Equals(System.UInt16)
@@ -156,14 +165,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns a value indicating whether this instance is equal to a specified @'System.UInt16' value.
   syntax:
     content: public bool Equals(ushort obj)
     content.vb: Public Function Equals(obj As UShort) As Boolean
     parameters:
     - id: obj
       type: System.UInt16
+      description: A 16-bit unsigned integer to compare to this instance.
     return:
       type: System.Boolean
+      description: true if *obj* has the same value as this instance; otherwise, false.
 - uid: System.UInt16.GetHashCode
   id: GetHashCode
   parent: System.UInt16
@@ -178,11 +190,13 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns the hash code for this instance.
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
+      description: A 32-bit signed integer hash code.
   overridden: System.ValueType.GetHashCode
 - uid: System.UInt16.Parse(System.String)
   id: Parse(System.String)
@@ -198,14 +212,24 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the string representation of a number to its 16-bit unsigned integer equivalent.
   syntax:
     content: public static ushort Parse(string s)
     content.vb: Public Shared Function Parse(s As String) As UShort
     parameters:
     - id: s
       type: System.String
+      description: A string that represents the number to convert.
     return:
       type: System.UInt16
+      description: A 16-bit unsigned integer equivalent to the number contained in *s*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*s* is null.'
+  - type: System.FormatException
+    description: '*s* is not in the correct format.'
+  - type: System.OverflowException
+    description: '*s* represents a number less than @''System.UInt16.MinValue'' or greater than @''System.UInt16.MaxValue''.'
 - uid: System.UInt16.Parse(System.String,System.Globalization.NumberStyles)
   id: Parse(System.String,System.Globalization.NumberStyles)
   parent: System.UInt16
@@ -220,16 +244,29 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the string representation of a number in a specified style to its 16-bit unsigned integer equivalent.
   syntax:
     content: public static ushort Parse(string s, NumberStyles style)
     content.vb: Public Shared Function Parse(s As String, style As NumberStyles) As UShort
     parameters:
     - id: s
       type: System.String
+      description: A string that represents the number to convert. The string is interpreted by using the style specified by the *style* parameter.
     - id: style
       type: System.Globalization.NumberStyles
+      description: A bitwise combination of the enumeration values that specify the permitted format of *s*. A typical value to specify is @'System.Globalization.NumberStyles.Integer'.
     return:
       type: System.UInt16
+      description: A 16-bit unsigned integer equivalent to the number specified in *s*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*s* is null.'
+  - type: System.ArgumentException
+    description: '*style* is not a @''System.Globalization.NumberStyles'' value. -or-*style* is not a combination of @''System.Globalization.NumberStyles.AllowHexSpecifier'' and @''System.Globalization.NumberStyles.HexNumber'' values.'
+  - type: System.FormatException
+    description: '*s* is not in a format compliant with *style*.'
+  - type: System.OverflowException
+    description: '*s* represents a number less than @''System.UInt16.MinValue'' or greater than @''System.UInt16.MaxValue''. -or-*s* includes non-zero, fractional digits.'
 - uid: System.UInt16.Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)
   id: Parse(System.String,System.Globalization.NumberStyles,System.IFormatProvider)
   parent: System.UInt16
@@ -244,18 +281,32 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the string representation of a number in a specified style and culture-specific format to its 16-bit unsigned integer equivalent.
   syntax:
     content: public static ushort Parse(string s, NumberStyles style, IFormatProvider provider)
     content.vb: Public Shared Function Parse(s As String, style As NumberStyles, provider As IFormatProvider) As UShort
     parameters:
     - id: s
       type: System.String
+      description: A string that represents the number to convert. The string is interpreted by using the style specified by the *style* parameter.
     - id: style
       type: System.Globalization.NumberStyles
+      description: A bitwise combination of enumeration values that indicate the style elements that can be present in *s*. A typical value to specify is @'System.Globalization.NumberStyles.Integer'.
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information about *s*.
     return:
       type: System.UInt16
+      description: A 16-bit unsigned integer equivalent to the number specified in *s*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*s* is null.'
+  - type: System.ArgumentException
+    description: '*style* is not a @''System.Globalization.NumberStyles'' value. -or-*style* is not a combination of @''System.Globalization.NumberStyles.AllowHexSpecifier'' and @''System.Globalization.NumberStyles.HexNumber'' values.'
+  - type: System.FormatException
+    description: '*s* is not in a format compliant with *style*.'
+  - type: System.OverflowException
+    description: '*s* represents a number that is less than @''System.UInt16.MinValue'' or greater than @''System.UInt16.MaxValue''. -or-*s* includes non-zero, fractional digits.'
 - uid: System.UInt16.Parse(System.String,System.IFormatProvider)
   id: Parse(System.String,System.IFormatProvider)
   parent: System.UInt16
@@ -270,16 +321,27 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the string representation of a number in a specified culture-specific format to its 16-bit unsigned integer equivalent.
   syntax:
     content: public static ushort Parse(string s, IFormatProvider provider)
     content.vb: Public Shared Function Parse(s As String, provider As IFormatProvider) As UShort
     parameters:
     - id: s
       type: System.String
+      description: A string that represents the number to convert.
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information about *s*.
     return:
       type: System.UInt16
+      description: A 16-bit unsigned integer equivalent to the number specified in *s*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*s* is null.'
+  - type: System.FormatException
+    description: '*s* is not in the correct format.'
+  - type: System.OverflowException
+    description: '*s* represents a number less than @''System.UInt16.MinValue'' or greater than @''System.UInt16.MaxValue''.'
 - uid: System.UInt16.System#IComparable#CompareTo(System.Object)
   id: System#IComparable#CompareTo(System.Object)
   parent: System.UInt16
@@ -341,14 +403,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToBoolean(System.IFormatProvider)'.
   syntax:
     content: bool IConvertible.ToBoolean(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToBoolean(provider As IFormatProvider) As Boolean Implements IConvertible.ToBoolean
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.Boolean
+      description: true if the value of the current instance is not zero; otherwise, false.
 - uid: System.UInt16.System#IConvertible#ToByte(System.IFormatProvider)
   id: System#IConvertible#ToByte(System.IFormatProvider)
   parent: System.UInt16
@@ -364,14 +429,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToByte(System.IFormatProvider)'.
   syntax:
     content: byte IConvertible.ToByte(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToByte(provider As IFormatProvider) As Byte Implements IConvertible.ToByte
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.Byte
+      description: The value of the current instance, converted to a @'System.Byte'.
 - uid: System.UInt16.System#IConvertible#ToChar(System.IFormatProvider)
   id: System#IConvertible#ToChar(System.IFormatProvider)
   parent: System.UInt16
@@ -387,14 +455,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToChar(System.IFormatProvider)'.
   syntax:
     content: char IConvertible.ToChar(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToChar(provider As IFormatProvider) As Char Implements IConvertible.ToChar
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.Char
+      description: The value of the current instance, converted to a @'System.Char'.
 - uid: System.UInt16.System#IConvertible#ToDateTime(System.IFormatProvider)
   id: System#IConvertible#ToDateTime(System.IFormatProvider)
   parent: System.UInt16
@@ -410,14 +481,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: This conversion is not supported. Attempting to use this method throws an @'System.InvalidCastException'.
   syntax:
     content: DateTime IConvertible.ToDateTime(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToDateTime(provider As IFormatProvider) As DateTime Implements IConvertible.ToDateTime
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.DateTime
+      description: This conversion is not supported. No value is returned.
+  exceptions:
+  - type: System.InvalidCastException
+    description: In all cases.
 - uid: System.UInt16.System#IConvertible#ToDecimal(System.IFormatProvider)
   id: System#IConvertible#ToDecimal(System.IFormatProvider)
   parent: System.UInt16
@@ -433,14 +510,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToDecimal(System.IFormatProvider)'.
   syntax:
     content: decimal IConvertible.ToDecimal(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToDecimal(provider As IFormatProvider) As Decimal Implements IConvertible.ToDecimal
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.Decimal
+      description: The current value of this instance, converted to a @'System.Decimal'.
 - uid: System.UInt16.System#IConvertible#ToDouble(System.IFormatProvider)
   id: System#IConvertible#ToDouble(System.IFormatProvider)
   parent: System.UInt16
@@ -456,14 +536,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToDouble(System.IFormatProvider)'.
   syntax:
     content: double IConvertible.ToDouble(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToDouble(provider As IFormatProvider) As Double Implements IConvertible.ToDouble
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.Double
+      description: The current value of this instance, converted to a @'System.Double'.
 - uid: System.UInt16.System#IConvertible#ToInt16(System.IFormatProvider)
   id: System#IConvertible#ToInt16(System.IFormatProvider)
   parent: System.UInt16
@@ -479,14 +562,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToInt16(System.IFormatProvider)'.
   syntax:
     content: short IConvertible.ToInt16(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToInt16(provider As IFormatProvider) As Short Implements IConvertible.ToInt16
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.Int16
+      description: The current value of this instance, converted to an @'System.Int16'.
 - uid: System.UInt16.System#IConvertible#ToInt32(System.IFormatProvider)
   id: System#IConvertible#ToInt32(System.IFormatProvider)
   parent: System.UInt16
@@ -502,14 +588,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToInt32(System.IFormatProvider)'.
   syntax:
     content: int IConvertible.ToInt32(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToInt32(provider As IFormatProvider) As Integer Implements IConvertible.ToInt32
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.Int32
+      description: The value of this instance, converted to an @'System.Int32'.
 - uid: System.UInt16.System#IConvertible#ToInt64(System.IFormatProvider)
   id: System#IConvertible#ToInt64(System.IFormatProvider)
   parent: System.UInt16
@@ -525,14 +614,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToInt64(System.IFormatProvider)'.
   syntax:
     content: long IConvertible.ToInt64(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToInt64(provider As IFormatProvider) As Long Implements IConvertible.ToInt64
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.Int64
+      description: The current value of this instance, converted to an @'System.Int64'.
 - uid: System.UInt16.System#IConvertible#ToSByte(System.IFormatProvider)
   id: System#IConvertible#ToSByte(System.IFormatProvider)
   parent: System.UInt16
@@ -548,14 +640,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToSByte(System.IFormatProvider)'.
   syntax:
     content: sbyte IConvertible.ToSByte(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToSByte(provider As IFormatProvider) As SByte Implements IConvertible.ToSByte
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.SByte
+      description: The current value of this instance, converted to an @'System.SByte'.
 - uid: System.UInt16.System#IConvertible#ToSingle(System.IFormatProvider)
   id: System#IConvertible#ToSingle(System.IFormatProvider)
   parent: System.UInt16
@@ -571,14 +666,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToSingle(System.IFormatProvider)'.
   syntax:
     content: float IConvertible.ToSingle(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToSingle(provider As IFormatProvider) As Single Implements IConvertible.ToSingle
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.Single
+      description: The current value pf this instance, converted to a @'System.Single'.
 - uid: System.UInt16.System#IConvertible#ToType(System.Type,System.IFormatProvider)
   id: System#IConvertible#ToType(System.Type,System.IFormatProvider)
   parent: System.UInt16
@@ -594,16 +692,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToType(System.Type,System.IFormatProvider)'.
   syntax:
     content: object IConvertible.ToType(Type type, IFormatProvider provider)
     content.vb: Function System.IConvertible.ToType(type As Type, provider As IFormatProvider) As Object Implements IConvertible.ToType
     parameters:
     - id: type
       type: System.Type
+      description: The type to which to convert this @'System.UInt16' value.
     - id: provider
       type: System.IFormatProvider
+      description: An @'System.IFormatProvider' implementation that supplies information about the format of the returned value.
     return:
       type: System.Object
+      description: The current value of this instance, converted to *type*.
 - uid: System.UInt16.System#IConvertible#ToUInt16(System.IFormatProvider)
   id: System#IConvertible#ToUInt16(System.IFormatProvider)
   parent: System.UInt16
@@ -619,14 +721,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToUInt16(System.IFormatProvider)'.
   syntax:
     content: ushort IConvertible.ToUInt16(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToUInt16(provider As IFormatProvider) As UShort Implements IConvertible.ToUInt16
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.UInt16
+      description: The current value of this instance, unchanged.
 - uid: System.UInt16.System#IConvertible#ToUInt32(System.IFormatProvider)
   id: System#IConvertible#ToUInt32(System.IFormatProvider)
   parent: System.UInt16
@@ -642,14 +747,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToUInt32(System.IFormatProvider)'.
   syntax:
     content: uint IConvertible.ToUInt32(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToUInt32(provider As IFormatProvider) As UInteger Implements IConvertible.ToUInt32
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.UInt32
+      description: The current value of this instance, converted to a @'System.UInt32'.
 - uid: System.UInt16.System#IConvertible#ToUInt64(System.IFormatProvider)
   id: System#IConvertible#ToUInt64(System.IFormatProvider)
   parent: System.UInt16
@@ -665,14 +773,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: For a description of this member, see @'System.IConvertible.ToUInt64(System.IFormatProvider)'.
   syntax:
     content: ulong IConvertible.ToUInt64(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToUInt64(provider As IFormatProvider) As ULong Implements IConvertible.ToUInt64
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: This parameter is ignored.
     return:
       type: System.UInt64
+      description: The current value of this instance, converted to a @'System.UInt64'.
 - uid: System.UInt16.ToString
   id: ToString
   parent: System.UInt16
@@ -687,11 +798,13 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the numeric value of this instance to its equivalent string representation.
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
+      description: The string representation of the value of this instance, which consists of a sequence of digits ranging from 0 to 9, without a sign or leading zeros.
   overridden: System.ValueType.ToString
 - uid: System.UInt16.ToString(System.IFormatProvider)
   id: ToString(System.IFormatProvider)
@@ -707,14 +820,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the numeric value of this instance to its equivalent string representation using the specified culture-specific format information.
   syntax:
     content: public string ToString(IFormatProvider provider)
     content.vb: Public Function ToString(provider As IFormatProvider) As String
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.String
+      description: The string representation of the value of this instance, which consists of a sequence of digits ranging from 0 to 9, without a sign or leading zeros.
 - uid: System.UInt16.ToString(System.String)
   id: ToString(System.String)
   parent: System.UInt16
@@ -729,14 +845,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the numeric value of this instance to its equivalent string representation using the specified format.
   syntax:
     content: public string ToString(string format)
     content.vb: Public Function ToString(format As String) As String
     parameters:
     - id: format
       type: System.String
+      description: A numeric format string.
     return:
       type: System.String
+      description: The string representation of the value of this instance as specified by *format*.
+  exceptions:
+  - type: System.FormatException
+    description: The *format* parameter is invalid.
 - uid: System.UInt16.ToString(System.String,System.IFormatProvider)
   id: ToString(System.String,System.IFormatProvider)
   parent: System.UInt16
@@ -751,16 +873,23 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the numeric value of this instance to its equivalent string representation using the specified format and culture-specific format information.
   syntax:
     content: public string ToString(string format, IFormatProvider provider)
     content.vb: Public Function ToString(format As String, provider As IFormatProvider) As String
     parameters:
     - id: format
       type: System.String
+      description: A numeric format string.
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.String
+      description: The string representation of the value of this instance, as specified by *format* and *provider*.
+  exceptions:
+  - type: System.FormatException
+    description: '*format* is invalid.'
 - uid: System.UInt16.TryParse(System.String,System.Globalization.NumberStyles,System.IFormatProvider,System.UInt16@)
   id: TryParse(System.String,System.Globalization.NumberStyles,System.IFormatProvider,System.UInt16@)
   parent: System.UInt16
@@ -777,20 +906,29 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Tries to convert the string representation of a number in a specified style and culture-specific format to its 16-bit unsigned integer equivalent. A return value indicates whether the conversion succeeded or failed.
   syntax:
     content: public static bool TryParse(string s, NumberStyles style, IFormatProvider provider, out ushort result)
     content.vb: Public Shared Function TryParse(s As String, style As NumberStyles, provider As IFormatProvider, ByRef result As UShort) As Boolean
     parameters:
     - id: s
       type: System.String
+      description: A string that represents the number to convert. The string is interpreted by using the style specified by the *style* parameter.
     - id: style
       type: System.Globalization.NumberStyles
+      description: A bitwise combination of enumeration values that indicates the permitted format of *s*. A typical value to specify is @'System.Globalization.NumberStyles.Integer'.
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information about *s*.
     - id: result
       type: System.UInt16
+      description: When this method returns, contains the 16-bit unsigned integer value equivalent to the number contained in *s*, if the conversion succeeded, or zero if the conversion failed. The conversion fails if the *s* parameter is null or @'System.String.Empty', is not in a format compliant with *style*, or represents a number less than @'System.UInt16.MinValue' or greater than @'System.UInt16.MaxValue'. This parameter is passed uninitialized; any value originally supplied in *result* will be overwritten.
     return:
       type: System.Boolean
+      description: true if *s* was converted successfully; otherwise, false.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*style* is not a @''System.Globalization.NumberStyles'' value. -or-*style* is not a combination of @''System.Globalization.NumberStyles.AllowHexSpecifier'' and @''System.Globalization.NumberStyles.HexNumber'' values.'
 - uid: System.UInt16.TryParse(System.String,System.UInt16@)
   id: TryParse(System.String,System.UInt16@)
   parent: System.UInt16
@@ -807,16 +945,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Tries to convert the string representation of a number to its 16-bit unsigned integer equivalent. A return value indicates whether the conversion succeeded or failed.
   syntax:
     content: public static bool TryParse(string s, out ushort result)
     content.vb: Public Shared Function TryParse(s As String, ByRef result As UShort) As Boolean
     parameters:
     - id: s
       type: System.String
+      description: A string that represents the number to convert.
     - id: result
       type: System.UInt16
+      description: When this method returns, contains the 16-bit unsigned integer value that is equivalent to the number contained in *s*, if the conversion succeeded, or zero if the conversion failed. The conversion fails if the *s* parameter is null or @'System.String.Empty', is not in the correct format. , or represents a number less than @'System.UInt16.MinValue' or greater than @'System.UInt16.MaxValue'. This parameter is passed uninitialized; any value originally supplied in *result* will be overwritten.
     return:
       type: System.Boolean
+      description: true if *s* was converted successfully; otherwise, false.
 references:
 - uid: System
   isExternal: false
@@ -1164,3 +1306,40 @@ references:
     fullName: (
   - name: )
     fullName: )
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.FormatException
+  parent: System
+  isExternal: false
+  href: System.FormatException.yml
+  name: FormatException
+  fullName: System.FormatException
+  type: Class
+  summary: The exception that is thrown when the format of an argument is invalid, or when a composite format string is not well formed.
+- uid: System.OverflowException
+  isExternal: false
+  href: System.OverflowException.yml
+  name: OverflowException
+  fullName: System.OverflowException
+  type: Class
+  summary: The exception that is thrown when an arithmetic, casting, or conversion operation in a checked context results in an overflow.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.InvalidCastException
+  isExternal: false
+  href: System.InvalidCastException.yml
+  name: InvalidCastException
+  fullName: System.InvalidCastException
+  type: Class
+  summary: The exception that is thrown for invalid casting or explicit conversion.

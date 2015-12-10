@@ -26,14 +26,15 @@ items:
   type: Class
   source:
     remote: &o0
-      path: src/System.Threading/src/System/Threading/Barrier.cs
+      path: src/System.Threading/ref/System.Threading.cs
       branch: master
       repo: https://vicancy@github.com/dotnet/corefx.git
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 76
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 38
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Enables multiple tasks to cooperatively work on an algorithm in parallel through multiple phases.
   syntax:
     content: 'public class Barrier : IDisposable'
     content.vb: Public Class Barrier Implements IDisposable
@@ -58,17 +59,22 @@ items:
   type: Constructor
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 183
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 40
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Initializes a new instance of the @'System.Threading.Barrier' class.
   syntax:
     content: public Barrier(int participantCount)
     content.vb: Public Sub New(participantCount As Integer)
     parameters:
     - id: participantCount
       type: System.Int32
+      description: The number of participating threads.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*participantCount* is less than 0 or greater than 32,767.'
 - uid: System.Threading.Barrier.#ctor(System.Int32,System.Action{System.Threading.Barrier})
   id: '#ctor(System.Int32,System.Action{System.Threading.Barrier})'
   parent: System.Threading.Barrier
@@ -80,19 +86,25 @@ items:
   type: Constructor
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 202
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 41
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Initializes a new instance of the @'System.Threading.Barrier' class.
   syntax:
     content: public Barrier(int participantCount, Action<Barrier> postPhaseAction)
     content.vb: Public Sub New(participantCount As Integer, postPhaseAction As Action(Of Barrier))
     parameters:
     - id: participantCount
       type: System.Int32
+      description: The number of participating threads.
     - id: postPhaseAction
       type: System.Action{System.Threading.Barrier}
+      description: The @'System.Action`1' to be executed after each phase. null (Nothing in Visual Basic) may be passed to indicate no action is taken.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*participantCount* is less than 0 or greater than 32,767.'
 - uid: System.Threading.Barrier.CurrentPhaseNumber
   id: CurrentPhaseNumber
   parent: System.Threading.Barrier
@@ -102,17 +114,19 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 167
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 42
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Gets the number of the barrier's current phase.
   syntax:
     content: public long CurrentPhaseNumber { get; }
     content.vb: Public ReadOnly Property CurrentPhaseNumber As Long
     parameters: []
     return:
       type: System.Int64
+      description: Returns the number of the barrier's current phase.
 - uid: System.Threading.Barrier.ParticipantCount
   id: ParticipantCount
   parent: System.Threading.Barrier
@@ -122,17 +136,19 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 159
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 43
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Gets the total number of participants in the barrier.
   syntax:
     content: public int ParticipantCount { get; }
     content.vb: Public ReadOnly Property ParticipantCount As Integer
     parameters: []
     return:
       type: System.Int32
+      description: Returns the total number of participants in the barrier.
 - uid: System.Threading.Barrier.ParticipantsRemaining
   id: ParticipantsRemaining
   parent: System.Threading.Barrier
@@ -142,17 +158,19 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 145
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 44
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: "Gets the number of participants in the barrier that haven’t yet signaled in the current phase."
   syntax:
     content: public int ParticipantsRemaining { get; }
     content.vb: Public ReadOnly Property ParticipantsRemaining As Integer
     parameters: []
     return:
       type: System.Int32
+      description: "Returns the number of participants in the barrier that haven’t yet signaled in the current phase."
 - uid: System.Threading.Barrier.AddParticipant
   id: AddParticipant
   parent: System.Threading.Barrier
@@ -162,16 +180,23 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 275
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 45
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Notifies the @'System.Threading.Barrier' that there will be an additional participant.
   syntax:
     content: public long AddParticipant()
     content.vb: Public Function AddParticipant As Long
     return:
       type: System.Int64
+      description: The phase number of the barrier in which the new participants will first participate.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The current instance has already been disposed.
+  - type: System.InvalidOperationException
+    description: Adding a participant would cause the barrier's participant count to exceed 32,767.-or-The method was invoked from within a post-phase action.
 - uid: System.Threading.Barrier.AddParticipants(System.Int32)
   id: AddParticipants(System.Int32)
   parent: System.Threading.Barrier
@@ -181,19 +206,29 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 303
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 46
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Notifies the @'System.Threading.Barrier' that there will be additional participants.
   syntax:
     content: public long AddParticipants(int participantCount)
     content.vb: Public Function AddParticipants(participantCount As Integer) As Long
     parameters:
     - id: participantCount
       type: System.Int32
+      description: The number of additional participants to add to the barrier.
     return:
       type: System.Int64
+      description: The phase number of the barrier in which the new participants will first participate.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The current instance has already been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: '*participantCount* is less than 0.-or-Adding *participantCount* participants would cause the barrier''s participant count to exceed 32,767.'
+  - type: System.InvalidOperationException
+    description: The method was invoked from within a post-phase action.
 - uid: System.Threading.Barrier.Dispose
   id: Dispose
   parent: System.Threading.Barrier
@@ -203,14 +238,18 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 892
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 47
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Releases all resources used by the current instance of the @'System.Threading.Barrier' class.
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The method was invoked from within a post-phase action.
 - uid: System.Threading.Barrier.Dispose(System.Boolean)
   id: Dispose(System.Boolean)
   parent: System.Threading.Barrier
@@ -220,17 +259,19 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 913
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 48
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Releases the unmanaged resources used by the @'System.Threading.Barrier', and optionally releases the managed resources.
   syntax:
     content: protected virtual void Dispose(bool disposing)
     content.vb: Protected Overridable Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
+      description: true to release both managed and unmanaged resources; false to release only unmanaged resources.
 - uid: System.Threading.Barrier.RemoveParticipant
   id: RemoveParticipant
   parent: System.Threading.Barrier
@@ -240,14 +281,20 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 391
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 49
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Notifies the @'System.Threading.Barrier' that there will be one less participant.
   syntax:
     content: public void RemoveParticipant()
     content.vb: Public Sub RemoveParticipant
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The current instance has already been disposed.
+  - type: System.InvalidOperationException
+    description: The barrier already has 0 participants.-or-The method was invoked from within a post-phase action.
 - uid: System.Threading.Barrier.RemoveParticipants(System.Int32)
   id: RemoveParticipants(System.Int32)
   parent: System.Threading.Barrier
@@ -257,17 +304,28 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 408
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 50
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Notifies the @'System.Threading.Barrier' that there will be fewer participants.
   syntax:
     content: public void RemoveParticipants(int participantCount)
     content.vb: Public Sub RemoveParticipants(participantCount As Integer)
     parameters:
     - id: participantCount
       type: System.Int32
+      description: The number of additional participants to remove from the barrier.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The current instance has already been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: '*participantCount* is less than 0.'
+  - type: System.InvalidOperationException
+    description: The barrier already has 0 participants.-or-The method was invoked from within a post-phase action. -or-current participant count is less than the specified participantCount
+  - type: System.ArgumentOutOfRangeException
+    description: The total participant count is less than the specified* participantCount*
 - uid: System.Threading.Barrier.SignalAndWait
   id: SignalAndWait
   parent: System.Threading.Barrier
@@ -277,14 +335,22 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 475
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 51
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Signals that a participant has reached the barrier and waits for all other participants to reach the barrier as well.
   syntax:
     content: public void SignalAndWait()
     content.vb: Public Sub SignalAndWait
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The current instance has already been disposed.
+  - type: System.InvalidOperationException
+    description: The method was invoked from within a post-phase action, the barrier currently has 0 participants, or the barrier is signaled by more threads than are registered as participants.
+  - type: System.Threading.BarrierPostPhaseException
+    description: If an exception is thrown from the post phase action of a Barrier after all participating threads have called SignalAndWait, the exception will be wrapped in a BarrierPostPhaseException and be thrown on all participating threads.
 - uid: System.Threading.Barrier.SignalAndWait(System.Int32)
   id: SignalAndWait(System.Int32)
   parent: System.Threading.Barrier
@@ -294,19 +360,31 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 578
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 52
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Signals that a participant has reached the barrier and waits for all other participants to reach the barrier as well, using a 32-bit signed integer to measure the timeout.
   syntax:
     content: public bool SignalAndWait(int millisecondsTimeout)
     content.vb: Public Function SignalAndWait(millisecondsTimeout As Integer) As Boolean
     parameters:
     - id: millisecondsTimeout
       type: System.Int32
+      description: The number of milliseconds to wait, or @'System.Threading.Timeout.Infinite'(-1) to wait indefinitely.
     return:
       type: System.Boolean
+      description: if all participants reached the barrier within the specified time; otherwise false.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The current instance has already been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: '*millisecondsTimeout* is a negative number other than -1, which represents an infinite time-out.'
+  - type: System.InvalidOperationException
+    description: The method was invoked from within a post-phase action, the barrier currently has 0 participants, or the barrier is signaled by more threads than are registered as participants.
+  - type: System.Threading.BarrierPostPhaseException
+    description: If an exception is thrown from the post phase action of a Barrier after all participating threads have called SignalAndWait, the exception will be wrapped in a BarrierPostPhaseException and be thrown on all participating threads.
 - uid: System.Threading.Barrier.SignalAndWait(System.Int32,System.Threading.CancellationToken)
   id: SignalAndWait(System.Int32,System.Threading.CancellationToken)
   parent: System.Threading.Barrier
@@ -316,21 +394,34 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 604
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 53
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Signals that a participant has reached the barrier and waits for all other participants to reach the barrier as well, using a 32-bit signed integer to measure the timeout, while observing a cancellation token.
   syntax:
     content: public bool SignalAndWait(int millisecondsTimeout, CancellationToken cancellationToken)
     content.vb: Public Function SignalAndWait(millisecondsTimeout As Integer, cancellationToken As CancellationToken) As Boolean
     parameters:
     - id: millisecondsTimeout
       type: System.Int32
+      description: The number of milliseconds to wait, or @'System.Threading.Timeout.Infinite'(-1) to wait indefinitely.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' to observe.
     return:
       type: System.Boolean
+      description: if all participants reached the barrier within the specified time; otherwise false
+  exceptions:
+  - type: System.OperationCanceledException
+    description: '*cancellationToken* has been canceled.'
+  - type: System.ObjectDisposedException
+    description: The current instance has already been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: '*millisecondsTimeout* is a negative number other than -1, which represents an infinite time-out.'
+  - type: System.InvalidOperationException
+    description: The method was invoked from within a post-phase action, the barrier currently has 0 participants, or the barrier is signaled by more threads than are registered as participants.
 - uid: System.Threading.Barrier.SignalAndWait(System.Threading.CancellationToken)
   id: SignalAndWait(System.Threading.CancellationToken)
   parent: System.Threading.Barrier
@@ -340,17 +431,26 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 495
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 54
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Signals that a participant has reached the barrier and waits for all other participants to reach the barrier, while observing a cancellation token.
   syntax:
     content: public void SignalAndWait(CancellationToken cancellationToken)
     content.vb: Public Sub SignalAndWait(cancellationToken As CancellationToken)
     parameters:
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' to observe.
+  exceptions:
+  - type: System.OperationCanceledException
+    description: '*cancellationToken* has been canceled.'
+  - type: System.ObjectDisposedException
+    description: The current instance has already been disposed.
+  - type: System.InvalidOperationException
+    description: The method was invoked from within a post-phase action, the barrier currently has 0 participants, or the barrier is signaled by more threads than are registered as participants.
 - uid: System.Threading.Barrier.SignalAndWait(System.TimeSpan)
   id: SignalAndWait(System.TimeSpan)
   parent: System.Threading.Barrier
@@ -360,19 +460,29 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 524
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 55
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Signals that a participant has reached the barrier and waits for all other participants to reach the barrier as well, using a @'System.TimeSpan' object to measure the time interval.
   syntax:
     content: public bool SignalAndWait(TimeSpan timeout)
     content.vb: Public Function SignalAndWait(timeout As TimeSpan) As Boolean
     parameters:
     - id: timeout
       type: System.TimeSpan
+      description: A @'System.TimeSpan' that represents the number of milliseconds to wait, or a @'System.TimeSpan' that represents -1 milliseconds to wait indefinitely.
     return:
       type: System.Boolean
+      description: true if all other participants reached the barrier; otherwise, false.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The current instance has already been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: '*timeout*is a negative number other than -1 milliseconds, which represents an infinite time-out, or it is greater than 32,767.'
+  - type: System.InvalidOperationException
+    description: The method was invoked from within a post-phase action, the barrier currently has 0 participants, or the barrier is signaled by more threads than are registered as participants.
 - uid: System.Threading.Barrier.SignalAndWait(System.TimeSpan,System.Threading.CancellationToken)
   id: SignalAndWait(System.TimeSpan,System.Threading.CancellationToken)
   parent: System.Threading.Barrier
@@ -382,21 +492,34 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Threading/src/System/Threading/Barrier.cs
-    startLine: 551
+    path: src/System.Threading/ref/System.Threading.cs
+    startLine: 56
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: Signals that a participant has reached the barrier and waits for all other participants to reach the barrier as well, using a @'System.TimeSpan' object to measure the time interval, while observing a cancellation token.
   syntax:
     content: public bool SignalAndWait(TimeSpan timeout, CancellationToken cancellationToken)
     content.vb: Public Function SignalAndWait(timeout As TimeSpan, cancellationToken As CancellationToken) As Boolean
     parameters:
     - id: timeout
       type: System.TimeSpan
+      description: A @'System.TimeSpan' that represents the number of milliseconds to wait, or a @'System.TimeSpan' that represents -1 milliseconds to wait indefinitely.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' to observe.
     return:
       type: System.Boolean
+      description: true if all other participants reached the barrier; otherwise, false.
+  exceptions:
+  - type: System.OperationCanceledException
+    description: '*cancellationToken* has been canceled.'
+  - type: System.ObjectDisposedException
+    description: The current instance has already been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: '*timeout*is a negative number other than -1 milliseconds, which represents an infinite time-out.'
+  - type: System.InvalidOperationException
+    description: The method was invoked from within a post-phase action, the barrier currently has 0 participants, or the barrier is signaled by more threads than are registered as participants.
 references:
 - uid: System.Threading
   isExternal: false
@@ -724,3 +847,40 @@ references:
   name: TimeSpan
   fullName: System.TimeSpan
   type: Struct
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.ObjectDisposedException
+  isExternal: false
+  href: System.ObjectDisposedException.yml
+  name: ObjectDisposedException
+  fullName: System.ObjectDisposedException
+  type: Class
+  summary: The exception that is thrown when an operation is performed on a disposed object.
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.Threading.BarrierPostPhaseException
+  isExternal: false
+  href: System.Threading.BarrierPostPhaseException.yml
+  name: BarrierPostPhaseException
+  fullName: System.Threading.BarrierPostPhaseException
+  type: Class
+  summary: The exception that is thrown when the post-phase action of a @'System.Threading.Barrier' fails
+- uid: System.OperationCanceledException
+  parent: System
+  isExternal: false
+  href: System.OperationCanceledException.yml
+  name: OperationCanceledException
+  fullName: System.OperationCanceledException
+  type: Class
+  summary: The exception that is thrown in a thread upon cancellation of an operation that the thread was executing.

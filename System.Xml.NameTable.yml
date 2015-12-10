@@ -22,6 +22,7 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Implements a single-threaded @'System.Xml.XmlNameTable'.
   syntax:
     content: 'public class NameTable : XmlNameTable'
     content.vb: Public Class NameTable Inherits XmlNameTable
@@ -50,6 +51,7 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Initializes a new instance of the NameTable class.
   syntax:
     content: public NameTable()
     content.vb: Public Sub New
@@ -69,19 +71,29 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Atomizes the specified string and adds it to the NameTable.
   syntax:
     content: public override string Add(char[] key, int start, int len)
     content.vb: Public Overrides Function Add(key As Char(), start As Integer, len As Integer) As String
     parameters:
     - id: key
       type: System.Char[]
+      description: The character array containing the string to add.
     - id: start
       type: System.Int32
+      description: The zero-based index into the array specifying the first character of the string.
     - id: len
       type: System.Int32
+      description: The number of characters in the string.
     return:
       type: System.String
+      description: The atomized string or the existing string if one already exists in the NameTable. If *len* is zero, String.Empty is returned.
   overridden: System.Xml.XmlNameTable.Add(System.Char[],System.Int32,System.Int32)
+  exceptions:
+  - type: System.IndexOutOfRangeException
+    description: 0 > *start*-or- *start* >= *key*.Length -or- *len* >= *key*.Length The above conditions do not cause an exception to be thrown if *len* =0.
+  - type: System.ArgumentOutOfRangeException
+    description: '*len* < 0.'
 - uid: System.Xml.NameTable.Add(System.String)
   id: Add(System.String)
   parent: System.Xml.NameTable
@@ -96,15 +108,21 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Atomizes the specified string and adds it to the NameTable.
   syntax:
     content: public override string Add(string key)
     content.vb: Public Overrides Function Add(key As String) As String
     parameters:
     - id: key
       type: System.String
+      description: The string to add.
     return:
       type: System.String
+      description: The atomized string or the existing string if it already exists in the NameTable.
   overridden: System.Xml.XmlNameTable.Add(System.String)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*key* is null.'
 - uid: System.Xml.NameTable.Get(System.Char[],System.Int32,System.Int32)
   id: Get(System.Char[],System.Int32,System.Int32)
   parent: System.Xml.NameTable
@@ -121,19 +139,29 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Gets the atomized string containing the same characters as the specified range of characters in the given array.
   syntax:
     content: public override string Get(char[] key, int start, int len)
     content.vb: Public Overrides Function Get(key As Char(), start As Integer, len As Integer) As String
     parameters:
     - id: key
       type: System.Char[]
+      description: The character array containing the name to find.
     - id: start
       type: System.Int32
+      description: The zero-based index into the array specifying the first character of the name.
     - id: len
       type: System.Int32
+      description: The number of characters in the name.
     return:
       type: System.String
+      description: The atomized string or null if the string has not already been atomized. If *len* is zero, String.Empty is returned.
   overridden: System.Xml.XmlNameTable.Get(System.Char[],System.Int32,System.Int32)
+  exceptions:
+  - type: System.IndexOutOfRangeException
+    description: 0 > *start*-or- *start* >= *key*.Length -or- *len* >= *key*.Length The above conditions do not cause an exception to be thrown if *len* =0.
+  - type: System.ArgumentOutOfRangeException
+    description: '*len* < 0.'
 - uid: System.Xml.NameTable.Get(System.String)
   id: Get(System.String)
   parent: System.Xml.NameTable
@@ -148,15 +176,21 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Gets the atomized string with the specified value.
   syntax:
     content: public override string Get(string value)
     content.vb: Public Overrides Function Get(value As String) As String
     parameters:
     - id: value
       type: System.String
+      description: The name to find.
     return:
       type: System.String
+      description: The atomized string object or null if the string has not already been atomized.
   overridden: System.Xml.XmlNameTable.Get(System.String)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*value* is null.'
 references:
 - uid: System.Xml
   isExternal: false
@@ -613,3 +647,24 @@ references:
     isExternal: true
   - name: )
     fullName: )
+- uid: System.IndexOutOfRangeException
+  isExternal: false
+  href: System.IndexOutOfRangeException.yml
+  name: IndexOutOfRangeException
+  fullName: System.IndexOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when an attempt is made to access an element of an array or collection with an index that is outside its bounds.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.

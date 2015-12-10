@@ -53,6 +53,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Provides the base class for enumerations.
   syntax:
     content: 'public abstract class Enum : ValueType, IComparable, IConvertible, IFormattable'
     content.vb: Public MustInherit Class Enum Inherits ValueType Implements IComparable, IConvertible, IFormattable
@@ -85,6 +86,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Initializes a new instance of the @'System.Enum' class.
   syntax:
     content: protected Enum()
     content.vb: Protected Sub New
@@ -102,14 +104,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Compares this instance to a specified object and returns an indication of their relative values.
   syntax:
     content: public int CompareTo(object target)
     content.vb: Public Function CompareTo(target As Object) As Integer
     parameters:
     - id: target
       type: System.Object
+      description: An object to compare, or null.
     return:
       type: System.Int32
+      description: A signed number that indicates the relative values of this instance and *target*.Value Meaning Less than zero The value of this instance is less than the value of *target*. Zero The value of this instance is equal to the value of *target*. Greater than zero The value of this instance is greater than the value of *target*.-or- *target* is null.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*target* and this instance are not the same type.'
+  - type: System.InvalidOperationException
+    description: This instance is not type @'System.SByte', @'System.Int16', @'System.Int32', @'System.Int64', @'System.Byte', @'System.UInt16', @'System.UInt32', or @'System.UInt64'.
 - uid: System.Enum.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.Enum
@@ -123,14 +133,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns a value indicating whether this instance is equal to a specified object.
   syntax:
     content: public override bool Equals(object obj)
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
     parameters:
     - id: obj
       type: System.Object
+      description: An object to compare with this instance, or null.
     return:
       type: System.Boolean
+      description: true if *obj* is an enumeration value of the same type and with the same underlying value as this instance; otherwise, false.
   overridden: System.ValueType.Equals(System.Object)
 - uid: System.Enum.Format(System.Type,System.Object,System.String)
   id: Format(System.Type,System.Object,System.String)
@@ -146,18 +159,32 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the specified value of a specified enumerated type to its equivalent string representation according to the specified format.
   syntax:
     content: public static string Format(Type enumType, object value, string format)
     content.vb: Public Shared Function Format(enumType As Type, value As Object, format As String) As String
     parameters:
     - id: enumType
       type: System.Type
+      description: The enumeration type of the value to convert.
     - id: value
       type: System.Object
+      description: The value to convert.
     - id: format
       type: System.String
+      description: The output format to use.
     return:
       type: System.String
+      description: A string representation of *value*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *enumType*, *value*, or *format* parameter is null.
+  - type: System.ArgumentException
+    description: The *enumType* parameter is not an @'System.Enum' type.-or- The *value* is from an enumeration that differs in type from *enumType*.-or- The type of *value* is not an underlying type of *enumType*.
+  - type: System.FormatException
+    description: The *format* parameter contains an invalid value.
+  - type: System.InvalidOperationException
+    description: '*format* equals "X", but the enumeration type is unknown.'
 - uid: System.Enum.GetHashCode
   id: GetHashCode
   parent: System.Enum
@@ -172,11 +199,13 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns the hash code for the value of this instance.
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
+      description: A 32-bit signed integer hash code.
   overridden: System.ValueType.GetHashCode
 - uid: System.Enum.GetName(System.Type,System.Object)
   id: GetName(System.Type,System.Object)
@@ -192,16 +221,25 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Retrieves the name of the constant in the specified enumeration that has the specified value.
   syntax:
     content: public static string GetName(Type enumType, object value)
     content.vb: Public Shared Function GetName(enumType As Type, value As Object) As String
     parameters:
     - id: enumType
       type: System.Type
+      description: An enumeration type.
     - id: value
       type: System.Object
+      description: The value of a particular enumerated constant in terms of its underlying type.
     return:
       type: System.String
+      description: A string containing the name of the enumerated constant in *enumType* whose value is *value*; or null if no such constant is found.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*enumType* or *value* is null.'
+  - type: System.ArgumentException
+    description: '*enumType* is not an @''System.Enum''.-or- *value* is neither of type *enumType* nor does it have the same underlying type as *enumType*.'
 - uid: System.Enum.GetNames(System.Type)
   id: GetNames(System.Type)
   parent: System.Enum
@@ -216,14 +254,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Retrieves an array of the names of the constants in a specified enumeration.
   syntax:
     content: public static string[] GetNames(Type enumType)
     content.vb: Public Shared Function GetNames(enumType As Type) As String()
     parameters:
     - id: enumType
       type: System.Type
+      description: An enumeration type.
     return:
       type: System.String[]
+      description: A string array of the names of the constants in *enumType*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*enumType* is null.'
+  - type: System.ArgumentException
+    description: '*enumType* parameter is not an @''System.Enum''.'
 - uid: System.Enum.GetUnderlyingType(System.Type)
   id: GetUnderlyingType(System.Type)
   parent: System.Enum
@@ -238,14 +284,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns the underlying type of the specified enumeration.
   syntax:
     content: public static Type GetUnderlyingType(Type enumType)
     content.vb: Public Shared Function GetUnderlyingType(enumType As Type) As Type
     parameters:
     - id: enumType
       type: System.Type
+      description: The enumeration whose underlying type will be retrieved.
     return:
       type: System.Type
+      description: The underlying type of *enumType*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*enumType* is null.'
+  - type: System.ArgumentException
+    description: '*enumType* is not an @''System.Enum''.'
 - uid: System.Enum.GetValues(System.Type)
   id: GetValues(System.Type)
   parent: System.Enum
@@ -260,14 +314,24 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Retrieves an array of the values of the constants in a specified enumeration.
   syntax:
     content: public static Array GetValues(Type enumType)
     content.vb: Public Shared Function GetValues(enumType As Type) As Array
     parameters:
     - id: enumType
       type: System.Type
+      description: An enumeration type.
     return:
       type: System.Array
+      description: An array that contains the values of the constants in *enumType*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*enumType* is null.'
+  - type: System.ArgumentException
+    description: '*enumType* is not an @''System.Enum''.'
+  - type: System.InvalidOperationException
+    description: The method is invoked by reflection in a reflection-only context, -or-*enumType* is a type from an assembly loaded in a reflection-only context.
 - uid: System.Enum.HasFlag(System.Enum)
   id: HasFlag(System.Enum)
   parent: System.Enum
@@ -282,14 +346,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Determines whether one or more bit fields are set in the current instance.
   syntax:
     content: public bool HasFlag(Enum flag)
     content.vb: Public Function HasFlag(flag As Enum) As Boolean
     parameters:
     - id: flag
       type: System.Enum
+      description: An enumeration value.
     return:
       type: System.Boolean
+      description: true if the bit field or bit fields that are set in *flag* are also set in the current instance; otherwise, false.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*flag* is a different type than the current instance.'
 - uid: System.Enum.IsDefined(System.Type,System.Object)
   id: IsDefined(System.Type,System.Object)
   parent: System.Enum
@@ -304,16 +374,27 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns an indication whether a constant with a specified value exists in a specified enumeration.
   syntax:
     content: public static bool IsDefined(Type enumType, object value)
     content.vb: Public Shared Function IsDefined(enumType As Type, value As Object) As Boolean
     parameters:
     - id: enumType
       type: System.Type
+      description: An enumeration type.
     - id: value
       type: System.Object
+      description: The value or name of a constant in *enumType*.
     return:
       type: System.Boolean
+      description: true if a constant in *enumType* has a value equal to *value*; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*enumType* or *value* is null.'
+  - type: System.ArgumentException
+    description: '*enumType* is not an Enum.-or- The type of *value* is an enumeration, but it is not an enumeration of type *enumType*.-or- The type of *value* is not an underlying type of *enumType*.'
+  - type: System.InvalidOperationException
+    description: '*value* is not type @''System.SByte'', @''System.Int16'', @''System.Int32'', @''System.Int64'', @''System.Byte'', @''System.UInt16'', @''System.UInt32'', or @''System.UInt64'', or @''System.String''.'
 - uid: System.Enum.Parse(System.Type,System.String)
   id: Parse(System.Type,System.String)
   parent: System.Enum
@@ -328,16 +409,27 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object.
   syntax:
     content: public static object Parse(Type enumType, string value)
     content.vb: Public Shared Function Parse(enumType As Type, value As String) As Object
     parameters:
     - id: enumType
       type: System.Type
+      description: An enumeration type.
     - id: value
       type: System.String
+      description: A string containing the name or value to convert.
     return:
       type: System.Object
+      description: An object of type *enumType* whose value is represented by *value*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*enumType* or *value* is null.'
+  - type: System.ArgumentException
+    description: '*enumType* is not an @''System.Enum''.-or- *value* is either an empty string or only contains white space.-or- *value* is a name, but not one of the named constants defined for the enumeration.'
+  - type: System.OverflowException
+    description: '*value* is outside the range of the underlying type of *enumType*.'
 - uid: System.Enum.Parse(System.Type,System.String,System.Boolean)
   id: Parse(System.Type,System.String,System.Boolean)
   parent: System.Enum
@@ -352,18 +444,30 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object. A parameter specifies whether the operation is case-insensitive.
   syntax:
     content: public static object Parse(Type enumType, string value, bool ignoreCase)
     content.vb: Public Shared Function Parse(enumType As Type, value As String, ignoreCase As Boolean) As Object
     parameters:
     - id: enumType
       type: System.Type
+      description: An enumeration type.
     - id: value
       type: System.String
+      description: A string containing the name or value to convert.
     - id: ignoreCase
       type: System.Boolean
+      description: true to ignore case; false to regard case.
     return:
       type: System.Object
+      description: An object of type *enumType* whose value is represented by *value*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*enumType* or *value* is null.'
+  - type: System.ArgumentException
+    description: '*enumType* is not an @''System.Enum''.-or- *value* is either an empty string ("") or only contains white space.-or- *value* is a name, but not one of the named constants defined for the enumeration.'
+  - type: System.OverflowException
+    description: '*value* is outside the range of the underlying type of *enumType*.'
 - uid: System.Enum.System#IConvertible#GetTypeCode
   id: System#IConvertible#GetTypeCode
   parent: System.Enum
@@ -399,14 +503,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a Boolean value based on the underlying type.
   syntax:
     content: bool IConvertible.ToBoolean(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToBoolean(provider As IFormatProvider) As Boolean Implements IConvertible.ToBoolean
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.Boolean
+      description: This member always throws an exception.
+  exceptions:
+  - type: System.InvalidCastException
+    description: In all cases.
 - uid: System.Enum.System#IConvertible#ToByte(System.IFormatProvider)
   id: System#IConvertible#ToByte(System.IFormatProvider)
   parent: System.Enum
@@ -422,14 +532,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to an 8-bit unsigned integer based on the underlying type.
   syntax:
     content: byte IConvertible.ToByte(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToByte(provider As IFormatProvider) As Byte Implements IConvertible.ToByte
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.Byte
+      description: The converted value.
 - uid: System.Enum.System#IConvertible#ToChar(System.IFormatProvider)
   id: System#IConvertible#ToChar(System.IFormatProvider)
   parent: System.Enum
@@ -445,14 +558,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a Unicode character based on the underlying type.
   syntax:
     content: char IConvertible.ToChar(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToChar(provider As IFormatProvider) As Char Implements IConvertible.ToChar
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.Char
+      description: This member always throws an exception.
+  exceptions:
+  - type: System.InvalidCastException
+    description: In all cases.
 - uid: System.Enum.System#IConvertible#ToDateTime(System.IFormatProvider)
   id: System#IConvertible#ToDateTime(System.IFormatProvider)
   parent: System.Enum
@@ -468,14 +587,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a @'System.DateTime' based on the underlying type.
   syntax:
     content: DateTime IConvertible.ToDateTime(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToDateTime(provider As IFormatProvider) As DateTime Implements IConvertible.ToDateTime
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.DateTime
+      description: This member always throws an exception.
+  exceptions:
+  - type: System.InvalidCastException
+    description: In all cases.
 - uid: System.Enum.System#IConvertible#ToDecimal(System.IFormatProvider)
   id: System#IConvertible#ToDecimal(System.IFormatProvider)
   parent: System.Enum
@@ -491,14 +616,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a @'System.Decimal' based on the underlying type.
   syntax:
     content: decimal IConvertible.ToDecimal(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToDecimal(provider As IFormatProvider) As Decimal Implements IConvertible.ToDecimal
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.Decimal
+      description: This member always throws an exception.
+  exceptions:
+  - type: System.InvalidCastException
+    description: In all cases.
 - uid: System.Enum.System#IConvertible#ToDouble(System.IFormatProvider)
   id: System#IConvertible#ToDouble(System.IFormatProvider)
   parent: System.Enum
@@ -514,14 +645,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a double-precision floating point number based on the underlying type.
   syntax:
     content: double IConvertible.ToDouble(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToDouble(provider As IFormatProvider) As Double Implements IConvertible.ToDouble
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.Double
+      description: This member always throws an exception.
+  exceptions:
+  - type: System.InvalidCastException
+    description: In all cases.
 - uid: System.Enum.System#IConvertible#ToInt16(System.IFormatProvider)
   id: System#IConvertible#ToInt16(System.IFormatProvider)
   parent: System.Enum
@@ -537,14 +674,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a 16-bit signed integer based on the underlying type.
   syntax:
     content: short IConvertible.ToInt16(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToInt16(provider As IFormatProvider) As Short Implements IConvertible.ToInt16
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.Int16
+      description: The converted value.
 - uid: System.Enum.System#IConvertible#ToInt32(System.IFormatProvider)
   id: System#IConvertible#ToInt32(System.IFormatProvider)
   parent: System.Enum
@@ -560,14 +700,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a 32-bit signed integer based on the underlying type.
   syntax:
     content: int IConvertible.ToInt32(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToInt32(provider As IFormatProvider) As Integer Implements IConvertible.ToInt32
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.Int32
+      description: The converted value.
 - uid: System.Enum.System#IConvertible#ToInt64(System.IFormatProvider)
   id: System#IConvertible#ToInt64(System.IFormatProvider)
   parent: System.Enum
@@ -583,14 +726,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a 64-bit signed integer based on the underlying type.
   syntax:
     content: long IConvertible.ToInt64(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToInt64(provider As IFormatProvider) As Long Implements IConvertible.ToInt64
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.Int64
+      description: The converted value.
 - uid: System.Enum.System#IConvertible#ToSByte(System.IFormatProvider)
   id: System#IConvertible#ToSByte(System.IFormatProvider)
   parent: System.Enum
@@ -606,14 +752,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to an 8-bit signed integer based on the underlying type.
   syntax:
     content: sbyte IConvertible.ToSByte(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToSByte(provider As IFormatProvider) As SByte Implements IConvertible.ToSByte
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.SByte
+      description: The converted value.
 - uid: System.Enum.System#IConvertible#ToSingle(System.IFormatProvider)
   id: System#IConvertible#ToSingle(System.IFormatProvider)
   parent: System.Enum
@@ -629,14 +778,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a single-precision floating-point number based on the underlying type.
   syntax:
     content: float IConvertible.ToSingle(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToSingle(provider As IFormatProvider) As Single Implements IConvertible.ToSingle
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.Single
+      description: This member always throws an exception.
+  exceptions:
+  - type: System.InvalidCastException
+    description: In all cases.
 - uid: System.Enum.System#IConvertible#ToString(System.IFormatProvider)
   id: System#IConvertible#ToString(System.IFormatProvider)
   parent: System.Enum
@@ -675,16 +830,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a specified type based on the underlying type.
   syntax:
     content: object IConvertible.ToType(Type type, IFormatProvider provider)
     content.vb: Function System.IConvertible.ToType(type As Type, provider As IFormatProvider) As Object Implements IConvertible.ToType
     parameters:
     - id: type
       type: System.Type
+      description: The type to convert to.
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.Object
+      description: The converted value.
 - uid: System.Enum.System#IConvertible#ToUInt16(System.IFormatProvider)
   id: System#IConvertible#ToUInt16(System.IFormatProvider)
   parent: System.Enum
@@ -700,14 +859,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a 16-bit unsigned integer based on the underlying type.
   syntax:
     content: ushort IConvertible.ToUInt16(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToUInt16(provider As IFormatProvider) As UShort Implements IConvertible.ToUInt16
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.UInt16
+      description: The converted value.
 - uid: System.Enum.System#IConvertible#ToUInt32(System.IFormatProvider)
   id: System#IConvertible#ToUInt32(System.IFormatProvider)
   parent: System.Enum
@@ -723,14 +885,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a 32-bit unsigned integer based on the underlying type.
   syntax:
     content: uint IConvertible.ToUInt32(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToUInt32(provider As IFormatProvider) As UInteger Implements IConvertible.ToUInt32
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.UInt32
+      description: The converted value.
 - uid: System.Enum.System#IConvertible#ToUInt64(System.IFormatProvider)
   id: System#IConvertible#ToUInt64(System.IFormatProvider)
   parent: System.Enum
@@ -746,14 +911,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the current value to a 64-bit unsigned integer based on the underlying type.
   syntax:
     content: ulong IConvertible.ToUInt64(IFormatProvider provider)
     content.vb: Function System.IConvertible.ToUInt64(provider As IFormatProvider) As ULong Implements IConvertible.ToUInt64
     parameters:
     - id: provider
       type: System.IFormatProvider
+      description: An object that supplies culture-specific formatting information.
     return:
       type: System.UInt64
+      description: The converted value.
 - uid: System.Enum.System#IFormattable#ToString(System.String,System.IFormatProvider)
   id: System#IFormattable#ToString(System.String,System.IFormatProvider)
   parent: System.Enum
@@ -793,16 +961,25 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the specified object with an integer value to an enumeration member.
   syntax:
     content: public static object ToObject(Type enumType, object value)
     content.vb: Public Shared Function ToObject(enumType As Type, value As Object) As Object
     parameters:
     - id: enumType
       type: System.Type
+      description: The enumeration type to return.
     - id: value
       type: System.Object
+      description: The value convert to an enumeration member.
     return:
       type: System.Object
+      description: An enumeration object whose value is *value*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*enumType* or *value* is null.'
+  - type: System.ArgumentException
+    description: '*enumType* is not an @''System.Enum''.-or- *value* is not type @''System.SByte'', @''System.Int16'', @''System.Int32'', @''System.Int64'', @''System.Byte'', @''System.UInt16'', @''System.UInt32'', or @''System.UInt64''.'
 - uid: System.Enum.ToString
   id: ToString
   parent: System.Enum
@@ -817,11 +994,13 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the value of this instance to its equivalent string representation.
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
+      description: The string representation of the value of this instance.
   overridden: System.ValueType.ToString
 - uid: System.Enum.ToString(System.String)
   id: ToString(System.String)
@@ -837,14 +1016,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the value of this instance to its equivalent string representation using the specified format.
   syntax:
     content: public string ToString(string format)
     content.vb: Public Function ToString(format As String) As String
     parameters:
     - id: format
       type: System.String
+      description: A format string.
     return:
       type: System.String
+      description: The string representation of the value of this instance as specified by *format*.
+  exceptions:
+  - type: System.FormatException
+    description: '*format* contains an invalid specification.'
+  - type: System.InvalidOperationException
+    description: '*format* equals "X", but the enumeration type is unknown.'
 - uid: System.Enum.TryParse``1(System.String,``0@)
   id: TryParse``1(System.String,``0@)
   parent: System.Enum
@@ -861,18 +1048,25 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object. The return value indicates whether the conversion succeeded.
   syntax:
     content: 'public static bool TryParse<TEnum>(string value, out TEnum result)where TEnum : struct'
     content.vb: Public Shared Function TryParse(Of TEnum As Structure)(value As String, ByRef result As TEnum) As Boolean
     parameters:
     - id: value
       type: System.String
+      description: The string representation of the enumeration name or underlying value to convert.
     - id: result
       type: '{TEnum}'
+      description: When this method returns, *result* contains an object of type *TEnum* whose value is represented by *value* if the parse operation succeeds. If the parse operation fails, *result* contains the default value of the underlying type of *TEnum*. Note that this value need not be a member of the *TEnum* enumeration. This parameter is passed uninitialized.
     typeParameters:
     - id: TEnum
     return:
       type: System.Boolean
+      description: true if the *value* parameter was converted successfully; otherwise, false.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*TEnum* is not an enumeration type.'
 - uid: System.Enum.TryParse``1(System.String,System.Boolean,``0@)
   id: TryParse``1(System.String,System.Boolean,``0@)
   parent: System.Enum
@@ -889,20 +1083,28 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Converts the string representation of the name or numeric value of one or more enumerated constants to an equivalent enumerated object. A parameter specifies whether the operation is case-sensitive. The return value indicates whether the conversion succeeded.
   syntax:
     content: 'public static bool TryParse<TEnum>(string value, bool ignoreCase, out TEnum result)where TEnum : struct'
     content.vb: Public Shared Function TryParse(Of TEnum As Structure)(value As String, ignoreCase As Boolean, ByRef result As TEnum) As Boolean
     parameters:
     - id: value
       type: System.String
+      description: The string representation of the enumeration name or underlying value to convert.
     - id: ignoreCase
       type: System.Boolean
+      description: true to ignore case; false to consider case.
     - id: result
       type: '{TEnum}'
+      description: When this method returns, *result* contains an object of type *TEnum* whose value is represented by *value* if the parse operation succeeds. If the parse operation fails, *result* contains the default value of the underlying type of *TEnum*. Note that this value need not be a member of the *TEnum* enumeration. This parameter is passed uninitialized.
     typeParameters:
     - id: TEnum
     return:
       type: System.Boolean
+      description: true if the *value* parameter was converted successfully; otherwise, false.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*TEnum* is not an enumeration type.'
 references:
 - uid: System
   isExternal: false
@@ -1299,3 +1501,48 @@ references:
   isExternal: false
   name: TEnum
   fullName: TEnum
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.FormatException
+  parent: System
+  isExternal: false
+  href: System.FormatException.yml
+  name: FormatException
+  fullName: System.FormatException
+  type: Class
+  summary: The exception that is thrown when the format of an argument is invalid, or when a composite format string is not well formed.
+- uid: System.OverflowException
+  isExternal: false
+  href: System.OverflowException.yml
+  name: OverflowException
+  fullName: System.OverflowException
+  type: Class
+  summary: The exception that is thrown when an arithmetic, casting, or conversion operation in a checked context results in an overflow.
+- uid: System.InvalidCastException
+  isExternal: false
+  href: System.InvalidCastException.yml
+  name: InvalidCastException
+  fullName: System.InvalidCastException
+  type: Class
+  summary: The exception that is thrown for invalid casting or explicit conversion.

@@ -140,6 +140,7 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Provides a set of static (Shared in Visual Basic) methods for querying data structures that implement @'System.Linq.IQueryable`1'.
   syntax:
     content: public class Queryable
     content.vb: Public Class Queryable
@@ -172,18 +173,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Applies an accumulator function over a sequence.
   syntax:
     content: public static TSource Aggregate<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TSource, TSource>> func)
     content.vb: Public Shared Function Aggregate(Of TSource)(source As IQueryable(Of TSource), func As Expressions.Expression(Of Func(Of TSource, TSource, TSource))) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence to aggregate over.
     - id: func
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TSource},{TSource}}}
+      description: An accumulator function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The final accumulator value.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *func* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Aggregate``2(System.Linq.IQueryable{``0},``1,System.Linq.Expressions.Expression{System.Func{``1,``0,``1}})
   id: Aggregate``2(System.Linq.IQueryable{``0},``1,System.Linq.Expressions.Expression{System.Func{``1,``0,``1}})
   parent: System.Linq.Queryable
@@ -200,21 +210,29 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value.
   syntax:
     content: public static TAccumulate Aggregate<TSource, TAccumulate>(IQueryable<TSource> source, TAccumulate seed, Expressions.Expression<Func<TAccumulate, TSource, TAccumulate>> func)
     content.vb: Public Shared Function Aggregate(Of TSource, TAccumulate)(source As IQueryable(Of TSource), seed As TAccumulate, func As Expressions.Expression(Of Func(Of TAccumulate, TSource, TAccumulate))) As TAccumulate
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence to aggregate over.
     - id: seed
       type: '{TAccumulate}'
+      description: The initial accumulator value.
     - id: func
       type: System.Linq.Expressions.Expression{System.Func{{TAccumulate},{TSource},{TAccumulate}}}
+      description: An accumulator function to invoke on each element.
     typeParameters:
     - id: TSource
     - id: TAccumulate
     return:
       type: '{TAccumulate}'
+      description: The final accumulator value.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *func* is null.'
 - uid: System.Linq.Queryable.Aggregate``3(System.Linq.IQueryable{``0},``1,System.Linq.Expressions.Expression{System.Func{``1,``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,``2}})
   id: Aggregate``3(System.Linq.IQueryable{``0},``1,System.Linq.Expressions.Expression{System.Func{``1,``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,``2}})
   parent: System.Linq.Queryable
@@ -231,24 +249,33 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Applies an accumulator function over a sequence. The specified seed value is used as the initial accumulator value, and the specified function is used to select the result value.
   syntax:
     content: public static TResult Aggregate<TSource, TAccumulate, TResult>(IQueryable<TSource> source, TAccumulate seed, Expressions.Expression<Func<TAccumulate, TSource, TAccumulate>> func, Expressions.Expression<Func<TAccumulate, TResult>> selector)
     content.vb: Public Shared Function Aggregate(Of TSource, TAccumulate, TResult)(source As IQueryable(Of TSource), seed As TAccumulate, func As Expressions.Expression(Of Func(Of TAccumulate, TSource, TAccumulate)), selector As Expressions.Expression(Of Func(Of TAccumulate, TResult))) As TResult
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence to aggregate over.
     - id: seed
       type: '{TAccumulate}'
+      description: The initial accumulator value.
     - id: func
       type: System.Linq.Expressions.Expression{System.Func{{TAccumulate},{TSource},{TAccumulate}}}
+      description: An accumulator function to invoke on each element.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TAccumulate},{TResult}}}
+      description: A function to transform the final accumulator value into the result value.
     typeParameters:
     - id: TSource
     - id: TAccumulate
     - id: TResult
     return:
       type: '{TResult}'
+      description: The transformed final accumulator value.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *func* or *selector* is null.'
 - uid: System.Linq.Queryable.All``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: All``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -265,18 +292,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Determines whether all the elements of a sequence satisfy a condition.
   syntax:
     content: public static bool All<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function All(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As Boolean
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence whose elements to test for a condition.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: System.Boolean
+      description: true if every element of the source sequence passes the test in the specified predicate, or if the sequence is empty; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
 - uid: System.Linq.Queryable.Any``1(System.Linq.IQueryable{``0})
   id: Any``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -293,16 +327,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Determines whether a sequence contains any elements.
   syntax:
     content: public static bool Any<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function Any(Of TSource)(source As IQueryable(Of TSource)) As Boolean
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence to check for being empty.
     typeParameters:
     - id: TSource
     return:
       type: System.Boolean
+      description: true if the source sequence contains any elements; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Any``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: Any``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -319,18 +359,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Determines whether any element of a sequence satisfies a condition.
   syntax:
     content: public static bool Any<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function Any(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As Boolean
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence whose elements to test for a condition.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: System.Boolean
+      description: true if any elements in the source sequence pass the test in the specified predicate; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
 - uid: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
   id: AsQueryable(System.Collections.IEnumerable)
   parent: System.Linq.Queryable
@@ -345,14 +392,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Converts an @'System.Collections.IEnumerable' to an @'System.Linq.IQueryable'.
   syntax:
     content: public static IQueryable AsQueryable(IEnumerable source)
     content.vb: Public Shared Function AsQueryable(source As IEnumerable) As IQueryable
     parameters:
     - id: source
       type: System.Collections.IEnumerable
+      description: A sequence to convert.
     return:
       type: System.Linq.IQueryable
+      description: An @'System.Linq.IQueryable' that represents the input sequence.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*source* does not implement @''System.Collections.Generic.IEnumerable`1'' for some *T*.'
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
   id: AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
   parent: System.Linq.Queryable
@@ -369,16 +424,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Converts a generic @'System.Collections.Generic.IEnumerable`1' to a generic @'System.Linq.IQueryable`1'.
   syntax:
     content: public static IQueryable<TElement> AsQueryable<TElement>(IEnumerable<TElement> source)
     content.vb: Public Shared Function AsQueryable(Of TElement)(source As IEnumerable(Of TElement)) As IQueryable(Of TElement)
     parameters:
     - id: source
       type: System.Collections.Generic.IEnumerable{{TElement}}
+      description: A sequence to convert.
     typeParameters:
     - id: TElement
     return:
       type: System.Linq.IQueryable{{TElement}}
+      description: An @'System.Linq.IQueryable`1' that represents the input sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Average(System.Linq.IQueryable{System.Decimal})
   id: Average(System.Linq.IQueryable{System.Decimal})
   parent: System.Linq.Queryable
@@ -395,14 +456,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of @'System.Decimal' values.
   syntax:
     content: public static decimal Average(IQueryable<decimal> source)
     content.vb: Public Shared Function Average(source As IQueryable(Of Decimal)) As Decimal
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Decimal}
+      description: A sequence of @'System.Decimal' values to calculate the average of.
     return:
       type: System.Decimal
+      description: The average of the sequence of values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Average(System.Linq.IQueryable{System.Double})
   id: Average(System.Linq.IQueryable{System.Double})
   parent: System.Linq.Queryable
@@ -419,14 +488,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of @'System.Double' values.
   syntax:
     content: public static double Average(IQueryable<double> source)
     content.vb: Public Shared Function Average(source As IQueryable(Of Double)) As Double
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Double}
+      description: A sequence of @'System.Double' values to calculate the average of.
     return:
       type: System.Double
+      description: The average of the sequence of values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Average(System.Linq.IQueryable{System.Int32})
   id: Average(System.Linq.IQueryable{System.Int32})
   parent: System.Linq.Queryable
@@ -443,14 +520,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of @'System.Int32' values.
   syntax:
     content: public static double Average(IQueryable<int> source)
     content.vb: Public Shared Function Average(source As IQueryable(Of Integer)) As Double
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Int32}
+      description: A sequence of @'System.Int32' values to calculate the average of.
     return:
       type: System.Double
+      description: The average of the sequence of values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Average(System.Linq.IQueryable{System.Int64})
   id: Average(System.Linq.IQueryable{System.Int64})
   parent: System.Linq.Queryable
@@ -467,14 +552,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of @'System.Int64' values.
   syntax:
     content: public static double Average(IQueryable<long> source)
     content.vb: Public Shared Function Average(source As IQueryable(Of Long)) As Double
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Int64}
+      description: A sequence of @'System.Int64' values to calculate the average of.
     return:
       type: System.Double
+      description: The average of the sequence of values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Average(System.Linq.IQueryable{System.Nullable{System.Decimal}})
   id: Average(System.Linq.IQueryable{System.Nullable{System.Decimal}})
   parent: System.Linq.Queryable
@@ -491,14 +584,20 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of nullable @'System.Decimal' values.
   syntax:
     content: public static decimal ? Average(IQueryable<decimal ? > source)
     content.vb: Public Shared Function Average(source As IQueryable(Of Decimal?)) As Decimal?
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Nullable{System.Decimal}}
+      description: A sequence of nullable @'System.Decimal' values to calculate the average of.
     return:
       type: System.Nullable{System.Decimal}
+      description: The average of the sequence of values, or null if the source sequence is empty or contains only null values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Average(System.Linq.IQueryable{System.Nullable{System.Double}})
   id: Average(System.Linq.IQueryable{System.Nullable{System.Double}})
   parent: System.Linq.Queryable
@@ -515,14 +614,20 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of nullable @'System.Double' values.
   syntax:
     content: public static double ? Average(IQueryable<double ? > source)
     content.vb: Public Shared Function Average(source As IQueryable(Of Double?)) As Double?
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Nullable{System.Double}}
+      description: A sequence of nullable @'System.Double' values to calculate the average of.
     return:
       type: System.Nullable{System.Double}
+      description: The average of the sequence of values, or null if the source sequence is empty or contains only null values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Average(System.Linq.IQueryable{System.Nullable{System.Int32}})
   id: Average(System.Linq.IQueryable{System.Nullable{System.Int32}})
   parent: System.Linq.Queryable
@@ -539,14 +644,20 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of nullable @'System.Int32' values.
   syntax:
     content: public static double ? Average(IQueryable<int ? > source)
     content.vb: Public Shared Function Average(source As IQueryable(Of Integer?)) As Double?
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Nullable{System.Int32}}
+      description: A sequence of nullable @'System.Int32' values to calculate the average of.
     return:
       type: System.Nullable{System.Double}
+      description: The average of the sequence of values, or null if the source sequence is empty or contains only null values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Average(System.Linq.IQueryable{System.Nullable{System.Int64}})
   id: Average(System.Linq.IQueryable{System.Nullable{System.Int64}})
   parent: System.Linq.Queryable
@@ -563,14 +674,20 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of nullable @'System.Int64' values.
   syntax:
     content: public static double ? Average(IQueryable<long ? > source)
     content.vb: Public Shared Function Average(source As IQueryable(Of Long?)) As Double?
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Nullable{System.Int64}}
+      description: A sequence of nullable @'System.Int64' values to calculate the average of.
     return:
       type: System.Nullable{System.Double}
+      description: The average of the sequence of values, or null if the source sequence is empty or contains only null values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Average(System.Linq.IQueryable{System.Nullable{System.Single}})
   id: Average(System.Linq.IQueryable{System.Nullable{System.Single}})
   parent: System.Linq.Queryable
@@ -587,14 +704,20 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of nullable @'System.Single' values.
   syntax:
     content: public static float ? Average(IQueryable<float ? > source)
     content.vb: Public Shared Function Average(source As IQueryable(Of Single?)) As Single?
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Nullable{System.Single}}
+      description: A sequence of nullable @'System.Single' values to calculate the average of.
     return:
       type: System.Nullable{System.Single}
+      description: The average of the sequence of values, or null if the source sequence is empty or contains only null values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Average(System.Linq.IQueryable{System.Single})
   id: Average(System.Linq.IQueryable{System.Single})
   parent: System.Linq.Queryable
@@ -611,14 +734,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of @'System.Single' values.
   syntax:
     content: public static float Average(IQueryable<float> source)
     content.vb: Public Shared Function Average(source As IQueryable(Of Single)) As Single
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Single}
+      description: A sequence of @'System.Single' values to calculate the average of.
     return:
       type: System.Single
+      description: The average of the sequence of values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Decimal}})
   id: Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Decimal}})
   parent: System.Linq.Queryable
@@ -635,18 +766,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of @'System.Decimal' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static decimal Average<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, decimal>> selector)
     content.vb: Public Shared Function Average(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Decimal))) As Decimal
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values that are used to calculate an average.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Decimal}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Decimal
+      description: The average of the sequence of values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Double}})
   id: Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Double}})
   parent: System.Linq.Queryable
@@ -663,18 +803,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of @'System.Double' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static double Average<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, double>> selector)
     content.vb: Public Shared Function Average(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Double))) As Double
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to calculate the average of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Double}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Double
+      description: The average of the sequence of values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32}})
   id: Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32}})
   parent: System.Linq.Queryable
@@ -691,18 +840,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of @'System.Int32' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static double Average<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, int>> selector)
     content.vb: Public Shared Function Average(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Integer))) As Double
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to calculate the average of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Int32}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Double
+      description: The average of the sequence of values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int64}})
   id: Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int64}})
   parent: System.Linq.Queryable
@@ -719,18 +877,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of @'System.Int64' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static double Average<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, long>> selector)
     content.vb: Public Shared Function Average(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Long))) As Double
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to calculate the average of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Int64}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Double
+      description: The average of the sequence of values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Decimal}}})
   id: Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Decimal}}})
   parent: System.Linq.Queryable
@@ -747,18 +914,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of nullable @'System.Decimal' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static decimal ? Average<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, decimal ? >> selector)
     content.vb: Public Shared Function Average(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Decimal?))) As Decimal?
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to calculate the average of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Nullable{System.Decimal}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Nullable{System.Decimal}
+      description: The average of the sequence of values, or null if the *source* sequence is empty or contains only null values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Double}}})
   id: Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Double}}})
   parent: System.Linq.Queryable
@@ -775,18 +949,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of nullable @'System.Double' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static double ? Average<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, double ? >> selector)
     content.vb: Public Shared Function Average(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Double?))) As Double?
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to calculate the average of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Nullable{System.Double}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Nullable{System.Double}
+      description: The average of the sequence of values, or null if the *source* sequence is empty or contains only null values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Int32}}})
   id: Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Int32}}})
   parent: System.Linq.Queryable
@@ -803,18 +984,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of nullable @'System.Int32' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static double ? Average<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, int ? >> selector)
     content.vb: Public Shared Function Average(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Integer?))) As Double?
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to calculate the average of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Nullable{System.Int32}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Nullable{System.Double}
+      description: The average of the sequence of values, or null if the *source* sequence is empty or contains only null values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Int64}}})
   id: Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Int64}}})
   parent: System.Linq.Queryable
@@ -831,18 +1019,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of nullable @'System.Int64' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static double ? Average<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, long ? >> selector)
     content.vb: Public Shared Function Average(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Long?))) As Double?
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to calculate the average of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Nullable{System.Int64}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Nullable{System.Double}
+      description: The average of the sequence of values, or null if the *source* sequence is empty or contains only null values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Single}}})
   id: Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Single}}})
   parent: System.Linq.Queryable
@@ -859,18 +1054,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of nullable @'System.Single' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static float ? Average<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, float ? >> selector)
     content.vb: Public Shared Function Average(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Single?))) As Single?
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to calculate the average of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Nullable{System.Single}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Nullable{System.Single}
+      description: The average of the sequence of values, or null if the *source* sequence is empty or contains only null values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Single}})
   id: Average``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Single}})
   parent: System.Linq.Queryable
@@ -887,18 +1089,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the average of a sequence of @'System.Single' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static float Average<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, float>> selector)
     content.vb: Public Shared Function Average(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Single))) As Single
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to calculate the average of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Single}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Single
+      description: The average of the sequence of values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* contains no elements.'
 - uid: System.Linq.Queryable.Cast``1(System.Linq.IQueryable)
   id: Cast``1(System.Linq.IQueryable)
   parent: System.Linq.Queryable
@@ -915,16 +1126,24 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Converts the elements of an @'System.Linq.IQueryable' to the specified type.
   syntax:
     content: public static IQueryable<TResult> Cast<TResult>(IQueryable source)
     content.vb: Public Shared Function Cast(Of TResult)(source As IQueryable) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable
+      description: The @'System.Linq.IQueryable' that contains the elements to be converted.
     typeParameters:
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' that contains each element of the source sequence converted to the specified type.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.InvalidCastException
+    description: An element in the sequence cannot be cast to type *TResult*.
 - uid: System.Linq.Queryable.Concat``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0})
   id: Concat``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0})
   parent: System.Linq.Queryable
@@ -941,18 +1160,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Concatenates two sequences.
   syntax:
     content: public static IQueryable<TSource> Concat<TSource>(IQueryable<TSource> source1, IEnumerable<TSource> source2)
     content.vb: Public Shared Function Concat(Of TSource)(source1 As IQueryable(Of TSource), source2 As IEnumerable(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source1
       type: System.Linq.IQueryable{{TSource}}
+      description: The first sequence to concatenate.
     - id: source2
       type: System.Collections.Generic.IEnumerable{{TSource}}
+      description: The sequence to concatenate to the first sequence.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains the concatenated elements of the two input sequences.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source1* or *source2* is null.'
 - uid: System.Linq.Queryable.Contains``1(System.Linq.IQueryable{``0},``0)
   id: Contains``1(System.Linq.IQueryable{``0},``0)
   parent: System.Linq.Queryable
@@ -969,18 +1195,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Determines whether a sequence contains a specified element by using the default equality comparer.
   syntax:
     content: public static bool Contains<TSource>(IQueryable<TSource> source, TSource item)
     content.vb: Public Shared Function Contains(Of TSource)(source As IQueryable(Of TSource), item As TSource) As Boolean
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' in which to locate *item*.
     - id: item
       type: '{TSource}'
+      description: The object to locate in the sequence.
     typeParameters:
     - id: TSource
     return:
       type: System.Boolean
+      description: true if the input sequence contains an element that has the specified value; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Contains``1(System.Linq.IQueryable{``0},``0,System.Collections.Generic.IEqualityComparer{``0})
   id: Contains``1(System.Linq.IQueryable{``0},``0,System.Collections.Generic.IEqualityComparer{``0})
   parent: System.Linq.Queryable
@@ -997,20 +1230,28 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Determines whether a sequence contains a specified element by using a specified @'System.Collections.Generic.IEqualityComparer`1'.
   syntax:
     content: public static bool Contains<TSource>(IQueryable<TSource> source, TSource item, IEqualityComparer<TSource> comparer)
     content.vb: Public Shared Function Contains(Of TSource)(source As IQueryable(Of TSource), item As TSource, comparer As IEqualityComparer(Of TSource)) As Boolean
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' in which to locate *item*.
     - id: item
       type: '{TSource}'
+      description: The object to locate in the sequence.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TSource}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to compare values.
     typeParameters:
     - id: TSource
     return:
       type: System.Boolean
+      description: true if the input sequence contains an element that has the specified value; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Count``1(System.Linq.IQueryable{``0})
   id: Count``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -1027,16 +1268,24 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the number of elements in a sequence.
   syntax:
     content: public static int Count<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function Count(Of TSource)(source As IQueryable(Of TSource)) As Integer
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: The @'System.Linq.IQueryable`1' that contains the elements to be counted.
     typeParameters:
     - id: TSource
     return:
       type: System.Int32
+      description: The number of elements in the input sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.OverflowException
+    description: The number of elements in *source* is larger than @'System.Int32.MaxValue'.
 - uid: System.Linq.Queryable.Count``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: Count``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -1053,18 +1302,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the number of elements in the specified sequence that satisfies a condition.
   syntax:
     content: public static int Count<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function Count(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As Integer
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains the elements to be counted.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: System.Int32
+      description: The number of elements in the sequence that satisfies the condition in the predicate function.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
+  - type: System.OverflowException
+    description: The number of elements in *source* is larger than @'System.Int32.MaxValue'.
 - uid: System.Linq.Queryable.DefaultIfEmpty``1(System.Linq.IQueryable{``0})
   id: DefaultIfEmpty``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -1081,16 +1339,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the elements of the specified sequence or the type parameter's default value in a singleton collection if the sequence is empty.
   syntax:
     content: public static IQueryable<TSource> DefaultIfEmpty<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function DefaultIfEmpty(Of TSource)(source As IQueryable(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: The @'System.Linq.IQueryable`1' to return a default value for if empty.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains default(*TSource*) if *source* is empty; otherwise, *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.DefaultIfEmpty``1(System.Linq.IQueryable{``0},``0)
   id: DefaultIfEmpty``1(System.Linq.IQueryable{``0},``0)
   parent: System.Linq.Queryable
@@ -1107,18 +1371,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the elements of the specified sequence or the specified value in a singleton collection if the sequence is empty.
   syntax:
     content: public static IQueryable<TSource> DefaultIfEmpty<TSource>(IQueryable<TSource> source, TSource defaultValue)
     content.vb: Public Shared Function DefaultIfEmpty(Of TSource)(source As IQueryable(Of TSource), defaultValue As TSource) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: The @'System.Linq.IQueryable`1' to return the specified value for if empty.
     - id: defaultValue
       type: '{TSource}'
+      description: The value to return if the sequence is empty.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains *defaultValue* if *source* is empty; otherwise, *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Distinct``1(System.Linq.IQueryable{``0})
   id: Distinct``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -1135,16 +1406,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns distinct elements from a sequence by using the default equality comparer to compare values.
   syntax:
     content: public static IQueryable<TSource> Distinct<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function Distinct(Of TSource)(source As IQueryable(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: The @'System.Linq.IQueryable`1' to remove duplicates from.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains distinct elements from *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Distinct``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEqualityComparer{``0})
   id: Distinct``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEqualityComparer{``0})
   parent: System.Linq.Queryable
@@ -1161,18 +1438,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns distinct elements from a sequence by using a specified @'System.Collections.Generic.IEqualityComparer`1' to compare values.
   syntax:
     content: public static IQueryable<TSource> Distinct<TSource>(IQueryable<TSource> source, IEqualityComparer<TSource> comparer)
     content.vb: Public Shared Function Distinct(Of TSource)(source As IQueryable(Of TSource), comparer As IEqualityComparer(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: The @'System.Linq.IQueryable`1' to remove duplicates from.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TSource}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to compare values.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains distinct elements from *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *comparer* is null.'
 - uid: System.Linq.Queryable.ElementAt``1(System.Linq.IQueryable{``0},System.Int32)
   id: ElementAt``1(System.Linq.IQueryable{``0},System.Int32)
   parent: System.Linq.Queryable
@@ -1189,18 +1473,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the element at a specified index in a sequence.
   syntax:
     content: public static TSource ElementAt<TSource>(IQueryable<TSource> source, int index)
     content.vb: Public Shared Function ElementAt(Of TSource)(source As IQueryable(Of TSource), index As Integer) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return an element from.
     - id: index
       type: System.Int32
+      description: The zero-based index of the element to retrieve.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The element at the specified position in *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*index* is less than zero.'
 - uid: System.Linq.Queryable.ElementAtOrDefault``1(System.Linq.IQueryable{``0},System.Int32)
   id: ElementAtOrDefault``1(System.Linq.IQueryable{``0},System.Int32)
   parent: System.Linq.Queryable
@@ -1217,18 +1510,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the element at a specified index in a sequence or a default value if the index is out of range.
   syntax:
     content: public static TSource ElementAtOrDefault<TSource>(IQueryable<TSource> source, int index)
     content.vb: Public Shared Function ElementAtOrDefault(Of TSource)(source As IQueryable(Of TSource), index As Integer) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return an element from.
     - id: index
       type: System.Int32
+      description: The zero-based index of the element to retrieve.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: default(*TSource*) if *index* is outside the bounds of *source*; otherwise, the element at the specified position in *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Except``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0})
   id: Except``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0})
   parent: System.Linq.Queryable
@@ -1245,18 +1545,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Produces the set difference of two sequences by using the default equality comparer to compare values.
   syntax:
     content: public static IQueryable<TSource> Except<TSource>(IQueryable<TSource> source1, IEnumerable<TSource> source2)
     content.vb: Public Shared Function Except(Of TSource)(source1 As IQueryable(Of TSource), source2 As IEnumerable(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source1
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements that are not also in *source2* will be returned.
     - id: source2
       type: System.Collections.Generic.IEnumerable{{TSource}}
+      description: An @'System.Collections.Generic.IEnumerable`1' whose elements that also occur in the first sequence will not appear in the returned sequence.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains the set difference of the two sequences.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source1* or *source2* is null.'
 - uid: System.Linq.Queryable.Except``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})
   id: Except``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})
   parent: System.Linq.Queryable
@@ -1273,20 +1580,28 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Produces the set difference of two sequences by using the specified @'System.Collections.Generic.IEqualityComparer`1' to compare values.
   syntax:
     content: public static IQueryable<TSource> Except<TSource>(IQueryable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer)
     content.vb: Public Shared Function Except(Of TSource)(source1 As IQueryable(Of TSource), source2 As IEnumerable(Of TSource), comparer As IEqualityComparer(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source1
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements that are not also in *source2* will be returned.
     - id: source2
       type: System.Collections.Generic.IEnumerable{{TSource}}
+      description: An @'System.Collections.Generic.IEnumerable`1' whose elements that also occur in the first sequence will not appear in the returned sequence.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TSource}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to compare values.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains the set difference of the two sequences.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source1* or *source2* is null.'
 - uid: System.Linq.Queryable.First``1(System.Linq.IQueryable{``0})
   id: First``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -1303,16 +1618,24 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the first element of a sequence.
   syntax:
     content: public static TSource First<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function First(Of TSource)(source As IQueryable(Of TSource)) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: The @'System.Linq.IQueryable`1' to return the first element of.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The first element in *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.InvalidOperationException
+    description: The source sequence is empty.
 - uid: System.Linq.Queryable.First``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: First``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -1329,18 +1652,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the first element of a sequence that satisfies a specified condition.
   syntax:
     content: public static TSource First<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function First(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return an element from.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The first element in *source* that passes the test in *predicate*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
+  - type: System.InvalidOperationException
+    description: No element satisfies the condition in *predicate*.-or-The source sequence is empty.
 - uid: System.Linq.Queryable.FirstOrDefault``1(System.Linq.IQueryable{``0})
   id: FirstOrDefault``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -1357,16 +1689,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the first element of a sequence, or a default value if the sequence contains no elements.
   syntax:
     content: public static TSource FirstOrDefault<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function FirstOrDefault(Of TSource)(source As IQueryable(Of TSource)) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: The @'System.Linq.IQueryable`1' to return the first element of.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: default(*TSource*) if *source* is empty; otherwise, the first element in *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.FirstOrDefault``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: FirstOrDefault``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -1383,18 +1721,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the first element of a sequence that satisfies a specified condition or a default value if no such element is found.
   syntax:
     content: public static TSource FirstOrDefault<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function FirstOrDefault(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return an element from.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: default(*TSource*) if *source* is empty or if no element passes the test specified by *predicate*; otherwise, the first element in *source* that passes the test specified by *predicate*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
 - uid: System.Linq.Queryable.GroupBy``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   id: GroupBy``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: System.Linq.Queryable
@@ -1411,19 +1756,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Groups the elements of a sequence according to a specified key selector function.
   syntax:
     content: public static IQueryable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector)
     content.vb: Public Shared Function GroupBy(Of TSource, TKey)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey))) As IQueryable(Of IGrouping(Of TKey, TSource))
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements to group.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract the key for each element.
     typeParameters:
     - id: TSource
     - id: TKey
     return:
       type: System.Linq.IQueryable{System.Linq.IGrouping{{TKey},{TSource}}}
+      description: An IQueryable&lt;IGrouping&lt;TKey, TSource&gt;&gt; in C# or IQueryable(Of IGrouping(Of TKey, TSource)) in Visual Basic where each @'System.Linq.IGrouping`2' object contains a sequence of objects and a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* is null.'
 - uid: System.Linq.Queryable.GroupBy``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IEqualityComparer{``1})
   id: GroupBy``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IEqualityComparer{``1})
   parent: System.Linq.Queryable
@@ -1440,21 +1792,29 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Groups the elements of a sequence according to a specified key selector function and compares the keys by using a specified comparer.
   syntax:
     content: public static IQueryable<IGrouping<TKey, TSource>> GroupBy<TSource, TKey>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, IEqualityComparer<TKey> comparer)
     content.vb: Public Shared Function GroupBy(Of TSource, TKey)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), comparer As IEqualityComparer(Of TKey)) As IQueryable(Of IGrouping(Of TKey, TSource))
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements to group.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract the key for each element.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TKey}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to compare keys.
     typeParameters:
     - id: TSource
     - id: TKey
     return:
       type: System.Linq.IQueryable{System.Linq.IGrouping{{TKey},{TSource}}}
+      description: An IQueryable&lt;IGrouping&lt;TKey, TSource&gt;&gt; in C# or IQueryable(Of IGrouping(Of TKey, TSource)) in Visual Basic where each @'System.Linq.IGrouping`2' contains a sequence of objects and a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *comparer* is null.'
 - uid: System.Linq.Queryable.GroupBy``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}})
   id: GroupBy``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}})
   parent: System.Linq.Queryable
@@ -1471,22 +1831,30 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Groups the elements of a sequence according to a specified key selector function and projects the elements for each group by using a specified function.
   syntax:
     content: public static IQueryable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, Expressions.Expression<Func<TSource, TElement>> elementSelector)
     content.vb: Public Shared Function GroupBy(Of TSource, TKey, TElement)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), elementSelector As Expressions.Expression(Of Func(Of TSource, TElement))) As IQueryable(Of IGrouping(Of TKey, TElement))
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements to group.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract the key for each element.
     - id: elementSelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TElement}}}
+      description: A function to map each source element to an element in an @'System.Linq.IGrouping`2'.
     typeParameters:
     - id: TSource
     - id: TKey
     - id: TElement
     return:
       type: System.Linq.IQueryable{System.Linq.IGrouping{{TKey},{TElement}}}
+      description: An IQueryable&lt;IGrouping&lt;TKey, TElement&gt;&gt; in C# or IQueryable(Of IGrouping(Of TKey, TElement)) in Visual Basic where each @'System.Linq.IGrouping`2' contains a sequence of objects of type *TElement* and a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *elementSelector* is null.'
 - uid: System.Linq.Queryable.GroupBy``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Collections.Generic.IEqualityComparer{``1})
   id: GroupBy``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Collections.Generic.IEqualityComparer{``1})
   parent: System.Linq.Queryable
@@ -1503,24 +1871,33 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Groups the elements of a sequence and projects the elements for each group by using a specified function. Key values are compared by using a specified comparer.
   syntax:
     content: public static IQueryable<IGrouping<TKey, TElement>> GroupBy<TSource, TKey, TElement>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, Expressions.Expression<Func<TSource, TElement>> elementSelector, IEqualityComparer<TKey> comparer)
     content.vb: Public Shared Function GroupBy(Of TSource, TKey, TElement)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), elementSelector As Expressions.Expression(Of Func(Of TSource, TElement)), comparer As IEqualityComparer(Of TKey)) As IQueryable(Of IGrouping(Of TKey, TElement))
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements to group.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract the key for each element.
     - id: elementSelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TElement}}}
+      description: A function to map each source element to an element in an @'System.Linq.IGrouping`2'.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TKey}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to compare keys.
     typeParameters:
     - id: TSource
     - id: TKey
     - id: TElement
     return:
       type: System.Linq.IQueryable{System.Linq.IGrouping{{TKey},{TElement}}}
+      description: An IQueryable&lt;IGrouping&lt;TKey, TElement&gt;&gt; in C# or IQueryable(Of IGrouping(Of TKey, TElement)) in Visual Basic where each @'System.Linq.IGrouping`2' contains a sequence of objects of type *TElement* and a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *elementSelector* or *comparer* is null.'
 - uid: System.Linq.Queryable.GroupBy``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Collections.Generic.IEnumerable{``0},``2}})
   id: GroupBy``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Collections.Generic.IEnumerable{``0},``2}})
   parent: System.Linq.Queryable
@@ -1537,22 +1914,30 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key.
   syntax:
     content: public static IQueryable<TResult> GroupBy<TSource, TKey, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, Expressions.Expression<Func<TKey, IEnumerable<TSource>, TResult>> resultSelector)
     content.vb: Public Shared Function GroupBy(Of TSource, TKey, TResult)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), resultSelector As Expressions.Expression(Of Func(Of TKey, IEnumerable(Of TSource), TResult))) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements to group.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract the key for each element.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TKey},System.Collections.Generic.IEnumerable{{TSource}},{TResult}}}
+      description: A function to create a result value from each group.
     typeParameters:
     - id: TSource
     - id: TKey
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An T:System.Linq.IQueryable`1 that has a type argument of *TResult* and where each element represents a projection over a group and its key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *resultSelector* is null.'
 - uid: System.Linq.Queryable.GroupBy``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Collections.Generic.IEnumerable{``0},``2}},System.Collections.Generic.IEqualityComparer{``1})
   id: GroupBy``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``1,System.Collections.Generic.IEnumerable{``0},``2}},System.Collections.Generic.IEqualityComparer{``1})
   parent: System.Linq.Queryable
@@ -1569,24 +1954,33 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. Keys are compared by using a specified comparer.
   syntax:
     content: public static IQueryable<TResult> GroupBy<TSource, TKey, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, Expressions.Expression<Func<TKey, IEnumerable<TSource>, TResult>> resultSelector, IEqualityComparer<TKey> comparer)
     content.vb: Public Shared Function GroupBy(Of TSource, TKey, TResult)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), resultSelector As Expressions.Expression(Of Func(Of TKey, IEnumerable(Of TSource), TResult)), comparer As IEqualityComparer(Of TKey)) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements to group.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract the key for each element.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TKey},System.Collections.Generic.IEnumerable{{TSource}},{TResult}}}
+      description: A function to create a result value from each group.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TKey}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to compare keys.
     typeParameters:
     - id: TSource
     - id: TKey
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An T:System.Linq.IQueryable`1 that has a type argument of *TResult* and where each element represents a projection over a group and its key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *resultSelector* or *comparer* is null.'
 - uid: System.Linq.Queryable.GroupBy``4(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,System.Collections.Generic.IEnumerable{``2},``3}})
   id: GroupBy``4(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,System.Collections.Generic.IEnumerable{``2},``3}})
   parent: System.Linq.Queryable
@@ -1603,18 +1997,23 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. The elements of each group are projected by using a specified function.
   syntax:
     content: public static IQueryable<TResult> GroupBy<TSource, TKey, TElement, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, Expressions.Expression<Func<TSource, TElement>> elementSelector, Expressions.Expression<Func<TKey, IEnumerable<TElement>, TResult>> resultSelector)
     content.vb: Public Shared Function GroupBy(Of TSource, TKey, TElement, TResult)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), elementSelector As Expressions.Expression(Of Func(Of TSource, TElement)), resultSelector As Expressions.Expression(Of Func(Of TKey, IEnumerable(Of TElement), TResult))) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements to group.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract the key for each element.
     - id: elementSelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TElement}}}
+      description: A function to map each source element to an element in an @'System.Linq.IGrouping`2'.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TKey},System.Collections.Generic.IEnumerable{{TElement}},{TResult}}}
+      description: A function to create a result value from each group.
     typeParameters:
     - id: TSource
     - id: TKey
@@ -1622,6 +2021,10 @@ items:
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An T:System.Linq.IQueryable`1 that has a type argument of *TResult* and where each element represents a projection over a group and its key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *elementSelector* or *resultSelector* is null.'
 - uid: System.Linq.Queryable.GroupBy``4(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,System.Collections.Generic.IEnumerable{``2},``3}},System.Collections.Generic.IEqualityComparer{``1})
   id: GroupBy``4(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,System.Collections.Generic.IEnumerable{``2},``3}},System.Collections.Generic.IEqualityComparer{``1})
   parent: System.Linq.Queryable
@@ -1638,20 +2041,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Groups the elements of a sequence according to a specified key selector function and creates a result value from each group and its key. Keys are compared by using a specified comparer and the elements of each group are projected by using a specified function.
   syntax:
     content: public static IQueryable<TResult> GroupBy<TSource, TKey, TElement, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, Expressions.Expression<Func<TSource, TElement>> elementSelector, Expressions.Expression<Func<TKey, IEnumerable<TElement>, TResult>> resultSelector, IEqualityComparer<TKey> comparer)
     content.vb: Public Shared Function GroupBy(Of TSource, TKey, TElement, TResult)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), elementSelector As Expressions.Expression(Of Func(Of TSource, TElement)), resultSelector As Expressions.Expression(Of Func(Of TKey, IEnumerable(Of TElement), TResult)), comparer As IEqualityComparer(Of TKey)) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements to group.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract the key for each element.
     - id: elementSelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TElement}}}
+      description: A function to map each source element to an element in an @'System.Linq.IGrouping`2'.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TKey},System.Collections.Generic.IEnumerable{{TElement}},{TResult}}}
+      description: A function to create a result value from each group.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TKey}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to compare keys.
     typeParameters:
     - id: TSource
     - id: TKey
@@ -1659,6 +2068,10 @@ items:
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An T:System.Linq.IQueryable`1 that has a type argument of *TResult* and where each element represents a projection over a group and its key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *elementSelector* or *resultSelector* or *comparer* is null.'
 - uid: System.Linq.Queryable.GroupJoin``4(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,``2}},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3}})
   id: GroupJoin``4(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,``2}},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3}})
   parent: System.Linq.Queryable
@@ -1675,20 +2088,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Correlates the elements of two sequences based on key equality and groups the results. The default equality comparer is used to compare keys.
   syntax:
     content: public static IQueryable<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(IQueryable<TOuter> outer, IEnumerable<TInner> inner, Expressions.Expression<Func<TOuter, TKey>> outerKeySelector, Expressions.Expression<Func<TInner, TKey>> innerKeySelector, Expressions.Expression<Func<TOuter, IEnumerable<TInner>, TResult>> resultSelector)
     content.vb: Public Shared Function GroupJoin(Of TOuter, TInner, TKey, TResult)(outer As IQueryable(Of TOuter), inner As IEnumerable(Of TInner), outerKeySelector As Expressions.Expression(Of Func(Of TOuter, TKey)), innerKeySelector As Expressions.Expression(Of Func(Of TInner, TKey)), resultSelector As Expressions.Expression(Of Func(Of TOuter, IEnumerable(Of TInner), TResult))) As IQueryable(Of TResult)
     parameters:
     - id: outer
       type: System.Linq.IQueryable{{TOuter}}
+      description: The first sequence to join.
     - id: inner
       type: System.Collections.Generic.IEnumerable{{TInner}}
+      description: The sequence to join to the first sequence.
     - id: outerKeySelector
       type: System.Linq.Expressions.Expression{System.Func{{TOuter},{TKey}}}
+      description: A function to extract the join key from each element of the first sequence.
     - id: innerKeySelector
       type: System.Linq.Expressions.Expression{System.Func{{TInner},{TKey}}}
+      description: A function to extract the join key from each element of the second sequence.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TOuter},System.Collections.Generic.IEnumerable{{TInner}},{TResult}}}
+      description: A function to create a result element from an element from the first sequence and a collection of matching elements from the second sequence.
     typeParameters:
     - id: TOuter
     - id: TInner
@@ -1696,6 +2115,10 @@ items:
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' that contains elements of type *TResult* obtained by performing a grouped join on two sequences.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*outer* or *inner* or *outerKeySelector* or *innerKeySelector* or *resultSelector* is null.'
 - uid: System.Linq.Queryable.GroupJoin``4(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,``2}},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3}},System.Collections.Generic.IEqualityComparer{``2})
   id: GroupJoin``4(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,``2}},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{``1},``3}},System.Collections.Generic.IEqualityComparer{``2})
   parent: System.Linq.Queryable
@@ -1712,22 +2135,29 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Correlates the elements of two sequences based on key equality and groups the results. A specified @'System.Collections.Generic.IEqualityComparer`1' is used to compare keys.
   syntax:
     content: public static IQueryable<TResult> GroupJoin<TOuter, TInner, TKey, TResult>(IQueryable<TOuter> outer, IEnumerable<TInner> inner, Expressions.Expression<Func<TOuter, TKey>> outerKeySelector, Expressions.Expression<Func<TInner, TKey>> innerKeySelector, Expressions.Expression<Func<TOuter, IEnumerable<TInner>, TResult>> resultSelector, IEqualityComparer<TKey> comparer)
     content.vb: Public Shared Function GroupJoin(Of TOuter, TInner, TKey, TResult)(outer As IQueryable(Of TOuter), inner As IEnumerable(Of TInner), outerKeySelector As Expressions.Expression(Of Func(Of TOuter, TKey)), innerKeySelector As Expressions.Expression(Of Func(Of TInner, TKey)), resultSelector As Expressions.Expression(Of Func(Of TOuter, IEnumerable(Of TInner), TResult)), comparer As IEqualityComparer(Of TKey)) As IQueryable(Of TResult)
     parameters:
     - id: outer
       type: System.Linq.IQueryable{{TOuter}}
+      description: The first sequence to join.
     - id: inner
       type: System.Collections.Generic.IEnumerable{{TInner}}
+      description: The sequence to join to the first sequence.
     - id: outerKeySelector
       type: System.Linq.Expressions.Expression{System.Func{{TOuter},{TKey}}}
+      description: A function to extract the join key from each element of the first sequence.
     - id: innerKeySelector
       type: System.Linq.Expressions.Expression{System.Func{{TInner},{TKey}}}
+      description: A function to extract the join key from each element of the second sequence.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TOuter},System.Collections.Generic.IEnumerable{{TInner}},{TResult}}}
+      description: A function to create a result element from an element from the first sequence and a collection of matching elements from the second sequence.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TKey}}
+      description: A comparer to hash and compare keys.
     typeParameters:
     - id: TOuter
     - id: TInner
@@ -1735,6 +2165,10 @@ items:
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' that contains elements of type *TResult* obtained by performing a grouped join on two sequences.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*outer* or *inner* or *outerKeySelector* or *innerKeySelector* or *resultSelector* is null.'
 - uid: System.Linq.Queryable.Intersect``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0})
   id: Intersect``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0})
   parent: System.Linq.Queryable
@@ -1751,18 +2185,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Produces the set intersection of two sequences by using the default equality comparer to compare values.
   syntax:
     content: public static IQueryable<TSource> Intersect<TSource>(IQueryable<TSource> source1, IEnumerable<TSource> source2)
     content.vb: Public Shared Function Intersect(Of TSource)(source1 As IQueryable(Of TSource), source2 As IEnumerable(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source1
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence whose distinct elements that also appear in *source2* are returned.
     - id: source2
       type: System.Collections.Generic.IEnumerable{{TSource}}
+      description: A sequence whose distinct elements that also appear in the first sequence are returned.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence that contains the set intersection of the two sequences.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source1* or *source2* is null.'
 - uid: System.Linq.Queryable.Intersect``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})
   id: Intersect``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})
   parent: System.Linq.Queryable
@@ -1779,20 +2220,28 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Produces the set intersection of two sequences by using the specified @'System.Collections.Generic.IEqualityComparer`1' to compare values.
   syntax:
     content: public static IQueryable<TSource> Intersect<TSource>(IQueryable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer)
     content.vb: Public Shared Function Intersect(Of TSource)(source1 As IQueryable(Of TSource), source2 As IEnumerable(Of TSource), comparer As IEqualityComparer(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source1
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose distinct elements that also appear in *source2* are returned.
     - id: source2
       type: System.Collections.Generic.IEnumerable{{TSource}}
+      description: An @'System.Collections.Generic.IEnumerable`1' whose distinct elements that also appear in the first sequence are returned.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TSource}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to compare values.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains the set intersection of the two sequences.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source1* or *source2* is null.'
 - uid: System.Linq.Queryable.Join``4(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,``2}},System.Linq.Expressions.Expression{System.Func{``0,``1,``3}})
   id: Join``4(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,``2}},System.Linq.Expressions.Expression{System.Func{``0,``1,``3}})
   parent: System.Linq.Queryable
@@ -1809,20 +2258,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Correlates the elements of two sequences based on matching keys. The default equality comparer is used to compare keys.
   syntax:
     content: public static IQueryable<TResult> Join<TOuter, TInner, TKey, TResult>(IQueryable<TOuter> outer, IEnumerable<TInner> inner, Expressions.Expression<Func<TOuter, TKey>> outerKeySelector, Expressions.Expression<Func<TInner, TKey>> innerKeySelector, Expressions.Expression<Func<TOuter, TInner, TResult>> resultSelector)
     content.vb: Public Shared Function Join(Of TOuter, TInner, TKey, TResult)(outer As IQueryable(Of TOuter), inner As IEnumerable(Of TInner), outerKeySelector As Expressions.Expression(Of Func(Of TOuter, TKey)), innerKeySelector As Expressions.Expression(Of Func(Of TInner, TKey)), resultSelector As Expressions.Expression(Of Func(Of TOuter, TInner, TResult))) As IQueryable(Of TResult)
     parameters:
     - id: outer
       type: System.Linq.IQueryable{{TOuter}}
+      description: The first sequence to join.
     - id: inner
       type: System.Collections.Generic.IEnumerable{{TInner}}
+      description: The sequence to join to the first sequence.
     - id: outerKeySelector
       type: System.Linq.Expressions.Expression{System.Func{{TOuter},{TKey}}}
+      description: A function to extract the join key from each element of the first sequence.
     - id: innerKeySelector
       type: System.Linq.Expressions.Expression{System.Func{{TInner},{TKey}}}
+      description: A function to extract the join key from each element of the second sequence.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TOuter},{TInner},{TResult}}}
+      description: A function to create a result element from two matching elements.
     typeParameters:
     - id: TOuter
     - id: TInner
@@ -1830,6 +2285,10 @@ items:
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' that has elements of type *TResult* obtained by performing an inner join on two sequences.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*outer* or *inner* or *outerKeySelector* or *innerKeySelector* or *resultSelector* is null.'
 - uid: System.Linq.Queryable.Join``4(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,``2}},System.Linq.Expressions.Expression{System.Func{``0,``1,``3}},System.Collections.Generic.IEqualityComparer{``2})
   id: Join``4(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{``0,``2}},System.Linq.Expressions.Expression{System.Func{``1,``2}},System.Linq.Expressions.Expression{System.Func{``0,``1,``3}},System.Collections.Generic.IEqualityComparer{``2})
   parent: System.Linq.Queryable
@@ -1846,22 +2305,29 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Correlates the elements of two sequences based on matching keys. A specified @'System.Collections.Generic.IEqualityComparer`1' is used to compare keys.
   syntax:
     content: public static IQueryable<TResult> Join<TOuter, TInner, TKey, TResult>(IQueryable<TOuter> outer, IEnumerable<TInner> inner, Expressions.Expression<Func<TOuter, TKey>> outerKeySelector, Expressions.Expression<Func<TInner, TKey>> innerKeySelector, Expressions.Expression<Func<TOuter, TInner, TResult>> resultSelector, IEqualityComparer<TKey> comparer)
     content.vb: Public Shared Function Join(Of TOuter, TInner, TKey, TResult)(outer As IQueryable(Of TOuter), inner As IEnumerable(Of TInner), outerKeySelector As Expressions.Expression(Of Func(Of TOuter, TKey)), innerKeySelector As Expressions.Expression(Of Func(Of TInner, TKey)), resultSelector As Expressions.Expression(Of Func(Of TOuter, TInner, TResult)), comparer As IEqualityComparer(Of TKey)) As IQueryable(Of TResult)
     parameters:
     - id: outer
       type: System.Linq.IQueryable{{TOuter}}
+      description: The first sequence to join.
     - id: inner
       type: System.Collections.Generic.IEnumerable{{TInner}}
+      description: The sequence to join to the first sequence.
     - id: outerKeySelector
       type: System.Linq.Expressions.Expression{System.Func{{TOuter},{TKey}}}
+      description: A function to extract the join key from each element of the first sequence.
     - id: innerKeySelector
       type: System.Linq.Expressions.Expression{System.Func{{TInner},{TKey}}}
+      description: A function to extract the join key from each element of the second sequence.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TOuter},{TInner},{TResult}}}
+      description: A function to create a result element from two matching elements.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TKey}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to hash and compare keys.
     typeParameters:
     - id: TOuter
     - id: TInner
@@ -1869,6 +2335,10 @@ items:
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' that has elements of type *TResult* obtained by performing an inner join on two sequences.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*outer* or *inner* or *outerKeySelector* or *innerKeySelector* or *resultSelector* is null.'
 - uid: System.Linq.Queryable.Last``1(System.Linq.IQueryable{``0})
   id: Last``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -1885,16 +2355,24 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the last element in a sequence.
   syntax:
     content: public static TSource Last<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function Last(Of TSource)(source As IQueryable(Of TSource)) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return the last element of.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The value at the last position in *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.InvalidOperationException
+    description: The source sequence is empty.
 - uid: System.Linq.Queryable.Last``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: Last``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -1911,18 +2389,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the last element of a sequence that satisfies a specified condition.
   syntax:
     content: public static TSource Last<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function Last(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return an element from.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The last element in *source* that passes the test specified by *predicate*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
+  - type: System.InvalidOperationException
+    description: No element satisfies the condition in *predicate*.-or-The source sequence is empty.
 - uid: System.Linq.Queryable.LastOrDefault``1(System.Linq.IQueryable{``0})
   id: LastOrDefault``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -1939,16 +2426,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the last element in a sequence, or a default value if the sequence contains no elements.
   syntax:
     content: public static TSource LastOrDefault<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function LastOrDefault(Of TSource)(source As IQueryable(Of TSource)) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return the last element of.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: default(*TSource*) if *source* is empty; otherwise, the last element in *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.LastOrDefault``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: LastOrDefault``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -1965,18 +2458,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the last element of a sequence that satisfies a condition or a default value if no such element is found.
   syntax:
     content: public static TSource LastOrDefault<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function LastOrDefault(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return an element from.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: default(*TSource*) if *source* is empty or if no elements pass the test in the predicate function; otherwise, the last element of *source* that passes the test in the predicate function.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
 - uid: System.Linq.Queryable.LongCount``1(System.Linq.IQueryable{``0})
   id: LongCount``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -1993,16 +2493,24 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns an @'System.Int64' that represents the total number of elements in a sequence.
   syntax:
     content: public static long LongCount<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function LongCount(Of TSource)(source As IQueryable(Of TSource)) As Long
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains the elements to be counted.
     typeParameters:
     - id: TSource
     return:
       type: System.Int64
+      description: The number of elements in *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.OverflowException
+    description: The number of elements exceeds @'System.Int64.MaxValue'.
 - uid: System.Linq.Queryable.LongCount``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: LongCount``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -2019,18 +2527,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns an @'System.Int64' that represents the number of elements in a sequence that satisfy a condition.
   syntax:
     content: public static long LongCount<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function LongCount(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As Long
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains the elements to be counted.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: System.Int64
+      description: The number of elements in *source* that satisfy the condition in the predicate function.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
+  - type: System.OverflowException
+    description: The number of matching elements exceeds @'System.Int64.MaxValue'.
 - uid: System.Linq.Queryable.Max``1(System.Linq.IQueryable{``0})
   id: Max``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -2047,16 +2564,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the maximum value in a generic @'System.Linq.IQueryable`1'.
   syntax:
     content: public static TSource Max<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function Max(Of TSource)(source As IQueryable(Of TSource)) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to determine the maximum of.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The maximum value in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Max``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   id: Max``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: System.Linq.Queryable
@@ -2073,19 +2596,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Invokes a projection function on each element of a generic @'System.Linq.IQueryable`1' and returns the maximum resulting value.
   syntax:
     content: public static TResult Max<TSource, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TResult>> selector)
     content.vb: Public Shared Function Max(Of TSource, TResult)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, TResult))) As TResult
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to determine the maximum of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TResult}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     - id: TResult
     return:
       type: '{TResult}'
+      description: The maximum value in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Min``1(System.Linq.IQueryable{``0})
   id: Min``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -2102,16 +2632,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the minimum value of a generic @'System.Linq.IQueryable`1'.
   syntax:
     content: public static TSource Min<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function Min(Of TSource)(source As IQueryable(Of TSource)) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to determine the minimum of.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The minimum value in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Min``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   id: Min``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: System.Linq.Queryable
@@ -2128,19 +2664,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Invokes a projection function on each element of a generic @'System.Linq.IQueryable`1' and returns the minimum resulting value.
   syntax:
     content: public static TResult Min<TSource, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TResult>> selector)
     content.vb: Public Shared Function Min(Of TSource, TResult)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, TResult))) As TResult
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to determine the minimum of.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TResult}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     - id: TResult
     return:
       type: '{TResult}'
+      description: The minimum value in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.OfType``1(System.Linq.IQueryable)
   id: OfType``1(System.Linq.IQueryable)
   parent: System.Linq.Queryable
@@ -2157,16 +2700,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Filters the elements of an @'System.Linq.IQueryable' based on a specified type.
   syntax:
     content: public static IQueryable<TResult> OfType<TResult>(IQueryable source)
     content.vb: Public Shared Function OfType(Of TResult)(source As IQueryable) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable
+      description: An @'System.Linq.IQueryable' whose elements to filter.
     typeParameters:
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: A collection that contains the elements from *source* that have type *TResult*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.OrderBy``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   id: OrderBy``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: System.Linq.Queryable
@@ -2183,19 +2732,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Sorts the elements of a sequence in ascending order according to a key.
   syntax:
     content: public static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector)
     content.vb: Public Shared Function OrderBy(Of TSource, TKey)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey))) As IOrderedQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to order.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract a key from an element.
     typeParameters:
     - id: TSource
     - id: TKey
     return:
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' whose elements are sorted according to a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* is null.'
 - uid: System.Linq.Queryable.OrderBy``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IComparer{``1})
   id: OrderBy``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IComparer{``1})
   parent: System.Linq.Queryable
@@ -2212,21 +2768,29 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Sorts the elements of a sequence in ascending order by using a specified comparer.
   syntax:
     content: public static IOrderedQueryable<TSource> OrderBy<TSource, TKey>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, IComparer<TKey> comparer)
     content.vb: Public Shared Function OrderBy(Of TSource, TKey)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), comparer As IComparer(Of TKey)) As IOrderedQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to order.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract a key from an element.
     - id: comparer
       type: System.Collections.Generic.IComparer{{TKey}}
+      description: An @'System.Collections.Generic.IComparer`1' to compare keys.
     typeParameters:
     - id: TSource
     - id: TKey
     return:
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' whose elements are sorted according to a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *comparer* is null.'
 - uid: System.Linq.Queryable.OrderByDescending``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   id: OrderByDescending``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: System.Linq.Queryable
@@ -2243,19 +2807,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Sorts the elements of a sequence in descending order according to a key.
   syntax:
     content: public static IOrderedQueryable<TSource> OrderByDescending<TSource, TKey>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector)
     content.vb: Public Shared Function OrderByDescending(Of TSource, TKey)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey))) As IOrderedQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to order.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract a key from an element.
     typeParameters:
     - id: TSource
     - id: TKey
     return:
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' whose elements are sorted in descending order according to a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* is null.'
 - uid: System.Linq.Queryable.OrderByDescending``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IComparer{``1})
   id: OrderByDescending``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IComparer{``1})
   parent: System.Linq.Queryable
@@ -2272,21 +2843,29 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Sorts the elements of a sequence in descending order by using a specified comparer.
   syntax:
     content: public static IOrderedQueryable<TSource> OrderByDescending<TSource, TKey>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, IComparer<TKey> comparer)
     content.vb: Public Shared Function OrderByDescending(Of TSource, TKey)(source As IQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), comparer As IComparer(Of TKey)) As IOrderedQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to order.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract a key from an element.
     - id: comparer
       type: System.Collections.Generic.IComparer{{TKey}}
+      description: An @'System.Collections.Generic.IComparer`1' to compare keys.
     typeParameters:
     - id: TSource
     - id: TKey
     return:
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' whose elements are sorted in descending order according to a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *comparer* is null.'
 - uid: System.Linq.Queryable.Reverse``1(System.Linq.IQueryable{``0})
   id: Reverse``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -2303,16 +2882,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Inverts the order of the elements in a sequence.
   syntax:
     content: public static IQueryable<TSource> Reverse<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function Reverse(Of TSource)(source As IQueryable(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to reverse.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements correspond to those of the input sequence in reverse order.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Select``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   id: Select``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: System.Linq.Queryable
@@ -2329,19 +2914,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Projects each element of a sequence into a new form.
   syntax:
     content: public static IQueryable<TResult> Select<TSource, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, TResult>> selector)
     content.vb: Public Shared Function Select(Of TSource, TResult)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, TResult))) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to project.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TResult}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' whose elements are the result of invoking a projection function on each element of *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Select``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,``1}})
   id: Select``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,``1}})
   parent: System.Linq.Queryable
@@ -2358,19 +2950,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Projects each element of a sequence into a new form by incorporating the element's index.
   syntax:
     content: public static IQueryable<TResult> Select<TSource, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, int, TResult>> selector)
     content.vb: Public Shared Function Select(Of TSource, TResult)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Integer, TResult))) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to project.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Int32,{TResult}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' whose elements are the result of invoking a projection function on each element of *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.SelectMany``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{``1}}})
   id: SelectMany``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{``1}}})
   parent: System.Linq.Queryable
@@ -2387,19 +2986,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Projects each element of a sequence to an @'System.Collections.Generic.IEnumerable`1' and combines the resulting sequences into one sequence.
   syntax:
     content: public static IQueryable<TResult> SelectMany<TSource, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, IEnumerable<TResult>>> selector)
     content.vb: Public Shared Function SelectMany(Of TSource, TResult)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, IEnumerable(Of TResult)))) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to project.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Collections.Generic.IEnumerable{{TResult}}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' whose elements are the result of invoking a one-to-many projection function on each element of the input sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.SelectMany``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Collections.Generic.IEnumerable{``1}}})
   id: SelectMany``2(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Collections.Generic.IEnumerable{``1}}})
   parent: System.Linq.Queryable
@@ -2416,19 +3022,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Projects each element of a sequence to an @'System.Collections.Generic.IEnumerable`1' and combines the resulting sequences into one sequence. The index of each source element is used in the projected form of that element.
   syntax:
     content: public static IQueryable<TResult> SelectMany<TSource, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, int, IEnumerable<TResult>>> selector)
     content.vb: Public Shared Function SelectMany(Of TSource, TResult)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Integer, IEnumerable(Of TResult)))) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to project.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Int32,System.Collections.Generic.IEnumerable{{TResult}}}}
+      description: A projection function to apply to each element; the second parameter of this function represents the index of the source element.
     typeParameters:
     - id: TSource
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' whose elements are the result of invoking a one-to-many projection function on each element of the input sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.SelectMany``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{``1}}},System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
   id: SelectMany``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Collections.Generic.IEnumerable{``1}}},System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
   parent: System.Linq.Queryable
@@ -2445,22 +3058,30 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Projects each element of a sequence to an @'System.Collections.Generic.IEnumerable`1' and invokes a result selector function on each element therein. The resulting values from each intermediate sequence are combined into a single, one-dimensional sequence and returned.
   syntax:
     content: public static IQueryable<TResult> SelectMany<TSource, TCollection, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, IEnumerable<TCollection>>> collectionSelector, Expressions.Expression<Func<TSource, TCollection, TResult>> resultSelector)
     content.vb: Public Shared Function SelectMany(Of TSource, TCollection, TResult)(source As IQueryable(Of TSource), collectionSelector As Expressions.Expression(Of Func(Of TSource, IEnumerable(Of TCollection))), resultSelector As Expressions.Expression(Of Func(Of TSource, TCollection, TResult))) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to project.
     - id: collectionSelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Collections.Generic.IEnumerable{{TCollection}}}}
+      description: A projection function to apply to each element of the input sequence.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TCollection},{TResult}}}
+      description: A projection function to apply to each element of each intermediate sequence.
     typeParameters:
     - id: TSource
     - id: TCollection
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' whose elements are the result of invoking the one-to-many projection function *collectionSelector* on each element of *source* and then mapping each of those sequence elements and their corresponding *source* element to a result element.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *collectionSelector* or *resultSelector* is null.'
 - uid: System.Linq.Queryable.SelectMany``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Collections.Generic.IEnumerable{``1}}},System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
   id: SelectMany``3(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Collections.Generic.IEnumerable{``1}}},System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
   parent: System.Linq.Queryable
@@ -2477,22 +3098,30 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Projects each element of a sequence to an @'System.Collections.Generic.IEnumerable`1' that incorporates the index of the source element that produced it. A result selector function is invoked on each element of each intermediate sequence, and the resulting values are combined into a single, one-dimensional sequence and returned.
   syntax:
     content: public static IQueryable<TResult> SelectMany<TSource, TCollection, TResult>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, int, IEnumerable<TCollection>>> collectionSelector, Expressions.Expression<Func<TSource, TCollection, TResult>> resultSelector)
     content.vb: Public Shared Function SelectMany(Of TSource, TCollection, TResult)(source As IQueryable(Of TSource), collectionSelector As Expressions.Expression(Of Func(Of TSource, Integer, IEnumerable(Of TCollection))), resultSelector As Expressions.Expression(Of Func(Of TSource, TCollection, TResult))) As IQueryable(Of TResult)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values to project.
     - id: collectionSelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Int32,System.Collections.Generic.IEnumerable{{TCollection}}}}
+      description: A projection function to apply to each element of the input sequence; the second parameter of this function represents the index of the source element.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TCollection},{TResult}}}
+      description: A projection function to apply to each element of each intermediate sequence.
     typeParameters:
     - id: TSource
     - id: TCollection
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' whose elements are the result of invoking the one-to-many projection function *collectionSelector* on each element of *source* and then mapping each of those sequence elements and their corresponding *source* element to a result element.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *collectionSelector* or *resultSelector* is null.'
 - uid: System.Linq.Queryable.SequenceEqual``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0})
   id: SequenceEqual``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0})
   parent: System.Linq.Queryable
@@ -2509,18 +3138,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Determines whether two sequences are equal by using the default equality comparer to compare elements.
   syntax:
     content: public static bool SequenceEqual<TSource>(IQueryable<TSource> source1, IEnumerable<TSource> source2)
     content.vb: Public Shared Function SequenceEqual(Of TSource)(source1 As IQueryable(Of TSource), source2 As IEnumerable(Of TSource)) As Boolean
     parameters:
     - id: source1
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements to compare to those of *source2*.
     - id: source2
       type: System.Collections.Generic.IEnumerable{{TSource}}
+      description: An @'System.Collections.Generic.IEnumerable`1' whose elements to compare to those of the first sequence.
     typeParameters:
     - id: TSource
     return:
       type: System.Boolean
+      description: true if the two source sequences are of equal length and their corresponding elements compare equal; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source1* or *source2* is null.'
 - uid: System.Linq.Queryable.SequenceEqual``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})
   id: SequenceEqual``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})
   parent: System.Linq.Queryable
@@ -2537,20 +3173,28 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Determines whether two sequences are equal by using a specified @'System.Collections.Generic.IEqualityComparer`1' to compare elements.
   syntax:
     content: public static bool SequenceEqual<TSource>(IQueryable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer)
     content.vb: Public Shared Function SequenceEqual(Of TSource)(source1 As IQueryable(Of TSource), source2 As IEnumerable(Of TSource), comparer As IEqualityComparer(Of TSource)) As Boolean
     parameters:
     - id: source1
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' whose elements to compare to those of *source2*.
     - id: source2
       type: System.Collections.Generic.IEnumerable{{TSource}}
+      description: An @'System.Collections.Generic.IEnumerable`1' whose elements to compare to those of the first sequence.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TSource}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to use to compare elements.
     typeParameters:
     - id: TSource
     return:
       type: System.Boolean
+      description: true if the two source sequences are of equal length and their corresponding elements compare equal; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source1* or *source2* is null.'
 - uid: System.Linq.Queryable.Single``1(System.Linq.IQueryable{``0})
   id: Single``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -2567,16 +3211,24 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the only element of a sequence, and throws an exception if there is not exactly one element in the sequence.
   syntax:
     content: public static TSource Single<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function Single(Of TSource)(source As IQueryable(Of TSource)) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return the single element of.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The single element of the input sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* has more than one element.'
 - uid: System.Linq.Queryable.Single``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: Single``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -2593,18 +3245,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the only element of a sequence that satisfies a specified condition, and throws an exception if more than one such element exists.
   syntax:
     content: public static TSource Single<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function Single(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return a single element from.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test an element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The single element of the input sequence that satisfies the condition in *predicate*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
+  - type: System.InvalidOperationException
+    description: No element satisfies the condition in *predicate*.-or-More than one element satisfies the condition in *predicate*.-or-The source sequence is empty.
 - uid: System.Linq.Queryable.SingleOrDefault``1(System.Linq.IQueryable{``0})
   id: SingleOrDefault``1(System.Linq.IQueryable{``0})
   parent: System.Linq.Queryable
@@ -2621,16 +3282,24 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the only element of a sequence, or a default value if the sequence is empty; this method throws an exception if there is more than one element in the sequence.
   syntax:
     content: public static TSource SingleOrDefault<TSource>(IQueryable<TSource> source)
     content.vb: Public Shared Function SingleOrDefault(Of TSource)(source As IQueryable(Of TSource)) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return the single element of.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The single element of the input sequence, or default(*TSource*) if the sequence contains no elements.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.InvalidOperationException
+    description: '*source* has more than one element.'
 - uid: System.Linq.Queryable.SingleOrDefault``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: SingleOrDefault``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -2647,18 +3316,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns the only element of a sequence that satisfies a specified condition or a default value if no such element exists; this method throws an exception if more than one element satisfies the condition.
   syntax:
     content: public static TSource SingleOrDefault<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function SingleOrDefault(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As TSource
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return a single element from.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test an element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: '{TSource}'
+      description: The single element of the input sequence that satisfies the condition in *predicate*, or default(*TSource*) if no such element is found.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
+  - type: System.InvalidOperationException
+    description: More than one element satisfies the condition in *predicate*.
 - uid: System.Linq.Queryable.Skip``1(System.Linq.IQueryable{``0},System.Int32)
   id: Skip``1(System.Linq.IQueryable{``0},System.Int32)
   parent: System.Linq.Queryable
@@ -2675,18 +3353,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Bypasses a specified number of elements in a sequence and then returns the remaining elements.
   syntax:
     content: public static IQueryable<TSource> Skip<TSource>(IQueryable<TSource> source, int count)
     content.vb: Public Shared Function Skip(Of TSource)(source As IQueryable(Of TSource), count As Integer) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return elements from.
     - id: count
       type: System.Int32
+      description: The number of elements to skip before returning the remaining elements.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains elements that occur after the specified index in the input sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.SkipWhile``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: SkipWhile``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -2703,18 +3388,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Bypasses elements in a sequence as long as a specified condition is true and then returns the remaining elements.
   syntax:
     content: public static IQueryable<TSource> SkipWhile<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function SkipWhile(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return elements from.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains elements from *source* starting at the first element in the linear series that does not pass the test specified by *predicate*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
 - uid: System.Linq.Queryable.SkipWhile``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Boolean}})
   id: SkipWhile``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Boolean}})
   parent: System.Linq.Queryable
@@ -2731,18 +3423,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Bypasses elements in a sequence as long as a specified condition is true and then returns the remaining elements. The element's index is used in the logic of the predicate function.
   syntax:
     content: public static IQueryable<TSource> SkipWhile<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, int, bool>> predicate)
     content.vb: Public Shared Function SkipWhile(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Integer, Boolean))) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to return elements from.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Int32,System.Boolean}}
+      description: A function to test each element for a condition; the second parameter of this function represents the index of the source element.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains elements from *source* starting at the first element in the linear series that does not pass the test specified by *predicate*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
 - uid: System.Linq.Queryable.Sum(System.Linq.IQueryable{System.Decimal})
   id: Sum(System.Linq.IQueryable{System.Decimal})
   parent: System.Linq.Queryable
@@ -2759,14 +3458,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of a sequence of @'System.Decimal' values.
   syntax:
     content: public static decimal Sum(IQueryable<decimal> source)
     content.vb: Public Shared Function Sum(source As IQueryable(Of Decimal)) As Decimal
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Decimal}
+      description: A sequence of @'System.Decimal' values to calculate the sum of.
     return:
       type: System.Decimal
+      description: The sum of the values in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Decimal.MaxValue'.
 - uid: System.Linq.Queryable.Sum(System.Linq.IQueryable{System.Double})
   id: Sum(System.Linq.IQueryable{System.Double})
   parent: System.Linq.Queryable
@@ -2783,14 +3490,20 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of a sequence of @'System.Double' values.
   syntax:
     content: public static double Sum(IQueryable<double> source)
     content.vb: Public Shared Function Sum(source As IQueryable(Of Double)) As Double
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Double}
+      description: A sequence of @'System.Double' values to calculate the sum of.
     return:
       type: System.Double
+      description: The sum of the values in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Sum(System.Linq.IQueryable{System.Int32})
   id: Sum(System.Linq.IQueryable{System.Int32})
   parent: System.Linq.Queryable
@@ -2807,14 +3520,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of a sequence of @'System.Int32' values.
   syntax:
     content: public static int Sum(IQueryable<int> source)
     content.vb: Public Shared Function Sum(source As IQueryable(Of Integer)) As Integer
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Int32}
+      description: A sequence of @'System.Int32' values to calculate the sum of.
     return:
       type: System.Int32
+      description: The sum of the values in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Int32.MaxValue'.
 - uid: System.Linq.Queryable.Sum(System.Linq.IQueryable{System.Int64})
   id: Sum(System.Linq.IQueryable{System.Int64})
   parent: System.Linq.Queryable
@@ -2831,14 +3552,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of a sequence of @'System.Int64' values.
   syntax:
     content: public static long Sum(IQueryable<long> source)
     content.vb: Public Shared Function Sum(source As IQueryable(Of Long)) As Long
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Int64}
+      description: A sequence of @'System.Int64' values to calculate the sum of.
     return:
       type: System.Int64
+      description: The sum of the values in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Int64.MaxValue'.
 - uid: System.Linq.Queryable.Sum(System.Linq.IQueryable{System.Nullable{System.Decimal}})
   id: Sum(System.Linq.IQueryable{System.Nullable{System.Decimal}})
   parent: System.Linq.Queryable
@@ -2855,14 +3584,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of a sequence of nullable @'System.Decimal' values.
   syntax:
     content: public static decimal ? Sum(IQueryable<decimal ? > source)
     content.vb: Public Shared Function Sum(source As IQueryable(Of Decimal?)) As Decimal?
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Nullable{System.Decimal}}
+      description: A sequence of nullable @'System.Decimal' values to calculate the sum of.
     return:
       type: System.Nullable{System.Decimal}
+      description: The sum of the values in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Decimal.MaxValue'.
 - uid: System.Linq.Queryable.Sum(System.Linq.IQueryable{System.Nullable{System.Double}})
   id: Sum(System.Linq.IQueryable{System.Nullable{System.Double}})
   parent: System.Linq.Queryable
@@ -2879,14 +3616,20 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of a sequence of nullable @'System.Double' values.
   syntax:
     content: public static double ? Sum(IQueryable<double ? > source)
     content.vb: Public Shared Function Sum(source As IQueryable(Of Double?)) As Double?
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Nullable{System.Double}}
+      description: A sequence of nullable @'System.Double' values to calculate the sum of.
     return:
       type: System.Nullable{System.Double}
+      description: The sum of the values in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Sum(System.Linq.IQueryable{System.Nullable{System.Int32}})
   id: Sum(System.Linq.IQueryable{System.Nullable{System.Int32}})
   parent: System.Linq.Queryable
@@ -2903,14 +3646,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of a sequence of nullable @'System.Int32' values.
   syntax:
     content: public static int ? Sum(IQueryable<int ? > source)
     content.vb: Public Shared Function Sum(source As IQueryable(Of Integer?)) As Integer?
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Nullable{System.Int32}}
+      description: A sequence of nullable @'System.Int32' values to calculate the sum of.
     return:
       type: System.Nullable{System.Int32}
+      description: The sum of the values in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Int32.MaxValue'.
 - uid: System.Linq.Queryable.Sum(System.Linq.IQueryable{System.Nullable{System.Int64}})
   id: Sum(System.Linq.IQueryable{System.Nullable{System.Int64}})
   parent: System.Linq.Queryable
@@ -2927,14 +3678,22 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of a sequence of nullable @'System.Int64' values.
   syntax:
     content: public static long ? Sum(IQueryable<long ? > source)
     content.vb: Public Shared Function Sum(source As IQueryable(Of Long?)) As Long?
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Nullable{System.Int64}}
+      description: A sequence of nullable @'System.Int64' values to calculate the sum of.
     return:
       type: System.Nullable{System.Int64}
+      description: The sum of the values in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Int64.MaxValue'.
 - uid: System.Linq.Queryable.Sum(System.Linq.IQueryable{System.Nullable{System.Single}})
   id: Sum(System.Linq.IQueryable{System.Nullable{System.Single}})
   parent: System.Linq.Queryable
@@ -2951,14 +3710,20 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of a sequence of nullable @'System.Single' values.
   syntax:
     content: public static float ? Sum(IQueryable<float ? > source)
     content.vb: Public Shared Function Sum(source As IQueryable(Of Single?)) As Single?
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Nullable{System.Single}}
+      description: A sequence of nullable @'System.Single' values to calculate the sum of.
     return:
       type: System.Nullable{System.Single}
+      description: The sum of the values in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Sum(System.Linq.IQueryable{System.Single})
   id: Sum(System.Linq.IQueryable{System.Single})
   parent: System.Linq.Queryable
@@ -2975,14 +3740,20 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of a sequence of @'System.Single' values.
   syntax:
     content: public static float Sum(IQueryable<float> source)
     content.vb: Public Shared Function Sum(source As IQueryable(Of Single)) As Single
     parameters:
     - id: source
       type: System.Linq.IQueryable{System.Single}
+      description: A sequence of @'System.Single' values to calculate the sum of.
     return:
       type: System.Single
+      description: The sum of the values in the sequence.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Decimal}})
   id: Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Decimal}})
   parent: System.Linq.Queryable
@@ -2999,18 +3770,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of the sequence of @'System.Decimal' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static decimal Sum<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, decimal>> selector)
     content.vb: Public Shared Function Sum(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Decimal))) As Decimal
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values of type *TSource*.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Decimal}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Decimal
+      description: The sum of the projected values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Decimal.MaxValue'.
 - uid: System.Linq.Queryable.Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Double}})
   id: Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Double}})
   parent: System.Linq.Queryable
@@ -3027,18 +3807,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of the sequence of @'System.Double' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static double Sum<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, double>> selector)
     content.vb: Public Shared Function Sum(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Double))) As Double
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values of type *TSource*.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Double}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Double
+      description: The sum of the projected values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32}})
   id: Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32}})
   parent: System.Linq.Queryable
@@ -3055,18 +3842,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of the sequence of @'System.Int32' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static int Sum<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, int>> selector)
     content.vb: Public Shared Function Sum(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Integer))) As Integer
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values of type *TSource*.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Int32}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Int32
+      description: The sum of the projected values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Int32.MaxValue'.
 - uid: System.Linq.Queryable.Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int64}})
   id: Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int64}})
   parent: System.Linq.Queryable
@@ -3083,18 +3879,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of the sequence of @'System.Int64' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static long Sum<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, long>> selector)
     content.vb: Public Shared Function Sum(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Long))) As Long
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values of type *TSource*.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Int64}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Int64
+      description: The sum of the projected values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Int64.MaxValue'.
 - uid: System.Linq.Queryable.Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Decimal}}})
   id: Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Decimal}}})
   parent: System.Linq.Queryable
@@ -3111,18 +3916,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of the sequence of nullable @'System.Decimal' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static decimal ? Sum<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, decimal ? >> selector)
     content.vb: Public Shared Function Sum(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Decimal?))) As Decimal?
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values of type *TSource*.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Nullable{System.Decimal}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Nullable{System.Decimal}
+      description: The sum of the projected values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Decimal.MaxValue'.
 - uid: System.Linq.Queryable.Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Double}}})
   id: Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Double}}})
   parent: System.Linq.Queryable
@@ -3139,18 +3953,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of the sequence of nullable @'System.Double' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static double ? Sum<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, double ? >> selector)
     content.vb: Public Shared Function Sum(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Double?))) As Double?
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values of type *TSource*.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Nullable{System.Double}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Nullable{System.Double}
+      description: The sum of the projected values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Int32}}})
   id: Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Int32}}})
   parent: System.Linq.Queryable
@@ -3167,18 +3988,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of the sequence of nullable @'System.Int32' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static int ? Sum<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, int ? >> selector)
     content.vb: Public Shared Function Sum(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Integer?))) As Integer?
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values of type *TSource*.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Nullable{System.Int32}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Nullable{System.Int32}
+      description: The sum of the projected values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Int32.MaxValue'.
 - uid: System.Linq.Queryable.Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Int64}}})
   id: Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Int64}}})
   parent: System.Linq.Queryable
@@ -3195,18 +4025,27 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of the sequence of nullable @'System.Int64' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static long ? Sum<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, long ? >> selector)
     content.vb: Public Shared Function Sum(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Long?))) As Long?
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values of type *TSource*.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Nullable{System.Int64}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Nullable{System.Int64}
+      description: The sum of the projected values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
+  - type: System.OverflowException
+    description: The sum is larger than @'System.Int64.MaxValue'.
 - uid: System.Linq.Queryable.Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Single}}})
   id: Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Nullable{System.Single}}})
   parent: System.Linq.Queryable
@@ -3223,18 +4062,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of the sequence of nullable @'System.Single' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static float ? Sum<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, float ? >> selector)
     content.vb: Public Shared Function Sum(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Single?))) As Single?
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values of type *TSource*.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Nullable{System.Single}}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Nullable{System.Single}
+      description: The sum of the projected values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Single}})
   id: Sum``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Single}})
   parent: System.Linq.Queryable
@@ -3251,18 +4097,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Computes the sum of the sequence of @'System.Single' values that is obtained by invoking a projection function on each element of the input sequence.
   syntax:
     content: public static float Sum<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, float>> selector)
     content.vb: Public Shared Function Sum(Of TSource)(source As IQueryable(Of TSource), selector As Expressions.Expression(Of Func(Of TSource, Single))) As Single
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence of values of type *TSource*.
     - id: selector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Single}}
+      description: A projection function to apply to each element.
     typeParameters:
     - id: TSource
     return:
       type: System.Single
+      description: The sum of the projected values.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *selector* is null.'
 - uid: System.Linq.Queryable.Take``1(System.Linq.IQueryable{``0},System.Int32)
   id: Take``1(System.Linq.IQueryable{``0},System.Int32)
   parent: System.Linq.Queryable
@@ -3279,18 +4132,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns a specified number of contiguous elements from the start of a sequence.
   syntax:
     content: public static IQueryable<TSource> Take<TSource>(IQueryable<TSource> source, int count)
     content.vb: Public Shared Function Take(Of TSource)(source As IQueryable(Of TSource), count As Integer) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: The sequence to return elements from.
     - id: count
       type: System.Int32
+      description: The number of elements to return.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains the specified number of elements from the start of *source*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* is null.'
 - uid: System.Linq.Queryable.TakeWhile``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: TakeWhile``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -3307,18 +4167,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns elements from a sequence as long as a specified condition is true.
   syntax:
     content: public static IQueryable<TSource> TakeWhile<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function TakeWhile(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: The sequence to return elements from.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains elements from the input sequence occurring before the element at which the test specified by *predicate* no longer passes.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
 - uid: System.Linq.Queryable.TakeWhile``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Boolean}})
   id: TakeWhile``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Boolean}})
   parent: System.Linq.Queryable
@@ -3335,18 +4202,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Returns elements from a sequence as long as a specified condition is true. The element's index is used in the logic of the predicate function.
   syntax:
     content: public static IQueryable<TSource> TakeWhile<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, int, bool>> predicate)
     content.vb: Public Shared Function TakeWhile(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Integer, Boolean))) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: The sequence to return elements from.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Int32,System.Boolean}}
+      description: A function to test each element for a condition; the second parameter of the function represents the index of the element in the source sequence.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains elements from the input sequence occurring before the element at which the test specified by *predicate* no longer passes.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
 - uid: System.Linq.Queryable.ThenBy``2(System.Linq.IOrderedQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   id: ThenBy``2(System.Linq.IOrderedQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: System.Linq.Queryable
@@ -3363,19 +4237,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Performs a subsequent ordering of the elements in a sequence in ascending order according to a key.
   syntax:
     content: public static IOrderedQueryable<TSource> ThenBy<TSource, TKey>(IOrderedQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector)
     content.vb: Public Shared Function ThenBy(Of TSource, TKey)(source As IOrderedQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey))) As IOrderedQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' that contains elements to sort.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract a key from each element.
     typeParameters:
     - id: TSource
     - id: TKey
     return:
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' whose elements are sorted according to a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* is null.'
 - uid: System.Linq.Queryable.ThenBy``2(System.Linq.IOrderedQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IComparer{``1})
   id: ThenBy``2(System.Linq.IOrderedQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IComparer{``1})
   parent: System.Linq.Queryable
@@ -3392,21 +4273,29 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Performs a subsequent ordering of the elements in a sequence in ascending order by using a specified comparer.
   syntax:
     content: public static IOrderedQueryable<TSource> ThenBy<TSource, TKey>(IOrderedQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, IComparer<TKey> comparer)
     content.vb: Public Shared Function ThenBy(Of TSource, TKey)(source As IOrderedQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), comparer As IComparer(Of TKey)) As IOrderedQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' that contains elements to sort.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract a key from each element.
     - id: comparer
       type: System.Collections.Generic.IComparer{{TKey}}
+      description: An @'System.Collections.Generic.IComparer`1' to compare keys.
     typeParameters:
     - id: TSource
     - id: TKey
     return:
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' whose elements are sorted according to a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *comparer* is null.'
 - uid: System.Linq.Queryable.ThenByDescending``2(System.Linq.IOrderedQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   id: ThenByDescending``2(System.Linq.IOrderedQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}})
   parent: System.Linq.Queryable
@@ -3423,19 +4312,26 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Performs a subsequent ordering of the elements in a sequence in descending order, according to a key.
   syntax:
     content: public static IOrderedQueryable<TSource> ThenByDescending<TSource, TKey>(IOrderedQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector)
     content.vb: Public Shared Function ThenByDescending(Of TSource, TKey)(source As IOrderedQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey))) As IOrderedQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' that contains elements to sort.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract a key from each element.
     typeParameters:
     - id: TSource
     - id: TKey
     return:
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' whose elements are sorted in descending order according to a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* is null.'
 - uid: System.Linq.Queryable.ThenByDescending``2(System.Linq.IOrderedQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IComparer{``1})
   id: ThenByDescending``2(System.Linq.IOrderedQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,``1}},System.Collections.Generic.IComparer{``1})
   parent: System.Linq.Queryable
@@ -3452,21 +4348,29 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Performs a subsequent ordering of the elements in a sequence in descending order by using a specified comparer.
   syntax:
     content: public static IOrderedQueryable<TSource> ThenByDescending<TSource, TKey>(IOrderedQueryable<TSource> source, Expressions.Expression<Func<TSource, TKey>> keySelector, IComparer<TKey> comparer)
     content.vb: Public Shared Function ThenByDescending(Of TSource, TKey)(source As IOrderedQueryable(Of TSource), keySelector As Expressions.Expression(Of Func(Of TSource, TKey)), comparer As IComparer(Of TKey)) As IOrderedQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: An @'System.Linq.IOrderedQueryable`1' that contains elements to sort.
     - id: keySelector
       type: System.Linq.Expressions.Expression{System.Func{{TSource},{TKey}}}
+      description: A function to extract a key from each element.
     - id: comparer
       type: System.Collections.Generic.IComparer{{TKey}}
+      description: An @'System.Collections.Generic.IComparer`1' to compare keys.
     typeParameters:
     - id: TSource
     - id: TKey
     return:
       type: System.Linq.IOrderedQueryable{{TSource}}
+      description: A collection whose elements are sorted in descending order according to a key.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *keySelector* or *comparer* is null.'
 - uid: System.Linq.Queryable.Union``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0})
   id: Union``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0})
   parent: System.Linq.Queryable
@@ -3483,18 +4387,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Produces the set union of two sequences by using the default equality comparer.
   syntax:
     content: public static IQueryable<TSource> Union<TSource>(IQueryable<TSource> source1, IEnumerable<TSource> source2)
     content.vb: Public Shared Function Union(Of TSource)(source1 As IQueryable(Of TSource), source2 As IEnumerable(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source1
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence whose distinct elements form the first set for the union operation.
     - id: source2
       type: System.Collections.Generic.IEnumerable{{TSource}}
+      description: A sequence whose distinct elements form the second set for the union operation.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains the elements from both input sequences, excluding duplicates.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source1* or *source2* is null.'
 - uid: System.Linq.Queryable.Union``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})
   id: Union``1(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``0},System.Collections.Generic.IEqualityComparer{``0})
   parent: System.Linq.Queryable
@@ -3511,20 +4422,28 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Produces the set union of two sequences by using a specified @'System.Collections.Generic.IEqualityComparer`1'.
   syntax:
     content: public static IQueryable<TSource> Union<TSource>(IQueryable<TSource> source1, IEnumerable<TSource> source2, IEqualityComparer<TSource> comparer)
     content.vb: Public Shared Function Union(Of TSource)(source1 As IQueryable(Of TSource), source2 As IEnumerable(Of TSource), comparer As IEqualityComparer(Of TSource)) As IQueryable(Of TSource)
     parameters:
     - id: source1
       type: System.Linq.IQueryable{{TSource}}
+      description: A sequence whose distinct elements form the first set for the union operation.
     - id: source2
       type: System.Collections.Generic.IEnumerable{{TSource}}
+      description: A sequence whose distinct elements form the second set for the union operation.
     - id: comparer
       type: System.Collections.Generic.IEqualityComparer{{TSource}}
+      description: An @'System.Collections.Generic.IEqualityComparer`1' to compare values.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains the elements from both input sequences, excluding duplicates.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source1* or *source2* is null.'
 - uid: System.Linq.Queryable.Where``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   id: Where``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Boolean}})
   parent: System.Linq.Queryable
@@ -3541,18 +4460,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Filters a sequence of values based on a predicate.
   syntax:
     content: public static IQueryable<TSource> Where<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, bool>> predicate)
     content.vb: Public Shared Function Where(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Boolean))) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to filter.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Boolean}}
+      description: A function to test each element for a condition.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains elements from the input sequence that satisfy the condition specified by *predicate*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
 - uid: System.Linq.Queryable.Where``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Boolean}})
   id: Where``1(System.Linq.IQueryable{``0},System.Linq.Expressions.Expression{System.Func{``0,System.Int32,System.Boolean}})
   parent: System.Linq.Queryable
@@ -3569,18 +4495,25 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Filters a sequence of values based on a predicate. Each element's index is used in the logic of the predicate function.
   syntax:
     content: public static IQueryable<TSource> Where<TSource>(IQueryable<TSource> source, Expressions.Expression<Func<TSource, int, bool>> predicate)
     content.vb: Public Shared Function Where(Of TSource)(source As IQueryable(Of TSource), predicate As Expressions.Expression(Of Func(Of TSource, Integer, Boolean))) As IQueryable(Of TSource)
     parameters:
     - id: source
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' to filter.
     - id: predicate
       type: System.Linq.Expressions.Expression{System.Func{{TSource},System.Int32,System.Boolean}}
+      description: A function to test each element for a condition; the second parameter of the function represents the index of the element in the source sequence.
     typeParameters:
     - id: TSource
     return:
       type: System.Linq.IQueryable{{TSource}}
+      description: An @'System.Linq.IQueryable`1' that contains elements from the input sequence that satisfy the condition specified by *predicate*.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source* or *predicate* is null.'
 - uid: System.Linq.Queryable.Zip``3(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
   id: Zip``3(System.Linq.IQueryable{``0},System.Collections.Generic.IEnumerable{``1},System.Linq.Expressions.Expression{System.Func{``0,``1,``2}})
   parent: System.Linq.Queryable
@@ -3597,22 +4530,30 @@ items:
   assemblies:
   - System.Linq.Queryable
   namespace: System.Linq
+  summary: Merges two sequences by using the specified predicate function.
   syntax:
     content: public static IQueryable<TResult> Zip<TFirst, TSecond, TResult>(IQueryable<TFirst> source1, IEnumerable<TSecond> source2, Expressions.Expression<Func<TFirst, TSecond, TResult>> resultSelector)
     content.vb: Public Shared Function Zip(Of TFirst, TSecond, TResult)(source1 As IQueryable(Of TFirst), source2 As IEnumerable(Of TSecond), resultSelector As Expressions.Expression(Of Func(Of TFirst, TSecond, TResult))) As IQueryable(Of TResult)
     parameters:
     - id: source1
       type: System.Linq.IQueryable{{TFirst}}
+      description: The first sequence to merge.
     - id: source2
       type: System.Collections.Generic.IEnumerable{{TSecond}}
+      description: The second sequence to merge.
     - id: resultSelector
       type: System.Linq.Expressions.Expression{System.Func{{TFirst},{TSecond},{TResult}}}
+      description: A function that specifies how to merge the elements from the two sequences.
     typeParameters:
     - id: TFirst
     - id: TSecond
     - id: TResult
     return:
       type: System.Linq.IQueryable{{TResult}}
+      description: An @'System.Linq.IQueryable`1' that contains merged elements of two input sequences.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*source1*or *source2 *is null.'
 references:
 - uid: System.Linq
   isExternal: false
@@ -7140,3 +8081,47 @@ references:
     fullName: )
   - name: )
     fullName: )
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.InvalidCastException
+  isExternal: false
+  href: System.InvalidCastException.yml
+  name: InvalidCastException
+  fullName: System.InvalidCastException
+  type: Class
+  summary: The exception that is thrown for invalid casting or explicit conversion.
+- uid: System.OverflowException
+  isExternal: false
+  href: System.OverflowException.yml
+  name: OverflowException
+  fullName: System.OverflowException
+  type: Class
+  summary: The exception that is thrown when an arithmetic, casting, or conversion operation in a checked context results in an overflow.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.

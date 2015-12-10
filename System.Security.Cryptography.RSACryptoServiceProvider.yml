@@ -344,17 +344,26 @@ items:
   assemblies:
   - System.Security.Cryptography.Csp
   namespace: System.Security.Cryptography
+  summary: Decrypts data that was previously encrypted with the @'System.Security.Cryptography.RSA' algorithm by using the specified padding.
   syntax:
     content: public override byte[] Decrypt(byte[] data, RSAEncryptionPadding padding)
     content.vb: Public Overrides Function Decrypt(data As Byte(), padding As RSAEncryptionPadding) As Byte()
     parameters:
     - id: data
       type: System.Byte[]
+      description: The data to decrypt.
     - id: padding
       type: System.Security.Cryptography.RSAEncryptionPadding
+      description: The padding.
     return:
       type: System.Byte[]
+      description: The decrypted data.
   overridden: System.Security.Cryptography.RSA.Decrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*data* is null. -or-*padding* is null.'
+  - type: System.Security.Cryptography.CryptographicException
+    description: The padding mode is not supported.
 - uid: System.Security.Cryptography.RSACryptoServiceProvider.Dispose(System.Boolean)
   id: Dispose(System.Boolean)
   parent: System.Security.Cryptography.RSACryptoServiceProvider
@@ -427,17 +436,26 @@ items:
   assemblies:
   - System.Security.Cryptography.Csp
   namespace: System.Security.Cryptography
+  summary: Encrypts data with the @'System.Security.Cryptography.RSA' algorithm using the specified padding.
   syntax:
     content: public override byte[] Encrypt(byte[] data, RSAEncryptionPadding padding)
     content.vb: Public Overrides Function Encrypt(data As Byte(), padding As RSAEncryptionPadding) As Byte()
     parameters:
     - id: data
       type: System.Byte[]
+      description: The data to encrypt.
     - id: padding
       type: System.Security.Cryptography.RSAEncryptionPadding
+      description: The padding.
     return:
       type: System.Byte[]
+      description: The encrypted data.
   overridden: System.Security.Cryptography.RSA.Encrypt(System.Byte[],System.Security.Cryptography.RSAEncryptionPadding)
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*data* is null. -or-*padding* is null.'
+  - type: System.Security.Cryptography.CryptographicException
+    description: The padding mode is not supported.
 - uid: System.Security.Cryptography.RSACryptoServiceProvider.ExportCspBlob(System.Boolean)
   id: ExportCspBlob(System.Boolean)
   parent: System.Security.Cryptography.RSACryptoServiceProvider
@@ -744,19 +762,31 @@ items:
   assemblies:
   - System.Security.Cryptography.Csp
   namespace: System.Security.Cryptography
+  summary: Computes the signature for the specified hash value by encrypting it with the private key using the specified padding.
   syntax:
     content: public override byte[] SignHash(byte[] hash, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
     content.vb: Public Overrides Function SignHash(hash As Byte(), hashAlgorithm As HashAlgorithmName, padding As RSASignaturePadding) As Byte()
     parameters:
     - id: hash
       type: System.Byte[]
+      description: The hash value of the data to be signed.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm name used to create the hash value of the data.
     - id: padding
       type: System.Security.Cryptography.RSASignaturePadding
+      description: The padding.
     return:
       type: System.Byte[]
+      description: The @'System.Security.Cryptography.RSA' signature for the specified hash value.
   overridden: System.Security.Cryptography.RSA.SignHash(System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
+  exceptions:
+  - type: System.ArgumentException
+    description: '*hashAlgorithm* is null or @''System.String.Empty''.'
+  - type: System.ArgumentNullException
+    description: '*hash* is null. -or-*padding* is null.'
+  - type: System.Security.Cryptography.CryptographicException
+    description: '*padding* does not equal @''System.Security.Cryptography.RSASignaturePadding.Pkcs1''.'
 - uid: System.Security.Cryptography.RSACryptoServiceProvider.SignHash(System.Byte[],System.String)
   id: SignHash(System.Byte[],System.String)
   parent: System.Security.Cryptography.RSACryptoServiceProvider
@@ -846,21 +876,34 @@ items:
   assemblies:
   - System.Security.Cryptography.Csp
   namespace: System.Security.Cryptography
+  summary: Verifies that a digital signature is valid by determining the hash value in the signature using the specified hashing algorithm and padding, and comparing it to the provided hash value.
   syntax:
     content: public override bool VerifyHash(byte[] hash, byte[] signature, HashAlgorithmName hashAlgorithm, RSASignaturePadding padding)
     content.vb: Public Overrides Function VerifyHash(hash As Byte(), signature As Byte(), hashAlgorithm As HashAlgorithmName, padding As RSASignaturePadding) As Boolean
     parameters:
     - id: hash
       type: System.Byte[]
+      description: The hash value of the signed data.
     - id: signature
       type: System.Byte[]
+      description: The signature data to be verified.
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
+      description: The hash algorithm name used to create the hash value.
     - id: padding
       type: System.Security.Cryptography.RSASignaturePadding
+      description: The padding.
     return:
       type: System.Boolean
+      description: true if the signature is valid; otherwise, false.
   overridden: System.Security.Cryptography.RSA.VerifyHash(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName,System.Security.Cryptography.RSASignaturePadding)
+  exceptions:
+  - type: System.ArgumentException
+    description: '*hashAlgorithm* is null or @''System.String.Empty''.'
+  - type: System.ArgumentNullException
+    description: '*hash* is null. -or-*padding* is null.'
+  - type: System.Security.Cryptography.CryptographicException
+    description: '*padding* does not equal @''System.Security.Cryptography.RSASignaturePadding.Pkcs1''.'
 - uid: System.Security.Cryptography.RSACryptoServiceProvider.VerifyHash(System.Byte[],System.String,System.Byte[])
   id: VerifyHash(System.Byte[],System.String,System.Byte[])
   parent: System.Security.Cryptography.RSACryptoServiceProvider
@@ -2440,3 +2483,4 @@ references:
   name: ArgumentException
   fullName: System.ArgumentException
   type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.

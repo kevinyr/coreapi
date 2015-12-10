@@ -19,6 +19,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections
+  summary: Defines methods to support the comparison of objects for equality.
   syntax:
     content: public interface IEqualityComparer
     content.vb: Public Interface IEqualityComparer
@@ -36,16 +37,23 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections
+  summary: Determines whether the specified objects are equal.
   syntax:
     content: bool Equals(object x, object y)
     content.vb: Function Equals(x As Object, y As Object) As Boolean
     parameters:
     - id: x
       type: System.Object
+      description: The first object to compare.
     - id: y
       type: System.Object
+      description: The second object to compare.
     return:
       type: System.Boolean
+      description: true if the specified objects are equal; otherwise, false.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*x* and *y* are of different types and neither one can handle comparisons with the other.'
 - uid: System.Collections.IEqualityComparer.GetHashCode(System.Object)
   id: GetHashCode(System.Object)
   parent: System.Collections.IEqualityComparer
@@ -60,14 +68,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections
+  summary: Returns a hash code for the specified object.
   syntax:
     content: int GetHashCode(object obj)
     content.vb: Function GetHashCode(obj As Object) As Integer
     parameters:
     - id: obj
       type: System.Object
+      description: The @'System.Object' for which a hash code is to be returned.
     return:
       type: System.Int32
+      description: A hash code for the specified object.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The type of *obj* is a reference type and *obj* is null.
 references:
 - uid: System.Collections
   isExternal: false
@@ -100,3 +114,18 @@ references:
   name: Int32
   fullName: System.Int32
   type: Struct
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.

@@ -110,6 +110,7 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Represents a writer that provides a fast, non-cached, forward-only way to generate streams or files that contain XML data.
   syntax:
     content: 'public abstract class XmlWriter : IDisposable'
     content.vb: Public MustInherit Class XmlWriter Implements IDisposable
@@ -142,6 +143,7 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Initializes a new instance of the @'System.Xml.XmlWriter' class.
   syntax:
     content: protected XmlWriter()
     content.vb: Protected Sub New
@@ -162,12 +164,17 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Gets the @'System.Xml.XmlWriterSettings' object used to create this @'System.Xml.XmlWriter' instance.
   syntax:
     content: public virtual XmlWriterSettings Settings { get; }
     content.vb: Public Overridable ReadOnly Property Settings As XmlWriterSettings
     parameters: []
     return:
       type: System.Xml.XmlWriterSettings
+      description: The @'System.Xml.XmlWriterSettings' object used to create this writer instance. If this writer was not created using the <see cref="Overload:System.Xml.XmlWriter.Create" /> method, this property returns null.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteState
   id: WriteState
   parent: System.Xml.XmlWriter
@@ -182,12 +189,17 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, gets the state of the writer.
   syntax:
     content: public abstract WriteState WriteState { get; }
     content.vb: Public MustOverride ReadOnly Property WriteState As WriteState
     parameters: []
     return:
       type: System.Xml.WriteState
+      description: One of the @'System.Xml.WriteState' values.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.XmlLang
   id: XmlLang
   parent: System.Xml.XmlWriter
@@ -202,12 +214,17 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, gets the current xml:lang scope.
   syntax:
     content: public virtual string XmlLang { get; }
     content.vb: Public Overridable ReadOnly Property XmlLang As String
     parameters: []
     return:
       type: System.String
+      description: The current xml:lang scope.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.XmlSpace
   id: XmlSpace
   parent: System.Xml.XmlWriter
@@ -222,12 +239,17 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, gets an @'System.Xml.XmlSpace' representing the current xml:space scope.
   syntax:
     content: public virtual XmlSpace XmlSpace { get; }
     content.vb: Public Overridable ReadOnly Property XmlSpace As XmlSpace
     parameters: []
     return:
       type: System.Xml.XmlSpace
+      description: An XmlSpace representing the current xml:space scope.Value Meaning NoneThis is the default if no xml:space scope exists.DefaultThe current scope is xml:space="default".PreserveThe current scope is xml:space="preserve".
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.Create(System.IO.Stream)
   id: Create(System.IO.Stream)
   parent: System.Xml.XmlWriter
@@ -242,14 +264,20 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Creates a new @'System.Xml.XmlWriter' instance using the specified stream.
   syntax:
     content: public static XmlWriter Create(Stream output)
     content.vb: Public Shared Function Create(output As Stream) As XmlWriter
     parameters:
     - id: output
       type: System.IO.Stream
+      description: The stream to which you want to write. The @'System.Xml.XmlWriter' writes XML 1.0 text syntax and appends it to the specified stream.
     return:
       type: System.Xml.XmlWriter
+      description: An @'System.Xml.XmlWriter' object.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *stream* value is null.
 - uid: System.Xml.XmlWriter.Create(System.IO.Stream,System.Xml.XmlWriterSettings)
   id: Create(System.IO.Stream,System.Xml.XmlWriterSettings)
   parent: System.Xml.XmlWriter
@@ -264,16 +292,23 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Creates a new @'System.Xml.XmlWriter' instance using the stream and @'System.Xml.XmlWriterSettings' object.
   syntax:
     content: public static XmlWriter Create(Stream output, XmlWriterSettings settings)
     content.vb: Public Shared Function Create(output As Stream, settings As XmlWriterSettings) As XmlWriter
     parameters:
     - id: output
       type: System.IO.Stream
+      description: The stream to which you want to write. The @'System.Xml.XmlWriter' writes XML 1.0 text syntax and appends it to the specified stream.
     - id: settings
       type: System.Xml.XmlWriterSettings
+      description: The @'System.Xml.XmlWriterSettings' object used to configure the new @'System.Xml.XmlWriter' instance. If this is null, a @'System.Xml.XmlWriterSettings' with default settings is used.If the @'System.Xml.XmlWriter' is being used with the @'System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.XmlWriter)' method, you should use the @'System.Xml.Xsl.XslCompiledTransform.OutputSettings' property to obtain an @'System.Xml.XmlWriterSettings' object with the correct settings. This ensures that the created @'System.Xml.XmlWriter' object has the correct output settings.
     return:
       type: System.Xml.XmlWriter
+      description: An @'System.Xml.XmlWriter' object.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *stream* value is null.
 - uid: System.Xml.XmlWriter.Create(System.IO.TextWriter)
   id: Create(System.IO.TextWriter)
   parent: System.Xml.XmlWriter
@@ -288,14 +323,20 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Creates a new @'System.Xml.XmlWriter' instance using the specified @'System.IO.TextWriter'.
   syntax:
     content: public static XmlWriter Create(TextWriter output)
     content.vb: Public Shared Function Create(output As TextWriter) As XmlWriter
     parameters:
     - id: output
       type: System.IO.TextWriter
+      description: The @'System.IO.TextWriter' to which you want to write. The @'System.Xml.XmlWriter' writes XML 1.0 text syntax and appends it to the specified @'System.IO.TextWriter'.
     return:
       type: System.Xml.XmlWriter
+      description: An @'System.Xml.XmlWriter' object.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *text* value is null.
 - uid: System.Xml.XmlWriter.Create(System.IO.TextWriter,System.Xml.XmlWriterSettings)
   id: Create(System.IO.TextWriter,System.Xml.XmlWriterSettings)
   parent: System.Xml.XmlWriter
@@ -310,16 +351,23 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Creates a new @'System.Xml.XmlWriter' instance using the @'System.IO.TextWriter' and @'System.Xml.XmlWriterSettings' objects.
   syntax:
     content: public static XmlWriter Create(TextWriter output, XmlWriterSettings settings)
     content.vb: Public Shared Function Create(output As TextWriter, settings As XmlWriterSettings) As XmlWriter
     parameters:
     - id: output
       type: System.IO.TextWriter
+      description: The @'System.IO.TextWriter' to which you want to write. The @'System.Xml.XmlWriter' writes XML 1.0 text syntax and appends it to the specified @'System.IO.TextWriter'.
     - id: settings
       type: System.Xml.XmlWriterSettings
+      description: The @'System.Xml.XmlWriterSettings' object used to configure the new @'System.Xml.XmlWriter' instance. If this is null, a @'System.Xml.XmlWriterSettings' with default settings is used.If the @'System.Xml.XmlWriter' is being used with the @'System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.XmlWriter)' method, you should use the @'System.Xml.Xsl.XslCompiledTransform.OutputSettings' property to obtain an @'System.Xml.XmlWriterSettings' object with the correct settings. This ensures that the created @'System.Xml.XmlWriter' object has the correct output settings.
     return:
       type: System.Xml.XmlWriter
+      description: An @'System.Xml.XmlWriter' object.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *text* value is null.
 - uid: System.Xml.XmlWriter.Create(System.Text.StringBuilder)
   id: Create(System.Text.StringBuilder)
   parent: System.Xml.XmlWriter
@@ -334,14 +382,20 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Creates a new @'System.Xml.XmlWriter' instance using the specified @'System.Text.StringBuilder'.
   syntax:
     content: public static XmlWriter Create(StringBuilder output)
     content.vb: Public Shared Function Create(output As StringBuilder) As XmlWriter
     parameters:
     - id: output
       type: System.Text.StringBuilder
+      description: The @'System.Text.StringBuilder' to which to write to. Content written by the @'System.Xml.XmlWriter' is appended to the @'System.Text.StringBuilder'.
     return:
       type: System.Xml.XmlWriter
+      description: An @'System.Xml.XmlWriter' object.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *builder* value is null.
 - uid: System.Xml.XmlWriter.Create(System.Text.StringBuilder,System.Xml.XmlWriterSettings)
   id: Create(System.Text.StringBuilder,System.Xml.XmlWriterSettings)
   parent: System.Xml.XmlWriter
@@ -356,16 +410,23 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Creates a new @'System.Xml.XmlWriter' instance using the @'System.Text.StringBuilder' and @'System.Xml.XmlWriterSettings' objects.
   syntax:
     content: public static XmlWriter Create(StringBuilder output, XmlWriterSettings settings)
     content.vb: Public Shared Function Create(output As StringBuilder, settings As XmlWriterSettings) As XmlWriter
     parameters:
     - id: output
       type: System.Text.StringBuilder
+      description: The @'System.Text.StringBuilder' to which to write to. Content written by the @'System.Xml.XmlWriter' is appended to the @'System.Text.StringBuilder'.
     - id: settings
       type: System.Xml.XmlWriterSettings
+      description: The @'System.Xml.XmlWriterSettings' object used to configure the new @'System.Xml.XmlWriter' instance. If this is null, a @'System.Xml.XmlWriterSettings' with default settings is used.If the @'System.Xml.XmlWriter' is being used with the @'System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.XmlWriter)' method, you should use the @'System.Xml.Xsl.XslCompiledTransform.OutputSettings' property to obtain an @'System.Xml.XmlWriterSettings' object with the correct settings. This ensures that the created @'System.Xml.XmlWriter' object has the correct output settings.
     return:
       type: System.Xml.XmlWriter
+      description: An @'System.Xml.XmlWriter' object.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *builder* value is null.
 - uid: System.Xml.XmlWriter.Create(System.Xml.XmlWriter)
   id: Create(System.Xml.XmlWriter)
   parent: System.Xml.XmlWriter
@@ -380,14 +441,20 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Creates a new @'System.Xml.XmlWriter' instance using the specified @'System.Xml.XmlWriter' object.
   syntax:
     content: public static XmlWriter Create(XmlWriter output)
     content.vb: Public Shared Function Create(output As XmlWriter) As XmlWriter
     parameters:
     - id: output
       type: System.Xml.XmlWriter
+      description: The @'System.Xml.XmlWriter' object that you want to use as the underlying writer.
     return:
       type: System.Xml.XmlWriter
+      description: An @'System.Xml.XmlWriter' object that is wrapped around the specified @'System.Xml.XmlWriter' object.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *writer* value is null.
 - uid: System.Xml.XmlWriter.Create(System.Xml.XmlWriter,System.Xml.XmlWriterSettings)
   id: Create(System.Xml.XmlWriter,System.Xml.XmlWriterSettings)
   parent: System.Xml.XmlWriter
@@ -402,16 +469,23 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Creates a new @'System.Xml.XmlWriter' instance using the specified @'System.Xml.XmlWriter' and @'System.Xml.XmlWriterSettings' objects.
   syntax:
     content: public static XmlWriter Create(XmlWriter output, XmlWriterSettings settings)
     content.vb: Public Shared Function Create(output As XmlWriter, settings As XmlWriterSettings) As XmlWriter
     parameters:
     - id: output
       type: System.Xml.XmlWriter
+      description: The @'System.Xml.XmlWriter' object that you want to use as the underlying writer.
     - id: settings
       type: System.Xml.XmlWriterSettings
+      description: The @'System.Xml.XmlWriterSettings' object used to configure the new @'System.Xml.XmlWriter' instance. If this is null, a @'System.Xml.XmlWriterSettings' with default settings is used.If the @'System.Xml.XmlWriter' is being used with the @'System.Xml.Xsl.XslCompiledTransform.Transform(System.String,System.Xml.XmlWriter)' method, you should use the @'System.Xml.Xsl.XslCompiledTransform.OutputSettings' property to obtain an @'System.Xml.XmlWriterSettings' object with the correct settings. This ensures that the created @'System.Xml.XmlWriter' object has the correct output settings.
     return:
       type: System.Xml.XmlWriter
+      description: An @'System.Xml.XmlWriter' object that is wrapped around the specified @'System.Xml.XmlWriter' object.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *writer* value is null.
 - uid: System.Xml.XmlWriter.Dispose
   id: Dispose
   parent: System.Xml.XmlWriter
@@ -426,9 +500,13 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Releases all resources used by the current instance of the @'System.Xml.XmlWriter' class.
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.Dispose(System.Boolean)
   id: Dispose(System.Boolean)
   parent: System.Xml.XmlWriter
@@ -443,12 +521,17 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Releases the unmanaged resources used by the @'System.Xml.XmlWriter' and optionally releases the managed resources.
   syntax:
     content: protected virtual void Dispose(bool disposing)
     content.vb: Protected Overridable Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
+      description: true to release both managed and unmanaged resources; false to release only unmanaged resources.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.Flush
   id: Flush
   parent: System.Xml.XmlWriter
@@ -463,9 +546,13 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, flushes whatever is in the buffer to the underlying streams and also flushes the underlying stream.
   syntax:
     content: public abstract void Flush()
     content.vb: Public MustOverride Sub Flush
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.FlushAsync
   id: FlushAsync
   parent: System.Xml.XmlWriter
@@ -480,11 +567,18 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously flushes whatever is in the buffer to the underlying streams and also flushes the underlying stream.
   syntax:
     content: public virtual Task FlushAsync()
     content.vb: Public Overridable Function FlushAsync As Task
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous Flush operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.LookupPrefix(System.String)
   id: LookupPrefix(System.String)
   parent: System.Xml.XmlWriter
@@ -499,14 +593,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, returns the closest prefix defined in the current namespace scope for the namespace URI.
   syntax:
     content: public abstract string LookupPrefix(string ns)
     content.vb: Public MustOverride Function LookupPrefix(ns As String) As String
     parameters:
     - id: ns
       type: System.String
+      description: The namespace URI whose prefix you want to find.
     return:
       type: System.String
+      description: The matching prefix or null if no matching namespace URI is found in the current scope.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*ns* is either null or String.Empty.'
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteAttributes(System.Xml.XmlReader,System.Boolean)
   id: WriteAttributes(System.Xml.XmlReader,System.Boolean)
   parent: System.Xml.XmlWriter
@@ -521,14 +623,24 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out all the attributes found at the current position in the @'System.Xml.XmlReader'.
   syntax:
     content: public virtual void WriteAttributes(XmlReader reader, bool defattr)
     content.vb: Public Overridable Sub WriteAttributes(reader As XmlReader, defattr As Boolean)
     parameters:
     - id: reader
       type: System.Xml.XmlReader
+      description: The XmlReader from which to copy the attributes.
     - id: defattr
       type: System.Boolean
+      description: true to copy the default attributes from the XmlReader; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*reader* is null.'
+  - type: System.Xml.XmlException
+    description: The reader is not positioned on an element, attribute or XmlDeclaration node.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteAttributesAsync(System.Xml.XmlReader,System.Boolean)
   id: WriteAttributesAsync(System.Xml.XmlReader,System.Boolean)
   parent: System.Xml.XmlWriter
@@ -543,16 +655,25 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes out all the attributes found at the current position in the @'System.Xml.XmlReader'.
   syntax:
     content: public virtual Task WriteAttributesAsync(XmlReader reader, bool defattr)
     content.vb: Public Overridable Function WriteAttributesAsync(reader As XmlReader, defattr As Boolean) As Task
     parameters:
     - id: reader
       type: System.Xml.XmlReader
+      description: The XmlReader from which to copy the attributes.
     - id: defattr
       type: System.Boolean
+      description: true to copy the default attributes from the XmlReader; otherwise, false.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteAttributes operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteAttributeString(System.String,System.String)
   id: WriteAttributeString(System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -567,14 +688,24 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out the attribute with the specified local name and value.
   syntax:
     content: public void WriteAttributeString(string localName, string value)
     content.vb: Public Sub WriteAttributeString(localName As String, value As String)
     parameters:
     - id: localName
       type: System.String
+      description: The local name of the attribute.
     - id: value
       type: System.String
+      description: The value of the attribute.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The state of writer is not WriteState.Element or writer is closed.
+  - type: System.ArgumentException
+    description: The xml:space or xml:lang attribute value is invalid.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String)
   id: WriteAttributeString(System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -589,16 +720,27 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes an attribute with the specified local name, namespace URI, and value.
   syntax:
     content: public void WriteAttributeString(string localName, string ns, string value)
     content.vb: Public Sub WriteAttributeString(localName As String, ns As String, value As String)
     parameters:
     - id: localName
       type: System.String
+      description: The local name of the attribute.
     - id: ns
       type: System.String
+      description: The namespace URI to associate with the attribute.
     - id: value
       type: System.String
+      description: The value of the attribute.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The state of writer is not WriteState.Element or writer is closed.
+  - type: System.ArgumentException
+    description: The xml:space or xml:lang attribute value is invalid.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteAttributeString(System.String,System.String,System.String,System.String)
   id: WriteAttributeString(System.String,System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -613,18 +755,32 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out the attribute with the specified prefix, local name, namespace URI, and value.
   syntax:
     content: public void WriteAttributeString(string prefix, string localName, string ns, string value)
     content.vb: Public Sub WriteAttributeString(prefix As String, localName As String, ns As String, value As String)
     parameters:
     - id: prefix
       type: System.String
+      description: The namespace prefix of the attribute.
     - id: localName
       type: System.String
+      description: The local name of the attribute.
     - id: ns
       type: System.String
+      description: The namespace URI of the attribute.
     - id: value
       type: System.String
+      description: The value of the attribute.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The state of writer is not WriteState.Element or writer is closed.
+  - type: System.ArgumentException
+    description: The xml:space or xml:lang attribute value is invalid.
+  - type: System.Xml.XmlException
+    description: The *localName* or *ns* is null.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteAttributeStringAsync(System.String,System.String,System.String,System.String)
   id: WriteAttributeStringAsync(System.String,System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -639,20 +795,31 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes out the attribute with the specified prefix, local name, namespace URI, and value.
   syntax:
     content: public Task WriteAttributeStringAsync(string prefix, string localName, string ns, string value)
     content.vb: Public Function WriteAttributeStringAsync(prefix As String, localName As String, ns As String, value As String) As Task
     parameters:
     - id: prefix
       type: System.String
+      description: The namespace prefix of the attribute.
     - id: localName
       type: System.String
+      description: The local name of the attribute.
     - id: ns
       type: System.String
+      description: The namespace URI of the attribute.
     - id: value
       type: System.String
+      description: The value of the attribute.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteAttributeString operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteBase64(System.Byte[],System.Int32,System.Int32)
   id: WriteBase64(System.Byte[],System.Int32,System.Int32)
   parent: System.Xml.XmlWriter
@@ -669,16 +836,27 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, encodes the specified binary bytes as Base64 and writes out the resulting text.
   syntax:
     content: public abstract void WriteBase64(byte[] buffer, int index, int count)
     content.vb: Public MustOverride Sub WriteBase64(buffer As Byte(), index As Integer, count As Integer)
     parameters:
     - id: buffer
       type: System.Byte[]
+      description: Byte array to encode.
     - id: index
       type: System.Int32
+      description: The position in the buffer indicating the start of the bytes to write.
     - id: count
       type: System.Int32
+      description: The number of bytes to write.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*buffer* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*index* or *count* is less than zero. -or-The buffer length minus *index* is less than *count*.'
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteBase64Async(System.Byte[],System.Int32,System.Int32)
   id: WriteBase64Async(System.Byte[],System.Int32,System.Int32)
   parent: System.Xml.XmlWriter
@@ -695,18 +873,28 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously encodes the specified binary bytes as Base64 and writes out the resulting text.
   syntax:
     content: public virtual Task WriteBase64Async(byte[] buffer, int index, int count)
     content.vb: Public Overridable Function WriteBase64Async(buffer As Byte(), index As Integer, count As Integer) As Task
     parameters:
     - id: buffer
       type: System.Byte[]
+      description: Byte array to encode.
     - id: index
       type: System.Int32
+      description: The position in the buffer indicating the start of the bytes to write.
     - id: count
       type: System.Int32
+      description: The number of bytes to write.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteBase64 operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteBinHex(System.Byte[],System.Int32,System.Int32)
   id: WriteBinHex(System.Byte[],System.Int32,System.Int32)
   parent: System.Xml.XmlWriter
@@ -723,16 +911,29 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, encodes the specified binary bytes as BinHex and writes out the resulting text.
   syntax:
     content: public virtual void WriteBinHex(byte[] buffer, int index, int count)
     content.vb: Public Overridable Sub WriteBinHex(buffer As Byte(), index As Integer, count As Integer)
     parameters:
     - id: buffer
       type: System.Byte[]
+      description: Byte array to encode.
     - id: index
       type: System.Int32
+      description: The position in the buffer indicating the start of the bytes to write.
     - id: count
       type: System.Int32
+      description: The number of bytes to write.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*buffer* is null.'
+  - type: System.InvalidOperationException
+    description: The writer is closed or in error state.
+  - type: System.ArgumentOutOfRangeException
+    description: '*index* or *count* is less than zero. -or-The buffer length minus *index* is less than *count*.'
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteBinHexAsync(System.Byte[],System.Int32,System.Int32)
   id: WriteBinHexAsync(System.Byte[],System.Int32,System.Int32)
   parent: System.Xml.XmlWriter
@@ -749,18 +950,28 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously encodes the specified binary bytes as BinHex and writes out the resulting text.
   syntax:
     content: public virtual Task WriteBinHexAsync(byte[] buffer, int index, int count)
     content.vb: Public Overridable Function WriteBinHexAsync(buffer As Byte(), index As Integer, count As Integer) As Task
     parameters:
     - id: buffer
       type: System.Byte[]
+      description: Byte array to encode.
     - id: index
       type: System.Int32
+      description: The position in the buffer indicating the start of the bytes to write.
     - id: count
       type: System.Int32
+      description: The number of bytes to write.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteBinHex operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteCData(System.String)
   id: WriteCData(System.String)
   parent: System.Xml.XmlWriter
@@ -775,12 +986,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out a &lt;![CDATA[...]]&gt; block containing the specified text.
   syntax:
     content: public abstract void WriteCData(string text)
     content.vb: Public MustOverride Sub WriteCData(text As String)
     parameters:
     - id: text
       type: System.String
+      description: The text to place inside the CDATA block.
+  exceptions:
+  - type: System.ArgumentException
+    description: The text would result in a non-well formed XML document.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteCDataAsync(System.String)
   id: WriteCDataAsync(System.String)
   parent: System.Xml.XmlWriter
@@ -795,14 +1013,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes out a &lt;![CDATA[...]]&gt; block containing the specified text.
   syntax:
     content: public virtual Task WriteCDataAsync(string text)
     content.vb: Public Overridable Function WriteCDataAsync(text As String) As Task
     parameters:
     - id: text
       type: System.String
+      description: The text to place inside the CDATA block.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteCData operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteCharEntity(System.Char)
   id: WriteCharEntity(System.Char)
   parent: System.Xml.XmlWriter
@@ -817,12 +1043,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, forces the generation of a character entity for the specified Unicode character value.
   syntax:
     content: public abstract void WriteCharEntity(char ch)
     content.vb: Public MustOverride Sub WriteCharEntity(ch As Char)
     parameters:
     - id: ch
       type: System.Char
+      description: The Unicode character for which to generate a character entity.
+  exceptions:
+  - type: System.ArgumentException
+    description: The character is in the surrogate pair character range, 0xd800 - 0xdfff.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteCharEntityAsync(System.Char)
   id: WriteCharEntityAsync(System.Char)
   parent: System.Xml.XmlWriter
@@ -837,14 +1070,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously forces the generation of a character entity for the specified Unicode character value.
   syntax:
     content: public virtual Task WriteCharEntityAsync(char ch)
     content.vb: Public Overridable Function WriteCharEntityAsync(ch As Char) As Task
     parameters:
     - id: ch
       type: System.Char
+      description: The Unicode character for which to generate a character entity.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteCharEntity operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteChars(System.Char[],System.Int32,System.Int32)
   id: WriteChars(System.Char[],System.Int32,System.Int32)
   parent: System.Xml.XmlWriter
@@ -861,16 +1102,29 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes text one buffer at a time.
   syntax:
     content: public abstract void WriteChars(char[] buffer, int index, int count)
     content.vb: Public MustOverride Sub WriteChars(buffer As Char(), index As Integer, count As Integer)
     parameters:
     - id: buffer
       type: System.Char[]
+      description: Character array containing the text to write.
     - id: index
       type: System.Int32
+      description: The position in the buffer indicating the start of the text to write.
     - id: count
       type: System.Int32
+      description: The number of characters to write.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*buffer* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*index* or *count* is less than zero.-or-The buffer length minus *index* is less than *count*; the call results in surrogate pair characters being split or an invalid surrogate pair being written.'
+  - type: System.ArgumentException
+    description: The *buffer* parameter value is not valid.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteCharsAsync(System.Char[],System.Int32,System.Int32)
   id: WriteCharsAsync(System.Char[],System.Int32,System.Int32)
   parent: System.Xml.XmlWriter
@@ -887,18 +1141,28 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes text one buffer at a time.
   syntax:
     content: public virtual Task WriteCharsAsync(char[] buffer, int index, int count)
     content.vb: Public Overridable Function WriteCharsAsync(buffer As Char(), index As Integer, count As Integer) As Task
     parameters:
     - id: buffer
       type: System.Char[]
+      description: Character array containing the text to write.
     - id: index
       type: System.Int32
+      description: The position in the buffer indicating the start of the text to write.
     - id: count
       type: System.Int32
+      description: The number of characters to write.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteChars operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteComment(System.String)
   id: WriteComment(System.String)
   parent: System.Xml.XmlWriter
@@ -913,12 +1177,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out a comment &lt;!--...--&gt; containing the specified text.
   syntax:
     content: public abstract void WriteComment(string text)
     content.vb: Public MustOverride Sub WriteComment(text As String)
     parameters:
     - id: text
       type: System.String
+      description: Text to place inside the comment.
+  exceptions:
+  - type: System.ArgumentException
+    description: The text would result in a non-well-formed XML document.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteCommentAsync(System.String)
   id: WriteCommentAsync(System.String)
   parent: System.Xml.XmlWriter
@@ -933,14 +1204,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes out a comment &lt;!--...--&gt; containing the specified text.
   syntax:
     content: public virtual Task WriteCommentAsync(string text)
     content.vb: Public Overridable Function WriteCommentAsync(text As String) As Task
     parameters:
     - id: text
       type: System.String
+      description: Text to place inside the comment.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteComment operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteDocType(System.String,System.String,System.String,System.String)
   id: WriteDocType(System.String,System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -955,18 +1234,30 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes the DOCTYPE declaration with the specified name and optional attributes.
   syntax:
     content: public abstract void WriteDocType(string name, string pubid, string sysid, string subset)
     content.vb: Public MustOverride Sub WriteDocType(name As String, pubid As String, sysid As String, subset As String)
     parameters:
     - id: name
       type: System.String
+      description: The name of the DOCTYPE. This must be non-empty.
     - id: pubid
       type: System.String
+      description: If non-null it also writes PUBLIC "pubid" "sysid" where *pubid* and *sysid* are replaced with the value of the given arguments.
     - id: sysid
       type: System.String
+      description: If *pubid* is null and *sysid* is non-null it writes SYSTEM "sysid" where *sysid* is replaced with the value of this argument.
     - id: subset
       type: System.String
+      description: If non-null it writes [subset] where subset is replaced with the value of this argument.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This method was called outside the prolog (after the root element).
+  - type: System.ArgumentException
+    description: The value for *name* would result in invalid XML.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteDocTypeAsync(System.String,System.String,System.String,System.String)
   id: WriteDocTypeAsync(System.String,System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -981,20 +1272,31 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes the DOCTYPE declaration with the specified name and optional attributes.
   syntax:
     content: public virtual Task WriteDocTypeAsync(string name, string pubid, string sysid, string subset)
     content.vb: Public Overridable Function WriteDocTypeAsync(name As String, pubid As String, sysid As String, subset As String) As Task
     parameters:
     - id: name
       type: System.String
+      description: The name of the DOCTYPE. This must be non-empty.
     - id: pubid
       type: System.String
+      description: If non-null it also writes PUBLIC "pubid" "sysid" where *pubid* and *sysid* are replaced with the value of the given arguments.
     - id: sysid
       type: System.String
+      description: If *pubid* is null and *sysid* is non-null it writes SYSTEM "sysid" where *sysid* is replaced with the value of this argument.
     - id: subset
       type: System.String
+      description: If non-null it writes [subset] where subset is replaced with the value of this argument.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteDocType operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteElementString(System.String,System.String)
   id: WriteElementString(System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1009,14 +1311,24 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes an element with the specified local name and value.
   syntax:
     content: public void WriteElementString(string localName, string value)
     content.vb: Public Sub WriteElementString(localName As String, value As String)
     parameters:
     - id: localName
       type: System.String
+      description: The local name of the element.
     - id: value
       type: System.String
+      description: The value of the element.
+  exceptions:
+  - type: System.ArgumentException
+    description: The *localName* value is null or an empty string.-or-The parameter values are not valid.
+  - type: System.Text.EncoderFallbackException
+    description: There is a character in the buffer that is a valid XML character but is not valid for the output encoding. For example, if the output encoding is ASCII, you should only use characters from the range of 0 to 127 for element and attribute names. The invalid character might be in the argument of this method or in an argument of previous methods that were writing to the buffer. Such characters are escaped by character entity references when possible (for example, in text nodes or attribute values). However, the character entity reference is not allowed in element and attribute names, comments, processing instructions, or CDATA sections.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String)
   id: WriteElementString(System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1031,16 +1343,27 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes an element with the specified local name, namespace URI, and value.
   syntax:
     content: public void WriteElementString(string localName, string ns, string value)
     content.vb: Public Sub WriteElementString(localName As String, ns As String, value As String)
     parameters:
     - id: localName
       type: System.String
+      description: The local name of the element.
     - id: ns
       type: System.String
+      description: The namespace URI to associate with the element.
     - id: value
       type: System.String
+      description: The value of the element.
+  exceptions:
+  - type: System.ArgumentException
+    description: The *localName* value is null or an empty string.-or-The parameter values are not valid.
+  - type: System.Text.EncoderFallbackException
+    description: There is a character in the buffer that is a valid XML character but is not valid for the output encoding. For example, if the output encoding is ASCII, you should only use characters from the range of 0 to 127 for element and attribute names. The invalid character might be in the argument of this method or in an argument of previous methods that were writing to the buffer. Such characters are escaped by character entity references when possible (for example, in text nodes or attribute values). However, the character entity reference is not allowed in element and attribute names, comments, processing instructions, or CDATA sections.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteElementString(System.String,System.String,System.String,System.String)
   id: WriteElementString(System.String,System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1055,18 +1378,30 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes an element with the specified prefix, local name, namespace URI, and value.
   syntax:
     content: public void WriteElementString(string prefix, string localName, string ns, string value)
     content.vb: Public Sub WriteElementString(prefix As String, localName As String, ns As String, value As String)
     parameters:
     - id: prefix
       type: System.String
+      description: The prefix of the element.
     - id: localName
       type: System.String
+      description: The local name of the element.
     - id: ns
       type: System.String
+      description: The namespace URI of the element.
     - id: value
       type: System.String
+      description: The value of the element.
+  exceptions:
+  - type: System.ArgumentException
+    description: The *localName* value is null or an empty string.-or-The parameter values are not valid.
+  - type: System.Text.EncoderFallbackException
+    description: There is a character in the buffer that is a valid XML character but is not valid for the output encoding. For example, if the output encoding is ASCII, you should only use characters from the range of 0 to 127 for element and attribute names. The invalid character might be in the argument of this method or in an argument of previous methods that were writing to the buffer. Such characters are escaped by character entity references when possible (for example, in text nodes or attribute values). However, the character entity reference is not allowed in element and attribute names, comments, processing instructions, or CDATA sections.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteElementStringAsync(System.String,System.String,System.String,System.String)
   id: WriteElementStringAsync(System.String,System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1081,20 +1416,31 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes an element with the specified prefix, local name, namespace URI, and value.
   syntax:
     content: public Task WriteElementStringAsync(string prefix, string localName, string ns, string value)
     content.vb: Public Function WriteElementStringAsync(prefix As String, localName As String, ns As String, value As String) As Task
     parameters:
     - id: prefix
       type: System.String
+      description: The prefix of the element.
     - id: localName
       type: System.String
+      description: The local name of the element.
     - id: ns
       type: System.String
+      description: The namespace URI of the element.
     - id: value
       type: System.String
+      description: The value of the element.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteElementString operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteEndAttribute
   id: WriteEndAttribute
   parent: System.Xml.XmlWriter
@@ -1109,9 +1455,13 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, closes the previous @'System.Xml.XmlWriter.WriteStartAttribute(System.String,System.String)' call.
   syntax:
     content: public abstract void WriteEndAttribute()
     content.vb: Public MustOverride Sub WriteEndAttribute
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteEndAttributeAsync
   id: WriteEndAttributeAsync
   parent: System.Xml.XmlWriter
@@ -1126,11 +1476,18 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously closes the previous @'System.Xml.XmlWriter.WriteStartAttribute(System.String,System.String)' call.
   syntax:
     content: protected virtual Task WriteEndAttributeAsync()
     content.vb: Protected Overridable Function WriteEndAttributeAsync As Task
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteEndAttribute operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteEndDocument
   id: WriteEndDocument
   parent: System.Xml.XmlWriter
@@ -1145,9 +1502,15 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, closes any open elements or attributes and puts the writer back in the Start state.
   syntax:
     content: public abstract void WriteEndDocument()
     content.vb: Public MustOverride Sub WriteEndDocument
+  exceptions:
+  - type: System.ArgumentException
+    description: The XML document is invalid.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteEndDocumentAsync
   id: WriteEndDocumentAsync
   parent: System.Xml.XmlWriter
@@ -1162,11 +1525,18 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously closes any open elements or attributes and puts the writer back in the Start state.
   syntax:
     content: public virtual Task WriteEndDocumentAsync()
     content.vb: Public Overridable Function WriteEndDocumentAsync As Task
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteEndDocument operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteEndElement
   id: WriteEndElement
   parent: System.Xml.XmlWriter
@@ -1181,9 +1551,15 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, closes one element and pops the corresponding namespace scope.
   syntax:
     content: public abstract void WriteEndElement()
     content.vb: Public MustOverride Sub WriteEndElement
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This results in an invalid XML document.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteEndElementAsync
   id: WriteEndElementAsync
   parent: System.Xml.XmlWriter
@@ -1198,11 +1574,18 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously closes one element and pops the corresponding namespace scope.
   syntax:
     content: public virtual Task WriteEndElementAsync()
     content.vb: Public Overridable Function WriteEndElementAsync As Task
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteEndElement operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteEntityRef(System.String)
   id: WriteEntityRef(System.String)
   parent: System.Xml.XmlWriter
@@ -1217,12 +1600,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out an entity reference as &amp;name;.
   syntax:
     content: public abstract void WriteEntityRef(string name)
     content.vb: Public MustOverride Sub WriteEntityRef(name As String)
     parameters:
     - id: name
       type: System.String
+      description: The name of the entity reference.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*name* is either null or String.Empty.'
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteEntityRefAsync(System.String)
   id: WriteEntityRefAsync(System.String)
   parent: System.Xml.XmlWriter
@@ -1237,14 +1627,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes out an entity reference as &amp;name;.
   syntax:
     content: public virtual Task WriteEntityRefAsync(string name)
     content.vb: Public Overridable Function WriteEntityRefAsync(name As String) As Task
     parameters:
     - id: name
       type: System.String
+      description: The name of the entity reference.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteEntityRef operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteFullEndElement
   id: WriteFullEndElement
   parent: System.Xml.XmlWriter
@@ -1259,9 +1657,13 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, closes one element and pops the corresponding namespace scope.
   syntax:
     content: public abstract void WriteFullEndElement()
     content.vb: Public MustOverride Sub WriteFullEndElement
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteFullEndElementAsync
   id: WriteFullEndElementAsync
   parent: System.Xml.XmlWriter
@@ -1276,11 +1678,18 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously closes one element and pops the corresponding namespace scope.
   syntax:
     content: public virtual Task WriteFullEndElementAsync()
     content.vb: Public Overridable Function WriteFullEndElementAsync As Task
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteFullEndElement operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteName(System.String)
   id: WriteName(System.String)
   parent: System.Xml.XmlWriter
@@ -1295,12 +1704,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out the specified name, ensuring it is a valid name according to the W3C XML 1.0 recommendation (http://www.w3.org/TR/1998/REC-xml-19980210#NT-Name).
   syntax:
     content: public virtual void WriteName(string name)
     content.vb: Public Overridable Sub WriteName(name As String)
     parameters:
     - id: name
       type: System.String
+      description: The name to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*name* is not a valid XML name; or *name* is either null or String.Empty.'
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteNameAsync(System.String)
   id: WriteNameAsync(System.String)
   parent: System.Xml.XmlWriter
@@ -1315,14 +1731,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes out the specified name, ensuring it is a valid name according to the W3C XML 1.0 recommendation (http://www.w3.org/TR/1998/REC-xml-19980210#NT-Name).
   syntax:
     content: public virtual Task WriteNameAsync(string name)
     content.vb: Public Overridable Function WriteNameAsync(name As String) As Task
     parameters:
     - id: name
       type: System.String
+      description: The name to write.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteName operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteNmToken(System.String)
   id: WriteNmToken(System.String)
   parent: System.Xml.XmlWriter
@@ -1337,12 +1761,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out the specified name, ensuring it is a valid NmToken according to the W3C XML 1.0 recommendation (http://www.w3.org/TR/1998/REC-xml-19980210#NT-Name).
   syntax:
     content: public virtual void WriteNmToken(string name)
     content.vb: Public Overridable Sub WriteNmToken(name As String)
     parameters:
     - id: name
       type: System.String
+      description: The name to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*name* is not a valid NmToken; or *name* is either null or String.Empty.'
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteNmTokenAsync(System.String)
   id: WriteNmTokenAsync(System.String)
   parent: System.Xml.XmlWriter
@@ -1357,14 +1788,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes out the specified name, ensuring it is a valid NmToken according to the W3C XML 1.0 recommendation (http://www.w3.org/TR/1998/REC-xml-19980210#NT-Name).
   syntax:
     content: public virtual Task WriteNmTokenAsync(string name)
     content.vb: Public Overridable Function WriteNmTokenAsync(name As String) As Task
     parameters:
     - id: name
       type: System.String
+      description: The name to write.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteNmToken operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteNode(System.Xml.XmlReader,System.Boolean)
   id: WriteNode(System.Xml.XmlReader,System.Boolean)
   parent: System.Xml.XmlWriter
@@ -1379,14 +1818,24 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, copies everything from the reader to the writer and moves the reader to the start of the next sibling.
   syntax:
     content: public virtual void WriteNode(XmlReader reader, bool defattr)
     content.vb: Public Overridable Sub WriteNode(reader As XmlReader, defattr As Boolean)
     parameters:
     - id: reader
       type: System.Xml.XmlReader
+      description: The @'System.Xml.XmlReader' to read from.
     - id: defattr
       type: System.Boolean
+      description: true to copy the default attributes from the XmlReader; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*reader* is null.'
+  - type: System.ArgumentException
+    description: '*reader* contains invalid characters.'
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteNodeAsync(System.Xml.XmlReader,System.Boolean)
   id: WriteNodeAsync(System.Xml.XmlReader,System.Boolean)
   parent: System.Xml.XmlWriter
@@ -1401,16 +1850,25 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously copies everything from the reader to the writer and moves the reader to the start of the next sibling.
   syntax:
     content: public virtual Task WriteNodeAsync(XmlReader reader, bool defattr)
     content.vb: Public Overridable Function WriteNodeAsync(reader As XmlReader, defattr As Boolean) As Task
     parameters:
     - id: reader
       type: System.Xml.XmlReader
+      description: The @'System.Xml.XmlReader' to read from.
     - id: defattr
       type: System.Boolean
+      description: true to copy the default attributes from the XmlReader; otherwise, false.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteNode operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteProcessingInstruction(System.String,System.String)
   id: WriteProcessingInstruction(System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1425,14 +1883,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: 'When overridden in a derived class, writes out a processing instruction with a space between the name and text as follows: &lt;?name text?&gt;.'
   syntax:
     content: public abstract void WriteProcessingInstruction(string name, string text)
     content.vb: Public MustOverride Sub WriteProcessingInstruction(name As String, text As String)
     parameters:
     - id: name
       type: System.String
+      description: The name of the processing instruction.
     - id: text
       type: System.String
+      description: The text to include in the processing instruction.
+  exceptions:
+  - type: System.ArgumentException
+    description: The text would result in a non-well formed XML document.*name* is either null or String.Empty.This method is being used to create an XML declaration after @'System.Xml.XmlWriter.WriteStartDocument' has already been called.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteProcessingInstructionAsync(System.String,System.String)
   id: WriteProcessingInstructionAsync(System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1447,16 +1913,25 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: 'Asynchronously writes out a processing instruction with a space between the name and text as follows: &lt;?name text?&gt;.'
   syntax:
     content: public virtual Task WriteProcessingInstructionAsync(string name, string text)
     content.vb: Public Overridable Function WriteProcessingInstructionAsync(name As String, text As String) As Task
     parameters:
     - id: name
       type: System.String
+      description: The name of the processing instruction.
     - id: text
       type: System.String
+      description: The text to include in the processing instruction.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteProcessingInstruction operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteQualifiedName(System.String,System.String)
   id: WriteQualifiedName(System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1471,14 +1946,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out the namespace-qualified name. This method looks up the prefix that is in scope for the given namespace.
   syntax:
     content: public virtual void WriteQualifiedName(string localName, string ns)
     content.vb: Public Overridable Sub WriteQualifiedName(localName As String, ns As String)
     parameters:
     - id: localName
       type: System.String
+      description: The local name to write.
     - id: ns
       type: System.String
+      description: The namespace URI for the name.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*localName* is either null or String.Empty.*localName* is not a valid name.'
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteQualifiedNameAsync(System.String,System.String)
   id: WriteQualifiedNameAsync(System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1493,16 +1976,25 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes out the namespace-qualified name. This method looks up the prefix that is in scope for the given namespace.
   syntax:
     content: public virtual Task WriteQualifiedNameAsync(string localName, string ns)
     content.vb: Public Overridable Function WriteQualifiedNameAsync(localName As String, ns As String) As Task
     parameters:
     - id: localName
       type: System.String
+      description: The local name to write.
     - id: ns
       type: System.String
+      description: The namespace URI for the name.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteQualifiedName operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteRaw(System.Char[],System.Int32,System.Int32)
   id: WriteRaw(System.Char[],System.Int32,System.Int32)
   parent: System.Xml.XmlWriter
@@ -1519,16 +2011,27 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes raw markup manually from a character buffer.
   syntax:
     content: public abstract void WriteRaw(char[] buffer, int index, int count)
     content.vb: Public MustOverride Sub WriteRaw(buffer As Char(), index As Integer, count As Integer)
     parameters:
     - id: buffer
       type: System.Char[]
+      description: Character array containing the text to write.
     - id: index
       type: System.Int32
+      description: The position within the buffer indicating the start of the text to write.
     - id: count
       type: System.Int32
+      description: The number of characters to write.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*buffer* is null.'
+  - type: System.ArgumentOutOfRangeException
+    description: '*index* or *count* is less than zero. -or-The buffer length minus *index* is less than *count*.'
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteRaw(System.String)
   id: WriteRaw(System.String)
   parent: System.Xml.XmlWriter
@@ -1543,12 +2046,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes raw markup manually from a string.
   syntax:
     content: public abstract void WriteRaw(string data)
     content.vb: Public MustOverride Sub WriteRaw(data As String)
     parameters:
     - id: data
       type: System.String
+      description: String containing the text to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: '*data* is either null or String.Empty.'
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteRawAsync(System.Char[],System.Int32,System.Int32)
   id: WriteRawAsync(System.Char[],System.Int32,System.Int32)
   parent: System.Xml.XmlWriter
@@ -1565,18 +2075,28 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes raw markup manually from a character buffer.
   syntax:
     content: public virtual Task WriteRawAsync(char[] buffer, int index, int count)
     content.vb: Public Overridable Function WriteRawAsync(buffer As Char(), index As Integer, count As Integer) As Task
     parameters:
     - id: buffer
       type: System.Char[]
+      description: Character array containing the text to write.
     - id: index
       type: System.Int32
+      description: The position within the buffer indicating the start of the text to write.
     - id: count
       type: System.Int32
+      description: The number of characters to write.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteRaw operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteRawAsync(System.String)
   id: WriteRawAsync(System.String)
   parent: System.Xml.XmlWriter
@@ -1591,14 +2111,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes raw markup manually from a string.
   syntax:
     content: public virtual Task WriteRawAsync(string data)
     content.vb: Public Overridable Function WriteRawAsync(data As String) As Task
     parameters:
     - id: data
       type: System.String
+      description: String containing the text to write.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteRaw operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteStartAttribute(System.String)
   id: WriteStartAttribute(System.String)
   parent: System.Xml.XmlWriter
@@ -1613,12 +2141,21 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes the start of an attribute with the specified local name.
   syntax:
     content: public void WriteStartAttribute(string localName)
     content.vb: Public Sub WriteStartAttribute(localName As String)
     parameters:
     - id: localName
       type: System.String
+      description: The local name of the attribute.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The writer is closed.
+  - type: System.Text.EncoderFallbackException
+    description: There is a character in the buffer that is a valid XML character but is not valid for the output encoding. For example, if the output encoding is ASCII, you should only use characters from the range of 0 to 127 for element and attribute names. The invalid character might be in the argument of this method or in an argument of previous methods that were writing to the buffer. Such characters are escaped by character entity references when possible (for example, in text nodes or attribute values). However, the character entity reference is not allowed in element and attribute names, comments, processing instructions, or CDATA sections.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteStartAttribute(System.String,System.String)
   id: WriteStartAttribute(System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1633,14 +2170,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes the start of an attribute with the specified local name and namespace URI.
   syntax:
     content: public void WriteStartAttribute(string localName, string ns)
     content.vb: Public Sub WriteStartAttribute(localName As String, ns As String)
     parameters:
     - id: localName
       type: System.String
+      description: The local name of the attribute.
     - id: ns
       type: System.String
+      description: The namespace URI of the attribute.
+  exceptions:
+  - type: System.Text.EncoderFallbackException
+    description: There is a character in the buffer that is a valid XML character but is not valid for the output encoding. For example, if the output encoding is ASCII, you should only use characters from the range of 0 to 127 for element and attribute names. The invalid character might be in the argument of this method or in an argument of previous methods that were writing to the buffer. Such characters are escaped by character entity references when possible (for example, in text nodes or attribute values). However, the character entity reference is not allowed in element and attribute names, comments, processing instructions, or CDATA sections.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteStartAttribute(System.String,System.String,System.String)
   id: WriteStartAttribute(System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1655,16 +2200,25 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes the start of an attribute with the specified prefix, local name, and namespace URI.
   syntax:
     content: public abstract void WriteStartAttribute(string prefix, string localName, string ns)
     content.vb: Public MustOverride Sub WriteStartAttribute(prefix As String, localName As String, ns As String)
     parameters:
     - id: prefix
       type: System.String
+      description: The namespace prefix of the attribute.
     - id: localName
       type: System.String
+      description: The local name of the attribute.
     - id: ns
       type: System.String
+      description: The namespace URI for the attribute.
+  exceptions:
+  - type: System.Text.EncoderFallbackException
+    description: There is a character in the buffer that is a valid XML character but is not valid for the output encoding. For example, if the output encoding is ASCII, you should only use characters from the range of 0 to 127 for element and attribute names. The invalid character might be in the argument of this method or in an argument of previous methods that were writing to the buffer. Such characters are escaped by character entity references when possible (for example, in text nodes or attribute values). However, the character entity reference is not allowed in element and attribute names, comments, processing instructions, or CDATA sections.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteStartAttributeAsync(System.String,System.String,System.String)
   id: WriteStartAttributeAsync(System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1679,18 +2233,28 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes the start of an attribute with the specified prefix, local name, and namespace URI.
   syntax:
     content: protected virtual Task WriteStartAttributeAsync(string prefix, string localName, string ns)
     content.vb: Protected Overridable Function WriteStartAttributeAsync(prefix As String, localName As String, ns As String) As Task
     parameters:
     - id: prefix
       type: System.String
+      description: The namespace prefix of the attribute.
     - id: localName
       type: System.String
+      description: The local name of the attribute.
     - id: ns
       type: System.String
+      description: The namespace URI for the attribute.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteStartAttribute operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteStartDocument
   id: WriteStartDocument
   parent: System.Xml.XmlWriter
@@ -1705,9 +2269,15 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes the XML declaration with the version "1.0".
   syntax:
     content: public abstract void WriteStartDocument()
     content.vb: Public MustOverride Sub WriteStartDocument
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This is not the first write method called after the constructor.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteStartDocument(System.Boolean)
   id: WriteStartDocument(System.Boolean)
   parent: System.Xml.XmlWriter
@@ -1722,12 +2292,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes the XML declaration with the version "1.0" and the standalone attribute.
   syntax:
     content: public abstract void WriteStartDocument(bool standalone)
     content.vb: Public MustOverride Sub WriteStartDocument(standalone As Boolean)
     parameters:
     - id: standalone
       type: System.Boolean
+      description: If true, it writes "standalone=yes"; if false, it writes "standalone=no".
+  exceptions:
+  - type: System.InvalidOperationException
+    description: This is not the first write method called after the constructor.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteStartDocumentAsync
   id: WriteStartDocumentAsync
   parent: System.Xml.XmlWriter
@@ -1742,11 +2319,18 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes the XML declaration with the version "1.0".
   syntax:
     content: public virtual Task WriteStartDocumentAsync()
     content.vb: Public Overridable Function WriteStartDocumentAsync As Task
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteStartDocument operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteStartDocumentAsync(System.Boolean)
   id: WriteStartDocumentAsync(System.Boolean)
   parent: System.Xml.XmlWriter
@@ -1761,14 +2345,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes the XML declaration with the version "1.0" and the standalone attribute.
   syntax:
     content: public virtual Task WriteStartDocumentAsync(bool standalone)
     content.vb: Public Overridable Function WriteStartDocumentAsync(standalone As Boolean) As Task
     parameters:
     - id: standalone
       type: System.Boolean
+      description: If true, it writes "standalone=yes"; if false, it writes "standalone=no".
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteStartDocument operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteStartElement(System.String)
   id: WriteStartElement(System.String)
   parent: System.Xml.XmlWriter
@@ -1783,12 +2375,21 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out a start tag with the specified local name.
   syntax:
     content: public void WriteStartElement(string localName)
     content.vb: Public Sub WriteStartElement(localName As String)
     parameters:
     - id: localName
       type: System.String
+      description: The local name of the element.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The writer is closed.
+  - type: System.Text.EncoderFallbackException
+    description: There is a character in the buffer that is a valid XML character but is not valid for the output encoding. For example, if the output encoding is ASCII, you should only use characters from the range of 0 to 127 for element and attribute names. The invalid character might be in the argument of this method or in an argument of previous methods that were writing to the buffer. Such characters are escaped by character entity references when possible (for example, in text nodes or attribute values). However, the character entity reference is not allowed in element and attribute names, comments, processing instructions, or CDATA sections.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteStartElement(System.String,System.String)
   id: WriteStartElement(System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1803,14 +2404,24 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes the specified start tag and associates it with the given namespace.
   syntax:
     content: public void WriteStartElement(string localName, string ns)
     content.vb: Public Sub WriteStartElement(localName As String, ns As String)
     parameters:
     - id: localName
       type: System.String
+      description: The local name of the element.
     - id: ns
       type: System.String
+      description: The namespace URI to associate with the element. If this namespace is already in scope and has an associated prefix, the writer automatically writes that prefix also.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The writer is closed.
+  - type: System.Text.EncoderFallbackException
+    description: There is a character in the buffer that is a valid XML character but is not valid for the output encoding. For example, if the output encoding is ASCII, you should only use characters from the range of 0 to 127 for element and attribute names. The invalid character might be in the argument of this method or in an argument of previous methods that were writing to the buffer. Such characters are escaped by character entity references when possible (for example, in text nodes or attribute values). However, the character entity reference is not allowed in element and attribute names, comments, processing instructions, or CDATA sections.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteStartElement(System.String,System.String,System.String)
   id: WriteStartElement(System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1825,16 +2436,27 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes the specified start tag and associates it with the given namespace and prefix.
   syntax:
     content: public abstract void WriteStartElement(string prefix, string localName, string ns)
     content.vb: Public MustOverride Sub WriteStartElement(prefix As String, localName As String, ns As String)
     parameters:
     - id: prefix
       type: System.String
+      description: The namespace prefix of the element.
     - id: localName
       type: System.String
+      description: The local name of the element.
     - id: ns
       type: System.String
+      description: The namespace URI to associate with the element.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The writer is closed.
+  - type: System.Text.EncoderFallbackException
+    description: There is a character in the buffer that is a valid XML character but is not valid for the output encoding. For example, if the output encoding is ASCII, you should only use characters from the range of 0 to 127 for element and attribute names. The invalid character might be in the argument of this method or in an argument of previous methods that were writing to the buffer. Such characters are escaped by character entity references when possible (for example, in text nodes or attribute values). However, the character entity reference is not allowed in element and attribute names, comments, processing instructions, or CDATA sections.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteStartElementAsync(System.String,System.String,System.String)
   id: WriteStartElementAsync(System.String,System.String,System.String)
   parent: System.Xml.XmlWriter
@@ -1849,18 +2471,28 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes the specified start tag and associates it with the given namespace and prefix.
   syntax:
     content: public virtual Task WriteStartElementAsync(string prefix, string localName, string ns)
     content.vb: Public Overridable Function WriteStartElementAsync(prefix As String, localName As String, ns As String) As Task
     parameters:
     - id: prefix
       type: System.String
+      description: The namespace prefix of the element.
     - id: localName
       type: System.String
+      description: The local name of the element.
     - id: ns
       type: System.String
+      description: The namespace URI to associate with the element.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteStartElement operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteString(System.String)
   id: WriteString(System.String)
   parent: System.Xml.XmlWriter
@@ -1875,12 +2507,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes the given text content.
   syntax:
     content: public abstract void WriteString(string text)
     content.vb: Public MustOverride Sub WriteString(text As String)
     parameters:
     - id: text
       type: System.String
+      description: The text to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: The text string contains an invalid surrogate pair.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteStringAsync(System.String)
   id: WriteStringAsync(System.String)
   parent: System.Xml.XmlWriter
@@ -1895,14 +2534,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes the given text content.
   syntax:
     content: public virtual Task WriteStringAsync(string text)
     content.vb: Public Overridable Function WriteStringAsync(text As String) As Task
     parameters:
     - id: text
       type: System.String
+      description: The text to write.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteString operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteSurrogateCharEntity(System.Char,System.Char)
   id: WriteSurrogateCharEntity(System.Char,System.Char)
   parent: System.Xml.XmlWriter
@@ -1917,14 +2564,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, generates and writes the surrogate character entity for the surrogate character pair.
   syntax:
     content: public abstract void WriteSurrogateCharEntity(char lowChar, char highChar)
     content.vb: Public MustOverride Sub WriteSurrogateCharEntity(lowChar As Char, highChar As Char)
     parameters:
     - id: lowChar
       type: System.Char
+      description: The low surrogate. This must be a value between 0xDC00 and 0xDFFF.
     - id: highChar
       type: System.Char
+      description: The high surrogate. This must be a value between 0xD800 and 0xDBFF.
+  exceptions:
+  - type: System.ArgumentException
+    description: An invalid surrogate character pair was passed.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteSurrogateCharEntityAsync(System.Char,System.Char)
   id: WriteSurrogateCharEntityAsync(System.Char,System.Char)
   parent: System.Xml.XmlWriter
@@ -1939,16 +2594,25 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously generates and writes the surrogate character entity for the surrogate character pair.
   syntax:
     content: public virtual Task WriteSurrogateCharEntityAsync(char lowChar, char highChar)
     content.vb: Public Overridable Function WriteSurrogateCharEntityAsync(lowChar As Char, highChar As Char) As Task
     parameters:
     - id: lowChar
       type: System.Char
+      description: The low surrogate. This must be a value between 0xDC00 and 0xDFFF.
     - id: highChar
       type: System.Char
+      description: The high surrogate. This must be a value between 0xD800 and 0xDBFF.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteSurrogateCharEntity operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 - uid: System.Xml.XmlWriter.WriteValue(System.Boolean)
   id: WriteValue(System.Boolean)
   parent: System.Xml.XmlWriter
@@ -1963,12 +2627,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes a @'System.Boolean' value.
   syntax:
     content: public virtual void WriteValue(bool value)
     content.vb: Public Overridable Sub WriteValue(value As Boolean)
     parameters:
     - id: value
       type: System.Boolean
+      description: The @'System.Boolean' value to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: An invalid value was specified.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteValue(System.DateTimeOffset)
   id: WriteValue(System.DateTimeOffset)
   parent: System.Xml.XmlWriter
@@ -1983,12 +2654,17 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes a @'System.DateTimeOffset' value.
   syntax:
     content: public virtual void WriteValue(DateTimeOffset value)
     content.vb: Public Overridable Sub WriteValue(value As DateTimeOffset)
     parameters:
     - id: value
       type: System.DateTimeOffset
+      description: The @'System.DateTimeOffset' value to write.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteValue(System.Decimal)
   id: WriteValue(System.Decimal)
   parent: System.Xml.XmlWriter
@@ -2003,12 +2679,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes a @'System.Decimal' value.
   syntax:
     content: public virtual void WriteValue(decimal value)
     content.vb: Public Overridable Sub WriteValue(value As Decimal)
     parameters:
     - id: value
       type: System.Decimal
+      description: The @'System.Decimal' value to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: An invalid value was specified.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteValue(System.Double)
   id: WriteValue(System.Double)
   parent: System.Xml.XmlWriter
@@ -2023,12 +2706,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes a @'System.Double' value.
   syntax:
     content: public virtual void WriteValue(double value)
     content.vb: Public Overridable Sub WriteValue(value As Double)
     parameters:
     - id: value
       type: System.Double
+      description: The @'System.Double' value to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: An invalid value was specified.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteValue(System.Int32)
   id: WriteValue(System.Int32)
   parent: System.Xml.XmlWriter
@@ -2043,12 +2733,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes a @'System.Int32' value.
   syntax:
     content: public virtual void WriteValue(int value)
     content.vb: Public Overridable Sub WriteValue(value As Integer)
     parameters:
     - id: value
       type: System.Int32
+      description: The @'System.Int32' value to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: An invalid value was specified.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteValue(System.Int64)
   id: WriteValue(System.Int64)
   parent: System.Xml.XmlWriter
@@ -2063,12 +2760,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes a @'System.Int64' value.
   syntax:
     content: public virtual void WriteValue(long value)
     content.vb: Public Overridable Sub WriteValue(value As Long)
     parameters:
     - id: value
       type: System.Int64
+      description: The @'System.Int64' value to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: An invalid value was specified.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteValue(System.Object)
   id: WriteValue(System.Object)
   parent: System.Xml.XmlWriter
@@ -2083,12 +2787,23 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes the object value.
   syntax:
     content: public virtual void WriteValue(object value)
     content.vb: Public Overridable Sub WriteValue(value As Object)
     parameters:
     - id: value
       type: System.Object
+      description: "The object value to write.Note   With the release of the .NET Framework 3.5, this method accepts @'System.DateTimeOffset' as a parameter."
+  exceptions:
+  - type: System.ArgumentException
+    description: An invalid value was specified.
+  - type: System.ArgumentNullException
+    description: The *value* is null.
+  - type: System.InvalidOperationException
+    description: The writer is closed or in error state.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteValue(System.Single)
   id: WriteValue(System.Single)
   parent: System.Xml.XmlWriter
@@ -2103,12 +2818,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes a single-precision floating-point number.
   syntax:
     content: public virtual void WriteValue(float value)
     content.vb: Public Overridable Sub WriteValue(value As Single)
     parameters:
     - id: value
       type: System.Single
+      description: The single-precision floating-point number to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: An invalid value was specified.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteValue(System.String)
   id: WriteValue(System.String)
   parent: System.Xml.XmlWriter
@@ -2123,12 +2845,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Writes a @'System.String' value.
   syntax:
     content: public virtual void WriteValue(string value)
     content.vb: Public Overridable Sub WriteValue(value As String)
     parameters:
     - id: value
       type: System.String
+      description: The @'System.String' value to write.
+  exceptions:
+  - type: System.ArgumentException
+    description: An invalid value was specified.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteWhitespace(System.String)
   id: WriteWhitespace(System.String)
   parent: System.Xml.XmlWriter
@@ -2143,12 +2872,19 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: When overridden in a derived class, writes out the given white space.
   syntax:
     content: public abstract void WriteWhitespace(string ws)
     content.vb: Public MustOverride Sub WriteWhitespace(ws As String)
     parameters:
     - id: ws
       type: System.String
+      description: The string of white space characters.
+  exceptions:
+  - type: System.ArgumentException
+    description: The string contains non-white space characters.
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
 - uid: System.Xml.XmlWriter.WriteWhitespaceAsync(System.String)
   id: WriteWhitespaceAsync(System.String)
   parent: System.Xml.XmlWriter
@@ -2163,14 +2899,22 @@ items:
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
+  summary: Asynchronously writes out the given white space.
   syntax:
     content: public virtual Task WriteWhitespaceAsync(string ws)
     content.vb: Public Overridable Function WriteWhitespaceAsync(ws As String) As Task
     parameters:
     - id: ws
       type: System.String
+      description: The string of white space characters.
     return:
       type: System.Threading.Tasks.Task
+      description: The task that represents the asynchronous WriteWhitespace operation.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' method was called before a previous asynchronous operation finished. In this case, @'System.InvalidOperationException' is thrown with the message “An asynchronous operation is already in progress.”"
+  - type: System.InvalidOperationException
+    description: "An @'System.Xml.XmlWriter' asynchronous method was called without setting the @'System.Xml.XmlWriterSettings.Async' flag to true. In this case, @'System.InvalidOperationException' is thrown with the message “Set XmlWriterSettings.Async to true if you want to use Async Methods.”"
 references:
 - uid: System.Xml
   isExternal: false
@@ -2579,3 +3323,47 @@ references:
   name: Single
   fullName: System.Single
   type: Struct
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.
+- uid: System.Xml.XmlException
+  isExternal: false
+  href: System.Xml.XmlException.yml
+  name: XmlException
+  fullName: System.Xml.XmlException
+  type: Class
+  summary: Returns detailed information about the last exception.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.Text.EncoderFallbackException
+  isExternal: false
+  href: System.Text.EncoderFallbackException.yml
+  name: EncoderFallbackException
+  fullName: System.Text.EncoderFallbackException
+  type: Class
+  summary: The exception that is thrown when an encoder fallback operation fails. This class cannot be inherited.

@@ -26,6 +26,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Represents a composite format string, along with the arguments to be formatted.
   syntax:
     content: 'public abstract class FormattableString : IFormattable'
     content.vb: Public MustInherit Class FormattableString Implements IFormattable
@@ -57,6 +58,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Instantiates a new instance of the @'System.FormattableString' class.
   syntax:
     content: protected FormattableString()
     content.vb: Protected Sub New
@@ -74,12 +76,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Gets the number of arguments to be formatted.
   syntax:
     content: public abstract int ArgumentCount { get; }
     content.vb: Public MustOverride ReadOnly Property ArgumentCount As Integer
     parameters: []
     return:
       type: System.Int32
+      description: The number of arguments to be formatted.
 - uid: System.FormattableString.Format
   id: Format
   parent: System.FormattableString
@@ -94,12 +98,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns the composite format string.
   syntax:
     content: public abstract string Format { get; }
     content.vb: Public MustOverride ReadOnly Property Format As String
     parameters: []
     return:
       type: System.String
+      description: The composite format string.
 - uid: System.FormattableString.GetArgument(System.Int32)
   id: GetArgument(System.Int32)
   parent: System.FormattableString
@@ -114,14 +120,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns the argument at the specified index position.
   syntax:
     content: public abstract object GetArgument(int index)
     content.vb: Public MustOverride Function GetArgument(index As Integer) As Object
     parameters:
     - id: index
       type: System.Int32
+      description: The index of the argument. Its value can range from zero to one less than the value of @'System.FormattableString.ArgumentCount'.
     return:
       type: System.Object
+      description: The argument.
 - uid: System.FormattableString.GetArguments
   id: GetArguments
   parent: System.FormattableString
@@ -136,11 +145,13 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns an object array that contains one or more objects to format.
   syntax:
     content: public abstract object[] GetArguments()
     content.vb: Public MustOverride Function GetArguments As Object()
     return:
       type: System.Object[]
+      description: An object array that contains one or more objects to format.
 - uid: System.FormattableString.Invariant(System.FormattableString)
   id: Invariant(System.FormattableString)
   parent: System.FormattableString
@@ -155,14 +166,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns a result string in which arguments are formatted by using the conventions of the invariant culture.
   syntax:
     content: public static string Invariant(FormattableString formattable)
     content.vb: Public Shared Function Invariant(formattable As FormattableString) As String
     parameters:
     - id: formattable
       type: System.FormattableString
+      description: The object to convert to a result string.
     return:
       type: System.String
+      description: The string that results from formatting the current instance by using the conventions of the invariant culture.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*formattable* is null.'
 - uid: System.FormattableString.System#IFormattable#ToString(System.String,System.IFormatProvider)
   id: System#IFormattable#ToString(System.String,System.IFormatProvider)
   parent: System.FormattableString
@@ -178,16 +195,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns the string that results from formatting the format string along with its arguments by using the formatting conventions of a specified culture.
   syntax:
     content: string IFormattable.ToString(string ignored, IFormatProvider formatProvider)
     content.vb: Function System.IFormattable.ToString(ignored As String, formatProvider As IFormatProvider) As String Implements IFormattable.ToString
     parameters:
     - id: ignored
       type: System.String
+      description: A string. This argument is ignored.
     - id: formatProvider
       type: System.IFormatProvider
+      description: An object that provides culture-specific formatting information.
     return:
       type: System.String
+      description: A string formatted using the conventions of the *formatProvider* parameter.
 - uid: System.FormattableString.ToString
   id: ToString
   parent: System.FormattableString
@@ -202,11 +223,13 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns the string that results from formatting the composite format string along with its arguments by using the formatting conventions of the current culture.
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
+      description: A result string formatted by using the conventions of the current culture.
   overridden: System.Object.ToString
 - uid: System.FormattableString.ToString(System.IFormatProvider)
   id: ToString(System.IFormatProvider)
@@ -222,14 +245,17 @@ items:
   assemblies:
   - System.Runtime
   namespace: System
+  summary: Returns the string that results from formatting the composite format string along with its arguments by using the formatting conventions of a specified culture.
   syntax:
     content: public abstract string ToString(IFormatProvider formatProvider)
     content.vb: Public MustOverride Function ToString(formatProvider As IFormatProvider) As String
     parameters:
     - id: formatProvider
       type: System.IFormatProvider
+      description: An object that provides culture-specific formatting information.
     return:
       type: System.String
+      description: A result string formatted by using the conventions of *formatProvider*.
 references:
 - uid: System
   isExternal: false
@@ -500,3 +526,10 @@ references:
     fullName: (
   - name: )
     fullName: )
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.

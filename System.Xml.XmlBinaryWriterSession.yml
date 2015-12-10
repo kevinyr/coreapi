@@ -20,6 +20,7 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
+  summary: Enables using a dynamic dictionary to compress common strings that appear in a message and maintain state.
   syntax:
     content: public class XmlBinaryWriterSession
     content.vb: Public Class XmlBinaryWriterSession
@@ -47,6 +48,7 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
+  summary: Creates an instance of this class.
   syntax:
     content: public XmlBinaryWriterSession()
     content.vb: Public Sub New
@@ -64,6 +66,7 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
+  summary: Clears out the internal collections.
   syntax:
     content: public void Reset()
     content.vb: Public Sub Reset
@@ -83,16 +86,25 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
+  summary: Tries to add an @'System.Xml.XmlDictionaryString' to the internal collection.
   syntax:
     content: public virtual bool TryAdd(XmlDictionaryString value, out int key)
     content.vb: Public Overridable Function TryAdd(value As XmlDictionaryString, ByRef key As Integer) As Boolean
     parameters:
     - id: value
       type: System.Xml.XmlDictionaryString
+      description: The @'System.Xml.XmlDictionaryString' to add.
     - id: key
       type: System.Int32
+      description: The key of the @'System.Xml.XmlDictionaryString' that was successfully added.
     return:
       type: System.Boolean
+      description: true if the string could be added; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*value* is null.'
+  - type: System.InvalidOperationException
+    description: An entry with key = *key* already exists.
 references:
 - uid: System.Xml
   isExternal: false
@@ -341,3 +353,18 @@ references:
   name: Boolean
   fullName: System.Boolean
   type: Struct
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.

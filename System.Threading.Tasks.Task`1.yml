@@ -51,6 +51,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Represents an asynchronous operation that can return a value.
   syntax:
     content: 'public class Task<TResult> : Task, IAsyncResult'
     content.vb: Public Class Task(Of TResult) Inherits Task Implements IAsyncResult
@@ -162,12 +163,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task`1' with the specified function.
   syntax:
     content: public Task(Func<TResult> function)
     content.vb: Public Sub New(function As Func(Of TResult))
     parameters:
     - id: function
       type: System.Func{{TResult}}
+      description: The delegate that represents the code to execute in the task. When the function has completed, the task's @'System.Threading.Tasks.Task`1.Result' property will be set to return the result value of the function.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *function* argument is null.
 - uid: System.Threading.Tasks.Task`1.#ctor(System.Func{`0},System.Threading.CancellationToken)
   id: '#ctor(System.Func{`0},System.Threading.CancellationToken)'
   parent: System.Threading.Tasks.Task`1
@@ -184,14 +190,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task`1' with the specified function.
   syntax:
     content: public Task(Func<TResult> function, CancellationToken cancellationToken)
     content.vb: Public Sub New(function As Func(Of TResult), cancellationToken As CancellationToken)
     parameters:
     - id: function
       type: System.Func{{TResult}}
+      description: The delegate that represents the code to execute in the task. When the function has completed, the task's @'System.Threading.Tasks.Task`1.Result' property will be set to return the result value of the function.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' to be assigned to this task.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' that created* cancellationToken* has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *function* argument is null.
 - uid: System.Threading.Tasks.Task`1.#ctor(System.Func{`0},System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Func{`0},System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)'
   parent: System.Threading.Tasks.Task`1
@@ -208,16 +222,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task`1' with the specified function and creation options.
   syntax:
     content: public Task(Func<TResult> function, CancellationToken cancellationToken, TaskCreationOptions creationOptions)
     content.vb: Public Sub New(function As Func(Of TResult), cancellationToken As CancellationToken, creationOptions As TaskCreationOptions)
     parameters:
     - id: function
       type: System.Func{{TResult}}
+      description: The delegate that represents the code to execute in the task. When the function has completed, the task's @'System.Threading.Tasks.Task`1.Result' property will be set to return the result value of the function.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new task.
     - id: creationOptions
       type: System.Threading.Tasks.TaskCreationOptions
+      description: The @'System.Threading.Tasks.TaskCreationOptions' used to customize the task's behavior.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' that created* cancellationToken* has already been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: The *creationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskCreationOptions'.
+  - type: System.ArgumentNullException
+    description: The *function* argument is null.
 - uid: System.Threading.Tasks.Task`1.#ctor(System.Func{`0},System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Func{`0},System.Threading.Tasks.TaskCreationOptions)'
   parent: System.Threading.Tasks.Task`1
@@ -234,14 +259,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task`1' with the specified function and creation options.
   syntax:
     content: public Task(Func<TResult> function, TaskCreationOptions creationOptions)
     content.vb: Public Sub New(function As Func(Of TResult), creationOptions As TaskCreationOptions)
     parameters:
     - id: function
       type: System.Func{{TResult}}
+      description: The delegate that represents the code to execute in the task. When the function has completed, the task's @'System.Threading.Tasks.Task`1.Result' property will be set to return the result value of the function.
     - id: creationOptions
       type: System.Threading.Tasks.TaskCreationOptions
+      description: The @'System.Threading.Tasks.TaskCreationOptions' used to customize the task's behavior.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: The *creationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskCreationOptions'.
+  - type: System.ArgumentNullException
+    description: The *function* argument is null.
 - uid: System.Threading.Tasks.Task`1.#ctor(System.Func{System.Object,`0},System.Object)
   id: '#ctor(System.Func{System.Object,`0},System.Object)'
   parent: System.Threading.Tasks.Task`1
@@ -258,14 +291,20 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task`1' with the specified function and state.
   syntax:
     content: public Task(Func<object, TResult> function, object state)
     content.vb: Public Sub New(function As Func(Of Object, TResult), state As Object)
     parameters:
     - id: function
       type: System.Func{System.Object,{TResult}}
+      description: The delegate that represents the code to execute in the task. When the function has completed, the task's @'System.Threading.Tasks.Task`1.Result' property will be set to return the result value of the function.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the action.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *function* argument is null.
 - uid: System.Threading.Tasks.Task`1.#ctor(System.Func{System.Object,`0},System.Object,System.Threading.CancellationToken)
   id: '#ctor(System.Func{System.Object,`0},System.Object,System.Threading.CancellationToken)'
   parent: System.Threading.Tasks.Task`1
@@ -282,16 +321,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task`1' with the specified action, state, and options.
   syntax:
     content: public Task(Func<object, TResult> function, object state, CancellationToken cancellationToken)
     content.vb: Public Sub New(function As Func(Of Object, TResult), state As Object, cancellationToken As CancellationToken)
     parameters:
     - id: function
       type: System.Func{System.Object,{TResult}}
+      description: The delegate that represents the code to execute in the task. When the function has completed, the task's @'System.Threading.Tasks.Task`1.Result' property will be set to return the result value of the function.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the function.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' to be assigned to the new task.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' that created* cancellationToken* has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *function* argument is null.
 - uid: System.Threading.Tasks.Task`1.#ctor(System.Func{System.Object,`0},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Func{System.Object,`0},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)'
   parent: System.Threading.Tasks.Task`1
@@ -308,18 +356,30 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task`1' with the specified action, state, and options.
   syntax:
     content: public Task(Func<object, TResult> function, object state, CancellationToken cancellationToken, TaskCreationOptions creationOptions)
     content.vb: Public Sub New(function As Func(Of Object, TResult), state As Object, cancellationToken As CancellationToken, creationOptions As TaskCreationOptions)
     parameters:
     - id: function
       type: System.Func{System.Object,{TResult}}
+      description: The delegate that represents the code to execute in the task. When the function has completed, the task's @'System.Threading.Tasks.Task`1.Result' property will be set to return the result value of the function.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the function.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' to be assigned to the new task.
     - id: creationOptions
       type: System.Threading.Tasks.TaskCreationOptions
+      description: The @'System.Threading.Tasks.TaskCreationOptions' used to customize the task's behavior.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.CancellationTokenSource' that created* cancellationToken* has already been disposed.
+  - type: System.ArgumentOutOfRangeException
+    description: The *creationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskCreationOptions'.
+  - type: System.ArgumentNullException
+    description: The *function* argument is null.
 - uid: System.Threading.Tasks.Task`1.#ctor(System.Func{System.Object,`0},System.Object,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Func{System.Object,`0},System.Object,System.Threading.Tasks.TaskCreationOptions)'
   parent: System.Threading.Tasks.Task`1
@@ -336,16 +396,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Initializes a new @'System.Threading.Tasks.Task`1' with the specified action, state, and options.
   syntax:
     content: public Task(Func<object, TResult> function, object state, TaskCreationOptions creationOptions)
     content.vb: Public Sub New(function As Func(Of Object, TResult), state As Object, creationOptions As TaskCreationOptions)
     parameters:
     - id: function
       type: System.Func{System.Object,{TResult}}
+      description: The delegate that represents the code to execute in the task. When the function has completed, the task's @'System.Threading.Tasks.Task`1.Result' property will be set to return the result value of the function.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the function.
     - id: creationOptions
       type: System.Threading.Tasks.TaskCreationOptions
+      description: The @'System.Threading.Tasks.TaskCreationOptions' used to customize the task's behavior.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: The *creationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskCreationOptions'.
+  - type: System.ArgumentNullException
+    description: The *function* argument is null.
 - uid: System.Threading.Tasks.Task`1.Factory
   id: Factory
   parent: System.Threading.Tasks.Task`1
@@ -361,12 +430,14 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Provides access to factory methods for creating and configuring @'System.Threading.Tasks.Task`1' instances.
   syntax:
     content: public static TaskFactory<TResult> Factory { get; }
     content.vb: Public Shared ReadOnly Property Factory As TaskFactory(Of TResult)
     parameters: []
     return:
       type: System.Threading.Tasks.TaskFactory{{TResult}}
+      description: A factory object that can create a variety of @'System.Threading.Tasks.Task`1' objects.
 - uid: System.Threading.Tasks.Task`1.Result
   id: Result
   parent: System.Threading.Tasks.Task`1
@@ -382,12 +453,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets the result value of this @'System.Threading.Tasks.Task`1'.
   syntax:
     content: public TResult Result { get; }
     content.vb: Public ReadOnly Property Result As TResult
     parameters: []
     return:
       type: '{TResult}'
+      description: The result value of this @'System.Threading.Tasks.Task`1', which is the same type as the task's type parameter.
+  exceptions:
+  - type: System.AggregateException
+    description: The task was canceled. The @'System.AggregateException.InnerExceptions' collection contains a @'System.Threading.Tasks.TaskCanceledException' object. -or-An exception was thrown during the execution of the task. The @'System.AggregateException.InnerExceptions' collection contains information about the exception or exceptions.
 - uid: System.Threading.Tasks.Task`1.ConfigureAwait(System.Boolean)
   id: ConfigureAwait(System.Boolean)
   parent: System.Threading.Tasks.Task`1
@@ -403,14 +479,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Configures an awaiter used to await this @'System.Threading.Tasks.Task`1'.
   syntax:
     content: public ConfiguredTaskAwaitable<TResult> ConfigureAwait(bool continueOnCapturedContext)
     content.vb: Public Function ConfigureAwait(continueOnCapturedContext As Boolean) As ConfiguredTaskAwaitable(Of TResult)
     parameters:
     - id: continueOnCapturedContext
       type: System.Boolean
+      description: true to attempt to marshal the continuation back to the original context captured; otherwise, false.
     return:
       type: System.Runtime.CompilerServices.ConfiguredTaskAwaitable{{TResult}}
+      description: An object used to await this task.
 - uid: System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.Task{`0},System.Object},System.Object)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task{`0},System.Object},System.Object)
   parent: System.Threading.Tasks.Task`1
@@ -427,16 +506,23 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that that is passed state information and that executes when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task ContinueWith(Action<Task<TResult>, object> continuationAction, object state)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task(Of TResult), Object), state As Object) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task`1,System.Object}
+      description: An action to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate is   passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation action.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
 - uid: System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.Task{`0},System.Object},System.Object,System.Threading.CancellationToken)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task{`0},System.Object},System.Object,System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task`1
@@ -453,18 +539,28 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task ContinueWith(Action<Task<TResult>, object> continuationAction, object state, CancellationToken cancellationToken)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task(Of TResult), Object), state As Object, cancellationToken As CancellationToken) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task`1,System.Object}
+      description: An action to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation action.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new continuation task.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
+  - type: System.ObjectDisposedException
+    description: The provided @'System.Threading.CancellationToken' has already been disposed.
 - uid: System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.Task{`0},System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task{`0},System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task`1
@@ -481,22 +577,38 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task ContinueWith(Action<Task<TResult>, object> continuationAction, object state, CancellationToken cancellationToken, TaskContinuationOptions continuationOptions, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task(Of TResult), Object), state As Object, cancellationToken As CancellationToken, continuationOptions As TaskContinuationOptions, scheduler As TaskScheduler) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task`1,System.Object}
+      description: An action to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation action.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new continuation task.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as  well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its  execution.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
+  - type: System.ArgumentNullException
+    description: The *scheduler* argument is null.
+  - type: System.ObjectDisposedException
+    description: The provided @'System.Threading.CancellationToken' has already been disposed.
 - uid: System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.Task{`0},System.Object},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task{`0},System.Object},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   parent: System.Threading.Tasks.Task`1
@@ -513,18 +625,28 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task ContinueWith(Action<Task<TResult>, object> continuationAction, object state, TaskContinuationOptions continuationOptions)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task(Of TResult), Object), state As Object, continuationOptions As TaskContinuationOptions) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task`1,System.Object}
+      description: An action to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation action.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such  as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.Task{`0},System.Object},System.Object,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task{`0},System.Object},System.Object,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task`1
@@ -541,18 +663,28 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task ContinueWith(Action<Task<TResult>, object> continuationAction, object state, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task(Of TResult), Object), state As Object, scheduler As TaskScheduler) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task`1,System.Object}
+      description: An action to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation action.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
+  - type: System.ArgumentNullException
+    description: The *scheduler* argument is null.
 - uid: System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.Task{`0}})
   id: ContinueWith(System.Action{System.Threading.Tasks.Task{`0}})
   parent: System.Threading.Tasks.Task`1
@@ -569,14 +701,22 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target task completes.
   syntax:
     content: public Task ContinueWith(Action<Task<TResult>> continuationAction)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task(Of TResult))) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task`1}
+      description: An action to run when the antecedent @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be passed the completed task as an argument.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation task.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task`1' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
 - uid: System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.Task{`0}},System.Threading.CancellationToken)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task{`0}},System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task`1
@@ -593,16 +733,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a cancelable continuation that executes asynchronously when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task ContinueWith(Action<Task<TResult>> continuationAction, CancellationToken cancellationToken)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task(Of TResult)), cancellationToken As CancellationToken) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task`1}
+      description: An action to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate is passed the completed task as an argument.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The cancellation token that is passed to the new continuation task.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation task.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task`1' has been disposed.-or-The @'System.Threading.CancellationTokenSource' that created *cancellationToken* has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
 - uid: System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.Task{`0}},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task{`0}},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task`1
@@ -619,20 +768,33 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes according the condition specified in *continuationOptions*.
   syntax:
     content: public Task ContinueWith(Action<Task<TResult>> continuationAction, CancellationToken cancellationToken, TaskContinuationOptions continuationOptions, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task(Of TResult)), cancellationToken As CancellationToken, continuationOptions As TaskContinuationOptions, scheduler As TaskScheduler) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task`1}
+      description: An action to run according the condition specified in *continuationOptions*. When run, the delegate will be passed the completed task as an argument.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new continuation task.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task`1' has been disposed.-or-The @'System.Threading.CancellationTokenSource' that created *cancellationToken* has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.-or-The *scheduler* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.Task{`0}},System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task{`0}},System.Threading.Tasks.TaskContinuationOptions)
   parent: System.Threading.Tasks.Task`1
@@ -649,16 +811,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes according the condition specified in *continuationOptions*.
   syntax:
     content: public Task ContinueWith(Action<Task<TResult>> continuationAction, TaskContinuationOptions continuationOptions)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task(Of TResult)), continuationOptions As TaskContinuationOptions) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task`1}
+      description: An action to according the condition specified in *continuationOptions*. When run, the delegate will be passed the completed task as an argument.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task`1' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task`1.ContinueWith(System.Action{System.Threading.Tasks.Task{`0}},System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task{`0}},System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task`1
@@ -675,16 +848,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task ContinueWith(Action<Task<TResult>> continuationAction, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(continuationAction As Action(Of Task(Of TResult)), scheduler As TaskScheduler) As Task
     parameters:
     - id: continuationAction
       type: System.Action{System.Threading.Tasks.Task`1}
+      description: An action to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be passed the completed task as an argument.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     return:
       type: System.Threading.Tasks.Task
+      description: A new continuation @'System.Threading.Tasks.Task'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task`1' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationAction* argument is null.-or-The *scheduler* argument is null.
 - uid: System.Threading.Tasks.Task`1.ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},``0})
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},``0})
   parent: System.Threading.Tasks.Task`1
@@ -701,16 +883,24 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task<TNewResult> ContinueWith<TNewResult>(Func<Task<TResult>, TNewResult> continuationFunction)
     content.vb: Public Function ContinueWith(Of TNewResult)(continuationFunction As Func(Of Task(Of TResult), TNewResult)) As Task(Of TNewResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task`1,{TNewResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be passed the completed task as an argument.
     typeParameters:
     - id: TNewResult
     return:
       type: System.Threading.Tasks.Task{{TNewResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task`1' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
 - uid: System.Threading.Tasks.Task`1.ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},``0},System.Threading.CancellationToken)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},``0},System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task`1
@@ -727,18 +917,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task<TNewResult> ContinueWith<TNewResult>(Func<Task<TResult>, TNewResult> continuationFunction, CancellationToken cancellationToken)
     content.vb: Public Function ContinueWith(Of TNewResult)(continuationFunction As Func(Of Task(Of TResult), TNewResult), cancellationToken As CancellationToken) As Task(Of TNewResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task`1,{TNewResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be passed the completed task as an argument.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new task.
     typeParameters:
     - id: TNewResult
     return:
       type: System.Threading.Tasks.Task{{TNewResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task`1' has been disposed.-or-The @'System.Threading.CancellationTokenSource' that created* cancellationToken* has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
 - uid: System.Threading.Tasks.Task`1.ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task`1
@@ -755,22 +954,35 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes according the condition specified in *continuationOptions*.
   syntax:
     content: public Task<TNewResult> ContinueWith<TNewResult>(Func<Task<TResult>, TNewResult> continuationFunction, CancellationToken cancellationToken, TaskContinuationOptions continuationOptions, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(Of TNewResult)(continuationFunction As Func(Of Task(Of TResult), TNewResult), cancellationToken As CancellationToken, continuationOptions As TaskContinuationOptions, scheduler As TaskScheduler) As Task(Of TNewResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task`1,{TNewResult}}
+      description: A function to run according the condition specified in *continuationOptions*.When run, the delegate will be passed as an argument this completed task.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new task.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     typeParameters:
     - id: TNewResult
     return:
       type: System.Threading.Tasks.Task{{TNewResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task`1' has been disposed.-or-The @'System.Threading.CancellationTokenSource' that created* cancellationToken* has already been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.-or-The *scheduler* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task`1.ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},``0},System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},``0},System.Threading.Tasks.TaskContinuationOptions)
   parent: System.Threading.Tasks.Task`1
@@ -787,18 +999,29 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes according the condition specified in *continuationOptions*.
   syntax:
     content: public Task<TNewResult> ContinueWith<TNewResult>(Func<Task<TResult>, TNewResult> continuationFunction, TaskContinuationOptions continuationOptions)
     content.vb: Public Function ContinueWith(Of TNewResult)(continuationFunction As Func(Of Task(Of TResult), TNewResult), continuationOptions As TaskContinuationOptions) As Task(Of TNewResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task`1,{TNewResult}}
+      description: A function to run according the condition specified in *continuationOptions*.When run, the delegate will be passed the completed task as an argument.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     typeParameters:
     - id: TNewResult
     return:
       type: System.Threading.Tasks.Task{{TNewResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task`1' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task`1.ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},``0},System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},``0},System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task`1
@@ -815,18 +1038,27 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes asynchronously when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task<TNewResult> ContinueWith<TNewResult>(Func<Task<TResult>, TNewResult> continuationFunction, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(Of TNewResult)(continuationFunction As Func(Of Task(Of TResult), TNewResult), scheduler As TaskScheduler) As Task(Of TNewResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task`1,{TNewResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be passed the completed task as an argument.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     typeParameters:
     - id: TNewResult
     return:
       type: System.Threading.Tasks.Task{{TNewResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ObjectDisposedException
+    description: The @'System.Threading.Tasks.Task`1' has been disposed.
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.-or-The *scheduler* argument is null.
 - uid: System.Threading.Tasks.Task`1.ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},System.Object,``0},System.Object)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},System.Object,``0},System.Object)
   parent: System.Threading.Tasks.Task`1
@@ -843,18 +1075,25 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task<TNewResult> ContinueWith<TNewResult>(Func<Task<TResult>, object, TNewResult> continuationFunction, object state)
     content.vb: Public Function ContinueWith(Of TNewResult)(continuationFunction As Func(Of Task(Of TResult), Object, TNewResult), state As Object) As Task(Of TNewResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task`1,System.Object,{TNewResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation function.
     typeParameters:
     - id: TNewResult
     return:
       type: System.Threading.Tasks.Task{{TNewResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
 - uid: System.Threading.Tasks.Task`1.ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},System.Object,``0},System.Object,System.Threading.CancellationToken)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},System.Object,``0},System.Object,System.Threading.CancellationToken)
   parent: System.Threading.Tasks.Task`1
@@ -871,20 +1110,30 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task<TNewResult> ContinueWith<TNewResult>(Func<Task<TResult>, object, TNewResult> continuationFunction, object state, CancellationToken cancellationToken)
     content.vb: Public Function ContinueWith(Of TNewResult)(continuationFunction As Func(Of Task(Of TResult), Object, TNewResult), state As Object, cancellationToken As CancellationToken) As Task(Of TNewResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task`1,System.Object,{TNewResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation function.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new task.
     typeParameters:
     - id: TNewResult
     return:
       type: System.Threading.Tasks.Task{{TNewResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
+  - type: System.ObjectDisposedException
+    description: The provided @'System.Threading.CancellationToken' has already been disposed.
 - uid: System.Threading.Tasks.Task`1.ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},System.Object,``0},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},System.Object,``0},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task`1
@@ -901,24 +1150,40 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task<TNewResult> ContinueWith<TNewResult>(Func<Task<TResult>, object, TNewResult> continuationFunction, object state, CancellationToken cancellationToken, TaskContinuationOptions continuationOptions, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(Of TNewResult)(continuationFunction As Func(Of Task(Of TResult), Object, TNewResult), state As Object, cancellationToken As CancellationToken, continuationOptions As TaskContinuationOptions, scheduler As TaskScheduler) As Task(Of TNewResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task`1,System.Object,{TNewResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation function.
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: The @'System.Threading.CancellationToken' that will be assigned to the new task.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     typeParameters:
     - id: TNewResult
     return:
       type: System.Threading.Tasks.Task{{TNewResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The  *continuationOptions*  argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
+  - type: System.ArgumentNullException
+    description: The *scheduler* argument is null.
+  - type: System.ObjectDisposedException
+    description: The provided @'System.Threading.CancellationToken' has already been disposed.
 - uid: System.Threading.Tasks.Task`1.ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},System.Object,``0},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},System.Object,``0},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   parent: System.Threading.Tasks.Task`1
@@ -935,20 +1200,30 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task<TNewResult> ContinueWith<TNewResult>(Func<Task<TResult>, object, TNewResult> continuationFunction, object state, TaskContinuationOptions continuationOptions)
     content.vb: Public Function ContinueWith(Of TNewResult)(continuationFunction As Func(Of Task(Of TResult), Object, TNewResult), state As Object, continuationOptions As TaskContinuationOptions) As Task(Of TNewResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task`1,System.Object,{TNewResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be  passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation function.
     - id: continuationOptions
       type: System.Threading.Tasks.TaskContinuationOptions
+      description: Options for when the continuation is scheduled and how it behaves. This includes criteria, such as @'System.Threading.Tasks.TaskContinuationOptions.OnlyOnCanceled', as well as execution options, such as @'System.Threading.Tasks.TaskContinuationOptions.ExecuteSynchronously'.
     typeParameters:
     - id: TNewResult
     return:
       type: System.Threading.Tasks.Task{{TNewResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
+  - type: System.ArgumentOutOfRangeException
+    description: The *continuationOptions* argument specifies an invalid value for @'System.Threading.Tasks.TaskContinuationOptions'.
 - uid: System.Threading.Tasks.Task`1.ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},System.Object,``0},System.Object,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task{`0},System.Object,``0},System.Object,System.Threading.Tasks.TaskScheduler)
   parent: System.Threading.Tasks.Task`1
@@ -965,20 +1240,30 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Creates a continuation that executes when the target @'System.Threading.Tasks.Task`1' completes.
   syntax:
     content: public Task<TNewResult> ContinueWith<TNewResult>(Func<Task<TResult>, object, TNewResult> continuationFunction, object state, TaskScheduler scheduler)
     content.vb: Public Function ContinueWith(Of TNewResult)(continuationFunction As Func(Of Task(Of TResult), Object, TNewResult), state As Object, scheduler As TaskScheduler) As Task(Of TNewResult)
     parameters:
     - id: continuationFunction
       type: System.Func{System.Threading.Tasks.Task`1,System.Object,{TNewResult}}
+      description: A function to run when the @'System.Threading.Tasks.Task`1' completes. When run, the delegate will be passed the completed task and the caller-supplied state object as arguments.
     - id: state
       type: System.Object
+      description: An object representing data to be used by the continuation function.
     - id: scheduler
       type: System.Threading.Tasks.TaskScheduler
+      description: The @'System.Threading.Tasks.TaskScheduler' to associate with the continuation task and to use for its execution.
     typeParameters:
     - id: TNewResult
     return:
       type: System.Threading.Tasks.Task{{TNewResult}}
+      description: A new continuation @'System.Threading.Tasks.Task`1'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The *continuationFunction* argument is null.
+  - type: System.ArgumentNullException
+    description: The *scheduler* argument is null.
 - uid: System.Threading.Tasks.Task`1.GetAwaiter
   id: GetAwaiter
   parent: System.Threading.Tasks.Task`1
@@ -994,11 +1279,13 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
+  summary: Gets an awaiter used to await this @'System.Threading.Tasks.Task`1'.
   syntax:
     content: public TaskAwaiter<TResult> GetAwaiter()
     content.vb: Public Function GetAwaiter As TaskAwaiter(Of TResult)
     return:
       type: System.Runtime.CompilerServices.TaskAwaiter{{TResult}}
+      description: An awaiter instance.
 references:
 - uid: System.Threading.Tasks
   isExternal: false
@@ -5631,3 +5918,32 @@ references:
     fullName: TResult
   - name: )
     fullName: )
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.ObjectDisposedException
+  isExternal: false
+  href: System.ObjectDisposedException.yml
+  name: ObjectDisposedException
+  fullName: System.ObjectDisposedException
+  type: Class
+  summary: The exception that is thrown when an operation is performed on a disposed object.
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.AggregateException
+  parent: System
+  isExternal: false
+  href: System.AggregateException.yml
+  name: AggregateException
+  fullName: System.AggregateException
+  type: Class
+  summary: Represents one or more errors that occur during application execution.

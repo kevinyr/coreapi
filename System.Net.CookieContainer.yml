@@ -30,6 +30,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Provides a container for a collection of @'System.Net.CookieCollection' objects.
   syntax:
     content: public class CookieContainer
     content.vb: Public Class CookieContainer
@@ -57,6 +58,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Represents the default maximum size, in bytes, of the @'System.Net.Cookie' instances that the @'System.Net.CookieContainer' can hold. This field is constant.
   syntax:
     content: public const int DefaultCookieLengthLimit
     content.vb: Public Const DefaultCookieLengthLimit As Integer = 4096
@@ -74,6 +76,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Represents the default maximum number of @'System.Net.Cookie' instances that the @'System.Net.CookieContainer' can hold. This field is constant.
   syntax:
     content: public const int DefaultCookieLimit
     content.vb: Public Const DefaultCookieLimit As Integer = 300
@@ -91,6 +94,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Represents the default maximum number of @'System.Net.Cookie' instances that the @'System.Net.CookieContainer' can reference per domain. This field is constant.
   syntax:
     content: public const int DefaultPerDomainCookieLimit
     content.vb: Public Const DefaultPerDomainCookieLimit As Integer = 20
@@ -108,6 +112,7 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Initializes a new instance of the @'System.Net.CookieContainer' class.
   syntax:
     content: public CookieContainer()
     content.vb: Public Sub New
@@ -125,12 +130,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets and sets the number of @'System.Net.Cookie' instances that a @'System.Net.CookieContainer' can hold.
   syntax:
     content: public int Capacity { get; set; }
     content.vb: Public Property Capacity As Integer
     parameters: []
     return:
       type: System.Int32
+      description: The number of @'System.Net.Cookie' instances that a @'System.Net.CookieContainer' can hold. This is a hard limit and cannot be exceeded by adding a @'System.Net.Cookie'.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*Capacity* is less than or equal to zero or (value is less than @''System.Net.CookieContainer.PerDomainCapacity'' and @''System.Net.CookieContainer.PerDomainCapacity'' is not equal to @''System.Int32.MaxValue'').'
 - uid: System.Net.CookieContainer.Count
   id: Count
   parent: System.Net.CookieContainer
@@ -145,12 +155,14 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets the number of @'System.Net.Cookie' instances that a @'System.Net.CookieContainer' currently holds.
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
     parameters: []
     return:
       type: System.Int32
+      description: The number of @'System.Net.Cookie' instances that a @'System.Net.CookieContainer' currently holds. This is the total of @'System.Net.Cookie' instances in all domains.
 - uid: System.Net.CookieContainer.MaxCookieSize
   id: MaxCookieSize
   parent: System.Net.CookieContainer
@@ -165,12 +177,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Represents the maximum allowed length of a @'System.Net.Cookie'.
   syntax:
     content: public int MaxCookieSize { get; set; }
     content.vb: Public Property MaxCookieSize As Integer
     parameters: []
     return:
       type: System.Int32
+      description: The maximum allowed length, in bytes, of a @'System.Net.Cookie'.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*MaxCookieSize* is less than or equal to zero.'
 - uid: System.Net.CookieContainer.PerDomainCapacity
   id: PerDomainCapacity
   parent: System.Net.CookieContainer
@@ -185,12 +202,17 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets and sets the number of @'System.Net.Cookie' instances that a @'System.Net.CookieContainer' can hold per domain.
   syntax:
     content: public int PerDomainCapacity { get; set; }
     content.vb: Public Property PerDomainCapacity As Integer
     parameters: []
     return:
       type: System.Int32
+      description: The number of @'System.Net.Cookie' instances that are allowed per domain.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*PerDomainCapacity* is less than or equal to zero. -or- *(PerDomainCapacity* is greater than the maximum allowable number of cookies instances, 300, and is not equal to @''System.Int32.MaxValue'').'
 - uid: System.Net.CookieContainer.Add(System.Uri,System.Net.Cookie)
   id: Add(System.Uri,System.Net.Cookie)
   parent: System.Net.CookieContainer
@@ -208,14 +230,22 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Adds a @'System.Net.Cookie' to the @'System.Net.CookieContainer' for a particular URI.
   syntax:
     content: public void Add(Uri uri, Cookie cookie)
     content.vb: Public Sub Add(uri As Uri, cookie As Cookie)
     parameters:
     - id: uri
       type: System.Uri
+      description: The URI of the @'System.Net.Cookie' to be added to the @'System.Net.CookieContainer'.
     - id: cookie
       type: System.Net.Cookie
+      description: The @'System.Net.Cookie' to be added to the @'System.Net.CookieContainer'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*uri* is null or *cookie* is null.'
+  - type: System.Net.CookieException
+    description: '*cookie* is larger than *maxCookieSize*. -or- The domain for *cookie* is not a valid URI.'
 - uid: System.Net.CookieContainer.Add(System.Uri,System.Net.CookieCollection)
   id: Add(System.Uri,System.Net.CookieCollection)
   parent: System.Net.CookieContainer
@@ -230,14 +260,24 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Adds the contents of a @'System.Net.CookieCollection' to the @'System.Net.CookieContainer' for a particular URI.
   syntax:
     content: public void Add(Uri uri, CookieCollection cookies)
     content.vb: Public Sub Add(uri As Uri, cookies As CookieCollection)
     parameters:
     - id: uri
       type: System.Uri
+      description: The URI of the @'System.Net.CookieCollection' to be added to the @'System.Net.CookieContainer'.
     - id: cookies
       type: System.Net.CookieCollection
+      description: The @'System.Net.CookieCollection' to be added to the @'System.Net.CookieContainer'.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*cookies* is null.'
+  - type: System.ArgumentException
+    description: The domain for one of the cookies in *cookies* is null.
+  - type: System.Net.CookieException
+    description: One of the cookies in *cookies* contains an invalid domain.
 - uid: System.Net.CookieContainer.GetCookieHeader(System.Uri)
   id: GetCookieHeader(System.Uri)
   parent: System.Net.CookieContainer
@@ -252,14 +292,20 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets the HTTP cookie header that contains the HTTP cookies that represent the @'System.Net.Cookie' instances that are associated with a specific URI.
   syntax:
     content: public string GetCookieHeader(Uri uri)
     content.vb: Public Function GetCookieHeader(uri As Uri) As String
     parameters:
     - id: uri
       type: System.Uri
+      description: The URI of the @'System.Net.Cookie' instances desired.
     return:
       type: System.String
+      description: An HTTP cookie header, with strings representing @'System.Net.Cookie' instances delimited by semicolons.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*uri* is null.'
 - uid: System.Net.CookieContainer.GetCookies(System.Uri)
   id: GetCookies(System.Uri)
   parent: System.Net.CookieContainer
@@ -274,14 +320,20 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Gets a @'System.Net.CookieCollection' that contains the @'System.Net.Cookie' instances that are associated with a specific URI.
   syntax:
     content: public CookieCollection GetCookies(Uri uri)
     content.vb: Public Function GetCookies(uri As Uri) As CookieCollection
     parameters:
     - id: uri
       type: System.Uri
+      description: The URI of the @'System.Net.Cookie' instances desired.
     return:
       type: System.Net.CookieCollection
+      description: A @'System.Net.CookieCollection' that contains the @'System.Net.Cookie' instances that are associated with a specific URI.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*uri* is null.'
 - uid: System.Net.CookieContainer.SetCookies(System.Uri,System.String)
   id: SetCookies(System.Uri,System.String)
   parent: System.Net.CookieContainer
@@ -296,14 +348,24 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
+  summary: Adds @'System.Net.Cookie' instances for one or more cookies from an HTTP cookie header to the @'System.Net.CookieContainer' for a specific URI.
   syntax:
     content: public void SetCookies(Uri uri, string cookieHeader)
     content.vb: Public Sub SetCookies(uri As Uri, cookieHeader As String)
     parameters:
     - id: uri
       type: System.Uri
+      description: The URI of the @'System.Net.CookieCollection'.
     - id: cookieHeader
       type: System.String
+      description: The contents of an HTTP set-cookie header as returned by a HTTP server, with @'System.Net.Cookie' instances delimited by commas.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*uri* is null.'
+  - type: System.ArgumentNullException
+    description: '*cookieHeader* is null.'
+  - type: System.Net.CookieException
+    description: One of the cookies is invalid. -or- An error occurred while adding one of the cookies to the container.
 references:
 - uid: System.Net
   isExternal: false
@@ -566,3 +628,32 @@ references:
   name: String
   fullName: System.String
   type: Class
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  href: System.ArgumentOutOfRangeException.yml
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  type: Class
+  summary: The exception that is thrown when the value of an argument is outside the allowable range of values as defined by the invoked method.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.Net.CookieException
+  isExternal: false
+  href: System.Net.CookieException.yml
+  name: CookieException
+  fullName: System.Net.CookieException
+  type: Class
+  summary: The exception that is thrown when an error is made adding a @'System.Net.Cookie' to a @'System.Net.CookieContainer'.
+- uid: System.ArgumentException
+  parent: System
+  isExternal: false
+  href: System.ArgumentException.yml
+  name: ArgumentException
+  fullName: System.ArgumentException
+  type: Class
+  summary: The exception that is thrown when one of the arguments provided to a method is not valid.

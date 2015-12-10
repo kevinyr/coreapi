@@ -32,6 +32,7 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides a base class for specifying dynamic behavior at run time. This class must be inherited from; you cannot instantiate it directly.
   syntax:
     content: 'public class DynamicObject : IDynamicMetaObjectProvider'
     content.vb: Public Class DynamicObject Implements IDynamicMetaObjectProvider
@@ -61,6 +62,7 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Enables derived types to initialize a new instance of the @'System.Dynamic.DynamicObject' type.
   syntax:
     content: protected DynamicObject()
     content.vb: Protected Sub New
@@ -78,11 +80,13 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Returns the enumeration of all dynamic member names.
   syntax:
     content: public virtual IEnumerable<string> GetDynamicMemberNames()
     content.vb: Public Overridable Function GetDynamicMemberNames As IEnumerable(Of String)
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
+      description: A sequence that contains dynamic member names.
 - uid: System.Dynamic.DynamicObject.GetMetaObject(System.Linq.Expressions.Expression)
   id: GetMetaObject(System.Linq.Expressions.Expression)
   parent: System.Dynamic.DynamicObject
@@ -100,14 +104,17 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides a @'System.Dynamic.DynamicMetaObject' that dispatches to the dynamic virtual methods. The object can be encapsulated inside another @'System.Dynamic.DynamicMetaObject' to provide custom behavior for individual actions. This method supports the Dynamic Language Runtime infrastructure for language implementers and it is not intended to be used directly from your code.
   syntax:
     content: public virtual DynamicMetaObject GetMetaObject(Expression parameter)
     content.vb: Public Overridable Function GetMetaObject(parameter As Expression) As DynamicMetaObject
     parameters:
     - id: parameter
       type: System.Linq.Expressions.Expression
+      description: The expression that represents @'System.Dynamic.DynamicMetaObject' to dispatch to the dynamic virtual methods.
     return:
       type: System.Dynamic.DynamicMetaObject
+      description: An object of the @'System.Dynamic.DynamicMetaObject' type.
 - uid: System.Dynamic.DynamicObject.TryBinaryOperation(System.Dynamic.BinaryOperationBinder,System.Object,System.Object@)
   id: TryBinaryOperation(System.Dynamic.BinaryOperationBinder,System.Object,System.Object@)
   parent: System.Dynamic.DynamicObject
@@ -124,18 +131,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides implementation for binary operations. Classes derived from the @'System.Dynamic.DynamicObject' class can override this method to specify dynamic behavior for operations such as addition and multiplication.
   syntax:
     content: public virtual bool TryBinaryOperation(BinaryOperationBinder binder, object arg, out object result)
     content.vb: Public Overridable Function TryBinaryOperation(binder As BinaryOperationBinder, arg As Object, ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.BinaryOperationBinder
+      description: Provides information about the binary operation. The binder.Operation property returns an @'System.Linq.Expressions.ExpressionType' object. For example, for the sum = first + second statement, where first and second are derived from the DynamicObject class, binder.Operation returns ExpressionType.Add.
     - id: arg
       type: System.Object
+      description: The right operand for the binary operation. For example, for the sum = first + second statement, where first and second are derived from the DynamicObject class, *arg* is equal to second.
     - id: result
       type: System.Object
+      description: The result of the binary operation.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.)
 - uid: System.Dynamic.DynamicObject.TryConvert(System.Dynamic.ConvertBinder,System.Object@)
   id: TryConvert(System.Dynamic.ConvertBinder,System.Object@)
   parent: System.Dynamic.DynamicObject
@@ -152,16 +164,20 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides implementation for type conversion operations. Classes derived from the @'System.Dynamic.DynamicObject' class can override this method to specify dynamic behavior for operations that convert an object from one type to another.
   syntax:
     content: public virtual bool TryConvert(ConvertBinder binder, out object result)
     content.vb: Public Overridable Function TryConvert(binder As ConvertBinder, ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.ConvertBinder
+      description: Provides information about the conversion operation. The binder.Type property provides the type to which the object must be converted. For example, for the statement (String)sampleObject in C# (CType(sampleObject, Type) in Visual Basic), where sampleObject is an instance of the class derived from the @'System.Dynamic.DynamicObject' class, binder.Type returns the @'System.String' type. The binder.Explicit property provides information about the kind of conversion that occurs. It returns true for explicit conversion and false for implicit conversion.
     - id: result
       type: System.Object
+      description: The result of the type conversion operation.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.)
 - uid: System.Dynamic.DynamicObject.TryCreateInstance(System.Dynamic.CreateInstanceBinder,System.Object[],System.Object@)
   id: TryCreateInstance(System.Dynamic.CreateInstanceBinder,System.Object[],System.Object@)
   parent: System.Dynamic.DynamicObject
@@ -178,18 +194,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides the implementation for operations that initialize a new instance of a dynamic object. This method is not intended for use in C# or Visual Basic.
   syntax:
     content: public virtual bool TryCreateInstance(CreateInstanceBinder binder, object[] args, out object result)
     content.vb: Public Overridable Function TryCreateInstance(binder As CreateInstanceBinder, args As Object(), ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.CreateInstanceBinder
+      description: Provides information about the initialization operation.
     - id: args
       type: System.Object[]
+      description: The arguments that are passed to the object during initialization. For example, for the new SampleType(100) operation, where SampleType is the type derived from the @'System.Dynamic.DynamicObject' class, *args[0]* is equal to 100.
     - id: result
       type: System.Object
+      description: The result of the initialization.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.)
 - uid: System.Dynamic.DynamicObject.TryDeleteIndex(System.Dynamic.DeleteIndexBinder,System.Object[])
   id: TryDeleteIndex(System.Dynamic.DeleteIndexBinder,System.Object[])
   parent: System.Dynamic.DynamicObject
@@ -206,16 +227,20 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides the implementation for operations that delete an object by index. This method is not intended for use in C# or Visual Basic.
   syntax:
     content: public virtual bool TryDeleteIndex(DeleteIndexBinder binder, object[] indexes)
     content.vb: Public Overridable Function TryDeleteIndex(binder As DeleteIndexBinder, indexes As Object()) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.DeleteIndexBinder
+      description: Provides information about the deletion.
     - id: indexes
       type: System.Object[]
+      description: The indexes to be deleted.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.)
 - uid: System.Dynamic.DynamicObject.TryDeleteMember(System.Dynamic.DeleteMemberBinder)
   id: TryDeleteMember(System.Dynamic.DeleteMemberBinder)
   parent: System.Dynamic.DynamicObject
@@ -230,14 +255,17 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides the implementation for operations that delete an object member. This method is not intended for use in C# or Visual Basic.
   syntax:
     content: public virtual bool TryDeleteMember(DeleteMemberBinder binder)
     content.vb: Public Overridable Function TryDeleteMember(binder As DeleteMemberBinder) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.DeleteMemberBinder
+      description: Provides information about the deletion.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.)
 - uid: System.Dynamic.DynamicObject.TryGetIndex(System.Dynamic.GetIndexBinder,System.Object[],System.Object@)
   id: TryGetIndex(System.Dynamic.GetIndexBinder,System.Object[],System.Object@)
   parent: System.Dynamic.DynamicObject
@@ -254,18 +282,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides the implementation for operations that get a value by index. Classes derived from the @'System.Dynamic.DynamicObject' class can override this method to specify dynamic behavior for indexing operations.
   syntax:
     content: public virtual bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result)
     content.vb: Public Overridable Function TryGetIndex(binder As GetIndexBinder, indexes As Object(), ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.GetIndexBinder
+      description: Provides information about the operation.
     - id: indexes
       type: System.Object[]
+      description: The indexes that are used in the operation. For example, for the sampleObject[3] operation in C# (sampleObject(3) in Visual Basic), where sampleObject is derived from the DynamicObject class, *indexes[0]* is equal to 3.
     - id: result
       type: System.Object
+      description: The result of the index operation.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a run-time exception is thrown.)
 - uid: System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)
   id: TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)
   parent: System.Dynamic.DynamicObject
@@ -282,16 +315,20 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides the implementation for operations that get member values. Classes derived from the @'System.Dynamic.DynamicObject' class can override this method to specify dynamic behavior for operations such as getting a value for a property.
   syntax:
     content: public virtual bool TryGetMember(GetMemberBinder binder, out object result)
     content.vb: Public Overridable Function TryGetMember(binder As GetMemberBinder, ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.GetMemberBinder
+      description: Provides information about the object that called the dynamic operation. The binder.Name property provides the name of the member on which the dynamic operation is performed. For example, for the Console.WriteLine(sampleObject.SampleProperty) statement, where sampleObject is an instance of the class derived from the @'System.Dynamic.DynamicObject' class, binder.Name returns "SampleProperty". The binder.IgnoreCase property specifies whether the member name is case-sensitive.
     - id: result
       type: System.Object
+      description: The result of the get operation. For example, if the method is called for a property, you can assign the property value to *result*.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a run-time exception is thrown.)
 - uid: System.Dynamic.DynamicObject.TryInvoke(System.Dynamic.InvokeBinder,System.Object[],System.Object@)
   id: TryInvoke(System.Dynamic.InvokeBinder,System.Object[],System.Object@)
   parent: System.Dynamic.DynamicObject
@@ -308,18 +345,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides the implementation for operations that invoke an object. Classes derived from the @'System.Dynamic.DynamicObject' class can override this method to specify dynamic behavior for operations such as invoking an object or a delegate.
   syntax:
     content: public virtual bool TryInvoke(InvokeBinder binder, object[] args, out object result)
     content.vb: Public Overridable Function TryInvoke(binder As InvokeBinder, args As Object(), ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.InvokeBinder
+      description: Provides information about the invoke operation.
     - id: args
       type: System.Object[]
+      description: The arguments that are passed to the object during the invoke operation. For example, for the sampleObject(100) operation, where sampleObject is derived from the @'System.Dynamic.DynamicObject' class, *args[0]* is equal to 100.
     - id: result
       type: System.Object
+      description: The result of the object invocation.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.
 - uid: System.Dynamic.DynamicObject.TryInvokeMember(System.Dynamic.InvokeMemberBinder,System.Object[],System.Object@)
   id: TryInvokeMember(System.Dynamic.InvokeMemberBinder,System.Object[],System.Object@)
   parent: System.Dynamic.DynamicObject
@@ -336,18 +378,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides the implementation for operations that invoke a member. Classes derived from the @'System.Dynamic.DynamicObject' class can override this method to specify dynamic behavior for operations such as calling a method.
   syntax:
     content: public virtual bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
     content.vb: Public Overridable Function TryInvokeMember(binder As InvokeMemberBinder, args As Object(), ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.InvokeMemberBinder
+      description: Provides information about the dynamic operation. The binder.Name property provides the name of the member on which the dynamic operation is performed. For example, for the statement sampleObject.SampleMethod(100), where sampleObject is an instance of the class derived from the @'System.Dynamic.DynamicObject' class, binder.Name returns "SampleMethod". The binder.IgnoreCase property specifies whether the member name is case-sensitive.
     - id: args
       type: System.Object[]
+      description: The arguments that are passed to the object member during the invoke operation. For example, for the statement sampleObject.SampleMethod(100), where sampleObject is derived from the @'System.Dynamic.DynamicObject' class, *args[0]* is equal to 100.
     - id: result
       type: System.Object
+      description: The result of the member invocation.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.)
 - uid: System.Dynamic.DynamicObject.TrySetIndex(System.Dynamic.SetIndexBinder,System.Object[],System.Object)
   id: TrySetIndex(System.Dynamic.SetIndexBinder,System.Object[],System.Object)
   parent: System.Dynamic.DynamicObject
@@ -364,18 +411,23 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides the implementation for operations that set a value by index. Classes derived from the @'System.Dynamic.DynamicObject' class can override this method to specify dynamic behavior for operations that access objects by a specified index.
   syntax:
     content: public virtual bool TrySetIndex(SetIndexBinder binder, object[] indexes, object value)
     content.vb: Public Overridable Function TrySetIndex(binder As SetIndexBinder, indexes As Object(), value As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.SetIndexBinder
+      description: Provides information about the operation.
     - id: indexes
       type: System.Object[]
+      description: The indexes that are used in the operation. For example, for the sampleObject[3] = 10 operation in C# (sampleObject(3) = 10 in Visual Basic), where sampleObject is derived from the @'System.Dynamic.DynamicObject' class, *indexes[0]* is equal to 3.
     - id: value
       type: System.Object
+      description: The value to set to the object that has the specified index. For example, for the sampleObject[3] = 10 operation in C# (sampleObject(3) = 10 in Visual Basic), where sampleObject is derived from the @'System.Dynamic.DynamicObject' class, *value* is equal to 10.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.
 - uid: System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)
   id: TrySetMember(System.Dynamic.SetMemberBinder,System.Object)
   parent: System.Dynamic.DynamicObject
@@ -390,16 +442,20 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides the implementation for operations that set member values. Classes derived from the @'System.Dynamic.DynamicObject' class can override this method to specify dynamic behavior for operations such as setting a value for a property.
   syntax:
     content: public virtual bool TrySetMember(SetMemberBinder binder, object value)
     content.vb: Public Overridable Function TrySetMember(binder As SetMemberBinder, value As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.SetMemberBinder
+      description: Provides information about the object that called the dynamic operation. The binder.Name property provides the name of the member to which the value is being assigned. For example, for the statement sampleObject.SampleProperty = "Test", where sampleObject is an instance of the class derived from the @'System.Dynamic.DynamicObject' class, binder.Name returns "SampleProperty". The binder.IgnoreCase property specifies whether the member name is case-sensitive.
     - id: value
       type: System.Object
+      description: The value to set to the member. For example, for sampleObject.SampleProperty = "Test", where sampleObject is an instance of the class derived from the @'System.Dynamic.DynamicObject' class, the *value* is "Test".
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.)
 - uid: System.Dynamic.DynamicObject.TryUnaryOperation(System.Dynamic.UnaryOperationBinder,System.Object@)
   id: TryUnaryOperation(System.Dynamic.UnaryOperationBinder,System.Object@)
   parent: System.Dynamic.DynamicObject
@@ -416,16 +472,20 @@ items:
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
+  summary: Provides implementation for unary operations. Classes derived from the @'System.Dynamic.DynamicObject' class can override this method to specify dynamic behavior for operations such as negation, increment, or decrement.
   syntax:
     content: public virtual bool TryUnaryOperation(UnaryOperationBinder binder, out object result)
     content.vb: Public Overridable Function TryUnaryOperation(binder As UnaryOperationBinder, ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.UnaryOperationBinder
+      description: Provides information about the unary operation. The binder.Operation property returns an @'System.Linq.Expressions.ExpressionType' object. For example, for the negativeNumber = -number statement, where number is derived from the DynamicObject class, binder.Operation returns "Negate".
     - id: result
       type: System.Object
+      description: The result of the unary operation.
     return:
       type: System.Boolean
+      description: true if the operation is successful; otherwise, false. If this method returns false, the run-time binder of the language determines the behavior. (In most cases, a language-specific run-time exception is thrown.)
 references:
 - uid: System.Dynamic
   isExternal: false

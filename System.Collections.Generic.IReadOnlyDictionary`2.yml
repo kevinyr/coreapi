@@ -24,6 +24,7 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections.Generic
+  summary: Represents a generic read-only collection of key/value pairs.
   syntax:
     content: 'public interface IReadOnlyDictionary<TKey, TValue> : IReadOnlyCollection<KeyValuePair<TKey, TValue>>, IEnumerable<KeyValuePair<TKey, TValue>>, IEnumerable'
     content.vb: Public Interface IReadOnlyDictionary(Of TKey, TValue) Inherits IEnumerable(Of KeyValuePair(Of TKey, TValue)), IReadOnlyCollection(Of KeyValuePair(Of TKey, TValue)), IEnumerable
@@ -50,14 +51,22 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections.Generic
+  summary: Gets the element that has the specified key in the read-only dictionary.
   syntax:
     content: TValue this[TKey key] { get; }
     content.vb: ReadOnly Property Item(key As TKey) As TValue
     parameters:
     - id: key
       type: '{TKey}'
+      description: The key to locate.
     return:
       type: '{TValue}'
+      description: The element that has the specified key in the read-only dictionary.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*key* is null.'
+  - type: System.Collections.Generic.KeyNotFoundException
+    description: The property is retrieved and *key* is not found.
 - uid: System.Collections.Generic.IReadOnlyDictionary`2.Keys
   id: Keys
   parent: System.Collections.Generic.IReadOnlyDictionary`2
@@ -73,12 +82,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections.Generic
+  summary: Gets an enumerable collection that contains the keys in the read-only dictionary.
   syntax:
     content: IEnumerable<TKey> Keys { get; }
     content.vb: ReadOnly Property Keys As IEnumerable(Of TKey)
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{{TKey}}
+      description: An enumerable collection that contains the keys in the read-only dictionary.
 - uid: System.Collections.Generic.IReadOnlyDictionary`2.Values
   id: Values
   parent: System.Collections.Generic.IReadOnlyDictionary`2
@@ -94,12 +105,14 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections.Generic
+  summary: Gets an enumerable collection that contains the values in the read-only dictionary.
   syntax:
     content: IEnumerable<TValue> Values { get; }
     content.vb: ReadOnly Property Values As IEnumerable(Of TValue)
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{{TValue}}
+      description: An enumerable collection that contains the values in the read-only dictionary.
 - uid: System.Collections.Generic.IReadOnlyDictionary`2.ContainsKey(`0)
   id: ContainsKey(`0)
   parent: System.Collections.Generic.IReadOnlyDictionary`2
@@ -115,14 +128,20 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections.Generic
+  summary: Determines whether the read-only dictionary contains an element that has the specified key.
   syntax:
     content: bool ContainsKey(TKey key)
     content.vb: Function ContainsKey(key As TKey) As Boolean
     parameters:
     - id: key
       type: '{TKey}'
+      description: The key to locate.
     return:
       type: System.Boolean
+      description: true if the read-only dictionary contains an element that has the specified key; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*key* is null.'
 - uid: System.Collections.Generic.IReadOnlyDictionary`2.TryGetValue(`0,`1@)
   id: TryGetValue(`0,`1@)
   parent: System.Collections.Generic.IReadOnlyDictionary`2
@@ -139,16 +158,23 @@ items:
   assemblies:
   - System.Runtime
   namespace: System.Collections.Generic
+  summary: Gets the value that is associated with the specified key.
   syntax:
     content: bool TryGetValue(TKey key, out TValue value)
     content.vb: Function TryGetValue(key As TKey, ByRef value As TValue) As Boolean
     parameters:
     - id: key
       type: '{TKey}'
+      description: The key to locate.
     - id: value
       type: '{TValue}'
+      description: When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the *value* parameter. This parameter is passed uninitialized.
     return:
       type: System.Boolean
+      description: true if the object that implements the @'System.Collections.Generic.IReadOnlyDictionary`2' interface contains an element that has the specified key; otherwise, false.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*key* is null.'
 references:
 - uid: System.Collections.Generic
   isExternal: false
@@ -505,3 +531,17 @@ references:
   name: System
   fullName: System
   type: Namespace
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
+- uid: System.Collections.Generic.KeyNotFoundException
+  isExternal: false
+  href: System.Collections.Generic.KeyNotFoundException.yml
+  name: KeyNotFoundException
+  fullName: System.Collections.Generic.KeyNotFoundException
+  type: Class
+  summary: The exception that is thrown when the key specified for accessing an element in a collection does not match any key in the collection.

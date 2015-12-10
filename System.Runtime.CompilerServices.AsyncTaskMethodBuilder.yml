@@ -25,6 +25,7 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Represents a builder for asynchronous methods that return a task.
   syntax:
     content: public struct AsyncTaskMethodBuilder
     content.vb: Public Structure AsyncTaskMethodBuilder
@@ -49,12 +50,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Gets the task for this builder.
   syntax:
     content: public Task Task { get; }
     content.vb: Public ReadOnly Property Task As Task
     parameters: []
     return:
       type: System.Threading.Tasks.Task
+      description: The task for this builder.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The builder is not initialized.
 - uid: System.Runtime.CompilerServices.AsyncTaskMethodBuilder.AwaitOnCompleted``2(``0@,``1@)
   id: AwaitOnCompleted``2(``0@,``1@)
   parent: System.Runtime.CompilerServices.AsyncTaskMethodBuilder
@@ -71,14 +77,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Schedules the state machine to proceed to the next action when the specified awaiter completes.
   syntax:
     content: 'public void AwaitOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)where TAwaiter : INotifyCompletion where TStateMachine : IAsyncStateMachine'
     content.vb: Public Sub AwaitOnCompleted(Of TAwaiter As INotifyCompletion, TStateMachine As IAsyncStateMachine)(ByRef awaiter As TAwaiter, ByRef stateMachine As TStateMachine)
     parameters:
     - id: awaiter
       type: '{TAwaiter}'
+      description: The awaiter.
     - id: stateMachine
       type: '{TStateMachine}'
+      description: The state machine.
     typeParameters:
     - id: TAwaiter
     - id: TStateMachine
@@ -98,14 +107,17 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Schedules the state machine to proceed to the next action when the specified awaiter completes. This method can be called from partially trusted code.
   syntax:
     content: 'public void AwaitUnsafeOnCompleted<TAwaiter, TStateMachine>(ref TAwaiter awaiter, ref TStateMachine stateMachine)where TAwaiter : ICriticalNotifyCompletion where TStateMachine : IAsyncStateMachine'
     content.vb: Public Sub AwaitUnsafeOnCompleted(Of TAwaiter As ICriticalNotifyCompletion, TStateMachine As IAsyncStateMachine)(ByRef awaiter As TAwaiter, ByRef stateMachine As TStateMachine)
     parameters:
     - id: awaiter
       type: '{TAwaiter}'
+      description: The awaiter.
     - id: stateMachine
       type: '{TStateMachine}'
+      description: The state machine.
     typeParameters:
     - id: TAwaiter
     - id: TStateMachine
@@ -123,11 +135,13 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Creates an instance of the @'System.Runtime.CompilerServices.AsyncTaskMethodBuilder' class.
   syntax:
     content: public static AsyncTaskMethodBuilder Create()
     content.vb: Public Shared Function Create As AsyncTaskMethodBuilder
     return:
       type: System.Runtime.CompilerServices.AsyncTaskMethodBuilder
+      description: A new instance of the builder.
 - uid: System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetException(System.Exception)
   id: SetException(System.Exception)
   parent: System.Runtime.CompilerServices.AsyncTaskMethodBuilder
@@ -142,12 +156,19 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Marks the task as failed and binds the specified exception to the task.
   syntax:
     content: public void SetException(Exception exception)
     content.vb: Public Sub SetException(exception As Exception)
     parameters:
     - id: exception
       type: System.Exception
+      description: The exception to bind to the task.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*exception* is null.'
+  - type: System.InvalidOperationException
+    description: The task has already completed.-or-The builder is not initialized.
 - uid: System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetResult
   id: SetResult
   parent: System.Runtime.CompilerServices.AsyncTaskMethodBuilder
@@ -162,9 +183,13 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Marks the task as successfully completed.
   syntax:
     content: public void SetResult()
     content.vb: Public Sub SetResult
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The task has already completed.-or-The builder is not initialized.
 - uid: System.Runtime.CompilerServices.AsyncTaskMethodBuilder.SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
   id: SetStateMachine(System.Runtime.CompilerServices.IAsyncStateMachine)
   parent: System.Runtime.CompilerServices.AsyncTaskMethodBuilder
@@ -179,12 +204,19 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Associates the builder with the specified state machine.
   syntax:
     content: public void SetStateMachine(IAsyncStateMachine stateMachine)
     content.vb: Public Sub SetStateMachine(stateMachine As IAsyncStateMachine)
     parameters:
     - id: stateMachine
       type: System.Runtime.CompilerServices.IAsyncStateMachine
+      description: The state machine instance to associate with the builder.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*stateMachine* is null.'
+  - type: System.InvalidOperationException
+    description: The state machine was previously set.
 - uid: System.Runtime.CompilerServices.AsyncTaskMethodBuilder.Start``1(``0@)
   id: Start``1(``0@)
   parent: System.Runtime.CompilerServices.AsyncTaskMethodBuilder
@@ -201,14 +233,19 @@ items:
   assemblies:
   - System.Threading.Tasks
   namespace: System.Runtime.CompilerServices
+  summary: Begins running the builder with the associated state machine.
   syntax:
     content: 'public void Start<TStateMachine>(ref TStateMachine stateMachine)where TStateMachine : IAsyncStateMachine'
     content.vb: Public Sub Start(Of TStateMachine As IAsyncStateMachine)(ByRef stateMachine As TStateMachine)
     parameters:
     - id: stateMachine
       type: '{TStateMachine}'
+      description: The state machine instance, passed by reference.
     typeParameters:
     - id: TStateMachine
+  exceptions:
+  - type: System.ArgumentNullException
+    description: '*stateMachine* is null.'
 references:
 - uid: System.Runtime.CompilerServices
   isExternal: false
@@ -464,3 +501,18 @@ references:
   name: IAsyncStateMachine
   fullName: System.Runtime.CompilerServices.IAsyncStateMachine
   type: Interface
+- uid: System.InvalidOperationException
+  parent: System
+  isExternal: false
+  href: System.InvalidOperationException.yml
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
+  type: Class
+  summary: The exception that is thrown when a method call is invalid for the object's current state.
+- uid: System.ArgumentNullException
+  isExternal: false
+  href: System.ArgumentNullException.yml
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  type: Class
+  summary: The exception that is thrown when a null reference (Nothing in Visual Basic) is passed to a method that does not accept it as a valid argument.
