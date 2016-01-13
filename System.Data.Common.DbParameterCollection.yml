@@ -25,10 +25,6 @@ items:
   - System.Data.Common.DbParameterCollection.SetParameter(System.Int32,System.Data.Common.DbParameter)
   - System.Data.Common.DbParameterCollection.SetParameter(System.String,System.Data.Common.DbParameter)
   - System.Data.Common.DbParameterCollection.SyncRoot
-  - System.Data.Common.DbParameterCollection.System#Collections#ICollection#IsSynchronized
-  - System.Data.Common.DbParameterCollection.System#Collections#IList#IsFixedSize
-  - System.Data.Common.DbParameterCollection.System#Collections#IList#IsReadOnly
-  - System.Data.Common.DbParameterCollection.System#Collections#IList#Item(System.Int32)
   href: System.Data.Common.DbParameterCollection.yml
   name: DbParameterCollection
   fullName: System.Data.Common.DbParameterCollection
@@ -45,22 +41,14 @@ items:
   namespace: System.Data.Common
   summary: The base class for a collection of parameters relevant to a @'System.Data.Common.DbCommand'.
   syntax:
-    content: 'public abstract class DbParameterCollection : IList, ICollection, IEnumerable'
-    content.vb: Public MustInherit Class DbParameterCollection Implements IList, ICollection, IEnumerable
+    content: 'public abstract class DbParameterCollection : Collections.ICollection, Collections.IEnumerable, Collections.IList, Collections.ICollection'
+    content.vb: Public MustInherit Class DbParameterCollection Inherits Collections.ICollection Implements Collections.IEnumerable, Collections.IList, Collections.ICollection
   inheritance:
   - System.Object
   implements:
+  - System.Collections.IEnumerable
   - System.Collections.IList
   - System.Collections.ICollection
-  - System.Collections.IEnumerable
-  inheritedMembers:
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
 - uid: System.Data.Common.DbParameterCollection.#ctor
   id: '#ctor'
   parent: System.Data.Common.DbParameterCollection
@@ -183,33 +171,6 @@ items:
     return:
       type: System.Object
       description: A @'System.Object' to be used to synchronize access to the @'System.Data.Common.DbParameterCollection'.
-- uid: System.Data.Common.DbParameterCollection.System#Collections#IList#Item(System.Int32)
-  id: System#Collections#IList#Item(System.Int32)
-  parent: System.Data.Common.DbParameterCollection
-  href: System.Data.Common.DbParameterCollection.yml
-  name: IList.Item[Int32]
-  name.vb: System.Collections.IList.Item(Int32)
-  fullName: System.Data.Common.DbParameterCollection.System.Collections.IList.Item[System.Int32]
-  fullName.vb: System.Data.Common.DbParameterCollection.System.Collections.IList.Item(System.Int32)
-  type: Property
-  source:
-    remote: *o0
-    path: src/System.Data.Common/src/System/Data/Common/DbParameterCollection.cs
-    startLine: 45
-  assemblies:
-  - System.Data.Common
-  namespace: System.Data.Common
-  summary: Gets or sets the element at the specified index.
-  syntax:
-    content: object IList.this[int index] { get; set; }
-    content.vb: ReadOnly WriteOnly Property System.Collections.IList.Item(index As Integer) As Object Implements IList.this
-    parameters:
-    - id: index
-      type: System.Int32
-      description: The zero-based index of the element to get or set.
-    return:
-      type: System.Object
-      description: The element at the specified index.
 - uid: System.Data.Common.DbParameterCollection.Add(System.Object)
   id: Add(System.Object)
   parent: System.Data.Common.DbParameterCollection
@@ -366,8 +327,8 @@ items:
   namespace: System.Data.Common
   summary: Exposes the @'System.Collections.IEnumerable.GetEnumerator' method, which supports a simple iteration over a collection by a .NET Framework data provider.
   syntax:
-    content: public abstract IEnumerator GetEnumerator()
-    content.vb: Public MustOverride Function GetEnumerator As IEnumerator
+    content: public abstract Collections.IEnumerator GetEnumerator()
+    content.vb: Public MustOverride Function GetEnumerator As Collections.IEnumerator
     return:
       type: System.Collections.IEnumerator
       description: An @'System.Collections.IEnumerator' that can be used to iterate through the collection.
@@ -612,72 +573,6 @@ items:
     - id: value
       type: System.Data.Common.DbParameter
       description: The new @'System.Data.Common.DbParameter' value.
-- uid: System.Data.Common.DbParameterCollection.System#Collections#IList#IsFixedSize
-  id: System#Collections#IList#IsFixedSize
-  parent: System.Data.Common.DbParameterCollection
-  href: System.Data.Common.DbParameterCollection.yml
-  name: IList.IsFixedSize
-  name.vb: System.Collections.IList.IsFixedSize
-  fullName: System.Data.Common.DbParameterCollection.System.Collections.IList.IsFixedSize
-  type: Property
-  source:
-    remote: *o0
-    path: src/System.Data.Common/src/System/Data/Common/DbParameterCollection.cs
-    startLine: 25
-  assemblies:
-  - System.Data.Common
-  namespace: System.Data.Common
-  syntax:
-    content: bool IList.IsFixedSize { get; }
-    content.vb: ReadOnly WriteOnly Property System.Collections.IList.IsFixedSize As Boolean Implements IList.IsFixedSize
-    parameters: []
-    return:
-      type: System.Boolean
-- uid: System.Data.Common.DbParameterCollection.System#Collections#IList#IsReadOnly
-  id: System#Collections#IList#IsReadOnly
-  parent: System.Data.Common.DbParameterCollection
-  href: System.Data.Common.DbParameterCollection.yml
-  name: IList.IsReadOnly
-  name.vb: System.Collections.IList.IsReadOnly
-  fullName: System.Data.Common.DbParameterCollection.System.Collections.IList.IsReadOnly
-  type: Property
-  source:
-    remote: &o1
-      path: src/System.Data.Common/ref/System.Data.Common.Manual.cs
-      branch: master
-      repo: https://github.com/dotnet/corefx.git
-    path: src/System.Data.Common/ref/System.Data.Common.Manual.cs
-    startLine: 29
-  assemblies:
-  - System.Data.Common
-  namespace: System.Data.Common
-  syntax:
-    content: bool IList.IsReadOnly { get; }
-    content.vb: ReadOnly WriteOnly Property System.Collections.IList.IsReadOnly As Boolean Implements IList.IsReadOnly
-    parameters: []
-    return:
-      type: System.Boolean
-- uid: System.Data.Common.DbParameterCollection.System#Collections#ICollection#IsSynchronized
-  id: System#Collections#ICollection#IsSynchronized
-  parent: System.Data.Common.DbParameterCollection
-  href: System.Data.Common.DbParameterCollection.yml
-  name: ICollection.IsSynchronized
-  name.vb: System.Collections.ICollection.IsSynchronized
-  fullName: System.Data.Common.DbParameterCollection.System.Collections.ICollection.IsSynchronized
-  type: Property
-  source:
-    remote: *o1
-    path: src/System.Data.Common/ref/System.Data.Common.Manual.cs
-    startLine: 30
-  assemblies:
-  - System.Data.Common
-  namespace: System.Data.Common
-  syntax:
-    content: bool ICollection.IsSynchronized { get; }
-    content.vb: ReadOnly WriteOnly Property System.Collections.ICollection.IsSynchronized As Boolean Implements ICollection.IsSynchronized
-    parameters: []
-    return:
-      type: System.Boolean
 references:
 - uid: System.Data.Common
   isExternal: false
@@ -689,215 +584,6 @@ references:
   href: System.Object.yml
   name: Object
   fullName: System.Object
-- uid: System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
 - uid: System
   isExternal: false
   name: System
@@ -924,7 +610,7 @@ references:
   parent: System
   isExternal: false
   href: System.Array.yml
-  name: Array
+  name: System.Array
   fullName: System.Array
 - uid: System.Boolean
   parent: System
@@ -936,7 +622,7 @@ references:
   parent: System.Collections
   isExternal: false
   href: System.Collections.IEnumerator.yml
-  name: IEnumerator
+  name: Collections.IEnumerator
   fullName: System.Collections.IEnumerator
 - uid: System.Collections
   isExternal: false

@@ -47,30 +47,20 @@ items:
   type: Class
   source:
     remote: &o0
-      path: src/System.Security.Claims/ref/System.Security.Claims.cs
+      path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 34
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 16
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
   summary: Represents a claims-based identity.
   syntax:
     content: 'public class ClaimsIdentity : IIdentity'
-    content.vb: Public Class ClaimsIdentity Implements IIdentity
+    content.vb: Public Class ClaimsIdentity Inherits IIdentity
   inheritance:
   - System.Object
-  implements:
-  - System.Security.Principal.IIdentity
-  inheritedMembers:
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
 - uid: System.Security.Claims.ClaimsIdentity.DefaultIssuer
   id: DefaultIssuer
   parent: System.Security.Claims.ClaimsIdentity
@@ -80,15 +70,15 @@ items:
   type: Field
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 36
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 41
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
   summary: "The default issuer; “LOCAL AUTHORITY”."
   syntax:
     content: public const string DefaultIssuer
-    content.vb: Public Const DefaultIssuer As String = "LOCAL AUTHORITY"
+    content.vb: Public Const DefaultIssuer As String = Nothing
 - uid: System.Security.Claims.ClaimsIdentity.DefaultNameClaimType
   id: DefaultNameClaimType
   parent: System.Security.Claims.ClaimsIdentity
@@ -98,15 +88,15 @@ items:
   type: Field
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 37
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 42
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
   summary: The default name claim type; @'System.Security.Claims.ClaimTypes.Name'.
   syntax:
     content: public const string DefaultNameClaimType
-    content.vb: Public Const DefaultNameClaimType As String = "http://schemas.xmlsoap.org/ws/2005/05/identity/claims/name"
+    content.vb: Public Const DefaultNameClaimType As String = Nothing
 - uid: System.Security.Claims.ClaimsIdentity.DefaultRoleClaimType
   id: DefaultRoleClaimType
   parent: System.Security.Claims.ClaimsIdentity
@@ -116,15 +106,15 @@ items:
   type: Field
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 38
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 43
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
   summary: The default role claim type; @'System.Security.Claims.ClaimTypes.Role'.
   syntax:
     content: public const string DefaultRoleClaimType
-    content.vb: Public Const DefaultRoleClaimType As String = "http://schemas.microsoft.com/ws/2008/06/identity/claims/role"
+    content.vb: Public Const DefaultRoleClaimType As String = Nothing
 - uid: System.Security.Claims.ClaimsIdentity.#ctor
   id: '#ctor'
   parent: System.Security.Claims.ClaimsIdentity
@@ -134,8 +124,8 @@ items:
   type: Constructor
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 39
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 53
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -147,13 +137,16 @@ items:
   id: '#ctor(System.Collections.Generic.IEnumerable{System.Security.Claims.Claim})'
   parent: System.Security.Claims.ClaimsIdentity
   href: System.Security.Claims.ClaimsIdentity.yml
-  name: ClaimsIdentity(IEnumerable<Claim>)
-  name.vb: ClaimsIdentity(IEnumerable(Of Claim))
+  name: ClaimsIdentity(Collections.Generic.IEnumerable<Claim>)
+  name.vb: ClaimsIdentity(Collections.Generic.IEnumerable(Of Claim))
   fullName: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>)
   fullName.vb: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Collections.Generic.IEnumerable(Of System.Security.Claims.Claim))
   type: Constructor
   source:
-    remote: *o0
+    remote: &o1
+      path: src/System.Security.Claims/ref/System.Security.Claims.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 40
   assemblies:
@@ -161,8 +154,8 @@ items:
   namespace: System.Security.Claims
   summary: Initializes a new instance of the @'System.Security.Claims.ClaimsIdentity' class using an enumerated collection of @'System.Security.Claims.Claim' objects.
   syntax:
-    content: public ClaimsIdentity(IEnumerable<Claim> claims)
-    content.vb: Public Sub New(claims As IEnumerable(Of Claim))
+    content: public ClaimsIdentity(Collections.Generic.IEnumerable<Claim> claims)
+    content.vb: Public Sub New(claims As Collections.Generic.IEnumerable(Of Claim))
     parameters:
     - id: claims
       type: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
@@ -171,13 +164,13 @@ items:
   id: '#ctor(System.Collections.Generic.IEnumerable{System.Security.Claims.Claim},System.String)'
   parent: System.Security.Claims.ClaimsIdentity
   href: System.Security.Claims.ClaimsIdentity.yml
-  name: ClaimsIdentity(IEnumerable<Claim>, String)
-  name.vb: ClaimsIdentity(IEnumerable(Of Claim), String)
+  name: ClaimsIdentity(Collections.Generic.IEnumerable<Claim>, String)
+  name.vb: ClaimsIdentity(Collections.Generic.IEnumerable(Of Claim), String)
   fullName: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>, System.String)
   fullName.vb: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Collections.Generic.IEnumerable(Of System.Security.Claims.Claim), System.String)
   type: Constructor
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 41
   assemblies:
@@ -185,8 +178,8 @@ items:
   namespace: System.Security.Claims
   summary: Initializes a new instance of the @'System.Security.Claims.ClaimsIdentity' class with the specified claims and authentication type.
   syntax:
-    content: public ClaimsIdentity(IEnumerable<Claim> claims, string authenticationType)
-    content.vb: Public Sub New(claims As IEnumerable(Of Claim), authenticationType As String)
+    content: public ClaimsIdentity(Collections.Generic.IEnumerable<Claim> claims, string authenticationType)
+    content.vb: Public Sub New(claims As Collections.Generic.IEnumerable(Of Claim), authenticationType As String)
     parameters:
     - id: claims
       type: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
@@ -198,13 +191,13 @@ items:
   id: '#ctor(System.Collections.Generic.IEnumerable{System.Security.Claims.Claim},System.String,System.String,System.String)'
   parent: System.Security.Claims.ClaimsIdentity
   href: System.Security.Claims.ClaimsIdentity.yml
-  name: ClaimsIdentity(IEnumerable<Claim>, String, String, String)
-  name.vb: ClaimsIdentity(IEnumerable(Of Claim), String, String, String)
+  name: ClaimsIdentity(Collections.Generic.IEnumerable<Claim>, String, String, String)
+  name.vb: ClaimsIdentity(Collections.Generic.IEnumerable(Of Claim), String, String, String)
   fullName: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>, System.String, System.String, System.String)
   fullName.vb: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Collections.Generic.IEnumerable(Of System.Security.Claims.Claim), System.String, System.String, System.String)
   type: Constructor
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 42
   assemblies:
@@ -212,8 +205,8 @@ items:
   namespace: System.Security.Claims
   summary: Initializes a new instance of the @'System.Security.Claims.ClaimsIdentity' class with the specified, claims, authentication type, name claim type, and role claim type.
   syntax:
-    content: public ClaimsIdentity(IEnumerable<Claim> claims, string authenticationType, string nameType, string roleType)
-    content.vb: Public Sub New(claims As IEnumerable(Of Claim), authenticationType As String, nameType As String, roleType As String)
+    content: public ClaimsIdentity(Collections.Generic.IEnumerable<Claim> claims, string authenticationType, string nameType, string roleType)
+    content.vb: Public Sub New(claims As Collections.Generic.IEnumerable(Of Claim), authenticationType As String, nameType As String, roleType As String)
     parameters:
     - id: claims
       type: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
@@ -231,19 +224,19 @@ items:
   id: '#ctor(System.IO.BinaryReader)'
   parent: System.Security.Claims.ClaimsIdentity
   href: System.Security.Claims.ClaimsIdentity.yml
-  name: ClaimsIdentity(BinaryReader)
+  name: ClaimsIdentity(IO.BinaryReader)
   fullName: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.IO.BinaryReader)
   type: Constructor
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 43
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
   syntax:
-    content: public ClaimsIdentity(BinaryReader reader)
-    content.vb: Public Sub New(reader As BinaryReader)
+    content: public ClaimsIdentity(IO.BinaryReader reader)
+    content.vb: Public Sub New(reader As IO.BinaryReader)
     parameters:
     - id: reader
       type: System.IO.BinaryReader
@@ -256,8 +249,8 @@ items:
   type: Constructor
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 44
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 214
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -275,7 +268,7 @@ items:
   fullName: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Security.Principal.IIdentity)
   type: Constructor
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 45
   assemblies:
@@ -293,13 +286,13 @@ items:
   id: '#ctor(System.Security.Principal.IIdentity,System.Collections.Generic.IEnumerable{System.Security.Claims.Claim})'
   parent: System.Security.Claims.ClaimsIdentity
   href: System.Security.Claims.ClaimsIdentity.yml
-  name: ClaimsIdentity(IIdentity, IEnumerable<Claim>)
-  name.vb: ClaimsIdentity(IIdentity, IEnumerable(Of Claim))
+  name: ClaimsIdentity(IIdentity, Collections.Generic.IEnumerable<Claim>)
+  name.vb: ClaimsIdentity(IIdentity, Collections.Generic.IEnumerable(Of Claim))
   fullName: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Security.Principal.IIdentity, System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>)
   fullName.vb: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Security.Principal.IIdentity, System.Collections.Generic.IEnumerable(Of System.Security.Claims.Claim))
   type: Constructor
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 46
   assemblies:
@@ -307,8 +300,8 @@ items:
   namespace: System.Security.Claims
   summary: Initializes a new instance of the @'System.Security.Claims.ClaimsIdentity' class using the specified claims and the specified @'System.Security.Principal.IIdentity'.
   syntax:
-    content: public ClaimsIdentity(IIdentity identity, IEnumerable<Claim> claims)
-    content.vb: Public Sub New(identity As IIdentity, claims As IEnumerable(Of Claim))
+    content: public ClaimsIdentity(IIdentity identity, Collections.Generic.IEnumerable<Claim> claims)
+    content.vb: Public Sub New(identity As IIdentity, claims As Collections.Generic.IEnumerable(Of Claim))
     parameters:
     - id: identity
       type: System.Security.Principal.IIdentity
@@ -320,13 +313,13 @@ items:
   id: '#ctor(System.Security.Principal.IIdentity,System.Collections.Generic.IEnumerable{System.Security.Claims.Claim},System.String,System.String,System.String)'
   parent: System.Security.Claims.ClaimsIdentity
   href: System.Security.Claims.ClaimsIdentity.yml
-  name: ClaimsIdentity(IIdentity, IEnumerable<Claim>, String, String, String)
-  name.vb: ClaimsIdentity(IIdentity, IEnumerable(Of Claim), String, String, String)
+  name: ClaimsIdentity(IIdentity, Collections.Generic.IEnumerable<Claim>, String, String, String)
+  name.vb: ClaimsIdentity(IIdentity, Collections.Generic.IEnumerable(Of Claim), String, String, String)
   fullName: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Security.Principal.IIdentity, System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>, System.String, System.String, System.String)
   fullName.vb: System.Security.Claims.ClaimsIdentity.ClaimsIdentity(System.Security.Principal.IIdentity, System.Collections.Generic.IEnumerable(Of System.Security.Claims.Claim), System.String, System.String, System.String)
   type: Constructor
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 47
   assemblies:
@@ -334,8 +327,8 @@ items:
   namespace: System.Security.Claims
   summary: Initializes a new instance of the @'System.Security.Claims.ClaimsIdentity' class from the specified @'System.Security.Principal.IIdentity' using the specified claims, authentication type, name claim type, and role claim type.
   syntax:
-    content: public ClaimsIdentity(IIdentity identity, IEnumerable<Claim> claims, string authenticationType, string nameType, string roleType)
-    content.vb: Public Sub New(identity As IIdentity, claims As IEnumerable(Of Claim), authenticationType As String, nameType As String, roleType As String)
+    content: public ClaimsIdentity(IIdentity identity, Collections.Generic.IEnumerable<Claim> claims, string authenticationType, string nameType, string roleType)
+    content.vb: Public Sub New(identity As IIdentity, claims As Collections.Generic.IEnumerable(Of Claim), authenticationType As String, nameType As String, roleType As String)
     parameters:
     - id: identity
       type: System.Security.Principal.IIdentity
@@ -361,8 +354,8 @@ items:
   type: Constructor
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 48
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 84
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -383,8 +376,8 @@ items:
   type: Constructor
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 49
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 118
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -411,8 +404,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 50
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 259
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -436,8 +429,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 51
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 242
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -458,8 +451,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 52
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 278
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -480,15 +473,15 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 53
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 290
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
   summary: Gets the claims associated with this claims identity.
   syntax:
-    content: public virtual IEnumerable<Claim> Claims { get; }
-    content.vb: Public Overridable ReadOnly Property Claims As IEnumerable(Of Claim)
+    content: public virtual Collections.Generic.IEnumerable<Claim> Claims { get; }
+    content.vb: Public Overridable ReadOnly Property Claims As Collections.Generic.IEnumerable(Of Claim)
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
@@ -502,8 +495,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 54
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 318
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -522,8 +515,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 55
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 250
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -544,8 +537,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 56
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 338
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -566,8 +559,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 57
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 348
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -588,8 +581,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 58
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 366
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -610,8 +603,8 @@ items:
   type: Property
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 59
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 374
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -632,8 +625,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 60
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 393
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -652,13 +645,13 @@ items:
   id: AddClaims(System.Collections.Generic.IEnumerable{System.Security.Claims.Claim})
   parent: System.Security.Claims.ClaimsIdentity
   href: System.Security.Claims.ClaimsIdentity.yml
-  name: AddClaims(IEnumerable<Claim>)
-  name.vb: AddClaims(IEnumerable(Of Claim))
+  name: AddClaims(Collections.Generic.IEnumerable<Claim>)
+  name.vb: AddClaims(Collections.Generic.IEnumerable(Of Claim))
   fullName: System.Security.Claims.ClaimsIdentity.AddClaims(System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>)
   fullName.vb: System.Security.Claims.ClaimsIdentity.AddClaims(System.Collections.Generic.IEnumerable(Of System.Security.Claims.Claim))
   type: Method
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 62
   assemblies:
@@ -666,8 +659,8 @@ items:
   namespace: System.Security.Claims
   summary: Adds a list of claims to this claims identity.
   syntax:
-    content: public virtual void AddClaims(IEnumerable<Claim> claims)
-    content.vb: Public Overridable Sub AddClaims(claims As IEnumerable(Of Claim))
+    content: public virtual void AddClaims(Collections.Generic.IEnumerable<Claim> claims)
+    content.vb: Public Overridable Sub AddClaims(claims As Collections.Generic.IEnumerable(Of Claim))
     parameters:
     - id: claims
       type: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
@@ -684,8 +677,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 64
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 382
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -700,19 +693,19 @@ items:
   id: CreateClaim(System.IO.BinaryReader)
   parent: System.Security.Claims.ClaimsIdentity
   href: System.Security.Claims.ClaimsIdentity.yml
-  name: CreateClaim(BinaryReader)
+  name: CreateClaim(IO.BinaryReader)
   fullName: System.Security.Claims.ClaimsIdentity.CreateClaim(System.IO.BinaryReader)
   type: Method
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 65
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
   syntax:
-    content: protected virtual Claim CreateClaim(BinaryReader reader)
-    content.vb: Protected Overridable Function CreateClaim(reader As BinaryReader) As Claim
+    content: protected virtual Claim CreateClaim(IO.BinaryReader reader)
+    content.vb: Protected Overridable Function CreateClaim(reader As IO.BinaryReader) As Claim
     parameters:
     - id: reader
       type: System.IO.BinaryReader
@@ -728,7 +721,7 @@ items:
   fullName.vb: System.Security.Claims.ClaimsIdentity.FindAll(System.Predicate(Of System.Security.Claims.Claim))
   type: Method
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 66
   assemblies:
@@ -736,8 +729,8 @@ items:
   namespace: System.Security.Claims
   summary: Retrieves all of the claims that are matched by the specified predicate.
   syntax:
-    content: public virtual IEnumerable<Claim> FindAll(Predicate<Claim> match)
-    content.vb: Public Overridable Function FindAll(match As Predicate(Of Claim)) As IEnumerable(Of Claim)
+    content: public virtual Collections.Generic.IEnumerable<Claim> FindAll(Predicate<Claim> match)
+    content.vb: Public Overridable Function FindAll(match As Predicate(Of Claim)) As Collections.Generic.IEnumerable(Of Claim)
     parameters:
     - id: match
       type: System.Predicate{System.Security.Claims.Claim}
@@ -757,15 +750,15 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 67
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 565
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
   summary: Retrieves all of the claims that have the specified claim type.
   syntax:
-    content: public virtual IEnumerable<Claim> FindAll(string type)
-    content.vb: Public Overridable Function FindAll(type As String) As IEnumerable(Of Claim)
+    content: public virtual Collections.Generic.IEnumerable<Claim> FindAll(string type)
+    content.vb: Public Overridable Function FindAll(type As String) As Collections.Generic.IEnumerable(Of Claim)
     parameters:
     - id: type
       type: System.String
@@ -786,7 +779,7 @@ items:
   fullName.vb: System.Security.Claims.ClaimsIdentity.FindFirst(System.Predicate(Of System.Security.Claims.Claim))
   type: Method
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 68
   assemblies:
@@ -815,8 +808,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 69
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 619
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -844,7 +837,7 @@ items:
   fullName.vb: System.Security.Claims.ClaimsIdentity.HasClaim(System.Predicate(Of System.Security.Claims.Claim))
   type: Method
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 70
   assemblies:
@@ -873,8 +866,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 71
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 677
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -904,8 +897,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 72
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 481
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -929,8 +922,8 @@ items:
   type: Method
   source:
     remote: *o0
-    path: src/System.Security.Claims/ref/System.Security.Claims.cs
-    startLine: 74
+    path: src/System.Security.Claims/src/System/Security/Claims/ClaimsIdentity.cs
+    startLine: 452
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
@@ -949,19 +942,19 @@ items:
   id: WriteTo(System.IO.BinaryWriter)
   parent: System.Security.Claims.ClaimsIdentity
   href: System.Security.Claims.ClaimsIdentity.yml
-  name: WriteTo(BinaryWriter)
+  name: WriteTo(IO.BinaryWriter)
   fullName: System.Security.Claims.ClaimsIdentity.WriteTo(System.IO.BinaryWriter)
   type: Method
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 76
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
   syntax:
-    content: public virtual void WriteTo(BinaryWriter writer)
-    content.vb: Public Overridable Sub WriteTo(writer As BinaryWriter)
+    content: public virtual void WriteTo(IO.BinaryWriter writer)
+    content.vb: Public Overridable Sub WriteTo(writer As IO.BinaryWriter)
     parameters:
     - id: writer
       type: System.IO.BinaryWriter
@@ -969,21 +962,21 @@ items:
   id: WriteTo(System.IO.BinaryWriter,System.Byte[])
   parent: System.Security.Claims.ClaimsIdentity
   href: System.Security.Claims.ClaimsIdentity.yml
-  name: WriteTo(BinaryWriter, Byte[])
-  name.vb: WriteTo(BinaryWriter, Byte())
+  name: WriteTo(IO.BinaryWriter, Byte[])
+  name.vb: WriteTo(IO.BinaryWriter, Byte())
   fullName: System.Security.Claims.ClaimsIdentity.WriteTo(System.IO.BinaryWriter, System.Byte[])
   fullName.vb: System.Security.Claims.ClaimsIdentity.WriteTo(System.IO.BinaryWriter, System.Byte())
   type: Method
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Claims/ref/System.Security.Claims.cs
     startLine: 77
   assemblies:
   - System.Security.Claims
   namespace: System.Security.Claims
   syntax:
-    content: protected virtual void WriteTo(BinaryWriter writer, byte[] userData)
-    content.vb: Protected Overridable Sub WriteTo(writer As BinaryWriter, userData As Byte())
+    content: protected virtual void WriteTo(IO.BinaryWriter writer, byte[] userData)
+    content.vb: Protected Overridable Sub WriteTo(writer As IO.BinaryWriter, userData As Byte())
     parameters:
     - id: writer
       type: System.IO.BinaryWriter
@@ -1000,230 +993,20 @@ references:
   href: System.Object.yml
   name: Object
   fullName: System.Object
-- uid: System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
 - uid: System
   isExternal: false
   name: System
   fullName: System
 - uid: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
-  parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   href: System.Security.Claims.Claim.yml
-  name: IEnumerable<Claim>
-  name.vb: IEnumerable(Of Claim)
+  name: Collections.Generic.IEnumerable<Claim>
+  name.vb: Collections.Generic.IEnumerable(Of Claim)
   fullName: System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>
   fullName.vb: System.Collections.Generic.IEnumerable(Of System.Security.Claims.Claim)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
@@ -1236,7 +1019,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
@@ -1251,30 +1034,28 @@ references:
   parent: System.Collections.Generic
   isExternal: false
   href: System.Collections.Generic.IEnumerable`1.yml
-  name: IEnumerable<T>
-  name.vb: IEnumerable(Of T)
-  fullName: System.Collections.Generic.IEnumerable<T>
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name: Collections.Generic.IEnumerable<>
+  name.vb: Collections.Generic.IEnumerable(Of )
+  fullName: System.Collections.Generic.IEnumerable<>
+  fullName.vb: System.Collections.Generic.IEnumerable(Of )
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     href: System.Collections.Generic.IEnumerable`1.yml
   - name: <
     fullName: <
-  - name: T
-    fullName: T
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     href: System.Collections.Generic.IEnumerable`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: T
-    fullName: T
+  - {}
   - name: )
     fullName: )
 - uid: System.Collections.Generic
@@ -1288,15 +1069,10 @@ references:
   name: String
   fullName: System.String
 - uid: System.IO.BinaryReader
-  parent: System.IO
   isExternal: false
   href: System.IO.BinaryReader.yml
   name: BinaryReader
   fullName: System.IO.BinaryReader
-- uid: System.IO
-  isExternal: false
-  name: System.IO
-  fullName: System.IO
 - uid: System.Security.Claims.ClaimsIdentity
   parent: System.Security.Claims
   isExternal: false
@@ -1307,14 +1083,15 @@ references:
   parent: System.Security.Principal
   isExternal: false
   href: System.Security.Principal.IIdentity.yml
-  name: IIdentity
+  name: Principal.IIdentity
   fullName: System.Security.Principal.IIdentity
 - uid: System.Security.Principal
   isExternal: false
   name: System.Security.Principal
   fullName: System.Security.Principal
 - uid: System.Byte[]
-  isExternal: true
+  isExternal: false
+  href: System.Byte.yml
   name: Byte[]
   name.vb: Byte()
   fullName: System.Byte[]
@@ -1323,14 +1100,14 @@ references:
   - uid: System.Byte
     name: Byte
     fullName: System.Byte
-    isExternal: true
+    href: System.Byte.yml
   - name: '[]'
     fullName: '[]'
   spec.vb:
   - uid: System.Byte
     name: Byte
     fullName: System.Byte
-    isExternal: true
+    href: System.Byte.yml
   - name: ()
     fullName: ()
 - uid: System.Boolean
@@ -1346,7 +1123,6 @@ references:
   name: Claim
   fullName: System.Security.Claims.Claim
 - uid: System.Predicate{System.Security.Claims.Claim}
-  parent: System
   definition: System.Predicate`1
   href: System.Security.Claims.Claim.yml
   name: Predicate<Claim>
@@ -1383,10 +1159,10 @@ references:
   parent: System
   isExternal: false
   href: System.Predicate`1.yml
-  name: Predicate<T>
-  name.vb: Predicate(Of T)
-  fullName: System.Predicate<T>
-  fullName.vb: System.Predicate(Of T)
+  name: Predicate<>
+  name.vb: Predicate(Of )
+  fullName: System.Predicate<>
+  fullName.vb: System.Predicate(Of )
   spec.csharp:
   - uid: System.Predicate`1
     name: Predicate
@@ -1394,8 +1170,7 @@ references:
     href: System.Predicate`1.yml
   - name: <
     fullName: <
-  - name: T
-    fullName: T
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
@@ -1405,8 +1180,7 @@ references:
     href: System.Predicate`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: T
-    fullName: T
+  - {}
   - name: )
     fullName: )
 - uid: System.IO.BinaryWriter
@@ -1415,6 +1189,10 @@ references:
   href: System.IO.BinaryWriter.yml
   name: BinaryWriter
   fullName: System.IO.BinaryWriter
+- uid: System.IO
+  isExternal: false
+  name: System.IO
+  fullName: System.IO
 - uid: System.InvalidOperationException
   parent: System
   isExternal: false

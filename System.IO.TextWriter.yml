@@ -75,19 +75,9 @@ items:
   summary: Represents a writer that can write a sequential series of characters. This class is abstract.
   syntax:
     content: 'public abstract class TextWriter : IDisposable'
-    content.vb: Public MustInherit Class TextWriter Implements IDisposable
+    content.vb: Public MustInherit Class TextWriter Inherits IDisposable
   inheritance:
   - System.Object
-  implements:
-  - System.IDisposable
-  inheritedMembers:
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
 - uid: System.IO.TextWriter.CoreNewLine
   id: CoreNewLine
   parent: System.IO.TextWriter
@@ -178,8 +168,8 @@ items:
   namespace: System.IO
   summary: When overridden in a derived class, returns the character encoding in which the output is written.
   syntax:
-    content: public abstract Encoding Encoding { get; }
-    content.vb: Public MustOverride ReadOnly Property Encoding As Encoding
+    content: public abstract Text.Encoding Encoding { get; }
+    content.vb: Public MustOverride ReadOnly Property Encoding As Text.Encoding
     parameters: []
     return:
       type: System.Text.Encoding
@@ -302,8 +292,8 @@ items:
   namespace: System.IO
   summary: Asynchronously clears all buffers for the current writer and causes any buffered data to be written to the underlying device.
   syntax:
-    content: public virtual Task FlushAsync()
-    content.vb: Public Overridable Function FlushAsync As Task
+    content: public virtual Threading.Tasks.Task FlushAsync()
+    content.vb: Public Overridable Function FlushAsync As Threading.Tasks.Task
     return:
       type: System.Threading.Tasks.Task
       description: A task that represents the asynchronous flush operation.
@@ -842,8 +832,8 @@ items:
   namespace: System.IO
   summary: Writes a character to the text string or stream asynchronously.
   syntax:
-    content: public virtual Task WriteAsync(char value)
-    content.vb: Public Overridable Function WriteAsync(value As Char) As Task
+    content: public virtual Threading.Tasks.Task WriteAsync(char value)
+    content.vb: Public Overridable Function WriteAsync(value As Char) As Threading.Tasks.Task
     parameters:
     - id: value
       type: System.Char
@@ -874,8 +864,8 @@ items:
   namespace: System.IO
   summary: Writes a character array to the text string or stream asynchronously.
   syntax:
-    content: public Task WriteAsync(char[] buffer)
-    content.vb: Public Function WriteAsync(buffer As Char()) As Task
+    content: public Threading.Tasks.Task WriteAsync(char[] buffer)
+    content.vb: Public Function WriteAsync(buffer As Char()) As Threading.Tasks.Task
     parameters:
     - id: buffer
       type: System.Char[]
@@ -906,8 +896,8 @@ items:
   namespace: System.IO
   summary: Writes a subarray of characters to the text string or stream asynchronously.
   syntax:
-    content: public virtual Task WriteAsync(char[] buffer, int index, int count)
-    content.vb: Public Overridable Function WriteAsync(buffer As Char(), index As Integer, count As Integer) As Task
+    content: public virtual Threading.Tasks.Task WriteAsync(char[] buffer, int index, int count)
+    content.vb: Public Overridable Function WriteAsync(buffer As Char(), index As Integer, count As Integer) As Threading.Tasks.Task
     parameters:
     - id: buffer
       type: System.Char[]
@@ -948,8 +938,8 @@ items:
   namespace: System.IO
   summary: Writes a string to the text string or stream asynchronously.
   syntax:
-    content: public virtual Task WriteAsync(string value)
-    content.vb: Public Overridable Function WriteAsync(value As String) As Task
+    content: public virtual Threading.Tasks.Task WriteAsync(string value)
+    content.vb: Public Overridable Function WriteAsync(value As String) As Threading.Tasks.Task
     parameters:
     - id: value
       type: System.String
@@ -1515,8 +1505,8 @@ items:
   namespace: System.IO
   summary: Writes a line terminator asynchronously to the text string or stream.
   syntax:
-    content: public virtual Task WriteLineAsync()
-    content.vb: Public Overridable Function WriteLineAsync As Task
+    content: public virtual Threading.Tasks.Task WriteLineAsync()
+    content.vb: Public Overridable Function WriteLineAsync As Threading.Tasks.Task
     return:
       type: System.Threading.Tasks.Task
       description: A task that represents the asynchronous write operation.
@@ -1541,8 +1531,8 @@ items:
   namespace: System.IO
   summary: Writes a character followed by a line terminator asynchronously to the text string or stream.
   syntax:
-    content: public virtual Task WriteLineAsync(char value)
-    content.vb: Public Overridable Function WriteLineAsync(value As Char) As Task
+    content: public virtual Threading.Tasks.Task WriteLineAsync(char value)
+    content.vb: Public Overridable Function WriteLineAsync(value As Char) As Threading.Tasks.Task
     parameters:
     - id: value
       type: System.Char
@@ -1573,8 +1563,8 @@ items:
   namespace: System.IO
   summary: Writes an array of characters followed by a line terminator asynchronously to the text string or stream.
   syntax:
-    content: public Task WriteLineAsync(char[] buffer)
-    content.vb: Public Function WriteLineAsync(buffer As Char()) As Task
+    content: public Threading.Tasks.Task WriteLineAsync(char[] buffer)
+    content.vb: Public Function WriteLineAsync(buffer As Char()) As Threading.Tasks.Task
     parameters:
     - id: buffer
       type: System.Char[]
@@ -1605,8 +1595,8 @@ items:
   namespace: System.IO
   summary: Writes a subarray of characters followed by a line terminator asynchronously to the text string or stream.
   syntax:
-    content: public virtual Task WriteLineAsync(char[] buffer, int index, int count)
-    content.vb: Public Overridable Function WriteLineAsync(buffer As Char(), index As Integer, count As Integer) As Task
+    content: public virtual Threading.Tasks.Task WriteLineAsync(char[] buffer, int index, int count)
+    content.vb: Public Overridable Function WriteLineAsync(buffer As Char(), index As Integer, count As Integer) As Threading.Tasks.Task
     parameters:
     - id: buffer
       type: System.Char[]
@@ -1647,8 +1637,8 @@ items:
   namespace: System.IO
   summary: Writes a string followed by a line terminator asynchronously to the text string or stream.
   syntax:
-    content: public virtual Task WriteLineAsync(string value)
-    content.vb: Public Overridable Function WriteLineAsync(value As String) As Task
+    content: public virtual Threading.Tasks.Task WriteLineAsync(string value)
+    content.vb: Public Overridable Function WriteLineAsync(value As String) As Threading.Tasks.Task
     parameters:
     - id: value
       type: System.String
@@ -1672,215 +1662,6 @@ references:
   href: System.Object.yml
   name: Object
   fullName: System.Object
-- uid: System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
 - uid: System
   isExternal: false
   name: System
@@ -1895,7 +1676,7 @@ references:
   parent: System.Text
   isExternal: false
   href: System.Text.Encoding.yml
-  name: Encoding
+  name: Text.Encoding
   fullName: System.Text.Encoding
 - uid: System.Text
   isExternal: false
@@ -1917,7 +1698,7 @@ references:
   parent: System.Threading.Tasks
   isExternal: false
   href: System.Threading.Tasks.Task.yml
-  name: Task
+  name: Threading.Tasks.Task
   fullName: System.Threading.Tasks.Task
 - uid: System.Threading.Tasks
   isExternal: false
@@ -1930,7 +1711,8 @@ references:
   name: Char
   fullName: System.Char
 - uid: System.Char[]
-  isExternal: true
+  isExternal: false
+  href: System.Char.yml
   name: Char[]
   name.vb: Char()
   fullName: System.Char[]
@@ -1939,14 +1721,14 @@ references:
   - uid: System.Char
     name: Char
     fullName: System.Char
-    isExternal: true
+    href: System.Char.yml
   - name: '[]'
     fullName: '[]'
   spec.vb:
   - uid: System.Char
     name: Char
     fullName: System.Char
-    isExternal: true
+    href: System.Char.yml
   - name: ()
     fullName: ()
 - uid: System.Int32
@@ -1980,7 +1762,8 @@ references:
   name: Single
   fullName: System.Single
 - uid: System.Object[]
-  isExternal: true
+  isExternal: false
+  href: System.Object.yml
   name: Object[]
   name.vb: Object()
   fullName: System.Object[]
@@ -1989,14 +1772,14 @@ references:
   - uid: System.Object
     name: Object
     fullName: System.Object
-    isExternal: true
+    href: System.Object.yml
   - name: '[]'
     fullName: '[]'
   spec.vb:
   - uid: System.Object
     name: Object
     fullName: System.Object
-    isExternal: true
+    href: System.Object.yml
   - name: ()
     fullName: ()
 - uid: System.UInt32

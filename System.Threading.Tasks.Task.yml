@@ -65,8 +65,6 @@ items:
   - System.Threading.Tasks.Task.Start
   - System.Threading.Tasks.Task.Start(System.Threading.Tasks.TaskScheduler)
   - System.Threading.Tasks.Task.Status
-  - System.Threading.Tasks.Task.System#IAsyncResult#AsyncWaitHandle
-  - System.Threading.Tasks.Task.System#IAsyncResult#CompletedSynchronously
   - System.Threading.Tasks.Task.Wait
   - System.Threading.Tasks.Task.Wait(System.Int32)
   - System.Threading.Tasks.Task.Wait(System.Int32,System.Threading.CancellationToken)
@@ -108,19 +106,9 @@ items:
   summary: Represents an asynchronous operation.To browse the .NET Framework source code for this type, see the Reference Source.
   syntax:
     content: 'public class Task : IAsyncResult'
-    content.vb: Public Class Task Implements IAsyncResult
+    content.vb: Public Class Task Inherits IAsyncResult
   inheritance:
   - System.Object
-  implements:
-  - System.IAsyncResult
-  inheritedMembers:
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
 - uid: System.Threading.Tasks.Task.#ctor(System.Action)
   id: '#ctor(System.Action)'
   parent: System.Threading.Tasks.Task
@@ -463,8 +451,8 @@ items:
   namespace: System.Threading.Tasks
   summary: Returns the ID of the currently executing @'System.Threading.Tasks.Task'.
   syntax:
-    content: public static int ? CurrentId { get; }
-    content.vb: Public Shared ReadOnly Property CurrentId As Integer?
+    content: public static Nullable<int> CurrentId { get; }
+    content.vb: Public Shared ReadOnly Property CurrentId As Nullable(Of Integer)
     parameters: []
     return:
       type: System.Nullable{System.Int32}
@@ -623,55 +611,6 @@ items:
     return:
       type: System.Threading.Tasks.TaskStatus
       description: The current @'System.Threading.Tasks.TaskStatus' of this task instance.
-- uid: System.Threading.Tasks.Task.System#IAsyncResult#AsyncWaitHandle
-  id: System#IAsyncResult#AsyncWaitHandle
-  parent: System.Threading.Tasks.Task
-  href: System.Threading.Tasks.Task.yml
-  name: IAsyncResult.AsyncWaitHandle
-  name.vb: System.IAsyncResult.AsyncWaitHandle
-  fullName: System.Threading.Tasks.Task.System.IAsyncResult.AsyncWaitHandle
-  type: Property
-  source:
-    remote: *o0
-    path: src/mscorlib/src/System/Threading/Tasks/Task.cs
-    startLine: 1582
-  assemblies:
-  - System.Threading.Tasks
-  namespace: System.Threading.Tasks
-  summary: Gets a @'System.Threading.WaitHandle' that can be used to wait for the task to complete.
-  syntax:
-    content: WaitHandle IAsyncResult.AsyncWaitHandle { get; }
-    content.vb: ReadOnly WriteOnly Property System.IAsyncResult.AsyncWaitHandle As WaitHandle Implements IAsyncResult.AsyncWaitHandle
-    parameters: []
-    return:
-      type: System.Threading.WaitHandle
-      description: A @'System.Threading.WaitHandle' that can be used to wait for the task to complete.
-  exceptions:
-  - type: System.ObjectDisposedException
-    description: The @'System.Threading.Tasks.Task' has been disposed.
-- uid: System.Threading.Tasks.Task.System#IAsyncResult#CompletedSynchronously
-  id: System#IAsyncResult#CompletedSynchronously
-  parent: System.Threading.Tasks.Task
-  href: System.Threading.Tasks.Task.yml
-  name: IAsyncResult.CompletedSynchronously
-  name.vb: System.IAsyncResult.CompletedSynchronously
-  fullName: System.Threading.Tasks.Task.System.IAsyncResult.CompletedSynchronously
-  type: Property
-  source:
-    remote: *o0
-    path: src/mscorlib/src/System/Threading/Tasks/Task.cs
-    startLine: 1610
-  assemblies:
-  - System.Threading.Tasks
-  namespace: System.Threading.Tasks
-  summary: Gets an indication of whether the operation completed synchronously.
-  syntax:
-    content: bool IAsyncResult.CompletedSynchronously { get; }
-    content.vb: ReadOnly WriteOnly Property System.IAsyncResult.CompletedSynchronously As Boolean Implements IAsyncResult.CompletedSynchronously
-    parameters: []
-    return:
-      type: System.Boolean
-      description: true if the operation completed synchronously; otherwise, false.
 - uid: System.Threading.Tasks.Task.ConfigureAwait(System.Boolean)
   id: ConfigureAwait(System.Boolean)
   parent: System.Threading.Tasks.Task
@@ -2676,8 +2615,8 @@ items:
   id: WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
   parent: System.Threading.Tasks.Task
   href: System.Threading.Tasks.Task.yml
-  name: WhenAll(IEnumerable<Task>)
-  name.vb: WhenAll(IEnumerable(Of Task))
+  name: WhenAll(Collections.Generic.IEnumerable<Task>)
+  name.vb: WhenAll(Collections.Generic.IEnumerable(Of Task))
   fullName: System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>)
   fullName.vb: System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task))
   type: Method
@@ -2690,8 +2629,8 @@ items:
   namespace: System.Threading.Tasks
   summary: Creates a task that will complete when all of the @'System.Threading.Tasks.Task' objects in an enumerable collection have completed.
   syntax:
-    content: public static Task WhenAll(IEnumerable<Task> tasks)
-    content.vb: Public Shared Function WhenAll(tasks As IEnumerable(Of Task)) As Task
+    content: public static Task WhenAll(Collections.Generic.IEnumerable<Task> tasks)
+    content.vb: Public Shared Function WhenAll(tasks As Collections.Generic.IEnumerable(Of Task)) As Task
     parameters:
     - id: tasks
       type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
@@ -2740,8 +2679,8 @@ items:
   id: WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
   parent: System.Threading.Tasks.Task
   href: System.Threading.Tasks.Task.yml
-  name: WhenAll<TResult>(IEnumerable<Task<TResult>>)
-  name.vb: WhenAll(Of TResult)(IEnumerable(Of Task(Of TResult)))
+  name: WhenAll<TResult>(Collections.Generic.IEnumerable<Task<TResult>>)
+  name.vb: WhenAll(Of TResult)(Collections.Generic.IEnumerable(Of Task(Of TResult)))
   fullName: System.Threading.Tasks.Task.WhenAll<TResult>(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>>)
   fullName.vb: System.Threading.Tasks.Task.WhenAll(Of TResult)(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task(Of TResult)))
   type: Method
@@ -2754,8 +2693,8 @@ items:
   namespace: System.Threading.Tasks
   summary: Creates a task that will complete when all of the @'System.Threading.Tasks.Task`1' objects in an enumerable collection have completed.
   syntax:
-    content: public static Task<TResult[]> WhenAll<TResult>(IEnumerable<Task<TResult>> tasks)
-    content.vb: Public Shared Function WhenAll(Of TResult)(tasks As IEnumerable(Of Task(Of TResult))) As Task(Of TResult())
+    content: public static Task<TResult[]> WhenAll<TResult>(Collections.Generic.IEnumerable<Task<TResult>> tasks)
+    content.vb: Public Shared Function WhenAll(Of TResult)(tasks As Collections.Generic.IEnumerable(Of Task(Of TResult))) As Task(Of TResult())
     parameters:
     - id: tasks
       type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{{TResult}}}
@@ -2808,8 +2747,8 @@ items:
   id: WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
   parent: System.Threading.Tasks.Task
   href: System.Threading.Tasks.Task.yml
-  name: WhenAny(IEnumerable<Task>)
-  name.vb: WhenAny(IEnumerable(Of Task))
+  name: WhenAny(Collections.Generic.IEnumerable<Task>)
+  name.vb: WhenAny(Collections.Generic.IEnumerable(Of Task))
   fullName: System.Threading.Tasks.Task.WhenAny(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>)
   fullName.vb: System.Threading.Tasks.Task.WhenAny(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task))
   type: Method
@@ -2822,8 +2761,8 @@ items:
   namespace: System.Threading.Tasks
   summary: Creates a task that will complete when any of the supplied tasks have completed.
   syntax:
-    content: public static Task<Task> WhenAny(IEnumerable<Task> tasks)
-    content.vb: Public Shared Function WhenAny(tasks As IEnumerable(Of Task)) As Task(Of Task)
+    content: public static Task<Task> WhenAny(Collections.Generic.IEnumerable<Task> tasks)
+    content.vb: Public Shared Function WhenAny(tasks As Collections.Generic.IEnumerable(Of Task)) As Task(Of Task)
     parameters:
     - id: tasks
       type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
@@ -2872,8 +2811,8 @@ items:
   id: WhenAny``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
   parent: System.Threading.Tasks.Task
   href: System.Threading.Tasks.Task.yml
-  name: WhenAny<TResult>(IEnumerable<Task<TResult>>)
-  name.vb: WhenAny(Of TResult)(IEnumerable(Of Task(Of TResult)))
+  name: WhenAny<TResult>(Collections.Generic.IEnumerable<Task<TResult>>)
+  name.vb: WhenAny(Of TResult)(Collections.Generic.IEnumerable(Of Task(Of TResult)))
   fullName: System.Threading.Tasks.Task.WhenAny<TResult>(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>>)
   fullName.vb: System.Threading.Tasks.Task.WhenAny(Of TResult)(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task(Of TResult)))
   type: Method
@@ -2886,8 +2825,8 @@ items:
   namespace: System.Threading.Tasks
   summary: Creates a task that will complete when any of the supplied tasks have completed.
   syntax:
-    content: public static Task<Task<TResult>> WhenAny<TResult>(IEnumerable<Task<TResult>> tasks)
-    content.vb: Public Shared Function WhenAny(Of TResult)(tasks As IEnumerable(Of Task(Of TResult))) As Task(Of Task(Of TResult))
+    content: public static Task<Task<TResult>> WhenAny<TResult>(Collections.Generic.IEnumerable<Task<TResult>> tasks)
+    content.vb: Public Shared Function WhenAny(Of TResult)(tasks As Collections.Generic.IEnumerable(Of Task(Of TResult))) As Task(Of Task(Of TResult))
     parameters:
     - id: tasks
       type: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{{TResult}}}
@@ -2968,221 +2907,11 @@ references:
   href: System.Object.yml
   name: Object
   fullName: System.Object
-- uid: System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
 - uid: System
   isExternal: false
   name: System
   fullName: System
 - uid: System.Action
-  parent: System
   isExternal: false
   href: System.Action.yml
   name: Action
@@ -3191,7 +2920,7 @@ references:
   parent: System.Threading
   isExternal: false
   href: System.Threading.CancellationToken.yml
-  name: CancellationToken
+  name: Threading.CancellationToken
   fullName: System.Threading.CancellationToken
 - uid: System.Threading
   isExternal: false
@@ -3204,7 +2933,6 @@ references:
   name: TaskCreationOptions
   fullName: System.Threading.Tasks.TaskCreationOptions
 - uid: System.Action{System.Object}
-  parent: System
   definition: System.Action`1
   name: Action<Object>
   name.vb: Action(Of Object)
@@ -3237,13 +2965,12 @@ references:
   - name: )
     fullName: )
 - uid: System.Action`1
-  parent: System
   isExternal: false
   href: System.Action`1.yml
-  name: Action<T>
-  name.vb: Action(Of T)
-  fullName: System.Action<T>
-  fullName.vb: System.Action(Of T)
+  name: Action<>
+  name.vb: Action(Of )
+  fullName: System.Action<>
+  fullName.vb: System.Action(Of )
   spec.csharp:
   - uid: System.Action`1
     name: Action
@@ -3251,8 +2978,7 @@ references:
     href: System.Action`1.yml
   - name: <
     fullName: <
-  - name: T
-    fullName: T
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
@@ -3262,18 +2988,16 @@ references:
     href: System.Action`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: T
-    fullName: T
+  - {}
   - name: )
     fullName: )
 - uid: System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: false
   href: System.Threading.Tasks.Task.yml
-  name: Task
+  name: Threading.Tasks.Task
   fullName: System.Threading.Tasks.Task
 - uid: System.Nullable{System.Int32}
-  parent: System
   definition: System.Nullable`1
   name: Nullable<Int32>
   name.vb: Nullable(Of Int32)
@@ -3309,10 +3033,10 @@ references:
   parent: System
   isExternal: false
   href: System.Nullable`1.yml
-  name: Nullable<T>
-  name.vb: Nullable(Of T)
-  fullName: System.Nullable<T>
-  fullName.vb: System.Nullable(Of T)
+  name: Nullable<>
+  name.vb: Nullable(Of )
+  fullName: System.Nullable<>
+  fullName.vb: System.Nullable(Of )
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
@@ -3320,8 +3044,7 @@ references:
     href: System.Nullable`1.yml
   - name: <
     fullName: <
-  - name: T
-    fullName: T
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
@@ -3331,8 +3054,7 @@ references:
     href: System.Nullable`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: T
-    fullName: T
+  - {}
   - name: )
     fullName: )
 - uid: System.AggregateException
@@ -3365,12 +3087,6 @@ references:
   href: System.Threading.Tasks.TaskStatus.yml
   name: TaskStatus
   fullName: System.Threading.Tasks.TaskStatus
-- uid: System.Threading.WaitHandle
-  parent: System.Threading
-  isExternal: false
-  href: System.Threading.WaitHandle.yml
-  name: WaitHandle
-  fullName: System.Threading.WaitHandle
 - uid: System.Runtime.CompilerServices.ConfiguredTaskAwaitable
   parent: System.Runtime.CompilerServices
   isExternal: false
@@ -3382,7 +3098,6 @@ references:
   name: System.Runtime.CompilerServices
   fullName: System.Runtime.CompilerServices
 - uid: System.Action{System.Threading.Tasks.Task,System.Object}
-  parent: System
   definition: System.Action`2
   href: System.Threading.Tasks.Task.yml
   name: Action<Task, Object>
@@ -3428,7 +3143,6 @@ references:
   - name: )
     fullName: )
 - uid: System.Action`2
-  parent: System
   isExternal: false
   href: System.Action`2.yml
   name: Action<T1, T2>
@@ -3478,7 +3192,6 @@ references:
   name: TaskScheduler
   fullName: System.Threading.Tasks.TaskScheduler
 - uid: System.Action{System.Threading.Tasks.Task}
-  parent: System
   definition: System.Action`1
   href: System.Threading.Tasks.Task.yml
   name: Action<Task>
@@ -3512,7 +3225,6 @@ references:
   - name: )
     fullName: )
 - uid: System.Func{System.Threading.Tasks.Task,{TResult}}
-  parent: System
   definition: System.Func`2
   href: System.Threading.Tasks.Task.yml
   name: Func<Task, TResult>
@@ -3584,13 +3296,12 @@ references:
   - name: )
     fullName: )
 - uid: System.Func`2
-  parent: System
   isExternal: false
   href: System.Func`2.yml
-  name: Func<T, TResult>
-  name.vb: Func(Of T, TResult)
-  fullName: System.Func<T, TResult>
-  fullName.vb: System.Func(Of T, TResult)
+  name: Func<, >
+  name.vb: Func(Of , )
+  fullName: System.Func<, >
+  fullName.vb: System.Func(Of , )
   spec.csharp:
   - uid: System.Func`2
     name: Func
@@ -3598,12 +3309,10 @@ references:
     href: System.Func`2.yml
   - name: <
     fullName: <
-  - name: T
-    fullName: T
+  - {}
   - name: ', '
     fullName: ', '
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
@@ -3613,46 +3322,41 @@ references:
     href: System.Func`2.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: T
-    fullName: T
+  - {}
   - name: ', '
     fullName: ', '
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: )
     fullName: )
 - uid: System.Threading.Tasks.Task`1
   parent: System.Threading.Tasks
   isExternal: false
   href: System.Threading.Tasks.Task`1.yml
-  name: Task<TResult>
-  name.vb: Task(Of TResult)
-  fullName: System.Threading.Tasks.Task<TResult>
-  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name: Threading.Tasks.Task<>
+  name.vb: Threading.Tasks.Task(Of )
+  fullName: System.Threading.Tasks.Task<>
+  fullName.vb: System.Threading.Tasks.Task(Of )
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     href: System.Threading.Tasks.Task`1.yml
   - name: <
     fullName: <
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     href: System.Threading.Tasks.Task`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: )
     fullName: )
 - uid: System.Func{System.Threading.Tasks.Task,System.Object,{TResult}}
-  parent: System
   definition: System.Func`3
   href: System.Threading.Tasks.Task.yml
   name: Func<Task, Object, TResult>
@@ -3706,7 +3410,6 @@ references:
   - name: )
     fullName: )
 - uid: System.Func`3
-  parent: System
   isExternal: false
   href: System.Func`3.yml
   name: Func<T1, T2, TResult>
@@ -3774,7 +3477,6 @@ references:
   name: TaskAwaiter
   fullName: System.Runtime.CompilerServices.TaskAwaiter
 - uid: System.Func{System.Threading.Tasks.Task}
-  parent: System
   definition: System.Func`1
   href: System.Threading.Tasks.Task.yml
   name: Func<Task>
@@ -3811,10 +3513,10 @@ references:
   parent: System
   isExternal: false
   href: System.Func`1.yml
-  name: Func<TResult>
-  name.vb: Func(Of TResult)
-  fullName: System.Func<TResult>
-  fullName.vb: System.Func(Of TResult)
+  name: Func<>
+  name.vb: Func(Of )
+  fullName: System.Func<>
+  fullName.vb: System.Func(Of )
   spec.csharp:
   - uid: System.Func`1
     name: Func
@@ -3822,8 +3524,7 @@ references:
     href: System.Func`1.yml
   - name: <
     fullName: <
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
@@ -3833,12 +3534,10 @@ references:
     href: System.Func`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: )
     fullName: )
 - uid: System.Func{{TResult}}
-  parent: System
   definition: System.Func`1
   name: Func<TResult>
   name.vb: Func(Of TResult)
@@ -3867,7 +3566,6 @@ references:
   - name: )
     fullName: )
 - uid: System.Func{System.Threading.Tasks.Task{{TResult}}}
-  parent: System
   definition: System.Func`1
   href: System.Threading.Tasks.Task`1.yml
   name: Func<Task<TResult>>
@@ -3934,16 +3632,15 @@ references:
   - name: ()
     fullName: ()
 - uid: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
-  parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   href: System.Threading.Tasks.Task.yml
-  name: IEnumerable<Task>
-  name.vb: IEnumerable(Of Task)
+  name: Collections.Generic.IEnumerable<Task>
+  name.vb: Collections.Generic.IEnumerable(Of Task)
   fullName: System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>
   fullName.vb: System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
@@ -3956,7 +3653,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
@@ -3971,30 +3668,28 @@ references:
   parent: System.Collections.Generic
   isExternal: false
   href: System.Collections.Generic.IEnumerable`1.yml
-  name: IEnumerable<T>
-  name.vb: IEnumerable(Of T)
-  fullName: System.Collections.Generic.IEnumerable<T>
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name: Collections.Generic.IEnumerable<>
+  name.vb: Collections.Generic.IEnumerable(Of )
+  fullName: System.Collections.Generic.IEnumerable<>
+  fullName.vb: System.Collections.Generic.IEnumerable(Of )
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     href: System.Collections.Generic.IEnumerable`1.yml
   - name: <
     fullName: <
-  - name: T
-    fullName: T
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     href: System.Collections.Generic.IEnumerable`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: T
-    fullName: T
+  - {}
   - name: )
     fullName: )
 - uid: System.Collections.Generic
@@ -4002,16 +3697,15 @@ references:
   name: System.Collections.Generic
   fullName: System.Collections.Generic
 - uid: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{{TResult}}}
-  parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   href: System.Threading.Tasks.Task`1.yml
-  name: IEnumerable<Task<TResult>>
-  name.vb: IEnumerable(Of Task(Of TResult))
+  name: Collections.Generic.IEnumerable<Task<TResult>>
+  name.vb: Collections.Generic.IEnumerable(Of Task(Of TResult))
   fullName: System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>>
   fullName.vb: System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task(Of TResult))
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
@@ -4030,7 +3724,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '

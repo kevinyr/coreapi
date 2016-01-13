@@ -39,15 +39,10 @@ items:
   namespace: System.Reflection
   summary: Represents an assembly, which is a reusable, versionable, and self-describing building block of a common language runtime application.
   syntax:
-    content: public abstract class Assembly
-    content.vb: Public MustInherit Class Assembly
+    content: 'public abstract class Assembly : object'
+    content.vb: Public MustInherit Class Assembly Inherits Object
   inheritance:
   - System.Object
-  inheritedMembers:
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
 - uid: System.Reflection.Assembly.CustomAttributes
   id: CustomAttributes
   parent: System.Reflection.Assembly
@@ -64,8 +59,8 @@ items:
   namespace: System.Reflection
   summary: Gets a collection that contains this assembly's custom attributes.
   syntax:
-    content: public virtual IEnumerable<CustomAttributeData> CustomAttributes { get; }
-    content.vb: Public Overridable ReadOnly Property CustomAttributes As IEnumerable(Of CustomAttributeData)
+    content: public virtual Collections.Generic.IEnumerable<CustomAttributeData> CustomAttributes { get; }
+    content.vb: Public Overridable ReadOnly Property CustomAttributes As Collections.Generic.IEnumerable(Of CustomAttributeData)
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.Reflection.CustomAttributeData}
@@ -86,8 +81,8 @@ items:
   namespace: System.Reflection
   summary: Gets a collection of the types defined in this assembly.
   syntax:
-    content: public abstract IEnumerable<TypeInfo> DefinedTypes { get; }
-    content.vb: Public MustOverride ReadOnly Property DefinedTypes As IEnumerable(Of TypeInfo)
+    content: public abstract Collections.Generic.IEnumerable<TypeInfo> DefinedTypes { get; }
+    content.vb: Public MustOverride ReadOnly Property DefinedTypes As Collections.Generic.IEnumerable(Of TypeInfo)
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.Reflection.TypeInfo}
@@ -108,8 +103,8 @@ items:
   namespace: System.Reflection
   summary: Gets a collection of the public types defined in this assembly that are visible outside the assembly.
   syntax:
-    content: public virtual IEnumerable<Type> ExportedTypes { get; }
-    content.vb: Public Overridable ReadOnly Property ExportedTypes As IEnumerable(Of Type)
+    content: public virtual Collections.Generic.IEnumerable<Type> ExportedTypes { get; }
+    content.vb: Public Overridable ReadOnly Property ExportedTypes As Collections.Generic.IEnumerable(Of Type)
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.Type}
@@ -218,8 +213,8 @@ items:
   namespace: System.Reflection
   summary: Gets a collection that contains the modules in this assembly.
   syntax:
-    content: public abstract IEnumerable<Module> Modules { get; }
-    content.vb: Public MustOverride ReadOnly Property Modules As IEnumerable(Of Module)
+    content: public abstract Collections.Generic.IEnumerable<Module> Modules { get; }
+    content.vb: Public MustOverride ReadOnly Property Modules As Collections.Generic.IEnumerable(Of Module)
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.Reflection.Module}
@@ -249,7 +244,6 @@ items:
     return:
       type: System.Boolean
       description: true if *o* is equal to this instance; otherwise, false.
-  overridden: System.Object.Equals(System.Object)
 - uid: System.Reflection.Assembly.GetHashCode
   id: GetHashCode
   parent: System.Reflection.Assembly
@@ -271,7 +265,6 @@ items:
     return:
       type: System.Int32
       description: A 32-bit signed integer hash code.
-  overridden: System.Object.GetHashCode
 - uid: System.Reflection.Assembly.GetManifestResourceInfo(System.String)
   id: GetManifestResourceInfo(System.String)
   parent: System.Reflection.Assembly
@@ -339,8 +332,8 @@ items:
   namespace: System.Reflection
   summary: Loads the specified manifest resource from this assembly.
   syntax:
-    content: public virtual Stream GetManifestResourceStream(string name)
-    content.vb: Public Overridable Function GetManifestResourceStream(name As String) As Stream
+    content: public virtual IO.Stream GetManifestResourceStream(string name)
+    content.vb: Public Overridable Function GetManifestResourceStream(name As String) As IO.Stream
     parameters:
     - id: name
       type: System.String
@@ -563,7 +556,6 @@ items:
     return:
       type: System.String
       description: The full name of the assembly, or the class name if the full name of the assembly cannot be determined.
-  overridden: System.Object.ToString
 references:
 - uid: System.Reflection
   isExternal: false
@@ -575,153 +567,20 @@ references:
   href: System.Object.yml
   name: Object
   fullName: System.Object
-- uid: System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
 - uid: System
   isExternal: false
   name: System
   fullName: System
 - uid: System.Collections.Generic.IEnumerable{System.Reflection.CustomAttributeData}
-  parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   href: System.Reflection.CustomAttributeData.yml
-  name: IEnumerable<CustomAttributeData>
-  name.vb: IEnumerable(Of CustomAttributeData)
+  name: Collections.Generic.IEnumerable<CustomAttributeData>
+  name.vb: Collections.Generic.IEnumerable(Of CustomAttributeData)
   fullName: System.Collections.Generic.IEnumerable<System.Reflection.CustomAttributeData>
   fullName.vb: System.Collections.Generic.IEnumerable(Of System.Reflection.CustomAttributeData)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
@@ -734,7 +593,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
@@ -749,30 +608,28 @@ references:
   parent: System.Collections.Generic
   isExternal: false
   href: System.Collections.Generic.IEnumerable`1.yml
-  name: IEnumerable<T>
-  name.vb: IEnumerable(Of T)
-  fullName: System.Collections.Generic.IEnumerable<T>
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name: Collections.Generic.IEnumerable<>
+  name.vb: Collections.Generic.IEnumerable(Of )
+  fullName: System.Collections.Generic.IEnumerable<>
+  fullName.vb: System.Collections.Generic.IEnumerable(Of )
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     href: System.Collections.Generic.IEnumerable`1.yml
   - name: <
     fullName: <
-  - name: T
-    fullName: T
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     href: System.Collections.Generic.IEnumerable`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: T
-    fullName: T
+  - {}
   - name: )
     fullName: )
 - uid: System.Collections.Generic
@@ -780,16 +637,15 @@ references:
   name: System.Collections.Generic
   fullName: System.Collections.Generic
 - uid: System.Collections.Generic.IEnumerable{System.Reflection.TypeInfo}
-  parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   href: System.Reflection.TypeInfo.yml
-  name: IEnumerable<TypeInfo>
-  name.vb: IEnumerable(Of TypeInfo)
+  name: Collections.Generic.IEnumerable<TypeInfo>
+  name.vb: Collections.Generic.IEnumerable(Of TypeInfo)
   fullName: System.Collections.Generic.IEnumerable<System.Reflection.TypeInfo>
   fullName.vb: System.Collections.Generic.IEnumerable(Of System.Reflection.TypeInfo)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
@@ -802,7 +658,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
@@ -814,15 +670,14 @@ references:
   - name: )
     fullName: )
 - uid: System.Collections.Generic.IEnumerable{System.Type}
-  parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
-  name: IEnumerable<Type>
-  name.vb: IEnumerable(Of Type)
+  name: Collections.Generic.IEnumerable<Type>
+  name.vb: Collections.Generic.IEnumerable(Of Type)
   fullName: System.Collections.Generic.IEnumerable<System.Type>
   fullName.vb: System.Collections.Generic.IEnumerable(Of System.Type)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
@@ -835,7 +690,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
@@ -871,16 +726,15 @@ references:
   name: Module
   fullName: System.Reflection.Module
 - uid: System.Collections.Generic.IEnumerable{System.Reflection.Module}
-  parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   href: System.Reflection.Module.yml
-  name: IEnumerable<Module>
-  name.vb: IEnumerable(Of Module)
+  name: Collections.Generic.IEnumerable<Module>
+  name.vb: Collections.Generic.IEnumerable(Of Module)
   fullName: System.Collections.Generic.IEnumerable<System.Reflection.Module>
   fullName.vb: System.Collections.Generic.IEnumerable(Of System.Reflection.Module)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
@@ -893,7 +747,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
@@ -902,60 +756,6 @@ references:
     name: Module
     fullName: System.Reflection.Module
     href: System.Reflection.Module.yml
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
   - name: )
     fullName: )
 - uid: System.Int32
@@ -971,7 +771,8 @@ references:
   name: ManifestResourceInfo
   fullName: System.Reflection.ManifestResourceInfo
 - uid: System.String[]
-  isExternal: true
+  isExternal: false
+  href: System.String.yml
   name: String[]
   name.vb: String()
   fullName: System.String[]
@@ -980,21 +781,21 @@ references:
   - uid: System.String
     name: String
     fullName: System.String
-    isExternal: true
+    href: System.String.yml
   - name: '[]'
     fullName: '[]'
   spec.vb:
   - uid: System.String
     name: String
     fullName: System.String
-    isExternal: true
+    href: System.String.yml
   - name: ()
     fullName: ()
 - uid: System.IO.Stream
   parent: System.IO
   isExternal: false
   href: System.IO.Stream.yml
-  name: Stream
+  name: IO.Stream
   fullName: System.IO.Stream
 - uid: System.IO
   isExternal: false
@@ -1016,31 +817,8 @@ references:
   parent: System.Reflection
   isExternal: false
   href: System.Reflection.Assembly.yml
-  name: Assembly
+  name: Reflection.Assembly
   fullName: System.Reflection.Assembly
-- uid: System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
 - uid: System.ArgumentNullException
   isExternal: false
   href: System.ArgumentNullException.yml

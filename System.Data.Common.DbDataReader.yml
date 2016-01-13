@@ -70,21 +70,12 @@ items:
   namespace: System.Data.Common
   summary: Reads a forward-only stream of rows from a data source.
   syntax:
-    content: 'public abstract class DbDataReader : IEnumerable, IDisposable'
-    content.vb: Public MustInherit Class DbDataReader Implements IEnumerable, IDisposable
+    content: 'public abstract class DbDataReader : Collections.IEnumerable, IDisposable'
+    content.vb: Public MustInherit Class DbDataReader Inherits Collections.IEnumerable Implements IDisposable
   inheritance:
   - System.Object
   implements:
-  - System.Collections.IEnumerable
   - System.IDisposable
-  inheritedMembers:
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
 - uid: System.Data.Common.DbDataReader.#ctor
   id: '#ctor'
   parent: System.Data.Common.DbDataReader
@@ -576,7 +567,7 @@ items:
   summary: Gets the value of the specified column as a @'System.DateTime' object.
   syntax:
     content: public abstract DateTime GetDateTime(int ordinal)
-    content.vb: Public MustOverride Function GetDateTime(ordinal As Integer) As Date
+    content.vb: Public MustOverride Function GetDateTime(ordinal As Integer) As DateTime
     parameters:
     - id: ordinal
       type: System.Int32
@@ -684,8 +675,8 @@ items:
   namespace: System.Data.Common
   summary: Returns an @'System.Collections.IEnumerator' that can be used to iterate through the rows in the data reader.
   syntax:
-    content: public abstract IEnumerator GetEnumerator()
-    content.vb: Public MustOverride Function GetEnumerator As IEnumerator
+    content: public abstract Collections.IEnumerator GetEnumerator()
+    content.vb: Public MustOverride Function GetEnumerator As Collections.IEnumerator
     return:
       type: System.Collections.IEnumerator
       description: An @'System.Collections.IEnumerator' that can be used to iterate through the rows in the data reader.
@@ -771,8 +762,8 @@ items:
   namespace: System.Data.Common
   summary: Asynchronously gets the value of the specified column as a type.
   syntax:
-    content: public Task<T> GetFieldValueAsync<T>(int ordinal)
-    content.vb: Public Function GetFieldValueAsync(Of T)(ordinal As Integer) As Task(Of T)
+    content: public Threading.Tasks.Task<T> GetFieldValueAsync<T>(int ordinal)
+    content.vb: Public Function GetFieldValueAsync(Of T)(ordinal As Integer) As Threading.Tasks.Task(Of T)
     parameters:
     - id: ordinal
       type: System.Int32
@@ -793,22 +784,25 @@ items:
   id: GetFieldValueAsync``1(System.Int32,System.Threading.CancellationToken)
   parent: System.Data.Common.DbDataReader
   href: System.Data.Common.DbDataReader.yml
-  name: GetFieldValueAsync<T>(Int32, CancellationToken)
-  name.vb: GetFieldValueAsync(Of T)(Int32, CancellationToken)
+  name: GetFieldValueAsync<T>(Int32, Threading.CancellationToken)
+  name.vb: GetFieldValueAsync(Of T)(Int32, Threading.CancellationToken)
   fullName: System.Data.Common.DbDataReader.GetFieldValueAsync<T>(System.Int32, System.Threading.CancellationToken)
   fullName.vb: System.Data.Common.DbDataReader.GetFieldValueAsync(Of T)(System.Int32, System.Threading.CancellationToken)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Data.Common/src/System/Data/Common/DbDataReader.cs
-    startLine: 186
+    remote: &o1
+      path: src/System.Data.Common/ref/System.Data.Common.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    path: src/System.Data.Common/ref/System.Data.Common.cs
+    startLine: 221
   assemblies:
   - System.Data.Common
   namespace: System.Data.Common
   summary: Asynchronously gets the value of the specified column as a type.
   syntax:
-    content: public virtual Task<T> GetFieldValueAsync<T>(int ordinal, CancellationToken cancellationToken)
-    content.vb: Public Overridable Function GetFieldValueAsync(Of T)(ordinal As Integer, cancellationToken As CancellationToken) As Task(Of T)
+    content: public virtual Threading.Tasks.Task<T> GetFieldValueAsync<T>(int ordinal, Threading.CancellationToken cancellationToken)
+    content.vb: Public Overridable Function GetFieldValueAsync(Of T)(ordinal As Integer, cancellationToken As Threading.CancellationToken) As Threading.Tasks.Task(Of T)
     parameters:
     - id: ordinal
       type: System.Int32
@@ -1114,8 +1108,8 @@ items:
   namespace: System.Data.Common
   summary: Retrieves data as a @'System.IO.Stream'.
   syntax:
-    content: public virtual Stream GetStream(int ordinal)
-    content.vb: Public Overridable Function GetStream(ordinal As Integer) As Stream
+    content: public virtual IO.Stream GetStream(int ordinal)
+    content.vb: Public Overridable Function GetStream(ordinal As Integer) As IO.Stream
     parameters:
     - id: ordinal
       type: System.Int32
@@ -1174,8 +1168,8 @@ items:
   namespace: System.Data.Common
   summary: Retrieves data as a @'System.IO.TextReader'.
   syntax:
-    content: public virtual TextReader GetTextReader(int ordinal)
-    content.vb: Public Overridable Function GetTextReader(ordinal As Integer) As TextReader
+    content: public virtual IO.TextReader GetTextReader(int ordinal)
+    content.vb: Public Overridable Function GetTextReader(ordinal As Integer) As IO.TextReader
     parameters:
     - id: ordinal
       type: System.Int32
@@ -1283,8 +1277,8 @@ items:
   namespace: System.Data.Common
   summary: An asynchronous version of @'System.Data.Common.DbDataReader.IsDBNull(System.Int32)', which gets a value that indicates whether the column contains non-existent or missing values.
   syntax:
-    content: public Task<bool> IsDBNullAsync(int ordinal)
-    content.vb: Public Function IsDBNullAsync(ordinal As Integer) As Task(Of Boolean)
+    content: public Threading.Tasks.Task<bool> IsDBNullAsync(int ordinal)
+    content.vb: Public Function IsDBNullAsync(ordinal As Integer) As Threading.Tasks.Task(Of Boolean)
     parameters:
     - id: ordinal
       type: System.Int32
@@ -1301,20 +1295,20 @@ items:
   id: IsDBNullAsync(System.Int32,System.Threading.CancellationToken)
   parent: System.Data.Common.DbDataReader
   href: System.Data.Common.DbDataReader.yml
-  name: IsDBNullAsync(Int32, CancellationToken)
+  name: IsDBNullAsync(Int32, Threading.CancellationToken)
   fullName: System.Data.Common.DbDataReader.IsDBNullAsync(System.Int32, System.Threading.CancellationToken)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Data.Common/src/System/Data/Common/DbDataReader.cs
-    startLine: 214
+    remote: *o1
+    path: src/System.Data.Common/ref/System.Data.Common.cs
+    startLine: 239
   assemblies:
   - System.Data.Common
   namespace: System.Data.Common
   summary: An asynchronous version of @'System.Data.Common.DbDataReader.IsDBNull(System.Int32)', which gets a value that indicates whether the column contains non-existent or missing values. Optionally, sends a notification that operations should be cancelled.
   syntax:
-    content: public virtual Task<bool> IsDBNullAsync(int ordinal, CancellationToken cancellationToken)
-    content.vb: Public Overridable Function IsDBNullAsync(ordinal As Integer, cancellationToken As CancellationToken) As Task(Of Boolean)
+    content: public virtual Threading.Tasks.Task<bool> IsDBNullAsync(int ordinal, Threading.CancellationToken cancellationToken)
+    content.vb: Public Overridable Function IsDBNullAsync(ordinal As Integer, cancellationToken As Threading.CancellationToken) As Threading.Tasks.Task(Of Boolean)
     parameters:
     - id: ordinal
       type: System.Int32
@@ -1367,8 +1361,8 @@ items:
   namespace: System.Data.Common
   summary: An asynchronous version of @'System.Data.Common.DbDataReader.NextResult', which advances the reader to the next result when reading the results of a batch of statements.Invokes @'System.Data.Common.DbDataReader.NextResultAsync(System.Threading.CancellationToken)' with CancellationToken.None.
   syntax:
-    content: public Task<bool> NextResultAsync()
-    content.vb: Public Function NextResultAsync As Task(Of Boolean)
+    content: public Threading.Tasks.Task<bool> NextResultAsync()
+    content.vb: Public Function NextResultAsync As Threading.Tasks.Task(Of Boolean)
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
       description: A task representing the asynchronous operation.
@@ -1379,20 +1373,20 @@ items:
   id: NextResultAsync(System.Threading.CancellationToken)
   parent: System.Data.Common.DbDataReader
   href: System.Data.Common.DbDataReader.yml
-  name: NextResultAsync(CancellationToken)
+  name: NextResultAsync(Threading.CancellationToken)
   fullName: System.Data.Common.DbDataReader.NextResultAsync(System.Threading.CancellationToken)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Data.Common/src/System/Data/Common/DbDataReader.cs
-    startLine: 266
+    remote: *o1
+    path: src/System.Data.Common/ref/System.Data.Common.cs
+    startLine: 242
   assemblies:
   - System.Data.Common
   namespace: System.Data.Common
   summary: This is the asynchronous version of @'System.Data.Common.DbDataReader.NextResult'. Providers should override with an appropriate implementation. The *cancellationToken* may optionally be ignored.The default implementation invokes the synchronous @'System.Data.Common.DbDataReader.NextResult' method and returns a completed task, blocking the calling thread. The default implementation will return a cancelled task if passed an already cancelled *cancellationToken*. Exceptions thrown by @'System.Data.Common.DbDataReader.NextResult' will be communicated via the returned Task Exception property.Other methods and properties of the DbDataReader object should not be invoked while the returned Task is not yet completed.
   syntax:
-    content: public virtual Task<bool> NextResultAsync(CancellationToken cancellationToken)
-    content.vb: Public Overridable Function NextResultAsync(cancellationToken As CancellationToken) As Task(Of Boolean)
+    content: public virtual Threading.Tasks.Task<bool> NextResultAsync(Threading.CancellationToken cancellationToken)
+    content.vb: Public Overridable Function NextResultAsync(cancellationToken As Threading.CancellationToken) As Threading.Tasks.Task(Of Boolean)
     parameters:
     - id: cancellationToken
       type: System.Threading.CancellationToken
@@ -1440,8 +1434,8 @@ items:
   namespace: System.Data.Common
   summary: An asynchronous version of @'System.Data.Common.DbDataReader.Read', which advances the reader to the next record in a result set. This method invokes @'System.Data.Common.DbDataReader.ReadAsync(System.Threading.CancellationToken)' with CancellationToken.None.
   syntax:
-    content: public Task<bool> ReadAsync()
-    content.vb: Public Function ReadAsync As Task(Of Boolean)
+    content: public Threading.Tasks.Task<bool> ReadAsync()
+    content.vb: Public Function ReadAsync As Threading.Tasks.Task(Of Boolean)
     return:
       type: System.Threading.Tasks.Task{System.Boolean}
       description: A task representing the asynchronous operation.
@@ -1452,20 +1446,20 @@ items:
   id: ReadAsync(System.Threading.CancellationToken)
   parent: System.Data.Common.DbDataReader
   href: System.Data.Common.DbDataReader.yml
-  name: ReadAsync(CancellationToken)
+  name: ReadAsync(Threading.CancellationToken)
   fullName: System.Data.Common.DbDataReader.ReadAsync(System.Threading.CancellationToken)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Data.Common/src/System/Data/Common/DbDataReader.cs
-    startLine: 242
+    remote: *o1
+    path: src/System.Data.Common/ref/System.Data.Common.cs
+    startLine: 245
   assemblies:
   - System.Data.Common
   namespace: System.Data.Common
   summary: This is the asynchronous version of @'System.Data.Common.DbDataReader.Read'.  Providers should override with an appropriate implementation. The cancellationToken may optionally be ignored.The default implementation invokes the synchronous @'System.Data.Common.DbDataReader.Read' method and returns a completed task, blocking the calling thread. The default implementation will return a cancelled task if passed an already cancelled cancellationToken.  Exceptions thrown by Read will be communicated via the returned Task Exception property.Do not invoke other methods and properties of the DbDataReader object until the returned Task is complete.
   syntax:
-    content: public virtual Task<bool> ReadAsync(CancellationToken cancellationToken)
-    content.vb: Public Overridable Function ReadAsync(cancellationToken As CancellationToken) As Task(Of Boolean)
+    content: public virtual Threading.Tasks.Task<bool> ReadAsync(Threading.CancellationToken cancellationToken)
+    content.vb: Public Overridable Function ReadAsync(cancellationToken As Threading.CancellationToken) As Threading.Tasks.Task(Of Boolean)
     parameters:
     - id: cancellationToken
       type: System.Threading.CancellationToken
@@ -1487,215 +1481,6 @@ references:
   href: System.Object.yml
   name: Object
   fullName: System.Object
-- uid: System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
 - uid: System
   isExternal: false
   name: System
@@ -1731,7 +1516,8 @@ references:
   name: Int64
   fullName: System.Int64
 - uid: System.Byte[]
-  isExternal: true
+  isExternal: false
+  href: System.Byte.yml
   name: Byte[]
   name.vb: Byte()
   fullName: System.Byte[]
@@ -1740,14 +1526,14 @@ references:
   - uid: System.Byte
     name: Byte
     fullName: System.Byte
-    isExternal: true
+    href: System.Byte.yml
   - name: '[]'
     fullName: '[]'
   spec.vb:
   - uid: System.Byte
     name: Byte
     fullName: System.Byte
-    isExternal: true
+    href: System.Byte.yml
   - name: ()
     fullName: ()
 - uid: System.Char
@@ -1757,7 +1543,8 @@ references:
   name: Char
   fullName: System.Char
 - uid: System.Char[]
-  isExternal: true
+  isExternal: false
+  href: System.Char.yml
   name: Char[]
   name.vb: Char()
   fullName: System.Char[]
@@ -1766,14 +1553,14 @@ references:
   - uid: System.Char
     name: Char
     fullName: System.Char
-    isExternal: true
+    href: System.Char.yml
   - name: '[]'
     fullName: '[]'
   spec.vb:
   - uid: System.Char
     name: Char
     fullName: System.Char
-    isExternal: true
+    href: System.Char.yml
   - name: ()
     fullName: ()
 - uid: System.Data.Common.DbDataReader
@@ -1804,7 +1591,7 @@ references:
   parent: System.Collections
   isExternal: false
   href: System.Collections.IEnumerator.yml
-  name: IEnumerator
+  name: Collections.IEnumerator
   fullName: System.Collections.IEnumerator
 - uid: System.Collections
   isExternal: false
@@ -1821,15 +1608,14 @@ references:
   name: T
   fullName: T
 - uid: System.Threading.Tasks.Task{{T}}
-  parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
-  name: Task<T>
-  name.vb: Task(Of T)
+  name: Threading.Tasks.Task<T>
+  name.vb: Threading.Tasks.Task(Of T)
   fullName: System.Threading.Tasks.Task<T>
   fullName.vb: System.Threading.Tasks.Task(Of T)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
@@ -1840,7 +1626,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
@@ -1853,30 +1639,28 @@ references:
   parent: System.Threading.Tasks
   isExternal: false
   href: System.Threading.Tasks.Task`1.yml
-  name: Task<TResult>
-  name.vb: Task(Of TResult)
-  fullName: System.Threading.Tasks.Task<TResult>
-  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name: Threading.Tasks.Task<>
+  name.vb: Threading.Tasks.Task(Of )
+  fullName: System.Threading.Tasks.Task<>
+  fullName.vb: System.Threading.Tasks.Task(Of )
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     href: System.Threading.Tasks.Task`1.yml
   - name: <
     fullName: <
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     href: System.Threading.Tasks.Task`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: )
     fullName: )
 - uid: System.Threading.Tasks
@@ -1887,7 +1671,7 @@ references:
   parent: System.Threading
   isExternal: false
   href: System.Threading.CancellationToken.yml
-  name: CancellationToken
+  name: Threading.CancellationToken
   fullName: System.Threading.CancellationToken
 - uid: System.Threading
   isExternal: false
@@ -1912,7 +1696,8 @@ references:
   name: Int16
   fullName: System.Int16
 - uid: System.Object[]
-  isExternal: true
+  isExternal: false
+  href: System.Object.yml
   name: Object[]
   name.vb: Object()
   fullName: System.Object[]
@@ -1921,21 +1706,21 @@ references:
   - uid: System.Object
     name: Object
     fullName: System.Object
-    isExternal: true
+    href: System.Object.yml
   - name: '[]'
     fullName: '[]'
   spec.vb:
   - uid: System.Object
     name: Object
     fullName: System.Object
-    isExternal: true
+    href: System.Object.yml
   - name: ()
     fullName: ()
 - uid: System.IO.Stream
   parent: System.IO
   isExternal: false
   href: System.IO.Stream.yml
-  name: Stream
+  name: IO.Stream
   fullName: System.IO.Stream
 - uid: System.IO
   isExternal: false
@@ -1948,15 +1733,14 @@ references:
   name: TextReader
   fullName: System.IO.TextReader
 - uid: System.Threading.Tasks.Task{System.Boolean}
-  parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
-  name: Task<Boolean>
-  name.vb: Task(Of Boolean)
+  name: Threading.Tasks.Task<Boolean>
+  name.vb: Threading.Tasks.Task(Of Boolean)
   fullName: System.Threading.Tasks.Task<System.Boolean>
   fullName.vb: System.Threading.Tasks.Task(Of System.Boolean)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
@@ -1969,7 +1753,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '

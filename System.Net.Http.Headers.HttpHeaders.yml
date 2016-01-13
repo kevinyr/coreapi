@@ -11,7 +11,6 @@ items:
   - System.Net.Http.Headers.HttpHeaders.GetEnumerator
   - System.Net.Http.Headers.HttpHeaders.GetValues(System.String)
   - System.Net.Http.Headers.HttpHeaders.Remove(System.String)
-  - System.Net.Http.Headers.HttpHeaders.System#Collections#IEnumerable#GetEnumerator
   - System.Net.Http.Headers.HttpHeaders.ToString
   - System.Net.Http.Headers.HttpHeaders.TryAddWithoutValidation(System.String,System.Collections.Generic.IEnumerable{System.String})
   - System.Net.Http.Headers.HttpHeaders.TryAddWithoutValidation(System.String,System.String)
@@ -32,20 +31,12 @@ items:
   namespace: System.Net.Http.Headers
   summary: A collection of headers and their values as defined in RFC 2616.
   syntax:
-    content: 'public abstract class HttpHeaders : IEnumerable<KeyValuePair<string, IEnumerable<string>>>, IEnumerable'
-    content.vb: Public MustInherit Class HttpHeaders Implements IEnumerable(Of KeyValuePair(Of String, IEnumerable(Of String))), IEnumerable
+    content: 'public abstract class HttpHeaders : Collections.Generic.IEnumerable<Collections.Generic.KeyValuePair<string, Collections.Generic.IEnumerable<string>>>, Collections.IEnumerable'
+    content.vb: Public MustInherit Class HttpHeaders Inherits Collections.Generic.IEnumerable(Of Collections.Generic.KeyValuePair(Of String, Collections.Generic.IEnumerable(Of String))) Implements Collections.IEnumerable
   inheritance:
   - System.Object
   implements:
-  - System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.String}}}
   - System.Collections.IEnumerable
-  inheritedMembers:
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
 - uid: System.Net.Http.Headers.HttpHeaders.#ctor
   id: '#ctor'
   parent: System.Net.Http.Headers.HttpHeaders
@@ -68,22 +59,25 @@ items:
   id: Add(System.String,System.Collections.Generic.IEnumerable{System.String})
   parent: System.Net.Http.Headers.HttpHeaders
   href: System.Net.Http.Headers.HttpHeaders.yml
-  name: Add(String, IEnumerable<String>)
-  name.vb: Add(String, IEnumerable(Of String))
+  name: Add(String, Collections.Generic.IEnumerable<String>)
+  name.vb: Add(String, Collections.Generic.IEnumerable(Of String))
   fullName: System.Net.Http.Headers.HttpHeaders.Add(System.String, System.Collections.Generic.IEnumerable<System.String>)
   fullName.vb: System.Net.Http.Headers.HttpHeaders.Add(System.String, System.Collections.Generic.IEnumerable(Of System.String))
   type: Method
   source:
-    remote: *o0
-    path: src/System.Net.Http/src/System/Net/Http/Headers/HttpHeaders.cs
-    startLine: 71
+    remote: &o1
+      path: src/System.Net.Http/ref/System.Net.Http.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    path: src/System.Net.Http/ref/System.Net.Http.cs
+    startLine: 339
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
   summary: Adds the specified header and its values into the @'System.Net.Http.Headers.HttpHeaders' collection.
   syntax:
-    content: public void Add(string name, IEnumerable<string> values)
-    content.vb: Public Sub Add(name As String, values As IEnumerable(Of String))
+    content: public void Add(string name, Collections.Generic.IEnumerable<string> values)
+    content.vb: Public Sub Add(name As String, values As Collections.Generic.IEnumerable(Of String))
     parameters:
     - id: name
       type: System.String
@@ -175,8 +169,8 @@ items:
   namespace: System.Net.Http.Headers
   summary: Returns an enumerator that can iterate through the @'System.Net.Http.Headers.HttpHeaders' instance.
   syntax:
-    content: public IEnumerator<KeyValuePair<string, IEnumerable<string>>> GetEnumerator()
-    content.vb: Public Function GetEnumerator As IEnumerator(Of KeyValuePair(Of String, IEnumerable(Of String)))
+    content: public Collections.Generic.IEnumerator<Collections.Generic.KeyValuePair<string, Collections.Generic.IEnumerable<string>>> GetEnumerator()
+    content.vb: Public Function GetEnumerator As Collections.Generic.IEnumerator(Of Collections.Generic.KeyValuePair(Of String, Collections.Generic.IEnumerable(Of String)))
     return:
       type: System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.String}}}
       description: Returns @'System.Collections.Generic.IEnumerator`1'.An enumerator for the @'System.Net.Http.Headers.HttpHeaders'.
@@ -196,8 +190,8 @@ items:
   namespace: System.Net.Http.Headers
   summary: Returns all header values for a specified header stored in the @'System.Net.Http.Headers.HttpHeaders' collection.
   syntax:
-    content: public IEnumerable<string> GetValues(string name)
-    content.vb: Public Function GetValues(name As String) As IEnumerable(Of String)
+    content: public Collections.Generic.IEnumerable<string> GetValues(string name)
+    content.vb: Public Function GetValues(name As String) As Collections.Generic.IEnumerable(Of String)
     parameters:
     - id: name
       type: System.String
@@ -230,28 +224,6 @@ items:
     return:
       type: System.Boolean
       description: Returns @'System.Boolean'.
-- uid: System.Net.Http.Headers.HttpHeaders.System#Collections#IEnumerable#GetEnumerator
-  id: System#Collections#IEnumerable#GetEnumerator
-  parent: System.Net.Http.Headers.HttpHeaders
-  href: System.Net.Http.Headers.HttpHeaders.yml
-  name: IEnumerable.GetEnumerator()
-  name.vb: System.Collections.IEnumerable.GetEnumerator()
-  fullName: System.Net.Http.Headers.HttpHeaders.System.Collections.IEnumerable.GetEnumerator()
-  type: Method
-  source:
-    remote: *o0
-    path: src/System.Net.Http/src/System/Net/Http/Headers/HttpHeaders.cs
-    startLine: 357
-  assemblies:
-  - System.Net.Http
-  namespace: System.Net.Http.Headers
-  summary: Gets an enumerator that can iterate through a @'System.Net.Http.Headers.HttpHeaders'.
-  syntax:
-    content: IEnumerator IEnumerable.GetEnumerator()
-    content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
-    return:
-      type: System.Collections.IEnumerator
-      description: Returns @'System.Collections.IEnumerator'.An instance of an implementation of an @'System.Collections.IEnumerator' that can iterate through a @'System.Net.Http.Headers.HttpHeaders'.
 - uid: System.Net.Http.Headers.HttpHeaders.ToString
   id: ToString
   parent: System.Net.Http.Headers.HttpHeaders
@@ -273,27 +245,26 @@ items:
     return:
       type: System.String
       description: Returns @'System.String'.A string that represents the current object.
-  overridden: System.Object.ToString
 - uid: System.Net.Http.Headers.HttpHeaders.TryAddWithoutValidation(System.String,System.Collections.Generic.IEnumerable{System.String})
   id: TryAddWithoutValidation(System.String,System.Collections.Generic.IEnumerable{System.String})
   parent: System.Net.Http.Headers.HttpHeaders
   href: System.Net.Http.Headers.HttpHeaders.yml
-  name: TryAddWithoutValidation(String, IEnumerable<String>)
-  name.vb: TryAddWithoutValidation(String, IEnumerable(Of String))
+  name: TryAddWithoutValidation(String, Collections.Generic.IEnumerable<String>)
+  name.vb: TryAddWithoutValidation(String, Collections.Generic.IEnumerable(Of String))
   fullName: System.Net.Http.Headers.HttpHeaders.TryAddWithoutValidation(System.String, System.Collections.Generic.IEnumerable<System.String>)
   fullName.vb: System.Net.Http.Headers.HttpHeaders.TryAddWithoutValidation(System.String, System.Collections.Generic.IEnumerable(Of System.String))
   type: Method
   source:
-    remote: *o0
-    path: src/System.Net.Http/src/System/Net/Http/Headers/HttpHeaders.cs
-    startLine: 127
+    remote: *o1
+    path: src/System.Net.Http/ref/System.Net.Http.cs
+    startLine: 348
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
   summary: Returns a value that indicates whether the specified header and its values were added to the @'System.Net.Http.Headers.HttpHeaders' collection without validating the provided information.
   syntax:
-    content: public bool TryAddWithoutValidation(string name, IEnumerable<string> values)
-    content.vb: Public Function TryAddWithoutValidation(name As String, values As IEnumerable(Of String)) As Boolean
+    content: public bool TryAddWithoutValidation(string name, Collections.Generic.IEnumerable<string> values)
+    content.vb: Public Function TryAddWithoutValidation(name As String, values As Collections.Generic.IEnumerable(Of String)) As Boolean
     parameters:
     - id: name
       type: System.String
@@ -336,22 +307,22 @@ items:
   id: TryGetValues(System.String,System.Collections.Generic.IEnumerable{System.String}@)
   parent: System.Net.Http.Headers.HttpHeaders
   href: System.Net.Http.Headers.HttpHeaders.yml
-  name: TryGetValues(String, out IEnumerable<String>)
-  name.vb: TryGetValues(String, ByRef IEnumerable(Of String))
+  name: TryGetValues(String, out Collections.Generic.IEnumerable<String>)
+  name.vb: TryGetValues(String, ByRef Collections.Generic.IEnumerable(Of String))
   fullName: System.Net.Http.Headers.HttpHeaders.TryGetValues(System.String, out System.Collections.Generic.IEnumerable<System.String>)
   fullName.vb: System.Net.Http.Headers.HttpHeaders.TryGetValues(System.String, ByRef System.Collections.Generic.IEnumerable(Of System.String))
   type: Method
   source:
-    remote: *o0
-    path: src/System.Net.Http/src/System/Net/Http/Headers/HttpHeaders.cs
-    startLine: 183
+    remote: *o1
+    path: src/System.Net.Http/ref/System.Net.Http.cs
+    startLine: 350
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
   summary: Return if a specified header and specified values are stored in the @'System.Net.Http.Headers.HttpHeaders' collection.
   syntax:
-    content: public bool TryGetValues(string name, out IEnumerable<string> values)
-    content.vb: Public Function TryGetValues(name As String, ByRef values As IEnumerable(Of String)) As Boolean
+    content: public bool TryGetValues(string name, out Collections.Generic.IEnumerable<string> values)
+    content.vb: Public Function TryGetValues(name As String, ByRef values As Collections.Generic.IEnumerable(Of String)) As Boolean
     parameters:
     - id: name
       type: System.String
@@ -373,192 +344,6 @@ references:
   href: System.Object.yml
   name: Object
   fullName: System.Object
-- uid: System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
 - uid: System
   isExternal: false
   name: System
@@ -573,13 +358,13 @@ references:
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   href: System.Collections.Generic.IEnumerable`1.yml
-  name: IEnumerable<String>
-  name.vb: IEnumerable(Of String)
+  name: Collections.Generic.IEnumerable<String>
+  name.vb: Collections.Generic.IEnumerable(Of String)
   fullName: System.Collections.Generic.IEnumerable<System.String>
   fullName.vb: System.Collections.Generic.IEnumerable(Of System.String)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     href: System.Collections.Generic.IEnumerable`1.yml
   - name: <
@@ -587,12 +372,12 @@ references:
   - uid: System.String
     name: String
     fullName: System.String
-    isExternal: true
+    href: System.String.yml
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     href: System.Collections.Generic.IEnumerable`1.yml
   - name: '(Of '
@@ -600,37 +385,35 @@ references:
   - uid: System.String
     name: String
     fullName: System.String
-    isExternal: true
+    href: System.String.yml
   - name: )
     fullName: )
 - uid: System.Collections.Generic.IEnumerable`1
   parent: System.Collections.Generic
   isExternal: false
   href: System.Collections.Generic.IEnumerable`1.yml
-  name: IEnumerable<T>
-  name.vb: IEnumerable(Of T)
-  fullName: System.Collections.Generic.IEnumerable<T>
-  fullName.vb: System.Collections.Generic.IEnumerable(Of T)
+  name: Collections.Generic.IEnumerable<>
+  name.vb: Collections.Generic.IEnumerable(Of )
+  fullName: System.Collections.Generic.IEnumerable<>
+  fullName.vb: System.Collections.Generic.IEnumerable(Of )
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     href: System.Collections.Generic.IEnumerable`1.yml
   - name: <
     fullName: <
-  - name: T
-    fullName: T
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     href: System.Collections.Generic.IEnumerable`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: T
-    fullName: T
+  - {}
   - name: )
     fullName: )
 - uid: System.Collections.Generic
@@ -644,21 +427,20 @@ references:
   name: Boolean
   fullName: System.Boolean
 - uid: System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.String}}}
-  parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerator`1
-  name: IEnumerator<KeyValuePair<String, IEnumerable<String>>>
-  name.vb: IEnumerator(Of KeyValuePair(Of String, IEnumerable(Of String)))
+  name: Collections.Generic.IEnumerator<Collections.Generic.KeyValuePair<String, Collections.Generic.IEnumerable<String>>>
+  name.vb: Collections.Generic.IEnumerator(Of Collections.Generic.KeyValuePair(Of String, Collections.Generic.IEnumerable(Of String)))
   fullName: System.Collections.Generic.IEnumerator<System.Collections.Generic.KeyValuePair<System.String, System.Collections.Generic.IEnumerable<System.String>>>
   fullName.vb: System.Collections.Generic.IEnumerator(Of System.Collections.Generic.KeyValuePair(Of System.String, System.Collections.Generic.IEnumerable(Of System.String)))
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerator`1
-    name: IEnumerator
+    name: Collections.Generic.IEnumerator
     fullName: System.Collections.Generic.IEnumerator
     isExternal: true
   - name: <
     fullName: <
   - uid: System.Collections.Generic.KeyValuePair`2
-    name: KeyValuePair
+    name: Collections.Generic.KeyValuePair
     fullName: System.Collections.Generic.KeyValuePair
     isExternal: true
   - name: <
@@ -670,7 +452,7 @@ references:
   - name: ', '
     fullName: ', '
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
@@ -687,13 +469,13 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerator`1
-    name: IEnumerator
+    name: Collections.Generic.IEnumerator
     fullName: System.Collections.Generic.IEnumerator
     isExternal: true
   - name: '(Of '
     fullName: '(Of '
   - uid: System.Collections.Generic.KeyValuePair`2
-    name: KeyValuePair
+    name: Collections.Generic.KeyValuePair
     fullName: System.Collections.Generic.KeyValuePair
     isExternal: true
   - name: '(Of '
@@ -705,7 +487,7 @@ references:
   - name: ', '
     fullName: ', '
   - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
+    name: Collections.Generic.IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
@@ -724,62 +506,27 @@ references:
   parent: System.Collections.Generic
   isExternal: false
   href: System.Collections.Generic.IEnumerator`1.yml
-  name: IEnumerator<T>
-  name.vb: IEnumerator(Of T)
-  fullName: System.Collections.Generic.IEnumerator<T>
-  fullName.vb: System.Collections.Generic.IEnumerator(Of T)
+  name: Collections.Generic.IEnumerator<>
+  name.vb: Collections.Generic.IEnumerator(Of )
+  fullName: System.Collections.Generic.IEnumerator<>
+  fullName.vb: System.Collections.Generic.IEnumerator(Of )
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerator`1
-    name: IEnumerator
+    name: Collections.Generic.IEnumerator
     fullName: System.Collections.Generic.IEnumerator
     href: System.Collections.Generic.IEnumerator`1.yml
   - name: <
     fullName: <
-  - name: T
-    fullName: T
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerator`1
-    name: IEnumerator
+    name: Collections.Generic.IEnumerator
     fullName: System.Collections.Generic.IEnumerator
     href: System.Collections.Generic.IEnumerator`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: T
-    fullName: T
-  - name: )
-    fullName: )
-- uid: System.Collections.IEnumerator
-  parent: System.Collections
-  isExternal: false
-  href: System.Collections.IEnumerator.yml
-  name: IEnumerator
-  fullName: System.Collections.IEnumerator
-- uid: System.Collections
-  isExternal: false
-  name: System.Collections
-  fullName: System.Collections
-- uid: System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
+  - {}
   - name: )
     fullName: )

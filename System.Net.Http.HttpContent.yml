@@ -34,19 +34,9 @@ items:
   summary: A base class representing an HTTP entity body and content headers.
   syntax:
     content: 'public abstract class HttpContent : IDisposable'
-    content.vb: Public MustInherit Class HttpContent Implements IDisposable
+    content.vb: Public MustInherit Class HttpContent Inherits IDisposable
   inheritance:
   - System.Object
-  implements:
-  - System.IDisposable
-  inheritedMembers:
-  - System.Object.ToString
-  - System.Object.Equals(System.Object)
-  - System.Object.Equals(System.Object,System.Object)
-  - System.Object.ReferenceEquals(System.Object,System.Object)
-  - System.Object.GetHashCode
-  - System.Object.GetType
-  - System.Object.MemberwiseClone
 - uid: System.Net.Http.HttpContent.#ctor
   id: '#ctor'
   parent: System.Net.Http.HttpContent
@@ -91,20 +81,23 @@ items:
   id: CopyToAsync(System.IO.Stream)
   parent: System.Net.Http.HttpContent
   href: System.Net.Http.HttpContent.yml
-  name: CopyToAsync(Stream)
+  name: CopyToAsync(IO.Stream)
   fullName: System.Net.Http.HttpContent.CopyToAsync(System.IO.Stream)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Net.Http/src/System/Net/Http/HttpContent.cs
-    startLine: 356
+    remote: &o1
+      path: src/System.Net.Http/ref/System.Net.Http.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    path: src/System.Net.Http/ref/System.Net.Http.cs
+    startLine: 106
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
   summary: Serialize the HTTP content into a stream of bytes and copies it to the stream object provided as the *stream* parameter.
   syntax:
-    content: public Task CopyToAsync(Stream stream)
-    content.vb: Public Function CopyToAsync(stream As Stream) As Task
+    content: public Threading.Tasks.Task CopyToAsync(IO.Stream stream)
+    content.vb: Public Function CopyToAsync(stream As IO.Stream) As Threading.Tasks.Task
     parameters:
     - id: stream
       type: System.IO.Stream
@@ -116,14 +109,11 @@ items:
   id: CopyToAsync(System.IO.Stream,System.Net.TransportContext)
   parent: System.Net.Http.HttpContent
   href: System.Net.Http.HttpContent.yml
-  name: CopyToAsync(Stream, TransportContext)
+  name: CopyToAsync(IO.Stream, TransportContext)
   fullName: System.Net.Http.HttpContent.CopyToAsync(System.IO.Stream, System.Net.TransportContext)
   type: Method
   source:
-    remote: &o1
-      path: src/System.Net.Http/ref/System.Net.Http.cs
-      branch: master
-      repo: https://github.com/dotnet/corefx.git
+    remote: *o1
     path: src/System.Net.Http/ref/System.Net.Http.cs
     startLine: 107
   assemblies:
@@ -131,8 +121,8 @@ items:
   namespace: System.Net.Http
   summary: Serialize the HTTP content into a stream of bytes and copies it to the stream object provided as the *stream* parameter.
   syntax:
-    content: public Task CopyToAsync(Stream stream, TransportContext context)
-    content.vb: Public Function CopyToAsync(stream As Stream, context As TransportContext) As Task
+    content: public Threading.Tasks.Task CopyToAsync(IO.Stream stream, TransportContext context)
+    content.vb: Public Function CopyToAsync(stream As IO.Stream, context As TransportContext) As Threading.Tasks.Task
     parameters:
     - id: stream
       type: System.IO.Stream
@@ -159,8 +149,8 @@ items:
   namespace: System.Net.Http
   summary: Serialize the HTTP content to a memory stream as an asynchronous operation.
   syntax:
-    content: protected virtual Task<Stream> CreateContentReadStreamAsync()
-    content.vb: Protected Overridable Function CreateContentReadStreamAsync As Task(Of Stream)
+    content: protected virtual Threading.Tasks.Task<IO.Stream> CreateContentReadStreamAsync()
+    content.vb: Protected Overridable Function CreateContentReadStreamAsync As Threading.Tasks.Task(Of IO.Stream)
     return:
       type: System.Threading.Tasks.Task{System.IO.Stream}
       description: Returns @'System.Threading.Tasks.Task`1'.The task object representing the asynchronous operation.
@@ -220,8 +210,8 @@ items:
   namespace: System.Net.Http
   summary: Serialize the HTTP content to a memory buffer as an asynchronous operation.
   syntax:
-    content: public Task LoadIntoBufferAsync()
-    content.vb: Public Function LoadIntoBufferAsync As Task
+    content: public Threading.Tasks.Task LoadIntoBufferAsync()
+    content.vb: Public Function LoadIntoBufferAsync As Threading.Tasks.Task
     return:
       type: System.Threading.Tasks.Task
       description: Returns @'System.Threading.Tasks.Task'.The task object representing the asynchronous operation.
@@ -241,8 +231,8 @@ items:
   namespace: System.Net.Http
   summary: Serialize the HTTP content to a memory buffer as an asynchronous operation.
   syntax:
-    content: public Task LoadIntoBufferAsync(long maxBufferSize)
-    content.vb: Public Function LoadIntoBufferAsync(maxBufferSize As Long) As Task
+    content: public Threading.Tasks.Task LoadIntoBufferAsync(long maxBufferSize)
+    content.vb: Public Function LoadIntoBufferAsync(maxBufferSize As Long) As Threading.Tasks.Task
     parameters:
     - id: maxBufferSize
       type: System.Int64
@@ -266,8 +256,8 @@ items:
   namespace: System.Net.Http
   summary: Serialize the HTTP content to a byte array as an asynchronous operation.
   syntax:
-    content: public Task<byte[]> ReadAsByteArrayAsync()
-    content.vb: Public Function ReadAsByteArrayAsync As Task(Of Byte())
+    content: public Threading.Tasks.Task<byte[]> ReadAsByteArrayAsync()
+    content.vb: Public Function ReadAsByteArrayAsync As Threading.Tasks.Task(Of Byte())
     return:
       type: System.Threading.Tasks.Task{System.Byte[]}
       description: Returns @'System.Threading.Tasks.Task`1'.The task object representing the asynchronous operation.
@@ -287,8 +277,8 @@ items:
   namespace: System.Net.Http
   summary: Serialize the HTTP content and return a stream that represents the content as an asynchronous operation.
   syntax:
-    content: public Task<Stream> ReadAsStreamAsync()
-    content.vb: Public Function ReadAsStreamAsync As Task(Of Stream)
+    content: public Threading.Tasks.Task<IO.Stream> ReadAsStreamAsync()
+    content.vb: Public Function ReadAsStreamAsync As Threading.Tasks.Task(Of IO.Stream)
     return:
       type: System.Threading.Tasks.Task{System.IO.Stream}
       description: Returns @'System.Threading.Tasks.Task`1'.The task object representing the asynchronous operation.
@@ -308,8 +298,8 @@ items:
   namespace: System.Net.Http
   summary: Serialize the HTTP content to a string as an asynchronous operation.
   syntax:
-    content: public Task<string> ReadAsStringAsync()
-    content.vb: Public Function ReadAsStringAsync As Task(Of String)
+    content: public Threading.Tasks.Task<string> ReadAsStringAsync()
+    content.vb: Public Function ReadAsStringAsync As Threading.Tasks.Task(Of String)
     return:
       type: System.Threading.Tasks.Task{System.String}
       description: Returns @'System.Threading.Tasks.Task`1'.The task object representing the asynchronous operation.
@@ -317,7 +307,7 @@ items:
   id: SerializeToStreamAsync(System.IO.Stream,System.Net.TransportContext)
   parent: System.Net.Http.HttpContent
   href: System.Net.Http.HttpContent.yml
-  name: SerializeToStreamAsync(Stream, TransportContext)
+  name: SerializeToStreamAsync(IO.Stream, TransportContext)
   fullName: System.Net.Http.HttpContent.SerializeToStreamAsync(System.IO.Stream, System.Net.TransportContext)
   type: Method
   source:
@@ -329,8 +319,8 @@ items:
   namespace: System.Net.Http
   summary: Serialize the HTTP content to a stream as an asynchronous operation.
   syntax:
-    content: protected abstract Task SerializeToStreamAsync(Stream stream, TransportContext context)
-    content.vb: Protected MustOverride Function SerializeToStreamAsync(stream As Stream, context As TransportContext) As Task
+    content: protected abstract Threading.Tasks.Task SerializeToStreamAsync(IO.Stream stream, TransportContext context)
+    content.vb: Protected MustOverride Function SerializeToStreamAsync(stream As IO.Stream, context As TransportContext) As Threading.Tasks.Task
     parameters:
     - id: stream
       type: System.IO.Stream
@@ -379,215 +369,6 @@ references:
   href: System.Object.yml
   name: Object
   fullName: System.Object
-- uid: System.Object.ToString
-  parent: System.Object
-  isExternal: true
-  name: ToString()
-  fullName: System.Object.ToString()
-  spec.csharp:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ToString
-    name: ToString
-    fullName: System.Object.ToString
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object)
-  fullName: System.Object.Equals(System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.Equals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: Equals(Object, Object)
-  fullName: System.Object.Equals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.Equals(System.Object,System.Object)
-    name: Equals
-    fullName: System.Object.Equals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  parent: System.Object
-  isExternal: true
-  name: ReferenceEquals(Object, Object)
-  fullName: System.Object.ReferenceEquals(System.Object, System.Object)
-  spec.csharp:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-    name: ReferenceEquals
-    fullName: System.Object.ReferenceEquals
-    isExternal: true
-  - name: (
-    fullName: (
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: ', '
-    fullName: ', '
-  - uid: System.Object
-    name: Object
-    fullName: System.Object
-    isExternal: true
-  - name: )
-    fullName: )
-- uid: System.Object.GetHashCode
-  parent: System.Object
-  isExternal: true
-  name: GetHashCode()
-  fullName: System.Object.GetHashCode()
-  spec.csharp:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetHashCode
-    name: GetHashCode
-    fullName: System.Object.GetHashCode
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.GetType
-  parent: System.Object
-  isExternal: true
-  name: GetType()
-  fullName: System.Object.GetType()
-  spec.csharp:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.GetType
-    name: GetType
-    fullName: System.Object.GetType
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-- uid: System.Object.MemberwiseClone
-  parent: System.Object
-  isExternal: true
-  name: MemberwiseClone()
-  fullName: System.Object.MemberwiseClone()
-  spec.csharp:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
-  spec.vb:
-  - uid: System.Object.MemberwiseClone
-    name: MemberwiseClone
-    fullName: System.Object.MemberwiseClone
-    isExternal: true
-  - name: (
-    fullName: (
-  - name: )
-    fullName: )
 - uid: System
   isExternal: false
   name: System
@@ -606,13 +387,13 @@ references:
   parent: System.IO
   isExternal: false
   href: System.IO.Stream.yml
-  name: Stream
+  name: IO.Stream
   fullName: System.IO.Stream
 - uid: System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: false
   href: System.Threading.Tasks.Task.yml
-  name: Task
+  name: Threading.Tasks.Task
   fullName: System.Threading.Tasks.Task
 - uid: System.IO
   isExternal: false
@@ -628,34 +409,33 @@ references:
   name: TransportContext
   fullName: System.Net.TransportContext
 - uid: System.Threading.Tasks.Task{System.IO.Stream}
-  parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
-  name: Task<Stream>
-  name.vb: Task(Of Stream)
+  name: Threading.Tasks.Task<IO.Stream>
+  name.vb: Threading.Tasks.Task(Of IO.Stream)
   fullName: System.Threading.Tasks.Task<System.IO.Stream>
   fullName.vb: System.Threading.Tasks.Task(Of System.IO.Stream)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
     fullName: <
   - uid: System.IO.Stream
-    name: Stream
+    name: IO.Stream
     fullName: System.IO.Stream
     isExternal: true
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
     fullName: '(Of '
   - uid: System.IO.Stream
-    name: Stream
+    name: IO.Stream
     fullName: System.IO.Stream
     isExternal: true
   - name: )
@@ -664,30 +444,28 @@ references:
   parent: System.Threading.Tasks
   isExternal: false
   href: System.Threading.Tasks.Task`1.yml
-  name: Task<TResult>
-  name.vb: Task(Of TResult)
-  fullName: System.Threading.Tasks.Task<TResult>
-  fullName.vb: System.Threading.Tasks.Task(Of TResult)
+  name: Threading.Tasks.Task<>
+  name.vb: Threading.Tasks.Task(Of )
+  fullName: System.Threading.Tasks.Task<>
+  fullName.vb: System.Threading.Tasks.Task(Of )
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     href: System.Threading.Tasks.Task`1.yml
   - name: <
     fullName: <
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     href: System.Threading.Tasks.Task`1.yml
   - name: '(Of '
     fullName: '(Of '
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: )
     fullName: )
 - uid: System.Boolean
@@ -703,15 +481,14 @@ references:
   name: Int64
   fullName: System.Int64
 - uid: System.Threading.Tasks.Task{System.Byte[]}
-  parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
-  name: Task<Byte[]>
-  name.vb: Task(Of Byte())
+  name: Threading.Tasks.Task<Byte[]>
+  name.vb: Threading.Tasks.Task(Of Byte())
   fullName: System.Threading.Tasks.Task<System.Byte[]>
   fullName.vb: System.Threading.Tasks.Task(Of System.Byte())
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
@@ -726,7 +503,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
@@ -740,15 +517,14 @@ references:
   - name: )
     fullName: )
 - uid: System.Threading.Tasks.Task{System.String}
-  parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
-  name: Task<String>
-  name.vb: Task(Of String)
+  name: Threading.Tasks.Task<String>
+  name.vb: Threading.Tasks.Task(Of String)
   fullName: System.Threading.Tasks.Task<System.String>
   fullName.vb: System.Threading.Tasks.Task(Of System.String)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
@@ -761,7 +537,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
