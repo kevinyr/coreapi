@@ -4,9 +4,11 @@ items:
   parent: System.Security.Principal
   children:
   - System.Security.Principal.WindowsPrincipal.#ctor(System.Security.Principal.WindowsIdentity)
+  - System.Security.Principal.WindowsPrincipal.Identity
   - System.Security.Principal.WindowsPrincipal.IsInRole(System.Int32)
   - System.Security.Principal.WindowsPrincipal.IsInRole(System.Security.Principal.SecurityIdentifier)
   - System.Security.Principal.WindowsPrincipal.IsInRole(System.Security.Principal.WindowsBuiltInRole)
+  - System.Security.Principal.WindowsPrincipal.IsInRole(System.String)
   href: System.Security.Principal.WindowsPrincipal.yml
   name: WindowsPrincipal
   fullName: System.Security.Principal.WindowsPrincipal
@@ -52,6 +54,28 @@ items:
   exceptions:
   - type: System.ArgumentNullException
     description: '*ntIdentity* is null.'
+- uid: System.Security.Principal.WindowsPrincipal.Identity
+  id: Identity
+  parent: System.Security.Principal.WindowsPrincipal
+  href: System.Security.Principal.WindowsPrincipal.yml
+  name: Identity
+  fullName: System.Security.Principal.WindowsPrincipal.Identity
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsPrincipal.cs
+    startLine: 47
+  assemblies:
+  - System.Security.Principal.Windows
+  namespace: System.Security.Principal
+  summary: Gets the identity of the current principal.
+  syntax:
+    content: public override IIdentity Identity { get; }
+    content.vb: Public Overrides ReadOnly Property Identity As IIdentity
+    parameters: []
+    return:
+      type: System.Security.Principal.IIdentity
+      description: The @'System.Security.Principal.WindowsIdentity' object of the current principal.
 - uid: System.Security.Principal.WindowsPrincipal.IsInRole(System.Int32)
   id: IsInRole(System.Int32)
   parent: System.Security.Principal.WindowsPrincipal
@@ -135,6 +159,31 @@ items:
   exceptions:
   - type: System.ArgumentException
     description: '*role* is not a valid @''System.Security.Principal.WindowsBuiltInRole'' value.'
+- uid: System.Security.Principal.WindowsPrincipal.IsInRole(System.String)
+  id: IsInRole(System.String)
+  parent: System.Security.Principal.WindowsPrincipal
+  href: System.Security.Principal.WindowsPrincipal.yml
+  name: IsInRole(String)
+  fullName: System.Security.Principal.WindowsPrincipal.IsInRole(System.String)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsPrincipal.cs
+    startLine: 60
+  assemblies:
+  - System.Security.Principal.Windows
+  namespace: System.Security.Principal
+  summary: Determines whether the current principal belongs to the Windows user group with the specified name.
+  syntax:
+    content: public override bool IsInRole(string role)
+    content.vb: Public Overrides Function IsInRole(role As String) As Boolean
+    parameters:
+    - id: role
+      type: System.String
+      description: The name of the Windows user group for which to check membership.
+    return:
+      type: System.Boolean
+      description: true if the current principal is a member of the specified Windows user group; otherwise, false.
 references:
 - uid: System.Security.Principal
   isExternal: false
@@ -156,6 +205,12 @@ references:
   href: System.Security.Principal.WindowsIdentity.yml
   name: WindowsIdentity
   fullName: System.Security.Principal.WindowsIdentity
+- uid: System.Security.Principal.IIdentity
+  parent: System.Security.Principal
+  isExternal: false
+  href: System.Security.Principal.IIdentity.yml
+  name: Principal.IIdentity
+  fullName: System.Security.Principal.IIdentity
 - uid: System.Int32
   parent: System
   isExternal: false
@@ -180,6 +235,12 @@ references:
   href: System.Security.Principal.WindowsBuiltInRole.yml
   name: WindowsBuiltInRole
   fullName: System.Security.Principal.WindowsBuiltInRole
+- uid: System.String
+  parent: System
+  isExternal: false
+  href: System.String.yml
+  name: String
+  fullName: System.String
 - uid: System.ArgumentNullException
   isExternal: false
   href: System.ArgumentNullException.yml

@@ -5,6 +5,8 @@ items:
   children:
   - System.Console.BackgroundColor
   - System.Console.Beep
+  - System.Console.BufferHeight
+  - System.Console.BufferWidth
   - System.Console.CancelKeyPress
   - System.Console.Clear
   - System.Console.CursorLeft
@@ -17,6 +19,8 @@ items:
   - System.Console.IsInputRedirected
   - System.Console.IsOutputRedirected
   - System.Console.KeyAvailable
+  - System.Console.LargestWindowHeight
+  - System.Console.LargestWindowWidth
   - System.Console.OpenStandardError
   - System.Console.OpenStandardInput
   - System.Console.OpenStandardOutput
@@ -26,6 +30,7 @@ items:
   - System.Console.ReadKey(System.Boolean)
   - System.Console.ReadLine
   - System.Console.ResetColor
+  - System.Console.SetBufferSize(System.Int32,System.Int32)
   - System.Console.SetCursorPosition(System.Int32,System.Int32)
   - System.Console.SetError(System.IO.TextWriter)
   - System.Console.SetIn(System.IO.TextReader)
@@ -129,7 +134,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 236
+    startLine: 251
   assemblies:
   - System.Console
   namespace: System
@@ -140,6 +145,82 @@ items:
   exceptions:
   - type: System.Security.HostProtectionException
     description: This method was executed on a server, such as SQL Server, that does not permit access to a user interface.
+- uid: System.Console.BufferHeight
+  id: BufferHeight
+  parent: System.Console
+  href: System.Console.yml
+  name: BufferHeight
+  fullName: System.Console.BufferHeight
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 147
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Gets or sets the height of the buffer area.
+  syntax:
+    content: public static int BufferHeight { get; set; }
+    content.vb: Public Shared Property BufferHeight As Integer
+    parameters: []
+    return:
+      type: System.Int32
+      description: The current height, in rows, of the buffer area.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: The value in a set operation is less than or equal to zero.-or- The value in a set operation is greater than or equal to @'System.Int16.MaxValue'.-or- The value in a set operation is less than @'System.Console.WindowTop' + @'System.Console.WindowHeight'.
+  - type: System.Security.SecurityException
+    description: The user does not have permission to perform this action.
+  - type: System.IO.IOException
+    description: An I/O error occurred.
+- uid: System.Console.BufferWidth
+  id: BufferWidth
+  parent: System.Console
+  href: System.Console.yml
+  name: BufferWidth
+  fullName: System.Console.BufferWidth
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 141
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Gets or sets the width of the buffer area.
+  syntax:
+    content: public static int BufferWidth { get; set; }
+    content.vb: Public Shared Property BufferWidth As Integer
+    parameters: []
+    return:
+      type: System.Int32
+      description: The current width, in columns, of the buffer area.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: The value in a set operation is less than or equal to zero.-or- The value in a set operation is greater than or equal to @'System.Int16.MaxValue'.-or- The value in a set operation is less than @'System.Console.WindowLeft' + @'System.Console.WindowWidth'.
+  - type: System.Security.SecurityException
+    description: The user does not have permission to perform this action.
+  - type: System.IO.IOException
+    description: An I/O error occurred.
+- uid: System.Console.CancelKeyPress
+  id: CancelKeyPress
+  parent: System.Console
+  href: System.Console.yml
+  name: CancelKeyPress
+  fullName: System.Console.CancelKeyPress
+  type: Event
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 272
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Occurs when the @'System.ConsoleModifiers.Control' modifier key (Ctrl) and either the @'System.ConsoleKey.C' console key (C) or the Break key are pressed simultaneously (Ctrl+C or Ctrl+Break).
+  syntax:
+    content: public static event ConsoleCancelEventHandler CancelKeyPress
+    content.vb: Public Shared Event CancelKeyPress As ConsoleCancelEventHandler
 - uid: System.Console.Clear
   id: Clear
   parent: System.Console
@@ -150,7 +231,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 241
+    startLine: 256
   assemblies:
   - System.Console
   namespace: System
@@ -161,29 +242,31 @@ items:
   exceptions:
   - type: System.IO.IOException
     description: An I/O error occurred.
-- uid: System.Console.CursorVisible
-  id: CursorVisible
+- uid: System.Console.CursorLeft
+  id: CursorLeft
   parent: System.Console
   href: System.Console.yml
-  name: CursorVisible
-  fullName: System.Console.CursorVisible
+  name: CursorLeft
+  fullName: System.Console.CursorLeft
   type: Property
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 197
+    startLine: 218
   assemblies:
   - System.Console
   namespace: System
-  summary: Gets or sets a value indicating whether the cursor is visible.
+  summary: Gets or sets the column position of the cursor within the buffer area.
   syntax:
-    content: public static bool CursorVisible { get; set; }
-    content.vb: Public Shared Property CursorVisible As Boolean
+    content: public static int CursorLeft { get; set; }
+    content.vb: Public Shared Property CursorLeft As Integer
     parameters: []
     return:
-      type: System.Boolean
-      description: true if the cursor is visible; otherwise, false.
+      type: System.Int32
+      description: The current position, in columns, of the cursor.
   exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: The value in a set operation is less than zero.-or- The value in a set operation is greater than or equal to @'System.Console.BufferWidth'.
   - type: System.Security.SecurityException
     description: The user does not have permission to perform this action.
   - type: System.IO.IOException
@@ -198,7 +281,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 209
+    startLine: 224
   assemblies:
   - System.Console
   namespace: System
@@ -217,31 +300,29 @@ items:
     description: The user does not have permission to perform this action.
   - type: System.IO.IOException
     description: An I/O error occurred.
-- uid: System.Console.CursorLeft
-  id: CursorLeft
+- uid: System.Console.CursorVisible
+  id: CursorVisible
   parent: System.Console
   href: System.Console.yml
-  name: CursorLeft
-  fullName: System.Console.CursorLeft
+  name: CursorVisible
+  fullName: System.Console.CursorVisible
   type: Property
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 203
+    startLine: 212
   assemblies:
   - System.Console
   namespace: System
-  summary: Gets or sets the column position of the cursor within the buffer area.
+  summary: Gets or sets a value indicating whether the cursor is visible.
   syntax:
-    content: public static int CursorLeft { get; set; }
-    content.vb: Public Shared Property CursorLeft As Integer
+    content: public static bool CursorVisible { get; set; }
+    content.vb: Public Shared Property CursorVisible As Boolean
     parameters: []
     return:
-      type: System.Int32
-      description: The current position, in columns, of the cursor.
+      type: System.Boolean
+      description: true if the cursor is visible; otherwise, false.
   exceptions:
-  - type: System.ArgumentOutOfRangeException
-    description: The value in a set operation is less than zero.-or- The value in a set operation is greater than or equal to @'System.Console.BufferWidth'.
   - type: System.Security.SecurityException
     description: The user does not have permission to perform this action.
   - type: System.IO.IOException
@@ -297,6 +378,28 @@ items:
     description: The user does not have permission to perform this action.
   - type: System.IO.IOException
     description: An I/O error occurred.
+- uid: System.Console.IsErrorRedirected
+  id: IsErrorRedirected
+  parent: System.Console
+  href: System.Console.yml
+  name: IsErrorRedirected
+  fullName: System.Console.IsErrorRedirected
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 114
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Gets a value that indicates whether the error output stream has been redirected from the standard error stream.
+  syntax:
+    content: public static bool IsErrorRedirected { get; }
+    content.vb: Public Shared ReadOnly Property IsErrorRedirected As Boolean
+    parameters: []
+    return:
+      type: System.Boolean
+      description: true if error output is redirected; otherwise, false.
 - uid: System.Console.IsInputRedirected
   id: IsInputRedirected
   parent: System.Console
@@ -341,28 +444,6 @@ items:
     return:
       type: System.Boolean
       description: true if output is redirected; otherwise, false.
-- uid: System.Console.IsErrorRedirected
-  id: IsErrorRedirected
-  parent: System.Console
-  href: System.Console.yml
-  name: IsErrorRedirected
-  fullName: System.Console.IsErrorRedirected
-  type: Property
-  source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 114
-  assemblies:
-  - System.Console
-  namespace: System
-  summary: Gets a value that indicates whether the error output stream has been redirected from the standard error stream.
-  syntax:
-    content: public static bool IsErrorRedirected { get; }
-    content.vb: Public Shared ReadOnly Property IsErrorRedirected As Boolean
-    parameters: []
-    return:
-      type: System.Boolean
-      description: true if error output is redirected; otherwise, false.
 - uid: System.Console.In
   id: In
   parent: System.Console
@@ -412,6 +493,113 @@ items:
     description: An I/O error occurred.
   - type: System.InvalidOperationException
     description: Standard input is redirected to a file instead of the keyboard.
+- uid: System.Console.LargestWindowWidth
+  id: LargestWindowWidth
+  parent: System.Console
+  href: System.Console.yml
+  name: LargestWindowWidth
+  fullName: System.Console.LargestWindowWidth
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 202
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Gets the largest possible number of console window columns, based on the current font and screen resolution.
+  syntax:
+    content: public static int LargestWindowWidth { get; }
+    content.vb: Public Shared ReadOnly Property LargestWindowWidth As Integer
+    parameters: []
+    return:
+      type: System.Int32
+      description: The width of the largest possible console window measured in columns.
+- uid: System.Console.LargestWindowHeight
+  id: LargestWindowHeight
+  parent: System.Console
+  href: System.Console.yml
+  name: LargestWindowHeight
+  fullName: System.Console.LargestWindowHeight
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 207
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Gets the largest possible number of console window rows, based on the current font and screen resolution.
+  syntax:
+    content: public static int LargestWindowHeight { get; }
+    content.vb: Public Shared ReadOnly Property LargestWindowHeight As Integer
+    parameters: []
+    return:
+      type: System.Int32
+      description: The height of the largest possible console window measured in rows.
+- uid: System.Console.OpenStandardError
+  id: OpenStandardError
+  parent: System.Console
+  href: System.Console.yml
+  name: OpenStandardError()
+  fullName: System.Console.OpenStandardError()
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 312
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Acquires the standard error stream.
+  syntax:
+    content: public static IO.Stream OpenStandardError()
+    content.vb: Public Shared Function OpenStandardError As IO.Stream
+    return:
+      type: System.IO.Stream
+      description: The standard error stream.
+- uid: System.Console.OpenStandardInput
+  id: OpenStandardInput
+  parent: System.Console
+  href: System.Console.yml
+  name: OpenStandardInput()
+  fullName: System.Console.OpenStandardInput()
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 302
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Acquires the standard input stream.
+  syntax:
+    content: public static IO.Stream OpenStandardInput()
+    content.vb: Public Shared Function OpenStandardInput As IO.Stream
+    return:
+      type: System.IO.Stream
+      description: The standard input stream.
+- uid: System.Console.OpenStandardOutput
+  id: OpenStandardOutput
+  parent: System.Console
+  href: System.Console.yml
+  name: OpenStandardOutput()
+  fullName: System.Console.OpenStandardOutput()
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 307
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Acquires the standard output stream.
+  syntax:
+    content: public static IO.Stream OpenStandardOutput()
+    content.vb: Public Shared Function OpenStandardOutput As IO.Stream
+    return:
+      type: System.IO.Stream
+      description: The standard output stream.
 - uid: System.Console.Out
   id: Out
   parent: System.Console
@@ -434,87 +622,6 @@ items:
     return:
       type: System.IO.TextWriter
       description: A @'System.IO.TextWriter' that represents the standard output stream.
-- uid: System.Console.CancelKeyPress
-  id: CancelKeyPress
-  parent: System.Console
-  href: System.Console.yml
-  name: CancelKeyPress
-  fullName: System.Console.CancelKeyPress
-  type: Event
-  source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 257
-  assemblies:
-  - System.Console
-  namespace: System
-  summary: Occurs when the @'System.ConsoleModifiers.Control' modifier key (Ctrl) and either the @'System.ConsoleKey.C' console key (C) or the Break key are pressed simultaneously (Ctrl+C or Ctrl+Break).
-  syntax:
-    content: public static event ConsoleCancelEventHandler CancelKeyPress
-    content.vb: Public Shared Event CancelKeyPress As ConsoleCancelEventHandler
-- uid: System.Console.OpenStandardError
-  id: OpenStandardError
-  parent: System.Console
-  href: System.Console.yml
-  name: OpenStandardError()
-  fullName: System.Console.OpenStandardError()
-  type: Method
-  source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 297
-  assemblies:
-  - System.Console
-  namespace: System
-  summary: Acquires the standard error stream.
-  syntax:
-    content: public static IO.Stream OpenStandardError()
-    content.vb: Public Shared Function OpenStandardError As IO.Stream
-    return:
-      type: System.IO.Stream
-      description: The standard error stream.
-- uid: System.Console.OpenStandardInput
-  id: OpenStandardInput
-  parent: System.Console
-  href: System.Console.yml
-  name: OpenStandardInput()
-  fullName: System.Console.OpenStandardInput()
-  type: Method
-  source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 287
-  assemblies:
-  - System.Console
-  namespace: System
-  summary: Acquires the standard input stream.
-  syntax:
-    content: public static IO.Stream OpenStandardInput()
-    content.vb: Public Shared Function OpenStandardInput As IO.Stream
-    return:
-      type: System.IO.Stream
-      description: The standard input stream.
-- uid: System.Console.OpenStandardOutput
-  id: OpenStandardOutput
-  parent: System.Console
-  href: System.Console.yml
-  name: OpenStandardOutput()
-  fullName: System.Console.OpenStandardOutput()
-  type: Method
-  source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 292
-  assemblies:
-  - System.Console
-  namespace: System
-  summary: Acquires the standard output stream.
-  syntax:
-    content: public static IO.Stream OpenStandardOutput()
-    content.vb: Public Shared Function OpenStandardOutput As IO.Stream
-    return:
-      type: System.IO.Stream
-      description: The standard output stream.
 - uid: System.Console.Read
   id: Read
   parent: System.Console
@@ -525,7 +632,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 336
+    startLine: 351
   assemblies:
   - System.Console
   namespace: System
@@ -601,7 +708,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 342
+    startLine: 357
   assemblies:
   - System.Console
   namespace: System
@@ -642,6 +749,38 @@ items:
     description: The user does not have permission to perform this action.
   - type: System.IO.IOException
     description: An I/O error occurred.
+- uid: System.Console.SetBufferSize(System.Int32,System.Int32)
+  id: SetBufferSize(System.Int32,System.Int32)
+  parent: System.Console
+  href: System.Console.yml
+  name: SetBufferSize(Int32, Int32)
+  fullName: System.Console.SetBufferSize(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 153
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Sets the height and width of the screen buffer area to the specified values.
+  syntax:
+    content: public static void SetBufferSize(int width, int height)
+    content.vb: Public Shared Sub SetBufferSize(width As Integer, height As Integer)
+    parameters:
+    - id: width
+      type: System.Int32
+      description: The width of the buffer area measured in columns.
+    - id: height
+      type: System.Int32
+      description: The height of the buffer area measured in rows.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: '*height* or *width* is less than or equal to zero.-or- *height* or *width* is greater than or equal to @''System.Int16.MaxValue''.-or- *width* is less than @''System.Console.WindowLeft'' + @''System.Console.WindowWidth''.-or- *height* is less than @''System.Console.WindowTop'' + @''System.Console.WindowHeight''.'
+  - type: System.Security.SecurityException
+    description: The user does not have permission to perform this action.
+  - type: System.IO.IOException
+    description: An I/O error occurred.
 - uid: System.Console.SetCursorPosition(System.Int32,System.Int32)
   id: SetCursorPosition(System.Int32,System.Int32)
   parent: System.Console
@@ -652,7 +791,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 246
+    startLine: 261
   assemblies:
   - System.Console
   namespace: System
@@ -687,7 +826,7 @@ items:
       branch: master
       repo: https://github.com/dotnet/corefx.git
     path: src/System.Console/ref/System.Console.cs
-    startLine: 35
+    startLine: 40
   assemblies:
   - System.Console
   namespace: System
@@ -714,7 +853,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 36
+    startLine: 41
   assemblies:
   - System.Console
   namespace: System
@@ -741,7 +880,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 37
+    startLine: 42
   assemblies:
   - System.Console
   namespace: System
@@ -768,7 +907,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 217
+    startLine: 232
   assemblies:
   - System.Console
   namespace: System
@@ -789,33 +928,6 @@ items:
     description: In a set operation, the specified title is null.
   - type: System.IO.IOException
     description: An I/O error occurred.
-- uid: System.Console.WindowWidth
-  id: WindowWidth
-  parent: System.Console
-  href: System.Console.yml
-  name: WindowWidth
-  fullName: System.Console.WindowWidth
-  type: Property
-  source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 165
-  assemblies:
-  - System.Console
-  namespace: System
-  summary: Gets or sets the width of the console window.
-  syntax:
-    content: public static int WindowWidth { get; set; }
-    content.vb: Public Shared Property WindowWidth As Integer
-    parameters: []
-    return:
-      type: System.Int32
-      description: The width of the console window measured in columns.
-  exceptions:
-  - type: System.ArgumentOutOfRangeException
-    description: The value of the @'System.Console.WindowWidth' property or the value of the @'System.Console.WindowHeight' property is less than or equal to 0.-or-The value of the @'System.Console.WindowHeight' property plus the value of the @'System.Console.WindowTop' property is greater than or equal to @'System.Int16.MaxValue'.-or-The value of the @'System.Console.WindowWidth' property or the value of the @'System.Console.WindowHeight' property is greater than the largest possible window width or height for the current screen resolution and console font.
-  - type: System.IO.IOException
-    description: Error reading or writing information.
 - uid: System.Console.WindowHeight
   id: WindowHeight
   parent: System.Console
@@ -826,7 +938,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 181
+    startLine: 186
   assemblies:
   - System.Console
   namespace: System
@@ -843,6 +955,33 @@ items:
     description: The value of the @'System.Console.WindowWidth' property or the value of the @'System.Console.WindowHeight' property is less than or equal to 0.-or-The value of the @'System.Console.WindowHeight' property plus the value of the @'System.Console.WindowTop' property is greater than or equal to @'System.Int16.MaxValue'.-or-The value of the @'System.Console.WindowWidth' property or the value of the @'System.Console.WindowHeight' property is greater than the largest possible window width or height for the current screen resolution and console font.
   - type: System.IO.IOException
     description: Error reading or writing information.
+- uid: System.Console.WindowWidth
+  id: WindowWidth
+  parent: System.Console
+  href: System.Console.yml
+  name: WindowWidth
+  fullName: System.Console.WindowWidth
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Console/src/System/Console.cs
+    startLine: 170
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Gets or sets the width of the console window.
+  syntax:
+    content: public static int WindowWidth { get; set; }
+    content.vb: Public Shared Property WindowWidth As Integer
+    parameters: []
+    return:
+      type: System.Int32
+      description: The width of the console window measured in columns.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: The value of the @'System.Console.WindowWidth' property or the value of the @'System.Console.WindowHeight' property is less than or equal to 0.-or-The value of the @'System.Console.WindowHeight' property plus the value of the @'System.Console.WindowTop' property is greater than or equal to @'System.Int16.MaxValue'.-or-The value of the @'System.Console.WindowWidth' property or the value of the @'System.Console.WindowHeight' property is greater than the largest possible window width or height for the current screen resolution and console font.
+  - type: System.IO.IOException
+    description: Error reading or writing information.
 - uid: System.Console.WindowLeft
   id: WindowLeft
   parent: System.Console
@@ -853,7 +992,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 153
+    startLine: 158
   assemblies:
   - System.Console
   namespace: System
@@ -880,7 +1019,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 159
+    startLine: 164
   assemblies:
   - System.Console
   namespace: System
@@ -907,7 +1046,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 488
+    startLine: 503
   assemblies:
   - System.Console
   namespace: System
@@ -932,7 +1071,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 494
+    startLine: 509
   assemblies:
   - System.Console
   namespace: System
@@ -959,7 +1098,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 500
+    startLine: 515
   assemblies:
   - System.Console
   namespace: System
@@ -986,7 +1125,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 506
+    startLine: 521
   assemblies:
   - System.Console
   namespace: System
@@ -1023,7 +1162,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 518
+    startLine: 533
   assemblies:
   - System.Console
   namespace: System
@@ -1048,7 +1187,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 512
+    startLine: 527
   assemblies:
   - System.Console
   namespace: System
@@ -1073,7 +1212,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 530
+    startLine: 545
   assemblies:
   - System.Console
   namespace: System
@@ -1098,7 +1237,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 543
+    startLine: 558
   assemblies:
   - System.Console
   namespace: System
@@ -1123,7 +1262,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 51
+    startLine: 56
   assemblies:
   - System.Console
   namespace: System
@@ -1148,7 +1287,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 524
+    startLine: 539
   assemblies:
   - System.Console
   namespace: System
@@ -1173,7 +1312,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 53
+    startLine: 58
   assemblies:
   - System.Console
   namespace: System
@@ -1198,7 +1337,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 54
+    startLine: 59
   assemblies:
   - System.Console
   namespace: System
@@ -1230,7 +1369,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 55
+    startLine: 60
   assemblies:
   - System.Console
   namespace: System
@@ -1265,7 +1404,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 56
+    startLine: 61
   assemblies:
   - System.Console
   namespace: System
@@ -1305,7 +1444,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 57
+    startLine: 62
   assemblies:
   - System.Console
   namespace: System
@@ -1337,7 +1476,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 536
+    startLine: 551
   assemblies:
   - System.Console
   namespace: System
@@ -1362,7 +1501,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 549
+    startLine: 564
   assemblies:
   - System.Console
   namespace: System
@@ -1387,7 +1526,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 348
+    startLine: 363
   assemblies:
   - System.Console
   namespace: System
@@ -1408,7 +1547,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 354
+    startLine: 369
   assemblies:
   - System.Console
   namespace: System
@@ -1433,7 +1572,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 360
+    startLine: 375
   assemblies:
   - System.Console
   namespace: System
@@ -1460,7 +1599,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 366
+    startLine: 381
   assemblies:
   - System.Console
   namespace: System
@@ -1487,7 +1626,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 372
+    startLine: 387
   assemblies:
   - System.Console
   namespace: System
@@ -1524,7 +1663,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 378
+    startLine: 393
   assemblies:
   - System.Console
   namespace: System
@@ -1549,7 +1688,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 384
+    startLine: 399
   assemblies:
   - System.Console
   namespace: System
@@ -1574,7 +1713,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 396
+    startLine: 411
   assemblies:
   - System.Console
   namespace: System
@@ -1599,7 +1738,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 409
+    startLine: 424
   assemblies:
   - System.Console
   namespace: System
@@ -1624,7 +1763,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 71
+    startLine: 76
   assemblies:
   - System.Console
   namespace: System
@@ -1649,7 +1788,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 390
+    startLine: 405
   assemblies:
   - System.Console
   namespace: System
@@ -1674,7 +1813,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 73
+    startLine: 78
   assemblies:
   - System.Console
   namespace: System
@@ -1699,7 +1838,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 74
+    startLine: 79
   assemblies:
   - System.Console
   namespace: System
@@ -1731,7 +1870,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 75
+    startLine: 80
   assemblies:
   - System.Console
   namespace: System
@@ -1766,7 +1905,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 76
+    startLine: 81
   assemblies:
   - System.Console
   namespace: System
@@ -1806,7 +1945,7 @@ items:
   source:
     remote: *o1
     path: src/System.Console/ref/System.Console.cs
-    startLine: 77
+    startLine: 82
   assemblies:
   - System.Console
   namespace: System
@@ -1838,7 +1977,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 402
+    startLine: 417
   assemblies:
   - System.Console
   namespace: System
@@ -1863,7 +2002,7 @@ items:
   source:
     remote: *o0
     path: src/System.Console/src/System/Console.cs
-    startLine: 415
+    startLine: 430
   assemblies:
   - System.Console
   namespace: System
@@ -1895,18 +2034,18 @@ references:
   href: System.ConsoleColor.yml
   name: ConsoleColor
   fullName: System.ConsoleColor
-- uid: System.Boolean
-  parent: System
-  isExternal: false
-  href: System.Boolean.yml
-  name: Boolean
-  fullName: System.Boolean
 - uid: System.Int32
   parent: System
   isExternal: false
   href: System.Int32.yml
   name: Int32
   fullName: System.Int32
+- uid: System.Boolean
+  parent: System
+  isExternal: false
+  href: System.Boolean.yml
+  name: Boolean
+  fullName: System.Boolean
 - uid: System.IO.TextWriter
   parent: System.IO
   isExternal: false

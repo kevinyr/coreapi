@@ -7,6 +7,10 @@ items:
   - System.Security.Principal.WindowsIdentity.#ctor(System.IntPtr,System.String)
   - System.Security.Principal.WindowsIdentity.#ctor(System.String)
   - System.Security.Principal.WindowsIdentity.AccessToken
+  - System.Security.Principal.WindowsIdentity.AuthenticationType
+  - System.Security.Principal.WindowsIdentity.Claims
+  - System.Security.Principal.WindowsIdentity.Clone
+  - System.Security.Principal.WindowsIdentity.DefaultIssuer
   - System.Security.Principal.WindowsIdentity.Dispose
   - System.Security.Principal.WindowsIdentity.Dispose(System.Boolean)
   - System.Security.Principal.WindowsIdentity.GetAnonymous
@@ -16,8 +20,10 @@ items:
   - System.Security.Principal.WindowsIdentity.Groups
   - System.Security.Principal.WindowsIdentity.ImpersonationLevel
   - System.Security.Principal.WindowsIdentity.IsAnonymous
+  - System.Security.Principal.WindowsIdentity.IsAuthenticated
   - System.Security.Principal.WindowsIdentity.IsGuest
   - System.Security.Principal.WindowsIdentity.IsSystem
+  - System.Security.Principal.WindowsIdentity.Name
   - System.Security.Principal.WindowsIdentity.Owner
   - System.Security.Principal.WindowsIdentity.RunImpersonated(Microsoft.Win32.SafeHandles.SafeAccessTokenHandle,System.Action)
   - System.Security.Principal.WindowsIdentity.RunImpersonated``1(Microsoft.Win32.SafeHandles.SafeAccessTokenHandle,System.Func{``0})
@@ -27,7 +33,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity
   type: Class
   source:
-    remote: &o1
+    remote: &o0
       path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
@@ -44,6 +50,24 @@ items:
   - System.Object
   implements:
   - System.IDisposable
+- uid: System.Security.Principal.WindowsIdentity.DefaultIssuer
+  id: DefaultIssuer
+  parent: System.Security.Principal.WindowsIdentity
+  href: System.Security.Principal.WindowsIdentity.yml
+  name: DefaultIssuer
+  fullName: System.Security.Principal.WindowsIdentity.DefaultIssuer
+  type: Field
+  source:
+    remote: *o0
+    path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
+    startLine: 37
+  assemblies:
+  - System.Security.Principal.Windows
+  namespace: System.Security.Principal
+  summary: Identifies the name of the default @'System.Security.Claims.ClaimsIdentity' issuer.
+  syntax:
+    content: public const string DefaultIssuer
+    content.vb: Public Const DefaultIssuer As String = Nothing
 - uid: System.Security.Principal.WindowsIdentity.#ctor(System.IntPtr)
   id: '#ctor(System.IntPtr)'
   parent: System.Security.Principal.WindowsIdentity
@@ -52,12 +76,12 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.WindowsIdentity(System.IntPtr)
   type: Constructor
   source:
-    remote: &o0
+    remote: &o1
       path: src/System.Security.Principal.Windows/ref/System.Security.Principal.Windows.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     path: src/System.Security.Principal.Windows/ref/System.Security.Principal.Windows.cs
-    startLine: 191
+    startLine: 192
   assemblies:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
@@ -82,9 +106,9 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.WindowsIdentity(System.IntPtr, System.String)
   type: Constructor
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Principal.Windows/ref/System.Security.Principal.Windows.cs
-    startLine: 192
+    startLine: 193
   assemblies:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
@@ -112,7 +136,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.WindowsIdentity(System.String)
   type: Constructor
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 59
   assemblies:
@@ -141,7 +165,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.AccessToken
   type: Property
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 549
   assemblies:
@@ -155,6 +179,57 @@ items:
     return:
       type: Microsoft.Win32.SafeHandles.SafeAccessTokenHandle
       description: Returns a @'Microsoft.Win32.SafeHandles.SafeAccessTokenHandle'.
+- uid: System.Security.Principal.WindowsIdentity.AuthenticationType
+  id: AuthenticationType
+  parent: System.Security.Principal.WindowsIdentity
+  href: System.Security.Principal.WindowsIdentity.yml
+  name: AuthenticationType
+  fullName: System.Security.Principal.WindowsIdentity.AuthenticationType
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
+    startLine: 265
+  assemblies:
+  - System.Security.Principal.Windows
+  namespace: System.Security.Principal
+  summary: Gets the type of authentication used to identify the user.
+  syntax:
+    content: public override sealed string AuthenticationType { get; }
+    content.vb: Public NotOverridable Overrides ReadOnly Property AuthenticationType As String
+    parameters: []
+    return:
+      type: System.String
+      description: The type of authentication used to identify the user.
+  exceptions:
+  - type: System.UnauthorizedAccessException
+    description: "Windows returned the Windows NT status code STATUS_ACCESS_DENIED."
+  - type: System.OutOfMemoryException
+    description: There is insufficient memory available.
+  - type: System.Security.SecurityException
+    description: The caller does not have the correct permissions. -or-The computer is not attached to a Windows 2003 or later domain.-or-The computer is not running Windows 2003 or later.-or-The user is not a member of the domain the computer is attached to.
+- uid: System.Security.Principal.WindowsIdentity.Claims
+  id: Claims
+  parent: System.Security.Principal.WindowsIdentity
+  href: System.Security.Principal.WindowsIdentity.yml
+  name: Claims
+  fullName: System.Security.Principal.WindowsIdentity.Claims
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
+    startLine: 917
+  assemblies:
+  - System.Security.Principal.Windows
+  namespace: System.Security.Principal
+  summary: Gets all claims for the user represented by this Windows identity.
+  syntax:
+    content: public override Collections.Generic.IEnumerable<Claims.Claim> Claims { get; }
+    content.vb: Public Overrides ReadOnly Property Claims As Collections.Generic.IEnumerable(Of Claims.Claim)
+    parameters: []
+    return:
+      type: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
+      description: A collection of claims for this @'System.Security.Principal.WindowsIdentity' object.
 - uid: System.Security.Principal.WindowsIdentity.Groups
   id: Groups
   parent: System.Security.Principal.WindowsIdentity
@@ -163,7 +238,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.Groups
   type: Property
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 509
   assemblies:
@@ -185,7 +260,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.ImpersonationLevel
   type: Property
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 302
   assemblies:
@@ -207,7 +282,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.IsAnonymous
   type: Property
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 429
   assemblies:
@@ -221,6 +296,28 @@ items:
     return:
       type: System.Boolean
       description: true if the user account is an anonymous account; otherwise, false.
+- uid: System.Security.Principal.WindowsIdentity.IsAuthenticated
+  id: IsAuthenticated
+  parent: System.Security.Principal.WindowsIdentity
+  href: System.Security.Principal.WindowsIdentity.yml
+  name: IsAuthenticated
+  fullName: System.Security.Principal.WindowsIdentity.IsAuthenticated
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
+    startLine: 339
+  assemblies:
+  - System.Security.Principal.Windows
+  namespace: System.Security.Principal
+  summary: Gets a value indicating whether the user has been authenticated by Windows.
+  syntax:
+    content: public override bool IsAuthenticated { get; }
+    content.vb: Public Overrides ReadOnly Property IsAuthenticated As Boolean
+    parameters: []
+    return:
+      type: System.Boolean
+      description: true if the user was authenticated; otherwise, false.
 - uid: System.Security.Principal.WindowsIdentity.IsGuest
   id: IsGuest
   parent: System.Security.Principal.WindowsIdentity
@@ -229,7 +326,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.IsGuest
   type: Property
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 403
   assemblies:
@@ -251,7 +348,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.IsSystem
   type: Property
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 416
   assemblies:
@@ -265,6 +362,28 @@ items:
     return:
       type: System.Boolean
       description: true if the user account is a @'System.Security.Principal.WindowsAccountType.System' account; otherwise, false.
+- uid: System.Security.Principal.WindowsIdentity.Name
+  id: Name
+  parent: System.Security.Principal.WindowsIdentity
+  href: System.Security.Principal.WindowsIdentity.yml
+  name: Name
+  fullName: System.Security.Principal.WindowsIdentity.Name
+  type: Property
+  source:
+    remote: *o0
+    path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
+    startLine: 442
+  assemblies:
+  - System.Security.Principal.Windows
+  namespace: System.Security.Principal
+  summary: Gets the user's Windows logon name.
+  syntax:
+    content: public override string Name { get; }
+    content.vb: Public Overrides ReadOnly Property Name As String
+    parameters: []
+    return:
+      type: System.String
+      description: The Windows logon name of the user on whose behalf the code is being run.
 - uid: System.Security.Principal.WindowsIdentity.Owner
   id: Owner
   parent: System.Security.Principal.WindowsIdentity
@@ -273,7 +392,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.Owner
   type: Property
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 469
   assemblies:
@@ -295,7 +414,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.User
   type: Property
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 489
   assemblies:
@@ -309,6 +428,27 @@ items:
     return:
       type: System.Security.Principal.SecurityIdentifier
       description: An object for the user.
+- uid: System.Security.Principal.WindowsIdentity.Clone
+  id: Clone
+  parent: System.Security.Principal.WindowsIdentity
+  href: System.Security.Principal.WindowsIdentity.yml
+  name: Clone()
+  fullName: System.Security.Principal.WindowsIdentity.Clone()
+  type: Method
+  source:
+    remote: *o0
+    path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
+    startLine: 882
+  assemblies:
+  - System.Security.Principal.Windows
+  namespace: System.Security.Principal
+  summary: Creates a new  object that is a copy of the current instance.
+  syntax:
+    content: public override Claims.ClaimsIdentity Clone()
+    content.vb: Public Overrides Function Clone As Claims.ClaimsIdentity
+    return:
+      type: System.Security.Claims.ClaimsIdentity
+      description: A copy of the current instance.
 - uid: System.Security.Principal.WindowsIdentity.Dispose
   id: Dispose
   parent: System.Security.Principal.WindowsIdentity
@@ -317,7 +457,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.Dispose()
   type: Method
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 593
   assemblies:
@@ -335,7 +475,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.Dispose(System.Boolean)
   type: Method
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 581
   assemblies:
@@ -357,7 +497,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.GetAnonymous()
   type: Method
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 256
   assemblies:
@@ -378,7 +518,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.GetCurrent()
   type: Method
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 234
   assemblies:
@@ -402,7 +542,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.GetCurrent(System.Boolean)
   type: Method
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 240
   assemblies:
@@ -427,7 +567,7 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.GetCurrent(System.Security.Principal.TokenAccessLevels)
   type: Method
   source:
-    remote: *o1
+    remote: *o0
     path: src/System.Security.Principal.Windows/src/System/Security/Principal/WindowsIdentity.cs
     startLine: 246
   assemblies:
@@ -452,9 +592,9 @@ items:
   fullName: System.Security.Principal.WindowsIdentity.RunImpersonated(Microsoft.Win32.SafeHandles.SafeAccessTokenHandle, System.Action)
   type: Method
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Principal.Windows/ref/System.Security.Principal.Windows.cs
-    startLine: 208
+    startLine: 214
   assemblies:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
@@ -479,9 +619,9 @@ items:
   fullName.vb: System.Security.Principal.WindowsIdentity.RunImpersonated(Of T)(Microsoft.Win32.SafeHandles.SafeAccessTokenHandle, System.Func(Of T))
   type: Method
   source:
-    remote: *o0
+    remote: *o1
     path: src/System.Security.Principal.Windows/ref/System.Security.Principal.Windows.cs
-    startLine: 209
+    startLine: 215
   assemblies:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
@@ -538,6 +678,71 @@ references:
   isExternal: false
   name: Microsoft.Win32.SafeHandles
   fullName: Microsoft.Win32.SafeHandles
+- uid: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
+  definition: System.Collections.Generic.IEnumerable`1
+  href: System.Security.Claims.Claim.yml
+  name: Collections.Generic.IEnumerable<Claims.Claim>
+  name.vb: Collections.Generic.IEnumerable(Of Claims.Claim)
+  fullName: System.Collections.Generic.IEnumerable<System.Security.Claims.Claim>
+  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Security.Claims.Claim)
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: Collections.Generic.IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    fullName: <
+  - uid: System.Security.Claims.Claim
+    name: Claims.Claim
+    fullName: System.Security.Claims.Claim
+    href: System.Security.Claims.Claim.yml
+  - name: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: Collections.Generic.IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    fullName: '(Of '
+  - uid: System.Security.Claims.Claim
+    name: Claims.Claim
+    fullName: System.Security.Claims.Claim
+    href: System.Security.Claims.Claim.yml
+  - name: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable`1
+  parent: System.Collections.Generic
+  isExternal: false
+  href: System.Collections.Generic.IEnumerable`1.yml
+  name: Collections.Generic.IEnumerable<>
+  name.vb: Collections.Generic.IEnumerable(Of )
+  fullName: System.Collections.Generic.IEnumerable<>
+  fullName.vb: System.Collections.Generic.IEnumerable(Of )
+  spec.csharp:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: Collections.Generic.IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    href: System.Collections.Generic.IEnumerable`1.yml
+  - name: <
+    fullName: <
+  - {}
+  - name: '>'
+    fullName: '>'
+  spec.vb:
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: Collections.Generic.IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    href: System.Collections.Generic.IEnumerable`1.yml
+  - name: '(Of '
+    fullName: '(Of '
+  - {}
+  - name: )
+    fullName: )
+- uid: System.Collections.Generic
+  isExternal: false
+  name: System.Collections.Generic
+  fullName: System.Collections.Generic
 - uid: System.Security.Principal.IdentityReferenceCollection
   parent: System.Security.Principal
   isExternal: false
@@ -562,6 +767,16 @@ references:
   href: System.Security.Principal.SecurityIdentifier.yml
   name: SecurityIdentifier
   fullName: System.Security.Principal.SecurityIdentifier
+- uid: System.Security.Claims.ClaimsIdentity
+  parent: System.Security.Claims
+  isExternal: false
+  href: System.Security.Claims.ClaimsIdentity.yml
+  name: Claims.ClaimsIdentity
+  fullName: System.Security.Claims.ClaimsIdentity
+- uid: System.Security.Claims
+  isExternal: false
+  name: System.Security.Claims
+  fullName: System.Security.Claims
 - uid: System.Security.Principal.WindowsIdentity
   parent: System.Security.Principal
   isExternal: false
