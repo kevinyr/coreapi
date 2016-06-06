@@ -5,26 +5,34 @@ items:
   children:
   - System.Console.BackgroundColor
   - System.Console.Beep
+  - System.Console.Beep(System.Int32,System.Int32)
   - System.Console.BufferHeight
   - System.Console.BufferWidth
   - System.Console.CancelKeyPress
+  - System.Console.CapsLock
   - System.Console.Clear
   - System.Console.CursorLeft
+  - System.Console.CursorSize
   - System.Console.CursorTop
   - System.Console.CursorVisible
   - System.Console.Error
   - System.Console.ForegroundColor
   - System.Console.In
+  - System.Console.InputEncoding
   - System.Console.IsErrorRedirected
   - System.Console.IsInputRedirected
   - System.Console.IsOutputRedirected
   - System.Console.KeyAvailable
   - System.Console.LargestWindowHeight
   - System.Console.LargestWindowWidth
+  - System.Console.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  - System.Console.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+  - System.Console.NumberLock
   - System.Console.OpenStandardError
   - System.Console.OpenStandardInput
   - System.Console.OpenStandardOutput
   - System.Console.Out
+  - System.Console.OutputEncoding
   - System.Console.Read
   - System.Console.ReadKey
   - System.Console.ReadKey(System.Boolean)
@@ -35,7 +43,10 @@ items:
   - System.Console.SetError(System.IO.TextWriter)
   - System.Console.SetIn(System.IO.TextReader)
   - System.Console.SetOut(System.IO.TextWriter)
+  - System.Console.SetWindowPosition(System.Int32,System.Int32)
+  - System.Console.SetWindowSize(System.Int32,System.Int32)
   - System.Console.Title
+  - System.Console.TreatControlCAsInput
   - System.Console.WindowHeight
   - System.Console.WindowLeft
   - System.Console.WindowTop
@@ -75,41 +86,67 @@ items:
   - System.Console.WriteLine(System.String,System.Object[])
   - System.Console.WriteLine(System.UInt32)
   - System.Console.WriteLine(System.UInt64)
+  langs:
+  - csharp
+  - vb
   name: Console
   fullName: System.Console
   type: Class
   source:
-    remote: &o0
-      path: src/System.Console/src/System/Console.cs
+    remote:
+      path: src/mscorlib/src/System/LowLevelConsole.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
-    path: src/System.Console/src/System/Console.cs
-    startLine: 12
+      repo: https://github.com/dotnet/coreclr.git
+    id: Console
+    path: src/mscorlib/src/System/LowLevelConsole.cs
+    startLine: 16
   assemblies:
   - System.Console
   namespace: System
   summary: Represents the standard input, output, and error streams for console applications. This class cannot be inherited.To browse the .NET Framework source code for this type, see the Reference Source.
   syntax:
     content: 'public class Console : object'
-    content.vb: Public Class Console Inherits Object
+    content.vb: >-
+      Public Class Console
+          Inherits Object
   inheritance:
   - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  commentId: T:System.Console
 - uid: System.Console.BackgroundColor
   id: BackgroundColor
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: BackgroundColor
   fullName: System.Console.BackgroundColor
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 125
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: BackgroundColor
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 12
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the background color of the console.
   syntax:
-    content: public static ConsoleColor BackgroundColor { get; set; }
+    content: >-
+      public static ConsoleColor BackgroundColor
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property BackgroundColor As ConsoleColor
     parameters: []
     return:
@@ -117,21 +154,37 @@ items:
       description: A value that specifies the background color of the console; that is, the color that appears behind each character. The default is black.
   exceptions:
   - type: System.ArgumentException
-    description: The color specified in a set operation is not a valid member of <xref href="System.ConsoleColor" data-throw-if-not-resolved="false"></xref>.
+    description: 'The color specified in a set operation is not a valid member of <xref href="System.ConsoleColor" data-throw-if-not-resolved="false"></xref>. '
   - type: System.Security.SecurityException
-    description: The user does not have permission to perform this action.
+    description: 'The user does not have permission to perform this action. '
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.BackgroundColor
 - uid: System.Console.Beep
   id: Beep
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Beep()
   fullName: System.Console.Beep()
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 252
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Beep
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 13
   assemblies:
   - System.Console
   namespace: System
@@ -142,22 +195,85 @@ items:
   exceptions:
   - type: System.Security.HostProtectionException
     description: This method was executed on a server, such as SQL Server, that does not permit access to a user interface.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Beep
+- uid: System.Console.Beep(System.Int32,System.Int32)
+  id: Beep(System.Int32,System.Int32)
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: Beep(Int32, Int32)
+  fullName: System.Console.Beep(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Beep
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 14
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Plays the sound of a beep of a specified frequency and duration through the console speaker.
+  syntax:
+    content: public static void Beep(int frequency, int duration)
+    content.vb: Public Shared Sub Beep(frequency As Integer, duration As Integer)
+    parameters:
+    - id: frequency
+      type: System.Int32
+      description: The frequency of the beep, ranging from 37 to 32767 hertz.
+    - id: duration
+      type: System.Int32
+      description: The duration of the beep measured in milliseconds.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: "\r\n  <em>frequency</em> is less than 37 or more than 32767 hertz.-or-<em>duration</em> is less than or equal to zero."
+  - type: System.Security.HostProtectionException
+    description: This method was executed on a server, such as SQL Server, that does not permit access to the console.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Beep(System.Int32,System.Int32)
 - uid: System.Console.BufferHeight
   id: BufferHeight
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: BufferHeight
   fullName: System.Console.BufferHeight
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 148
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: BufferHeight
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 15
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the height of the buffer area.
   syntax:
-    content: public static int BufferHeight { get; set; }
+    content: >-
+      public static int BufferHeight
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property BufferHeight As Integer
     parameters: []
     return:
@@ -165,27 +281,49 @@ items:
       description: The current height, in rows, of the buffer area.
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: The value in a set operation is less than or equal to zero.-or- The value in a set operation is greater than or equal to <xref href="System.Int16.MaxValue" data-throw-if-not-resolved="false"></xref>.-or- The value in a set operation is less than <xref href="System.Console.WindowTop" data-throw-if-not-resolved="false"></xref> + <xref href="System.Console.WindowHeight" data-throw-if-not-resolved="false"></xref>.
+    description: 'The value in a set operation is less than or equal to zero.-or- The value in a set operation is greater than or equal to <xref href="System.Int16.MaxValue" data-throw-if-not-resolved="false"></xref>.-or- The value in a set operation is less than <xref href="System.Console.WindowTop" data-throw-if-not-resolved="false"></xref> + <xref href="System.Console.WindowHeight" data-throw-if-not-resolved="false"></xref>. '
   - type: System.Security.SecurityException
-    description: The user does not have permission to perform this action.
+    description: 'The user does not have permission to perform this action. '
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.BufferHeight
 - uid: System.Console.BufferWidth
   id: BufferWidth
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: BufferWidth
   fullName: System.Console.BufferWidth
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 142
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: BufferWidth
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 16
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the width of the buffer area.
   syntax:
-    content: public static int BufferWidth { get; set; }
+    content: >-
+      public static int BufferWidth
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property BufferWidth As Integer
     parameters: []
     return:
@@ -193,21 +331,79 @@ items:
       description: The current width, in columns, of the buffer area.
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: The value in a set operation is less than or equal to zero.-or- The value in a set operation is greater than or equal to <xref href="System.Int16.MaxValue" data-throw-if-not-resolved="false"></xref>.-or- The value in a set operation is less than <xref href="System.Console.WindowLeft" data-throw-if-not-resolved="false"></xref> + <xref href="System.Console.WindowWidth" data-throw-if-not-resolved="false"></xref>.
+    description: 'The value in a set operation is less than or equal to zero.-or- The value in a set operation is greater than or equal to <xref href="System.Int16.MaxValue" data-throw-if-not-resolved="false"></xref>.-or- The value in a set operation is less than <xref href="System.Console.WindowLeft" data-throw-if-not-resolved="false"></xref> + <xref href="System.Console.WindowWidth" data-throw-if-not-resolved="false"></xref>. '
   - type: System.Security.SecurityException
-    description: The user does not have permission to perform this action.
+    description: 'The user does not have permission to perform this action. '
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.BufferWidth
+- uid: System.Console.CapsLock
+  id: CapsLock
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: CapsLock
+  fullName: System.Console.CapsLock
+  type: Property
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: CapsLock
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 17
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Gets a value indicating whether the CAPS LOCK keyboard toggle is turned on or turned off.
+  syntax:
+    content: >-
+      public static bool CapsLock
+
+      {
+          get;
+      }
+    content.vb: Public Shared ReadOnly Property CapsLock As Boolean
+    parameters: []
+    return:
+      type: System.Boolean
+      description: true if CAPS LOCK is turned on; false if CAPS LOCK is turned off.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.CapsLock
 - uid: System.Console.CancelKeyPress
   id: CancelKeyPress
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: CancelKeyPress
   fullName: System.Console.CancelKeyPress
   type: Event
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 273
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: CancelKeyPress
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 18
   assemblies:
   - System.Console
   namespace: System
@@ -215,16 +411,32 @@ items:
   syntax:
     content: public static event ConsoleCancelEventHandler CancelKeyPress
     content.vb: Public Shared Event CancelKeyPress As ConsoleCancelEventHandler
+    return:
+      type: System.ConsoleCancelEventHandler
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: E:System.Console.CancelKeyPress
 - uid: System.Console.Clear
   id: Clear
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Clear()
   fullName: System.Console.Clear()
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 257
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Clear
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 19
   assemblies:
   - System.Console
   namespace: System
@@ -235,22 +447,42 @@ items:
   exceptions:
   - type: System.IO.IOException
     description: An I/O error occurred.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Clear
 - uid: System.Console.CursorLeft
   id: CursorLeft
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: CursorLeft
   fullName: System.Console.CursorLeft
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 219
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: CursorLeft
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 20
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the column position of the cursor within the buffer area.
   syntax:
-    content: public static int CursorLeft { get; set; }
+    content: >-
+      public static int CursorLeft
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property CursorLeft As Integer
     parameters: []
     return:
@@ -258,27 +490,99 @@ items:
       description: The current position, in columns, of the cursor.
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: The value in a set operation is less than zero.-or- The value in a set operation is greater than or equal to <xref href="System.Console.BufferWidth" data-throw-if-not-resolved="false"></xref>.
+    description: 'The value in a set operation is less than zero.-or- The value in a set operation is greater than or equal to <xref href="System.Console.BufferWidth" data-throw-if-not-resolved="false"></xref>. '
   - type: System.Security.SecurityException
-    description: The user does not have permission to perform this action.
+    description: 'The user does not have permission to perform this action. '
+  - type: System.IO.IOException
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.CursorLeft
+- uid: System.Console.CursorSize
+  id: CursorSize
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: CursorSize
+  fullName: System.Console.CursorSize
+  type: Property
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: CursorSize
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 21
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Gets or sets the height of the cursor within a character cell.
+  syntax:
+    content: >-
+      public static int CursorSize
+
+      {
+          get;
+          set;
+      }
+    content.vb: Public Shared Property CursorSize As Integer
+    parameters: []
+    return:
+      type: System.Int32
+      description: The size of the cursor expressed as a percentage of the height of a character cell. The property value ranges from 1 to 100.
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: 'The value specified in a set operation is less than 1 or greater than 100. '
+  - type: System.Security.SecurityException
+    description: 'The user does not have permission to perform this action. '
   - type: System.IO.IOException
     description: An I/O error occurred.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.CursorSize
 - uid: System.Console.CursorTop
   id: CursorTop
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: CursorTop
   fullName: System.Console.CursorTop
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 225
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: CursorTop
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 22
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the row position of the cursor within the buffer area.
   syntax:
-    content: public static int CursorTop { get; set; }
+    content: >-
+      public static int CursorTop
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property CursorTop As Integer
     parameters: []
     return:
@@ -286,27 +590,49 @@ items:
       description: The current position, in rows, of the cursor.
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: The value in a set operation is less than zero.-or- The value in a set operation is greater than or equal to <xref href="System.Console.BufferHeight" data-throw-if-not-resolved="false"></xref>.
+    description: 'The value in a set operation is less than zero.-or- The value in a set operation is greater than or equal to <xref href="System.Console.BufferHeight" data-throw-if-not-resolved="false"></xref>. '
   - type: System.Security.SecurityException
-    description: The user does not have permission to perform this action.
+    description: 'The user does not have permission to perform this action. '
   - type: System.IO.IOException
     description: An I/O error occurred.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.CursorTop
 - uid: System.Console.CursorVisible
   id: CursorVisible
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: CursorVisible
   fullName: System.Console.CursorVisible
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 213
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: CursorVisible
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 23
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets a value indicating whether the cursor is visible.
   syntax:
-    content: public static bool CursorVisible { get; set; }
+    content: >-
+      public static bool CursorVisible
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property CursorVisible As Boolean
     parameters: []
     return:
@@ -314,46 +640,89 @@ items:
       description: true if the cursor is visible; otherwise, false.
   exceptions:
   - type: System.Security.SecurityException
-    description: The user does not have permission to perform this action.
+    description: 'The user does not have permission to perform this action. '
   - type: System.IO.IOException
     description: An I/O error occurred.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.CursorVisible
 - uid: System.Console.Error
   id: Error
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Error
   fullName: System.Console.Error
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 75
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Error
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 24
   assemblies:
   - System.Console
   namespace: System
   summary: Gets the standard error output stream.
   syntax:
-    content: public static IO.TextWriter Error { get; }
+    content: >-
+      public static IO.TextWriter Error
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property Error As IO.TextWriter
     parameters: []
     return:
       type: System.IO.TextWriter
       description: A <xref href="System.IO.TextWriter" data-throw-if-not-resolved="false"></xref> that represents the standard error output stream.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.Error
 - uid: System.Console.ForegroundColor
   id: ForegroundColor
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: ForegroundColor
   fullName: System.Console.ForegroundColor
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 131
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: ForegroundColor
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 25
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the foreground color of the console.
   syntax:
-    content: public static ConsoleColor ForegroundColor { get; set; }
+    content: >-
+      public static ConsoleColor ForegroundColor
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property ForegroundColor As ConsoleColor
     parameters: []
     return:
@@ -361,111 +730,266 @@ items:
       description: A <xref href="System.ConsoleColor" data-throw-if-not-resolved="false"></xref> that specifies the foreground color of the console; that is, the color of each character that is displayed. The default is gray.
   exceptions:
   - type: System.ArgumentException
-    description: The color specified in a set operation is not a valid member of <xref href="System.ConsoleColor" data-throw-if-not-resolved="false"></xref>.
+    description: 'The color specified in a set operation is not a valid member of <xref href="System.ConsoleColor" data-throw-if-not-resolved="false"></xref>. '
   - type: System.Security.SecurityException
-    description: The user does not have permission to perform this action.
+    description: 'The user does not have permission to perform this action. '
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.ForegroundColor
+- uid: System.Console.InputEncoding
+  id: InputEncoding
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: InputEncoding
+  fullName: System.Console.InputEncoding
+  type: Property
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: InputEncoding
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 26
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: 'Gets or sets the encoding the console uses to read input. '
+  syntax:
+    content: >-
+      public static Text.Encoding InputEncoding
+
+      {
+          get;
+          set;
+      }
+    content.vb: Public Shared Property InputEncoding As Text.Encoding
+    parameters: []
+    return:
+      type: System.Text.Encoding
+      description: The encoding used to read console input.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The property value in a set operation is null.
+  - type: System.IO.IOException
+    description: An error occurred during the execution of this operation.
+  - type: System.Security.SecurityException
+    description: Your application does not have permission to perform this operation.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.InputEncoding
 - uid: System.Console.IsErrorRedirected
   id: IsErrorRedirected
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: IsErrorRedirected
   fullName: System.Console.IsErrorRedirected
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 115
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: IsErrorRedirected
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 27
   assemblies:
   - System.Console
   namespace: System
   summary: Gets a value that indicates whether the error output stream has been redirected from the standard error stream.
   syntax:
-    content: public static bool IsErrorRedirected { get; }
+    content: >-
+      public static bool IsErrorRedirected
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property IsErrorRedirected As Boolean
     parameters: []
     return:
       type: System.Boolean
       description: true if error output is redirected; otherwise, false.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.IsErrorRedirected
 - uid: System.Console.IsInputRedirected
   id: IsInputRedirected
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: IsInputRedirected
   fullName: System.Console.IsInputRedirected
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 95
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: IsInputRedirected
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 28
   assemblies:
   - System.Console
   namespace: System
   summary: Gets a value that indicates whether input has been redirected from the standard input stream.
   syntax:
-    content: public static bool IsInputRedirected { get; }
+    content: >-
+      public static bool IsInputRedirected
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property IsInputRedirected As Boolean
     parameters: []
     return:
       type: System.Boolean
       description: true if input is redirected; otherwise, false.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.IsInputRedirected
 - uid: System.Console.IsOutputRedirected
   id: IsOutputRedirected
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: IsOutputRedirected
   fullName: System.Console.IsOutputRedirected
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 105
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: IsOutputRedirected
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 29
   assemblies:
   - System.Console
   namespace: System
   summary: Gets a value that indicates whether output has been redirected from the standard output stream.
   syntax:
-    content: public static bool IsOutputRedirected { get; }
+    content: >-
+      public static bool IsOutputRedirected
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property IsOutputRedirected As Boolean
     parameters: []
     return:
       type: System.Boolean
       description: true if output is redirected; otherwise, false.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.IsOutputRedirected
 - uid: System.Console.In
   id: In
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: In
   fullName: System.Console.In
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 36
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: In
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 30
   assemblies:
   - System.Console
   namespace: System
   summary: Gets the standard input stream.
   syntax:
-    content: public static IO.TextReader In { get; }
+    content: >-
+      public static IO.TextReader In
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property In As IO.TextReader
     parameters: []
     return:
       type: System.IO.TextReader
       description: A <xref href="System.IO.TextReader" data-throw-if-not-resolved="false"></xref> that represents the standard input stream.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.In
 - uid: System.Console.KeyAvailable
   id: KeyAvailable
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: KeyAvailable
   fullName: System.Console.KeyAvailable
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 47
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: KeyAvailable
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 31
   assemblies:
   - System.Console
   namespace: System
   summary: Gets a value indicating whether a key press is available in the input stream.
   syntax:
-    content: public static bool KeyAvailable { get; }
+    content: >-
+      public static bool KeyAvailable
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property KeyAvailable As Boolean
     parameters: []
     return:
@@ -473,61 +997,286 @@ items:
       description: true if a key press is available; otherwise, false.
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
   - type: System.InvalidOperationException
-    description: Standard input is redirected to a file instead of the keyboard.
+    description: 'Standard input is redirected to a file instead of the keyboard. '
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.KeyAvailable
 - uid: System.Console.LargestWindowWidth
   id: LargestWindowWidth
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: LargestWindowWidth
   fullName: System.Console.LargestWindowWidth
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 203
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: LargestWindowWidth
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 32
   assemblies:
   - System.Console
   namespace: System
   summary: Gets the largest possible number of console window columns, based on the current font and screen resolution.
   syntax:
-    content: public static int LargestWindowWidth { get; }
+    content: >-
+      public static int LargestWindowWidth
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property LargestWindowWidth As Integer
     parameters: []
     return:
       type: System.Int32
       description: The width of the largest possible console window measured in columns.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.LargestWindowWidth
 - uid: System.Console.LargestWindowHeight
   id: LargestWindowHeight
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: LargestWindowHeight
   fullName: System.Console.LargestWindowHeight
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 208
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: LargestWindowHeight
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 33
   assemblies:
   - System.Console
   namespace: System
   summary: Gets the largest possible number of console window rows, based on the current font and screen resolution.
   syntax:
-    content: public static int LargestWindowHeight { get; }
+    content: >-
+      public static int LargestWindowHeight
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property LargestWindowHeight As Integer
     parameters: []
     return:
       type: System.Int32
       description: The height of the largest possible console window measured in rows.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.LargestWindowHeight
+- uid: System.Console.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  id: MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: MoveBufferArea(Int32, Int32, Int32, Int32, Int32, Int32)
+  fullName: System.Console.MoveBufferArea(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: MoveBufferArea
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 34
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Copies a specified source area of the screen buffer to a specified destination area.
+  syntax:
+    content: public static void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop)
+    content.vb: Public Shared Sub MoveBufferArea(sourceLeft As Integer, sourceTop As Integer, sourceWidth As Integer, sourceHeight As Integer, targetLeft As Integer, targetTop As Integer)
+    parameters:
+    - id: sourceLeft
+      type: System.Int32
+      description: 'The leftmost column of the source area. '
+    - id: sourceTop
+      type: System.Int32
+      description: 'The topmost row of the source area. '
+    - id: sourceWidth
+      type: System.Int32
+      description: 'The number of columns in the source area. '
+    - id: sourceHeight
+      type: System.Int32
+      description: 'The number of rows in the source area. '
+    - id: targetLeft
+      type: System.Int32
+      description: 'The leftmost column of the destination area. '
+    - id: targetTop
+      type: System.Int32
+      description: 'The topmost row of the destination area. '
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: 'One or more of the parameters is less than zero.-or- <em>sourceLeft</em> or <em>targetLeft</em> is greater than or equal to <xref href="System.Console.BufferWidth" data-throw-if-not-resolved="false"></xref>.-or- <em>sourceTop</em> or <em>targetTop</em> is greater than or equal to <xref href="System.Console.BufferHeight" data-throw-if-not-resolved="false"></xref>.-or- <em>sourceTop</em> + <em>sourceHeight</em> is greater than or equal to <xref href="System.Console.BufferHeight" data-throw-if-not-resolved="false"></xref>.-or- <em>sourceLeft</em> + <em>sourceWidth</em> is greater than or equal to <xref href="System.Console.BufferWidth" data-throw-if-not-resolved="false"></xref>. '
+  - type: System.Security.SecurityException
+    description: 'The user does not have permission to perform this action. '
+  - type: System.IO.IOException
+    description: An I/O error occurred.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)
+- uid: System.Console.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+  id: MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: MoveBufferArea(Int32, Int32, Int32, Int32, Int32, Int32, Char, ConsoleColor, ConsoleColor)
+  fullName: System.Console.MoveBufferArea(System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Int32, System.Char, System.ConsoleColor, System.ConsoleColor)
+  type: Method
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: MoveBufferArea
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 35
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Copies a specified source area of the screen buffer to a specified destination area.
+  syntax:
+    content: public static void MoveBufferArea(int sourceLeft, int sourceTop, int sourceWidth, int sourceHeight, int targetLeft, int targetTop, char sourceChar, ConsoleColor sourceForeColor, ConsoleColor sourceBackColor)
+    content.vb: Public Shared Sub MoveBufferArea(sourceLeft As Integer, sourceTop As Integer, sourceWidth As Integer, sourceHeight As Integer, targetLeft As Integer, targetTop As Integer, sourceChar As Char, sourceForeColor As ConsoleColor, sourceBackColor As ConsoleColor)
+    parameters:
+    - id: sourceLeft
+      type: System.Int32
+      description: 'The leftmost column of the source area. '
+    - id: sourceTop
+      type: System.Int32
+      description: 'The topmost row of the source area. '
+    - id: sourceWidth
+      type: System.Int32
+      description: 'The number of columns in the source area. '
+    - id: sourceHeight
+      type: System.Int32
+      description: 'The number of rows in the source area. '
+    - id: targetLeft
+      type: System.Int32
+      description: 'The leftmost column of the destination area. '
+    - id: targetTop
+      type: System.Int32
+      description: 'The topmost row of the destination area. '
+    - id: sourceChar
+      type: System.Char
+      description: 'The character used to fill the source area. '
+    - id: sourceForeColor
+      type: System.ConsoleColor
+      description: 'The foreground color used to fill the source area. '
+    - id: sourceBackColor
+      type: System.ConsoleColor
+      description: 'The background color used to fill the source area. '
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: 'One or more of the parameters is less than zero.-or- <em>sourceLeft</em> or <em>targetLeft</em> is greater than or equal to <xref href="System.Console.BufferWidth" data-throw-if-not-resolved="false"></xref>.-or- <em>sourceTop</em> or <em>targetTop</em> is greater than or equal to <xref href="System.Console.BufferHeight" data-throw-if-not-resolved="false"></xref>.-or- <em>sourceTop</em> + <em>sourceHeight</em> is greater than or equal to <xref href="System.Console.BufferHeight" data-throw-if-not-resolved="false"></xref>.-or- <em>sourceLeft</em> + <em>sourceWidth</em> is greater than or equal to <xref href="System.Console.BufferWidth" data-throw-if-not-resolved="false"></xref>. '
+  - type: System.ArgumentException
+    description: 'One or both of the color parameters is not a member of the <xref href="System.ConsoleColor" data-throw-if-not-resolved="false"></xref> enumeration. '
+  - type: System.Security.SecurityException
+    description: 'The user does not have permission to perform this action. '
+  - type: System.IO.IOException
+    description: An I/O error occurred.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.MoveBufferArea(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Char,System.ConsoleColor,System.ConsoleColor)
+- uid: System.Console.NumberLock
+  id: NumberLock
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: NumberLock
+  fullName: System.Console.NumberLock
+  type: Property
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: NumberLock
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 36
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Gets a value indicating whether the NUM LOCK keyboard toggle is turned on or turned off.
+  syntax:
+    content: >-
+      public static bool NumberLock
+
+      {
+          get;
+      }
+    content.vb: Public Shared ReadOnly Property NumberLock As Boolean
+    parameters: []
+    return:
+      type: System.Boolean
+      description: true if NUM LOCK is turned on; false if NUM LOCK is turned off.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.NumberLock
 - uid: System.Console.OpenStandardError
   id: OpenStandardError
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: OpenStandardError()
   fullName: System.Console.OpenStandardError()
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 313
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: OpenStandardError
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 37
   assemblies:
   - System.Console
   namespace: System
@@ -538,16 +1287,30 @@ items:
     return:
       type: System.IO.Stream
       description: The standard error stream.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.OpenStandardError
 - uid: System.Console.OpenStandardInput
   id: OpenStandardInput
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: OpenStandardInput()
   fullName: System.Console.OpenStandardInput()
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 303
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: OpenStandardInput
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 38
   assemblies:
   - System.Console
   namespace: System
@@ -558,16 +1321,30 @@ items:
     return:
       type: System.IO.Stream
       description: The standard input stream.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.OpenStandardInput
 - uid: System.Console.OpenStandardOutput
   id: OpenStandardOutput
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: OpenStandardOutput()
   fullName: System.Console.OpenStandardOutput()
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 308
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: OpenStandardOutput
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 39
   assemblies:
   - System.Console
   namespace: System
@@ -578,37 +1355,122 @@ items:
     return:
       type: System.IO.Stream
       description: The standard output stream.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.OpenStandardOutput
 - uid: System.Console.Out
   id: Out
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Out
   fullName: System.Console.Out
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 70
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Out
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 40
   assemblies:
   - System.Console
   namespace: System
   summary: Gets the standard output stream.
   syntax:
-    content: public static IO.TextWriter Out { get; }
+    content: >-
+      public static IO.TextWriter Out
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property Out As IO.TextWriter
     parameters: []
     return:
       type: System.IO.TextWriter
       description: A <xref href="System.IO.TextWriter" data-throw-if-not-resolved="false"></xref> that represents the standard output stream.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Console.Out
+- uid: System.Console.OutputEncoding
+  id: OutputEncoding
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: OutputEncoding
+  fullName: System.Console.OutputEncoding
+  type: Property
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: OutputEncoding
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 41
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: 'Gets or sets the encoding the console uses to write output. '
+  syntax:
+    content: >-
+      public static Text.Encoding OutputEncoding
+
+      {
+          get;
+          set;
+      }
+    content.vb: Public Shared Property OutputEncoding As Text.Encoding
+    parameters: []
+    return:
+      type: System.Text.Encoding
+      description: The encoding used to write console output.
+  exceptions:
+  - type: System.ArgumentNullException
+    description: The property value in a set operation is null.
+  - type: System.IO.IOException
+    description: An error occurred during the execution of this operation.
+  - type: System.Security.SecurityException
+    description: Your application does not have permission to perform this operation.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.OutputEncoding
 - uid: System.Console.Read
   id: Read
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Read()
   fullName: System.Console.Read()
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 352
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Read
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 42
   assemblies:
   - System.Console
   namespace: System
@@ -621,17 +1483,31 @@ items:
       description: The next character from the input stream, or negative one (-1) if there are currently no more characters to be read.
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Read
 - uid: System.Console.ReadKey
   id: ReadKey
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: ReadKey()
   fullName: System.Console.ReadKey()
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 60
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: ReadKey
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 43
   assemblies:
   - System.Console
   namespace: System
@@ -645,16 +1521,30 @@ items:
   exceptions:
   - type: System.InvalidOperationException
     description: The <xref href="System.Console.In" data-throw-if-not-resolved="false"></xref> property is redirected from some stream other than the console.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.ReadKey
 - uid: System.Console.ReadKey(System.Boolean)
   id: ReadKey(System.Boolean)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: ReadKey(Boolean)
   fullName: System.Console.ReadKey(System.Boolean)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 65
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: ReadKey
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 44
   assemblies:
   - System.Console
   namespace: System
@@ -665,23 +1555,37 @@ items:
     parameters:
     - id: intercept
       type: System.Boolean
-      description: Determines whether to display the pressed key in the console window. true to not display the pressed key; otherwise, false.
+      description: 'Determines whether to display the pressed key in the console window. true to not display the pressed key; otherwise, false. '
     return:
       type: System.ConsoleKeyInfo
       description: A <xref href="System.ConsoleKeyInfo" data-throw-if-not-resolved="false"></xref> object that describes the <xref href="System.ConsoleKey" data-throw-if-not-resolved="false"></xref> constant and Unicode character, if any, that correspond to the pressed console key. The <xref href="System.ConsoleKeyInfo" data-throw-if-not-resolved="false"></xref> object also describes, in a bitwise combination of <xref href="System.ConsoleModifiers" data-throw-if-not-resolved="false"></xref> values, whether one or more Shift, Alt, or Ctrl modifier keys was pressed simultaneously with the console key.
   exceptions:
   - type: System.InvalidOperationException
     description: The <xref href="System.Console.In" data-throw-if-not-resolved="false"></xref> property is redirected from some stream other than the console.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.ReadKey(System.Boolean)
 - uid: System.Console.ReadLine
   id: ReadLine
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: ReadLine()
   fullName: System.Console.ReadLine()
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 358
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: ReadLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 45
   assemblies:
   - System.Console
   namespace: System
@@ -694,21 +1598,35 @@ items:
       description: The next line of characters from the input stream, or null if no more lines are available.
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
   - type: System.OutOfMemoryException
-    description: There is insufficient memory to allocate a buffer for the returned string.
+    description: 'There is insufficient memory to allocate a buffer for the returned string. '
   - type: System.ArgumentOutOfRangeException
     description: The number of characters in the next line of characters is greater than <xref href="System.Int32.MaxValue" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.ReadLine
 - uid: System.Console.ResetColor
   id: ResetColor
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: ResetColor()
   fullName: System.Console.ResetColor()
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 137
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: ResetColor
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 46
   assemblies:
   - System.Console
   namespace: System
@@ -718,19 +1636,33 @@ items:
     content.vb: Public Shared Sub ResetColor
   exceptions:
   - type: System.Security.SecurityException
-    description: The user does not have permission to perform this action.
+    description: 'The user does not have permission to perform this action. '
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.ResetColor
 - uid: System.Console.SetBufferSize(System.Int32,System.Int32)
   id: SetBufferSize(System.Int32,System.Int32)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: SetBufferSize(Int32, Int32)
   fullName: System.Console.SetBufferSize(System.Int32, System.Int32)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 154
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: SetBufferSize
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 47
   assemblies:
   - System.Console
   namespace: System
@@ -741,27 +1673,41 @@ items:
     parameters:
     - id: width
       type: System.Int32
-      description: The width of the buffer area measured in columns.
+      description: 'The width of the buffer area measured in columns. '
     - id: height
       type: System.Int32
-      description: The height of the buffer area measured in rows.
+      description: 'The height of the buffer area measured in rows. '
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: '*height* or *width* is less than or equal to zero.-or- *height* or *width* is greater than or equal to <xref href="System.Int16.MaxValue" data-throw-if-not-resolved="false"></xref>.-or- *width* is less than <xref href="System.Console.WindowLeft" data-throw-if-not-resolved="false"></xref> + <xref href="System.Console.WindowWidth" data-throw-if-not-resolved="false"></xref>.-or- *height* is less than <xref href="System.Console.WindowTop" data-throw-if-not-resolved="false"></xref> + <xref href="System.Console.WindowHeight" data-throw-if-not-resolved="false"></xref>.'
+    description: "\r\n  <em>height</em> or <em>width</em> is less than or equal to zero.-or- <em>height</em> or <em>width</em> is greater than or equal to <xref href=\"System.Int16.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>.-or- <em>width</em> is less than <xref href=\"System.Console.WindowLeft\" data-throw-if-not-resolved=\"false\"></xref> + <xref href=\"System.Console.WindowWidth\" data-throw-if-not-resolved=\"false\"></xref>.-or- <em>height</em> is less than <xref href=\"System.Console.WindowTop\" data-throw-if-not-resolved=\"false\"></xref> + <xref href=\"System.Console.WindowHeight\" data-throw-if-not-resolved=\"false\"></xref>. "
   - type: System.Security.SecurityException
-    description: The user does not have permission to perform this action.
+    description: 'The user does not have permission to perform this action. '
   - type: System.IO.IOException
     description: An I/O error occurred.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.SetBufferSize(System.Int32,System.Int32)
 - uid: System.Console.SetCursorPosition(System.Int32,System.Int32)
   id: SetCursorPosition(System.Int32,System.Int32)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: SetCursorPosition(Int32, Int32)
   fullName: System.Console.SetCursorPosition(System.Int32, System.Int32)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 262
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: SetCursorPosition
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 48
   assemblies:
   - System.Console
   namespace: System
@@ -772,30 +1718,41 @@ items:
     parameters:
     - id: left
       type: System.Int32
-      description: The column position of the cursor. Columns are numbered from left to right starting at 0.
+      description: 'The column position of the cursor. Columns are numbered from left to right starting at 0. '
     - id: top
       type: System.Int32
-      description: The row position of the cursor. Rows are numbered from top to bottom starting at 0.
+      description: 'The row position of the cursor. Rows are numbered from top to bottom starting at 0. '
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: '*left* or *top* is less than zero.-or- *left* is greater than or equal to <xref href="System.Console.BufferWidth" data-throw-if-not-resolved="false"></xref>.-or- *top* is greater than or equal to <xref href="System.Console.BufferHeight" data-throw-if-not-resolved="false"></xref>.'
+    description: "\r\n  <em>left</em> or <em>top</em> is less than zero.-or- <em>left</em> is greater than or equal to <xref href=\"System.Console.BufferWidth\" data-throw-if-not-resolved=\"false\"></xref>.-or- <em>top</em> is greater than or equal to <xref href=\"System.Console.BufferHeight\" data-throw-if-not-resolved=\"false\"></xref>. "
   - type: System.Security.SecurityException
-    description: The user does not have permission to perform this action.
+    description: 'The user does not have permission to perform this action. '
   - type: System.IO.IOException
     description: An I/O error occurred.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.SetCursorPosition(System.Int32,System.Int32)
 - uid: System.Console.SetError(System.IO.TextWriter)
   id: SetError(System.IO.TextWriter)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: SetError(IO.TextWriter)
   fullName: System.Console.SetError(System.IO.TextWriter)
   type: Method
   source:
-    remote: &o1
+    remote:
       path: src/System.Console/ref/System.Console.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
+    id: SetError
     path: src/System.Console/ref/System.Console.cs
-    startLine: 38
+    startLine: 49
   assemblies:
   - System.Console
   namespace: System
@@ -806,22 +1763,36 @@ items:
     parameters:
     - id: newError
       type: System.IO.TextWriter
-      description: A stream that is the new standard error output.
+      description: 'A stream that is the new standard error output. '
   exceptions:
   - type: System.ArgumentNullException
-    description: '*newError* is null.'
+    description: "\r\n  <em>newError</em> is null. "
   - type: System.Security.SecurityException
-    description: The caller does not have the required permission.
+    description: 'The caller does not have the required permission. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.SetError(System.IO.TextWriter)
 - uid: System.Console.SetIn(System.IO.TextReader)
   id: SetIn(System.IO.TextReader)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: SetIn(IO.TextReader)
   fullName: System.Console.SetIn(System.IO.TextReader)
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: SetIn
     path: src/System.Console/ref/System.Console.cs
-    startLine: 39
+    startLine: 50
   assemblies:
   - System.Console
   namespace: System
@@ -832,22 +1803,36 @@ items:
     parameters:
     - id: newIn
       type: System.IO.TextReader
-      description: A stream that is the new standard input.
+      description: 'A stream that is the new standard input. '
   exceptions:
   - type: System.ArgumentNullException
-    description: '*newIn* is null.'
+    description: "\r\n  <em>newIn</em> is null. "
   - type: System.Security.SecurityException
-    description: The caller does not have the required permission.
+    description: 'The caller does not have the required permission. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.SetIn(System.IO.TextReader)
 - uid: System.Console.SetOut(System.IO.TextWriter)
   id: SetOut(System.IO.TextWriter)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: SetOut(IO.TextWriter)
   fullName: System.Console.SetOut(System.IO.TextWriter)
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: SetOut
     path: src/System.Console/ref/System.Console.cs
-    startLine: 40
+    startLine: 51
   assemblies:
   - System.Console
   namespace: System
@@ -858,28 +1843,138 @@ items:
     parameters:
     - id: newOut
       type: System.IO.TextWriter
-      description: A stream that is the new standard output.
+      description: 'A stream that is the new standard output. '
   exceptions:
   - type: System.ArgumentNullException
-    description: '*newOut* is null.'
+    description: "\r\n  <em>newOut</em> is null. "
   - type: System.Security.SecurityException
-    description: The caller does not have the required permission.
+    description: 'The caller does not have the required permission. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.SetOut(System.IO.TextWriter)
+- uid: System.Console.SetWindowPosition(System.Int32,System.Int32)
+  id: SetWindowPosition(System.Int32,System.Int32)
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: SetWindowPosition(Int32, Int32)
+  fullName: System.Console.SetWindowPosition(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: SetWindowPosition
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 52
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Sets the position of the console window relative to the screen buffer.
+  syntax:
+    content: public static void SetWindowPosition(int left, int top)
+    content.vb: Public Shared Sub SetWindowPosition(left As Integer, top As Integer)
+    parameters:
+    - id: left
+      type: System.Int32
+      description: 'The column position of the upper left  corner of the console window. '
+    - id: top
+      type: System.Int32
+      description: 'The row position of the upper left corner of the console window. '
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: "\r\n  <em>left</em> or <em>top</em> is less than zero.-or- <em>left</em> + <xref href=\"System.Console.WindowWidth\" data-throw-if-not-resolved=\"false\"></xref> is greater than <xref href=\"System.Console.BufferWidth\" data-throw-if-not-resolved=\"false\"></xref>.-or- <em>top</em> + <xref href=\"System.Console.WindowHeight\" data-throw-if-not-resolved=\"false\"></xref> is greater than <xref href=\"System.Console.BufferHeight\" data-throw-if-not-resolved=\"false\"></xref>. "
+  - type: System.Security.SecurityException
+    description: 'The user does not have permission to perform this action. '
+  - type: System.IO.IOException
+    description: An I/O error occurred.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.SetWindowPosition(System.Int32,System.Int32)
+- uid: System.Console.SetWindowSize(System.Int32,System.Int32)
+  id: SetWindowSize(System.Int32,System.Int32)
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: SetWindowSize(Int32, Int32)
+  fullName: System.Console.SetWindowSize(System.Int32, System.Int32)
+  type: Method
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: SetWindowSize
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 53
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Sets the height and width of the console window to the specified values.
+  syntax:
+    content: public static void SetWindowSize(int width, int height)
+    content.vb: Public Shared Sub SetWindowSize(width As Integer, height As Integer)
+    parameters:
+    - id: width
+      type: System.Int32
+      description: 'The width of the console window measured in columns. '
+    - id: height
+      type: System.Int32
+      description: 'The height of the console window measured in rows. '
+  exceptions:
+  - type: System.ArgumentOutOfRangeException
+    description: "\r\n  <em>width</em> or <em>height</em> is less than or equal to zero.-or- <em>width</em> plus <xref href=\"System.Console.WindowLeft\" data-throw-if-not-resolved=\"false\"></xref> or <em>height</em> plus <xref href=\"System.Console.WindowTop\" data-throw-if-not-resolved=\"false\"></xref> is greater than or equal to <xref href=\"System.Int16.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>. -or-<em>width</em> or <em>height</em> is greater than the largest possible window width or height for the current screen resolution and console font."
+  - type: System.Security.SecurityException
+    description: 'The user does not have permission to perform this action. '
+  - type: System.IO.IOException
+    description: An I/O error occurred.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.SetWindowSize(System.Int32,System.Int32)
 - uid: System.Console.Title
   id: Title
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Title
   fullName: System.Console.Title
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 233
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Title
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 54
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the title to display in the console title bar.
   syntax:
-    content: public static string Title { get; set; }
+    content: >-
+      public static string Title
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property Title As String
     parameters: []
     return:
@@ -887,29 +1982,97 @@ items:
       description: The string to be displayed in the title bar of the console. The maximum length of the title string is 24500 characters.
   exceptions:
   - type: System.InvalidOperationException
-    description: In a get operation, the retrieved title is longer than 24500 characters.
+    description: 'In a get operation, the retrieved title is longer than 24500 characters. '
   - type: System.ArgumentOutOfRangeException
-    description: In a set operation, the specified title is longer than 24500 characters.
+    description: 'In a set operation, the specified title is longer than 24500 characters. '
   - type: System.ArgumentNullException
-    description: In a set operation, the specified title is null.
+    description: 'In a set operation, the specified title is null. '
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.Title
+- uid: System.Console.TreatControlCAsInput
+  id: TreatControlCAsInput
+  parent: System.Console
+  langs:
+  - csharp
+  - vb
+  name: TreatControlCAsInput
+  fullName: System.Console.TreatControlCAsInput
+  type: Property
+  source:
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: TreatControlCAsInput
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 55
+  assemblies:
+  - System.Console
+  namespace: System
+  summary: Gets or sets a value indicating whether the combination of the <xref href="System.ConsoleModifiers.Control" data-throw-if-not-resolved="false"></xref> modifier key and <xref href="System.ConsoleKey.C" data-throw-if-not-resolved="false"></xref> console key (Ctrl+C) is treated as ordinary input or as an interruption that is handled by the operating system.
+  syntax:
+    content: >-
+      public static bool TreatControlCAsInput
+
+      {
+          get;
+          set;
+      }
+    content.vb: Public Shared Property TreatControlCAsInput As Boolean
+    parameters: []
+    return:
+      type: System.Boolean
+      description: true if Ctrl+C is treated as ordinary input; otherwise, false.
+  exceptions:
+  - type: System.IO.IOException
+    description: 'Unable to get or set the input mode of the console input buffer. '
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.TreatControlCAsInput
 - uid: System.Console.WindowHeight
   id: WindowHeight
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WindowHeight
   fullName: System.Console.WindowHeight
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 187
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WindowHeight
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 56
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the height of the console window area.
   syntax:
-    content: public static int WindowHeight { get; set; }
+    content: >-
+      public static int WindowHeight
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property WindowHeight As Integer
     parameters: []
     return:
@@ -920,22 +2083,44 @@ items:
     description: The value of the <xref href="System.Console.WindowWidth" data-throw-if-not-resolved="false"></xref> property or the value of the <xref href="System.Console.WindowHeight" data-throw-if-not-resolved="false"></xref> property is less than or equal to 0.-or-The value of the <xref href="System.Console.WindowHeight" data-throw-if-not-resolved="false"></xref> property plus the value of the <xref href="System.Console.WindowTop" data-throw-if-not-resolved="false"></xref> property is greater than or equal to <xref href="System.Int16.MaxValue" data-throw-if-not-resolved="false"></xref>.-or-The value of the <xref href="System.Console.WindowWidth" data-throw-if-not-resolved="false"></xref> property or the value of the <xref href="System.Console.WindowHeight" data-throw-if-not-resolved="false"></xref> property is greater than the largest possible window width or height for the current screen resolution and console font.
   - type: System.IO.IOException
     description: Error reading or writing information.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.WindowHeight
 - uid: System.Console.WindowWidth
   id: WindowWidth
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WindowWidth
   fullName: System.Console.WindowWidth
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 171
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WindowWidth
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 57
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the width of the console window.
   syntax:
-    content: public static int WindowWidth { get; set; }
+    content: >-
+      public static int WindowWidth
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property WindowWidth As Integer
     parameters: []
     return:
@@ -946,22 +2131,44 @@ items:
     description: The value of the <xref href="System.Console.WindowWidth" data-throw-if-not-resolved="false"></xref> property or the value of the <xref href="System.Console.WindowHeight" data-throw-if-not-resolved="false"></xref> property is less than or equal to 0.-or-The value of the <xref href="System.Console.WindowHeight" data-throw-if-not-resolved="false"></xref> property plus the value of the <xref href="System.Console.WindowTop" data-throw-if-not-resolved="false"></xref> property is greater than or equal to <xref href="System.Int16.MaxValue" data-throw-if-not-resolved="false"></xref>.-or-The value of the <xref href="System.Console.WindowWidth" data-throw-if-not-resolved="false"></xref> property or the value of the <xref href="System.Console.WindowHeight" data-throw-if-not-resolved="false"></xref> property is greater than the largest possible window width or height for the current screen resolution and console font.
   - type: System.IO.IOException
     description: Error reading or writing information.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.WindowWidth
 - uid: System.Console.WindowLeft
   id: WindowLeft
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WindowLeft
   fullName: System.Console.WindowLeft
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 159
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WindowLeft
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 58
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the leftmost position of the console window area relative to the screen buffer.
   syntax:
-    content: public static int WindowLeft { get; set; }
+    content: >-
+      public static int WindowLeft
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property WindowLeft As Integer
     parameters: []
     return:
@@ -969,25 +2176,47 @@ items:
       description: The leftmost console window position measured in columns.
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: In a set operation, the value to be assigned is less than zero.-or-As a result of the assignment, <xref href="System.Console.WindowLeft" data-throw-if-not-resolved="false"></xref> plus <xref href="System.Console.WindowWidth" data-throw-if-not-resolved="false"></xref> would exceed <xref href="System.Console.BufferWidth" data-throw-if-not-resolved="false"></xref>.
+    description: 'In a set operation, the value to be assigned is less than zero.-or-As a result of the assignment, <xref href="System.Console.WindowLeft" data-throw-if-not-resolved="false"></xref> plus <xref href="System.Console.WindowWidth" data-throw-if-not-resolved="false"></xref> would exceed <xref href="System.Console.BufferWidth" data-throw-if-not-resolved="false"></xref>. '
   - type: System.IO.IOException
     description: Error reading or writing information.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.WindowLeft
 - uid: System.Console.WindowTop
   id: WindowTop
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WindowTop
   fullName: System.Console.WindowTop
   type: Property
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 165
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WindowTop
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 59
   assemblies:
   - System.Console
   namespace: System
   summary: Gets or sets the top position of the console window area relative to the screen buffer.
   syntax:
-    content: public static int WindowTop { get; set; }
+    content: >-
+      public static int WindowTop
+
+      {
+          get;
+          set;
+      }
     content.vb: Public Shared Property WindowTop As Integer
     parameters: []
     return:
@@ -998,16 +2227,32 @@ items:
     description: In a set operation, the value to be assigned is less than zero.-or-As a result of the assignment, <xref href="System.Console.WindowTop" data-throw-if-not-resolved="false"></xref> plus <xref href="System.Console.WindowHeight" data-throw-if-not-resolved="false"></xref> would exceed <xref href="System.Console.BufferHeight" data-throw-if-not-resolved="false"></xref>.
   - type: System.IO.IOException
     description: Error reading or writing information.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  - set
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: P:System.Console.WindowTop
 - uid: System.Console.Write(System.Boolean)
   id: Write(System.Boolean)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(Boolean)
   fullName: System.Console.Write(System.Boolean)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 504
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 60
   assemblies:
   - System.Console
   namespace: System
@@ -1018,20 +2263,34 @@ items:
     parameters:
     - id: value
       type: System.Boolean
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.Boolean)
 - uid: System.Console.Write(System.Char)
   id: Write(System.Char)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(Char)
   fullName: System.Console.Write(System.Char)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 510
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 61
   assemblies:
   - System.Console
   namespace: System
@@ -1042,22 +2301,34 @@ items:
     parameters:
     - id: value
       type: System.Char
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.Char)
 - uid: System.Console.Write(System.Char[])
   id: Write(System.Char[])
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(Char[])
-  name.vb: Write(Char())
   fullName: System.Console.Write(System.Char[])
-  fullName.vb: System.Console.Write(System.Char())
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 516
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 62
   assemblies:
   - System.Console
   namespace: System
@@ -1068,22 +2339,36 @@ items:
     parameters:
     - id: buffer
       type: System.Char[]
-      description: A Unicode character array.
+      description: 'A Unicode character array. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Console.Write(System.Char())
+  name.vb: Write(Char())
+  commentId: M:System.Console.Write(System.Char[])
 - uid: System.Console.Write(System.Char[],System.Int32,System.Int32)
   id: Write(System.Char[],System.Int32,System.Int32)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(Char[], Int32, Int32)
-  name.vb: Write(Char(), Int32, Int32)
   fullName: System.Console.Write(System.Char[], System.Int32, System.Int32)
-  fullName.vb: System.Console.Write(System.Char(), System.Int32, System.Int32)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 522
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 63
   assemblies:
   - System.Console
   namespace: System
@@ -1094,32 +2379,48 @@ items:
     parameters:
     - id: buffer
       type: System.Char[]
-      description: An array of Unicode characters.
+      description: 'An array of Unicode characters. '
     - id: index
       type: System.Int32
-      description: The starting position in *buffer*.
+      description: 'The starting position in <em>buffer</em>. '
     - id: count
       type: System.Int32
-      description: The number of characters to write.
+      description: 'The number of characters to write. '
   exceptions:
   - type: System.ArgumentNullException
-    description: '*buffer* is null.'
+    description: "\r\n  <em>buffer</em> is null. "
   - type: System.ArgumentOutOfRangeException
-    description: '*index* or *count* is less than zero.'
+    description: "\r\n  <em>index</em> or <em>count</em> is less than zero. "
   - type: System.ArgumentException
-    description: '*index* plus *count* specify a position that is not within *buffer*.'
+    description: "\r\n  <em>index</em> plus <em>count</em> specify a position that is not within <em>buffer</em>. "
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Console.Write(System.Char(), System.Int32, System.Int32)
+  name.vb: Write(Char(), Int32, Int32)
+  commentId: M:System.Console.Write(System.Char[],System.Int32,System.Int32)
 - uid: System.Console.Write(System.Decimal)
   id: Write(System.Decimal)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(Decimal)
   fullName: System.Console.Write(System.Decimal)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 534
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 64
   assemblies:
   - System.Console
   namespace: System
@@ -1130,20 +2431,34 @@ items:
     parameters:
     - id: value
       type: System.Decimal
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.Decimal)
 - uid: System.Console.Write(System.Double)
   id: Write(System.Double)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(Double)
   fullName: System.Console.Write(System.Double)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 528
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 65
   assemblies:
   - System.Console
   namespace: System
@@ -1154,20 +2469,34 @@ items:
     parameters:
     - id: value
       type: System.Double
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.Double)
 - uid: System.Console.Write(System.Int32)
   id: Write(System.Int32)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(Int32)
   fullName: System.Console.Write(System.Int32)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 546
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 66
   assemblies:
   - System.Console
   namespace: System
@@ -1178,20 +2507,34 @@ items:
     parameters:
     - id: value
       type: System.Int32
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.Int32)
 - uid: System.Console.Write(System.Int64)
   id: Write(System.Int64)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(Int64)
   fullName: System.Console.Write(System.Int64)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 559
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 67
   assemblies:
   - System.Console
   namespace: System
@@ -1202,20 +2545,34 @@ items:
     parameters:
     - id: value
       type: System.Int64
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.Int64)
 - uid: System.Console.Write(System.Object)
   id: Write(System.Object)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(Object)
   fullName: System.Console.Write(System.Object)
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
     path: src/System.Console/ref/System.Console.cs
-    startLine: 54
+    startLine: 68
   assemblies:
   - System.Console
   namespace: System
@@ -1226,20 +2583,34 @@ items:
     parameters:
     - id: value
       type: System.Object
-      description: The value to write, or null.
+      description: 'The value to write, or null. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.Object)
 - uid: System.Console.Write(System.Single)
   id: Write(System.Single)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(Single)
   fullName: System.Console.Write(System.Single)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 540
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 69
   assemblies:
   - System.Console
   namespace: System
@@ -1250,20 +2621,34 @@ items:
     parameters:
     - id: value
       type: System.Single
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.Single)
 - uid: System.Console.Write(System.String)
   id: Write(System.String)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(String)
   fullName: System.Console.Write(System.String)
   type: Method
   source:
-    remote: *o1
-    path: src/System.Console/ref/System.Console.cs
-    startLine: 56
+    remote:
+      path: src/mscorlib/src/System/LowLevelConsole.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Write
+    path: src/mscorlib/src/System/LowLevelConsole.cs
+    startLine: 27
   assemblies:
   - System.Console
   namespace: System
@@ -1274,20 +2659,34 @@ items:
     parameters:
     - id: value
       type: System.String
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.String)
 - uid: System.Console.Write(System.String,System.Object)
   id: Write(System.String,System.Object)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(String, Object)
   fullName: System.Console.Write(System.String, System.Object)
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
     path: src/System.Console/ref/System.Console.cs
-    startLine: 57
+    startLine: 71
   assemblies:
   - System.Console
   namespace: System
@@ -1298,27 +2697,41 @@ items:
     parameters:
     - id: format
       type: System.String
-      description: A composite format string (see Remarks).
+      description: 'A composite format string (see Remarks). '
     - id: arg0
       type: System.Object
-      description: An object to write using *format*.
+      description: 'An object to write using <em>format</em>. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
   - type: System.ArgumentNullException
-    description: '*format* is null.'
+    description: "\r\n  <em>format</em> is null. "
   - type: System.FormatException
-    description: The format specification in *format* is invalid.
+    description: 'The format specification in <em>format</em> is invalid. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.String,System.Object)
 - uid: System.Console.Write(System.String,System.Object,System.Object)
   id: Write(System.String,System.Object,System.Object)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(String, Object, Object)
   fullName: System.Console.Write(System.String, System.Object, System.Object)
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
     path: src/System.Console/ref/System.Console.cs
-    startLine: 58
+    startLine: 72
   assemblies:
   - System.Console
   namespace: System
@@ -1332,27 +2745,41 @@ items:
       description: A composite format string (see Remarks).
     - id: arg0
       type: System.Object
-      description: The first object to write using *format*.
+      description: 'The first object to write using <em>format</em>. '
     - id: arg1
       type: System.Object
-      description: The second object to write using *format*.
+      description: 'The second object to write using <em>format</em>. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
   - type: System.ArgumentNullException
-    description: '*format* is null.'
+    description: "\r\n  <em>format</em> is null. "
   - type: System.FormatException
-    description: The format specification in *format* is invalid.
+    description: 'The format specification in <em>format</em> is invalid. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.String,System.Object,System.Object)
 - uid: System.Console.Write(System.String,System.Object,System.Object,System.Object)
   id: Write(System.String,System.Object,System.Object,System.Object)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(String, Object, Object, Object)
   fullName: System.Console.Write(System.String, System.Object, System.Object, System.Object)
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
     path: src/System.Console/ref/System.Console.cs
-    startLine: 59
+    startLine: 73
   assemblies:
   - System.Console
   namespace: System
@@ -1366,32 +2793,44 @@ items:
       description: A composite format string (see Remarks).
     - id: arg0
       type: System.Object
-      description: The first object to write using *format*.
+      description: 'The first object to write using <em>format</em>. '
     - id: arg1
       type: System.Object
-      description: The second object to write using *format*.
+      description: 'The second object to write using <em>format</em>. '
     - id: arg2
       type: System.Object
-      description: The third object to write using *format*.
+      description: 'The third object to write using <em>format</em>. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
   - type: System.ArgumentNullException
-    description: '*format* is null.'
+    description: "\r\n  <em>format</em> is null. "
   - type: System.FormatException
-    description: The format specification in *format* is invalid.
+    description: 'The format specification in <em>format</em> is invalid. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.String,System.Object,System.Object,System.Object)
 - uid: System.Console.Write(System.String,System.Object[])
   id: Write(System.String,System.Object[])
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(String, Object[])
-  name.vb: Write(String, Object())
   fullName: System.Console.Write(System.String, System.Object[])
-  fullName.vb: System.Console.Write(System.String, System.Object())
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
     path: src/System.Console/ref/System.Console.cs
-    startLine: 60
+    startLine: 74
   assemblies:
   - System.Console
   namespace: System
@@ -1405,24 +2844,40 @@ items:
       description: A composite format string (see Remarks).
     - id: arg
       type: System.Object[]
-      description: An array of objects to write using *format*.
+      description: 'An array of objects to write using <em>format</em>. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
   - type: System.ArgumentNullException
-    description: '*format* or *arg* is null.'
+    description: "\r\n  <em>format</em> or <em>arg</em> is null. "
   - type: System.FormatException
-    description: The format specification in *format* is invalid.
+    description: 'The format specification in <em>format</em> is invalid. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Console.Write(System.String, System.Object())
+  name.vb: Write(String, Object())
+  commentId: M:System.Console.Write(System.String,System.Object[])
 - uid: System.Console.Write(System.UInt32)
   id: Write(System.UInt32)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(UInt32)
   fullName: System.Console.Write(System.UInt32)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 552
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 75
   assemblies:
   - System.Console
   namespace: System
@@ -1433,20 +2888,34 @@ items:
     parameters:
     - id: value
       type: System.UInt32
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.UInt32)
 - uid: System.Console.Write(System.UInt64)
   id: Write(System.UInt64)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: Write(UInt64)
   fullName: System.Console.Write(System.UInt64)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 565
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Write
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 77
   assemblies:
   - System.Console
   namespace: System
@@ -1457,20 +2926,34 @@ items:
     parameters:
     - id: value
       type: System.UInt64
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.Write(System.UInt64)
 - uid: System.Console.WriteLine
   id: WriteLine
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine()
   fullName: System.Console.WriteLine()
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 364
+    remote:
+      path: src/mscorlib/src/System/LowLevelConsole.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: WriteLine
+    path: src/mscorlib/src/System/LowLevelConsole.cs
+    startLine: 44
   assemblies:
   - System.Console
   namespace: System
@@ -1480,17 +2963,31 @@ items:
     content.vb: Public Shared Sub WriteLine
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine
 - uid: System.Console.WriteLine(System.Boolean)
   id: WriteLine(System.Boolean)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(Boolean)
   fullName: System.Console.WriteLine(System.Boolean)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 370
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 80
   assemblies:
   - System.Console
   namespace: System
@@ -1501,20 +2998,34 @@ items:
     parameters:
     - id: value
       type: System.Boolean
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.Boolean)
 - uid: System.Console.WriteLine(System.Char)
   id: WriteLine(System.Char)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(Char)
   fullName: System.Console.WriteLine(System.Char)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 376
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 81
   assemblies:
   - System.Console
   namespace: System
@@ -1525,22 +3036,34 @@ items:
     parameters:
     - id: value
       type: System.Char
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.Char)
 - uid: System.Console.WriteLine(System.Char[])
   id: WriteLine(System.Char[])
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(Char[])
-  name.vb: WriteLine(Char())
   fullName: System.Console.WriteLine(System.Char[])
-  fullName.vb: System.Console.WriteLine(System.Char())
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 382
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 82
   assemblies:
   - System.Console
   namespace: System
@@ -1551,22 +3074,36 @@ items:
     parameters:
     - id: buffer
       type: System.Char[]
-      description: A Unicode character array.
+      description: 'A Unicode character array. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Console.WriteLine(System.Char())
+  name.vb: WriteLine(Char())
+  commentId: M:System.Console.WriteLine(System.Char[])
 - uid: System.Console.WriteLine(System.Char[],System.Int32,System.Int32)
   id: WriteLine(System.Char[],System.Int32,System.Int32)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(Char[], Int32, Int32)
-  name.vb: WriteLine(Char(), Int32, Int32)
   fullName: System.Console.WriteLine(System.Char[], System.Int32, System.Int32)
-  fullName.vb: System.Console.WriteLine(System.Char(), System.Int32, System.Int32)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 388
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 83
   assemblies:
   - System.Console
   namespace: System
@@ -1577,32 +3114,48 @@ items:
     parameters:
     - id: buffer
       type: System.Char[]
-      description: An array of Unicode characters.
+      description: 'An array of Unicode characters. '
     - id: index
       type: System.Int32
-      description: The starting position in *buffer*.
+      description: 'The starting position in <em>buffer</em>. '
     - id: count
       type: System.Int32
-      description: The number of characters to write.
+      description: 'The number of characters to write. '
   exceptions:
   - type: System.ArgumentNullException
-    description: '*buffer* is null.'
+    description: "\r\n  <em>buffer</em> is null. "
   - type: System.ArgumentOutOfRangeException
-    description: '*index* or *count* is less than zero.'
+    description: "\r\n  <em>index</em> or <em>count</em> is less than zero. "
   - type: System.ArgumentException
-    description: '*index* plus *count* specify a position that is not within *buffer*.'
+    description: "\r\n  <em>index</em> plus <em>count</em> specify a position that is not within <em>buffer</em>. "
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Console.WriteLine(System.Char(), System.Int32, System.Int32)
+  name.vb: WriteLine(Char(), Int32, Int32)
+  commentId: M:System.Console.WriteLine(System.Char[],System.Int32,System.Int32)
 - uid: System.Console.WriteLine(System.Decimal)
   id: WriteLine(System.Decimal)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(Decimal)
   fullName: System.Console.WriteLine(System.Decimal)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 394
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 84
   assemblies:
   - System.Console
   namespace: System
@@ -1613,20 +3166,34 @@ items:
     parameters:
     - id: value
       type: System.Decimal
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.Decimal)
 - uid: System.Console.WriteLine(System.Double)
   id: WriteLine(System.Double)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(Double)
   fullName: System.Console.WriteLine(System.Double)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 400
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 85
   assemblies:
   - System.Console
   namespace: System
@@ -1637,20 +3204,34 @@ items:
     parameters:
     - id: value
       type: System.Double
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.Double)
 - uid: System.Console.WriteLine(System.Int32)
   id: WriteLine(System.Int32)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(Int32)
   fullName: System.Console.WriteLine(System.Int32)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 412
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 86
   assemblies:
   - System.Console
   namespace: System
@@ -1661,20 +3242,34 @@ items:
     parameters:
     - id: value
       type: System.Int32
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.Int32)
 - uid: System.Console.WriteLine(System.Int64)
   id: WriteLine(System.Int64)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(Int64)
   fullName: System.Console.WriteLine(System.Int64)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 425
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 87
   assemblies:
   - System.Console
   namespace: System
@@ -1685,20 +3280,34 @@ items:
     parameters:
     - id: value
       type: System.Int64
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.Int64)
 - uid: System.Console.WriteLine(System.Object)
   id: WriteLine(System.Object)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(Object)
   fullName: System.Console.WriteLine(System.Object)
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
     path: src/System.Console/ref/System.Console.cs
-    startLine: 74
+    startLine: 88
   assemblies:
   - System.Console
   namespace: System
@@ -1709,20 +3318,34 @@ items:
     parameters:
     - id: value
       type: System.Object
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.Object)
 - uid: System.Console.WriteLine(System.Single)
   id: WriteLine(System.Single)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(Single)
   fullName: System.Console.WriteLine(System.Single)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 406
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 89
   assemblies:
   - System.Console
   namespace: System
@@ -1733,20 +3356,34 @@ items:
     parameters:
     - id: value
       type: System.Single
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.Single)
 - uid: System.Console.WriteLine(System.String)
   id: WriteLine(System.String)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(String)
   fullName: System.Console.WriteLine(System.String)
   type: Method
   source:
-    remote: *o1
-    path: src/System.Console/ref/System.Console.cs
-    startLine: 76
+    remote:
+      path: src/mscorlib/src/System/LowLevelConsole.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: WriteLine
+    path: src/mscorlib/src/System/LowLevelConsole.cs
+    startLine: 39
   assemblies:
   - System.Console
   namespace: System
@@ -1757,20 +3394,34 @@ items:
     parameters:
     - id: value
       type: System.String
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.String)
 - uid: System.Console.WriteLine(System.String,System.Object)
   id: WriteLine(System.String,System.Object)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(String, Object)
   fullName: System.Console.WriteLine(System.String, System.Object)
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
     path: src/System.Console/ref/System.Console.cs
-    startLine: 77
+    startLine: 91
   assemblies:
   - System.Console
   namespace: System
@@ -1784,24 +3435,38 @@ items:
       description: A composite format string (see Remarks).
     - id: arg0
       type: System.Object
-      description: An object to write using *format*.
+      description: 'An object to write using <em>format</em>. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
   - type: System.ArgumentNullException
-    description: '*format* is null.'
+    description: "\r\n  <em>format</em> is null. "
   - type: System.FormatException
-    description: The format specification in *format* is invalid.
+    description: 'The format specification in <em>format</em> is invalid. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.String,System.Object)
 - uid: System.Console.WriteLine(System.String,System.Object,System.Object)
   id: WriteLine(System.String,System.Object,System.Object)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(String, Object, Object)
   fullName: System.Console.WriteLine(System.String, System.Object, System.Object)
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
     path: src/System.Console/ref/System.Console.cs
-    startLine: 78
+    startLine: 92
   assemblies:
   - System.Console
   namespace: System
@@ -1815,27 +3480,41 @@ items:
       description: A composite format string (see Remarks).
     - id: arg0
       type: System.Object
-      description: The first object to write using *format*.
+      description: 'The first object to write using <em>format</em>. '
     - id: arg1
       type: System.Object
-      description: The second object to write using *format*.
+      description: 'The second object to write using <em>format</em>. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
   - type: System.ArgumentNullException
-    description: '*format* is null.'
+    description: "\r\n  <em>format</em> is null. "
   - type: System.FormatException
-    description: The format specification in *format* is invalid.
+    description: 'The format specification in <em>format</em> is invalid. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.String,System.Object,System.Object)
 - uid: System.Console.WriteLine(System.String,System.Object,System.Object,System.Object)
   id: WriteLine(System.String,System.Object,System.Object,System.Object)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(String, Object, Object, Object)
   fullName: System.Console.WriteLine(System.String, System.Object, System.Object, System.Object)
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
     path: src/System.Console/ref/System.Console.cs
-    startLine: 79
+    startLine: 93
   assemblies:
   - System.Console
   namespace: System
@@ -1849,32 +3528,44 @@ items:
       description: A composite format string (see Remarks).
     - id: arg0
       type: System.Object
-      description: The first object to write using *format*.
+      description: 'The first object to write using <em>format</em>. '
     - id: arg1
       type: System.Object
-      description: The second object to write using *format*.
+      description: 'The second object to write using <em>format</em>. '
     - id: arg2
       type: System.Object
-      description: The third object to write using *format*.
+      description: 'The third object to write using <em>format</em>. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
   - type: System.ArgumentNullException
-    description: '*format* is null.'
+    description: "\r\n  <em>format</em> is null. "
   - type: System.FormatException
-    description: The format specification in *format* is invalid.
+    description: 'The format specification in <em>format</em> is invalid. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.String,System.Object,System.Object,System.Object)
 - uid: System.Console.WriteLine(System.String,System.Object[])
   id: WriteLine(System.String,System.Object[])
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(String, Object[])
-  name.vb: WriteLine(String, Object())
   fullName: System.Console.WriteLine(System.String, System.Object[])
-  fullName.vb: System.Console.WriteLine(System.String, System.Object())
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
     path: src/System.Console/ref/System.Console.cs
-    startLine: 80
+    startLine: 94
   assemblies:
   - System.Console
   namespace: System
@@ -1888,24 +3579,40 @@ items:
       description: A composite format string (see Remarks).
     - id: arg
       type: System.Object[]
-      description: An array of objects to write using *format*.
+      description: 'An array of objects to write using <em>format</em>. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
   - type: System.ArgumentNullException
-    description: '*format* or *arg* is null.'
+    description: "\r\n  <em>format</em> or <em>arg</em> is null. "
   - type: System.FormatException
-    description: The format specification in *format* is invalid.
+    description: 'The format specification in <em>format</em> is invalid. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Console.WriteLine(System.String, System.Object())
+  name.vb: WriteLine(String, Object())
+  commentId: M:System.Console.WriteLine(System.String,System.Object[])
 - uid: System.Console.WriteLine(System.UInt32)
   id: WriteLine(System.UInt32)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(UInt32)
   fullName: System.Console.WriteLine(System.UInt32)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 418
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 95
   assemblies:
   - System.Console
   namespace: System
@@ -1916,20 +3623,34 @@ items:
     parameters:
     - id: value
       type: System.UInt32
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.UInt32)
 - uid: System.Console.WriteLine(System.UInt64)
   id: WriteLine(System.UInt64)
   parent: System.Console
+  langs:
+  - csharp
+  - vb
   name: WriteLine(UInt64)
   fullName: System.Console.WriteLine(System.UInt64)
   type: Method
   source:
-    remote: *o0
-    path: src/System.Console/src/System/Console.cs
-    startLine: 431
+    remote:
+      path: src/System.Console/ref/System.Console.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: WriteLine
+    path: src/System.Console/ref/System.Console.cs
+    startLine: 97
   assemblies:
   - System.Console
   namespace: System
@@ -1940,10 +3661,17 @@ items:
     parameters:
     - id: value
       type: System.UInt64
-      description: The value to write.
+      description: 'The value to write. '
   exceptions:
   - type: System.IO.IOException
-    description: An I/O error occurred.
+    description: 'An I/O error occurred. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Console.WriteLine(System.UInt64)
 references:
 - uid: System
   isExternal: false
@@ -1969,20 +3697,39 @@ references:
   isExternal: false
   name: Boolean
   fullName: System.Boolean
+- uid: System.ConsoleCancelEventHandler
+  parent: System
+  isExternal: false
+  name: ConsoleCancelEventHandler
+  fullName: System.ConsoleCancelEventHandler
 - uid: System.IO.TextWriter
   parent: System.IO
   isExternal: false
-  name: TextWriter
+  name: IO.TextWriter
   fullName: System.IO.TextWriter
 - uid: System.IO
   isExternal: false
   name: System.IO
   fullName: System.IO
+- uid: System.Text.Encoding
+  parent: System.Text
+  isExternal: false
+  name: Text.Encoding
+  fullName: System.Text.Encoding
+- uid: System.Text
+  isExternal: false
+  name: System.Text
+  fullName: System.Text
 - uid: System.IO.TextReader
   parent: System.IO
   isExternal: false
-  name: TextReader
+  name: IO.TextReader
   fullName: System.IO.TextReader
+- uid: System.Char
+  parent: System
+  isExternal: false
+  name: Char
+  fullName: System.Char
 - uid: System.IO.Stream
   parent: System.IO
   isExternal: false
@@ -1998,17 +3745,12 @@ references:
   isExternal: false
   name: String
   fullName: System.String
-- uid: System.Char
-  parent: System
-  isExternal: false
-  name: Char
-  fullName: System.Char
 - uid: System.Char[]
   isExternal: false
   name: Char[]
-  name.vb: Char()
   fullName: System.Char[]
-  fullName.vb: System.Char()
+  fullname.vb: System.Char()
+  name.vb: Char()
   spec.csharp:
   - uid: System.Char
     name: Char
@@ -2044,9 +3786,9 @@ references:
 - uid: System.Object[]
   isExternal: false
   name: Object[]
-  name.vb: Object()
   fullName: System.Object[]
-  fullName.vb: System.Object()
+  fullname.vb: System.Object()
+  name.vb: Object()
   spec.csharp:
   - uid: System.Object
     name: Object
@@ -2088,6 +3830,10 @@ references:
   isExternal: false
   name: ArgumentOutOfRangeException
   fullName: System.ArgumentOutOfRangeException
+- uid: System.ArgumentNullException
+  isExternal: false
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
 - uid: System.InvalidOperationException
   parent: System
   isExternal: false
@@ -2097,10 +3843,6 @@ references:
   isExternal: false
   name: OutOfMemoryException
   fullName: System.OutOfMemoryException
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException
 - uid: System.FormatException
   parent: System
   isExternal: false

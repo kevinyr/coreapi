@@ -17,14 +17,18 @@ items:
   - System.GC.ReRegisterForFinalize(System.Object)
   - System.GC.SuppressFinalize(System.Object)
   - System.GC.WaitForPendingFinalizers
+  langs:
+  - csharp
+  - vb
   name: GC
   fullName: System.GC
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/GC.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: GC
     path: src/mscorlib/src/System/GC.cs
     startLine: 63
   assemblies:
@@ -44,35 +48,70 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  commentId: T:System.GC
 - uid: System.GC.MaxGeneration
   id: MaxGeneration
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: MaxGeneration
   fullName: System.GC.MaxGeneration
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: MaxGeneration
     path: src/mscorlib/src/System/GC.cs
-    startLine: 310
+    startLine: 306
   assemblies:
   - System.Runtime
   namespace: System
   summary: Gets the maximum number of generations that the system currently supports.
   syntax:
-    content: public static int MaxGeneration { get; }
+    content: >-
+      public static int MaxGeneration
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property MaxGeneration As Integer
     parameters: []
     return:
       type: System.Int32
       description: A value that ranges from zero to the maximum number of supported generations.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.GC.MaxGeneration
 - uid: System.GC.AddMemoryPressure(System.Int64)
   id: AddMemoryPressure(System.Int64)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: AddMemoryPressure(Int64)
   fullName: System.GC.AddMemoryPressure(System.Int64)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: AddMemoryPressure
     path: src/mscorlib/src/System/GC.cs
     startLine: 126
   assemblies:
@@ -80,42 +119,80 @@ items:
   namespace: System
   summary: Informs the runtime of a large allocation of unmanaged memory that should be taken into account when scheduling garbage collection.
   syntax:
-    content: public static void AddMemoryPressure(long bytesAllocated)
-    content.vb: Public Shared Sub AddMemoryPressure(bytesAllocated As Long)
+    content: >-
+      [SecurityCritical]
+
+      public static void AddMemoryPressure(long bytesAllocated)
+    content.vb: >-
+      <SecurityCritical>
+
+      Public Shared Sub AddMemoryPressure(bytesAllocated As Long)
     parameters:
     - id: bytesAllocated
       type: System.Int64
-      description: The incremental amount of unmanaged memory that has been allocated.
+      description: 'The incremental amount of unmanaged memory that has been allocated. '
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: '*bytesAllocated* is less than or equal to 0.-or-On a 32-bit computer, *bytesAllocated* is larger than <xref href="System.Int32.MaxValue" data-throw-if-not-resolved="false"></xref>.'
+    description: "\r\n  <em>bytesAllocated</em> is less than or equal to 0.-or-On a 32-bit computer, <em>bytesAllocated</em> is larger than <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>. "
+  attributes:
+  - type: System.Security.SecurityCriticalAttribute
+    ctor: System.Security.SecurityCriticalAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.AddMemoryPressure(System.Int64)
 - uid: System.GC.Collect
   id: Collect
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: Collect()
   fullName: System.GC.Collect()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Collect
     path: src/mscorlib/src/System/GC.cs
-    startLine: 181
+    startLine: 174
   assemblies:
   - System.Runtime
   namespace: System
-  summary: Forces an immediate garbage collection of all generations.
+  summary: 'Forces an immediate garbage collection of all generations. '
   syntax:
     content: public static void Collect()
     content.vb: Public Shared Sub Collect
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.Collect
 - uid: System.GC.Collect(System.Int32)
   id: Collect(System.Int32)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: Collect(Int32)
   fullName: System.GC.Collect(System.Int32)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Collect
     path: src/mscorlib/src/System/GC.cs
-    startLine: 173
+    startLine: 168
   assemblies:
   - System.Runtime
   namespace: System
@@ -126,20 +203,34 @@ items:
     parameters:
     - id: generation
       type: System.Int32
-      description: The number of the oldest generation to be garbage collected.
+      description: 'The number of the oldest generation to be garbage collected. '
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: '*generation* is not valid.'
+    description: "\r\n  <em>generation</em> is not valid. "
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.Collect(System.Int32)
 - uid: System.GC.Collect(System.Int32,System.GCCollectionMode)
   id: Collect(System.Int32,System.GCCollectionMode)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: Collect(Int32, GCCollectionMode)
   fullName: System.GC.Collect(System.Int32, System.GCCollectionMode)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Collect
     path: src/mscorlib/src/System/GC.cs
-    startLine: 187
+    startLine: 180
   assemblies:
   - System.Runtime
   namespace: System
@@ -150,23 +241,37 @@ items:
     parameters:
     - id: generation
       type: System.Int32
-      description: The number of the oldest generation to be garbage collected.
+      description: 'The number of the oldest generation to be garbage collected. '
     - id: mode
       type: System.GCCollectionMode
-      description: An enumeration value that specifies whether the garbage collection is forced (<xref href="System.GCCollectionMode.Default" data-throw-if-not-resolved="false"></xref> or <xref href="System.GCCollectionMode.Forced" data-throw-if-not-resolved="false"></xref>) or optimized (<xref href="System.GCCollectionMode.Optimized" data-throw-if-not-resolved="false"></xref>).
+      description: 'An enumeration value that specifies whether the garbage collection is forced (<xref href="System.GCCollectionMode.Default" data-throw-if-not-resolved="false"></xref> or <xref href="System.GCCollectionMode.Forced" data-throw-if-not-resolved="false"></xref>) or optimized (<xref href="System.GCCollectionMode.Optimized" data-throw-if-not-resolved="false"></xref>). '
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: '*generation* is not valid.-or-*mode* is not one of the <xref href="System.GCCollectionMode" data-throw-if-not-resolved="false"></xref> values.'
+    description: "\r\n  <em>generation</em> is not valid.-or-<em>mode</em> is not one of the <xref href=\"System.GCCollectionMode\" data-throw-if-not-resolved=\"false\"></xref> values."
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.Collect(System.Int32,System.GCCollectionMode)
 - uid: System.GC.Collect(System.Int32,System.GCCollectionMode,System.Boolean)
   id: Collect(System.Int32,System.GCCollectionMode,System.Boolean)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: Collect(Int32, GCCollectionMode, Boolean)
   fullName: System.GC.Collect(System.Int32, System.GCCollectionMode, System.Boolean)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Collect
     path: src/mscorlib/src/System/GC.cs
-    startLine: 193
+    startLine: 186
   assemblies:
   - System.Runtime
   namespace: System
@@ -177,26 +282,40 @@ items:
     parameters:
     - id: generation
       type: System.Int32
-      description: The number of the oldest generation to be garbage collected.
+      description: 'The number of the oldest generation to be garbage collected. '
     - id: mode
       type: System.GCCollectionMode
-      description: An enumeration value that specifies whether the garbage collection is forced (<xref href="System.GCCollectionMode.Default" data-throw-if-not-resolved="false"></xref> or <xref href="System.GCCollectionMode.Forced" data-throw-if-not-resolved="false"></xref>) or optimized (<xref href="System.GCCollectionMode.Optimized" data-throw-if-not-resolved="false"></xref>).
+      description: 'An enumeration value that specifies whether the garbage collection is forced (<xref href="System.GCCollectionMode.Default" data-throw-if-not-resolved="false"></xref> or <xref href="System.GCCollectionMode.Forced" data-throw-if-not-resolved="false"></xref>) or optimized (<xref href="System.GCCollectionMode.Optimized" data-throw-if-not-resolved="false"></xref>). '
     - id: blocking
       type: System.Boolean
       description: true to perform a blocking garbage collection; false to perform a background garbage collection where possible.
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: '*generation* is not valid.-or-*mode* is not one of the <xref href="System.GCCollectionMode" data-throw-if-not-resolved="false"></xref> values.'
+    description: "\r\n  <em>generation</em> is not valid.-or-<em>mode</em> is not one of the <xref href=\"System.GCCollectionMode\" data-throw-if-not-resolved=\"false\"></xref> values."
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.Collect(System.Int32,System.GCCollectionMode,System.Boolean)
 - uid: System.GC.CollectionCount(System.Int32)
   id: CollectionCount(System.Int32)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: CollectionCount(Int32)
   fullName: System.GC.CollectionCount(System.Int32)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: CollectionCount
     path: src/mscorlib/src/System/GC.cs
-    startLine: 236
+    startLine: 229
   assemblies:
   - System.Runtime
   namespace: System
@@ -207,16 +326,26 @@ items:
     parameters:
     - id: generation
       type: System.Int32
-      description: The generation of objects for which the garbage collection count is to be determined.
+      description: 'The generation of objects for which the garbage collection count is to be determined. '
     return:
       type: System.Int32
       description: The number of times garbage collection has occurred for the specified generation since the process was started.
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: '*generation* is less than 0.'
+    description: "\r\n  <em>generation</em> is less than 0. "
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.CollectionCount(System.Int32)
 - uid: System.GC.GetGeneration(System.Object)
   id: GetGeneration(System.Object)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: GetGeneration(Object)
   fullName: System.GC.GetGeneration(System.Object)
   type: Method
@@ -233,20 +362,34 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object that generation information is retrieved for.
+      description: 'The object that generation information is retrieved for. '
     return:
       type: System.Int32
-      description: The current generation number of *obj*.
+      description: The current generation number of <em>obj</em>.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.GetGeneration(System.Object)
 - uid: System.GC.GetTotalMemory(System.Boolean)
   id: GetTotalMemory(System.Boolean)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: GetTotalMemory(Boolean)
   fullName: System.GC.GetTotalMemory(System.Boolean)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetTotalMemory
     path: src/mscorlib/src/System/GC.cs
-    startLine: 362
+    startLine: 358
   assemblies:
   - System.Runtime
   namespace: System
@@ -261,16 +404,30 @@ items:
     return:
       type: System.Int64
       description: A number that is the best available approximation of the number of bytes currently allocated in managed memory.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.GetTotalMemory(System.Boolean)
 - uid: System.GC.KeepAlive(System.Object)
   id: KeepAlive(System.Object)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: KeepAlive(Object)
   fullName: System.GC.KeepAlive(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: KeepAlive
     path: src/mscorlib/src/System/GC.cs
-    startLine: 293
+    startLine: 289
   assemblies:
   - System.Runtime
   namespace: System
@@ -281,15 +438,29 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object to reference.
+      description: 'The object to reference. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.KeepAlive(System.Object)
 - uid: System.GC.RemoveMemoryPressure(System.Int64)
   id: RemoveMemoryPressure(System.Int64)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: RemoveMemoryPressure(Int64)
   fullName: System.GC.RemoveMemoryPressure(System.Int64)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: RemoveMemoryPressure
     path: src/mscorlib/src/System/GC.cs
     startLine: 142
   assemblies:
@@ -297,25 +468,49 @@ items:
   namespace: System
   summary: Informs the runtime that unmanaged memory has been released and no longer needs to be taken into account when scheduling garbage collection.
   syntax:
-    content: public static void RemoveMemoryPressure(long bytesAllocated)
-    content.vb: Public Shared Sub RemoveMemoryPressure(bytesAllocated As Long)
+    content: >-
+      [SecurityCritical]
+
+      public static void RemoveMemoryPressure(long bytesAllocated)
+    content.vb: >-
+      <SecurityCritical>
+
+      Public Shared Sub RemoveMemoryPressure(bytesAllocated As Long)
     parameters:
     - id: bytesAllocated
       type: System.Int64
-      description: The amount of unmanaged memory that has been released.
+      description: 'The amount of unmanaged memory that has been released. '
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: '*bytesAllocated* is less than or equal to 0. -or- On a 32-bit computer, *bytesAllocated* is larger than <xref href="System.Int32.MaxValue" data-throw-if-not-resolved="false"></xref>.'
+    description: "\r\n  <em>bytesAllocated</em> is less than or equal to 0. -or- On a 32-bit computer, <em>bytesAllocated</em> is larger than <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>. "
+  attributes:
+  - type: System.Security.SecurityCriticalAttribute
+    ctor: System.Security.SecurityCriticalAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.RemoveMemoryPressure(System.Int64)
 - uid: System.GC.ReRegisterForFinalize(System.Object)
   id: ReRegisterForFinalize(System.Object)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: ReRegisterForFinalize(Object)
   fullName: System.GC.ReRegisterForFinalize(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: ReRegisterForFinalize
     path: src/mscorlib/src/System/GC.cs
-    startLine: 350
+    startLine: 346
   assemblies:
   - System.Runtime
   namespace: System
@@ -326,44 +521,72 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object that a finalizer must be called for.
+      description: 'The object that a finalizer must be called for. '
   exceptions:
   - type: System.ArgumentNullException
-    description: '*obj* is null.'
+    description: "\r\n  <em>obj</em> is null. "
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.ReRegisterForFinalize(System.Object)
 - uid: System.GC.SuppressFinalize(System.Object)
   id: SuppressFinalize(System.Object)
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: SuppressFinalize(Object)
   fullName: System.GC.SuppressFinalize(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: SuppressFinalize
     path: src/mscorlib/src/System/GC.cs
-    startLine: 333
+    startLine: 329
   assemblies:
   - System.Runtime
   namespace: System
-  summary: Requests that the common language runtime not call the finalizer for the specified object.
+  summary: 'Requests that the common language runtime not call the finalizer for the specified object. '
   syntax:
     content: public static void SuppressFinalize(object obj)
     content.vb: Public Shared Sub SuppressFinalize(obj As Object)
     parameters:
     - id: obj
       type: System.Object
-      description: The object whose finalizer must not be executed.
+      description: 'The object whose finalizer must not be executed. '
   exceptions:
   - type: System.ArgumentNullException
-    description: '*obj* is null.'
+    description: "\r\n  <em>obj</em> is null. "
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.SuppressFinalize(System.Object)
 - uid: System.GC.WaitForPendingFinalizers
   id: WaitForPendingFinalizers
   parent: System.GC
+  langs:
+  - csharp
+  - vb
   name: WaitForPendingFinalizers()
   fullName: System.GC.WaitForPendingFinalizers()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/GC.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: WaitForPendingFinalizers
     path: src/mscorlib/src/System/GC.cs
-    startLine: 320
+    startLine: 316
   assemblies:
   - System.Runtime
   namespace: System
@@ -371,6 +594,13 @@ items:
   syntax:
     content: public static void WaitForPendingFinalizers()
     content.vb: Public Shared Sub WaitForPendingFinalizers
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.GC.WaitForPendingFinalizers
 references:
 - uid: System
   isExternal: false

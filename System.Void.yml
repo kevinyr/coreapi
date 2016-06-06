@@ -3,6 +3,9 @@ items:
   id: Void
   parent: System
   children: []
+  langs:
+  - csharp
+  - vb
   name: Void
   fullName: System.Void
   type: Struct
@@ -11,6 +14,7 @@ items:
       path: src/mscorlib/src/System/Void.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: Void
     path: src/mscorlib/src/System/Void.cs
     startLine: 12
   assemblies:
@@ -18,8 +22,14 @@ items:
   namespace: System
   summary: Specifies a return value type for a method that does not return a value.
   syntax:
-    content: public struct Void
-    content.vb: Public Structure Void
+    content: >-
+      [StructLayout(LayoutKind.Sequential, Size = 1)]
+
+      public struct Void
+    content.vb: >-
+      <StructLayout(LayoutKind.Sequential, Size:=1)>
+
+      Public Structure Void
   inheritedMembers:
   - System.ValueType.Equals(System.Object)
   - System.ValueType.GetHashCode
@@ -27,6 +37,23 @@ items:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
+  attributes:
+  - type: System.Runtime.InteropServices.StructLayoutAttribute
+    ctor: System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Runtime.InteropServices.LayoutKind)
+    arguments:
+    - type: System.Runtime.InteropServices.LayoutKind
+      value: 0
+    namedArguments:
+    - name: Size
+      type: System.Int32
+      value: 1
+  modifiers.csharp:
+  - public
+  - struct
+  modifiers.vb:
+  - Public
+  - Structure
+  commentId: T:System.Void
 references:
 - uid: System
   isExternal: false

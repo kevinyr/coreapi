@@ -5,14 +5,18 @@ items:
   children:
   - System.Reflection.AssemblyTrademarkAttribute.#ctor(System.String)
   - System.Reflection.AssemblyTrademarkAttribute.Trademark
+  langs:
+  - csharp
+  - vb
   name: AssemblyTrademarkAttribute
   fullName: System.Reflection.AssemblyTrademarkAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: AssemblyTrademarkAttribute
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 39
   assemblies:
@@ -20,8 +24,15 @@ items:
   namespace: System.Reflection
   summary: Defines a trademark custom attribute for an assembly manifest.
   syntax:
-    content: 'public sealed class AssemblyTrademarkAttribute : Attribute'
-    content.vb: Public NotInheritable Class AssemblyTrademarkAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
+
+      public sealed class AssemblyTrademarkAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly, Inherited:=False)>
+
+      Public NotInheritable Class AssemblyTrademarkAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -33,14 +44,40 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 1
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Reflection.AssemblyTrademarkAttribute
 - uid: System.Reflection.AssemblyTrademarkAttribute.#ctor(System.String)
   id: '#ctor(System.String)'
   parent: System.Reflection.AssemblyTrademarkAttribute
+  langs:
+  - csharp
+  - vb
   name: AssemblyTrademarkAttribute(String)
   fullName: System.Reflection.AssemblyTrademarkAttribute.AssemblyTrademarkAttribute(System.String)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 45
   assemblies:
@@ -53,15 +90,27 @@ items:
     parameters:
     - id: trademark
       type: System.String
-      description: The trademark information.
+      description: 'The trademark information. '
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.AssemblyTrademarkAttribute.#ctor(System.String)
 - uid: System.Reflection.AssemblyTrademarkAttribute.Trademark
   id: Trademark
   parent: System.Reflection.AssemblyTrademarkAttribute
+  langs:
+  - csharp
+  - vb
   name: Trademark
   fullName: System.Reflection.AssemblyTrademarkAttribute.Trademark
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Trademark
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 50
   assemblies:
@@ -69,12 +118,24 @@ items:
   namespace: System.Reflection
   summary: Gets trademark information.
   syntax:
-    content: public string Trademark { get; }
+    content: >-
+      public string Trademark
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property Trademark As String
     parameters: []
     return:
       type: System.String
       description: A String containing trademark information.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Reflection.AssemblyTrademarkAttribute.Trademark
 references:
 - uid: System.Reflection
   isExternal: false

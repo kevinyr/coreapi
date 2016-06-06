@@ -5,14 +5,18 @@ items:
   children:
   - System.Reflection.AssemblyDelaySignAttribute.#ctor(System.Boolean)
   - System.Reflection.AssemblyDelaySignAttribute.DelaySign
+  langs:
+  - csharp
+  - vb
   name: AssemblyDelaySignAttribute
   fullName: System.Reflection.AssemblyDelaySignAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: AssemblyDelaySignAttribute
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 257
   assemblies:
@@ -20,8 +24,15 @@ items:
   namespace: System.Reflection
   summary: Specifies that the assembly is not fully signed when created.
   syntax:
-    content: 'public sealed class AssemblyDelaySignAttribute : Attribute'
-    content.vb: Public NotInheritable Class AssemblyDelaySignAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
+
+      public sealed class AssemblyDelaySignAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly, Inherited:=False)>
+
+      Public NotInheritable Class AssemblyDelaySignAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -33,14 +44,40 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 1
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Reflection.AssemblyDelaySignAttribute
 - uid: System.Reflection.AssemblyDelaySignAttribute.#ctor(System.Boolean)
   id: '#ctor(System.Boolean)'
   parent: System.Reflection.AssemblyDelaySignAttribute
+  langs:
+  - csharp
+  - vb
   name: AssemblyDelaySignAttribute(Boolean)
   fullName: System.Reflection.AssemblyDelaySignAttribute.AssemblyDelaySignAttribute(System.Boolean)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 263
   assemblies:
@@ -53,15 +90,27 @@ items:
     parameters:
     - id: delaySign
       type: System.Boolean
-      description: true if the feature this attribute represents is activated; otherwise, false.
+      description: 'true if the feature this attribute represents is activated; otherwise, false. '
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.AssemblyDelaySignAttribute.#ctor(System.Boolean)
 - uid: System.Reflection.AssemblyDelaySignAttribute.DelaySign
   id: DelaySign
   parent: System.Reflection.AssemblyDelaySignAttribute
+  langs:
+  - csharp
+  - vb
   name: DelaySign
   fullName: System.Reflection.AssemblyDelaySignAttribute.DelaySign
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: DelaySign
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 268
   assemblies:
@@ -69,12 +118,24 @@ items:
   namespace: System.Reflection
   summary: Gets a value indicating the state of the attribute.
   syntax:
-    content: public bool DelaySign { get; }
+    content: >-
+      public bool DelaySign
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property DelaySign As Boolean
     parameters: []
     return:
       type: System.Boolean
       description: true if this assembly has been built as delay-signed; otherwise, false.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Reflection.AssemblyDelaySignAttribute.DelaySign
 references:
 - uid: System.Reflection
   isExternal: false

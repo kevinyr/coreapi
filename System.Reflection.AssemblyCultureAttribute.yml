@@ -5,14 +5,18 @@ items:
   children:
   - System.Reflection.AssemblyCultureAttribute.#ctor(System.String)
   - System.Reflection.AssemblyCultureAttribute.Culture
+  langs:
+  - csharp
+  - vb
   name: AssemblyCultureAttribute
   fullName: System.Reflection.AssemblyCultureAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: AssemblyCultureAttribute
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 203
   assemblies:
@@ -20,8 +24,15 @@ items:
   namespace: System.Reflection
   summary: Specifies which culture the assembly supports.
   syntax:
-    content: 'public sealed class AssemblyCultureAttribute : Attribute'
-    content.vb: Public NotInheritable Class AssemblyCultureAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
+
+      public sealed class AssemblyCultureAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly, Inherited:=False)>
+
+      Public NotInheritable Class AssemblyCultureAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -33,14 +44,40 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 1
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Reflection.AssemblyCultureAttribute
 - uid: System.Reflection.AssemblyCultureAttribute.#ctor(System.String)
   id: '#ctor(System.String)'
   parent: System.Reflection.AssemblyCultureAttribute
+  langs:
+  - csharp
+  - vb
   name: AssemblyCultureAttribute(String)
   fullName: System.Reflection.AssemblyCultureAttribute.AssemblyCultureAttribute(System.String)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 209
   assemblies:
@@ -53,15 +90,27 @@ items:
     parameters:
     - id: culture
       type: System.String
-      description: The culture supported by the attributed assembly.
+      description: 'The culture supported by the attributed assembly. '
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.AssemblyCultureAttribute.#ctor(System.String)
 - uid: System.Reflection.AssemblyCultureAttribute.Culture
   id: Culture
   parent: System.Reflection.AssemblyCultureAttribute
+  langs:
+  - csharp
+  - vb
   name: Culture
   fullName: System.Reflection.AssemblyCultureAttribute.Culture
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Culture
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 214
   assemblies:
@@ -69,12 +118,24 @@ items:
   namespace: System.Reflection
   summary: Gets the supported culture of the attributed assembly.
   syntax:
-    content: public string Culture { get; }
+    content: >-
+      public string Culture
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property Culture As String
     parameters: []
     return:
       type: System.String
       description: A string containing the name of the supported culture.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Reflection.AssemblyCultureAttribute.Culture
 references:
 - uid: System.Reflection
   isExternal: false

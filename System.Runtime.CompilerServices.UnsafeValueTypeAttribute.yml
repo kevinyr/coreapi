@@ -4,6 +4,9 @@ items:
   parent: System.Runtime.CompilerServices
   children:
   - System.Runtime.CompilerServices.UnsafeValueTypeAttribute.#ctor
+  langs:
+  - csharp
+  - vb
   name: UnsafeValueTypeAttribute
   fullName: System.Runtime.CompilerServices.UnsafeValueTypeAttribute
   type: Class
@@ -12,6 +15,7 @@ items:
       path: src/mscorlib/src/System/Runtime/CompilerServices/UnsafeValueTypeAttribute.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: UnsafeValueTypeAttribute
     path: src/mscorlib/src/System/Runtime/CompilerServices/UnsafeValueTypeAttribute.cs
     startLine: 8
   assemblies:
@@ -19,8 +23,15 @@ items:
   namespace: System.Runtime.CompilerServices
   summary: Specifies that a type contains an unmanaged array that might potentially overflow. This class cannot be inherited.
   syntax:
-    content: 'public sealed class UnsafeValueTypeAttribute : Attribute'
-    content.vb: Public NotInheritable Class UnsafeValueTypeAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Struct)]
+
+      public sealed class UnsafeValueTypeAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Struct)>
+
+      Public NotInheritable Class UnsafeValueTypeAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -32,9 +43,27 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 8
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Runtime.CompilerServices.UnsafeValueTypeAttribute
 - uid: System.Runtime.CompilerServices.UnsafeValueTypeAttribute.#ctor
   id: '#ctor'
   parent: System.Runtime.CompilerServices.UnsafeValueTypeAttribute
+  langs:
+  - csharp
+  - vb
   name: UnsafeValueTypeAttribute()
   fullName: System.Runtime.CompilerServices.UnsafeValueTypeAttribute.UnsafeValueTypeAttribute()
   type: Constructor
@@ -43,8 +72,9 @@ items:
       path: src/System.Runtime/ref/System.Runtime.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
+    id: .ctor
     path: src/System.Runtime/ref/System.Runtime.cs
-    startLine: 2997
+    startLine: 3003
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
@@ -52,6 +82,11 @@ items:
   syntax:
     content: public UnsafeValueTypeAttribute()
     content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Runtime.CompilerServices.UnsafeValueTypeAttribute.#ctor
 references:
 - uid: System.Runtime.CompilerServices
   isExternal: false

@@ -5,14 +5,18 @@ items:
   children:
   - System.Reflection.AssemblyDescriptionAttribute.#ctor(System.String)
   - System.Reflection.AssemblyDescriptionAttribute.Description
+  langs:
+  - csharp
+  - vb
   name: AssemblyDescriptionAttribute
   fullName: System.Reflection.AssemblyDescriptionAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: AssemblyDescriptionAttribute
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 93
   assemblies:
@@ -20,8 +24,15 @@ items:
   namespace: System.Reflection
   summary: Provides a text description for an assembly.
   syntax:
-    content: 'public sealed class AssemblyDescriptionAttribute : Attribute'
-    content.vb: Public NotInheritable Class AssemblyDescriptionAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
+
+      public sealed class AssemblyDescriptionAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly, Inherited:=False)>
+
+      Public NotInheritable Class AssemblyDescriptionAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -33,14 +44,40 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 1
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Reflection.AssemblyDescriptionAttribute
 - uid: System.Reflection.AssemblyDescriptionAttribute.#ctor(System.String)
   id: '#ctor(System.String)'
   parent: System.Reflection.AssemblyDescriptionAttribute
+  langs:
+  - csharp
+  - vb
   name: AssemblyDescriptionAttribute(String)
   fullName: System.Reflection.AssemblyDescriptionAttribute.AssemblyDescriptionAttribute(System.String)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 99
   assemblies:
@@ -53,15 +90,27 @@ items:
     parameters:
     - id: description
       type: System.String
-      description: The assembly description.
+      description: 'The assembly description. '
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.AssemblyDescriptionAttribute.#ctor(System.String)
 - uid: System.Reflection.AssemblyDescriptionAttribute.Description
   id: Description
   parent: System.Reflection.AssemblyDescriptionAttribute
+  langs:
+  - csharp
+  - vb
   name: Description
   fullName: System.Reflection.AssemblyDescriptionAttribute.Description
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Description
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 104
   assemblies:
@@ -69,12 +118,24 @@ items:
   namespace: System.Reflection
   summary: Gets assembly description information.
   syntax:
-    content: public string Description { get; }
+    content: >-
+      public string Description
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property Description As String
     parameters: []
     return:
       type: System.String
       description: A string containing the assembly description.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Reflection.AssemblyDescriptionAttribute.Description
 references:
 - uid: System.Reflection
   isExternal: false

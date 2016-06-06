@@ -13,16 +13,18 @@ items:
   - System.Nullable`1.op_Implicit(`0)~System.Nullable{`0}
   - System.Nullable`1.ToString
   - System.Nullable`1.Value
+  langs:
+  - csharp
+  - vb
   name: Nullable<T>
-  name.vb: Nullable(Of T)
   fullName: System.Nullable<T>
-  fullName.vb: System.Nullable(Of T)
   type: Struct
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Nullable.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: Nullable
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 23
   assemblies:
@@ -30,29 +32,58 @@ items:
   namespace: System
   summary: Represents a value type that can be assigned null.
   syntax:
-    content: 'public struct Nullable<T> where T : struct'
-    content.vb: Public Structure Nullable(Of T As Structure)
+    content: >-
+      [StructLayout(LayoutKind.Sequential)]
+
+      public struct Nullable<T>
+          where T : struct
+    content.vb: >-
+      <StructLayout(LayoutKind.Sequential)>
+
+      Public Structure Nullable(Of T As Structure)
     typeParameters:
     - id: T
+      description: The underlying value type of the <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> generic type.
   inheritedMembers:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
+  attributes:
+  - type: System.Runtime.InteropServices.StructLayoutAttribute
+    ctor: System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Runtime.InteropServices.LayoutKind)
+    arguments:
+    - type: System.Runtime.InteropServices.LayoutKind
+      value: 0
+  modifiers.csharp:
+  - public
+  - struct
+  modifiers.vb:
+  - Public
+  - Structure
+  fullName.vb: System.Nullable(Of T)
+  name.vb: Nullable(Of T)
+  commentId: T:System.Nullable`1
 - uid: System.Nullable`1.#ctor(`0)
   id: '#ctor(`0)'
   parent: System.Nullable`1
+  langs:
+  - csharp
+  - vb
   name: Nullable(T)
   fullName: System.Nullable<T>.Nullable(T)
-  fullName.vb: System.Nullable(Of T).Nullable(T)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Nullable.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 30
   assemblies:
   - System.Runtime
   namespace: System
-  summary: Initializes a new instance of the <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> structure to the specified value.
+  summary: 'Initializes a new instance of the <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> structure to the specified value. '
   syntax:
     content: public Nullable(T value)
     content.vb: Public Sub New(value As T)
@@ -60,37 +91,68 @@ items:
     - id: value
       type: '{T}'
       description: A value type.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: System.Nullable(Of T).Nullable(T)
+  commentId: M:System.Nullable`1.#ctor(`0)
 - uid: System.Nullable`1.HasValue
   id: HasValue
   parent: System.Nullable`1
+  langs:
+  - csharp
+  - vb
   name: HasValue
   fullName: System.Nullable<T>.HasValue
-  fullName.vb: System.Nullable(Of T).HasValue
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Nullable.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: HasValue
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 36
   assemblies:
   - System.Runtime
   namespace: System
-  summary: Gets a value indicating whether the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object has a valid value of its underlying type.
+  summary: 'Gets a value indicating whether the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object has a valid value of its underlying type. '
   syntax:
-    content: public bool HasValue { get; }
+    content: >-
+      public bool HasValue
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property HasValue As Boolean
     parameters: []
     return:
       type: System.Boolean
       description: true if the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object has a value; false if the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object has no value.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: System.Nullable(Of T).HasValue
+  commentId: P:System.Nullable`1.HasValue
 - uid: System.Nullable`1.Value
   id: Value
   parent: System.Nullable`1
+  langs:
+  - csharp
+  - vb
   name: Value
   fullName: System.Nullable<T>.Value
-  fullName.vb: System.Nullable(Of T).Value
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Nullable.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Value
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 43
   assemblies:
@@ -98,7 +160,12 @@ items:
   namespace: System
   summary: Gets the value of the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object if it has been assigned a valid underlying value.
   syntax:
-    content: public T Value { get; }
+    content: >-
+      public T Value
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property Value As T
     parameters: []
     return:
@@ -107,15 +174,29 @@ items:
   exceptions:
   - type: System.InvalidOperationException
     description: The <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is false.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  fullName.vb: System.Nullable(Of T).Value
+  commentId: P:System.Nullable`1.Value
 - uid: System.Nullable`1.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.Nullable`1
+  langs:
+  - csharp
+  - vb
   name: Equals(Object)
   fullName: System.Nullable<T>.Equals(System.Object)
-  fullName.vb: System.Nullable(Of T).Equals(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Nullable.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Equals
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 62
   assemblies:
@@ -131,17 +212,31 @@ items:
       description: An object.
     return:
       type: System.Boolean
-      description: 'true if the *other* parameter is equal to the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object; otherwise, false. This table describes how equality is defined for the compared values: Return ValueDescriptiontrueThe <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is false, and the *other* parameter is null. That is, two null values are equal by definition.-or-The <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is true, and the value returned by the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property is equal to the *other* parameter.falseThe <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property for the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> structure is true, and the *other* parameter is null.-or-The <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property for the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> structure is false, and the *other* parameter is not null.-or-The <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property for the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> structure is true, and the value returned by the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property is not equal to the *other* parameter.'
+      description: 'true if the <em>other</em> parameter is equal to the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object; otherwise, false. This table describes how equality is defined for the compared values: Return ValueDescriptiontrueThe <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is false, and the <em>other</em> parameter is null. That is, two null values are equal by definition.-or-The <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is true, and the value returned by the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property is equal to the <em>other</em> parameter.falseThe <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property for the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> structure is true, and the <em>other</em> parameter is null.-or-The <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property for the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> structure is false, and the <em>other</em> parameter is not null.-or-The <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property for the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> structure is true, and the value returned by the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property is not equal to the <em>other</em> parameter.'
   overridden: System.ValueType.Equals(System.Object)
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: System.Nullable(Of T).Equals(System.Object)
+  commentId: M:System.Nullable`1.Equals(System.Object)
 - uid: System.Nullable`1.GetHashCode
   id: GetHashCode
   parent: System.Nullable`1
+  langs:
+  - csharp
+  - vb
   name: GetHashCode()
   fullName: System.Nullable<T>.GetHashCode()
-  fullName.vb: System.Nullable(Of T).GetHashCode()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Nullable.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetHashCode
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 68
   assemblies:
@@ -153,17 +248,31 @@ items:
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
-      description: The hash code of the object returned by the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property if the <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is true, or zero if the <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is false.
+      description: 'The hash code of the object returned by the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property if the <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is true, or zero if the <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is false. '
   overridden: System.ValueType.GetHashCode
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: System.Nullable(Of T).GetHashCode()
+  commentId: M:System.Nullable`1.GetHashCode
 - uid: System.Nullable`1.GetValueOrDefault
   id: GetValueOrDefault
   parent: System.Nullable`1
+  langs:
+  - csharp
+  - vb
   name: GetValueOrDefault()
   fullName: System.Nullable<T>.GetValueOrDefault()
-  fullName.vb: System.Nullable(Of T).GetValueOrDefault()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Nullable.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetValueOrDefault
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 52
   assemblies:
@@ -176,15 +285,27 @@ items:
     return:
       type: '{T}'
       description: The value of the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property if the  <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is true; otherwise, the default value of the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object. The type of the default value is the type argument of the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object, and the value of the default value consists solely of binary zeroes.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: System.Nullable(Of T).GetValueOrDefault()
+  commentId: M:System.Nullable`1.GetValueOrDefault
 - uid: System.Nullable`1.GetValueOrDefault(`0)
   id: GetValueOrDefault(`0)
   parent: System.Nullable`1
+  langs:
+  - csharp
+  - vb
   name: GetValueOrDefault(T)
   fullName: System.Nullable<T>.GetValueOrDefault(T)
-  fullName.vb: System.Nullable(Of T).GetValueOrDefault(T)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Nullable.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetValueOrDefault
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 57
   assemblies:
@@ -200,23 +321,34 @@ items:
       description: A value to return if the <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is false.
     return:
       type: '{T}'
-      description: The value of the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property if the <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is true; otherwise, the *defaultValue* parameter.
+      description: The value of the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property if the <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is true; otherwise, the <em>defaultValue</em> parameter.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: System.Nullable(Of T).GetValueOrDefault(T)
+  commentId: M:System.Nullable`1.GetValueOrDefault(`0)
 - uid: System.Nullable`1.op_Explicit(System.Nullable{`0})~`0
   id: op_Explicit(System.Nullable{`0})~`0
   parent: System.Nullable`1
+  langs:
+  - csharp
+  - vb
   name: Explicit(Nullable<T> to T)
-  name.vb: Narrowing(Nullable(Of T) to T)
   fullName: System.Nullable<T>.Explicit(System.Nullable<T> to T)
-  fullName.vb: System.Nullable(Of T).Narrowing(System.Nullable(Of T) to T)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Nullable.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Explicit
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 81
   assemblies:
   - System.Runtime
   namespace: System
-  summary: Defines an explicit conversion of a <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> instance to its underlying value.
+  summary: 'Defines an explicit conversion of a <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> instance to its underlying value. '
   syntax:
     content: public static explicit operator T(Nullable<T> value)
     content.vb: Public Shared Narrowing Operator CType(value As Nullable(Of T)) As T
@@ -226,23 +358,37 @@ items:
       description: A nullable value.
     return:
       type: '{T}'
-      description: The value of the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property for the *value* parameter.
+      description: The value of the <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property for the <em>value</em> parameter.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Nullable(Of T).Narrowing(System.Nullable(Of T) to T)
+  name.vb: Narrowing(Nullable(Of T) to T)
+  commentId: M:System.Nullable`1.op_Explicit(System.Nullable{`0})~`0
 - uid: System.Nullable`1.op_Implicit(`0)~System.Nullable{`0}
   id: op_Implicit(`0)~System.Nullable{`0}
   parent: System.Nullable`1
+  langs:
+  - csharp
+  - vb
   name: Implicit(T to Nullable<T>)
-  name.vb: Widening(T to Nullable(Of T))
   fullName: System.Nullable<T>.Implicit(T to System.Nullable<T>)
-  fullName.vb: System.Nullable(Of T).Widening(T to System.Nullable(Of T))
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Nullable.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Implicit
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 76
   assemblies:
   - System.Runtime
   namespace: System
-  summary: Creates a new <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object initialized to a specified value.
+  summary: 'Creates a new <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object initialized to a specified value. '
   syntax:
     content: public static implicit operator Nullable<T>(T value)
     content.vb: Public Shared Widening Operator CType(value As T) As Nullable(Of T)
@@ -252,16 +398,31 @@ items:
       description: A value type.
     return:
       type: System.Nullable`1
-      description: A <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object whose <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property is initialized with the *value* parameter.
+      description: A <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object whose <xref href="System.Nullable`1.Value" data-throw-if-not-resolved="false"></xref> property is initialized with the <em>value</em> parameter.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Nullable(Of T).Widening(T to System.Nullable(Of T))
+  name.vb: Widening(T to Nullable(Of T))
+  commentId: M:System.Nullable`1.op_Implicit(`0)~System.Nullable{`0}
 - uid: System.Nullable`1.ToString
   id: ToString
   parent: System.Nullable`1
+  langs:
+  - csharp
+  - vb
   name: ToString()
   fullName: System.Nullable<T>.ToString()
-  fullName.vb: System.Nullable(Of T).ToString()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Nullable.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: ToString
     path: src/mscorlib/src/System/Nullable.cs
     startLine: 72
   assemblies:
@@ -275,6 +436,14 @@ items:
       type: System.String
       description: The text representation of the value of the current <xref href="System.Nullable`1" data-throw-if-not-resolved="false"></xref> object if the <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is true, or an empty string ("") if the <xref href="System.Nullable`1.HasValue" data-throw-if-not-resolved="false"></xref> property is false.
   overridden: System.ValueType.ToString
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  fullName.vb: System.Nullable(Of T).ToString()
+  commentId: M:System.Nullable`1.ToString
 references:
 - uid: System
   isExternal: false
@@ -451,9 +620,9 @@ references:
   parent: System
   isExternal: false
   name: Nullable<>
-  name.vb: Nullable(Of )
   fullName: System.Nullable<>
-  fullName.vb: System.Nullable(Of )
+  fullname.vb: System.Nullable(Of )
+  name.vb: Nullable(Of )
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable

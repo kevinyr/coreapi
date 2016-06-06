@@ -5,14 +5,18 @@ items:
   children:
   - System.Reflection.AssemblyProductAttribute.#ctor(System.String)
   - System.Reflection.AssemblyProductAttribute.Product
+  langs:
+  - csharp
+  - vb
   name: AssemblyProductAttribute
   fullName: System.Reflection.AssemblyProductAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: AssemblyProductAttribute
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 57
   assemblies:
@@ -20,8 +24,15 @@ items:
   namespace: System.Reflection
   summary: Defines a product name custom attribute for an assembly manifest.
   syntax:
-    content: 'public sealed class AssemblyProductAttribute : Attribute'
-    content.vb: Public NotInheritable Class AssemblyProductAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
+
+      public sealed class AssemblyProductAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly, Inherited:=False)>
+
+      Public NotInheritable Class AssemblyProductAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -33,14 +44,40 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 1
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Reflection.AssemblyProductAttribute
 - uid: System.Reflection.AssemblyProductAttribute.#ctor(System.String)
   id: '#ctor(System.String)'
   parent: System.Reflection.AssemblyProductAttribute
+  langs:
+  - csharp
+  - vb
   name: AssemblyProductAttribute(String)
   fullName: System.Reflection.AssemblyProductAttribute.AssemblyProductAttribute(System.String)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 63
   assemblies:
@@ -53,15 +90,27 @@ items:
     parameters:
     - id: product
       type: System.String
-      description: The product name information.
+      description: 'The product name information. '
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.AssemblyProductAttribute.#ctor(System.String)
 - uid: System.Reflection.AssemblyProductAttribute.Product
   id: Product
   parent: System.Reflection.AssemblyProductAttribute
+  langs:
+  - csharp
+  - vb
   name: Product
   fullName: System.Reflection.AssemblyProductAttribute.Product
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Product
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 68
   assemblies:
@@ -69,12 +118,24 @@ items:
   namespace: System.Reflection
   summary: Gets product name information.
   syntax:
-    content: public string Product { get; }
+    content: >-
+      public string Product
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property Product As String
     parameters: []
     return:
       type: System.String
       description: A string containing the product name.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Reflection.AssemblyProductAttribute.Product
 references:
 - uid: System.Reflection
   isExternal: false

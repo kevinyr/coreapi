@@ -15,18 +15,21 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+      path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
-    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
-    startLine: 42
+    id: Match
+    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatch.cs
+    startLine: 36
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
   summary: Represents the results from a single regular expression match.
   syntax:
     content: 'public class Match : Group'
-    content.vb: Public Class Match Inherits Group
+    content.vb: >-
+      Public Class Match
+          Inherits Group
   inheritance:
   - System.Object
   - System.Text.RegularExpressions.Capture
@@ -38,6 +41,13 @@ items:
   - System.Text.RegularExpressions.Capture.Length
   - System.Text.RegularExpressions.Capture.Value
   - System.Text.RegularExpressions.Capture.ToString
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  commentId: T:System.Text.RegularExpressions.Match
 - uid: System.Text.RegularExpressions.Match.Empty
   id: Empty
   parent: System.Text.RegularExpressions.Match
@@ -49,22 +59,37 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+      path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
-    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
-    startLine: 45
+    id: Empty
+    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatch.cs
+    startLine: 57
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
   summary: Gets the empty group. All failed matches return this empty match.
   syntax:
-    content: public static Match Empty { get; }
+    content: >-
+      public static Match Empty
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property Empty As Match
     parameters: []
     return:
       type: System.Text.RegularExpressions.Match
       description: An empty match.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.Text.RegularExpressions.Match.Empty
 - uid: System.Text.RegularExpressions.Match.Groups
   id: Groups
   parent: System.Text.RegularExpressions.Match
@@ -76,22 +101,37 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+      path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
-    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
-    startLine: 46
+    id: Groups
+    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatch.cs
+    startLine: 103
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
   summary: Gets a collection of groups matched by the regular expression.
   syntax:
-    content: public virtual GroupCollection Groups { get; }
+    content: >-
+      public virtual GroupCollection Groups
+
+      {
+          get;
+      }
     content.vb: Public Overridable ReadOnly Property Groups As GroupCollection
     parameters: []
     return:
       type: System.Text.RegularExpressions.GroupCollection
       description: The character groups matched by the pattern.
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+  commentId: P:System.Text.RegularExpressions.Match.Groups
 - uid: System.Text.RegularExpressions.Match.NextMatch
   id: NextMatch
   parent: System.Text.RegularExpressions.Match
@@ -103,11 +143,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
+      path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
-    path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
-    startLine: 47
+    id: NextMatch
+    path: src/System.Text.RegularExpressions/src/System/Text/RegularExpressions/RegexMatch.cs
+    startLine: 119
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
@@ -121,6 +162,11 @@ items:
   exceptions:
   - type: System.Text.RegularExpressions.RegexMatchTimeoutException
     description: A time-out occurred.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Text.RegularExpressions.Match.NextMatch
 - uid: System.Text.RegularExpressions.Match.Result(System.String)
   id: Result(System.String)
   parent: System.Text.RegularExpressions.Match
@@ -135,27 +181,35 @@ items:
       path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
+    id: Result
     path: src/System.Text.RegularExpressions/ref/System.Text.RegularExpressions.cs
-    startLine: 48
+    startLine: 51
   assemblies:
   - System.Text.RegularExpressions
   namespace: System.Text.RegularExpressions
-  summary: Returns the expansion of the specified replacement pattern.
+  summary: 'Returns the expansion of the specified replacement pattern. '
   syntax:
     content: public virtual string Result(string replacement)
     content.vb: Public Overridable Function Result(replacement As String) As String
     parameters:
     - id: replacement
       type: System.String
-      description: The replacement pattern to use.
+      description: 'The replacement pattern to use. '
     return:
       type: System.String
-      description: The expanded version of the *replacement* parameter.
+      description: The expanded version of the <em>replacement</em> parameter.
   exceptions:
   - type: System.ArgumentNullException
-    description: '*replacement* is null.'
+    description: "\r\n  <em>replacement</em> is null."
   - type: System.NotSupportedException
     description: Expansion is not allowed for this pattern.
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  commentId: M:System.Text.RegularExpressions.Match.Result(System.String)
 references:
 - uid: System.Text.RegularExpressions
   isExternal: false

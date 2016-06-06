@@ -4,14 +4,18 @@ items:
   parent: System
   children:
   - System.FlagsAttribute.#ctor
+  langs:
+  - csharp
+  - vb
   name: FlagsAttribute
   fullName: System.FlagsAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/FlagsAttribute.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: FlagsAttribute
     path: src/mscorlib/src/System/FlagsAttribute.cs
     startLine: 13
   assemblies:
@@ -19,8 +23,15 @@ items:
   namespace: System
   summary: Indicates that an enumeration can be treated as a bit field; that is, a set of flags.
   syntax:
-    content: 'public class FlagsAttribute : Attribute'
-    content.vb: Public Class FlagsAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Enum, Inherited = false)]
+
+      public class FlagsAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Enum, Inherited:=False)>
+
+      Public Class FlagsAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -32,14 +43,38 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 16
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  commentId: T:System.FlagsAttribute
 - uid: System.FlagsAttribute.#ctor
   id: '#ctor'
   parent: System.FlagsAttribute
+  langs:
+  - csharp
+  - vb
   name: FlagsAttribute()
   fullName: System.FlagsAttribute.FlagsAttribute()
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/FlagsAttribute.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/FlagsAttribute.cs
     startLine: 18
   assemblies:
@@ -49,6 +84,11 @@ items:
   syntax:
     content: public FlagsAttribute()
     content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.FlagsAttribute.#ctor
 references:
 - uid: System
   isExternal: false

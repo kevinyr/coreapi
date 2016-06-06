@@ -7,25 +7,39 @@ items:
   - System.Reflection.PropertyInfo.CanRead
   - System.Reflection.PropertyInfo.CanWrite
   - System.Reflection.PropertyInfo.Equals(System.Object)
+  - System.Reflection.PropertyInfo.GetAccessors
+  - System.Reflection.PropertyInfo.GetAccessors(System.Boolean)
   - System.Reflection.PropertyInfo.GetConstantValue
+  - System.Reflection.PropertyInfo.GetGetMethod
+  - System.Reflection.PropertyInfo.GetGetMethod(System.Boolean)
   - System.Reflection.PropertyInfo.GetHashCode
   - System.Reflection.PropertyInfo.GetIndexParameters
   - System.Reflection.PropertyInfo.GetMethod
+  - System.Reflection.PropertyInfo.GetOptionalCustomModifiers
+  - System.Reflection.PropertyInfo.GetRawConstantValue
+  - System.Reflection.PropertyInfo.GetRequiredCustomModifiers
+  - System.Reflection.PropertyInfo.GetSetMethod
+  - System.Reflection.PropertyInfo.GetSetMethod(System.Boolean)
   - System.Reflection.PropertyInfo.GetValue(System.Object)
   - System.Reflection.PropertyInfo.GetValue(System.Object,System.Object[])
   - System.Reflection.PropertyInfo.IsSpecialName
+  - System.Reflection.PropertyInfo.MemberType
   - System.Reflection.PropertyInfo.PropertyType
   - System.Reflection.PropertyInfo.SetMethod
   - System.Reflection.PropertyInfo.SetValue(System.Object,System.Object)
   - System.Reflection.PropertyInfo.SetValue(System.Object,System.Object,System.Object[])
+  langs:
+  - csharp
+  - vb
   name: PropertyInfo
   fullName: System.Reflection.PropertyInfo
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: PropertyInfo
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 21
   assemblies:
@@ -33,24 +47,49 @@ items:
   namespace: System.Reflection
   summary: Discovers the attributes of a property and provides access to property metadata.
   syntax:
-    content: 'public abstract class PropertyInfo : MemberInfo'
-    content.vb: Public MustInherit Class PropertyInfo Inherits MemberInfo
+    content: 'public abstract class PropertyInfo : MemberInfo, ICustomAttributeProvider'
+    content.vb: >-
+      Public MustInherit Class PropertyInfo
+          Inherits MemberInfo
+          Implements ICustomAttributeProvider
   inheritance:
   - System.Object
   - System.Reflection.MemberInfo
+  implements:
+  - System.Reflection.ICustomAttributeProvider
   inheritedMembers:
   - System.Reflection.MemberInfo.CustomAttributes
   - System.Reflection.MemberInfo.DeclaringType
+  - System.Reflection.MemberInfo.MetadataToken
   - System.Reflection.MemberInfo.Module
   - System.Reflection.MemberInfo.Name
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(Type,System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(Type,System.Boolean)
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+  commentId: T:System.Reflection.PropertyInfo
 - uid: System.Reflection.PropertyInfo.Attributes
   id: Attributes
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: Attributes
   fullName: System.Reflection.PropertyInfo.Attributes
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Attributes
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 91
   assemblies:
@@ -58,20 +97,41 @@ items:
   namespace: System.Reflection
   summary: Gets the attributes for this property.
   syntax:
-    content: public abstract PropertyAttributes Attributes { get; }
+    content: >-
+      public abstract PropertyAttributes Attributes
+
+      {
+          get;
+      }
     content.vb: Public MustOverride ReadOnly Property Attributes As PropertyAttributes
     parameters: []
     return:
       type: System.Reflection.PropertyAttributes
       description: Attributes of this property.
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  commentId: P:System.Reflection.PropertyInfo.Attributes
 - uid: System.Reflection.PropertyInfo.CanRead
   id: CanRead
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: CanRead
   fullName: System.Reflection.PropertyInfo.CanRead
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: CanRead
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 93
   assemblies:
@@ -79,20 +139,41 @@ items:
   namespace: System.Reflection
   summary: Gets a value indicating whether the property can be read.
   syntax:
-    content: public abstract bool CanRead { get; }
+    content: >-
+      public abstract bool CanRead
+
+      {
+          get;
+      }
     content.vb: Public MustOverride ReadOnly Property CanRead As Boolean
     parameters: []
     return:
       type: System.Boolean
       description: true if this property can be read; otherwise, false.
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  commentId: P:System.Reflection.PropertyInfo.CanRead
 - uid: System.Reflection.PropertyInfo.CanWrite
   id: CanWrite
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: CanWrite
   fullName: System.Reflection.PropertyInfo.CanWrite
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: CanWrite
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 95
   assemblies:
@@ -100,20 +181,41 @@ items:
   namespace: System.Reflection
   summary: Gets a value indicating whether the property can be written to.
   syntax:
-    content: public abstract bool CanWrite { get; }
+    content: >-
+      public abstract bool CanWrite
+
+      {
+          get;
+      }
     content.vb: Public MustOverride ReadOnly Property CanWrite As Boolean
     parameters: []
     return:
       type: System.Boolean
       description: true if this property can be written to; otherwise, false.
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  commentId: P:System.Reflection.PropertyInfo.CanWrite
 - uid: System.Reflection.PropertyInfo.GetMethod
   id: GetMethod
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: GetMethod
   fullName: System.Reflection.PropertyInfo.GetMethod
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetMethod
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 135
   assemblies:
@@ -121,20 +223,41 @@ items:
   namespace: System.Reflection
   summary: Gets the get accessor for this property.
   syntax:
-    content: public virtual MethodInfo GetMethod { get; }
+    content: >-
+      public virtual MethodInfo GetMethod
+
+      {
+          get;
+      }
     content.vb: Public Overridable ReadOnly Property GetMethod As MethodInfo
     parameters: []
     return:
       type: System.Reflection.MethodInfo
       description: The get accessor for this property.
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+  commentId: P:System.Reflection.PropertyInfo.GetMethod
 - uid: System.Reflection.PropertyInfo.IsSpecialName
   id: IsSpecialName
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: IsSpecialName
   fullName: System.Reflection.PropertyInfo.IsSpecialName
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: IsSpecialName
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 155
   assemblies:
@@ -142,20 +265,39 @@ items:
   namespace: System.Reflection
   summary: Gets a value indicating whether the property is the special name.
   syntax:
-    content: public bool IsSpecialName { get; }
+    content: >-
+      public bool IsSpecialName
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property IsSpecialName As Boolean
     parameters: []
     return:
       type: System.Boolean
       description: true if this property is the special name; otherwise, false.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Reflection.PropertyInfo.IsSpecialName
 - uid: System.Reflection.PropertyInfo.PropertyType
   id: PropertyType
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: PropertyType
   fullName: System.Reflection.PropertyInfo.PropertyType
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: PropertyType
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 79
   assemblies:
@@ -163,20 +305,41 @@ items:
   namespace: System.Reflection
   summary: Gets the type of this property.
   syntax:
-    content: public abstract Type PropertyType { get; }
+    content: >-
+      public abstract Type PropertyType
+
+      {
+          get;
+      }
     content.vb: Public MustOverride ReadOnly Property PropertyType As Type
     parameters: []
     return:
       type: System.Type
       description: The type of this property.
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  commentId: P:System.Reflection.PropertyInfo.PropertyType
 - uid: System.Reflection.PropertyInfo.SetMethod
   id: SetMethod
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: SetMethod
   fullName: System.Reflection.PropertyInfo.SetMethod
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: SetMethod
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 143
   assemblies:
@@ -184,20 +347,41 @@ items:
   namespace: System.Reflection
   summary: Gets the set accessor for this property.
   syntax:
-    content: public virtual MethodInfo SetMethod { get; }
+    content: >-
+      public virtual MethodInfo SetMethod
+
+      {
+          get;
+      }
     content.vb: Public Overridable ReadOnly Property SetMethod As MethodInfo
     parameters: []
     return:
       type: System.Reflection.MethodInfo
       description: The set accessor for this property, or null if the property is read-only.
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+  commentId: P:System.Reflection.PropertyInfo.SetMethod
 - uid: System.Reflection.PropertyInfo.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: Equals(Object)
   fullName: System.Reflection.PropertyInfo.Equals(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Equals
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 54
   assemblies:
@@ -213,22 +397,36 @@ items:
       description: An object to compare with this instance, or null.
     return:
       type: System.Boolean
-      description: true if *obj* equals the type and value of this instance; otherwise, false.
+      description: true if <em>obj</em> equals the type and value of this instance; otherwise, false.
   overridden: System.Reflection.MemberInfo.Equals(System.Object)
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  commentId: M:System.Reflection.PropertyInfo.Equals(System.Object)
 - uid: System.Reflection.PropertyInfo.GetConstantValue
   id: GetConstantValue
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: GetConstantValue()
   fullName: System.Reflection.PropertyInfo.GetConstantValue()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetConstantValue
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 69
   assemblies:
   - System.Reflection
   namespace: System.Reflection
-  summary: Returns a literal value associated with the property by a compiler.
+  summary: 'Returns a literal value associated with the property by a compiler. '
   syntax:
     content: public virtual object GetConstantValue()
     content.vb: Public Overridable Function GetConstantValue As Object
@@ -239,15 +437,29 @@ items:
   - type: System.InvalidOperationException
     description: The Constant table in unmanaged metadata does not contain a constant value for the current property.
   - type: System.FormatException
-    description: The type of the value is not one of the types permitted by the Common Language Specification (CLS). See the ECMA Partition II specification, Metadata.
+    description: 'The type of the value is not one of the types permitted by the Common Language Specification (CLS). See the ECMA Partition II specification, Metadata. '
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  commentId: M:System.Reflection.PropertyInfo.GetConstantValue
 - uid: System.Reflection.PropertyInfo.GetHashCode
   id: GetHashCode
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: GetHashCode()
   fullName: System.Reflection.PropertyInfo.GetHashCode()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetHashCode
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 59
   assemblies:
@@ -261,14 +473,28 @@ items:
       type: System.Int32
       description: A 32-bit signed integer hash code.
   overridden: System.Reflection.MemberInfo.GetHashCode
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  commentId: M:System.Reflection.PropertyInfo.GetHashCode
 - uid: System.Reflection.PropertyInfo.GetIndexParameters
   id: GetIndexParameters
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: GetIndexParameters()
   fullName: System.Reflection.PropertyInfo.GetIndexParameters()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetIndexParameters
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 89
   assemblies:
@@ -281,14 +507,28 @@ items:
     return:
       type: System.Reflection.ParameterInfo[]
       description: An array of type ParameterInfo containing the parameters for the indexes. If the property is not indexed, the array has 0 (zero) elements.
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+  commentId: M:System.Reflection.PropertyInfo.GetIndexParameters
 - uid: System.Reflection.PropertyInfo.GetValue(System.Object)
   id: GetValue(System.Object)
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: GetValue(Object)
   fullName: System.Reflection.PropertyInfo.GetValue(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetValue
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 97
   assemblies:
@@ -305,16 +545,26 @@ items:
     return:
       type: System.Object
       description: The property value of the specified object.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.PropertyInfo.GetValue(System.Object)
 - uid: System.Reflection.PropertyInfo.GetValue(System.Object,System.Object[])
   id: GetValue(System.Object,System.Object[])
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: GetValue(Object, Object[])
-  name.vb: GetValue(Object, Object())
   fullName: System.Reflection.PropertyInfo.GetValue(System.Object, System.Object[])
-  fullName.vb: System.Reflection.PropertyInfo.GetValue(System.Object, System.Object())
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetValue
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 104
   assemblies:
@@ -327,32 +577,48 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object whose property value will be returned.
+      description: 'The object whose property value will be returned. '
     - id: index
       type: System.Object[]
-      description: Optional index values for indexed properties. The indexes of indexed properties are zero-based. This value should be null for non-indexed properties.
+      description: 'Optional index values for indexed properties. The indexes of indexed properties are zero-based. This value should be null for non-indexed properties. '
     return:
       type: System.Object
       description: The property value of the specified object.
   exceptions:
   - type: System.ArgumentException
-    description: The *index* array does not contain the type of arguments needed.-or- The property's get accessor is not found.
+    description: 'The <em>index</em> array does not contain the type of arguments needed.-or- The property''s get accessor is not found. '
   - type: System.Reflection.TargetException
-    description: In the .NET for Windows Store apps or the Portable Class Library, catch <xref href="System.Exception" data-throw-if-not-resolved="false"></xref> instead.The object does not match the target type, or a property is an instance property but *obj* is null.
+    description: 'In the .NET for Windows Store apps or the Portable Class Library, catch <xref href="System.Exception" data-throw-if-not-resolved="false"></xref> instead.The object does not match the target type, or a property is an instance property but <em>obj</em> is null. '
   - type: System.Reflection.TargetParameterCountException
-    description: The number of parameters in *index* does not match the number of parameters the indexed property takes.
+    description: 'The number of parameters in <em>index</em> does not match the number of parameters the indexed property takes. '
   - type: System.MethodAccessException
-    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <xref href="System.MemberAccessException" data-throw-if-not-resolved="false"></xref>, instead.There was an illegal attempt to access a private or protected method inside a class.
+    description: 'In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <xref href="System.MemberAccessException" data-throw-if-not-resolved="false"></xref>, instead.There was an illegal attempt to access a private or protected method inside a class. '
   - type: System.Reflection.TargetInvocationException
     description: An error occurred while retrieving the property value. For example, an index value specified for an indexed property is out of range. The <xref href="System.Exception.InnerException" data-throw-if-not-resolved="false"></xref> property indicates the reason for the error.
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: System.Reflection.PropertyInfo.GetValue(System.Object, System.Object())
+  name.vb: GetValue(Object, Object())
+  commentId: M:System.Reflection.PropertyInfo.GetValue(System.Object,System.Object[])
 - uid: System.Reflection.PropertyInfo.SetValue(System.Object,System.Object)
   id: SetValue(System.Object,System.Object)
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: SetValue(Object, Object)
   fullName: System.Reflection.PropertyInfo.SetValue(System.Object, System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: SetValue
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 113
   assemblies:
@@ -371,23 +637,33 @@ items:
       description: The new property value.
   exceptions:
   - type: System.ArgumentException
-    description: The property's set accessor is not found. -or-*value* cannot be converted to the type of <xref href="System.Reflection.PropertyInfo.PropertyType" data-throw-if-not-resolved="false"></xref>.
+    description: 'The property''s set accessor is not found. -or-<em>value</em> cannot be converted to the type of <xref href="System.Reflection.PropertyInfo.PropertyType" data-throw-if-not-resolved="false"></xref>. '
   - type: System.Reflection.TargetException
-    description: In the .NET for Windows Store apps or the Portable Class Library, catch <xref href="System.Exception" data-throw-if-not-resolved="false"></xref> instead.The type of *obj* does not match the target type, or a property is an instance property but *obj* is null.
+    description: 'In the .NET for Windows Store apps or the Portable Class Library, catch <xref href="System.Exception" data-throw-if-not-resolved="false"></xref> instead.The type of <em>obj</em> does not match the target type, or a property is an instance property but <em>obj</em> is null. '
   - type: System.MethodAccessException
-    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <xref href="System.MemberAccessException" data-throw-if-not-resolved="false"></xref>, instead. There was an illegal attempt to access a private or protected method inside a class.
+    description: 'In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <xref href="System.MemberAccessException" data-throw-if-not-resolved="false"></xref>, instead. There was an illegal attempt to access a private or protected method inside a class. '
   - type: System.Reflection.TargetInvocationException
     description: An error occurred while setting the property value. The <xref href="System.Exception.InnerException" data-throw-if-not-resolved="false"></xref> property indicates the reason for the error.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.PropertyInfo.SetValue(System.Object,System.Object)
 - uid: System.Reflection.PropertyInfo.SetValue(System.Object,System.Object,System.Object[])
   id: SetValue(System.Object,System.Object,System.Object[])
   parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
   name: SetValue(Object, Object, Object[])
-  name.vb: SetValue(Object, Object, Object())
   fullName: System.Reflection.PropertyInfo.SetValue(System.Object, System.Object, System.Object[])
-  fullName.vb: System.Reflection.PropertyInfo.SetValue(System.Object, System.Object, System.Object())
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: SetValue
     path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
     startLine: 120
   assemblies:
@@ -400,24 +676,399 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object whose property value will be set.
+      description: 'The object whose property value will be set. '
     - id: value
       type: System.Object
-      description: The new property value.
+      description: 'The new property value. '
     - id: index
       type: System.Object[]
-      description: Optional index values for indexed properties. This value should be null for non-indexed properties.
+      description: 'Optional index values for indexed properties. This value should be null for non-indexed properties. '
   exceptions:
   - type: System.ArgumentException
-    description: The *index* array does not contain the type of arguments needed.-or- The property's set accessor is not found. -or-*value* cannot be converted to the type of <xref href="System.Reflection.PropertyInfo.PropertyType" data-throw-if-not-resolved="false"></xref>.
+    description: The <em>index</em> array does not contain the type of arguments needed.-or- The property's set accessor is not found. -or-<em>value</em> cannot be converted to the type of <xref href="System.Reflection.PropertyInfo.PropertyType" data-throw-if-not-resolved="false"></xref>.
   - type: System.Reflection.TargetException
-    description: In the .NET for Windows Store apps or the Portable Class Library, catch <xref href="System.Exception" data-throw-if-not-resolved="false"></xref> instead.The object does not match the target type, or a property is an instance property but *obj* is null.
+    description: 'In the .NET for Windows Store apps or the Portable Class Library, catch <xref href="System.Exception" data-throw-if-not-resolved="false"></xref> instead.The object does not match the target type, or a property is an instance property but <em>obj</em> is null. '
   - type: System.Reflection.TargetParameterCountException
-    description: The number of parameters in *index* does not match the number of parameters the indexed property takes.
+    description: 'The number of parameters in <em>index</em> does not match the number of parameters the indexed property takes. '
   - type: System.MethodAccessException
-    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <xref href="System.MemberAccessException" data-throw-if-not-resolved="false"></xref>, instead.There was an illegal attempt to access a private or protected method inside a class.
+    description: 'In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <xref href="System.MemberAccessException" data-throw-if-not-resolved="false"></xref>, instead.There was an illegal attempt to access a private or protected method inside a class. '
   - type: System.Reflection.TargetInvocationException
     description: An error occurred while setting the property value. For example, an index value specified for an indexed property is out of range. The <xref href="System.Exception.InnerException" data-throw-if-not-resolved="false"></xref> property indicates the reason for the error.
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: System.Reflection.PropertyInfo.SetValue(System.Object, System.Object, System.Object())
+  name.vb: SetValue(Object, Object, Object())
+  commentId: M:System.Reflection.PropertyInfo.SetValue(System.Object,System.Object,System.Object[])
+- uid: System.Reflection.PropertyInfo.MemberType
+  id: MemberType
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: MemberType
+  fullName: System.Reflection.PropertyInfo.MemberType
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: MemberType
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 65
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: Gets a <xref href="System.Reflection.MemberTypes" data-throw-if-not-resolved="false"></xref> value indicating that this member is a property.
+  syntax:
+    content: >-
+      public override MemberTypes MemberType
+
+      {
+          get;
+      }
+    content.vb: Public Overrides ReadOnly Property MemberType As MemberTypes
+    parameters: []
+    return:
+      type: System.Reflection.MemberTypes
+      description: A <xref href="System.Reflection.MemberTypes" data-throw-if-not-resolved="false"></xref> value indicating that this member is a property.
+  overridden: System.Reflection.MemberInfo.MemberType
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+  commentId: P:System.Reflection.PropertyInfo.MemberType
+- uid: System.Reflection.PropertyInfo.GetAccessors
+  id: GetAccessors
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetAccessors()
+  fullName: System.Reflection.PropertyInfo.GetAccessors()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetAccessors
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 133
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: 'Returns an array whose elements reflect the public get and set accessors of the property reflected by the current instance. '
+  syntax:
+    content: public MethodInfo[] GetAccessors()
+    content.vb: Public Function GetAccessors As MethodInfo()
+    return:
+      type: System.Reflection.MethodInfo[]
+      description: An array of <xref href="System.Reflection.MethodInfo" data-throw-if-not-resolved="false"></xref> objects that reflect the public get and set accessors of the property reflected by the current instance, if found; otherwise, this method returns an array with zero (0) elements.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.PropertyInfo.GetAccessors
+- uid: System.Reflection.PropertyInfo.GetAccessors(System.Boolean)
+  id: GetAccessors(System.Boolean)
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetAccessors(Boolean)
+  fullName: System.Reflection.PropertyInfo.GetAccessors(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetAccessors
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 83
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: 'Returns an array whose elements reflect the public and, if specified, non-public get and set accessors of the property reflected by the current instance. '
+  syntax:
+    content: public abstract MethodInfo[] GetAccessors(bool nonPublic)
+    content.vb: Public MustOverride Function GetAccessors(nonPublic As Boolean) As MethodInfo()
+    parameters:
+    - id: nonPublic
+      type: System.Boolean
+      description: 'Indicates whether non-public methods should be returned in the returned array. true if non-public methods are to be included; otherwise, false. '
+    return:
+      type: System.Reflection.MethodInfo[]
+      description: An array whose elements reflect the get and set accessors of the property reflected by the current instance. If <em>nonPublic</em> is true, this array contains public and non-public get and set accessors. If <em>nonPublic</em> is false, this array contains only public get and set accessors. If no accessors with the specified visibility are found, this method returns an array with zero (0) elements.
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+  commentId: M:System.Reflection.PropertyInfo.GetAccessors(System.Boolean)
+- uid: System.Reflection.PropertyInfo.GetGetMethod
+  id: GetGetMethod
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetGetMethod()
+  fullName: System.Reflection.PropertyInfo.GetGetMethod()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetGetMethod
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 151
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: Returns the public get accessor for this property.
+  syntax:
+    content: public MethodInfo GetGetMethod()
+    content.vb: Public Function GetGetMethod As MethodInfo
+    return:
+      type: System.Reflection.MethodInfo
+      description: A MethodInfo object representing the public get accessor for this property, or null if the get accessor is non-public or does not exist.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.PropertyInfo.GetGetMethod
+- uid: System.Reflection.PropertyInfo.GetGetMethod(System.Boolean)
+  id: GetGetMethod(System.Boolean)
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetGetMethod(Boolean)
+  fullName: System.Reflection.PropertyInfo.GetGetMethod(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetGetMethod
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 85
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: When overridden in a derived class, returns the public or non-public get accessor for this property.
+  syntax:
+    content: public abstract MethodInfo GetGetMethod(bool nonPublic)
+    content.vb: Public MustOverride Function GetGetMethod(nonPublic As Boolean) As MethodInfo
+    parameters:
+    - id: nonPublic
+      type: System.Boolean
+      description: 'Indicates whether a non-public get accessor should be returned. true if a non-public accessor is to be returned; otherwise, false. '
+    return:
+      type: System.Reflection.MethodInfo
+      description: A MethodInfo object representing the get accessor for this property, if <em>nonPublic</em> is true. Returns null if <em>nonPublic</em> is false and the get accessor is non-public, or if <em>nonPublic</em> is true but no get accessors exist.
+  exceptions:
+  - type: System.Security.SecurityException
+    description: 'The requested method is non-public and the caller does not have <xref href="System.Security.Permissions.ReflectionPermission" data-throw-if-not-resolved="false"></xref> to reflect on this non-public method. '
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+  commentId: M:System.Reflection.PropertyInfo.GetGetMethod(System.Boolean)
+- uid: System.Reflection.PropertyInfo.GetSetMethod
+  id: GetSetMethod
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetSetMethod()
+  fullName: System.Reflection.PropertyInfo.GetSetMethod()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetSetMethod
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 153
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: Returns the public set accessor for this property.
+  syntax:
+    content: public MethodInfo GetSetMethod()
+    content.vb: Public Function GetSetMethod As MethodInfo
+    return:
+      type: System.Reflection.MethodInfo
+      description: The MethodInfo object representing the Set method for this property if the set accessor is public, or null if the set accessor is not public.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.PropertyInfo.GetSetMethod
+- uid: System.Reflection.PropertyInfo.GetSetMethod(System.Boolean)
+  id: GetSetMethod(System.Boolean)
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetSetMethod(Boolean)
+  fullName: System.Reflection.PropertyInfo.GetSetMethod(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetSetMethod
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 87
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: When overridden in a derived class, returns the set accessor for this property.
+  syntax:
+    content: public abstract MethodInfo GetSetMethod(bool nonPublic)
+    content.vb: Public MustOverride Function GetSetMethod(nonPublic As Boolean) As MethodInfo
+    parameters:
+    - id: nonPublic
+      type: System.Boolean
+      description: 'Indicates whether the accessor should be returned if it is non-public. true if a non-public accessor is to be returned; otherwise, false. '
+    return:
+      type: System.Reflection.MethodInfo
+      description: 'Value Condition A <xref href="System.Reflection.MethodInfo" data-throw-if-not-resolved="false"></xref> object representing the Set method for this property. The set accessor is public.-or- <em>nonPublic</em> is true and the set accessor is non-public. null<em>nonPublic</em> is true, but the property is read-only.-or- <em>nonPublic</em> is false and the set accessor is non-public.-or- There is no set accessor. '
+  exceptions:
+  - type: System.Security.SecurityException
+    description: 'The requested method is non-public and the caller does not have <xref href="System.Security.Permissions.ReflectionPermission" data-throw-if-not-resolved="false"></xref> to reflect on this non-public method. '
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+  commentId: M:System.Reflection.PropertyInfo.GetSetMethod(System.Boolean)
+- uid: System.Reflection.PropertyInfo.GetOptionalCustomModifiers
+  id: GetOptionalCustomModifiers
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetOptionalCustomModifiers()
+  fullName: System.Reflection.PropertyInfo.GetOptionalCustomModifiers()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetOptionalCustomModifiers
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 131
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: Returns an array of types representing the optional custom modifiers of the property.
+  syntax:
+    content: public virtual Type[] GetOptionalCustomModifiers()
+    content.vb: Public Overridable Function GetOptionalCustomModifiers As Type()
+    return:
+      type: Type[]
+      description: An array of <xref href="System.Type" data-throw-if-not-resolved="false"></xref> objects that identify the optional custom modifiers of the current property, such as <xref href="System.Runtime.CompilerServices.IsConst" data-throw-if-not-resolved="false"></xref> or <xref href="System.Runtime.CompilerServices.IsImplicitlyDereferenced" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  commentId: M:System.Reflection.PropertyInfo.GetOptionalCustomModifiers
+- uid: System.Reflection.PropertyInfo.GetRawConstantValue
+  id: GetRawConstantValue
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRawConstantValue()
+  fullName: System.Reflection.PropertyInfo.GetRawConstantValue()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetRawConstantValue
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 74
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: 'Returns a literal value associated with the property by a compiler. '
+  syntax:
+    content: public virtual object GetRawConstantValue()
+    content.vb: Public Overridable Function GetRawConstantValue As Object
+    return:
+      type: System.Object
+      description: An <xref href="System.Object" data-throw-if-not-resolved="false"></xref> that contains the literal value associated with the property. If the literal value is a class type with an element value of zero, the return value is null.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The Constant table in unmanaged metadata does not contain a constant value for the current property.
+  - type: System.FormatException
+    description: 'The type of the value is not one of the types permitted by the Common Language Specification (CLS). See the ECMA Partition II specification, Metadata Logical Format: Other Structures, Element Types used in Signatures. '
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  commentId: M:System.Reflection.PropertyInfo.GetRawConstantValue
+- uid: System.Reflection.PropertyInfo.GetRequiredCustomModifiers
+  id: GetRequiredCustomModifiers
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRequiredCustomModifiers()
+  fullName: System.Reflection.PropertyInfo.GetRequiredCustomModifiers()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetRequiredCustomModifiers
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 129
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: Returns an array of types representing the required custom modifiers of the property.
+  syntax:
+    content: public virtual Type[] GetRequiredCustomModifiers()
+    content.vb: Public Overridable Function GetRequiredCustomModifiers As Type()
+    return:
+      type: Type[]
+      description: An array of <xref href="System.Type" data-throw-if-not-resolved="false"></xref> objects that identify the required custom modifiers of the current property, such as <xref href="System.Runtime.CompilerServices.IsConst" data-throw-if-not-resolved="false"></xref> or <xref href="System.Runtime.CompilerServices.IsImplicitlyDereferenced" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  commentId: M:System.Reflection.PropertyInfo.GetRequiredCustomModifiers
 references:
 - uid: System.Reflection
   isExternal: false
@@ -431,8 +1082,13 @@ references:
 - uid: System.Reflection.MemberInfo
   parent: System.Reflection
   isExternal: false
-  name: MemberInfo
+  name: Reflection.MemberInfo
   fullName: System.Reflection.MemberInfo
+- uid: System.Reflection.ICustomAttributeProvider
+  parent: System.Reflection
+  isExternal: false
+  name: ICustomAttributeProvider
+  fullName: System.Reflection.ICustomAttributeProvider
 - uid: System.Reflection.MemberInfo.CustomAttributes
   parent: System.Reflection.MemberInfo
   isExternal: false
@@ -443,6 +1099,11 @@ references:
   isExternal: false
   name: DeclaringType
   fullName: System.Reflection.MemberInfo.DeclaringType
+- uid: System.Reflection.MemberInfo.MetadataToken
+  parent: System.Reflection.MemberInfo
+  isExternal: false
+  name: MetadataToken
+  fullName: System.Reflection.MemberInfo.MetadataToken
 - uid: System.Reflection.MemberInfo.Module
   parent: System.Reflection.MemberInfo
   isExternal: false
@@ -453,6 +1114,120 @@ references:
   isExternal: false
   name: Name
   fullName: System.Reflection.MemberInfo.Name
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+    name: ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    fullName: )
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, System.Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(Type,System.Boolean)
+    name: ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    fullName: (
+  - uid: Type
+    name: Type
+    fullName: Type
+    isExternal: true
+  - name: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(Type,System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    fullName: (
+  - uid: Type
+    name: Type
+    fullName: Type
+    isExternal: true
+  - name: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    fullName: )
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.IsDefined(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined(Type, System.Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(Type,System.Boolean)
+    name: ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    fullName: (
+  - uid: Type
+    name: Type
+    fullName: Type
+    isExternal: true
+  - name: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(Type,System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    fullName: (
+  - uid: Type
+    name: Type
+    fullName: Type
+    isExternal: true
+  - name: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    fullName: )
 - uid: System
   isExternal: false
   name: System
@@ -535,9 +1310,9 @@ references:
 - uid: System.Reflection.ParameterInfo[]
   isExternal: false
   name: ParameterInfo[]
-  name.vb: ParameterInfo()
   fullName: System.Reflection.ParameterInfo[]
-  fullName.vb: System.Reflection.ParameterInfo()
+  fullname.vb: System.Reflection.ParameterInfo()
+  name.vb: ParameterInfo()
   spec.csharp:
   - uid: System.Reflection.ParameterInfo
     name: ParameterInfo
@@ -553,9 +1328,9 @@ references:
 - uid: System.Object[]
   isExternal: false
   name: Object[]
-  name.vb: Object()
   fullName: System.Object[]
-  fullName.vb: System.Object()
+  fullname.vb: System.Object()
+  name.vb: Object()
   spec.csharp:
   - uid: System.Object
     name: Object
@@ -566,6 +1341,54 @@ references:
   - uid: System.Object
     name: Object
     fullName: System.Object
+  - name: ()
+    fullName: ()
+- uid: System.Reflection.MemberInfo.MemberType
+  parent: System.Reflection.MemberInfo
+  isExternal: false
+  name: MemberType
+  fullName: System.Reflection.MemberInfo.MemberType
+- uid: System.Reflection.MemberTypes
+  parent: System.Reflection
+  isExternal: false
+  name: MemberTypes
+  fullName: System.Reflection.MemberTypes
+- uid: System.Reflection.MethodInfo[]
+  isExternal: false
+  name: MethodInfo[]
+  fullName: System.Reflection.MethodInfo[]
+  fullname.vb: System.Reflection.MethodInfo()
+  name.vb: MethodInfo()
+  spec.csharp:
+  - uid: System.Reflection.MethodInfo
+    name: MethodInfo
+    fullName: System.Reflection.MethodInfo
+  - name: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Reflection.MethodInfo
+    name: MethodInfo
+    fullName: System.Reflection.MethodInfo
+  - name: ()
+    fullName: ()
+- uid: Type[]
+  isExternal: true
+  name: Type[]
+  fullName: Type[]
+  fullname.vb: Type()
+  name.vb: Type()
+  spec.csharp:
+  - uid: Type
+    name: Type
+    fullName: Type
+    isExternal: true
+  - name: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: Type
+    name: Type
+    fullName: Type
+    isExternal: true
   - name: ()
     fullName: ()
 - uid: System.InvalidOperationException
@@ -584,6 +1407,9 @@ references:
   name: ArgumentException
   fullName: System.ArgumentException
 - uid: System.Reflection.TargetException
+  isExternal: false
+  name: TargetException
+  fullName: System.Reflection.TargetException
 - uid: System.Reflection.TargetParameterCountException
   isExternal: false
   name: TargetParameterCountException
@@ -596,3 +1422,7 @@ references:
   isExternal: false
   name: TargetInvocationException
   fullName: System.Reflection.TargetInvocationException
+- uid: System.Security.SecurityException
+  isExternal: false
+  name: SecurityException
+  fullName: System.Security.SecurityException

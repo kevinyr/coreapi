@@ -7,16 +7,25 @@ items:
   - System.Reflection.MemberInfo.DeclaringType
   - System.Reflection.MemberInfo.Equals(System.Object)
   - System.Reflection.MemberInfo.GetHashCode
+  - System.Reflection.MemberInfo.MemberType
+  - System.Reflection.MemberInfo.MetadataToken
   - System.Reflection.MemberInfo.Module
   - System.Reflection.MemberInfo.Name
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(Type,System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(Type,System.Boolean)
+  langs:
+  - csharp
+  - vb
   name: MemberInfo
   fullName: System.Reflection.MemberInfo
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Reflection/MemberInfo.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: MemberInfo
     path: src/mscorlib/src/System/Reflection/MemberInfo.cs
     startLine: 15
   assemblies:
@@ -24,69 +33,182 @@ items:
   namespace: System.Reflection
   summary: Obtains information about the attributes of a member and provides access to member metadata.
   syntax:
-    content: 'public abstract class MemberInfo : object'
-    content.vb: Public MustInherit Class MemberInfo Inherits Object
+    content: 'public abstract class MemberInfo : object, ICustomAttributeProvider'
+    content.vb: >-
+      Public MustInherit Class MemberInfo
+          Inherits Object
+          Implements ICustomAttributeProvider
   inheritance:
   - System.Object
+  implements:
+  - System.Reflection.ICustomAttributeProvider
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+  commentId: T:System.Reflection.MemberInfo
 - uid: System.Reflection.MemberInfo.CustomAttributes
   id: CustomAttributes
   parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
   name: CustomAttributes
   fullName: System.Reflection.MemberInfo.CustomAttributes
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/MemberInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: CustomAttributes
     path: src/mscorlib/src/System/Reflection/MemberInfo.cs
-    startLine: 44
+    startLine: 41
   assemblies:
   - System.Reflection
   namespace: System.Reflection
   summary: Gets a collection that contains this member's custom attributes.
   syntax:
-    content: public virtual Collections.Generic.IEnumerable<CustomAttributeData> CustomAttributes { get; }
+    content: >-
+      public virtual Collections.Generic.IEnumerable<CustomAttributeData> CustomAttributes
+
+      {
+          get;
+      }
     content.vb: Public Overridable ReadOnly Property CustomAttributes As Collections.Generic.IEnumerable(Of CustomAttributeData)
     parameters: []
     return:
       type: System.Collections.Generic.IEnumerable{System.Reflection.CustomAttributeData}
       description: A collection that contains this member's custom attributes.
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+  commentId: P:System.Reflection.MemberInfo.CustomAttributes
 - uid: System.Reflection.MemberInfo.DeclaringType
   id: DeclaringType
   parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
   name: DeclaringType
   fullName: System.Reflection.MemberInfo.DeclaringType
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/MemberInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: DeclaringType
     path: src/mscorlib/src/System/Reflection/MemberInfo.cs
-    startLine: 40
+    startLine: 37
   assemblies:
   - System.Reflection
   namespace: System.Reflection
   summary: Gets the class that declares this member.
   syntax:
-    content: public abstract Type DeclaringType { get; }
+    content: >-
+      public abstract Type DeclaringType
+
+      {
+          get;
+      }
     content.vb: Public MustOverride ReadOnly Property DeclaringType As Type
     parameters: []
     return:
       type: System.Type
       description: The Type object for the class that declares this member.
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  commentId: P:System.Reflection.MemberInfo.DeclaringType
+- uid: System.Reflection.MemberInfo.MetadataToken
+  id: MetadataToken
+  parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
+  name: MetadataToken
+  fullName: System.Reflection.MemberInfo.MetadataToken
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/MemberInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: MetadataToken
+    path: src/mscorlib/src/System/Reflection/MemberInfo.cs
+    startLine: 59
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: Gets a value that identifies a metadata element.
+  syntax:
+    content: >-
+      public virtual int MetadataToken
+
+      {
+          get;
+      }
+    content.vb: Public Overridable ReadOnly Property MetadataToken As Integer
+    parameters: []
+    return:
+      type: System.Int32
+      description: A value which, in combination with <xref href="System.Reflection.MemberInfo.Module" data-throw-if-not-resolved="false"></xref>, uniquely identifies a metadata element.
+  exceptions:
+  - type: System.InvalidOperationException
+    description: The current <xref href="System.Reflection.MemberInfo" data-throw-if-not-resolved="false"></xref> represents an array method, such as Address, on an array type whose element type is a dynamic type that has not been completed. To get a metadata token in this case, pass the <xref href="System.Reflection.MemberInfo" data-throw-if-not-resolved="false"></xref> object to the <xref href="System.Reflection.Emit.ModuleBuilder.GetMethodToken(System.Reflection.MethodInfo)" data-throw-if-not-resolved="false"></xref> method; or use the <xref href="System.Reflection.Emit.ModuleBuilder.GetArrayMethodToken(System.Type,System.String,System.Reflection.CallingConventions,System.Type,System.Type[])" data-throw-if-not-resolved="false"></xref>  method to get the token directly, instead of using the <xref href="System.Reflection.Emit.ModuleBuilder.GetArrayMethod(System.Type,System.String,System.Reflection.CallingConventions,System.Type,System.Type[])" data-throw-if-not-resolved="false"></xref> method to get a <xref href="System.Reflection.MethodInfo" data-throw-if-not-resolved="false"></xref> first.
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+  commentId: P:System.Reflection.MemberInfo.MetadataToken
 - uid: System.Reflection.MemberInfo.Module
   id: Module
   parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
   name: Module
   fullName: System.Reflection.MemberInfo.Module
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/MemberInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Module
     path: src/mscorlib/src/System/Reflection/MemberInfo.cs
-    startLine: 64
+    startLine: 61
   assemblies:
   - System.Reflection
   namespace: System.Reflection
   summary: Gets the module in which the type that declares the member represented by the current <xref href="System.Reflection.MemberInfo" data-throw-if-not-resolved="false"></xref> is defined.
   syntax:
-    content: public virtual Module Module { get; }
-    content.vb: Public Overridable ReadOnly Property Module As
+    content: >-
+      public virtual Module Module
+
+      {
+          get;
+      }
+    content.vb: 'Public Overridable ReadOnly Property Module As '
     parameters: []
     return:
       type: System.Reflection.Module
@@ -94,37 +216,74 @@ items:
   exceptions:
   - type: System.NotImplementedException
     description: This method is not implemented.
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+  commentId: P:System.Reflection.MemberInfo.Module
 - uid: System.Reflection.MemberInfo.Name
   id: Name
   parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
   name: Name
   fullName: System.Reflection.MemberInfo.Name
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/MemberInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Name
     path: src/mscorlib/src/System/Reflection/MemberInfo.cs
-    startLine: 38
+    startLine: 35
   assemblies:
   - System.Reflection
   namespace: System.Reflection
   summary: Gets the name of the current member.
   syntax:
-    content: public abstract string Name { get; }
+    content: >-
+      public abstract string Name
+
+      {
+          get;
+      }
     content.vb: Public MustOverride ReadOnly Property Name As String
     parameters: []
     return:
       type: System.String
       description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> containing the name of this member.
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  commentId: P:System.Reflection.MemberInfo.Name
 - uid: System.Reflection.MemberInfo.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
   name: Equals(Object)
   fullName: System.Reflection.MemberInfo.Equals(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/MemberInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Equals
     path: src/mscorlib/src/System/Reflection/MemberInfo.cs
-    startLine: 114
+    startLine: 111
   assemblies:
   - System.Reflection
   namespace: System.Reflection
@@ -138,17 +297,31 @@ items:
       description: An object to compare with this instance, or null.
     return:
       type: System.Boolean
-      description: true if *obj* equals the type and value of this instance; otherwise, false.
+      description: true if <em>obj</em> equals the type and value of this instance; otherwise, false.
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  commentId: M:System.Reflection.MemberInfo.Equals(System.Object)
 - uid: System.Reflection.MemberInfo.GetHashCode
   id: GetHashCode
   parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
   name: GetHashCode()
   fullName: System.Reflection.MemberInfo.GetHashCode()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/MemberInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetHashCode
     path: src/mscorlib/src/System/Reflection/MemberInfo.cs
-    startLine: 119
+    startLine: 116
   assemblies:
   - System.Reflection
   namespace: System.Reflection
@@ -159,6 +332,149 @@ items:
     return:
       type: System.Int32
       description: A 32-bit signed integer hash code.
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  commentId: M:System.Reflection.MemberInfo.GetHashCode
+- uid: System.Reflection.MemberInfo.MemberType
+  id: MemberType
+  parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
+  name: MemberType
+  fullName: System.Reflection.MemberInfo.MemberType
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/MemberInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: MemberType
+    path: src/mscorlib/src/System/Reflection/MemberInfo.cs
+    startLine: 33
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "When overridden in a derived class, gets a <xref href=\"System.Reflection.MemberTypes\" data-throw-if-not-resolved=\"false\"></xref> value indicating the type of the member — method, constructor, event, and so on."
+  syntax:
+    content: >-
+      public abstract MemberTypes MemberType
+
+      {
+          get;
+      }
+    content.vb: Public MustOverride ReadOnly Property MemberType As MemberTypes
+    parameters: []
+    return:
+      type: System.Reflection.MemberTypes
+      description: A <xref href="System.Reflection.MemberTypes" data-throw-if-not-resolved="false"></xref> value indicating the type of member.
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
+  commentId: P:System.Reflection.MemberInfo.MemberType
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  id: System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
+  name: ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/System.Reflection/ref/System.Reflection.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    path: src/System.Reflection/ref/System.Reflection.cs
+    startLine: 235
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  syntax:
+    content: object[] ICustomAttributeProvider.GetCustomAttributes(bool inherit)
+    content.vb: Function System.Reflection.ICustomAttributeProvider.GetCustomAttributes(inherit As Boolean) As Object() Implements ICustomAttributeProvider.GetCustomAttributes
+    parameters:
+    - id: inherit
+      type: System.Boolean
+    return:
+      type: System.Object[]
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(Type,System.Boolean)
+  id: System#Reflection#ICustomAttributeProvider#GetCustomAttributes(Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
+  name: ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/System.Reflection/ref/System.Reflection.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    path: src/System.Reflection/ref/System.Reflection.cs
+    startLine: 236
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  syntax:
+    content: object[] ICustomAttributeProvider.GetCustomAttributes(Type attributeType, bool inherit)
+    content.vb: Function System.Reflection.ICustomAttributeProvider.GetCustomAttributes(attributeType As Type, inherit As Boolean) As Object() Implements ICustomAttributeProvider.GetCustomAttributes
+    parameters:
+    - id: attributeType
+      type: Type
+    - id: inherit
+      type: System.Boolean
+    return:
+      type: System.Object[]
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(Type,System.Boolean)
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(Type,System.Boolean)
+  id: System#Reflection#ICustomAttributeProvider#IsDefined(Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  langs:
+  - csharp
+  - vb
+  name: ICustomAttributeProvider.IsDefined(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined(Type, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/System.Reflection/ref/System.Reflection.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: System.Reflection.ICustomAttributeProvider.IsDefined
+    path: src/System.Reflection/ref/System.Reflection.cs
+    startLine: 237
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  syntax:
+    content: bool ICustomAttributeProvider.IsDefined(Type attributeType, bool inherit)
+    content.vb: Function System.Reflection.ICustomAttributeProvider.IsDefined(attributeType As Type, inherit As Boolean) As Boolean Implements ICustomAttributeProvider.IsDefined
+    parameters:
+    - id: attributeType
+      type: Type
+    - id: inherit
+      type: System.Boolean
+    return:
+      type: System.Boolean
+  name.vb: System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(Type,System.Boolean)
 references:
 - uid: System.Reflection
   isExternal: false
@@ -169,6 +485,11 @@ references:
   isExternal: false
   name: Object
   fullName: System.Object
+- uid: System.Reflection.ICustomAttributeProvider
+  parent: System.Reflection
+  isExternal: false
+  name: ICustomAttributeProvider
+  fullName: System.Reflection.ICustomAttributeProvider
 - uid: System
   isExternal: false
   name: System
@@ -176,9 +497,9 @@ references:
 - uid: System.Collections.Generic.IEnumerable{System.Reflection.CustomAttributeData}
   definition: System.Collections.Generic.IEnumerable`1
   name: Collections.Generic.IEnumerable<CustomAttributeData>
-  name.vb: Collections.Generic.IEnumerable(Of CustomAttributeData)
   fullName: System.Collections.Generic.IEnumerable<System.Reflection.CustomAttributeData>
-  fullName.vb: System.Collections.Generic.IEnumerable(Of System.Reflection.CustomAttributeData)
+  fullname.vb: System.Collections.Generic.IEnumerable(Of System.Reflection.CustomAttributeData)
+  name.vb: Collections.Generic.IEnumerable(Of CustomAttributeData)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: Collections.Generic.IEnumerable
@@ -207,9 +528,9 @@ references:
   parent: System.Collections.Generic
   isExternal: false
   name: Collections.Generic.IEnumerable<>
-  name.vb: Collections.Generic.IEnumerable(Of )
   fullName: System.Collections.Generic.IEnumerable<>
-  fullName.vb: System.Collections.Generic.IEnumerable(Of )
+  fullname.vb: System.Collections.Generic.IEnumerable(Of )
+  name.vb: Collections.Generic.IEnumerable(Of )
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: Collections.Generic.IEnumerable
@@ -237,6 +558,11 @@ references:
   isExternal: false
   name: Type
   fullName: System.Type
+- uid: System.Int32
+  parent: System
+  isExternal: false
+  name: Int32
+  fullName: System.Int32
 - uid: System.Reflection.Module
   parent: System.Reflection
   isExternal: false
@@ -252,11 +578,38 @@ references:
   isExternal: false
   name: Boolean
   fullName: System.Boolean
-- uid: System.Int32
+- uid: System.Reflection.MemberTypes
+  parent: System.Reflection
+  isExternal: false
+  name: MemberTypes
+  fullName: System.Reflection.MemberTypes
+- uid: System.Object[]
+  isExternal: false
+  name: Object[]
+  fullName: System.Object[]
+  fullname.vb: System.Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+  - name: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    fullName: System.Object
+  - name: ()
+    fullName: ()
+- uid: Type
+  isExternal: true
+  name: Type
+  fullName: Type
+- uid: System.InvalidOperationException
   parent: System
   isExternal: false
-  name: Int32
-  fullName: System.Int32
+  name: InvalidOperationException
+  fullName: System.InvalidOperationException
 - uid: System.NotImplementedException
   isExternal: false
   name: NotImplementedException

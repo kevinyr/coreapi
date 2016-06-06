@@ -4,23 +4,34 @@ items:
   parent: System.Runtime.InteropServices
   children:
   - System.Runtime.InteropServices.OutAttribute.#ctor
+  langs:
+  - csharp
+  - vb
   name: OutAttribute
   fullName: System.Runtime.InteropServices.OutAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: OutAttribute
     path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
-    startLine: 706
+    startLine: 709
   assemblies:
   - System.Runtime
   namespace: System.Runtime.InteropServices
   summary: Indicates that data should be marshaled from callee back to caller.
   syntax:
-    content: 'public sealed class OutAttribute : Attribute'
-    content.vb: Public NotInheritable Class OutAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Parameter, Inherited = false)]
+
+      public sealed class OutAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Parameter, Inherited:=False)>
+
+      Public NotInheritable Class OutAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -32,16 +43,42 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 2048
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Runtime.InteropServices.OutAttribute
 - uid: System.Runtime.InteropServices.OutAttribute.#ctor
   id: '#ctor'
   parent: System.Runtime.InteropServices.OutAttribute
+  langs:
+  - csharp
+  - vb
   name: OutAttribute()
   fullName: System.Runtime.InteropServices.OutAttribute.OutAttribute()
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
-    startLine: 719
+    startLine: 722
   assemblies:
   - System.Runtime
   namespace: System.Runtime.InteropServices
@@ -49,6 +86,11 @@ items:
   syntax:
     content: public OutAttribute()
     content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Runtime.InteropServices.OutAttribute.#ctor
 references:
 - uid: System.Runtime.InteropServices
   isExternal: false

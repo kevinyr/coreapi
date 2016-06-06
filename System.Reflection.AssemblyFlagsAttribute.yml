@@ -5,14 +5,18 @@ items:
   children:
   - System.Reflection.AssemblyFlagsAttribute.#ctor(System.Reflection.AssemblyNameFlags)
   - System.Reflection.AssemblyFlagsAttribute.AssemblyFlags
+  langs:
+  - csharp
+  - vb
   name: AssemblyFlagsAttribute
   fullName: System.Reflection.AssemblyFlagsAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: AssemblyFlagsAttribute
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 300
   assemblies:
@@ -20,8 +24,15 @@ items:
   namespace: System.Reflection
   summary: Specifies a bitwise combination of <xref href="System.Reflection.AssemblyNameFlags" data-throw-if-not-resolved="false"></xref> flags for an assembly, describing just-in-time (JIT) compiler options, whether the assembly is retargetable, and whether it has a full or tokenized public key. This class cannot be inherited.
   syntax:
-    content: 'public sealed class AssemblyFlagsAttribute : Attribute'
-    content.vb: Public NotInheritable Class AssemblyFlagsAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
+
+      public sealed class AssemblyFlagsAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly, Inherited:=False)>
+
+      Public NotInheritable Class AssemblyFlagsAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -33,14 +44,40 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 1
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Reflection.AssemblyFlagsAttribute
 - uid: System.Reflection.AssemblyFlagsAttribute.#ctor(System.Reflection.AssemblyNameFlags)
   id: '#ctor(System.Reflection.AssemblyNameFlags)'
   parent: System.Reflection.AssemblyFlagsAttribute
+  langs:
+  - csharp
+  - vb
   name: AssemblyFlagsAttribute(AssemblyNameFlags)
   fullName: System.Reflection.AssemblyFlagsAttribute.AssemblyFlagsAttribute(System.Reflection.AssemblyNameFlags)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 333
   assemblies:
@@ -54,14 +91,26 @@ items:
     - id: assemblyFlags
       type: System.Reflection.AssemblyNameFlags
       description: A bitwise combination of <xref href="System.Reflection.AssemblyNameFlags" data-throw-if-not-resolved="false"></xref> flags representing just-in-time (JIT) compiler options, longevity, whether an assembly is retargetable, and whether it has a full or tokenized public key.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.AssemblyFlagsAttribute.#ctor(System.Reflection.AssemblyNameFlags)
 - uid: System.Reflection.AssemblyFlagsAttribute.AssemblyFlags
   id: AssemblyFlags
   parent: System.Reflection.AssemblyFlagsAttribute
+  langs:
+  - csharp
+  - vb
   name: AssemblyFlags
   fullName: System.Reflection.AssemblyFlagsAttribute.AssemblyFlags
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: AssemblyFlags
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 321
   assemblies:
@@ -69,12 +118,24 @@ items:
   namespace: System.Reflection
   summary: Gets an integer value representing the combination of <xref href="System.Reflection.AssemblyNameFlags" data-throw-if-not-resolved="false"></xref> flags specified when this attribute instance was created.
   syntax:
-    content: public int AssemblyFlags { get; }
+    content: >-
+      public int AssemblyFlags
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property AssemblyFlags As Integer
     parameters: []
     return:
       type: System.Int32
       description: An integer value representing a bitwise combination of <xref href="System.Reflection.AssemblyNameFlags" data-throw-if-not-resolved="false"></xref> flags.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Reflection.AssemblyFlagsAttribute.AssemblyFlags
 references:
 - uid: System.Reflection
   isExternal: false

@@ -27,14 +27,18 @@ items:
   - System.IntPtr.ToString
   - System.IntPtr.ToString(System.String)
   - System.IntPtr.Zero
+  langs:
+  - csharp
+  - vb
   name: IntPtr
   fullName: System.IntPtr
   type: Struct
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/IntPtr.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: IntPtr
     path: src/mscorlib/src/System/IntPtr.cs
     startLine: 24
   assemblies:
@@ -42,20 +46,46 @@ items:
   namespace: System
   summary: A platform-specific type that is used to represent a pointer or a handle.
   syntax:
-    content: public struct IntPtr
-    content.vb: Public Structure IntPtr
+    content: >-
+      [StructLayout(LayoutKind.Sequential)]
+
+      public struct IntPtr
+    content.vb: >-
+      <StructLayout(LayoutKind.Sequential)>
+
+      Public Structure IntPtr
   inheritedMembers:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.GetType
   - System.Object.ReferenceEquals(System.Object,System.Object)
+  attributes:
+  - type: System.Runtime.InteropServices.StructLayoutAttribute
+    ctor: System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Runtime.InteropServices.LayoutKind)
+    arguments:
+    - type: System.Runtime.InteropServices.LayoutKind
+      value: 0
+  modifiers.csharp:
+  - public
+  - struct
+  modifiers.vb:
+  - Public
+  - Structure
+  commentId: T:System.IntPtr
 - uid: System.IntPtr.Zero
   id: Zero
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Zero
   fullName: System.IntPtr.Zero
   type: Field
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Zero
     path: src/mscorlib/src/System/IntPtr.cs
     startLine: 31
   assemblies:
@@ -65,14 +95,32 @@ items:
   syntax:
     content: public static readonly IntPtr Zero
     content.vb: Public Shared ReadOnly Zero As IntPtr
+    return:
+      type: System.IntPtr
+  modifiers.csharp:
+  - public
+  - static
+  - readonly
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: F:System.IntPtr.Zero
 - uid: System.IntPtr.#ctor(System.Int32)
   id: '#ctor(System.Int32)'
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: IntPtr(Int32)
   fullName: System.IntPtr.IntPtr(System.Int32)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/IntPtr.cs
     startLine: 42
   assemblies:
@@ -85,15 +133,27 @@ items:
     parameters:
     - id: value
       type: System.Int32
-      description: A pointer or handle contained in a 32-bit signed integer.
+      description: 'A pointer or handle contained in a 32-bit signed integer. '
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.IntPtr.#ctor(System.Int32)
 - uid: System.IntPtr.#ctor(System.Int64)
   id: '#ctor(System.Int64)'
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: IntPtr(Int64)
   fullName: System.IntPtr.IntPtr(System.Int64)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/IntPtr.cs
     startLine: 54
   assemblies:
@@ -106,18 +166,30 @@ items:
     parameters:
     - id: value
       type: System.Int64
-      description: A pointer or handle contained in a 64-bit signed integer.
+      description: 'A pointer or handle contained in a 64-bit signed integer. '
   exceptions:
   - type: System.OverflowException
-    description: On a 32-bit platform, *value* is too large or too small to represent as an <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref>.
+    description: 'On a 32-bit platform, <em>value</em> is too large or too small to represent as an <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref>. '
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.IntPtr.#ctor(System.Int64)
 - uid: System.IntPtr.#ctor(System.Void*)
   id: '#ctor(System.Void*)'
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: IntPtr(Void*)
   fullName: System.IntPtr.IntPtr(System.Void*)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/IntPtr.cs
     startLine: 66
   assemblies:
@@ -125,43 +197,95 @@ items:
   namespace: System
   summary: Initializes a new instance of <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> using the specified pointer to an unspecified type.
   syntax:
-    content: public IntPtr(void *value)
-    content.vb: Public Sub New(value As *)
+    content: >-
+      [CLSCompliant(false)]
+
+      [SecurityCritical]
+
+      public IntPtr(void *value)
+    content.vb: >-
+      <CLSCompliant(False)>
+
+      <SecurityCritical>
+
+      Public Sub New(value As  *)
     parameters:
     - id: value
       type: System.Void*
-      description: A pointer to an unspecified type.
+      description: 'A pointer to an unspecified type. '
+  attributes:
+  - type: System.CLSCompliantAttribute
+    ctor: System.CLSCompliantAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: System.Security.SecurityCriticalAttribute
+    ctor: System.Security.SecurityCriticalAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.IntPtr.#ctor(System.Void*)
 - uid: System.IntPtr.Size
   id: Size
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Size
   fullName: System.IntPtr.Size
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Size
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 262
+    startLine: 271
   assemblies:
   - System.Runtime
   namespace: System
   summary: Gets the size of this instance.
   syntax:
-    content: public static int Size { get; }
+    content: >-
+      public static int Size
+
+      {
+          get;
+      }
     content.vb: Public Shared ReadOnly Property Size As Integer
     parameters: []
     return:
       type: System.Int32
       description: The size of a pointer or handle in this process, measured in bytes. The value of this property is 4 in a 32-bit process, and 8 in a 64-bit process. You can define the process type by setting the /platform switch when you compile your code with the C# and Visual Basic compilers.
+  modifiers.csharp:
+  - public
+  - static
+  - get
+  modifiers.vb:
+  - Public
+  - Shared
+  - ReadOnly
+  commentId: P:System.IntPtr.Size
 - uid: System.IntPtr.Add(System.IntPtr,System.Int32)
   id: Add(System.IntPtr,System.Int32)
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Add(IntPtr, Int32)
   fullName: System.IntPtr.Add(System.IntPtr, System.Int32)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Add
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 228
+    startLine: 237
   assemblies:
   - System.Runtime
   namespace: System
@@ -178,15 +302,29 @@ items:
       description: The offset to add.
     return:
       type: System.IntPtr
-      description: A new pointer that reflects the addition of *offset* to *pointer*.
+      description: A new pointer that reflects the addition of <em>offset</em> to <em>pointer</em>.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.IntPtr.Add(System.IntPtr,System.Int32)
 - uid: System.IntPtr.Equals(System.Object)
   id: Equals(System.Object)
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Equals(Object)
   fullName: System.IntPtr.Equals(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Equals
     path: src/mscorlib/src/System/IntPtr.cs
     startLine: 101
   assemblies:
@@ -199,19 +337,33 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: An object to compare with this instance or null.
+      description: 'An object to compare with this instance or null. '
     return:
       type: System.Boolean
-      description: true if *obj* is an instance of <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> and equals the value of this instance; otherwise, false.
+      description: true if <em>obj</em> is an instance of <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> and equals the value of this instance; otherwise, false.
   overridden: System.ValueType.Equals(System.Object)
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  commentId: M:System.IntPtr.Equals(System.Object)
 - uid: System.IntPtr.GetHashCode
   id: GetHashCode
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: GetHashCode()
   fullName: System.IntPtr.GetHashCode()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetHashCode
     path: src/mscorlib/src/System/IntPtr.cs
     startLine: 109
   assemblies:
@@ -225,16 +377,30 @@ items:
       type: System.Int32
       description: A 32-bit signed integer hash code.
   overridden: System.ValueType.GetHashCode
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  commentId: M:System.IntPtr.GetHashCode
 - uid: System.IntPtr.op_Addition(System.IntPtr,System.Int32)
   id: op_Addition(System.IntPtr,System.Int32)
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Addition(IntPtr, Int32)
   fullName: System.IntPtr.Addition(System.IntPtr, System.Int32)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Addition
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 235
+    startLine: 244
   assemblies:
   - System.Runtime
   namespace: System
@@ -251,17 +417,31 @@ items:
       description: The offset to add.
     return:
       type: System.IntPtr
-      description: A new pointer that reflects the addition of *offset* to *pointer*.
+      description: A new pointer that reflects the addition of <em>offset</em> to <em>pointer</em>.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.IntPtr.op_Addition(System.IntPtr,System.Int32)
 - uid: System.IntPtr.op_Equality(System.IntPtr,System.IntPtr)
   id: op_Equality(System.IntPtr,System.IntPtr)
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Equality(IntPtr, IntPtr)
   fullName: System.IntPtr.Equality(System.IntPtr, System.IntPtr)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Equality
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 212
+    startLine: 221
   assemblies:
   - System.Runtime
   namespace: System
@@ -278,19 +458,31 @@ items:
       description: The second pointer or handle to compare.
     return:
       type: System.Boolean
-      description: true if *value1* equals *value2*; otherwise, false.
+      description: true if <em>value1</em> equals <em>value2</em>; otherwise, false.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.IntPtr.op_Equality(System.IntPtr,System.IntPtr)
 - uid: System.IntPtr.op_Explicit(System.Int32)~System.IntPtr
   id: op_Explicit(System.Int32)~System.IntPtr
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Explicit(Int32 to IntPtr)
-  name.vb: Narrowing(Int32 to IntPtr)
   fullName: System.IntPtr.Explicit(System.Int32 to System.IntPtr)
-  fullName.vb: System.IntPtr.Narrowing(System.Int32 to System.IntPtr)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Explicit
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 159
+    startLine: 168
   assemblies:
   - System.Runtime
   namespace: System
@@ -301,22 +493,36 @@ items:
     parameters:
     - id: value
       type: System.Int32
-      description: A 32-bit signed integer.
+      description: 'A 32-bit signed integer. '
     return:
       type: System.IntPtr
-      description: A new instance of <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> initialized to *value*.
+      description: A new instance of <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> initialized to <em>value</em>.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.IntPtr.Narrowing(System.Int32 to System.IntPtr)
+  name.vb: Narrowing(Int32 to IntPtr)
+  commentId: M:System.IntPtr.op_Explicit(System.Int32)~System.IntPtr
 - uid: System.IntPtr.op_Explicit(System.Int64)~System.IntPtr
   id: op_Explicit(System.Int64)~System.IntPtr
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Explicit(Int64 to IntPtr)
-  name.vb: Narrowing(Int64 to IntPtr)
   fullName: System.IntPtr.Explicit(System.Int64 to System.IntPtr)
-  fullName.vb: System.IntPtr.Narrowing(System.Int64 to System.IntPtr)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Explicit
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 166
+    startLine: 175
   assemblies:
   - System.Runtime
   namespace: System
@@ -327,25 +533,39 @@ items:
     parameters:
     - id: value
       type: System.Int64
-      description: A 64-bit signed integer.
+      description: 'A 64-bit signed integer. '
     return:
       type: System.IntPtr
-      description: A new instance of <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> initialized to *value*.
+      description: A new instance of <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> initialized to <em>value</em>.
   exceptions:
   - type: System.OverflowException
-    description: On a 32-bit platform, *value* is too large to represent as an <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref>.
+    description: 'On a 32-bit platform, <em>value</em> is too large to represent as an <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref>. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.IntPtr.Narrowing(System.Int64 to System.IntPtr)
+  name.vb: Narrowing(Int64 to IntPtr)
+  commentId: M:System.IntPtr.op_Explicit(System.Int64)~System.IntPtr
 - uid: System.IntPtr.op_Explicit(System.IntPtr)~System.Int32
   id: op_Explicit(System.IntPtr)~System.Int32
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Explicit(IntPtr to Int32)
-  name.vb: Narrowing(IntPtr to Int32)
   fullName: System.IntPtr.Explicit(System.IntPtr to System.Int32)
-  fullName.vb: System.IntPtr.Narrowing(System.IntPtr to System.Int32)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Explicit
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 189
+    startLine: 198
   assemblies:
   - System.Runtime
   namespace: System
@@ -359,22 +579,36 @@ items:
       description: The pointer or handle to convert.
     return:
       type: System.Int32
-      description: The contents of *value*.
+      description: The contents of <em>value</em>.
   exceptions:
   - type: System.OverflowException
-    description: On a 64-bit platform, the value of *value* is too large to represent as a 32-bit signed integer.
+    description: 'On a 64-bit platform, the value of <em>value</em> is too large to represent as a 32-bit signed integer. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.IntPtr.Narrowing(System.IntPtr to System.Int32)
+  name.vb: Narrowing(IntPtr to Int32)
+  commentId: M:System.IntPtr.op_Explicit(System.IntPtr)~System.Int32
 - uid: System.IntPtr.op_Explicit(System.IntPtr)~System.Int64
   id: op_Explicit(System.IntPtr)~System.Int64
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Explicit(IntPtr to Int64)
-  name.vb: Narrowing(IntPtr to Int64)
   fullName: System.IntPtr.Explicit(System.IntPtr to System.Int64)
-  fullName.vb: System.IntPtr.Narrowing(System.IntPtr to System.Int64)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Explicit
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 201
+    startLine: 210
   assemblies:
   - System.Runtime
   namespace: System
@@ -388,69 +622,141 @@ items:
       description: The pointer or handle to convert.
     return:
       type: System.Int64
-      description: The contents of *value*.
+      description: The contents of <em>value</em>.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.IntPtr.Narrowing(System.IntPtr to System.Int64)
+  name.vb: Narrowing(IntPtr to Int64)
+  commentId: M:System.IntPtr.op_Explicit(System.IntPtr)~System.Int64
 - uid: System.IntPtr.op_Explicit(System.IntPtr)~System.Void*
   id: op_Explicit(System.IntPtr)~System.Void*
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Explicit(IntPtr to Void*)
-  name.vb: Narrowing(IntPtr to Void*)
   fullName: System.IntPtr.Explicit(System.IntPtr to System.Void*)
-  fullName.vb: System.IntPtr.Narrowing(System.IntPtr to System.Void*)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Explicit
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 181
+    startLine: 190
   assemblies:
   - System.Runtime
   namespace: System
   summary: Converts the value of the specified <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> to a pointer to an unspecified type.
   syntax:
-    content: public static explicit operator void *(IntPtr value)
-    content.vb: Public Shared Narrowing Operator CType(value As IntPtr) As
+    content: >-
+      [CLSCompliant(false)]
+
+      public static explicit operator void *(IntPtr value)
+    content.vb: "<CLSCompliant(False)>\nPublic Shared Narrowing Operator CType(value As IntPtr) As "
     parameters:
     - id: value
       type: System.IntPtr
-      description: The pointer or handle to convert.
+      description: 'The pointer or handle to convert. '
     return:
       type: System.Void*
-      description: The contents of *value*.
+      description: The contents of <em>value</em>.
+  attributes:
+  - type: System.CLSCompliantAttribute
+    ctor: System.CLSCompliantAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.IntPtr.Narrowing(System.IntPtr to System.Void*)
+  name.vb: Narrowing(IntPtr to Void*)
+  commentId: M:System.IntPtr.op_Explicit(System.IntPtr)~System.Void*
 - uid: System.IntPtr.op_Explicit(System.Void*)~System.IntPtr
   id: op_Explicit(System.Void*)~System.IntPtr
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Explicit(Void* to IntPtr)
-  name.vb: Narrowing(Void* to IntPtr)
   fullName: System.IntPtr.Explicit(System.Void* to System.IntPtr)
-  fullName.vb: System.IntPtr.Narrowing(System.Void* to System.IntPtr)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Explicit
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 173
+    startLine: 182
   assemblies:
   - System.Runtime
   namespace: System
   summary: Converts the specified pointer to an unspecified type to an <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref>.
   syntax:
-    content: public static explicit operator IntPtr(void *value)
-    content.vb: Public Shared Narrowing Operator CType(value As *) As IntPtr
+    content: >-
+      [CLSCompliant(false)]
+
+      [SecurityCritical]
+
+      public static explicit operator IntPtr(void *value)
+    content.vb: >-
+      <CLSCompliant(False)>
+
+      <SecurityCritical>
+
+      Public Shared Narrowing Operator CType(value As  *) As IntPtr
     parameters:
     - id: value
       type: System.Void*
-      description: A pointer to an unspecified type.
+      description: 'A pointer to an unspecified type. '
     return:
       type: System.IntPtr
-      description: A new instance of <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> initialized to *value*.
+      description: A new instance of <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> initialized to <em>value</em>.
+  attributes:
+  - type: System.CLSCompliantAttribute
+    ctor: System.CLSCompliantAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  - type: System.Security.SecurityCriticalAttribute
+    ctor: System.Security.SecurityCriticalAttribute.#ctor
+    arguments: []
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.IntPtr.Narrowing(System.Void* to System.IntPtr)
+  name.vb: Narrowing(Void* to IntPtr)
+  commentId: M:System.IntPtr.op_Explicit(System.Void*)~System.IntPtr
 - uid: System.IntPtr.op_Inequality(System.IntPtr,System.IntPtr)
   id: op_Inequality(System.IntPtr,System.IntPtr)
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Inequality(IntPtr, IntPtr)
   fullName: System.IntPtr.Inequality(System.IntPtr, System.IntPtr)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Inequality
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 220
+    startLine: 229
   assemblies:
   - System.Runtime
   namespace: System
@@ -461,23 +767,37 @@ items:
     parameters:
     - id: value1
       type: System.IntPtr
-      description: The first pointer or handle to compare.
+      description: 'The first pointer or handle to compare. '
     - id: value2
       type: System.IntPtr
-      description: The second pointer or handle to compare.
+      description: 'The second pointer or handle to compare. '
     return:
       type: System.Boolean
-      description: true if *value1* does not equal *value2*; otherwise, false.
+      description: true if <em>value1</em> does not equal <em>value2</em>; otherwise, false.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.IntPtr.op_Inequality(System.IntPtr,System.IntPtr)
 - uid: System.IntPtr.op_Subtraction(System.IntPtr,System.Int32)
   id: op_Subtraction(System.IntPtr,System.Int32)
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Subtraction(IntPtr, Int32)
   fullName: System.IntPtr.Subtraction(System.IntPtr, System.Int32)
   type: Operator
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: op_Subtraction
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 252
+    startLine: 261
   assemblies:
   - System.Runtime
   namespace: System
@@ -494,17 +814,31 @@ items:
       description: The offset to subtract.
     return:
       type: System.IntPtr
-      description: A new pointer that reflects the subtraction of *offset* from *pointer*.
+      description: A new pointer that reflects the subtraction of <em>offset</em> from <em>pointer</em>.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.IntPtr.op_Subtraction(System.IntPtr,System.Int32)
 - uid: System.IntPtr.Subtract(System.IntPtr,System.Int32)
   id: Subtract(System.IntPtr,System.Int32)
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: Subtract(IntPtr, Int32)
   fullName: System.IntPtr.Subtract(System.IntPtr, System.Int32)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Subtract
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 246
+    startLine: 255
   assemblies:
   - System.Runtime
   namespace: System
@@ -521,17 +855,31 @@ items:
       description: The offset to subtract.
     return:
       type: System.IntPtr
-      description: A new pointer that reflects the subtraction of *offset* from *pointer*.
+      description: A new pointer that reflects the subtraction of <em>offset</em> from <em>pointer</em>.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.IntPtr.Subtract(System.IntPtr,System.Int32)
 - uid: System.IntPtr.ToInt32
   id: ToInt32
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: ToInt32()
   fullName: System.IntPtr.ToInt32()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: ToInt32
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 114
+    startLine: 123
   assemblies:
   - System.Runtime
   namespace: System
@@ -544,17 +892,29 @@ items:
       description: A 32-bit signed integer equal to the value of this instance.
   exceptions:
   - type: System.OverflowException
-    description: On a 64-bit platform, the value of this instance is too large or too small to represent as a 32-bit signed integer.
+    description: 'On a 64-bit platform, the value of this instance is too large or too small to represent as a 32-bit signed integer. '
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.IntPtr.ToInt32
 - uid: System.IntPtr.ToInt64
   id: ToInt64
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: ToInt64()
   fullName: System.IntPtr.ToInt64()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: ToInt64
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 126
+    startLine: 135
   assemblies:
   - System.Runtime
   namespace: System
@@ -565,36 +925,69 @@ items:
     return:
       type: System.Int64
       description: A 64-bit signed integer equal to the value of this instance.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.IntPtr.ToInt64
 - uid: System.IntPtr.ToPointer
   id: ToPointer
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: ToPointer()
   fullName: System.IntPtr.ToPointer()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: ToPointer
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 278
+    startLine: 287
   assemblies:
   - System.Runtime
   namespace: System
   summary: Converts the value of this instance to a pointer to an unspecified type.
   syntax:
-    content: public void *ToPointer()
-    content.vb: Public Function ToPointer As
+    content: >-
+      [CLSCompliant(false)]
+
+      public void *ToPointer()
+    content.vb: "<CLSCompliant(False)>\nPublic Function ToPointer As "
     return:
       type: System.Void*
       description: A pointer to <xref href="System.Void" data-throw-if-not-resolved="false"></xref>; that is, a pointer to memory containing data of an unspecified type.
+  attributes:
+  - type: System.CLSCompliantAttribute
+    ctor: System.CLSCompliantAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.IntPtr.ToPointer
 - uid: System.IntPtr.ToString
   id: ToString
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: ToString()
   fullName: System.IntPtr.ToString()
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: ToString
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 137
+    startLine: 146
   assemblies:
   - System.Runtime
   namespace: System
@@ -606,16 +999,30 @@ items:
       type: System.String
       description: The string representation of the value of this instance.
   overridden: System.ValueType.ToString
+  modifiers.csharp:
+  - public
+  - override
+  modifiers.vb:
+  - Public
+  - Overrides
+  commentId: M:System.IntPtr.ToString
 - uid: System.IntPtr.ToString(System.String)
   id: ToString(System.String)
   parent: System.IntPtr
+  langs:
+  - csharp
+  - vb
   name: ToString(String)
   fullName: System.IntPtr.ToString(System.String)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/IntPtr.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: ToString
     path: src/mscorlib/src/System/IntPtr.cs
-    startLine: 146
+    startLine: 155
   assemblies:
   - System.Runtime
   namespace: System
@@ -626,10 +1033,15 @@ items:
     parameters:
     - id: format
       type: System.String
-      description: A format specification that governs how the current <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> object is converted.
+      description: 'A format specification that governs how the current <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> object is converted. '
     return:
       type: System.String
       description: The string representation of the value of the current <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> object.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.IntPtr.ToString(System.String)
 references:
 - uid: System
   isExternal: false
@@ -735,6 +1147,11 @@ references:
   isExternal: false
   name: Object
   fullName: System.Object
+- uid: System.IntPtr
+  parent: System
+  isExternal: false
+  name: IntPtr
+  fullName: System.IntPtr
 - uid: System.Int32
   parent: System
   isExternal: false
@@ -761,11 +1178,6 @@ references:
     fullName: System.Void
   - name: '*'
     fullName: '*'
-- uid: System.IntPtr
-  parent: System
-  isExternal: false
-  name: IntPtr
-  fullName: System.IntPtr
 - uid: System.ValueType.Equals(System.Object)
   parent: System.ValueType
   isExternal: false

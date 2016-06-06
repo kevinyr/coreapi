@@ -18,14 +18,18 @@ items:
   - System.Threading.Monitor.Wait(System.Object)
   - System.Threading.Monitor.Wait(System.Object,System.Int32)
   - System.Threading.Monitor.Wait(System.Object,System.TimeSpan)
+  langs:
+  - csharp
+  - vb
   name: Monitor
   fullName: System.Threading.Monitor
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Threading/Monitor.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: Monitor
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 28
   assemblies:
@@ -34,12 +38,24 @@ items:
   summary: Provides a mechanism that synchronizes access to objects.
   syntax:
     content: 'public class Monitor : object'
-    content.vb: Public Class Monitor Inherits Object
+    content.vb: >-
+      Public Class Monitor
+          Inherits Object
   inheritance:
   - System.Object
+  modifiers.csharp:
+  - public
+  - class
+  modifiers.vb:
+  - Public
+  - Class
+  commentId: T:System.Threading.Monitor
 - uid: System.Threading.Monitor.Enter(System.Object)
   id: Enter(System.Object)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: Enter(Object)
   fullName: System.Threading.Monitor.Enter(System.Object)
   type: Method
@@ -56,20 +72,32 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to acquire the monitor lock.
+      description: 'The object on which to acquire the monitor lock. '
   exceptions:
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.Enter(System.Object)
 - uid: System.Threading.Monitor.Enter(System.Object,System.Boolean@)
   id: Enter(System.Object,System.Boolean@)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: Enter(Object, ref Boolean)
-  name.vb: Enter(Object, ByRef Boolean)
   fullName: System.Threading.Monitor.Enter(System.Object, ref System.Boolean)
-  fullName.vb: System.Threading.Monitor.Enter(System.Object, ByRef System.Boolean)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Enter
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 50
   assemblies:
@@ -82,18 +110,30 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to wait.
+      description: 'The object on which to wait. '
     - id: lockTaken
       type: System.Boolean
       description: "The result of the attempt to acquire the lock, passed by reference. The input must be false. The output is true if the lock is acquired; otherwise, the output is false. The output is set even if an exception occurs during the attempt to acquire the lock. Note   If no exception occurs, the output of this method is always true."
   exceptions:
   - type: System.ArgumentException
-    description: The input to *lockTaken* is true.
+    description: The input to <em>lockTaken</em> is true.
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Threading.Monitor.Enter(System.Object, ByRef System.Boolean)
+  name.vb: Enter(Object, ByRef Boolean)
+  commentId: M:System.Threading.Monitor.Enter(System.Object,System.Boolean@)
 - uid: System.Threading.Monitor.Exit(System.Object)
   id: Exit(System.Object)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: Exit(Object)
   fullName: System.Threading.Monitor.Exit(System.Object)
   type: Method
@@ -110,47 +150,75 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to release the lock.
+      description: 'The object on which to release the lock. '
   exceptions:
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
   - type: System.Threading.SynchronizationLockException
-    description: The current thread does not own the lock for the specified object.
+    description: 'The current thread does not own the lock for the specified object. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.Exit(System.Object)
 - uid: System.Threading.Monitor.IsEntered(System.Object)
   id: IsEntered(System.Object)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: IsEntered(Object)
   fullName: System.Threading.Monitor.IsEntered(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: IsEntered
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 160
   assemblies:
   - System.Threading
   namespace: System.Threading
-  summary: Determines whether the current thread holds the lock on the specified object.
+  summary: 'Determines whether the current thread holds the lock on the specified object. '
   syntax:
     content: public static bool IsEntered(object obj)
     content.vb: Public Shared Function IsEntered(obj As Object) As Boolean
     parameters:
     - id: obj
       type: System.Object
-      description: The object to test.
+      description: 'The object to test. '
     return:
       type: System.Boolean
-      description: true if the current thread holds the lock on *obj*; otherwise, false.
+      description: true if the current thread holds the lock on <em>obj</em>; otherwise, false.
   exceptions:
   - type: System.ArgumentNullException
-    description: '*obj* is null.'
+    description: "\r\n  <em>obj</em> is null. "
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.IsEntered(System.Object)
 - uid: System.Threading.Monitor.Pulse(System.Object)
   id: Pulse(System.Object)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: Pulse(Object)
   fullName: System.Threading.Monitor.Pulse(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Pulse
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 225
   assemblies:
@@ -163,20 +231,34 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object a thread is waiting for.
+      description: 'The object a thread is waiting for. '
   exceptions:
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
   - type: System.Threading.SynchronizationLockException
-    description: The calling thread does not own the lock for the specified object.
+    description: 'The calling thread does not own the lock for the specified object. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.Pulse(System.Object)
 - uid: System.Threading.Monitor.PulseAll(System.Object)
   id: PulseAll(System.Object)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: PulseAll(Object)
   fullName: System.Threading.Monitor.PulseAll(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: PulseAll
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 243
   assemblies:
@@ -189,20 +271,34 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object that sends the pulse.
+      description: 'The object that sends the pulse. '
   exceptions:
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
   - type: System.Threading.SynchronizationLockException
-    description: The calling thread does not own the lock for the specified object.
+    description: 'The calling thread does not own the lock for the specified object. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.PulseAll(System.Object)
 - uid: System.Threading.Monitor.TryEnter(System.Object)
   id: TryEnter(System.Object)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: TryEnter(Object)
   fullName: System.Threading.Monitor.TryEnter(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: TryEnter
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 91
   assemblies:
@@ -215,23 +311,35 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to acquire the lock.
+      description: 'The object on which to acquire the lock. '
     return:
       type: System.Boolean
       description: true if the current thread acquires the lock; otherwise, false.
   exceptions:
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.TryEnter(System.Object)
 - uid: System.Threading.Monitor.TryEnter(System.Object,System.Boolean@)
   id: TryEnter(System.Object,System.Boolean@)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: TryEnter(Object, ref Boolean)
-  name.vb: TryEnter(Object, ByRef Boolean)
   fullName: System.Threading.Monitor.TryEnter(System.Object, ref System.Boolean)
-  fullName.vb: System.Threading.Monitor.TryEnter(System.Object, ByRef System.Boolean)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: TryEnter
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 100
   assemblies:
@@ -244,23 +352,39 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to acquire the lock.
+      description: 'The object on which to acquire the lock. '
     - id: lockTaken
       type: System.Boolean
       description: The result of the attempt to acquire the lock, passed by reference. The input must be false. The output is true if the lock is acquired; otherwise, the output is false. The output is set even if an exception occurs during the attempt to acquire the lock.
   exceptions:
   - type: System.ArgumentException
-    description: The input to *lockTaken* is true.
+    description: The input to <em>lockTaken</em> is true.
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Threading.Monitor.TryEnter(System.Object, ByRef System.Boolean)
+  name.vb: TryEnter(Object, ByRef Boolean)
+  commentId: M:System.Threading.Monitor.TryEnter(System.Object,System.Boolean@)
 - uid: System.Threading.Monitor.TryEnter(System.Object,System.Int32)
   id: TryEnter(System.Object,System.Int32)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: TryEnter(Object, Int32)
   fullName: System.Threading.Monitor.TryEnter(System.Object, System.Int32)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: TryEnter
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 118
   assemblies:
@@ -273,28 +397,40 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to acquire the lock.
+      description: 'The object on which to acquire the lock. '
     - id: millisecondsTimeout
       type: System.Int32
-      description: The number of milliseconds to wait for the lock.
+      description: 'The number of milliseconds to wait for the lock. '
     return:
       type: System.Boolean
       description: true if the current thread acquires the lock; otherwise, false.
   exceptions:
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
   - type: System.ArgumentOutOfRangeException
-    description: '*millisecondsTimeout* is negative, and not equal to <xref href="System.Threading.Timeout.Infinite" data-throw-if-not-resolved="false"></xref>.'
+    description: "\r\n  <em>millisecondsTimeout</em> is negative, and not equal to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref>. "
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.TryEnter(System.Object,System.Int32)
 - uid: System.Threading.Monitor.TryEnter(System.Object,System.Int32,System.Boolean@)
   id: TryEnter(System.Object,System.Int32,System.Boolean@)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: TryEnter(Object, Int32, ref Boolean)
-  name.vb: TryEnter(Object, Int32, ByRef Boolean)
   fullName: System.Threading.Monitor.TryEnter(System.Object, System.Int32, ref System.Boolean)
-  fullName.vb: System.Threading.Monitor.TryEnter(System.Object, System.Int32, ByRef System.Boolean)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: TryEnter
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 140
   assemblies:
@@ -307,28 +443,44 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to acquire the lock.
+      description: 'The object on which to acquire the lock. '
     - id: millisecondsTimeout
       type: System.Int32
-      description: The number of milliseconds to wait for the lock.
+      description: 'The number of milliseconds to wait for the lock. '
     - id: lockTaken
       type: System.Boolean
       description: The result of the attempt to acquire the lock, passed by reference. The input must be false. The output is true if the lock is acquired; otherwise, the output is false. The output is set even if an exception occurs during the attempt to acquire the lock.
   exceptions:
   - type: System.ArgumentException
-    description: The input to *lockTaken* is true.
+    description: The input to <em>lockTaken</em> is true.
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
   - type: System.ArgumentOutOfRangeException
-    description: '*millisecondsTimeout* is negative, and not equal to <xref href="System.Threading.Timeout.Infinite" data-throw-if-not-resolved="false"></xref>.'
+    description: "\r\n  <em>millisecondsTimeout</em> is negative, and not equal to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref>. "
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Threading.Monitor.TryEnter(System.Object, System.Int32, ByRef System.Boolean)
+  name.vb: TryEnter(Object, Int32, ByRef Boolean)
+  commentId: M:System.Threading.Monitor.TryEnter(System.Object,System.Int32,System.Boolean@)
 - uid: System.Threading.Monitor.TryEnter(System.Object,System.TimeSpan)
   id: TryEnter(System.Object,System.TimeSpan)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: TryEnter(Object, TimeSpan)
   fullName: System.Threading.Monitor.TryEnter(System.Object, System.TimeSpan)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: TryEnter
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 133
   assemblies:
@@ -341,7 +493,7 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to acquire the lock.
+      description: 'The object on which to acquire the lock. '
     - id: timeout
       type: System.TimeSpan
       description: "A <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> representing the amount of time to wait for the lock. A value of –1 millisecond specifies an infinite wait."
@@ -350,19 +502,31 @@ items:
       description: true if the current thread acquires the lock; otherwise, false.
   exceptions:
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
   - type: System.ArgumentOutOfRangeException
-    description: "The value of *timeout* in milliseconds is negative and is not equal to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (–1 millisecond), or is greater than <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>."
+    description: "The value of <em>timeout</em> in milliseconds is negative and is not equal to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (–1 millisecond), or is greater than <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>. "
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.TryEnter(System.Object,System.TimeSpan)
 - uid: System.Threading.Monitor.TryEnter(System.Object,System.TimeSpan,System.Boolean@)
   id: TryEnter(System.Object,System.TimeSpan,System.Boolean@)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: TryEnter(Object, TimeSpan, ref Boolean)
-  name.vb: TryEnter(Object, TimeSpan, ByRef Boolean)
   fullName: System.Threading.Monitor.TryEnter(System.Object, System.TimeSpan, ref System.Boolean)
-  fullName.vb: System.Threading.Monitor.TryEnter(System.Object, System.TimeSpan, ByRef System.Boolean)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: TryEnter
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 148
   assemblies:
@@ -375,7 +539,7 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to acquire the lock.
+      description: 'The object on which to acquire the lock. '
     - id: timeout
       type: System.TimeSpan
       description: "The amount of time to wait for the lock. A value of –1 millisecond specifies an infinite wait."
@@ -384,19 +548,35 @@ items:
       description: The result of the attempt to acquire the lock, passed by reference. The input must be false. The output is true if the lock is acquired; otherwise, the output is false. The output is set even if an exception occurs during the attempt to acquire the lock.
   exceptions:
   - type: System.ArgumentException
-    description: The input to *lockTaken* is true.
+    description: The input to <em>lockTaken</em> is true.
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
   - type: System.ArgumentOutOfRangeException
-    description: "The value of *timeout* in milliseconds is negative and is not equal to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (–1 millisecond), or is greater than <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>."
+    description: "The value of <em>timeout</em> in milliseconds is negative and is not equal to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (–1 millisecond), or is greater than <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>. "
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  fullName.vb: System.Threading.Monitor.TryEnter(System.Object, System.TimeSpan, ByRef System.Boolean)
+  name.vb: TryEnter(Object, TimeSpan, ByRef Boolean)
+  commentId: M:System.Threading.Monitor.TryEnter(System.Object,System.TimeSpan,System.Boolean@)
 - uid: System.Threading.Monitor.Wait(System.Object)
   id: Wait(System.Object)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: Wait(Object)
   fullName: System.Threading.Monitor.Wait(System.Object)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Wait
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 211
   assemblies:
@@ -409,25 +589,39 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to wait.
+      description: 'The object on which to wait. '
     return:
       type: System.Boolean
       description: true if the call returned because the caller reacquired the lock for the specified object. This method does not return if the lock is not reacquired.
   exceptions:
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
   - type: System.Threading.SynchronizationLockException
-    description: The calling thread does not own the lock for the specified object.
+    description: 'The calling thread does not own the lock for the specified object. '
   - type: System.Threading.ThreadInterruptedException
-    description: The thread that invokes Wait is later interrupted from the waiting state. This happens when another thread calls this thread's <xref href="System.Threading.Thread.Interrupt" data-throw-if-not-resolved="false"></xref> method.
+    description: 'The thread that invokes Wait is later interrupted from the waiting state. This happens when another thread calls this thread''s <xref href="System.Threading.Thread.Interrupt" data-throw-if-not-resolved="false"></xref> method. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.Wait(System.Object)
 - uid: System.Threading.Monitor.Wait(System.Object,System.Int32)
   id: Wait(System.Object,System.Int32)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: Wait(Object, Int32)
   fullName: System.Threading.Monitor.Wait(System.Object, System.Int32)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Wait
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 201
   assemblies:
@@ -440,30 +634,44 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to wait.
+      description: 'The object on which to wait. '
     - id: millisecondsTimeout
       type: System.Int32
-      description: The number of milliseconds to wait before the thread enters the ready queue.
+      description: 'The number of milliseconds to wait before the thread enters the ready queue. '
     return:
       type: System.Boolean
       description: true if the lock was reacquired before the specified time elapsed; false if the lock was reacquired after the specified time elapsed. The method does not return until the lock is reacquired.
   exceptions:
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
   - type: System.Threading.SynchronizationLockException
-    description: The calling thread does not own the lock for the specified object.
+    description: 'The calling thread does not own the lock for the specified object. '
   - type: System.Threading.ThreadInterruptedException
-    description: The thread that invokes Wait is later interrupted from the waiting state. This happens when another thread calls this thread's <xref href="System.Threading.Thread.Interrupt" data-throw-if-not-resolved="false"></xref> method.
+    description: 'The thread that invokes Wait is later interrupted from the waiting state. This happens when another thread calls this thread''s <xref href="System.Threading.Thread.Interrupt" data-throw-if-not-resolved="false"></xref> method. '
   - type: System.ArgumentOutOfRangeException
-    description: The value of the *millisecondsTimeout* parameter is negative, and is not equal to <xref href="System.Threading.Timeout.Infinite" data-throw-if-not-resolved="false"></xref>.
+    description: 'The value of the <em>millisecondsTimeout</em> parameter is negative, and is not equal to <xref href="System.Threading.Timeout.Infinite" data-throw-if-not-resolved="false"></xref>. '
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.Wait(System.Object,System.Int32)
 - uid: System.Threading.Monitor.Wait(System.Object,System.TimeSpan)
   id: Wait(System.Object,System.TimeSpan)
   parent: System.Threading.Monitor
+  langs:
+  - csharp
+  - vb
   name: Wait(Object, TimeSpan)
   fullName: System.Threading.Monitor.Wait(System.Object, System.TimeSpan)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Threading/Monitor.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Wait
     path: src/mscorlib/src/System/Threading/Monitor.cs
     startLine: 206
   assemblies:
@@ -476,22 +684,29 @@ items:
     parameters:
     - id: obj
       type: System.Object
-      description: The object on which to wait.
+      description: 'The object on which to wait. '
     - id: timeout
       type: System.TimeSpan
-      description: A <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> representing the amount of time to wait before the thread enters the ready queue.
+      description: 'A <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> representing the amount of time to wait before the thread enters the ready queue. '
     return:
       type: System.Boolean
       description: true if the lock was reacquired before the specified time elapsed; false if the lock was reacquired after the specified time elapsed. The method does not return until the lock is reacquired.
   exceptions:
   - type: System.ArgumentNullException
-    description: The *obj* parameter is null.
+    description: 'The <em>obj</em> parameter is null. '
   - type: System.Threading.SynchronizationLockException
-    description: The calling thread does not own the lock for the specified object.
+    description: 'The calling thread does not own the lock for the specified object. '
   - type: System.Threading.ThreadInterruptedException
-    description: The thread that invokes Wait is later interrupted from the waiting state. This happens when another thread calls this thread's <xref href="System.Threading.Thread.Interrupt" data-throw-if-not-resolved="false"></xref> method.
+    description: 'The thread that invokes Wait is later interrupted from the waiting state. This happens when another thread calls this thread''s <xref href="System.Threading.Thread.Interrupt" data-throw-if-not-resolved="false"></xref> method. '
   - type: System.ArgumentOutOfRangeException
-    description: "The value of the *timeout* parameter in milliseconds is negative and does not represent <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (–1 millisecond), or is greater than <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>."
+    description: "The value of the <em>timeout</em> parameter in milliseconds is negative and does not represent <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (–1 millisecond), or is greater than <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>. "
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Threading.Monitor.Wait(System.Object,System.TimeSpan)
 references:
 - uid: System.Threading
   isExternal: false

@@ -8,23 +8,34 @@ items:
   - System.Runtime.InteropServices.StructLayoutAttribute.Pack
   - System.Runtime.InteropServices.StructLayoutAttribute.Size
   - System.Runtime.InteropServices.StructLayoutAttribute.Value
+  langs:
+  - csharp
+  - vb
   name: StructLayoutAttribute
   fullName: System.Runtime.InteropServices.StructLayoutAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: StructLayoutAttribute
     path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
-    startLine: 862
+    startLine: 865
   assemblies:
   - System.Runtime
   namespace: System.Runtime.InteropServices
   summary: Lets you control the physical layout of the data fields of a class or structure in memory.
   syntax:
-    content: 'public sealed class StructLayoutAttribute : Attribute'
-    content.vb: Public NotInheritable Class StructLayoutAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Class | AttributeTargets.Struct, Inherited = false)]
+
+      public sealed class StructLayoutAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Class Or AttributeTargets.Struct, Inherited:=False)>
+
+      Public NotInheritable Class StructLayoutAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -36,16 +47,42 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 12
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Runtime.InteropServices.StructLayoutAttribute
 - uid: System.Runtime.InteropServices.StructLayoutAttribute.CharSet
   id: CharSet
   parent: System.Runtime.InteropServices.StructLayoutAttribute
+  langs:
+  - csharp
+  - vb
   name: CharSet
   fullName: System.Runtime.InteropServices.StructLayoutAttribute.CharSet
   type: Field
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: CharSet
     path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
-    startLine: 932
+    startLine: 935
   assemblies:
   - System.Runtime
   namespace: System.Runtime.InteropServices
@@ -53,16 +90,30 @@ items:
   syntax:
     content: public CharSet CharSet
     content.vb: Public CharSet As CharSet
+    return:
+      type: System.Runtime.InteropServices.CharSet
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: F:System.Runtime.InteropServices.StructLayoutAttribute.CharSet
 - uid: System.Runtime.InteropServices.StructLayoutAttribute.Pack
   id: Pack
   parent: System.Runtime.InteropServices.StructLayoutAttribute
+  langs:
+  - csharp
+  - vb
   name: Pack
   fullName: System.Runtime.InteropServices.StructLayoutAttribute.Pack
   type: Field
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Pack
     path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
-    startLine: 930
+    startLine: 933
   assemblies:
   - System.Runtime
   namespace: System.Runtime.InteropServices
@@ -70,16 +121,30 @@ items:
   syntax:
     content: public int Pack
     content.vb: Public Pack As Integer
+    return:
+      type: System.Int32
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: F:System.Runtime.InteropServices.StructLayoutAttribute.Pack
 - uid: System.Runtime.InteropServices.StructLayoutAttribute.Size
   id: Size
   parent: System.Runtime.InteropServices.StructLayoutAttribute
+  langs:
+  - csharp
+  - vb
   name: Size
   fullName: System.Runtime.InteropServices.StructLayoutAttribute.Size
   type: Field
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Size
     path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
-    startLine: 931
+    startLine: 934
   assemblies:
   - System.Runtime
   namespace: System.Runtime.InteropServices
@@ -87,16 +152,30 @@ items:
   syntax:
     content: public int Size
     content.vb: Public Size As Integer
+    return:
+      type: System.Int32
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: F:System.Runtime.InteropServices.StructLayoutAttribute.Size
 - uid: System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Runtime.InteropServices.LayoutKind)
   id: '#ctor(System.Runtime.InteropServices.LayoutKind)'
   parent: System.Runtime.InteropServices.StructLayoutAttribute
+  langs:
+  - csharp
+  - vb
   name: StructLayoutAttribute(LayoutKind)
   fullName: System.Runtime.InteropServices.StructLayoutAttribute.StructLayoutAttribute(System.Runtime.InteropServices.LayoutKind)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
-    startLine: 921
+    startLine: 924
   assemblies:
   - System.Runtime
   namespace: System.Runtime.InteropServices
@@ -107,28 +186,52 @@ items:
     parameters:
     - id: layoutKind
       type: System.Runtime.InteropServices.LayoutKind
-      description: One of the enumeration values that specifes how the class or structure should be arranged.
+      description: 'One of the enumeration values that specifes how the class or structure should be arranged. '
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Runtime.InteropServices.StructLayoutAttribute.#ctor(System.Runtime.InteropServices.LayoutKind)
 - uid: System.Runtime.InteropServices.StructLayoutAttribute.Value
   id: Value
   parent: System.Runtime.InteropServices.StructLayoutAttribute
+  langs:
+  - csharp
+  - vb
   name: Value
   fullName: System.Runtime.InteropServices.StructLayoutAttribute.Value
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Value
     path: src/mscorlib/src/System/Runtime/InteropServices/Attributes.cs
-    startLine: 929
+    startLine: 932
   assemblies:
   - System.Runtime
   namespace: System.Runtime.InteropServices
   summary: Gets the <xref href="System.Runtime.InteropServices.LayoutKind" data-throw-if-not-resolved="false"></xref> value that specifies how the class or structure is arranged.
   syntax:
-    content: public LayoutKind Value { get; }
+    content: >-
+      public LayoutKind Value
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property Value As LayoutKind
     parameters: []
     return:
       type: System.Runtime.InteropServices.LayoutKind
       description: One of the enumeration values that specifies how the class or structure is arranged.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Runtime.InteropServices.StructLayoutAttribute.Value
 references:
 - uid: System.Runtime.InteropServices
   isExternal: false
@@ -333,6 +436,16 @@ references:
   isExternal: false
   name: System
   fullName: System
+- uid: System.Runtime.InteropServices.CharSet
+  parent: System.Runtime.InteropServices
+  isExternal: false
+  name: CharSet
+  fullName: System.Runtime.InteropServices.CharSet
+- uid: System.Int32
+  parent: System
+  isExternal: false
+  name: Int32
+  fullName: System.Int32
 - uid: System.Runtime.InteropServices.LayoutKind
   parent: System.Runtime.InteropServices
   isExternal: false

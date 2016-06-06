@@ -14,3 +14,4 @@ If you find an issue or an inconsistency, we would love to hear about it!
 Go ahead to [.NET Core docs repo](https://github.com/dotnet/core-docs/) On Github and leave 
 an issue to let us know.
 
+

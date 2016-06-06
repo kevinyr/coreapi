@@ -4,14 +4,18 @@ items:
   parent: System
   children:
   - System.ParamArrayAttribute.#ctor
+  langs:
+  - csharp
+  - vb
   name: ParamArrayAttribute
   fullName: System.ParamArrayAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/ParamArrayAttribute.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: ParamArrayAttribute
     path: src/mscorlib/src/System/ParamArrayAttribute.cs
     startLine: 15
   assemblies:
@@ -19,8 +23,15 @@ items:
   namespace: System
   summary: Indicates that a method will allow a variable number of arguments in its invocation. This class cannot be inherited.
   syntax:
-    content: 'public sealed class ParamArrayAttribute : Attribute'
-    content.vb: Public NotInheritable Class ParamArrayAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Parameter, Inherited = true, AllowMultiple = false)]
+
+      public sealed class ParamArrayAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Parameter, Inherited:=True, AllowMultiple:=False)>
+
+      Public NotInheritable Class ParamArrayAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -32,14 +43,43 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 2048
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: true
+    - name: AllowMultiple
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.ParamArrayAttribute
 - uid: System.ParamArrayAttribute.#ctor
   id: '#ctor'
   parent: System.ParamArrayAttribute
+  langs:
+  - csharp
+  - vb
   name: ParamArrayAttribute()
   fullName: System.ParamArrayAttribute.ParamArrayAttribute()
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/ParamArrayAttribute.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/ParamArrayAttribute.cs
     startLine: 19
   assemblies:
@@ -49,6 +89,11 @@ items:
   syntax:
     content: public ParamArrayAttribute()
     content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.ParamArrayAttribute.#ctor
 references:
 - uid: System
   isExternal: false

@@ -4,14 +4,18 @@ items:
   parent: System.Security
   children:
   - System.Security.SecurityCriticalAttribute.#ctor
+  langs:
+  - csharp
+  - vb
   name: SecurityCriticalAttribute
   fullName: System.Security.SecurityCriticalAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Security/Attributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: SecurityCriticalAttribute
     path: src/mscorlib/src/System/Security/Attributes.cs
     startLine: 71
   assemblies:
@@ -19,8 +23,15 @@ items:
   namespace: System.Security
   summary: Specifies that code or an assembly performs security-critical operations.
   syntax:
-    content: 'public sealed class SecurityCriticalAttribute : Attribute'
-    content.vb: Public NotInheritable Class SecurityCriticalAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Constructor | AttributeTargets.Delegate | AttributeTargets.Enum | AttributeTargets.Field | AttributeTargets.Interface | AttributeTargets.Method | AttributeTargets.Struct, AllowMultiple = false, Inherited = false)]
+
+      public sealed class SecurityCriticalAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly Or AttributeTargets.Class Or AttributeTargets.Constructor Or AttributeTargets.Delegate Or AttributeTargets.Enum Or AttributeTargets.Field Or AttributeTargets.Interface Or AttributeTargets.Method Or AttributeTargets.Struct, AllowMultiple:=False, Inherited:=False)>
+
+      Public NotInheritable Class SecurityCriticalAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -32,23 +43,57 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 5501
+    namedArguments:
+    - name: AllowMultiple
+      type: System.Boolean
+      value: false
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Security.SecurityCriticalAttribute
 - uid: System.Security.SecurityCriticalAttribute.#ctor
   id: '#ctor'
   parent: System.Security.SecurityCriticalAttribute
+  langs:
+  - csharp
+  - vb
   name: SecurityCriticalAttribute()
   fullName: System.Security.SecurityCriticalAttribute.SecurityCriticalAttribute()
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Security/Attributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Security/Attributes.cs
     startLine: 89
   assemblies:
   - System.Runtime
   namespace: System.Security
-  summary: Initializes a new instance of the <xref href="System.Security.SecurityCriticalAttribute" data-throw-if-not-resolved="false"></xref> class.
+  summary: 'Initializes a new instance of the <xref href="System.Security.SecurityCriticalAttribute" data-throw-if-not-resolved="false"></xref> class. '
   syntax:
     content: public SecurityCriticalAttribute()
     content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Security.SecurityCriticalAttribute.#ctor
 references:
 - uid: System.Security
   isExternal: false

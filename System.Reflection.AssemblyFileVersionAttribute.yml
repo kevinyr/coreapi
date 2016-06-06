@@ -5,14 +5,18 @@ items:
   children:
   - System.Reflection.AssemblyFileVersionAttribute.#ctor(System.String)
   - System.Reflection.AssemblyFileVersionAttribute.Version
+  langs:
+  - csharp
+  - vb
   name: AssemblyFileVersionAttribute
   fullName: System.Reflection.AssemblyFileVersionAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: AssemblyFileVersionAttribute
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 183
   assemblies:
@@ -20,8 +24,15 @@ items:
   namespace: System.Reflection
   summary: Instructs a compiler to use a specific version number for the Win32 file version resource. The Win32 file version is not required to be the same as the assembly's version number.
   syntax:
-    content: 'public sealed class AssemblyFileVersionAttribute : Attribute'
-    content.vb: Public NotInheritable Class AssemblyFileVersionAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
+
+      public sealed class AssemblyFileVersionAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly, Inherited:=False)>
+
+      Public NotInheritable Class AssemblyFileVersionAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -33,14 +44,40 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 1
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Reflection.AssemblyFileVersionAttribute
 - uid: System.Reflection.AssemblyFileVersionAttribute.#ctor(System.String)
   id: '#ctor(System.String)'
   parent: System.Reflection.AssemblyFileVersionAttribute
+  langs:
+  - csharp
+  - vb
   name: AssemblyFileVersionAttribute(String)
   fullName: System.Reflection.AssemblyFileVersionAttribute.AssemblyFileVersionAttribute(System.String)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 189
   assemblies:
@@ -53,18 +90,30 @@ items:
     parameters:
     - id: version
       type: System.String
-      description: The file version.
+      description: 'The file version. '
   exceptions:
   - type: System.ArgumentNullException
-    description: '*version* is null.'
+    description: "\r\n  <em>version</em> is null. "
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.AssemblyFileVersionAttribute.#ctor(System.String)
 - uid: System.Reflection.AssemblyFileVersionAttribute.Version
   id: Version
   parent: System.Reflection.AssemblyFileVersionAttribute
+  langs:
+  - csharp
+  - vb
   name: Version
   fullName: System.Reflection.AssemblyFileVersionAttribute.Version
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Version
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 197
   assemblies:
@@ -72,12 +121,24 @@ items:
   namespace: System.Reflection
   summary: Gets the Win32 file version resource name.
   syntax:
-    content: public string Version { get; }
+    content: >-
+      public string Version
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property Version As String
     parameters: []
     return:
       type: System.String
       description: A string containing the file version resource name.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Reflection.AssemblyFileVersionAttribute.Version
 references:
 - uid: System.Reflection
   isExternal: false

@@ -4,6 +4,9 @@ items:
   parent: System.Runtime.CompilerServices
   children:
   - System.Runtime.CompilerServices.ExtensionAttribute.#ctor
+  langs:
+  - csharp
+  - vb
   name: ExtensionAttribute
   fullName: System.Runtime.CompilerServices.ExtensionAttribute
   type: Class
@@ -12,6 +15,7 @@ items:
       path: src/mscorlib/src/System/Runtime/CompilerServices/ExtensionAttribute.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: ExtensionAttribute
     path: src/mscorlib/src/System/Runtime/CompilerServices/ExtensionAttribute.cs
     startLine: 10
   assemblies:
@@ -19,8 +23,15 @@ items:
   namespace: System.Runtime.CompilerServices
   summary: Indicates that a method is an extension method, or that a class or assembly contains extension methods.
   syntax:
-    content: 'public sealed class ExtensionAttribute : Attribute'
-    content.vb: Public NotInheritable Class ExtensionAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Class | AttributeTargets.Method)]
+
+      public sealed class ExtensionAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly Or AttributeTargets.Class Or AttributeTargets.Method)>
+
+      Public NotInheritable Class ExtensionAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -32,9 +43,27 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 69
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Runtime.CompilerServices.ExtensionAttribute
 - uid: System.Runtime.CompilerServices.ExtensionAttribute.#ctor
   id: '#ctor'
   parent: System.Runtime.CompilerServices.ExtensionAttribute
+  langs:
+  - csharp
+  - vb
   name: ExtensionAttribute()
   fullName: System.Runtime.CompilerServices.ExtensionAttribute.ExtensionAttribute()
   type: Constructor
@@ -43,15 +72,21 @@ items:
       path: src/System.Runtime/ref/System.Runtime.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
+    id: .ctor
     path: src/System.Runtime/ref/System.Runtime.cs
-    startLine: 2894
+    startLine: 2900
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
-  summary: Initializes a new instance of the <xref href="System.Runtime.CompilerServices.ExtensionAttribute" data-throw-if-not-resolved="false"></xref> class.
+  summary: 'Initializes a new instance of the <xref href="System.Runtime.CompilerServices.ExtensionAttribute" data-throw-if-not-resolved="false"></xref> class. '
   syntax:
     content: public ExtensionAttribute()
     content.vb: Public Sub New
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Runtime.CompilerServices.ExtensionAttribute.#ctor
 references:
 - uid: System.Runtime.CompilerServices
   isExternal: false

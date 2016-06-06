@@ -4,8 +4,15 @@ items:
   parent: System.Security.Cryptography
   children:
   - System.Security.Cryptography.ECDsa.#ctor
+  - System.Security.Cryptography.ECDsa.Create
+  - System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECCurve)
+  - System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECParameters)
+  - System.Security.Cryptography.ECDsa.ExportExplicitParameters(System.Boolean)
+  - System.Security.Cryptography.ECDsa.ExportParameters(System.Boolean)
+  - System.Security.Cryptography.ECDsa.GenerateKey(System.Security.Cryptography.ECCurve)
   - System.Security.Cryptography.ECDsa.HashData(System.Byte[],System.Int32,System.Int32,System.Security.Cryptography.HashAlgorithmName)
   - System.Security.Cryptography.ECDsa.HashData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName)
+  - System.Security.Cryptography.ECDsa.ImportParameters(System.Security.Cryptography.ECParameters)
   - System.Security.Cryptography.ECDsa.SignData(System.Byte[],System.Int32,System.Int32,System.Security.Cryptography.HashAlgorithmName)
   - System.Security.Cryptography.ECDsa.SignData(System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   - System.Security.Cryptography.ECDsa.SignData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName)
@@ -14,38 +21,57 @@ items:
   - System.Security.Cryptography.ECDsa.VerifyData(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   - System.Security.Cryptography.ECDsa.VerifyData(System.IO.Stream,System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   - System.Security.Cryptography.ECDsa.VerifyHash(System.Byte[],System.Byte[])
+  langs:
+  - csharp
+  - vb
   name: ECDsa
   fullName: System.Security.Cryptography.ECDsa
   type: Class
   source:
-    remote: &o1
-      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsaCng.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
-    path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
-    startLine: 8
+    id: ECDsa
+    path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsaCng.cs
+    startLine: 11
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
   summary: Provides an abstract base class that encapsulates the Elliptic Curve Digital Signature Algorithm (ECDSA).
   syntax:
     content: 'public abstract class ECDsa : AsymmetricAlgorithm'
-    content.vb: Public MustInherit Class ECDsa Inherits AsymmetricAlgorithm
+    content.vb: >-
+      Public MustInherit Class ECDsa
+          Inherits AsymmetricAlgorithm
   inheritance:
   - System.Object
+  modifiers.csharp:
+  - public
+  - abstract
+  - class
+  modifiers.vb:
+  - Public
+  - MustInherit
+  - Class
+  commentId: T:System.Security.Cryptography.ECDsa
 - uid: System.Security.Cryptography.ECDsa.#ctor
   id: '#ctor'
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: ECDsa()
   fullName: System.Security.Cryptography.ECDsa.ECDsa()
   type: Constructor
   source:
-    remote: &o0
-      path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
-    path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
-    startLine: 24
+    id: .ctor
+    path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+    startLine: 10
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
@@ -53,18 +79,235 @@ items:
   syntax:
     content: protected ECDsa()
     content.vb: Protected Sub New
+  modifiers.csharp:
+  - protected
+  modifiers.vb:
+  - Protected
+  commentId: M:System.Security.Cryptography.ECDsa.#ctor
+- uid: System.Security.Cryptography.ECDsa.Create
+  id: Create
+  parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
+  name: Create()
+  fullName: System.Security.Cryptography.ECDsa.Create()
+  type: Method
+  source:
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsaCng.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Create
+    path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsaCng.cs
+    startLine: 16
+  assemblies:
+  - System.Security.Cryptography.Algorithms
+  namespace: System.Security.Cryptography
+  summary: Creates a new instance of the default implementation of the Elliptic Curve Digital Signature Algorithm (ECDSA).
+  syntax:
+    content: public static ECDsa Create()
+    content.vb: Public Shared Function Create As ECDsa
+    return:
+      type: System.Security.Cryptography.ECDsa
+      description: A new instance of the default implementation (<xref href="System.Security.Cryptography.ECDsaCng" data-throw-if-not-resolved="false"></xref>) of this class.
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Security.Cryptography.ECDsa.Create
+- uid: System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECCurve)
+  id: Create(System.Security.Cryptography.ECCurve)
+  parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
+  name: Create(ECCurve)
+  fullName: System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECCurve)
+  type: Method
+  source:
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsaCng.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Create
+    path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsaCng.cs
+    startLine: 27
+  assemblies:
+  - System.Security.Cryptography.Algorithms
+  namespace: System.Security.Cryptography
+  syntax:
+    content: public static ECDsa Create(ECCurve curve)
+    content.vb: Public Shared Function Create(curve As ECCurve) As ECDsa
+    parameters:
+    - id: curve
+      type: System.Security.Cryptography.ECCurve
+    return:
+      type: System.Security.Cryptography.ECDsa
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECCurve)
+- uid: System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECParameters)
+  id: Create(System.Security.Cryptography.ECParameters)
+  parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
+  name: Create(ECParameters)
+  fullName: System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECParameters)
+  type: Method
+  source:
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsaCng.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Create
+    path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsaCng.cs
+    startLine: 38
+  assemblies:
+  - System.Security.Cryptography.Algorithms
+  namespace: System.Security.Cryptography
+  syntax:
+    content: public static ECDsa Create(ECParameters parameters)
+    content.vb: Public Shared Function Create(parameters As ECParameters) As ECDsa
+    parameters:
+    - id: parameters
+      type: System.Security.Cryptography.ECParameters
+    return:
+      type: System.Security.Cryptography.ECDsa
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+  commentId: M:System.Security.Cryptography.ECDsa.Create(System.Security.Cryptography.ECParameters)
+- uid: System.Security.Cryptography.ECDsa.ExportExplicitParameters(System.Boolean)
+  id: ExportExplicitParameters(System.Boolean)
+  parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
+  name: ExportExplicitParameters(Boolean)
+  fullName: System.Security.Cryptography.ECDsa.ExportExplicitParameters(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: ExportExplicitParameters
+    path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+    startLine: 28
+  assemblies:
+  - System.Security.Cryptography.Algorithms
+  namespace: System.Security.Cryptography
+  syntax:
+    content: public virtual ECParameters ExportExplicitParameters(bool includePrivateParameters)
+    content.vb: Public Overridable Function ExportExplicitParameters(includePrivateParameters As Boolean) As ECParameters
+    parameters:
+    - id: includePrivateParameters
+      type: System.Boolean
+    return:
+      type: System.Security.Cryptography.ECParameters
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  commentId: M:System.Security.Cryptography.ECDsa.ExportExplicitParameters(System.Boolean)
+- uid: System.Security.Cryptography.ECDsa.ExportParameters(System.Boolean)
+  id: ExportParameters(System.Boolean)
+  parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
+  name: ExportParameters(Boolean)
+  fullName: System.Security.Cryptography.ECDsa.ExportParameters(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: ExportParameters
+    path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+    startLine: 18
+  assemblies:
+  - System.Security.Cryptography.Algorithms
+  namespace: System.Security.Cryptography
+  syntax:
+    content: public virtual ECParameters ExportParameters(bool includePrivateParameters)
+    content.vb: Public Overridable Function ExportParameters(includePrivateParameters As Boolean) As ECParameters
+    parameters:
+    - id: includePrivateParameters
+      type: System.Boolean
+    return:
+      type: System.Security.Cryptography.ECParameters
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  commentId: M:System.Security.Cryptography.ECDsa.ExportParameters(System.Boolean)
+- uid: System.Security.Cryptography.ECDsa.GenerateKey(System.Security.Cryptography.ECCurve)
+  id: GenerateKey(System.Security.Cryptography.ECCurve)
+  parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
+  name: GenerateKey(ECCurve)
+  fullName: System.Security.Cryptography.ECDsa.GenerateKey(System.Security.Cryptography.ECCurve)
+  type: Method
+  source:
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: GenerateKey
+    path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+    startLine: 46
+  assemblies:
+  - System.Security.Cryptography.Algorithms
+  namespace: System.Security.Cryptography
+  syntax:
+    content: public virtual void GenerateKey(ECCurve curve)
+    content.vb: Public Overridable Sub GenerateKey(curve As ECCurve)
+    parameters:
+    - id: curve
+      type: System.Security.Cryptography.ECCurve
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  commentId: M:System.Security.Cryptography.ECDsa.GenerateKey(System.Security.Cryptography.ECCurve)
 - uid: System.Security.Cryptography.ECDsa.HashData(System.Byte[],System.Int32,System.Int32,System.Security.Cryptography.HashAlgorithmName)
   id: HashData(System.Byte[],System.Int32,System.Int32,System.Security.Cryptography.HashAlgorithmName)
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: HashData(Byte[], Int32, Int32, HashAlgorithmName)
-  name.vb: HashData(Byte(), Int32, Int32, HashAlgorithmName)
   fullName: System.Security.Cryptography.ECDsa.HashData(System.Byte[], System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)
-  fullName.vb: System.Security.Cryptography.ECDsa.HashData(System.Byte(), System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: HashData
     path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
-    startLine: 25
+    startLine: 86
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
@@ -82,16 +325,32 @@ items:
       type: System.Security.Cryptography.HashAlgorithmName
     return:
       type: System.Byte[]
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+  fullName.vb: System.Security.Cryptography.ECDsa.HashData(System.Byte(), System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)
+  name.vb: HashData(Byte(), Int32, Int32, HashAlgorithmName)
+  commentId: M:System.Security.Cryptography.ECDsa.HashData(System.Byte[],System.Int32,System.Int32,System.Security.Cryptography.HashAlgorithmName)
 - uid: System.Security.Cryptography.ECDsa.HashData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName)
   id: HashData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName)
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: HashData(IO.Stream, HashAlgorithmName)
   fullName: System.Security.Cryptography.ECDsa.HashData(System.IO.Stream, System.Security.Cryptography.HashAlgorithmName)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: HashData
     path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
-    startLine: 26
+    startLine: 87
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
@@ -105,18 +364,63 @@ items:
       type: System.Security.Cryptography.HashAlgorithmName
     return:
       type: System.Byte[]
+  modifiers.csharp:
+  - protected
+  - abstract
+  modifiers.vb:
+  - Protected
+  - MustOverride
+  commentId: M:System.Security.Cryptography.ECDsa.HashData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName)
+- uid: System.Security.Cryptography.ECDsa.ImportParameters(System.Security.Cryptography.ECParameters)
+  id: ImportParameters(System.Security.Cryptography.ECParameters)
+  parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
+  name: ImportParameters(ECParameters)
+  fullName: System.Security.Cryptography.ECDsa.ImportParameters(System.Security.Cryptography.ECParameters)
+  type: Method
+  source:
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: ImportParameters
+    path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+    startLine: 37
+  assemblies:
+  - System.Security.Cryptography.Algorithms
+  namespace: System.Security.Cryptography
+  syntax:
+    content: public virtual void ImportParameters(ECParameters parameters)
+    content.vb: Public Overridable Sub ImportParameters(parameters As ECParameters)
+    parameters:
+    - id: parameters
+      type: System.Security.Cryptography.ECParameters
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  commentId: M:System.Security.Cryptography.ECDsa.ImportParameters(System.Security.Cryptography.ECParameters)
 - uid: System.Security.Cryptography.ECDsa.SignData(System.Byte[],System.Int32,System.Int32,System.Security.Cryptography.HashAlgorithmName)
   id: SignData(System.Byte[],System.Int32,System.Int32,System.Security.Cryptography.HashAlgorithmName)
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: SignData(Byte[], Int32, Int32, HashAlgorithmName)
-  name.vb: SignData(Byte(), Int32, Int32, HashAlgorithmName)
   fullName: System.Security.Cryptography.ECDsa.SignData(System.Byte[], System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)
-  fullName.vb: System.Security.Cryptography.ECDsa.SignData(System.Byte(), System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: SignData
     path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
-    startLine: 27
+    startLine: 89
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
@@ -134,18 +438,32 @@ items:
       type: System.Security.Cryptography.HashAlgorithmName
     return:
       type: System.Byte[]
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: System.Security.Cryptography.ECDsa.SignData(System.Byte(), System.Int32, System.Int32, System.Security.Cryptography.HashAlgorithmName)
+  name.vb: SignData(Byte(), Int32, Int32, HashAlgorithmName)
+  commentId: M:System.Security.Cryptography.ECDsa.SignData(System.Byte[],System.Int32,System.Int32,System.Security.Cryptography.HashAlgorithmName)
 - uid: System.Security.Cryptography.ECDsa.SignData(System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   id: SignData(System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: SignData(Byte[], HashAlgorithmName)
-  name.vb: SignData(Byte(), HashAlgorithmName)
   fullName: System.Security.Cryptography.ECDsa.SignData(System.Byte[], System.Security.Cryptography.HashAlgorithmName)
-  fullName.vb: System.Security.Cryptography.ECDsa.SignData(System.Byte(), System.Security.Cryptography.HashAlgorithmName)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: SignData
     path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
-    startLine: 28
+    startLine: 90
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
@@ -159,16 +477,32 @@ items:
       type: System.Security.Cryptography.HashAlgorithmName
     return:
       type: System.Byte[]
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: System.Security.Cryptography.ECDsa.SignData(System.Byte(), System.Security.Cryptography.HashAlgorithmName)
+  name.vb: SignData(Byte(), HashAlgorithmName)
+  commentId: M:System.Security.Cryptography.ECDsa.SignData(System.Byte[],System.Security.Cryptography.HashAlgorithmName)
 - uid: System.Security.Cryptography.ECDsa.SignData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName)
   id: SignData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName)
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: SignData(IO.Stream, HashAlgorithmName)
   fullName: System.Security.Cryptography.ECDsa.SignData(System.IO.Stream, System.Security.Cryptography.HashAlgorithmName)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: SignData
     path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
-    startLine: 29
+    startLine: 91
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
@@ -182,22 +516,34 @@ items:
       type: System.Security.Cryptography.HashAlgorithmName
     return:
       type: System.Byte[]
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  commentId: M:System.Security.Cryptography.ECDsa.SignData(System.IO.Stream,System.Security.Cryptography.HashAlgorithmName)
 - uid: System.Security.Cryptography.ECDsa.SignHash(System.Byte[])
   id: SignHash(System.Byte[])
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: SignHash(Byte[])
-  name.vb: SignHash(Byte())
   fullName: System.Security.Cryptography.ECDsa.SignHash(System.Byte[])
-  fullName.vb: System.Security.Cryptography.ECDsa.SignHash(System.Byte())
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: SignHash
     path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
-    startLine: 82
+    startLine: 123
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: Generates a digital signature for the specified hash value.
+  summary: 'Generates a digital signature for the specified hash value. '
   syntax:
     content: public abstract byte[] SignHash(byte[] hash)
     content.vb: Public MustOverride Function SignHash(hash As Byte()) As Byte()
@@ -210,19 +556,33 @@ items:
       description: A digital signature that consists of the given hash value encrypted with the private key.
   exceptions:
   - type: System.ArgumentNullException
-    description: The *hash* parameter is null.
+    description: The <em>hash</em> parameter is null.
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+  fullName.vb: System.Security.Cryptography.ECDsa.SignHash(System.Byte())
+  name.vb: SignHash(Byte())
+  commentId: M:System.Security.Cryptography.ECDsa.SignHash(System.Byte[])
 - uid: System.Security.Cryptography.ECDsa.VerifyData(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   id: VerifyData(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: VerifyData(Byte[], Byte[], HashAlgorithmName)
-  name.vb: VerifyData(Byte(), Byte(), HashAlgorithmName)
   fullName: System.Security.Cryptography.ECDsa.VerifyData(System.Byte[], System.Byte[], System.Security.Cryptography.HashAlgorithmName)
-  fullName.vb: System.Security.Cryptography.ECDsa.VerifyData(System.Byte(), System.Byte(), System.Security.Cryptography.HashAlgorithmName)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: VerifyData
     path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
-    startLine: 31
+    startLine: 93
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
@@ -238,18 +598,30 @@ items:
       type: System.Security.Cryptography.HashAlgorithmName
     return:
       type: System.Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: System.Security.Cryptography.ECDsa.VerifyData(System.Byte(), System.Byte(), System.Security.Cryptography.HashAlgorithmName)
+  name.vb: VerifyData(Byte(), Byte(), HashAlgorithmName)
+  commentId: M:System.Security.Cryptography.ECDsa.VerifyData(System.Byte[],System.Byte[],System.Security.Cryptography.HashAlgorithmName)
 - uid: System.Security.Cryptography.ECDsa.VerifyData(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   id: VerifyData(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: VerifyData(Byte[], Int32, Int32, Byte[], HashAlgorithmName)
-  name.vb: VerifyData(Byte(), Int32, Int32, Byte(), HashAlgorithmName)
   fullName: System.Security.Cryptography.ECDsa.VerifyData(System.Byte[], System.Int32, System.Int32, System.Byte[], System.Security.Cryptography.HashAlgorithmName)
-  fullName.vb: System.Security.Cryptography.ECDsa.VerifyData(System.Byte(), System.Int32, System.Int32, System.Byte(), System.Security.Cryptography.HashAlgorithmName)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: VerifyData
     path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
-    startLine: 32
+    startLine: 94
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
@@ -269,18 +641,32 @@ items:
       type: System.Security.Cryptography.HashAlgorithmName
     return:
       type: System.Boolean
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+  fullName.vb: System.Security.Cryptography.ECDsa.VerifyData(System.Byte(), System.Int32, System.Int32, System.Byte(), System.Security.Cryptography.HashAlgorithmName)
+  name.vb: VerifyData(Byte(), Int32, Int32, Byte(), HashAlgorithmName)
+  commentId: M:System.Security.Cryptography.ECDsa.VerifyData(System.Byte[],System.Int32,System.Int32,System.Byte[],System.Security.Cryptography.HashAlgorithmName)
 - uid: System.Security.Cryptography.ECDsa.VerifyData(System.IO.Stream,System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   id: VerifyData(System.IO.Stream,System.Byte[],System.Security.Cryptography.HashAlgorithmName)
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: VerifyData(IO.Stream, Byte[], HashAlgorithmName)
-  name.vb: VerifyData(IO.Stream, Byte(), HashAlgorithmName)
   fullName: System.Security.Cryptography.ECDsa.VerifyData(System.IO.Stream, System.Byte[], System.Security.Cryptography.HashAlgorithmName)
-  fullName.vb: System.Security.Cryptography.ECDsa.VerifyData(System.IO.Stream, System.Byte(), System.Security.Cryptography.HashAlgorithmName)
   type: Method
   source:
-    remote: *o0
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: VerifyData
     path: src/System.Security.Cryptography.Algorithms/ref/System.Security.Cryptography.Algorithms.cs
-    startLine: 33
+    startLine: 95
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
@@ -296,22 +682,34 @@ items:
       type: System.Security.Cryptography.HashAlgorithmName
     return:
       type: System.Boolean
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  fullName.vb: System.Security.Cryptography.ECDsa.VerifyData(System.IO.Stream, System.Byte(), System.Security.Cryptography.HashAlgorithmName)
+  name.vb: VerifyData(IO.Stream, Byte(), HashAlgorithmName)
+  commentId: M:System.Security.Cryptography.ECDsa.VerifyData(System.IO.Stream,System.Byte[],System.Security.Cryptography.HashAlgorithmName)
 - uid: System.Security.Cryptography.ECDsa.VerifyHash(System.Byte[],System.Byte[])
   id: VerifyHash(System.Byte[],System.Byte[])
   parent: System.Security.Cryptography.ECDsa
+  langs:
+  - csharp
+  - vb
   name: VerifyHash(Byte[], Byte[])
-  name.vb: VerifyHash(Byte(), Byte())
   fullName: System.Security.Cryptography.ECDsa.VerifyHash(System.Byte[], System.Byte[])
-  fullName.vb: System.Security.Cryptography.ECDsa.VerifyHash(System.Byte(), System.Byte())
   type: Method
   source:
-    remote: *o1
+    remote:
+      path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: VerifyHash
     path: src/System.Security.Cryptography.Algorithms/src/System/Security/Cryptography/ECDsa.cs
-    startLine: 83
+    startLine: 124
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: Verifies a digital signature against the specified hash value.
+  summary: 'Verifies a digital signature against the specified hash value. '
   syntax:
     content: public abstract bool VerifyHash(byte[] hash, byte[] signature)
     content.vb: Public MustOverride Function VerifyHash(hash As Byte(), signature As Byte()) As Boolean
@@ -325,6 +723,15 @@ items:
     return:
       type: System.Boolean
       description: true if the hash value equals the decrypted signature; otherwise, false.
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+  fullName.vb: System.Security.Cryptography.ECDsa.VerifyHash(System.Byte(), System.Byte())
+  name.vb: VerifyHash(Byte(), Byte())
+  commentId: M:System.Security.Cryptography.ECDsa.VerifyHash(System.Byte[],System.Byte[])
 references:
 - uid: System.Security.Cryptography
   isExternal: false
@@ -339,12 +746,32 @@ references:
   isExternal: false
   name: System
   fullName: System
+- uid: System.Security.Cryptography.ECDsa
+  parent: System.Security.Cryptography
+  isExternal: false
+  name: ECDsa
+  fullName: System.Security.Cryptography.ECDsa
+- uid: System.Security.Cryptography.ECCurve
+  parent: System.Security.Cryptography
+  isExternal: false
+  name: ECCurve
+  fullName: System.Security.Cryptography.ECCurve
+- uid: System.Security.Cryptography.ECParameters
+  parent: System.Security.Cryptography
+  isExternal: false
+  name: ECParameters
+  fullName: System.Security.Cryptography.ECParameters
+- uid: System.Boolean
+  parent: System
+  isExternal: false
+  name: Boolean
+  fullName: System.Boolean
 - uid: System.Byte[]
   isExternal: false
   name: Byte[]
-  name.vb: Byte()
   fullName: System.Byte[]
-  fullName.vb: System.Byte()
+  fullname.vb: System.Byte()
+  name.vb: Byte()
   spec.csharp:
   - uid: System.Byte
     name: Byte
@@ -376,11 +803,6 @@ references:
   isExternal: false
   name: System.IO
   fullName: System.IO
-- uid: System.Boolean
-  parent: System
-  isExternal: false
-  name: Boolean
-  fullName: System.Boolean
 - uid: System.ArgumentNullException
   isExternal: false
   name: ArgumentNullException

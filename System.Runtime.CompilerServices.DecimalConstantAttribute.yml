@@ -6,14 +6,18 @@ items:
   - System.Runtime.CompilerServices.DecimalConstantAttribute.#ctor(System.Byte,System.Byte,System.Int32,System.Int32,System.Int32)
   - System.Runtime.CompilerServices.DecimalConstantAttribute.#ctor(System.Byte,System.Byte,System.UInt32,System.UInt32,System.UInt32)
   - System.Runtime.CompilerServices.DecimalConstantAttribute.Value
+  langs:
+  - csharp
+  - vb
   name: DecimalConstantAttribute
   fullName: System.Runtime.CompilerServices.DecimalConstantAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Runtime/CompilerServices/DecimalConstantAttribute.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: DecimalConstantAttribute
     path: src/mscorlib/src/System/Runtime/CompilerServices/DecimalConstantAttribute.cs
     startLine: 13
   assemblies:
@@ -21,8 +25,15 @@ items:
   namespace: System.Runtime.CompilerServices
   summary: Stores the value of a <xref href="System.Decimal" data-throw-if-not-resolved="false"></xref> constant in metadata. This class cannot be inherited.
   syntax:
-    content: 'public sealed class DecimalConstantAttribute : Attribute'
-    content.vb: Public NotInheritable Class DecimalConstantAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Field | AttributeTargets.Parameter, Inherited = false)]
+
+      public sealed class DecimalConstantAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Field Or AttributeTargets.Parameter, Inherited:=False)>
+
+      Public NotInheritable Class DecimalConstantAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -34,20 +45,46 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 2304
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Runtime.CompilerServices.DecimalConstantAttribute
 - uid: System.Runtime.CompilerServices.DecimalConstantAttribute.#ctor(System.Byte,System.Byte,System.Int32,System.Int32,System.Int32)
   id: '#ctor(System.Byte,System.Byte,System.Int32,System.Int32,System.Int32)'
   parent: System.Runtime.CompilerServices.DecimalConstantAttribute
+  langs:
+  - csharp
+  - vb
   name: DecimalConstantAttribute(Byte, Byte, Int32, Int32, Int32)
   fullName: System.Runtime.CompilerServices.DecimalConstantAttribute.DecimalConstantAttribute(System.Byte, System.Byte, System.Int32, System.Int32, System.Int32)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Runtime/CompilerServices/DecimalConstantAttribute.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Runtime/CompilerServices/DecimalConstantAttribute.cs
     startLine: 30
   assemblies:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
-  summary: Initializes a new instance of the <xref href="System.Runtime.CompilerServices.DecimalConstantAttribute" data-throw-if-not-resolved="false"></xref> class with the specified signed integer values.
+  summary: 'Initializes a new instance of the <xref href="System.Runtime.CompilerServices.DecimalConstantAttribute" data-throw-if-not-resolved="false"></xref> class with the specified signed integer values. '
   syntax:
     content: public DecimalConstantAttribute(byte scale, byte sign, int hi, int mid, int low)
     content.vb: Public Sub New(scale As Byte, sign As Byte, hi As Integer, mid As Integer, low As Integer)
@@ -67,14 +104,26 @@ items:
     - id: low
       type: System.Int32
       description: The low 32 bits of the 96-bit <xref href="System.Runtime.CompilerServices.DecimalConstantAttribute.Value" data-throw-if-not-resolved="false"></xref>.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Runtime.CompilerServices.DecimalConstantAttribute.#ctor(System.Byte,System.Byte,System.Int32,System.Int32,System.Int32)
 - uid: System.Runtime.CompilerServices.DecimalConstantAttribute.#ctor(System.Byte,System.Byte,System.UInt32,System.UInt32,System.UInt32)
   id: '#ctor(System.Byte,System.Byte,System.UInt32,System.UInt32,System.UInt32)'
   parent: System.Runtime.CompilerServices.DecimalConstantAttribute
+  langs:
+  - csharp
+  - vb
   name: DecimalConstantAttribute(Byte, Byte, UInt32, UInt32, UInt32)
   fullName: System.Runtime.CompilerServices.DecimalConstantAttribute.DecimalConstantAttribute(System.Byte, System.Byte, System.UInt32, System.UInt32, System.UInt32)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Runtime/CompilerServices/DecimalConstantAttribute.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Runtime/CompilerServices/DecimalConstantAttribute.cs
     startLine: 18
   assemblies:
@@ -82,35 +131,59 @@ items:
   namespace: System.Runtime.CompilerServices
   summary: Initializes a new instance of the <xref href="System.Runtime.CompilerServices.DecimalConstantAttribute" data-throw-if-not-resolved="false"></xref> class with the specified unsigned integer values.
   syntax:
-    content: public DecimalConstantAttribute(byte scale, byte sign, uint hi, uint mid, uint low)
-    content.vb: Public Sub New(scale As Byte, sign As Byte, hi As UInteger, mid As UInteger, low As UInteger)
+    content: >-
+      [CLSCompliant(false)]
+
+      public DecimalConstantAttribute(byte scale, byte sign, uint hi, uint mid, uint low)
+    content.vb: >-
+      <CLSCompliant(False)>
+
+      Public Sub New(scale As Byte, sign As Byte, hi As UInteger, mid As UInteger, low As UInteger)
     parameters:
     - id: scale
       type: System.Byte
-      description: The power of 10 scaling factor that indicates the number of digits to the right of the decimal point. Valid values are 0 through 28 inclusive.
+      description: 'The power of 10 scaling factor that indicates the number of digits to the right of the decimal point. Valid values are 0 through 28 inclusive. '
     - id: sign
       type: System.Byte
-      description: A value of 0 indicates a positive value, and a value of 1 indicates a negative value.
+      description: 'A value of 0 indicates a positive value, and a value of 1 indicates a negative value. '
     - id: hi
       type: System.UInt32
-      description: The high 32 bits of the 96-bit <xref href="System.Runtime.CompilerServices.DecimalConstantAttribute.Value" data-throw-if-not-resolved="false"></xref>.
+      description: 'The high 32 bits of the 96-bit <xref href="System.Runtime.CompilerServices.DecimalConstantAttribute.Value" data-throw-if-not-resolved="false"></xref>. '
     - id: mid
       type: System.UInt32
-      description: The middle 32 bits of the 96-bit <xref href="System.Runtime.CompilerServices.DecimalConstantAttribute.Value" data-throw-if-not-resolved="false"></xref>.
+      description: 'The middle 32 bits of the 96-bit <xref href="System.Runtime.CompilerServices.DecimalConstantAttribute.Value" data-throw-if-not-resolved="false"></xref>. '
     - id: low
       type: System.UInt32
-      description: The low 32 bits of the 96-bit <xref href="System.Runtime.CompilerServices.DecimalConstantAttribute.Value" data-throw-if-not-resolved="false"></xref>.
+      description: 'The low 32 bits of the 96-bit <xref href="System.Runtime.CompilerServices.DecimalConstantAttribute.Value" data-throw-if-not-resolved="false"></xref>. '
   exceptions:
   - type: System.ArgumentOutOfRangeException
-    description: '*scale* &gt; 28.'
+    description: "\r\n  <em>scale</em> > 28. "
+  attributes:
+  - type: System.CLSCompliantAttribute
+    ctor: System.CLSCompliantAttribute.#ctor(System.Boolean)
+    arguments:
+    - type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Runtime.CompilerServices.DecimalConstantAttribute.#ctor(System.Byte,System.Byte,System.UInt32,System.UInt32,System.UInt32)
 - uid: System.Runtime.CompilerServices.DecimalConstantAttribute.Value
   id: Value
   parent: System.Runtime.CompilerServices.DecimalConstantAttribute
+  langs:
+  - csharp
+  - vb
   name: Value
   fullName: System.Runtime.CompilerServices.DecimalConstantAttribute.Value
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Runtime/CompilerServices/DecimalConstantAttribute.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Value
     path: src/mscorlib/src/System/Runtime/CompilerServices/DecimalConstantAttribute.cs
     startLine: 42
   assemblies:
@@ -118,12 +191,24 @@ items:
   namespace: System.Runtime.CompilerServices
   summary: Gets the decimal constant stored in this attribute.
   syntax:
-    content: public decimal Value { get; }
+    content: >-
+      public decimal Value
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property Value As Decimal
     parameters: []
     return:
       type: System.Decimal
       description: The decimal constant stored in this attribute.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Runtime.CompilerServices.DecimalConstantAttribute.Value
 references:
 - uid: System.Runtime.CompilerServices
   isExternal: false

@@ -5,14 +5,18 @@ items:
   children:
   - System.Reflection.AssemblyKeyFileAttribute.#ctor(System.String)
   - System.Reflection.AssemblyKeyFileAttribute.KeyFile
+  langs:
+  - csharp
+  - vb
   name: AssemblyKeyFileAttribute
   fullName: System.Reflection.AssemblyKeyFileAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: AssemblyKeyFileAttribute
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 239
   assemblies:
@@ -20,8 +24,15 @@ items:
   namespace: System.Reflection
   summary: Specifies the name of a file containing the key pair used to generate a strong name.
   syntax:
-    content: 'public sealed class AssemblyKeyFileAttribute : Attribute'
-    content.vb: Public NotInheritable Class AssemblyKeyFileAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly, Inherited = false)]
+
+      public sealed class AssemblyKeyFileAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly, Inherited:=False)>
+
+      Public NotInheritable Class AssemblyKeyFileAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -33,14 +44,40 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 1
+    namedArguments:
+    - name: Inherited
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Reflection.AssemblyKeyFileAttribute
 - uid: System.Reflection.AssemblyKeyFileAttribute.#ctor(System.String)
   id: '#ctor(System.String)'
   parent: System.Reflection.AssemblyKeyFileAttribute
+  langs:
+  - csharp
+  - vb
   name: AssemblyKeyFileAttribute(String)
   fullName: System.Reflection.AssemblyKeyFileAttribute.AssemblyKeyFileAttribute(System.String)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 245
   assemblies:
@@ -53,15 +90,27 @@ items:
     parameters:
     - id: keyFile
       type: System.String
-      description: The name of the file containing the key pair.
+      description: 'The name of the file containing the key pair. '
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Reflection.AssemblyKeyFileAttribute.#ctor(System.String)
 - uid: System.Reflection.AssemblyKeyFileAttribute.KeyFile
   id: KeyFile
   parent: System.Reflection.AssemblyKeyFileAttribute
+  langs:
+  - csharp
+  - vb
   name: KeyFile
   fullName: System.Reflection.AssemblyKeyFileAttribute.KeyFile
   type: Property
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: KeyFile
     path: src/mscorlib/src/System/Reflection/AssemblyAttributes.cs
     startLine: 250
   assemblies:
@@ -69,12 +118,24 @@ items:
   namespace: System.Reflection
   summary: Gets the name of the file containing the key pair used to generate a strong name for the attributed assembly.
   syntax:
-    content: public string KeyFile { get; }
+    content: >-
+      public string KeyFile
+
+      {
+          get;
+      }
     content.vb: Public ReadOnly Property KeyFile As String
     parameters: []
     return:
       type: System.String
       description: A string containing the name of the file that contains the key pair.
+  modifiers.csharp:
+  - public
+  - get
+  modifiers.vb:
+  - Public
+  - ReadOnly
+  commentId: P:System.Reflection.AssemblyKeyFileAttribute.KeyFile
 references:
 - uid: System.Reflection
   isExternal: false

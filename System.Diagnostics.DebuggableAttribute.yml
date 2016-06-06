@@ -4,14 +4,18 @@ items:
   parent: System.Diagnostics
   children:
   - System.Diagnostics.DebuggableAttribute.#ctor(System.Diagnostics.DebuggableAttribute.DebuggingModes)
+  langs:
+  - csharp
+  - vb
   name: DebuggableAttribute
   fullName: System.Diagnostics.DebuggableAttribute
   type: Class
   source:
-    remote: &o0
+    remote:
       path: src/mscorlib/src/System/Diagnostics/DebuggerAttributes.cs
       branch: master
       repo: https://github.com/dotnet/coreclr.git
+    id: DebuggableAttribute
     path: src/mscorlib/src/System/Diagnostics/DebuggerAttributes.cs
     startLine: 59
   assemblies:
@@ -19,8 +23,15 @@ items:
   namespace: System.Diagnostics
   summary: Modifies code generation for runtime just-in-time (JIT) debugging. This class cannot be inherited.
   syntax:
-    content: 'public sealed class DebuggableAttribute : Attribute'
-    content.vb: Public NotInheritable Class DebuggableAttribute Inherits Attribute
+    content: >-
+      [AttributeUsage(AttributeTargets.Assembly | AttributeTargets.Module, AllowMultiple = false)]
+
+      public sealed class DebuggableAttribute : Attribute
+    content.vb: >-
+      <AttributeUsage(AttributeTargets.Assembly Or AttributeTargets.Module, AllowMultiple:=False)>
+
+      Public NotInheritable Class DebuggableAttribute
+          Inherits Attribute
   inheritance:
   - System.Object
   - System.Attribute
@@ -32,20 +43,46 @@ items:
   - System.Object.MemberwiseClone
   - System.Object.ReferenceEquals(System.Object,System.Object)
   - System.Object.ToString
+  attributes:
+  - type: System.AttributeUsageAttribute
+    ctor: System.AttributeUsageAttribute.#ctor(System.AttributeTargets)
+    arguments:
+    - type: System.AttributeTargets
+      value: 3
+    namedArguments:
+    - name: AllowMultiple
+      type: System.Boolean
+      value: false
+  modifiers.csharp:
+  - public
+  - sealed
+  - class
+  modifiers.vb:
+  - Public
+  - NotInheritable
+  - Class
+  commentId: T:System.Diagnostics.DebuggableAttribute
 - uid: System.Diagnostics.DebuggableAttribute.#ctor(System.Diagnostics.DebuggableAttribute.DebuggingModes)
   id: '#ctor(System.Diagnostics.DebuggableAttribute.DebuggingModes)'
   parent: System.Diagnostics.DebuggableAttribute
+  langs:
+  - csharp
+  - vb
   name: DebuggableAttribute(DebuggableAttribute.DebuggingModes)
   fullName: System.Diagnostics.DebuggableAttribute.DebuggableAttribute(System.Diagnostics.DebuggableAttribute.DebuggingModes)
   type: Constructor
   source:
-    remote: *o0
+    remote:
+      path: src/mscorlib/src/System/Diagnostics/DebuggerAttributes.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: .ctor
     path: src/mscorlib/src/System/Diagnostics/DebuggerAttributes.cs
     startLine: 92
   assemblies:
   - System.Runtime
   namespace: System.Diagnostics
-  summary: Initializes a new instance of the <xref href="System.Diagnostics.DebuggableAttribute" data-throw-if-not-resolved="false"></xref> class, using the specified debugging modes for the just-in-time (JIT) compiler.
+  summary: 'Initializes a new instance of the <xref href="System.Diagnostics.DebuggableAttribute" data-throw-if-not-resolved="false"></xref> class, using the specified debugging modes for the just-in-time (JIT) compiler. '
   syntax:
     content: public DebuggableAttribute(DebuggableAttribute.DebuggingModes modes)
     content.vb: Public Sub New(modes As DebuggableAttribute.DebuggingModes)
@@ -53,6 +90,11 @@ items:
     - id: modes
       type: System.Diagnostics.DebuggableAttribute.DebuggingModes
       description: A bitwise combination of the <xref href="System.Diagnostics.DebuggableAttribute.DebuggingModes" data-throw-if-not-resolved="false"></xref>  values specifying the debugging mode for the JIT compiler.
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+  commentId: M:System.Diagnostics.DebuggableAttribute.#ctor(System.Diagnostics.DebuggableAttribute.DebuggingModes)
 references:
 - uid: System.Diagnostics
   isExternal: false
