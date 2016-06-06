@@ -1,5 +1,6 @@
 items:
 - uid: System.Threading.Tasks.TaskExtensions
+  commentId: T:System.Threading.Tasks.TaskExtensions
   id: TaskExtensions
   parent: System.Threading.Tasks
   children:
@@ -36,9 +37,10 @@ items:
   modifiers.vb:
   - Public
   - Class
-  commentId: T:System.Threading.Tasks.TaskExtensions
 - uid: System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task{System.Threading.Tasks.Task})
+  commentId: M:System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task{System.Threading.Tasks.Task})
   id: Unwrap(System.Threading.Tasks.Task{System.Threading.Tasks.Task})
+  isExtensionMethod: true
   parent: System.Threading.Tasks.TaskExtensions
   langs:
   - csharp
@@ -59,8 +61,11 @@ items:
   namespace: System.Threading.Tasks
   summary: Creates a proxy <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> that represents the asynchronous operation of a <xref href="System.Threading.Tasks.TaskScheduler.TryExecuteTaskInline(System.Threading.Tasks.Task,System.Boolean)" data-throw-if-not-resolved="false"></xref>.
   syntax:
-    content: public static Task Unwrap(Task<Task> task)
-    content.vb: Public Shared Function Unwrap(task As Task(Of Task)) As Task
+    content: public static Task Unwrap(this Task<Task> task)
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Unwrap(task As Task(Of Task)) As Task
     parameters:
     - id: task
       type: System.Threading.Tasks.Task{System.Threading.Tasks.Task}
@@ -70,6 +75,7 @@ items:
       description: A Task that represents the asynchronous operation of the provided System.Threading.Tasks.Task(Of Task).
   exceptions:
   - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
     description: The exception that is thrown if the <em>task</em> argument is null.
   modifiers.csharp:
   - public
@@ -79,9 +85,10 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task(Of System.Threading.Tasks.Task))
   name.vb: Unwrap(Task(Of Task))
-  commentId: M:System.Threading.Tasks.TaskExtensions.Unwrap(System.Threading.Tasks.Task{System.Threading.Tasks.Task})
 - uid: System.Threading.Tasks.TaskExtensions.Unwrap``1(System.Threading.Tasks.Task{System.Threading.Tasks.Task{``0}})
+  commentId: M:System.Threading.Tasks.TaskExtensions.Unwrap``1(System.Threading.Tasks.Task{System.Threading.Tasks.Task{``0}})
   id: Unwrap``1(System.Threading.Tasks.Task{System.Threading.Tasks.Task{``0}})
+  isExtensionMethod: true
   parent: System.Threading.Tasks.TaskExtensions
   langs:
   - csharp
@@ -102,8 +109,11 @@ items:
   namespace: System.Threading.Tasks
   summary: Creates a proxy <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> that represents the asynchronous operation of a Task<Task<T>> (C#) or Task (Of Task(Of T)) (Visual Basic).
   syntax:
-    content: public static Task<TResult> Unwrap<TResult>(Task<Task<TResult>> task)
-    content.vb: Public Shared Function Unwrap(Of TResult)(task As Task(Of Task(Of TResult))) As Task(Of TResult)
+    content: public static Task<TResult> Unwrap<TResult>(this Task<Task<TResult>> task)
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function Unwrap(Of TResult)(task As Task(Of Task(Of TResult))) As Task(Of TResult)
     parameters:
     - id: task
       type: System.Threading.Tasks.Task{System.Threading.Tasks.Task{{TResult}}}
@@ -116,6 +126,7 @@ items:
       description: A <xref href="System.Threading.Tasks.Task" data-throw-if-not-resolved="false"></xref> that represents the asynchronous operation of the provided Task<Task<T>> (C#) or Task (Of Task(Of T)) (Visual Basic).
   exceptions:
   - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
     description: The exception that is thrown if the <em>task</em> argument is null.
   modifiers.csharp:
   - public
@@ -125,7 +136,6 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.TaskExtensions.Unwrap(Of TResult)(System.Threading.Tasks.Task(Of System.Threading.Tasks.Task(Of TResult)))
   name.vb: Unwrap(Of TResult)(Task(Of Task(Of TResult)))
-  commentId: M:System.Threading.Tasks.TaskExtensions.Unwrap``1(System.Threading.Tasks.Task{System.Threading.Tasks.Task{``0}})
 references:
 - uid: System.Threading.Tasks
   isExternal: false
@@ -172,31 +182,33 @@ references:
 - uid: System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: false
-  name: Threading.Tasks.Task
+  name: Task
   fullName: System.Threading.Tasks.Task
 - uid: System.Threading.Tasks.Task`1
   parent: System.Threading.Tasks
   isExternal: false
-  name: Threading.Tasks.Task<>
-  fullName: System.Threading.Tasks.Task<>
-  fullname.vb: System.Threading.Tasks.Task(Of )
-  name.vb: Threading.Tasks.Task(Of )
+  name: Task<TResult>
+  fullName: System.Threading.Tasks.Task<TResult>
+  fullname.vb: System.Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Threading.Tasks.Task
+    name: Task
     fullName: System.Threading.Tasks.Task
   - name: <
     fullName: <
-  - {}
+  - name: TResult
+    fullName: TResult
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Threading.Tasks.Task
+    name: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
     fullName: '(Of '
-  - {}
+  - name: TResult
+    fullName: TResult
   - name: )
     fullName: )
 - uid: System.Threading.Tasks.Task{System.Threading.Tasks.Task{{TResult}}}
@@ -243,13 +255,13 @@ references:
 - uid: System.Threading.Tasks.Task{{TResult}}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
-  name: Threading.Tasks.Task<TResult>
+  name: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
   fullname.vb: System.Threading.Tasks.Task(Of TResult)
-  name.vb: Threading.Tasks.Task(Of TResult)
+  name.vb: Task(Of TResult)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Threading.Tasks.Task
+    name: Task
     fullName: System.Threading.Tasks.Task
   - name: <
     fullName: <
@@ -259,7 +271,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Threading.Tasks.Task
+    name: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
     fullName: '(Of '

@@ -1,5 +1,6 @@
 items:
 - uid: System.Threading.WaitHandleExtensions
+  commentId: T:System.Threading.WaitHandleExtensions
   id: WaitHandleExtensions
   parent: System.Threading
   children:
@@ -13,12 +14,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/mscorlib/src/System/Threading/WaitHandleExtensions.cs
+      path: src/System.Runtime.Handles/src/System/Threading/WaitHandleExtensions.cs
       branch: master
-      repo: https://github.com/dotnet/coreclr.git
+      repo: https://github.com/dotnet/corefx.git
     id: WaitHandleExtensions
-    path: src/mscorlib/src/System/Threading/WaitHandleExtensions.cs
-    startLine: 11
+    path: src/System.Runtime.Handles/src/System/Threading/WaitHandleExtensions.cs
+    startLine: 9
   assemblies:
   - System.Runtime.Handles
   namespace: System.Threading
@@ -36,9 +37,10 @@ items:
   modifiers.vb:
   - Public
   - Class
-  commentId: T:System.Threading.WaitHandleExtensions
 - uid: System.Threading.WaitHandleExtensions.GetSafeWaitHandle(System.Threading.WaitHandle)
+  commentId: M:System.Threading.WaitHandleExtensions.GetSafeWaitHandle(System.Threading.WaitHandle)
   id: GetSafeWaitHandle(System.Threading.WaitHandle)
+  isExtensionMethod: true
   parent: System.Threading.WaitHandleExtensions
   langs:
   - csharp
@@ -48,19 +50,22 @@ items:
   type: Method
   source:
     remote:
-      path: src/mscorlib/src/System/Threading/WaitHandleExtensions.cs
+      path: src/System.Runtime.Handles/ref/System.Runtime.Handles.cs
       branch: master
-      repo: https://github.com/dotnet/coreclr.git
+      repo: https://github.com/dotnet/corefx.git
     id: GetSafeWaitHandle
-    path: src/mscorlib/src/System/Threading/WaitHandleExtensions.cs
-    startLine: 18
+    path: src/System.Runtime.Handles/ref/System.Runtime.Handles.cs
+    startLine: 69
   assemblies:
   - System.Runtime.Handles
   namespace: System.Threading
   summary: 'Gets the safe handle for a native operating system wait handle. '
   syntax:
-    content: public static SafeWaitHandle GetSafeWaitHandle(WaitHandle waitHandle)
-    content.vb: Public Shared Function GetSafeWaitHandle(waitHandle As WaitHandle) As SafeWaitHandle
+    content: public static SafeWaitHandle GetSafeWaitHandle(this WaitHandle waitHandle)
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Function GetSafeWaitHandle(waitHandle As WaitHandle) As SafeWaitHandle
     parameters:
     - id: waitHandle
       type: System.Threading.WaitHandle
@@ -70,16 +75,18 @@ items:
       description: 'The safe wait handle that wraps the native operating system wait handle. '
   exceptions:
   - type: System.ArgumentNullException
-    description: "\r\n  <em>waitHandle</em> is null. "
+    commentId: T:System.ArgumentNullException
+    description: "\n<em>waitHandle</em> is null. "
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  commentId: M:System.Threading.WaitHandleExtensions.GetSafeWaitHandle(System.Threading.WaitHandle)
 - uid: System.Threading.WaitHandleExtensions.SetSafeWaitHandle(System.Threading.WaitHandle,Microsoft.Win32.SafeHandles.SafeWaitHandle)
+  commentId: M:System.Threading.WaitHandleExtensions.SetSafeWaitHandle(System.Threading.WaitHandle,Microsoft.Win32.SafeHandles.SafeWaitHandle)
   id: SetSafeWaitHandle(System.Threading.WaitHandle,Microsoft.Win32.SafeHandles.SafeWaitHandle)
+  isExtensionMethod: true
   parent: System.Threading.WaitHandleExtensions
   langs:
   - csharp
@@ -89,19 +96,22 @@ items:
   type: Method
   source:
     remote:
-      path: src/mscorlib/src/System/Threading/WaitHandleExtensions.cs
+      path: src/System.Runtime.Handles/ref/System.Runtime.Handles.cs
       branch: master
-      repo: https://github.com/dotnet/coreclr.git
+      repo: https://github.com/dotnet/corefx.git
     id: SetSafeWaitHandle
-    path: src/mscorlib/src/System/Threading/WaitHandleExtensions.cs
-    startLine: 34
+    path: src/System.Runtime.Handles/ref/System.Runtime.Handles.cs
+    startLine: 71
   assemblies:
   - System.Runtime.Handles
   namespace: System.Threading
   summary: 'Sets a safe handle for a native operating system wait handle. '
   syntax:
-    content: public static void SetSafeWaitHandle(WaitHandle waitHandle, SafeWaitHandle value)
-    content.vb: Public Shared Sub SetSafeWaitHandle(waitHandle As WaitHandle, value As SafeWaitHandle)
+    content: public static void SetSafeWaitHandle(this WaitHandle waitHandle, SafeWaitHandle value)
+    content.vb: >-
+      <ExtensionAttribute>
+
+      Public Shared Sub SetSafeWaitHandle(waitHandle As WaitHandle, value As SafeWaitHandle)
     parameters:
     - id: waitHandle
       type: System.Threading.WaitHandle
@@ -111,14 +121,14 @@ items:
       description: 'The safe handle to wrap the operating system handle. '
   exceptions:
   - type: System.ArgumentNullException
-    description: "\r\n  <em>waitHandle</em> is null. "
+    commentId: T:System.ArgumentNullException
+    description: "\n<em>waitHandle</em> is null. "
   modifiers.csharp:
   - public
   - static
   modifiers.vb:
   - Public
   - Shared
-  commentId: M:System.Threading.WaitHandleExtensions.SetSafeWaitHandle(System.Threading.WaitHandle,Microsoft.Win32.SafeHandles.SafeWaitHandle)
 references:
 - uid: System.Threading
   isExternal: false

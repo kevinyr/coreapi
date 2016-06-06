@@ -1,5 +1,6 @@
 items:
 - uid: System.Data.Common.DbConnection
+  commentId: T:System.Data.Common.DbConnection
   id: DbConnection
   parent: System.Data.Common
   children:
@@ -64,8 +65,8 @@ items:
   - Public
   - MustInherit
   - Class
-  commentId: T:System.Data.Common.DbConnection
 - uid: System.Data.Common.DbConnection.#ctor
+  commentId: M:System.Data.Common.DbConnection.#ctor
   id: '#ctor'
   parent: System.Data.Common.DbConnection
   langs:
@@ -93,8 +94,8 @@ items:
   - protected
   modifiers.vb:
   - Protected
-  commentId: M:System.Data.Common.DbConnection.#ctor
 - uid: System.Data.Common.DbConnection.ConnectionString
+  commentId: P:System.Data.Common.DbConnection.ConnectionString
   id: ConnectionString
   parent: System.Data.Common.DbConnection
   langs:
@@ -116,18 +117,14 @@ items:
   namespace: System.Data.Common
   summary: Gets or sets the string used to open the connection.
   syntax:
-    content: >-
-      public abstract string ConnectionString
-
-      {
-          get;
-          set;
-      }
+    content: public abstract string ConnectionString { get; set; }
     content.vb: Public MustOverride Property ConnectionString As String
     parameters: []
     return:
       type: System.String
       description: The connection string used to establish the initial connection. The exact contents of the connection string depend on the specific data source for this connection. The default value is an empty string.
+  implements:
+  - System.Data.IDbConnection.ConnectionString
   modifiers.csharp:
   - public
   - abstract
@@ -136,8 +133,8 @@ items:
   modifiers.vb:
   - Public
   - MustOverride
-  commentId: P:System.Data.Common.DbConnection.ConnectionString
 - uid: System.Data.Common.DbConnection.ConnectionTimeout
+  commentId: P:System.Data.Common.DbConnection.ConnectionTimeout
   id: ConnectionTimeout
   parent: System.Data.Common.DbConnection
   langs:
@@ -159,17 +156,14 @@ items:
   namespace: System.Data.Common
   summary: Gets the time to wait while establishing a connection before terminating the attempt and generating an error.
   syntax:
-    content: >-
-      public virtual int ConnectionTimeout
-
-      {
-          get;
-      }
+    content: public virtual int ConnectionTimeout { get; }
     content.vb: Public Overridable ReadOnly Property ConnectionTimeout As Integer
     parameters: []
     return:
       type: System.Int32
       description: The time (in seconds) to wait for a connection to open. The default value is determined by the specific type of connection that you are using.
+  implements:
+  - System.Data.IDbConnection.ConnectionTimeout
   modifiers.csharp:
   - public
   - virtual
@@ -178,8 +172,8 @@ items:
   - Public
   - Overridable
   - ReadOnly
-  commentId: P:System.Data.Common.DbConnection.ConnectionTimeout
 - uid: System.Data.Common.DbConnection.Database
+  commentId: P:System.Data.Common.DbConnection.Database
   id: Database
   parent: System.Data.Common.DbConnection
   langs:
@@ -201,17 +195,14 @@ items:
   namespace: System.Data.Common
   summary: Gets the name of the current database after a connection is opened, or the database name specified in the connection string before the connection is opened.
   syntax:
-    content: >-
-      public abstract string Database
-
-      {
-          get;
-      }
+    content: public abstract string Database { get; }
     content.vb: Public MustOverride ReadOnly Property Database As String
     parameters: []
     return:
       type: System.String
       description: The name of the current database or the name of the database to be used after a connection is opened. The default value is an empty string.
+  implements:
+  - System.Data.IDbConnection.Database
   modifiers.csharp:
   - public
   - abstract
@@ -220,8 +211,8 @@ items:
   - Public
   - MustOverride
   - ReadOnly
-  commentId: P:System.Data.Common.DbConnection.Database
 - uid: System.Data.Common.DbConnection.DataSource
+  commentId: P:System.Data.Common.DbConnection.DataSource
   id: DataSource
   parent: System.Data.Common.DbConnection
   langs:
@@ -243,12 +234,7 @@ items:
   namespace: System.Data.Common
   summary: Gets the name of the database server to which to connect.
   syntax:
-    content: >-
-      public abstract string DataSource
-
-      {
-          get;
-      }
+    content: public abstract string DataSource { get; }
     content.vb: Public MustOverride ReadOnly Property DataSource As String
     parameters: []
     return:
@@ -262,8 +248,8 @@ items:
   - Public
   - MustOverride
   - ReadOnly
-  commentId: P:System.Data.Common.DbConnection.DataSource
 - uid: System.Data.Common.DbConnection.ServerVersion
+  commentId: P:System.Data.Common.DbConnection.ServerVersion
   id: ServerVersion
   parent: System.Data.Common.DbConnection
   langs:
@@ -285,12 +271,7 @@ items:
   namespace: System.Data.Common
   summary: Gets a string that represents the version of the server to which the object is connected.
   syntax:
-    content: >-
-      public abstract string ServerVersion
-
-      {
-          get;
-      }
+    content: public abstract string ServerVersion { get; }
     content.vb: Public MustOverride ReadOnly Property ServerVersion As String
     parameters: []
     return:
@@ -298,7 +279,8 @@ items:
       description: The version of the database. The format of the string returned depends on the specific type of connection you are using.
   exceptions:
   - type: System.InvalidOperationException
-    description: "\r\n  <xref href=\"System.Data.Common.DbConnection.ServerVersion\" data-throw-if-not-resolved=\"false\"></xref> was called while the returned Task was not completed and the connection was not opened after a call to <see cref=\"Overload:System.Data.Common.DbConnection.OpenAsync\"></see>."
+    commentId: T:System.InvalidOperationException
+    description: "\n<xref href=\"System.Data.Common.DbConnection.ServerVersion\" data-throw-if-not-resolved=\"false\"></xref> was called while the returned Task was not completed and the connection was not opened after a call to <see cref=\"Overload:System.Data.Common.DbConnection.OpenAsync\"></see>."
   modifiers.csharp:
   - public
   - abstract
@@ -307,8 +289,8 @@ items:
   - Public
   - MustOverride
   - ReadOnly
-  commentId: P:System.Data.Common.DbConnection.ServerVersion
 - uid: System.Data.Common.DbConnection.State
+  commentId: P:System.Data.Common.DbConnection.State
   id: State
   parent: System.Data.Common.DbConnection
   langs:
@@ -330,17 +312,14 @@ items:
   namespace: System.Data.Common
   summary: Gets a string that describes the state of the connection.
   syntax:
-    content: >-
-      public abstract ConnectionState State
-
-      {
-          get;
-      }
+    content: public abstract ConnectionState State { get; }
     content.vb: Public MustOverride ReadOnly Property State As ConnectionState
     parameters: []
     return:
       type: System.Data.ConnectionState
       description: The state of the connection. The format of the string returned depends on the specific type of connection you are using.
+  implements:
+  - System.Data.IDbConnection.State
   modifiers.csharp:
   - public
   - abstract
@@ -349,8 +328,8 @@ items:
   - Public
   - MustOverride
   - ReadOnly
-  commentId: P:System.Data.Common.DbConnection.State
 - uid: System.Data.Common.DbConnection.StateChange
+  commentId: E:System.Data.Common.DbConnection.StateChange
   id: StateChange
   parent: System.Data.Common.DbConnection
   langs:
@@ -382,8 +361,8 @@ items:
   modifiers.vb:
   - Public
   - Overridable
-  commentId: E:System.Data.Common.DbConnection.StateChange
 - uid: System.Data.Common.DbConnection.BeginDbTransaction(System.Data.IsolationLevel)
+  commentId: M:System.Data.Common.DbConnection.BeginDbTransaction(System.Data.IsolationLevel)
   id: BeginDbTransaction(System.Data.IsolationLevel)
   parent: System.Data.Common.DbConnection
   langs:
@@ -420,8 +399,8 @@ items:
   modifiers.vb:
   - Protected
   - MustOverride
-  commentId: M:System.Data.Common.DbConnection.BeginDbTransaction(System.Data.IsolationLevel)
 - uid: System.Data.Common.DbConnection.BeginTransaction
+  commentId: M:System.Data.Common.DbConnection.BeginTransaction
   id: BeginTransaction
   parent: System.Data.Common.DbConnection
   langs:
@@ -452,8 +431,8 @@ items:
   - public
   modifiers.vb:
   - Public
-  commentId: M:System.Data.Common.DbConnection.BeginTransaction
 - uid: System.Data.Common.DbConnection.BeginTransaction(System.Data.IsolationLevel)
+  commentId: M:System.Data.Common.DbConnection.BeginTransaction(System.Data.IsolationLevel)
   id: BeginTransaction(System.Data.IsolationLevel)
   parent: System.Data.Common.DbConnection
   langs:
@@ -488,8 +467,8 @@ items:
   - public
   modifiers.vb:
   - Public
-  commentId: M:System.Data.Common.DbConnection.BeginTransaction(System.Data.IsolationLevel)
 - uid: System.Data.Common.DbConnection.ChangeDatabase(System.String)
+  commentId: M:System.Data.Common.DbConnection.ChangeDatabase(System.String)
   id: ChangeDatabase(System.String)
   parent: System.Data.Common.DbConnection
   langs:
@@ -517,14 +496,16 @@ items:
     - id: databaseName
       type: System.String
       description: Specifies the name of the database for the connection to use.
+  implements:
+  - System.Data.IDbConnection.ChangeDatabase(System.String)
   modifiers.csharp:
   - public
   - abstract
   modifiers.vb:
   - Public
   - MustOverride
-  commentId: M:System.Data.Common.DbConnection.ChangeDatabase(System.String)
 - uid: System.Data.Common.DbConnection.Close
+  commentId: M:System.Data.Common.DbConnection.Close
   id: Close
   parent: System.Data.Common.DbConnection
   langs:
@@ -550,15 +531,18 @@ items:
     content.vb: Public MustOverride Sub Close
   exceptions:
   - type: System.Data.Common.DbException
+    commentId: T:System.Data.Common.DbException
     description: 'The connection-level error that occurred while opening the connection. '
+  implements:
+  - System.Data.IDbConnection.Close
   modifiers.csharp:
   - public
   - abstract
   modifiers.vb:
   - Public
   - MustOverride
-  commentId: M:System.Data.Common.DbConnection.Close
 - uid: System.Data.Common.DbConnection.CreateCommand
+  commentId: M:System.Data.Common.DbConnection.CreateCommand
   id: CreateCommand
   parent: System.Data.Common.DbConnection
   langs:
@@ -589,8 +573,8 @@ items:
   - public
   modifiers.vb:
   - Public
-  commentId: M:System.Data.Common.DbConnection.CreateCommand
 - uid: System.Data.Common.DbConnection.CreateDbCommand
+  commentId: M:System.Data.Common.DbConnection.CreateDbCommand
   id: CreateDbCommand
   parent: System.Data.Common.DbConnection
   langs:
@@ -623,8 +607,8 @@ items:
   modifiers.vb:
   - Protected
   - MustOverride
-  commentId: M:System.Data.Common.DbConnection.CreateDbCommand
 - uid: System.Data.Common.DbConnection.OnStateChange(System.Data.StateChangeEventArgs)
+  commentId: M:System.Data.Common.DbConnection.OnStateChange(System.Data.StateChangeEventArgs)
   id: OnStateChange(System.Data.StateChangeEventArgs)
   parent: System.Data.Common.DbConnection
   langs:
@@ -658,8 +642,8 @@ items:
   modifiers.vb:
   - Protected
   - Overridable
-  commentId: M:System.Data.Common.DbConnection.OnStateChange(System.Data.StateChangeEventArgs)
 - uid: System.Data.Common.DbConnection.Open
+  commentId: M:System.Data.Common.DbConnection.Open
   id: Open
   parent: System.Data.Common.DbConnection
   langs:
@@ -683,14 +667,16 @@ items:
   syntax:
     content: public abstract void Open()
     content.vb: Public MustOverride Sub Open
+  implements:
+  - System.Data.IDbConnection.Open
   modifiers.csharp:
   - public
   - abstract
   modifiers.vb:
   - Public
   - MustOverride
-  commentId: M:System.Data.Common.DbConnection.Open
 - uid: System.Data.Common.DbConnection.OpenAsync
+  commentId: M:System.Data.Common.DbConnection.OpenAsync
   id: OpenAsync
   parent: System.Data.Common.DbConnection
   langs:
@@ -721,8 +707,8 @@ items:
   - public
   modifiers.vb:
   - Public
-  commentId: M:System.Data.Common.DbConnection.OpenAsync
 - uid: System.Data.Common.DbConnection.OpenAsync(System.Threading.CancellationToken)
+  commentId: M:System.Data.Common.DbConnection.OpenAsync(System.Threading.CancellationToken)
   id: OpenAsync(System.Threading.CancellationToken)
   parent: System.Data.Common.DbConnection
   langs:
@@ -759,9 +745,10 @@ items:
   modifiers.vb:
   - Public
   - Overridable
-  commentId: M:System.Data.Common.DbConnection.OpenAsync(System.Threading.CancellationToken)
 - uid: System.Data.Common.DbConnection.System#Data#IDbConnection#BeginTransaction
+  commentId: M:System.Data.Common.DbConnection.System#Data#IDbConnection#BeginTransaction
   id: System#Data#IDbConnection#BeginTransaction
+  isEii: true
   parent: System.Data.Common.DbConnection
   langs:
   - csharp
@@ -787,10 +774,13 @@ items:
     return:
       type: System.Data.IDbTransaction
       description: An object that represents the new transaction.
+  implements:
+  - System.Data.IDbConnection.BeginTransaction
   name.vb: System.Data.IDbConnection.BeginTransaction()
-  commentId: M:System.Data.Common.DbConnection.System#Data#IDbConnection#BeginTransaction
 - uid: System.Data.Common.DbConnection.System#Data#IDbConnection#BeginTransaction(System.Data.IsolationLevel)
+  commentId: M:System.Data.Common.DbConnection.System#Data#IDbConnection#BeginTransaction(System.Data.IsolationLevel)
   id: System#Data#IDbConnection#BeginTransaction(System.Data.IsolationLevel)
+  isEii: true
   parent: System.Data.Common.DbConnection
   langs:
   - csharp
@@ -820,10 +810,13 @@ items:
     return:
       type: System.Data.IDbTransaction
       description: An object that represents the new transaction.
+  implements:
+  - System.Data.IDbConnection.BeginTransaction(System.Data.IsolationLevel)
   name.vb: System.Data.IDbConnection.BeginTransaction(IsolationLevel)
-  commentId: M:System.Data.Common.DbConnection.System#Data#IDbConnection#BeginTransaction(System.Data.IsolationLevel)
 - uid: System.Data.Common.DbConnection.System#Data#IDbConnection#CreateCommand
+  commentId: M:System.Data.Common.DbConnection.System#Data#IDbConnection#CreateCommand
   id: System#Data#IDbConnection#CreateCommand
+  isEii: true
   parent: System.Data.Common.DbConnection
   langs:
   - csharp
@@ -849,9 +842,11 @@ items:
     return:
       type: System.Data.IDbCommand
       description: A <xref href="System.Data.Common.DbCommand" data-throw-if-not-resolved="false"></xref> object that is associated with the connection.
+  implements:
+  - System.Data.IDbConnection.CreateCommand
   name.vb: System.Data.IDbConnection.CreateCommand()
-  commentId: M:System.Data.Common.DbConnection.System#Data#IDbConnection#CreateCommand
 - uid: System.Data.Common.DbConnection.Dispose
+  commentId: M:System.Data.Common.DbConnection.Dispose
   id: Dispose
   parent: System.Data.Common.DbConnection
   langs:
@@ -878,8 +873,8 @@ items:
   - public
   modifiers.vb:
   - Public
-  commentId: M:System.Data.Common.DbConnection.Dispose
 - uid: System.Data.Common.DbConnection.Dispose(System.Boolean)
+  commentId: M:System.Data.Common.DbConnection.Dispose(System.Boolean)
   id: Dispose(System.Boolean)
   parent: System.Data.Common.DbConnection
   langs:
@@ -911,7 +906,6 @@ items:
   modifiers.vb:
   - Protected
   - Overridable
-  commentId: M:System.Data.Common.DbConnection.Dispose(System.Boolean)
 references:
 - uid: System.Data.Common
   isExternal: false
@@ -940,16 +934,36 @@ references:
   isExternal: false
   name: System.Data
   fullName: System.Data
+- uid: System.Data.IDbConnection.ConnectionString
+  parent: System.Data.IDbConnection
+  isExternal: false
+  name: ConnectionString
+  fullName: System.Data.IDbConnection.ConnectionString
 - uid: System.String
   parent: System
   isExternal: false
   name: String
   fullName: System.String
+- uid: System.Data.IDbConnection.ConnectionTimeout
+  parent: System.Data.IDbConnection
+  isExternal: false
+  name: ConnectionTimeout
+  fullName: System.Data.IDbConnection.ConnectionTimeout
 - uid: System.Int32
   parent: System
   isExternal: false
   name: Int32
   fullName: System.Int32
+- uid: System.Data.IDbConnection.Database
+  parent: System.Data.IDbConnection
+  isExternal: false
+  name: Database
+  fullName: System.Data.IDbConnection.Database
+- uid: System.Data.IDbConnection.State
+  parent: System.Data.IDbConnection
+  isExternal: false
+  name: State
+  fullName: System.Data.IDbConnection.State
 - uid: System.Data.ConnectionState
   parent: System.Data
   isExternal: false
@@ -970,6 +984,56 @@ references:
   isExternal: false
   name: Common.DbTransaction
   fullName: System.Data.Common.DbTransaction
+- uid: System.Data.IDbConnection.ChangeDatabase(System.String)
+  parent: System.Data.IDbConnection
+  isExternal: true
+  name: ChangeDatabase(String)
+  fullName: System.Data.IDbConnection.ChangeDatabase(System.String)
+  spec.csharp:
+  - uid: System.Data.IDbConnection.ChangeDatabase(System.String)
+    name: ChangeDatabase
+    fullName: System.Data.IDbConnection.ChangeDatabase
+  - name: (
+    fullName: (
+  - uid: System.String
+    name: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Data.IDbConnection.ChangeDatabase(System.String)
+    name: ChangeDatabase
+    fullName: System.Data.IDbConnection.ChangeDatabase
+  - name: (
+    fullName: (
+  - uid: System.String
+    name: String
+    fullName: System.String
+    isExternal: true
+  - name: )
+    fullName: )
+- uid: System.Data.IDbConnection.Close
+  parent: System.Data.IDbConnection
+  isExternal: false
+  name: Close()
+  fullName: System.Data.IDbConnection.Close()
+  spec.csharp:
+  - uid: System.Data.IDbConnection.Close
+    name: Close
+    fullName: System.Data.IDbConnection.Close
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Data.IDbConnection.Close
+    name: Close
+    fullName: System.Data.IDbConnection.Close
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
 - uid: System.Data.Common.DbCommand
   parent: System.Data.Common
   isExternal: false
@@ -980,10 +1044,31 @@ references:
   isExternal: false
   name: StateChangeEventArgs
   fullName: System.Data.StateChangeEventArgs
+- uid: System.Data.IDbConnection.Open
+  parent: System.Data.IDbConnection
+  isExternal: false
+  name: Open()
+  fullName: System.Data.IDbConnection.Open()
+  spec.csharp:
+  - uid: System.Data.IDbConnection.Open
+    name: Open
+    fullName: System.Data.IDbConnection.Open
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Data.IDbConnection.Open
+    name: Open
+    fullName: System.Data.IDbConnection.Open
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
 - uid: System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: false
-  name: Threading.Tasks.Task
+  name: Task
   fullName: System.Threading.Tasks.Task
 - uid: System.Threading.Tasks
   isExternal: false
@@ -992,17 +1077,86 @@ references:
 - uid: System.Threading.CancellationToken
   parent: System.Threading
   isExternal: false
-  name: Threading.CancellationToken
+  name: CancellationToken
   fullName: System.Threading.CancellationToken
 - uid: System.Threading
   isExternal: false
   name: System.Threading
   fullName: System.Threading
+- uid: System.Data.IDbConnection.BeginTransaction
+  parent: System.Data.IDbConnection
+  isExternal: false
+  name: BeginTransaction()
+  fullName: System.Data.IDbConnection.BeginTransaction()
+  spec.csharp:
+  - uid: System.Data.IDbConnection.BeginTransaction
+    name: BeginTransaction
+    fullName: System.Data.IDbConnection.BeginTransaction
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Data.IDbConnection.BeginTransaction
+    name: BeginTransaction
+    fullName: System.Data.IDbConnection.BeginTransaction
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
 - uid: System.Data.IDbTransaction
   parent: System.Data
   isExternal: false
   name: IDbTransaction
   fullName: System.Data.IDbTransaction
+- uid: System.Data.IDbConnection.BeginTransaction(System.Data.IsolationLevel)
+  parent: System.Data.IDbConnection
+  isExternal: false
+  name: BeginTransaction(IsolationLevel)
+  fullName: System.Data.IDbConnection.BeginTransaction(System.Data.IsolationLevel)
+  spec.csharp:
+  - uid: System.Data.IDbConnection.BeginTransaction(System.Data.IsolationLevel)
+    name: BeginTransaction
+    fullName: System.Data.IDbConnection.BeginTransaction
+  - name: (
+    fullName: (
+  - uid: System.Data.IsolationLevel
+    name: IsolationLevel
+    fullName: System.Data.IsolationLevel
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Data.IDbConnection.BeginTransaction(System.Data.IsolationLevel)
+    name: BeginTransaction
+    fullName: System.Data.IDbConnection.BeginTransaction
+  - name: (
+    fullName: (
+  - uid: System.Data.IsolationLevel
+    name: IsolationLevel
+    fullName: System.Data.IsolationLevel
+  - name: )
+    fullName: )
+- uid: System.Data.IDbConnection.CreateCommand
+  parent: System.Data.IDbConnection
+  isExternal: false
+  name: CreateCommand()
+  fullName: System.Data.IDbConnection.CreateCommand()
+  spec.csharp:
+  - uid: System.Data.IDbConnection.CreateCommand
+    name: CreateCommand
+    fullName: System.Data.IDbConnection.CreateCommand
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Data.IDbConnection.CreateCommand
+    name: CreateCommand
+    fullName: System.Data.IDbConnection.CreateCommand
+  - name: (
+    fullName: (
+  - name: )
+    fullName: )
 - uid: System.Data.IDbCommand
   parent: System.Data
   isExternal: false

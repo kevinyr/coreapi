@@ -1,5 +1,6 @@
 items:
 - uid: System.Linq.Lookup`2
+  commentId: T:System.Linq.Lookup`2
   id: Lookup`2
   parent: System.Linq
   children:
@@ -51,8 +52,8 @@ items:
   - Class
   fullName.vb: System.Linq.Lookup(Of TKey, TElement)
   name.vb: Lookup(Of TKey, TElement)
-  commentId: T:System.Linq.Lookup`2
 - uid: System.Linq.Lookup`2.Count
+  commentId: P:System.Linq.Lookup`2.Count
   id: Count
   parent: System.Linq.Lookup`2
   langs:
@@ -74,17 +75,14 @@ items:
   namespace: System.Linq
   summary: Gets the number of key/value collection pairs in the <xref href="System.Linq.Lookup`2" data-throw-if-not-resolved="false"></xref>.
   syntax:
-    content: >-
-      public int Count
-
-      {
-          get;
-      }
+    content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
     parameters: []
     return:
       type: System.Int32
       description: The number of key/value collection pairs in the <xref href="System.Linq.Lookup`2" data-throw-if-not-resolved="false"></xref>.
+  implements:
+  - System.Linq.ILookup{{TKey},{TElement}}.Count
   modifiers.csharp:
   - public
   - get
@@ -92,8 +90,8 @@ items:
   - Public
   - ReadOnly
   fullName.vb: System.Linq.Lookup(Of TKey, TElement).Count
-  commentId: P:System.Linq.Lookup`2.Count
 - uid: System.Linq.Lookup`2.Item(`0)
+  commentId: P:System.Linq.Lookup`2.Item(`0)
   id: Item(`0)
   parent: System.Linq.Lookup`2
   langs:
@@ -115,12 +113,7 @@ items:
   namespace: System.Linq
   summary: Gets the collection of values indexed by the specified key.
   syntax:
-    content: >-
-      public Collections.Generic.IEnumerable<TElement> this[TKey key]
-
-      {
-          get;
-      }
+    content: public Collections.Generic.IEnumerable<TElement> this[TKey key] { get; }
     content.vb: Public ReadOnly Property Item(key As TKey) As Collections.Generic.IEnumerable(Of TElement)
     parameters:
     - id: key
@@ -129,6 +122,8 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{{TElement}}
       description: The collection of values indexed by the specified key.
+  implements:
+  - System.Linq.ILookup{{TKey},{TElement}}.Item({TKey})
   modifiers.csharp:
   - public
   - get
@@ -137,8 +132,8 @@ items:
   - ReadOnly
   fullName.vb: System.Linq.Lookup(Of TKey, TElement).Item(TKey)
   name.vb: Item(TKey)
-  commentId: P:System.Linq.Lookup`2.Item(`0)
 - uid: System.Linq.Lookup`2.ApplyResultSelector``1(System.Func{`0,System.Collections.Generic.IEnumerable{`1},``0})
+  commentId: M:System.Linq.Lookup`2.ApplyResultSelector``1(System.Func{`0,System.Collections.Generic.IEnumerable{`1},``0})
   id: ApplyResultSelector``1(System.Func{`0,System.Collections.Generic.IEnumerable{`1},``0})
   parent: System.Linq.Lookup`2
   langs:
@@ -178,8 +173,8 @@ items:
   - Public
   fullName.vb: System.Linq.Lookup(Of TKey, TElement).ApplyResultSelector(Of TResult)(System.Func(Of TKey, System.Collections.Generic.IEnumerable(Of TElement), TResult))
   name.vb: ApplyResultSelector(Of TResult)(Func(Of TKey, Collections.Generic.IEnumerable(Of TElement), TResult))
-  commentId: M:System.Linq.Lookup`2.ApplyResultSelector``1(System.Func{`0,System.Collections.Generic.IEnumerable{`1},``0})
 - uid: System.Linq.Lookup`2.Contains(`0)
+  commentId: M:System.Linq.Lookup`2.Contains(`0)
   id: Contains(`0)
   parent: System.Linq.Lookup`2
   langs:
@@ -210,13 +205,15 @@ items:
     return:
       type: System.Boolean
       description: true if <em>key</em> is in the <xref href="System.Linq.Lookup`2" data-throw-if-not-resolved="false"></xref>; otherwise, false.
+  implements:
+  - System.Linq.ILookup{{TKey},{TElement}}.Contains({TKey})
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Linq.Lookup(Of TKey, TElement).Contains(TKey)
-  commentId: M:System.Linq.Lookup`2.Contains(`0)
 - uid: System.Linq.Lookup`2.GetEnumerator
+  commentId: M:System.Linq.Lookup`2.GetEnumerator
   id: GetEnumerator
   parent: System.Linq.Lookup`2
   langs:
@@ -248,7 +245,6 @@ items:
   modifiers.vb:
   - Public
   fullName.vb: System.Linq.Lookup(Of TKey, TElement).GetEnumerator()
-  commentId: M:System.Linq.Lookup`2.GetEnumerator
 references:
 - uid: System.Linq
   isExternal: false
@@ -347,7 +343,7 @@ references:
 - uid: System.Collections.IEnumerable
   parent: System.Collections
   isExternal: false
-  name: Collections.IEnumerable
+  name: IEnumerable
   fullName: System.Collections.IEnumerable
 - uid: System
   isExternal: false
@@ -356,20 +352,22 @@ references:
 - uid: System.Linq.ILookup`2
   parent: System.Linq
   isExternal: false
-  name: ILookup<, >
-  fullName: System.Linq.ILookup<, >
-  fullname.vb: System.Linq.ILookup(Of , )
-  name.vb: ILookup(Of , )
+  name: ILookup<TKey, TElement>
+  fullName: System.Linq.ILookup<TKey, TElement>
+  fullname.vb: System.Linq.ILookup(Of TKey, TElement)
+  name.vb: ILookup(Of TKey, TElement)
   spec.csharp:
   - uid: System.Linq.ILookup`2
     name: ILookup
     fullName: System.Linq.ILookup
   - name: <
     fullName: <
-  - {}
+  - name: TKey
+    fullName: TKey
   - name: ', '
     fullName: ', '
-  - {}
+  - name: TElement
+    fullName: TElement
   - name: '>'
     fullName: '>'
   spec.vb:
@@ -378,10 +376,12 @@ references:
     fullName: System.Linq.ILookup
   - name: '(Of '
     fullName: '(Of '
-  - {}
+  - name: TKey
+    fullName: TKey
   - name: ', '
     fullName: ', '
-  - {}
+  - name: TElement
+    fullName: TElement
   - name: )
     fullName: )
 - uid: System.Collections.Generic.IEnumerable`1
@@ -417,11 +417,50 @@ references:
   isExternal: false
   name: System.Collections.Generic
   fullName: System.Collections.Generic
+- uid: System.Linq.ILookup{{TKey},{TElement}}.Count
+  parent: System.Linq.ILookup{{TKey},{TElement}}
+  definition: System.Linq.ILookup`2.Count
+  name: Count
+  fullName: System.Linq.ILookup<TKey, TElement>.Count
+  fullname.vb: System.Linq.ILookup(Of TKey, TElement).Count
 - uid: System.Int32
   parent: System
   isExternal: false
   name: Int32
   fullName: System.Int32
+- uid: System.Linq.ILookup`2.Count
+  parent: System.Linq.ILookup`2
+  isExternal: false
+  name: Count
+  fullName: System.Linq.ILookup<TKey, TElement>.Count
+  fullname.vb: System.Linq.ILookup(Of TKey, TElement).Count
+- uid: System.Linq.ILookup{{TKey},{TElement}}.Item({TKey})
+  parent: System.Linq.ILookup{{TKey},{TElement}}
+  definition: System.Linq.ILookup`2.Item(`0)
+  name: Item[TKey]
+  fullName: System.Linq.ILookup<TKey, TElement>.Item[TKey]
+  fullname.vb: System.Linq.ILookup(Of TKey, TElement).Item(TKey)
+  name.vb: Item(TKey)
+  spec.csharp:
+  - uid: System.Linq.ILookup`2.Item(`0)
+    name: Item
+    fullName: System.Linq.ILookup<TKey, TElement>.Item
+  - name: '['
+    fullName: '['
+  - name: TKey
+    fullName: TKey
+  - name: ']'
+    fullName: ']'
+  spec.vb:
+  - uid: System.Linq.ILookup`2.Item(`0)
+    name: Item
+    fullName: System.Linq.ILookup(Of TKey, TElement).Item
+  - name: (
+    fullName: (
+  - name: TKey
+    fullName: TKey
+  - name: )
+    fullName: )
 - uid: '{TKey}'
   isExternal: false
   name: TKey
@@ -452,6 +491,33 @@ references:
     fullName: '(Of '
   - name: TElement
     fullName: TElement
+  - name: )
+    fullName: )
+- uid: System.Linq.ILookup`2.Item(`0)
+  parent: System.Linq.ILookup`2
+  isExternal: false
+  name: Item[TKey]
+  fullName: System.Linq.ILookup<TKey, TElement>.Item[TKey]
+  fullname.vb: System.Linq.ILookup(Of TKey, TElement).Item(TKey)
+  name.vb: Item(TKey)
+  spec.csharp:
+  - uid: System.Linq.ILookup`2.Item(`0)
+    name: Item
+    fullName: System.Linq.ILookup<TKey, TElement>.Item
+  - name: '['
+    fullName: '['
+  - name: TKey
+    fullName: TKey
+  - name: ']'
+    fullName: ']'
+  spec.vb:
+  - uid: System.Linq.ILookup`2.Item(`0)
+    name: Item
+    fullName: System.Linq.ILookup(Of TKey, TElement).Item
+  - name: (
+    fullName: (
+  - name: TKey
+    fullName: TKey
   - name: )
     fullName: )
 - uid: System.Func{{TKey},System.Collections.Generic.IEnumerable{{TElement}},{TResult}}
@@ -578,11 +644,63 @@ references:
   - {}
   - name: )
     fullName: )
+- uid: System.Linq.ILookup{{TKey},{TElement}}.Contains({TKey})
+  parent: System.Linq.ILookup{{TKey},{TElement}}
+  definition: System.Linq.ILookup`2.Contains(`0)
+  name: Contains(TKey)
+  fullName: System.Linq.ILookup<TKey, TElement>.Contains(TKey)
+  fullname.vb: System.Linq.ILookup(Of TKey, TElement).Contains(TKey)
+  spec.csharp:
+  - uid: System.Linq.ILookup`2.Contains(`0)
+    name: Contains
+    fullName: System.Linq.ILookup<TKey, TElement>.Contains
+  - name: (
+    fullName: (
+  - name: TKey
+    fullName: TKey
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Linq.ILookup`2.Contains(`0)
+    name: Contains
+    fullName: System.Linq.ILookup(Of TKey, TElement).Contains
+  - name: (
+    fullName: (
+  - name: TKey
+    fullName: TKey
+  - name: )
+    fullName: )
 - uid: System.Boolean
   parent: System
   isExternal: false
   name: Boolean
   fullName: System.Boolean
+- uid: System.Linq.ILookup`2.Contains(`0)
+  parent: System.Linq.ILookup`2
+  isExternal: false
+  name: Contains(TKey)
+  fullName: System.Linq.ILookup<TKey, TElement>.Contains(TKey)
+  fullname.vb: System.Linq.ILookup(Of TKey, TElement).Contains(TKey)
+  spec.csharp:
+  - uid: System.Linq.ILookup`2.Contains(`0)
+    name: Contains
+    fullName: System.Linq.ILookup<TKey, TElement>.Contains
+  - name: (
+    fullName: (
+  - name: TKey
+    fullName: TKey
+  - name: )
+    fullName: )
+  spec.vb:
+  - uid: System.Linq.ILookup`2.Contains(`0)
+    name: Contains
+    fullName: System.Linq.ILookup(Of TKey, TElement).Contains
+  - name: (
+    fullName: (
+  - name: TKey
+    fullName: TKey
+  - name: )
+    fullName: )
 - uid: System.Collections.Generic.IEnumerator{System.Linq.IGrouping{{TKey},{TElement}}}
   definition: System.Collections.Generic.IEnumerator`1
   name: Collections.Generic.IEnumerator<IGrouping<TKey, TElement>>
@@ -636,13 +754,13 @@ references:
 - uid: System.Collections.Generic.IEnumerator`1
   parent: System.Collections.Generic
   isExternal: false
-  name: Collections.Generic.IEnumerator<>
+  name: Generic.IEnumerator<>
   fullName: System.Collections.Generic.IEnumerator<>
   fullname.vb: System.Collections.Generic.IEnumerator(Of )
-  name.vb: Collections.Generic.IEnumerator(Of )
+  name.vb: Generic.IEnumerator(Of )
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerator`1
-    name: Collections.Generic.IEnumerator
+    name: Generic.IEnumerator
     fullName: System.Collections.Generic.IEnumerator
   - name: <
     fullName: <
@@ -651,7 +769,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerator`1
-    name: Collections.Generic.IEnumerator
+    name: Generic.IEnumerator
     fullName: System.Collections.Generic.IEnumerator
   - name: '(Of '
     fullName: '(Of '
