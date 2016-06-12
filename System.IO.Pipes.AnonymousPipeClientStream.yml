@@ -27,7 +27,10 @@ items:
   assemblies:
   - System.IO.Pipes
   namespace: System.IO.Pipes
-  summary: Exposes the client side of an anonymous pipe stream, which supports both synchronous and asynchronous read and write operations.
+  summary: "\n<p>Exposes the client side of an anonymous pipe stream, which supports both synchronous and asynchronous read and write operations.</p>\n"
+  remarks: "\n<p>Anonymous pipes help provide safe and secure interprocess communication between child and parent processes. The <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> class enables a child process to connect to and exchange information with a parent process.</p>\n<p>Anonymous pipes are unnamed, one-way pipes that typically transfer data between parent and child processes. Anonymous pipes are always local; they cannot be used over a network. A <xref href=\"System.IO.Pipes.PipeDirection\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.Pipes.PipeDirection.InOut\" data-throw-if-not-resolved=\"false\"></xref> is not supported because anonymous pipes are defined to be one-way.</p>\n<p>Anonymous pipes do not support <xref href=\"System.IO.Pipes.PipeTransmissionMode.Message\" data-throw-if-not-resolved=\"false\"></xref> read modes.</p>\n<p>The client side of an anonymous pipe must be created from a pipe handle provided by the server side by calling the <xref href=\"System.IO.Pipes.AnonymousPipeServerStream.GetClientHandleAsString\" data-throw-if-not-resolved=\"false\"></xref> method. The string is then passed as a parameter when creating the client process. From the client process, it is passed to the <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> constructor as the <em>pipeHandleAsString</em> parameter.</p>\n<p>For Windows XP Professional and Windows 2000 Server, a maximum of 10 pipes can simultaneously connect over the network.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates a way to send a string from a parent process to a child process by using anonymous pipes. This example creates an <xref href=\"System.IO.Pipes.AnonymousPipeServerStream\" data-throw-if-not-resolved=\"false\"></xref> object in a parent process with a <xref href=\"System.IO.Pipes.PipeDirection\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.Pipes.PipeDirection.Out\" data-throw-if-not-resolved=\"false\"></xref>. It also creates an <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> object in a child process with a <xref href=\"System.IO.Pipes.PipeDirection\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.Pipes.PipeDirection.In\" data-throw-if-not-resolved=\"false\"></xref>. The parent process then sends a user-supplied string to the child process. The string is displayed to the console.</p>\n<p>This example is for the client process, which is started by the server process. Name the resulting executable from the client code <code>pipeClient.exe</code> and copy it to the same directory as the server executable when you run this example. For the entire code example, including the code for both the pipe client and server, see How to: Use Anonymous Pipes for Local Interprocess Communication.</p>System.IO.Pipes.AnonymousPipeClientStream_Sample#01"
   syntax:
     content: 'public sealed class AnonymousPipeClientStream : PipeStream'
     content.vb: >-
@@ -88,30 +91,36 @@ items:
   assemblies:
   - System.IO.Pipes
   namespace: System.IO.Pipes
-  summary: Initializes a new instance of the <xref href="System.IO.Pipes.AnonymousPipeClientStream" data-throw-if-not-resolved="false"></xref> class from the specified handle.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> class from the specified handle.</p>\n"
+  remarks: "\n<p>A <xref href=\"System.IO.Pipes.PipeDirection\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.Pipes.PipeDirection.InOut\" data-throw-if-not-resolved=\"false\"></xref> is not supported because anonymous pipes are defined to be one-way.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates a way to send a string from a parent process to a child process by using anonymous pipes. In this example, an <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> object is created in a child process with a <xref href=\"System.IO.Pipes.PipeDirection\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.Pipes.PipeDirection.In\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.IO.Pipes.AnonymousPipeClientStream_ctorSample1#01"
   syntax:
     content: public AnonymousPipeClientStream(PipeDirection direction, SafePipeHandle safePipeHandle)
     content.vb: Public Sub New(direction As PipeDirection, safePipeHandle As SafePipeHandle)
     parameters:
     - id: direction
       type: System.IO.Pipes.PipeDirection
-      description: One of the enumeration values that determines the direction of the pipe.Anonymous pipes can only be in one direction, so <em>direction</em> cannot be set to <xref href="System.IO.Pipes.PipeDirection.InOut" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>One of the enumeration values that determines the direction of the pipe.</p>\n<p>Anonymous pipes can only be in one direction, so <em>direction</em> cannot be set to <xref href=\"System.IO.Pipes.PipeDirection.InOut\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: safePipeHandle
       type: Microsoft.Win32.SafeHandles.SafePipeHandle
-      description: A safe handle for the pipe that this <xref href="System.IO.Pipes.AnonymousPipeClientStream" data-throw-if-not-resolved="false"></xref> object will encapsulate.
+      description: "\n<p>A safe handle for the pipe that this <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> object will encapsulate.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\n<em>safePipeHandle </em>is not a valid handle."
+    description: "\n<p>\n<em>safePipeHandle </em>is not a valid handle.</p>\n"
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>safePipeHandle</em> is null."
+    description: "\n<p>\n<em>safePipeHandle</em> is <strong>null</strong>.</p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>direction</em> is set to <xref href=\"System.IO.Pipes.PipeDirection.InOut\" data-throw-if-not-resolved=\"false\"></xref>."
+    description: "\n<p>\n<em>direction</em> is set to <xref href=\"System.IO.Pipes.PipeDirection.InOut\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
-    description: An I/O error, such as a disk error, has occurred.-or-The stream has been closed.
+    description: "\n<p>An I/O error, such as a disk error, has occurred.</p>\n<p>-or-</p>\n<p>The stream has been closed.</p>\n"
+  see:
+  - type: System.Security.Permissions.SecurityAction.Demand
+    commentId: F:System.Security.Permissions.SecurityAction.Demand
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -137,27 +146,33 @@ items:
   assemblies:
   - System.IO.Pipes
   namespace: System.IO.Pipes
-  summary: Initializes a new instance of the <xref href="System.IO.Pipes.AnonymousPipeClientStream" data-throw-if-not-resolved="false"></xref> class with the specified pipe direction and a string representation of the pipe handle.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> class with the specified pipe direction and a string representation of the pipe handle.</p>\n"
+  remarks: "\n<p>A <xref href=\"System.IO.Pipes.PipeDirection\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.Pipes.PipeDirection.InOut\" data-throw-if-not-resolved=\"false\"></xref> is not supported because anonymous pipes are defined to be one-way.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates a way to send a string from a parent process to a child process by using anonymous pipes. In this example, an <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> object is created in a child process with a <xref href=\"System.IO.Pipes.PipeDirection\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.Pipes.PipeDirection.In\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.IO.Pipes.AnonymousPipeClientStream_Sample#01"
   syntax:
     content: public AnonymousPipeClientStream(PipeDirection direction, string pipeHandleAsString)
     content.vb: Public Sub New(direction As PipeDirection, pipeHandleAsString As String)
     parameters:
     - id: direction
       type: System.IO.Pipes.PipeDirection
-      description: One of the enumeration values that determines the direction of the pipe.Anonymous pipes can only be in one direction, so <em>direction</em> cannot be set to <xref href="System.IO.Pipes.PipeDirection.InOut" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>One of the enumeration values that determines the direction of the pipe.</p>\n<p>Anonymous pipes can only be in one direction, so <em>direction</em> cannot be set to <xref href=\"System.IO.Pipes.PipeDirection.InOut\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: pipeHandleAsString
       type: System.String
-      description: A string that represents the pipe handle.
+      description: "\n<p>A string that represents the pipe handle.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\n<em>pipeHandleAsString</em> is an invalid handle."
+    description: "\n<p>\n<em>pipeHandleAsString</em> is an invalid handle.</p>\n"
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>pipeHandleAsString</em> is null."
+    description: "\n<p>\n<em>pipeHandleAsString</em> is <strong>null</strong>.</p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>direction</em> is set to <xref href=\"System.IO.Pipes.PipeDirection.InOut\" data-throw-if-not-resolved=\"false\"></xref>."
+    description: "\n<p>\n<em>direction</em> is set to <xref href=\"System.IO.Pipes.PipeDirection.InOut\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  see:
+  - type: System.Security.Permissions.SecurityAction.Demand
+    commentId: F:System.Security.Permissions.SecurityAction.Demand
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -183,18 +198,24 @@ items:
   assemblies:
   - System.IO.Pipes
   namespace: System.IO.Pipes
-  summary: Initializes a new instance of the <xref href="System.IO.Pipes.AnonymousPipeClientStream" data-throw-if-not-resolved="false"></xref> class with the specified string representation of the pipe handle.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> class with the specified string representation of the pipe handle.</p>\n"
+  remarks: "\n<p>For constructors without a <xref href=\"System.IO.Pipes.PipeDirection\" data-throw-if-not-resolved=\"false\"></xref> parameter, the default direction is <xref href=\"System.IO.Pipes.PipeDirection.In\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates a way to send a string from a parent process to a child process by using anonymous pipes. In this example, an <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> object is created in a child process.</p>System.IO.Pipes.AnonymousPipeClientStream_ctorSample1#01"
   syntax:
     content: public AnonymousPipeClientStream(string pipeHandleAsString)
     content.vb: Public Sub New(pipeHandleAsString As String)
     parameters:
     - id: pipeHandleAsString
       type: System.String
-      description: A string that represents the pipe handle.
+      description: "\n<p>A string that represents the pipe handle.</p>\n"
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
-    description: "\n<em>pipeHandleAsString</em> is not a valid pipe handle."
+    description: "\n<p>\n<em>pipeHandleAsString</em> is not a valid pipe handle.</p>\n"
+  see:
+  - type: System.Security.Permissions.SecurityAction.Demand
+    commentId: F:System.Security.Permissions.SecurityAction.Demand
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -220,28 +241,31 @@ items:
   assemblies:
   - System.IO.Pipes
   namespace: System.IO.Pipes
-  summary: Sets the reading mode for the <xref href="System.IO.Pipes.AnonymousPipeClientStream" data-throw-if-not-resolved="false"></xref> object.
+  summary: "\n<p>Sets the reading mode for the <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+  remarks: "\n<p>Anonymous pipes do not support <xref href=\"System.IO.Pipes.PipeTransmissionMode.Message\" data-throw-if-not-resolved=\"false\"></xref> read mode.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates a way to send a string from a parent process to a child process by using anonymous pipes. In this example, an <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> object is created in a child process. The <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> is caught when the <xref href=\"System.IO.Pipes.AnonymousPipeClientStream.ReadMode\" data-throw-if-not-resolved=\"false\"></xref> property is set to <xref href=\"System.IO.Pipes.PipeTransmissionMode.Message\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.IO.Pipes.AnonymousPipeClientStream_Sample#01"
   syntax:
     content: public override PipeTransmissionMode ReadMode { set; }
     content.vb: Public Overrides WriteOnly Property ReadMode As PipeTransmissionMode
     parameters: []
     return:
       type: System.IO.Pipes.PipeTransmissionMode
-      description: The <xref href="System.IO.Pipes.PipeTransmissionMode" data-throw-if-not-resolved="false"></xref> for the <xref href="System.IO.Pipes.AnonymousPipeClientStream" data-throw-if-not-resolved="false"></xref> object.
+      description: "\n<p>The <xref href=\"System.IO.Pipes.PipeTransmissionMode\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   overridden: System.IO.Pipes.PipeStream.ReadMode
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: The transmission mode is not valid. For anonymous pipes, only <xref href="System.IO.Pipes.PipeTransmissionMode.Byte" data-throw-if-not-resolved="false"></xref> is supported.
+    description: "\n<p>The transmission mode is not valid. For anonymous pipes, only <xref href=\"System.IO.Pipes.PipeTransmissionMode.Byte\" data-throw-if-not-resolved=\"false\"></xref> is supported.</p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: The transmission mode is <xref href="System.IO.Pipes.PipeTransmissionMode.Message" data-throw-if-not-resolved="false"></xref>.
+    description: "\n<p>The transmission mode is <xref href=\"System.IO.Pipes.PipeTransmissionMode.Message\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
-    description: The connection is broken or another I/O error occurs.
+    description: "\n<p>The connection is broken or another I/O error occurs.</p>\n"
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
-    description: The pipe is closed.
+    description: "\n<p>The pipe is closed.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -271,14 +295,17 @@ items:
   assemblies:
   - System.IO.Pipes
   namespace: System.IO.Pipes
-  summary: Gets the pipe transmission mode supported by the current pipe.
+  summary: "\n<p>Gets the pipe transmission mode supported by the current pipe.</p>\n"
+  remarks: "\n<p>Anonymous pipes do not support <xref href=\"System.IO.Pipes.PipeTransmissionMode.Message\" data-throw-if-not-resolved=\"false\"></xref> read mode.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates a way to send a string from a parent process to a child process by using anonymous pipes. In this example, an <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> object is created in a child process and the <xref href=\"System.IO.Pipes.AnonymousPipeClientStream.TransmissionMode\" data-throw-if-not-resolved=\"false\"></xref> is displayed to the console.</p>System.IO.Pipes.AnonymousPipeClientStream_Sample#01"
   syntax:
     content: public override PipeTransmissionMode TransmissionMode { get; }
     content.vb: Public Overrides ReadOnly Property TransmissionMode As PipeTransmissionMode
     parameters: []
     return:
       type: System.IO.Pipes.PipeTransmissionMode
-      description: The <xref href="System.IO.Pipes.PipeTransmissionMode" data-throw-if-not-resolved="false"></xref> supported by the current pipe.
+      description: "\n<p>The <xref href=\"System.IO.Pipes.PipeTransmissionMode\" data-throw-if-not-resolved=\"false\"></xref> supported by the current pipe.</p>\n"
   overridden: System.IO.Pipes.PipeStream.TransmissionMode
   modifiers.csharp:
   - public
@@ -309,7 +336,7 @@ items:
   assemblies:
   - System.IO.Pipes
   namespace: System.IO.Pipes
-  summary: Releases unmanaged resources and performs other cleanup operations before the <xref href="System.IO.Pipes.AnonymousPipeClientStream" data-throw-if-not-resolved="false"></xref> instance is reclaimed by garbage collection.
+  summary: "\n<p>Releases unmanaged resources and performs other cleanup operations before the <xref href=\"System.IO.Pipes.AnonymousPipeClientStream\" data-throw-if-not-resolved=\"false\"></xref> instance is reclaimed by garbage collection.</p>\n"
   syntax:
     content: protected void Finalize()
     content.vb: Protected Sub Finalize

@@ -5,8 +5,10 @@ items:
   parent: System.ServiceProcess
   children:
   - System.ServiceProcess.ServiceStartMode.Automatic
+  - System.ServiceProcess.ServiceStartMode.Boot
   - System.ServiceProcess.ServiceStartMode.Disabled
   - System.ServiceProcess.ServiceStartMode.Manual
+  - System.ServiceProcess.ServiceStartMode.System
   langs:
   - csharp
   - vb
@@ -24,10 +26,16 @@ items:
   assemblies:
   - System.ServiceProcess.ServiceController
   namespace: System.ServiceProcess
-  summary: Indicates the start mode of the service.
+  summary: "\n<p>Indicates the start mode of the service.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.ServiceProcess.ServiceStartMode\" data-throw-if-not-resolved=\"false\"></xref> is used by the service installer to indicate whether the new service should be disabled at system startup, whether the system should start the service automatically at system startup, or whether the service should be started manually by a user or application. It is also used by the <xref href=\"System.ServiceProcess.ServiceController.StartType\" data-throw-if-not-resolved=\"false\"></xref> property to indicate how a particular service starts. </p>\n"
   syntax:
     content: 'public enum ServiceStartMode : int'
     content.vb: Public Enum ServiceStartMode As Integer
+  seealso:
+  - type: System.ServiceProcess.ServiceInstaller.StartType
+    commentId: P:System.ServiceProcess.ServiceInstaller.StartType
+  - type: System.ServiceProcess.ServiceInstaller
+    commentId: T:System.ServiceProcess.ServiceInstaller
   modifiers.csharp:
   - public
   - enum
@@ -55,10 +63,43 @@ items:
   assemblies:
   - System.ServiceProcess.ServiceController
   namespace: System.ServiceProcess
-  summary: Indicates that the service is to be started (or was started) by the operating system, at system start-up. If an automatically started service depends on a manually started service, the manually started service is also started automatically at system startup.
+  summary: "\n<p>Indicates that the service is to be started (or was started) by the operating system, at system start-up. If an automatically started service depends on a manually started service, the manually started service is also started automatically at system startup.</p>\n"
   syntax:
     content: Automatic = null
     content.vb: Automatic = Nothing
+    return:
+      type: System.ServiceProcess.ServiceStartMode
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: System.ServiceProcess.ServiceStartMode.Boot
+  commentId: F:System.ServiceProcess.ServiceStartMode.Boot
+  id: Boot
+  parent: System.ServiceProcess.ServiceStartMode
+  langs:
+  - csharp
+  - vb
+  name: Boot
+  fullName: System.ServiceProcess.ServiceStartMode.Boot
+  type: Field
+  source:
+    remote:
+      path: src/System.ServiceProcess.ServiceController/src/System/ServiceProcess/ServiceStartMode.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: Boot
+    path: src/System.ServiceProcess.ServiceController/src/System/ServiceProcess/ServiceStartMode.cs
+    startLine: 11
+  assemblies:
+  - System.ServiceProcess.ServiceController
+  namespace: System.ServiceProcess
+  summary: "\n<p>Indicates that the service is a device driver started by the system loader. This value is valid only for device drivers. </p>\n"
+  syntax:
+    content: Boot = null
+    content.vb: Boot = Nothing
     return:
       type: System.ServiceProcess.ServiceStartMode
   modifiers.csharp:
@@ -88,7 +129,7 @@ items:
   assemblies:
   - System.ServiceProcess.ServiceController
   namespace: System.ServiceProcess
-  summary: Indicates that the service is disabled, so that it cannot be started by a user or application.
+  summary: "\n<p>Indicates that the service is disabled, so that it cannot be started by a user or application.</p>\n"
   syntax:
     content: Disabled = null
     content.vb: Disabled = Nothing
@@ -121,10 +162,43 @@ items:
   assemblies:
   - System.ServiceProcess.ServiceController
   namespace: System.ServiceProcess
-  summary: Indicates that the service is started only manually, by a user (using the Service Control Manager) or by an application.
+  summary: "\n<p>Indicates that the service is started only manually, by a user (using the Service Control Manager) or by an application.</p>\n"
   syntax:
     content: Manual = null
     content.vb: Manual = Nothing
+    return:
+      type: System.ServiceProcess.ServiceStartMode
+  modifiers.csharp:
+  - public
+  - const
+  modifiers.vb:
+  - Public
+  - Const
+- uid: System.ServiceProcess.ServiceStartMode.System
+  commentId: F:System.ServiceProcess.ServiceStartMode.System
+  id: System
+  parent: System.ServiceProcess.ServiceStartMode
+  langs:
+  - csharp
+  - vb
+  name: System
+  fullName: System.ServiceProcess.ServiceStartMode.System
+  type: Field
+  source:
+    remote:
+      path: src/System.ServiceProcess.ServiceController/src/System/ServiceProcess/ServiceStartMode.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: System
+    path: src/System.ServiceProcess.ServiceController/src/System/ServiceProcess/ServiceStartMode.cs
+    startLine: 12
+  assemblies:
+  - System.ServiceProcess.ServiceController
+  namespace: System.ServiceProcess
+  summary: "\n<p>Indicates that the service is a device driver started by the <strong>IOInitSystem</strong> function. This value is valid only for device drivers. </p>\n"
+  syntax:
+    content: System = null
+    content.vb: System = Nothing
     return:
       type: System.ServiceProcess.ServiceStartMode
   modifiers.csharp:

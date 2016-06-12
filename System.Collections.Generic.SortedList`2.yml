@@ -44,7 +44,10 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: 'Represents a collection of key/value pairs that are sorted by key based on the associated <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref> implementation. '
+  summary: "\n<p>Represents a collection of key/value pairs that are sorted by key based on the associated <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> implementation. </p>\n"
+  remarks: "\n<p>The <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> generic class is an array of key/value pairs with O(log <em>n</em>) retrieval, where n is the number of elements in the dictionary. In this, it is similar to the <xref href=\"System.Collections.Generic.SortedDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> generic class. The two classes have similar object models, and both have O(log <em>n</em>) retrieval. Where the two classes differ is in memory use and speed of insertion and removal:</p>\n<ul><li>\n<p>\n<xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> uses less memory than <xref href=\"System.Collections.Generic.SortedDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</li><li>\n<p>\n<xref href=\"System.Collections.Generic.SortedDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> has faster insertion and removal operations for unsorted data, O(log <em>n</em>) as opposed to O(<em>n</em>) for <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</li><li>\n<p>If the list is populated all at once from sorted data, <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> is faster than <xref href=\"System.Collections.Generic.SortedDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</li></ul>\n<p>Another difference between the <xref href=\"System.Collections.Generic.SortedDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> classes is that <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> supports efficient indexed retrieval of keys and values through the collections returned by the <xref href=\"System.Collections.Generic.SortedList`2.Keys\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Collections.Generic.SortedList`2.Values\" data-throw-if-not-resolved=\"false\"></xref> properties. It is not necessary to regenerate the lists when the properties are accessed, because the lists are just wrappers for the internal arrays of keys and values. The following code shows the use of the <xref href=\"System.Collections.Generic.SortedList`2.Values\" data-throw-if-not-resolved=\"false\"></xref> property for indexed retrieval of values from a sorted list of strings:</p>Generic.SortedList#11<p><xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> is implemented as an array of key/value pairs, sorted by the key.  Each element can be retrieved as a <xref href=\"System.Collections.Generic.KeyValuePair`2\" data-throw-if-not-resolved=\"false\"></xref> object.</p><p>Key objects must be immutable as long as they are used as keys in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>. Every key in a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> must be unique. A key cannot be <strong>null</strong>, but a value can be, if the type of values in the list, <em>TValue</em>, is a reference type.</p><p><xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> requires a comparer implementation to sort and to perform comparisons.  The default comparer <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the key type <em>TKey</em> implements <xref href=\"System.IComparable`1\" data-throw-if-not-resolved=\"false\"></xref> and uses that implementation, if available.  If not, <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the key type <em>TKey</em> implements <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref>.  If the key type <em>TKey</em> does not implement either interface, you can specify a <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> implementation in a constructor overload that accepts a <em>comparer</em> parameter.</p><p>The capacity of a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> can hold. As elements are added to a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>, the capacity is automatically increased as required by reallocating the internal array. The capacity can be decreased by calling <xref href=\"System.Collections.Generic.SortedList`2.TrimExcess\" data-throw-if-not-resolved=\"false\"></xref> or by setting the <xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> property explicitly. Decreasing the capacity reallocates memory and copies all the elements in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p><p>For very large <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> objects, you can increase the maximum capacity to 2 billion elements on a 64-bit system by setting the <strong>enabled</strong> attribute of the  configuration element to <strong>true</strong> in the run-time environment.</p><p>The <strong>foreach</strong> statement of the C# language (<strong>for each</strong> in C++, <strong>For Each</strong> in Visual Basic) returns an object of the type of the elements in the collection. Since the elements of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> are key/value pairs, the element type is not the type of the key or the type of the value. Instead, the element type is <xref href=\"System.Collections.Generic.KeyValuePair`2\" data-throw-if-not-resolved=\"false\"></xref>. For example:</p>Generic.SortedList#12<p>The <strong>foreach</strong> statement is a wrapper around the enumerator, which only allows reading from, not writing to, the collection.</p>"
+  example:
+  - "\n<p>The following code example creates an empty <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> of strings with string keys and uses the <xref href=\"System.Collections.Generic.SortedList`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref> method to add some elements. The example demonstrates that the <xref href=\"System.Collections.Generic.SortedList`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref> method throws an <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref> when attempting to add a duplicate key. </p>\n<p>The example uses the <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property (the indexer in C#) to retrieve values, demonstrating that a <xref href=\"System.Collections.Generic.KeyNotFoundException\" data-throw-if-not-resolved=\"false\"></xref> is thrown when a requested key is not present, and showing that the value associated with a key can be replaced. </p>\n<p>The example shows how to use the <xref href=\"System.Collections.Generic.SortedList`2.TryGetValue(`0,`1@)\" data-throw-if-not-resolved=\"false\"></xref> method as a more efficient way to retrieve values if a program often must try key values that are not in the sorted list, and it shows how to use the <xref href=\"System.Collections.Generic.SortedList`2.ContainsKey(`0)\" data-throw-if-not-resolved=\"false\"></xref> method to test whether a key exists before calling the <xref href=\"System.Collections.Generic.SortedList`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The example shows how to enumerate the keys and values in the sorted list and how to enumerate the keys and values alone using the <xref href=\"System.Collections.Generic.SortedList`2.Keys\" data-throw-if-not-resolved=\"false\"></xref> property and the <xref href=\"System.Collections.Generic.SortedList`2.Values\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>Finally, the example demonstrates the <xref href=\"System.Collections.Generic.SortedList`2.Remove(`0)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>Generic.SortedList#1"
   syntax:
     content: 'public class SortedList<TKey, TValue> : ICollection<KeyValuePair<TKey, TValue>>, IDictionary<TKey, TValue>, IEnumerable<KeyValuePair<TKey, TValue>>, IReadOnlyCollection<KeyValuePair<TKey, TValue>>, IReadOnlyDictionary<TKey, TValue>, ICollection, IDictionary, IEnumerable'
     content.vb: >-
@@ -53,9 +56,20 @@ items:
           Implements IDictionary(Of TKey, TValue), IEnumerable(Of KeyValuePair(Of TKey, TValue)), IReadOnlyCollection(Of KeyValuePair(Of TKey, TValue)), IReadOnlyDictionary(Of TKey, TValue), ICollection, IDictionary, IEnumerable
     typeParameters:
     - id: TKey
-      description: The type of keys in the collection.
+      description: "\n<p>The type of keys in the collection.</p>\n"
     - id: TValue
-      description: The type of values in the collection.
+      description: "\n<p>The type of values in the collection.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.IDictionary`2
+    commentId: T:System.Collections.Generic.IDictionary`2
+  - type: System.Collections.Generic.Dictionary`2
+    commentId: T:System.Collections.Generic.Dictionary`2
+  - type: System.Collections.Generic.SortedDictionary`2
+    commentId: T:System.Collections.Generic.SortedDictionary`2
+  - type: System.Collections.Generic.KeyValuePair`2
+    commentId: T:System.Collections.Generic.KeyValuePair`2
+  - type: System.Collections.Generic.IComparer`1
+    commentId: T:System.Collections.Generic.IComparer`1
   inheritance:
   - System.Object
   implements:
@@ -95,10 +109,20 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Initializes a new instance of the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> class that is empty, has the default initial capacity, and uses the default <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the default initial capacity, and uses the default <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>Every key in a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> must be unique according to the default comparer.</p>\n<p>This constructor uses the default value for the initial capacity of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>. To set the initial capacity, use the <xref href=\"System.Collections.Generic.SortedList`2.#ctor(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor. If the final size of the collection can be estimated, specifying the initial capacity eliminates the need to perform a number of resizing operations while adding elements to the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This constructor uses the default comparer for <em>TKey</em>. To specify a comparer, use the <xref href=\"System.Collections.Generic.SortedList`2.#ctor(System.Collections.Generic.IComparer{`0})\" data-throw-if-not-resolved=\"false\"></xref> constructor. The default comparer <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the key type <em>TKey</em> implements <xref href=\"System.IComparable`1\" data-throw-if-not-resolved=\"false\"></xref> and uses that implementation, if available.  If not, <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the key type <em>TKey</em> implements <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref>.  If the key type <em>TKey</em> does not implement either interface, you can specify a <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> implementation in a constructor overload that accepts a <em>comparer</em> parameter.</p>\n<p>This constructor is an O(1) operation.</p>\n"
+  example:
+  - "\n<p>The following code example creates an empty <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> of strings with string keys and uses the <xref href=\"System.Collections.Generic.SortedList`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref> method to add some elements. The example demonstrates that the <xref href=\"System.Collections.Generic.SortedList`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref> method throws an <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref> when attempting to add a duplicate key. </p>\n<p>This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Generic.SortedList#2"
   syntax:
     content: public SortedList()
     content.vb: Public Sub New
+  seealso:
+  - type: System.Collections.Generic.Comparer`1.Default
+    commentId: P:System.Collections.Generic.Comparer`1.Default
+  - type: System.IComparable`1
+    commentId: T:System.IComparable`1
+  - type: System.IComparable
+    commentId: T:System.IComparable
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -125,14 +149,26 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Initializes a new instance of the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> class that is empty, has the default initial capacity, and uses the specified <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the default initial capacity, and uses the specified <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>Every key in a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> must be unique according to the specified comparer.</p>\n<p>This constructor uses the default value for the initial capacity of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>. To set the initial capacity, use the <xref href=\"System.Collections.Generic.SortedList`2.#ctor(System.Int32,System.Collections.Generic.IComparer{`0})\" data-throw-if-not-resolved=\"false\"></xref> constructor. If the final size of the collection can be estimated, specifying the initial capacity eliminates the need to perform a number of resizing operations while adding elements to the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This constructor is an O(1) operation.</p>\n"
+  example:
+  - "\n<p>The following code example creates a sorted list with a case-insensitive comparer for the current culture. The example adds four elements, some with lower-case keys and some with upper-case keys. The example then attempts to add an element with a key that differs from an existing key only by case, catches the resulting exception, and displays an error message. Finally, the example displays the elements in case-insensitive sort order.</p>Generic.SortedList.ctor_IComp#1"
   syntax:
     content: public SortedList(IComparer<TKey> comparer)
     content.vb: Public Sub New(comparer As IComparer(Of TKey))
     parameters:
     - id: comparer
       type: System.Collections.Generic.IComparer{{TKey}}
-      description: The <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref> implementation to use when comparing keys.-or-null to use the default <xref href="System.Collections.Generic.Comparer`1" data-throw-if-not-resolved="false"></xref> for the type of the key.
+      description: "\n<p>The <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> implementation to use when comparing keys.</p>\n<p>-or-</p>\n<p>\n<strong>null</strong> to use the default <xref href=\"System.Collections.Generic.Comparer`1\" data-throw-if-not-resolved=\"false\"></xref> for the type of the key.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.IComparer`1
+    commentId: T:System.Collections.Generic.IComparer`1
+  - type: System.Collections.Generic.Comparer`1.Default
+    commentId: P:System.Collections.Generic.Comparer`1.Default
+  - type: System.IComparable`1
+    commentId: T:System.IComparable`1
+  - type: System.IComparable
+    commentId: T:System.IComparable
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -160,21 +196,33 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Initializes a new instance of the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> class that contains elements copied from the specified <xref href="System.Collections.Generic.IDictionary`2" data-throw-if-not-resolved="false"></xref>, has sufficient capacity to accommodate the number of elements copied, and uses the default <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class that contains elements copied from the specified <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>, has sufficient capacity to accommodate the number of elements copied, and uses the default <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>Every key in a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> must be unique according to the default comparer; likewise, every key in the source <em>dictionary</em> must also be unique according to the default comparer.</p>\n<p>The capacity of the new <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> is set to the number of elements in <em>dictionary</em>, so no resizing takes place while the list is being populated. </p>\n<p>This constructor uses the default comparer for <em>TKey</em>. To specify a comparer, use the <xref href=\"System.Collections.Generic.SortedList`2.#ctor(System.Collections.Generic.IDictionary{`0,`1},System.Collections.Generic.IComparer{`0})\" data-throw-if-not-resolved=\"false\"></xref> constructor. The default comparer <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the key type <em>TKey</em> implements <xref href=\"System.IComparable`1\" data-throw-if-not-resolved=\"false\"></xref> and uses that implementation, if available.  If not, <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the key type <em>TKey</em> implements <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref>.  If the key type <em>TKey</em> does not implement either interface, you can specify a <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> implementation in a constructor overload that accepts a <em>comparer</em> parameter.</p>\n<p>If the data in <em>dictionary</em> are sorted, this constructor is an O(<em>n</em>) operation, where <em>n</em> is the number of elements in <em>dictionary</em>. Otherwise it is an O(<em>n</em>*<em>n</em>) operation.</p>\n"
+  example:
+  - "\n<p>The following code example shows how to use <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> to create a sorted copy of the information in a <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref>, by passing the <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref> to the <xref href=\"System.Collections.Generic.SortedList`2.#ctor(System.Collections.Generic.IDictionary{`0,`1})\" data-throw-if-not-resolved=\"false\"></xref> constructor.</p>Generic.SortedList.ctor_IDic#1"
   syntax:
     content: public SortedList(IDictionary<TKey, TValue> dictionary)
     content.vb: Public Sub New(dictionary As IDictionary(Of TKey, TValue))
     parameters:
     - id: dictionary
       type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
-      description: The <xref href="System.Collections.Generic.IDictionary`2" data-throw-if-not-resolved="false"></xref> whose elements are copied to the new <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> whose elements are copied to the new <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>dictionary</em> is null."
+    description: "\n<p>\n<em>dictionary</em> is <strong>null</strong>.</p>\n"
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\n<em>dictionary</em> contains one or more duplicate keys."
+    description: "\n<p>\n<em>dictionary</em> contains one or more duplicate keys.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.IDictionary`2
+    commentId: T:System.Collections.Generic.IDictionary`2
+  - type: System.Collections.Generic.Comparer`1.Default
+    commentId: P:System.Collections.Generic.Comparer`1.Default
+  - type: System.IComparable`1
+    commentId: T:System.IComparable`1
+  - type: System.IComparable
+    commentId: T:System.IComparable
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -202,24 +250,38 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Initializes a new instance of the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> class that contains elements copied from the specified <xref href="System.Collections.Generic.IDictionary`2" data-throw-if-not-resolved="false"></xref>, has sufficient capacity to accommodate the number of elements copied, and uses the specified <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class that contains elements copied from the specified <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>, has sufficient capacity to accommodate the number of elements copied, and uses the specified <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>Every key in a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> must be unique according to the specified comparer; likewise, every key in the source <em>dictionary</em> must also be unique according to the specified comparer.</p>\n<p>The capacity of the new <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> is set to the number of elements in <em>dictionary</em>, so no resizing takes place while the list is being populated. </p>\n<p>If the data in <em>dictionary</em> are sorted, this constructor is an O(<em>n</em>) operation, where <em>n</em> is the number of elements in <em>dictionary</em>. Otherwise it is an O(<em>n</em>*<em>n</em>) operation.</p>\n"
+  example:
+  - "\n<p>The following code example shows how to use <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> to create a case-insensitive sorted copy of the information in a case-insensitive <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref>, by passing the <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref> to the <xref href=\"System.Collections.Generic.SortedList`2.#ctor(System.Collections.Generic.IDictionary{`0,`1},System.Collections.Generic.IComparer{`0})\" data-throw-if-not-resolved=\"false\"></xref> constructor. In this example, the case-insensitive comparers are for the current culture.</p>Generic.SortedList.ctor_IDicIComp#1"
   syntax:
     content: public SortedList(IDictionary<TKey, TValue> dictionary, IComparer<TKey> comparer)
     content.vb: Public Sub New(dictionary As IDictionary(Of TKey, TValue), comparer As IComparer(Of TKey))
     parameters:
     - id: dictionary
       type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
-      description: The <xref href="System.Collections.Generic.IDictionary`2" data-throw-if-not-resolved="false"></xref> whose elements are copied to the new <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> whose elements are copied to the new <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: comparer
       type: System.Collections.Generic.IComparer{{TKey}}
-      description: The <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref> implementation to use when comparing keys.-or-null to use the default <xref href="System.Collections.Generic.Comparer`1" data-throw-if-not-resolved="false"></xref> for the type of the key.
+      description: "\n<p>The <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> implementation to use when comparing keys.</p>\n<p>-or-</p>\n<p>\n<strong>null</strong> to use the default <xref href=\"System.Collections.Generic.Comparer`1\" data-throw-if-not-resolved=\"false\"></xref> for the type of the key.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>dictionary</em> is null."
+    description: "\n<p>\n<em>dictionary</em> is <strong>null</strong>.</p>\n"
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\n<em>dictionary</em> contains one or more duplicate keys."
+    description: "\n<p>\n<em>dictionary</em> contains one or more duplicate keys.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.IDictionary`2
+    commentId: T:System.Collections.Generic.IDictionary`2
+  - type: System.Collections.Generic.IComparer`1
+    commentId: T:System.Collections.Generic.IComparer`1
+  - type: System.Collections.Generic.Comparer`1.Default
+    commentId: P:System.Collections.Generic.Comparer`1.Default
+  - type: System.IComparable`1
+    commentId: T:System.IComparable`1
+  - type: System.IComparable
+    commentId: T:System.IComparable
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -247,18 +309,30 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Initializes a new instance of the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> class that is empty, has the specified initial capacity, and uses the default <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the specified initial capacity, and uses the default <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>Every key in a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> must be unique according to the default comparer.</p>\n<p>The capacity of a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements that the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> can hold before resizing. As elements are added to a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>, the capacity is automatically increased as required by reallocating the internal array.</p>\n<p>If the size of the collection can be estimated, specifying the initial capacity eliminates the need to perform a number of resizing operations while adding elements to the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The capacity can be decreased by calling <xref href=\"System.Collections.Generic.SortedList`2.TrimExcess\" data-throw-if-not-resolved=\"false\"></xref> or by setting the <xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> property explicitly. Decreasing the capacity reallocates memory and copies all the elements in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This constructor uses the default comparer for <em>TKey</em>. To specify a comparer, use the <xref href=\"System.Collections.Generic.SortedList`2.#ctor(System.Int32,System.Collections.Generic.IComparer{`0})\" data-throw-if-not-resolved=\"false\"></xref> constructor. The default comparer <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the key type <em>TKey</em> implements <xref href=\"System.IComparable`1\" data-throw-if-not-resolved=\"false\"></xref> and uses that implementation, if available.  If not, <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the key type <em>TKey</em> implements <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref>.  If the key type <em>TKey</em> does not implement either interface, you can specify a <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> implementation in a constructor overload that accepts a <em>comparer</em> parameter.</p>\n<p>This constructor is an O(<em>n</em>) operation, where <em>n</em> is <em>capacity</em>.</p>\n"
+  example:
+  - "\n<p>The following code example creates a sorted list with an initial capacity of 4 and populates it with 4 entries.</p>Generic.SortedList.ctor_Int32#1"
   syntax:
     content: public SortedList(int capacity)
     content.vb: Public Sub New(capacity As Integer)
     parameters:
     - id: capacity
       type: System.Int32
-      description: The initial number of elements that the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> can contain.
+      description: "\n<p>The initial number of elements that the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> can contain.</p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<em>capacity</em> is less than zero."
+    description: "\n<p>\n<em>capacity</em> is less than zero.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.Capacity
+    commentId: P:System.Collections.Generic.SortedList`2.Capacity
+  - type: System.Collections.Generic.Comparer`1.Default
+    commentId: P:System.Collections.Generic.Comparer`1.Default
+  - type: System.IComparable`1
+    commentId: T:System.IComparable`1
+  - type: System.IComparable
+    commentId: T:System.IComparable
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -285,21 +359,35 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Initializes a new instance of the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> class that is empty, has the specified initial capacity, and uses the specified <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the specified initial capacity, and uses the specified <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>Every key in a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> must be unique according to the specified comparer.</p>\n<p>The capacity of a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements that the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> can hold before resizing. As elements are added to a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>, the capacity is automatically increased as required by reallocating the internal array.</p>\n<p>If the size of the collection can be estimated, specifying the initial capacity eliminates the need to perform a number of resizing operations while adding elements to the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The capacity can be decreased by calling <xref href=\"System.Collections.Generic.SortedList`2.TrimExcess\" data-throw-if-not-resolved=\"false\"></xref> or by setting the <xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> property explicitly. Decreasing the capacity reallocates memory and copies all the elements in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This constructor is an O(<em>n</em>) operation, where <em>n</em> is <em>capacity</em>.</p>\n"
+  example:
+  - "\n<p>The following code example creates a sorted list with an initial capacity of 5 and a case-insensitive comparer for the current culture. The example adds four elements, some with lower-case keys and some with upper-case keys. The example then attempts to add an element with a key that differs from an existing key only by case, catches the resulting exception, and displays an error message. Finally, the example displays the elements in case-insensitive sort order.</p>Generic.SortedList.ctor_Int32IComp#1"
   syntax:
     content: public SortedList(int capacity, IComparer<TKey> comparer)
     content.vb: Public Sub New(capacity As Integer, comparer As IComparer(Of TKey))
     parameters:
     - id: capacity
       type: System.Int32
-      description: The initial number of elements that the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> can contain.
+      description: "\n<p>The initial number of elements that the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> can contain.</p>\n"
     - id: comparer
       type: System.Collections.Generic.IComparer{{TKey}}
-      description: The <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref> implementation to use when comparing keys.-or-null to use the default <xref href="System.Collections.Generic.Comparer`1" data-throw-if-not-resolved="false"></xref> for the type of the key.
+      description: "\n<p>The <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> implementation to use when comparing keys.</p>\n<p>-or-</p>\n<p>\n<strong>null</strong> to use the default <xref href=\"System.Collections.Generic.Comparer`1\" data-throw-if-not-resolved=\"false\"></xref> for the type of the key.</p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<em>capacity</em> is less than zero."
+    description: "\n<p>\n<em>capacity</em> is less than zero.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.Capacity
+    commentId: P:System.Collections.Generic.SortedList`2.Capacity
+  - type: System.Collections.Generic.IComparer`1
+    commentId: T:System.Collections.Generic.IComparer`1
+  - type: System.Collections.Generic.Comparer`1.Default
+    commentId: P:System.Collections.Generic.Comparer`1.Default
+  - type: System.IComparable`1
+    commentId: T:System.IComparable`1
+  - type: System.IComparable
+    commentId: T:System.IComparable
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -327,21 +415,27 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Gets or sets the number of elements that the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> can contain.
+  summary: "\n<p>Gets or sets the number of elements that the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> can contain.</p>\n"
+  remarks: "\n<p>\n<xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements that the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> can store. <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements that are actually in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is always greater than or equal to <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>. If <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref> exceeds <xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> while adding elements, the capacity is increased by automatically reallocating the internal array before copying the old elements and adding the new elements.</p>\n<p>The capacity can be decreased by calling <xref href=\"System.Collections.Generic.SortedList`2.TrimExcess\" data-throw-if-not-resolved=\"false\"></xref> or by setting the <xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> property explicitly. When the value of <xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is set explicitly, the internal array is also reallocated to accommodate the specified capacity.</p>\n<p>Retrieving the value of this property is an O(1) operation; setting the property is an O(<em>n</em>) operation, where <em>n</em> is the new capacity.</p>\n"
   syntax:
     content: public int Capacity { get; set; }
     content.vb: Public Property Capacity As Integer
     parameters: []
     return:
       type: System.Int32
-      description: The number of elements that the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> can contain.
+      description: "\n<p>The number of elements that the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> can contain.</p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is set to a value that is less than <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>."
+    description: "\n<p>\n<xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is set to a value that is less than <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   - type: System.OutOfMemoryException
     commentId: T:System.OutOfMemoryException
-    description: There is not enough memory available on the system.
+    description: "\n<p>There is not enough memory available on the system.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.Count
+    commentId: P:System.Collections.Generic.SortedList`2.Count
+  - type: System.Collections.Generic.SortedList`2.TrimExcess
+    commentId: M:System.Collections.Generic.SortedList`2.TrimExcess
   modifiers.csharp:
   - public
   - get
@@ -370,14 +464,15 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: 'Gets the <xref href="System.Collections.Generic.IComparer`1" data-throw-if-not-resolved="false"></xref> for the sorted list. '
+  summary: "\n<p>Gets the <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> for the sorted list. </p>\n"
+  remarks: "\n<p>Retrieving the value of this property is an O(1) operation.</p>\n"
   syntax:
     content: public IComparer<TKey> Comparer { get; }
     content.vb: Public ReadOnly Property Comparer As IComparer(Of TKey)
     parameters: []
     return:
       type: System.Collections.Generic.IComparer{{TKey}}
-      description: The <xref href="System.IComparable`1" data-throw-if-not-resolved="false"></xref> for the current <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The <xref href=\"System.IComparable`1\" data-throw-if-not-resolved=\"false\"></xref> for the current <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -406,14 +501,18 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Gets the number of key/value pairs contained in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Gets the number of key/value pairs contained in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>\n<xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements that the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> can store. <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements that are actually in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is always greater than or equal to <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>. If <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref> exceeds <xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> while adding elements, the capacity is increased by automatically reallocating the internal array before copying the old elements and adding the new elements.</p>\n<p>Retrieving the value of this property is an O(1) operation.</p>\n"
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
     parameters: []
     return:
       type: System.Int32
-      description: The number of key/value pairs contained in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The number of key/value pairs contained in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.Capacity
+    commentId: P:System.Collections.Generic.SortedList`2.Capacity
   modifiers.csharp:
   - public
   - get
@@ -442,24 +541,30 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Gets or sets the value associated with the specified key.
+  summary: "\n<p>Gets or sets the value associated with the specified key.</p>\n"
+  remarks: "\n<p>This property provides the ability to access a specific element in the collection by using the following syntax: <code>myCollection[key]</code>.</p>\n<p>A key cannot be <strong>null</strong>, but a value can be, if the type of values in the list, <em>TValue</em>, is a reference type.</p>\n<p>If the key is not found when a value is being retrieved, <xref href=\"System.Collections.Generic.KeyNotFoundException\" data-throw-if-not-resolved=\"false\"></xref> is thrown. If the key is not found when a value is being set, the key and value are added.</p>\n<p>You can also use the <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property to add new elements by setting the value of a key that does not exist in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>; for example, <code>myCollection[\"myNonexistentKey\"] = myValue</code>. However, if the specified key already exists in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>, setting the <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property overwrites the old value. In contrast, the <xref href=\"System.Collections.Generic.SortedList`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref> method does not modify existing elements.</p>\n<p>The C# language uses the  keyword to define the indexers instead of implementing the <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property. Visual Basic implements <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> as a default property, which provides the same indexing functionality.</p>\n<p>Retrieving the value of this property is an O(log <em>n</em>) operation, where n is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>. Setting the property is an O(log <em>n</em>) operation if the key is already in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>. If the key is not in the list, setting the property is an O(<em>n</em>) operation for unsorted data, or O(log <em>n</em>) if the new element is added at the end of the list. If insertion causes a resize, the operation is O(<em>n</em>).</p>\n"
+  example:
+  - "\n<p>The following code example uses the <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property (the indexer in C#) to retrieve values, demonstrating that a <xref href=\"System.Collections.Generic.KeyNotFoundException\" data-throw-if-not-resolved=\"false\"></xref> is thrown when a requested key is not present, and showing that the value associated with a key can be replaced. </p>\n<p>The example also shows how to use the <xref href=\"System.Collections.Generic.SortedList`2.TryGetValue(`0,`1@)\" data-throw-if-not-resolved=\"false\"></xref> method as a more efficient way to retrieve values if a program often must try key values that are not in the sorted list.</p>\n<p>This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Generic.SortedList#3,4,5"
   syntax:
     content: public TValue this[TKey key] { get; set; }
     content.vb: Public Property Item(key As TKey) As TValue
     parameters:
     - id: key
       type: '{TKey}'
-      description: The key whose value to get or set.
+      description: "\n<p>The key whose value to get or set.</p>\n"
     return:
       type: '{TValue}'
-      description: The value associated with the specified key. If the specified key is not found, a get operation throws a <xref href="System.Collections.Generic.KeyNotFoundException" data-throw-if-not-resolved="false"></xref> and a set operation creates a new element using the specified key.
+      description: "\n<p>The value associated with the specified key. If the specified key is not found, a get operation throws a <xref href=\"System.Collections.Generic.KeyNotFoundException\" data-throw-if-not-resolved=\"false\"></xref> and a set operation creates a new element using the specified key.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>key</em> is null."
+    description: "\n<p>\n<em>key</em> is <strong>null</strong>.</p>\n"
   - type: System.Collections.Generic.KeyNotFoundException
     commentId: T:System.Collections.Generic.KeyNotFoundException
-    description: The property is retrieved and <em>key</em> does not exist in the collection.
+    description: "\n<p>The property is retrieved and <em>key</em> does not exist in the collection.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.Add(`0,`1)
+    commentId: M:System.Collections.Generic.SortedList`2.Add(`0,`1)
   modifiers.csharp:
   - public
   - get
@@ -489,14 +594,22 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Gets a collection containing the keys in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>, in sorted order.
+  summary: "\n<p>Gets a collection containing the keys in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>, in sorted order.</p>\n"
+  remarks: "\n<p>The order of the keys in the <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> is the same as the order in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The returned <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> is not a static copy; instead, the <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> refers back to the keys in the original <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>. Therefore, changes to the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> continue to be reflected in the <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The collection returned by the <xref href=\"System.Collections.Generic.SortedList`2.Keys\" data-throw-if-not-resolved=\"false\"></xref> property provides an efficient way to retrieve keys by index. It is not necessary to regenerate the list when the property is accessed, because the list is just a wrapper for the internal array of keys. The following code shows the use of the <xref href=\"System.Collections.Generic.SortedList`2.Keys\" data-throw-if-not-resolved=\"false\"></xref> property for indexed retrieval of keys from a sorted list of elements with string keys:</p>Generic.SortedList#11<p>Retrieving the value of this property is an O(1) operation.</p>"
+  example:
+  - "\n<p>The following code example shows how to enumerate the keys in the sorted list using the <xref href=\"System.Collections.Generic.SortedList`2.Keys\" data-throw-if-not-resolved=\"false\"></xref> property, and how to enumerate the keys and values in the sorted list.</p>\n<p>The example also shows how to use the <xref href=\"System.Collections.Generic.SortedList`2.Keys\" data-throw-if-not-resolved=\"false\"></xref> property for efficient indexed retrieval of keys. </p>\n<p>This code is part of a larger example that can be compiled and executed. See <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>Generic.SortedList#9,7"
   syntax:
     content: public IList<TKey> Keys { get; }
     content.vb: Public ReadOnly Property Keys As IList(Of TKey)
     parameters: []
     return:
       type: System.Collections.Generic.IList{{TKey}}
-      description: A <xref href="System.Collections.Generic.IList`1" data-throw-if-not-resolved="false"></xref> containing the keys in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>A <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> containing the keys in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.IList`1
+    commentId: T:System.Collections.Generic.IList`1
+  - type: System.Collections.Generic.SortedList`2.Values
+    commentId: P:System.Collections.Generic.SortedList`2.Values
   modifiers.csharp:
   - public
   - get
@@ -525,14 +638,22 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Gets a collection containing the values in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Gets a collection containing the values in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>The order of the values in the <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> is the same as the order in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The returned <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> is not a static copy; instead, the <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> refers back to the values in the original <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>. Therefore, changes to the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> continue to be reflected in the <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The collection returned by the <xref href=\"System.Collections.Generic.SortedList`2.Values\" data-throw-if-not-resolved=\"false\"></xref> property provides an efficient way to retrieve values by index. It is not necessary to regenerate the list when the property is accessed, because the list is just a wrapper for the internal array of values. The following code shows the use of the <xref href=\"System.Collections.Generic.SortedList`2.Values\" data-throw-if-not-resolved=\"false\"></xref> property for indexed retrieval of values from a sorted list of strings:</p>Generic.SortedList#11<p>Retrieving the value of this property is an O(1) operation.</p>"
+  example:
+  - "\n<p>This code example shows how to enumerate the values in the sorted list using the <xref href=\"System.Collections.Generic.SortedList`2.Values\" data-throw-if-not-resolved=\"false\"></xref> property, and how to enumerate the keys and values in the sorted list. </p>\n<p>The example also shows how to use the <xref href=\"System.Collections.Generic.SortedList`2.Values\" data-throw-if-not-resolved=\"false\"></xref> property for efficient indexed retrieval of values. </p>\n<p>This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Generic.SortedList#8,7"
   syntax:
     content: public IList<TValue> Values { get; }
     content.vb: Public ReadOnly Property Values As IList(Of TValue)
     parameters: []
     return:
       type: System.Collections.Generic.IList{{TValue}}
-      description: A <xref href="System.Collections.Generic.IList`1" data-throw-if-not-resolved="false"></xref> containing the values in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>A <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> containing the values in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.IList`1
+    commentId: T:System.Collections.Generic.IList`1
+  - type: System.Collections.Generic.SortedList`2.Keys
+    commentId: P:System.Collections.Generic.SortedList`2.Keys
   modifiers.csharp:
   - public
   - get
@@ -561,24 +682,34 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Adds an element with the specified key and value into the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Adds an element with the specified key and value into the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>A key cannot be <strong>null</strong>, but a value can be, if the type of values in the sorted list, <em>TValue</em>, is a reference type.</p>\n<p>You can also use the <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property to add new elements by setting the value of a key that does not exist in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>; for example, <code>myCollection[\"myNonexistentKey\"] = myValue</code>. However, if the specified key already exists in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>, setting the <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property overwrites the old value. In contrast, the <xref href=\"System.Collections.Generic.SortedList`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref> method does not modify existing elements.</p>\n<p>If <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref> already equals <xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref>, the capacity of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> is increased by automatically reallocating the internal array, and the existing elements are copied to the new array before the new element is added.</p>\n<p>This method is an O(<em>n</em>) operation for unsorted data, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>. It is an O(log <em>n</em>) operation if the new element is added at the end of the list. If insertion causes a resize, the operation is O(<em>n</em>).</p>\n"
+  example:
+  - "\n<p>The following code example creates an empty <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> of strings with string keys and uses the <xref href=\"System.Collections.Generic.SortedList`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref> method to add some elements. The example demonstrates that the <xref href=\"System.Collections.Generic.SortedList`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref> method throws an <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref> when attempting to add a duplicate key. </p>\n<p>This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Generic.SortedList#2"
   syntax:
     content: public void Add(TKey key, TValue value)
     content.vb: Public Sub Add(key As TKey, value As TValue)
     parameters:
     - id: key
       type: '{TKey}'
-      description: The key of the element to add.
+      description: "\n<p>The key of the element to add.</p>\n"
     - id: value
       type: '{TValue}'
-      description: The value of the element to add. The value can be null for reference types.
+      description: "\n<p>The value of the element to add. The value can be <strong>null</strong> for reference types.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>key</em> is null."
+    description: "\n<p>\n<em>key</em> is <strong>null</strong>.</p>\n"
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: An element with the same key already exists in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+    description: "\n<p>An element with the same key already exists in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.Remove(`0)
+    commentId: M:System.Collections.Generic.SortedList`2.Remove(`0)
+  - type: System.Collections.Generic.SortedList`2.Item(`0)
+    commentId: P:System.Collections.Generic.SortedList`2.Item(`0)
+  - type: System.Collections.Generic.IDictionary`2.Add(`0,`1)
+    commentId: M:System.Collections.Generic.IDictionary`2.Add(`0,`1)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -605,10 +736,18 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Removes all elements from the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Removes all elements from the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>\n<xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref> is set to zero, and references to other objects from elements of the collection are also released.</p>\n<p>\n<xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> remains unchanged. To reset the capacity of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>, call <xref href=\"System.Collections.Generic.SortedList`2.TrimExcess\" data-throw-if-not-resolved=\"false\"></xref> or set the <xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> property directly. Trimming an empty <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> sets the capacity of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> to the default capacity.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public void Clear()
     content.vb: Public Sub Clear
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.TrimExcess
+    commentId: M:System.Collections.Generic.SortedList`2.TrimExcess
+  - type: System.Collections.Generic.SortedList`2.Remove(`0)
+    commentId: M:System.Collections.Generic.SortedList`2.Remove(`0)
+  - type: System.Collections.Generic.SortedList`2.RemoveAt(System.Int32)
+    commentId: M:System.Collections.Generic.SortedList`2.RemoveAt(System.Int32)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -635,21 +774,29 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Determines whether the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> contains a specific key.
+  summary: "\n<p>Determines whether the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> contains a specific key.</p>\n"
+  remarks: "\n<p>This method is an O(log <em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following code example shows how to use the <xref href=\"System.Collections.Generic.SortedList`2.ContainsKey(`0)\" data-throw-if-not-resolved=\"false\"></xref> method to test whether a key exists prior to calling the <xref href=\"System.Collections.Generic.SortedList`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref> method. It also shows how to use the <xref href=\"System.Collections.Generic.SortedList`2.TryGetValue(`0,`1@)\" data-throw-if-not-resolved=\"false\"></xref> method to retrieve values, which is an efficient way to retrieve values when a program frequently tries keys that are not in the sorted list. Finally, it shows the least efficient way to test whether keys exist, by using the <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property (the indexer in C#).</p>\n<p>This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Generic.SortedList#6,5,4"
   syntax:
     content: public bool ContainsKey(TKey key)
     content.vb: Public Function ContainsKey(key As TKey) As Boolean
     parameters:
     - id: key
       type: '{TKey}'
-      description: The key to locate in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The key to locate in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.Boolean
-      description: true if the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> contains an element with the specified key; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> contains an element with the specified key; otherwise, <strong>false</strong>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>key</em> is null."
+    description: "\n<p>\n<em>key</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.IndexOfKey(`0)
+    commentId: M:System.Collections.Generic.SortedList`2.IndexOfKey(`0)
+  - type: System.Collections.Generic.SortedList`2.ContainsValue(`1)
+    commentId: M:System.Collections.Generic.SortedList`2.ContainsValue(`1)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -676,17 +823,23 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Determines whether the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> contains a specific value.
+  summary: "\n<p>Determines whether the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> contains a specific value.</p>\n"
+  remarks: "\n<p>This method determines equality using the default comparer <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> for the value type <em>TValue</em>.  <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the value type <em>TValue</em> implements <xref href=\"System.IComparable`1\" data-throw-if-not-resolved=\"false\"></xref> and uses that implementation, if available.  If not, <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the value type <em>TValue</em> implements <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref>.  If the value type <em>TValue</em> does not implement either interface, this method uses <see cref=\"Overload:System.Object.Equals\"></see>.</p>\n<p>This method performs a linear search; therefore, the average execution time is proportional to <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>. That is, this method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public bool ContainsValue(TValue value)
     content.vb: Public Function ContainsValue(value As TValue) As Boolean
     parameters:
     - id: value
       type: '{TValue}'
-      description: The value to locate in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>. The value can be null for reference types.
+      description: "\n<p>The value to locate in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>. The value can be <strong>null</strong> for reference types.</p>\n"
     return:
       type: System.Boolean
-      description: true if the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> contains an element with the specified value; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> contains an element with the specified value; otherwise, <strong>false</strong>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.IndexOfValue(`1)
+    commentId: M:System.Collections.Generic.SortedList`2.IndexOfValue(`1)
+  - type: System.Collections.Generic.SortedList`2.ContainsKey(`0)
+    commentId: M:System.Collections.Generic.SortedList`2.ContainsKey(`0)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -713,13 +866,17 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Returns an enumerator that iterates through the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Returns an enumerator that iterates through the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>The <strong>foreach</strong> statement of the C# language (<strong>for each</strong> in C++, <strong>For Each</strong> in Visual Basic) hides the complexity of the enumerators.  Therefore, using <strong>foreach</strong> is recommended, instead of directly manipulating the enumerator.</p>\n<p>Enumerators can be used to read the data in the collection, but they cannot be used to modify the underlying collection.</p>\n<p>The dictionary is maintained in a sorted order using an internal tree. Every new element is positioned at the correct sort position, and the tree is adjusted to maintain the sort order whenever an element is removed. While enumerating, the sort order is maintained.</p>\n<p>Initially, the enumerator is positioned before the first element in the collection. At this position, <xref href=\"System.Collections.Generic.IEnumerator`1.Current\" data-throw-if-not-resolved=\"false\"></xref> is undefined. Therefore, you must call <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> to advance the enumerator to the first element of the collection before reading the value of <xref href=\"System.Collections.Generic.IEnumerator`1.Current\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Collections.Generic.IEnumerator`1.Current\" data-throw-if-not-resolved=\"false\"></xref> returns the same object until <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> is called. <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> sets <xref href=\"System.Collections.Generic.IEnumerator`1.Current\" data-throw-if-not-resolved=\"false\"></xref> to the next element.</p>\n<p>If <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> passes the end of the collection, the enumerator is positioned after the last element in the collection and <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> returns <strong>false</strong>. When the enumerator is at this position, subsequent calls to <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> return <strong>false</strong>. If the last call to <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> returned <strong>false</strong>, <xref href=\"System.Collections.Generic.IEnumerator`1.Current\" data-throw-if-not-resolved=\"false\"></xref> is undefined. You cannot set <xref href=\"System.Collections.Generic.IEnumerator`1.Current\" data-throw-if-not-resolved=\"false\"></xref> to the first element of the collection again; you must create a new enumerator instance instead.</p>\n<p>An enumerator remains valid as long as the collection remains unchanged. If changes are made to the collection, such as adding, modifying, or deleting elements, the enumerator is irrecoverably invalidated and its behavior is undefined.</p>\n<p>The enumerator does not have exclusive access to the collection; therefore, enumerating through a collection is intrinsically not a thread-safe procedure. To guarantee thread safety during enumeration, you can lock the collection during the entire enumeration.  To allow the collection to be accessed by multiple threads for reading and writing, you must implement your own synchronization.</p>\n<p>Default implementations of collections in <xref href=\"System.Collections.Generic\" data-throw-if-not-resolved=\"false\"></xref> are not synchronized.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
     content.vb: Public Function GetEnumerator As IEnumerator(Of KeyValuePair(Of TKey, TValue))
     return:
       type: System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{{TKey},{TValue}}}
-      description: An <xref href="System.Collections.Generic.IEnumerator`1" data-throw-if-not-resolved="false"></xref> of type <xref href="System.Collections.Generic.KeyValuePair`2" data-throw-if-not-resolved="false"></xref> for the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>An <xref href=\"System.Collections.Generic.IEnumerator`1\" data-throw-if-not-resolved=\"false\"></xref> of type <xref href=\"System.Collections.Generic.KeyValuePair`2\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.IEnumerator`1
+    commentId: T:System.Collections.Generic.IEnumerator`1
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -746,21 +903,27 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Searches for the specified key and returns the zero-based index within the entire <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Searches for the specified key and returns the zero-based index within the entire <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>This method performs a binary search; therefore, this method is an O(log <em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public int IndexOfKey(TKey key)
     content.vb: Public Function IndexOfKey(key As TKey) As Integer
     parameters:
     - id: key
       type: '{TKey}'
-      description: The key to locate in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The key to locate in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.Int32
-      description: The zero-based index of <em>key</em> within the entire <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>, if found; otherwise, -1.
+      description: "\n<p>The zero-based index of <em>key</em> within the entire <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>, if found; otherwise, -1.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>key</em> is null."
+    description: "\n<p>\n<em>key</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.ContainsKey(`0)
+    commentId: M:System.Collections.Generic.SortedList`2.ContainsKey(`0)
+  - type: System.Collections.Generic.SortedList`2.IndexOfValue(`1)
+    commentId: M:System.Collections.Generic.SortedList`2.IndexOfValue(`1)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -787,17 +950,23 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Searches for the specified value and returns the zero-based index of the first occurrence within the entire <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Searches for the specified value and returns the zero-based index of the first occurrence within the entire <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>This method determines equality using the default comparer <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> for the value type <em>TValue</em>.  <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the value type <em>TValue</em> implements <xref href=\"System.IComparable`1\" data-throw-if-not-resolved=\"false\"></xref> and uses that implementation, if available.  If not, <xref href=\"System.Collections.Generic.Comparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref> checks whether the value type <em>TValue</em> implements <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref>.  If the value type <em>TValue</em> does not implement either interface, this method uses <see cref=\"Overload:System.Object.Equals\"></see>.</p>\n<p>This method performs a linear search; therefore, the average execution time is proportional to <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>. That is, this method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public int IndexOfValue(TValue value)
     content.vb: Public Function IndexOfValue(value As TValue) As Integer
     parameters:
     - id: value
       type: '{TValue}'
-      description: The value to locate in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.  The value can be null for reference types.
+      description: "\n<p>The value to locate in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.  The value can be <strong>null</strong> for reference types.</p>\n"
     return:
       type: System.Int32
-      description: The zero-based index of the first occurrence of <em>value</em> within the entire <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>, if found; otherwise, -1.
+      description: "\n<p>The zero-based index of the first occurrence of <em>value</em> within the entire <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>, if found; otherwise, -1.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.ContainsValue(`1)
+    commentId: M:System.Collections.Generic.SortedList`2.ContainsValue(`1)
+  - type: System.Collections.Generic.SortedList`2.IndexOfKey(`0)
+    commentId: M:System.Collections.Generic.SortedList`2.IndexOfKey(`0)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -824,21 +993,31 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Removes the element with the specified key from the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Removes the element with the specified key from the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>This method performs a binary search; however, the elements are moved up to fill in the open spot, so this method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following code example shows how to remove a key/value pair from the sorted list using the <xref href=\"System.Collections.Generic.SortedList`2.Remove(`0)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Generic.SortedList#10"
   syntax:
     content: public bool Remove(TKey key)
     content.vb: Public Function Remove(key As TKey) As Boolean
     parameters:
     - id: key
       type: '{TKey}'
-      description: The key of the element to remove.
+      description: "\n<p>The key of the element to remove.</p>\n"
     return:
       type: System.Boolean
-      description: true if the element is successfully removed; otherwise, false.  This method also returns false if <em>key</em> was not found in the original <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>\n<strong>true</strong> if the element is successfully removed; otherwise, <strong>false</strong>.  This method also returns <strong>false</strong> if <em>key</em> was not found in the original <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>key</em> is null."
+    description: "\n<p>\n<em>key</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.RemoveAt(System.Int32)
+    commentId: M:System.Collections.Generic.SortedList`2.RemoveAt(System.Int32)
+  - type: System.Collections.Generic.SortedList`2.Clear
+    commentId: M:System.Collections.Generic.SortedList`2.Clear
+  - type: System.Collections.Generic.SortedList`2.Add(`0,`1)
+    commentId: M:System.Collections.Generic.SortedList`2.Add(`0,`1)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -865,18 +1044,26 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Removes the element at the specified index of the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Removes the element at the specified index of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>This method performs a binary search; however, the elements are moved up to fill in the open spot, so this method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public void RemoveAt(int index)
     content.vb: Public Sub RemoveAt(index As Integer)
     parameters:
     - id: index
       type: System.Int32
-      description: The zero-based index of the element to remove.
+      description: "\n<p>The zero-based index of the element to remove.</p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<em>index</em> is less than zero.-or-<em>index</em> is equal to or greater than <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>."
+    description: "\n<p>\n<em>index</em> is less than zero.</p>\n<p>-or-</p>\n<p>\n<em>index</em> is equal to or greater than <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.Remove(`0)
+    commentId: M:System.Collections.Generic.SortedList`2.Remove(`0)
+  - type: System.Collections.Generic.SortedList`2.Clear
+    commentId: M:System.Collections.Generic.SortedList`2.Clear
+  - type: System.Collections.Generic.SortedList`2.Add(`0,`1)
+    commentId: M:System.Collections.Generic.SortedList`2.Add(`0,`1)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -903,10 +1090,18 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Sets the capacity to the actual number of elements in the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref>, if that number is less than 90 percent of current capacity.
+  summary: "\n<p>Sets the capacity to the actual number of elements in the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>, if that number is less than 90 percent of current capacity.</p>\n"
+  remarks: "\n<p>This method can be used to minimize a collection's memory overhead if no new elements will be added to the collection. The cost of reallocating and copying a large <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> can be considerable, however, so the <xref href=\"System.Collections.Generic.SortedList`2.TrimExcess\" data-throw-if-not-resolved=\"false\"></xref> method does nothing if the list is at more than 90 percent of capacity. This avoids incurring a large reallocation cost for a relatively small gain.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>To reset a <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> to its initial state, call the <xref href=\"System.Collections.Generic.SortedList`2.Clear\" data-throw-if-not-resolved=\"false\"></xref> method before calling <xref href=\"System.Collections.Generic.SortedList`2.TrimExcess\" data-throw-if-not-resolved=\"false\"></xref> method. Trimming an empty <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> sets the capacity of the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> to the default capacity.</p>\n<p>The capacity can also be set using the <xref href=\"System.Collections.Generic.SortedList`2.Capacity\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: public void TrimExcess()
     content.vb: Public Sub TrimExcess
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.Clear
+    commentId: M:System.Collections.Generic.SortedList`2.Clear
+  - type: System.Collections.Generic.SortedList`2.Capacity
+    commentId: P:System.Collections.Generic.SortedList`2.Capacity
+  - type: System.Collections.Generic.SortedList`2.Count
+    commentId: P:System.Collections.Generic.SortedList`2.Count
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -933,24 +1128,36 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: Gets the value associated with the specified key.
+  summary: "\n<p>Gets the value associated with the specified key.</p>\n"
+  remarks: "\n<p>This method combines the functionality of the <xref href=\"System.Collections.Generic.SortedList`2.ContainsKey(`0)\" data-throw-if-not-resolved=\"false\"></xref> method and the <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>If the key is not found, then the <em>value</em> parameter gets the appropriate default value for the value type <em>TValue</em>; for example, zero (0) for integer types, <strong>false</strong> for Boolean types, and <strong>null</strong> for reference types.</p>\n<p>This method performs a binary search; therefore, this method is an O(log <em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedList`2.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The example shows how to use the <xref href=\"System.Collections.Generic.SortedList`2.TryGetValue(`0,`1@)\" data-throw-if-not-resolved=\"false\"></xref> method as a more efficient way to retrieve values in a program that frequently tries keys that are not in the sorted list. For contrast, the example also shows how the <xref href=\"System.Collections.Generic.SortedList`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property (the indexer in C#) throws exceptions when attempting to retrieve nonexistent keys.</p>\n<p>This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Generic.SortedList#5,4"
   syntax:
     content: public bool TryGetValue(TKey key, out TValue value)
     content.vb: Public Function TryGetValue(key As TKey, ByRef value As TValue) As Boolean
     parameters:
     - id: key
       type: '{TKey}'
-      description: The key whose value to get.
+      description: "\n<p>The key whose value to get.</p>\n"
     - id: value
       type: '{TValue}'
-      description: When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <em>value</em> parameter. This parameter is passed uninitialized.
+      description: "\n<p>When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <em>value</em> parameter. This parameter is passed uninitialized.</p>\n"
     return:
       type: System.Boolean
-      description: true if the <xref href="System.Collections.Generic.SortedList`2" data-throw-if-not-resolved="false"></xref> contains an element with the specified key; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref> contains an element with the specified key; otherwise, <strong>false</strong>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>key</em> is null."
+    description: "\n<p>\n<em>key</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.Collections.Generic.SortedList`2.ContainsKey(`0)
+    commentId: M:System.Collections.Generic.SortedList`2.ContainsKey(`0)
+  - type: System.Collections.Generic.SortedList`2.Item(`0)
+    commentId: P:System.Collections.Generic.SortedList`2.Item(`0)
+  - type: System.Collections.Generic.SortedList`2.ContainsValue(`1)
+    commentId: M:System.Collections.Generic.SortedList`2.ContainsValue(`1)
+  - type: System.Collections.Generic.SortedList`2.IndexOfValue(`1)
+    commentId: M:System.Collections.Generic.SortedList`2.IndexOfValue(`1)
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1140,7 +1347,7 @@ references:
 - uid: System.Collections.ICollection
   parent: System.Collections
   isExternal: false
-  name: ICollection
+  name: Collections.ICollection
   fullName: System.Collections.ICollection
 - uid: System.Collections.IDictionary
   parent: System.Collections
@@ -1150,7 +1357,7 @@ references:
 - uid: System.Collections.IEnumerable
   parent: System.Collections
   isExternal: false
-  name: IEnumerable
+  name: Collections.IEnumerable
   fullName: System.Collections.IEnumerable
 - uid: System
   isExternal: false
@@ -1158,13 +1365,13 @@ references:
   fullName: System
 - uid: System.Collections.Generic.IDictionary`2
   isExternal: false
-  name: Generic.IDictionary<, >
+  name: Collections.Generic.IDictionary<, >
   fullName: System.Collections.Generic.IDictionary<, >
   fullname.vb: System.Collections.Generic.IDictionary(Of , )
-  name.vb: Generic.IDictionary(Of , )
+  name.vb: Collections.Generic.IDictionary(Of , )
   spec.csharp:
   - uid: System.Collections.Generic.IDictionary`2
-    name: Generic.IDictionary
+    name: Collections.Generic.IDictionary
     fullName: System.Collections.Generic.IDictionary
   - name: <
     fullName: <
@@ -1176,7 +1383,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IDictionary`2
-    name: Generic.IDictionary
+    name: Collections.Generic.IDictionary
     fullName: System.Collections.Generic.IDictionary
   - name: '(Of '
     fullName: '(Of '
@@ -1366,13 +1573,13 @@ references:
 - uid: System.Collections.Generic.IList`1
   parent: System.Collections.Generic
   isExternal: false
-  name: Generic.IList<>
+  name: Collections.Generic.IList<>
   fullName: System.Collections.Generic.IList<>
   fullname.vb: System.Collections.Generic.IList(Of )
-  name.vb: Generic.IList(Of )
+  name.vb: Collections.Generic.IList(Of )
   spec.csharp:
   - uid: System.Collections.Generic.IList`1
-    name: Generic.IList
+    name: Collections.Generic.IList
     fullName: System.Collections.Generic.IList
   - name: <
     fullName: <
@@ -1381,7 +1588,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IList`1
-    name: Generic.IList
+    name: Collections.Generic.IList
     fullName: System.Collections.Generic.IList
   - name: '(Of '
     fullName: '(Of '
@@ -1476,13 +1683,13 @@ references:
 - uid: System.Collections.Generic.IEnumerator`1
   parent: System.Collections.Generic
   isExternal: false
-  name: Generic.IEnumerator<>
+  name: Collections.Generic.IEnumerator<>
   fullName: System.Collections.Generic.IEnumerator<>
   fullname.vb: System.Collections.Generic.IEnumerator(Of )
-  name.vb: Generic.IEnumerator(Of )
+  name.vb: Collections.Generic.IEnumerator(Of )
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerator`1
-    name: Generic.IEnumerator
+    name: Collections.Generic.IEnumerator
     fullName: System.Collections.Generic.IEnumerator
   - name: <
     fullName: <
@@ -1491,7 +1698,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerator`1
-    name: Generic.IEnumerator
+    name: Collections.Generic.IEnumerator
     fullName: System.Collections.Generic.IEnumerator
   - name: '(Of '
     fullName: '(Of '

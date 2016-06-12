@@ -15,16 +15,19 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNodeEqualityComparer.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: XNodeEqualityComparer
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNodeEqualityComparer.cs
-    startLine: 14
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 380
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: 'Compares nodes to determine whether they are equal. This class cannot be inherited. '
+  summary: "\n<p>Compares nodes to determine whether they are equal. This class cannot be inherited. </p>\n"
+  remarks: "\n<p>The purpose of this class is to implement <xref href=\"System.Collections.IEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Collections.Generic.IEqualityComparer`1\" data-throw-if-not-resolved=\"false\"></xref>. Classes that require identity (such as <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref> ) require an instance of a class that implements one of these interfaces. </p>\n"
+  example:
+  - 
   syntax:
     content: 'public sealed class XNodeEqualityComparer : Collections.Generic.IEqualityComparer<XNode>, Collections.IEqualityComparer'
     content.vb: >-
@@ -64,7 +67,9 @@ items:
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: 'Initializes a new instance of the <xref href="System.Xml.Linq.XNodeEqualityComparer" data-throw-if-not-resolved="false"></xref> class. '
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.Linq.XNodeEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
+  example:
+  - "\n<p>The following example uses this class to determine whether two nodes are equal.</p>\n<pre><code class=\"c#\">XElement xmlTree1 = new XElement(\"Root\",\nnew XAttribute(\"Att1\", 1),\nnew XAttribute(\"Att2\", 2),\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", \"some content\")\n);\nXElement xmlTree2 = new XElement(\"Root\",\nnew XAttribute(\"Att1\", 1),\nnew XAttribute(\"Att2\", 2),\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", \"some content\")\n);\nXNodeEqualityComparer equalityComparer = new XNodeEqualityComparer();\nConsole.WriteLine(equalityComparer.Equals(xmlTree1, xmlTree2));\nxmlTree2.Add(new XElement(\"NewChild\", \"new content\"));\nConsole.WriteLine(equalityComparer.Equals(xmlTree1, xmlTree2));</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>True\nFalse</code></pre>\n"
   syntax:
     content: public XNodeEqualityComparer()
     content.vb: Public Sub New
@@ -84,29 +89,32 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNodeEqualityComparer.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Equals
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNodeEqualityComparer.cs
-    startLine: 37
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 383
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Compares the values of two nodes.
+  summary: "\n<p>Compares the values of two nodes.</p>\n"
+  remarks: "\n<p>The following criteria determine whether two nodes are equal:</p>\n<ul><li>\n<p>A <strong>null</strong> node is equal to another <strong>null</strong> node but unequal to a non-<strong>null</strong> node. </p>\n</li><li>\n<p>Two <xref href=\"System.Xml.Linq.XNode\" data-throw-if-not-resolved=\"false\"></xref> objects of different types are never equal. </p>\n</li><li>\n<p>Two <xref href=\"System.Xml.Linq.XText\" data-throw-if-not-resolved=\"false\"></xref> nodes are equal if they contain the same text. </p>\n</li><li>\n<p>Two <xref href=\"System.Xml.Linq.XElement\" data-throw-if-not-resolved=\"false\"></xref> nodes are equal if they have the same tag name, the same set of attributes with the same values, and (ignoring comments and processing instructions), contain two equal-length sequences of pairwise equal content nodes. </p>\n</li><li>\n<p>Two <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> objects are equal if their root nodes are equal. </p>\n</li><li>\n<p>Two <xref href=\"System.Xml.Linq.XComment\" data-throw-if-not-resolved=\"false\"></xref> nodes are equal if they contain the same comment text. </p>\n</li><li>\n<p>Two <xref href=\"System.Xml.Linq.XProcessingInstruction\" data-throw-if-not-resolved=\"false\"></xref> nodes are equal if they have the same target and data. </p>\n</li><li>\n<p>Two <xref href=\"System.Xml.Linq.XDocumentType\" data-throw-if-not-resolved=\"false\"></xref> nodes are equal if the have the same name, public ID, system ID, and internal subset.</p>\n</li></ul>\n"
+  example:
+  - "\n<p>The following example uses this class to compare two nodes.</p>\n<pre><code class=\"c#\">XElement xmlTree1 = new XElement(\"Root\",\nnew XAttribute(\"Att1\", 1),\nnew XAttribute(\"Att2\", 2),\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", \"some content\")\n);\nXElement xmlTree2 = new XElement(\"Root\",\nnew XAttribute(\"Att1\", 1),\nnew XAttribute(\"Att2\", 2),\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", \"some content\")\n);\nXNodeEqualityComparer equalityComparer = new XNodeEqualityComparer();\nConsole.WriteLine(equalityComparer.Equals(xmlTree1, xmlTree2));\nxmlTree2.Add(new XElement(\"NewChild\", \"new content\"));\nConsole.WriteLine(equalityComparer.Equals(xmlTree1, xmlTree2));</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>True\nFalse</code></pre>\n"
   syntax:
     content: public bool Equals(XNode x, XNode y)
     content.vb: Public Function Equals(x As XNode, y As XNode) As Boolean
     parameters:
     - id: x
       type: System.Xml.Linq.XNode
-      description: The first <xref href="System.Xml.Linq.XNode" data-throw-if-not-resolved="false"></xref> to compare.
+      description: "\n<p>The first <xref href=\"System.Xml.Linq.XNode\" data-throw-if-not-resolved=\"false\"></xref> to compare.</p>\n"
     - id: y
       type: System.Xml.Linq.XNode
-      description: The second <xref href="System.Xml.Linq.XNode" data-throw-if-not-resolved="false"></xref> to compare.
+      description: "\n<p>The second <xref href=\"System.Xml.Linq.XNode\" data-throw-if-not-resolved=\"false\"></xref> to compare.</p>\n"
     return:
       type: System.Boolean
-      description: A <xref href="System.Boolean" data-throw-if-not-resolved="false"></xref> indicating if the nodes are equal.
+      description: "\n<p>A <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> indicating if the nodes are equal.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -123,26 +131,29 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNodeEqualityComparer.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetHashCode
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNodeEqualityComparer.cs
-    startLine: 52
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 384
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Returns a hash code based on an <xref href="System.Xml.Linq.XNode" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Returns a hash code based on an <xref href=\"System.Xml.Linq.XNode\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Xml.Linq.XNode\" data-throw-if-not-resolved=\"false\"></xref> implementation of  <xref href=\"System.Object.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> is based on the referential identity of the node. This method computes a deep hash code based on the value of the node and all descendants. The hash code reflects all attributes and all descendent nodes.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to get a deep hash code for an XML tree.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XAttribute(\"Att1\", 1),\nnew XAttribute(\"Att2\", 2),\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", \"some content\")\n);\nXNodeEqualityComparer equalityComparer = new XNodeEqualityComparer();\nConsole.WriteLine(\"HashCode: {0}\", equalityComparer.GetHashCode(xmlTree).ToString(\"X\"));\nxmlTree.Add(new XElement(\"NewChild\", \"new content\"));\nConsole.WriteLine(\"HashCode: {0}\", equalityComparer.GetHashCode(xmlTree).ToString(\"X\"));</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>HashCode: 958CCD0\nHashCode: AD26516B</code></pre>\n"
   syntax:
     content: public int GetHashCode(XNode obj)
     content.vb: Public Function GetHashCode(obj As XNode) As Integer
     parameters:
     - id: obj
       type: System.Xml.Linq.XNode
-      description: The <xref href="System.Xml.Linq.XNode" data-throw-if-not-resolved="false"></xref> to hash.
+      description: "\n<p>The <xref href=\"System.Xml.Linq.XNode\" data-throw-if-not-resolved=\"false\"></xref> to hash.</p>\n"
     return:
       type: System.Int32
-      description: A <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> that contains a value-based hash code for the node.
+      description: "\n<p>A <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref> that contains a value-based hash code for the node.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -160,7 +171,7 @@ references:
 - uid: System.Collections.IEqualityComparer
   parent: System.Collections
   isExternal: false
-  name: IEqualityComparer
+  name: Collections.IEqualityComparer
   fullName: System.Collections.IEqualityComparer
 - uid: System
   isExternal: false
@@ -173,7 +184,7 @@ references:
 - uid: System.Xml.Linq.XNode
   parent: System.Xml.Linq
   isExternal: false
-  name: Linq.XNode
+  name: XNode
   fullName: System.Xml.Linq.XNode
 - uid: System.Boolean
   parent: System

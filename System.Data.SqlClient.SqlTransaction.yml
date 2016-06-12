@@ -29,7 +29,10 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: 'Represents a Transact-SQL transaction to be made in a SQL Server database. This class cannot be inherited. '
+  summary: "\n<p>Represents a Transact-SQL transaction to be made in a SQL Server database. This class cannot be inherited. </p>\n"
+  remarks: "\n<p>The application creates a <xref href=\"System.Data.SqlClient.SqlTransaction\" data-throw-if-not-resolved=\"false\"></xref> object by calling <xref href=\"System.Data.SqlClient.SqlConnection.BeginTransaction\" data-throw-if-not-resolved=\"false\"></xref> on the <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> object. All subsequent operations associated with the transaction (for example, committing or aborting the transaction), are performed on the <xref href=\"System.Data.SqlClient.SqlTransaction\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>\n<strong>Try</strong>/<strong>Catch</strong> exception handling should always be used when committing or rolling back a <xref href=\"System.Data.SqlClient.SqlTransaction\" data-throw-if-not-resolved=\"false\"></xref>. Both <xref href=\"System.Data.SqlClient.SqlTransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Data.SqlClient.SqlTransaction.Rollback\" data-throw-if-not-resolved=\"false\"></xref> generate an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> if the connection is terminated or if the transaction has already been rolled back on the server.</p>\n<p>For more information on SQL Server transactions, see <see href=\"http://msdn.microsoft.com/library/ms175127(SQL.105).aspx\">Explicit Transactions</see> and <see href=\"http://msdn.microsoft.com/library/ms187484(SQL.105).aspx\">Coding Efficient Transactions</see>.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> and a <xref href=\"System.Data.SqlClient.SqlTransaction\" data-throw-if-not-resolved=\"false\"></xref>. It also demonstrates how to use the <xref href=\"System.Data.SqlClient.SqlConnection.BeginTransaction\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Data.SqlClient.SqlTransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Data.SqlClient.SqlTransaction.Rollback\" data-throw-if-not-resolved=\"false\"></xref> methods. The transaction is rolled back on any error, or if it is disposed without first being committed. <strong>Try</strong>/<strong>Catch</strong> error handling is used to handle any errors when attempting to commit or roll back the transaction.</p>Classic WebData SqlConnection.BeginTransaction Example#1"
   syntax:
     content: 'public sealed class SqlTransaction : Common.DbTransaction'
     content.vb: >-
@@ -66,14 +69,15 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: Gets the <xref href="System.Data.SqlClient.SqlConnection" data-throw-if-not-resolved="false"></xref> object associated with the transaction, or null if the transaction is no longer valid.
+  summary: "\n<p>Gets the <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> object associated with the transaction, or <strong>null</strong> if the transaction is no longer valid.</p>\n"
+  remarks: "\n<p>A single application may have multiple database connections, each with zero or more transactions. This property lets you determine the connection object associated with a particular transaction created by <xref href=\"System.Data.SqlClient.SqlConnection.BeginTransaction\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public SqlConnection Connection { get; }
     content.vb: Public ReadOnly Property Connection As SqlConnection
     parameters: []
     return:
       type: System.Data.SqlClient.SqlConnection
-      description: The <xref href="System.Data.SqlClient.SqlConnection" data-throw-if-not-resolved="false"></xref> object associated with the transaction.
+      description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> object associated with the transaction.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -136,14 +140,15 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: Specifies the <xref href="System.Data.IsolationLevel" data-throw-if-not-resolved="false"></xref> for this transaction.
+  summary: "\n<p>Specifies the <xref href=\"System.Data.IsolationLevel\" data-throw-if-not-resolved=\"false\"></xref> for this transaction.</p>\n"
+  remarks: "\n<p>Parallel transactions are not supported. Therefore, the <xref href=\"System.Data.IsolationLevel\" data-throw-if-not-resolved=\"false\"></xref> applies to the whole transaction.</p>\n<p>For more information on SQL Server isolation levels, see \"Isolation Levels in the Database Engine\" in SQL Server Books Online.</p>\n"
   syntax:
     content: public override IsolationLevel IsolationLevel { get; }
     content.vb: Public Overrides ReadOnly Property IsolationLevel As IsolationLevel
     parameters: []
     return:
       type: System.Data.IsolationLevel
-      description: The <xref href="System.Data.IsolationLevel" data-throw-if-not-resolved="false"></xref> for this transaction. The default is ReadCommitted.
+      description: "\n<p>The <xref href=\"System.Data.IsolationLevel\" data-throw-if-not-resolved=\"false\"></xref> for this transaction. The default is <strong>ReadCommitted</strong>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -173,17 +178,20 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: Commits the database transaction.
+  summary: "\n<p>Commits the database transaction.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Data.SqlClient.SqlTransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> method is equivalent to the Transact-SQL COMMIT TRANSACTION statement. You cannot roll back a transaction once it has been committed, because all modifications have become a permanent part of the database. For more information, see SQL Server Books Online.</p>\n<p>\n<strong>Try</strong>/<strong>Catch</strong> exception handling should always be used when committing or rolling back a <xref href=\"System.Data.SqlClient.SqlTransaction\" data-throw-if-not-resolved=\"false\"></xref>. Both <strong>Commit</strong> and <xref href=\"System.Data.SqlClient.SqlTransaction.Rollback\" data-throw-if-not-resolved=\"false\"></xref> generates an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> if the connection is terminated or if the transaction has already been rolled back on the server.</p>\n<p>For more information on SQL Server transactions, see \"Explicit Transactions\" and \"Coding Efficient Transactions\" in SQL Server Books Online.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> and a <xref href=\"System.Data.SqlClient.SqlTransaction\" data-throw-if-not-resolved=\"false\"></xref>. It also demonstrates how to use the <xref href=\"System.Data.SqlClient.SqlTransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Data.SqlClient.SqlConnection.BeginTransaction\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Data.SqlClient.SqlTransaction.Rollback\" data-throw-if-not-resolved=\"false\"></xref> methods. The transaction is rolled back on any error. <strong>Try</strong>/<strong>Catch</strong> error handling is used to handle any errors when attempting to commit or roll back the transaction.</p>Classic WebData SqlConnection.BeginTransaction Example#1"
   syntax:
     content: public override void Commit()
     content.vb: Public Overrides Sub Commit
   exceptions:
   - type: System.Exception
     commentId: T:System.Exception
-    description: 'An error occurred while trying to commit the transaction. '
+    description: "\n<p>An error occurred while trying to commit the transaction. </p>\n"
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: 'The transaction has already been committed or rolled back.-or- The connection is broken. '
+    description: "\n<p>The transaction has already been committed or rolled back.</p>\n<p>-or- </p>\n<p>The connection is broken. </p>\n"
   modifiers.csharp:
   - public
   - override
@@ -244,17 +252,20 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: Rolls back a transaction from a pending state.
+  summary: "\n<p>Rolls back a transaction from a pending state.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Data.SqlClient.SqlTransaction.Rollback\" data-throw-if-not-resolved=\"false\"></xref> method is equivalent to the Transact-SQL ROLLBACK TRANSACTION statement. For more information, see SQL Server Books Online.</p>\n<p>The transaction can only be rolled back from a pending state (after <xref href=\"System.Data.SqlClient.SqlConnection.BeginTransaction\" data-throw-if-not-resolved=\"false\"></xref> has been called, but before <xref href=\"System.Data.SqlClient.SqlTransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> is called). The transaction is rolled back in the event it is disposed before <strong>Commit</strong> or <strong>Rollback</strong> is called.</p>\n<p>\n<strong>Try</strong>/<strong>Catch</strong> exception handling should always be used when rolling back a transaction. A <strong>Rollback</strong> generates an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> if the connection is terminated or if the transaction has already been rolled back on the server.</p>\n<p>For more information on SQL Server transactions, see \"Explicit Transactions\" and \"Coding Efficient Transactions\" in SQL Server Books Online.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> and a <xref href=\"System.Data.SqlClient.SqlTransaction\" data-throw-if-not-resolved=\"false\"></xref>. It also demonstrates how to use the <xref href=\"System.Data.SqlClient.SqlConnection.BeginTransaction\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Data.SqlClient.SqlTransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Data.SqlClient.SqlTransaction.Rollback\" data-throw-if-not-resolved=\"false\"></xref> methods. The transaction is rolled back on any error. <strong>Try</strong>/<strong>Catch</strong> error handling is used to handle any errors when attempting to commit or roll back the transaction.</p>Classic WebData SqlConnection.BeginTransaction Example#1"
   syntax:
     content: public override void Rollback()
     content.vb: Public Overrides Sub Rollback
   exceptions:
   - type: System.Exception
     commentId: T:System.Exception
-    description: 'An error occurred while trying to commit the transaction. '
+    description: "\n<p>An error occurred while trying to commit the transaction. </p>\n"
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: 'The transaction has already been committed or rolled back.-or- The connection is broken. '
+    description: "\n<p>The transaction has already been committed or rolled back.</p>\n<p>-or- </p>\n<p>The connection is broken. </p>\n"
   modifiers.csharp:
   - public
   - override
@@ -282,21 +293,24 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: Rolls back a transaction from a pending state, and specifies the transaction or savepoint name.
+  summary: "\n<p>Rolls back a transaction from a pending state, and specifies the transaction or savepoint name.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Data.SqlClient.SqlTransaction.Rollback\" data-throw-if-not-resolved=\"false\"></xref> method is equivalent to the Transact-SQL ROLLBACK TRANSACTION statement. For more information, see \"Explicit Transactions\" and \"Transaction Savepoints\" in SQL Server Books Online.</p>\n<p>The transaction can only be rolled back from a pending state (after <xref href=\"System.Data.SqlClient.SqlConnection.BeginTransaction\" data-throw-if-not-resolved=\"false\"></xref> has been called, but before <xref href=\"System.Data.SqlClient.SqlTransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref> is called). The transaction is rolled back if it is disposed before <strong>Commit</strong> or <strong>Rollback</strong> is called. </p>\n<p>\n<strong>Try</strong>/<strong>Catch</strong> exception handling should always be used when rolling back a transaction. A <strong>Rollback</strong> generates an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> if the connection is terminated or if the transaction has already been rolled back on the server.</p>\n<p>For more information on SQL Server transactions, see \"Explicit Transactions\" and \"Coding Efficient Transactions\" in SQL Server Books Online.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> and a <xref href=\"System.Data.SqlClient.SqlTransaction\" data-throw-if-not-resolved=\"false\"></xref>. It also demonstrates how to use the <xref href=\"System.Data.SqlClient.SqlConnection.BeginTransaction\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Data.SqlClient.SqlTransaction.Commit\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Data.SqlClient.SqlTransaction.Rollback\" data-throw-if-not-resolved=\"false\"></xref> methods. The transaction is rolled back on any error. <strong>Try</strong>/<strong>Catch</strong> error handling is used to handle any errors when attempting to commit or roll back the transaction.</p>Classic WebData SqlConnection.BeginTransaction2 Example#1"
   syntax:
     content: public void Rollback(string transactionName)
     content.vb: Public Sub Rollback(transactionName As String)
     parameters:
     - id: transactionName
       type: System.String
-      description: 'The name of the transaction to roll back, or the savepoint to which to roll back. '
+      description: "\n<p>The name of the transaction to roll back, or the savepoint to which to roll back. </p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: 'No transaction name was specified. '
+    description: "\n<p>No transaction name was specified. </p>\n"
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: 'The transaction has already been committed or rolled back.-or- The connection is broken. '
+    description: "\n<p>The transaction has already been committed or rolled back.</p>\n<p>-or- </p>\n<p>The connection is broken. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -322,21 +336,22 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: Creates a savepoint in the transaction that can be used to roll back a part of the transaction, and specifies the savepoint name.
+  summary: "\n<p>Creates a savepoint in the transaction that can be used to roll back a part of the transaction, and specifies the savepoint name.</p>\n"
+  remarks: "\n<p>\n<xref href=\"System.Data.SqlClient.SqlTransaction.Save(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method is equivalent to the Transact-SQL SAVE TRANSACTION statement. </p>\n<p>The value used in the <em>savePoint</em> parameter can be the same value used in the <em>transactionName</em> parameter of some implementations of the <xref href=\"System.Data.SqlClient.SqlConnection.BeginTransaction\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>Savepoints offer a mechanism to roll back parts of transactions. You create a savepoint using the <xref href=\"System.Data.SqlClient.SqlTransaction.Save(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method, and then later call the <xref href=\"System.Data.SqlClient.SqlTransaction.Rollback\" data-throw-if-not-resolved=\"false\"></xref> method to roll back to the savepoint instead of rolling back to the start of the transaction. </p>\n"
   syntax:
     content: public void Save(string savePointName)
     content.vb: Public Sub Save(savePointName As String)
     parameters:
     - id: savePointName
       type: System.String
-      description: 'The name of the savepoint. '
+      description: "\n<p>The name of the savepoint. </p>\n"
   exceptions:
   - type: System.Exception
     commentId: T:System.Exception
-    description: 'An error occurred while trying to commit the transaction. '
+    description: "\n<p>An error occurred while trying to commit the transaction. </p>\n"
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: 'The transaction has already been committed or rolled back.-or- The connection is broken. '
+    description: "\n<p>The transaction has already been committed or rolled back.</p>\n<p>-or- </p>\n<p>The connection is broken. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -363,7 +378,7 @@ references:
 - uid: System.Data.Common.DbConnection
   parent: System.Data.Common
   isExternal: false
-  name: Common.DbConnection
+  name: DbConnection
   fullName: System.Data.Common.DbConnection
 - uid: System.Data.Common
   isExternal: false

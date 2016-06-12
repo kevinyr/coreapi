@@ -29,7 +29,10 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
-  summary: Stores serialized information from <xref href="System.Net.EndPoint" data-throw-if-not-resolved="false"></xref> derived classes.
+  summary: "\n<p>Stores serialized information from <xref href=\"System.Net.EndPoint\" data-throw-if-not-resolved=\"false\"></xref> derived classes.</p>\n"
+  remarks: "\n<p>The first 2 bytes of the underlying buffer are reserved for the <xref href=\"System.Net.Sockets.AddressFamily\" data-throw-if-not-resolved=\"false\"></xref> enumerated value. When the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref> is used to store a serialized <xref href=\"System.Net.IPEndPoint\" data-throw-if-not-resolved=\"false\"></xref>, the third and fourth bytes are used to store port number information. The next bytes are used to store the IP address. You can access any information within this underlying byte buffer by referring to its index position; the byte buffer uses zero-based indexing. You can also use the <xref href=\"System.Net.SocketAddress.Family\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.SocketAddress.Size\" data-throw-if-not-resolved=\"false\"></xref> properties to get the <xref href=\"System.Net.Sockets.AddressFamily\" data-throw-if-not-resolved=\"false\"></xref> value and the buffer size, respectively. To view any of this information as a string, use the <xref href=\"System.Net.SocketAddress.ToString\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates how to use <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref> to serialize an instance of the <xref href=\"System.Net.EndPoint\" data-throw-if-not-resolved=\"false\"></xref> class. After serialization, the underlying byte buffer of the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref> contains all of the <xref href=\"System.Net.IPEndPoint\" data-throw-if-not-resolved=\"false\"></xref> state information.</p>Classic SocketAddressExample#1"
   syntax:
     content: 'public class SocketAddress : object'
     content.vb: >-
@@ -64,14 +67,15 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
-  summary: Creates a new instance of the <xref href="System.Net.SocketAddress" data-throw-if-not-resolved="false"></xref> class for the given address family.
+  summary: "\n<p>Creates a new instance of the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref> class for the given address family.</p>\n"
+  remarks: "\n<p>This overload sets the underlying buffer size to 32 bytes.</p>\n"
   syntax:
     content: public SocketAddress(AddressFamily family)
     content.vb: Public Sub New(family As AddressFamily)
     parameters:
     - id: family
       type: System.Net.Sockets.AddressFamily
-      description: 'An <xref href="System.Net.Sockets.AddressFamily" data-throw-if-not-resolved="false"></xref> enumerated value. '
+      description: "\n<p>An <xref href=\"System.Net.Sockets.AddressFamily\" data-throw-if-not-resolved=\"false\"></xref> enumerated value. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -97,21 +101,22 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
-  summary: Creates a new instance of the <xref href="System.Net.SocketAddress" data-throw-if-not-resolved="false"></xref> class using the specified address family and buffer size.
+  summary: "\n<p>Creates a new instance of the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref> class using the specified address family and buffer size.</p>\n"
+  remarks: "\n<p>Use this overload to create a new instance of the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref> class with a particular underlying buffer size.</p>\n"
   syntax:
     content: public SocketAddress(AddressFamily family, int size)
     content.vb: Public Sub New(family As AddressFamily, size As Integer)
     parameters:
     - id: family
       type: System.Net.Sockets.AddressFamily
-      description: 'An <xref href="System.Net.Sockets.AddressFamily" data-throw-if-not-resolved="false"></xref> enumerated value. '
+      description: "\n<p>An <xref href=\"System.Net.Sockets.AddressFamily\" data-throw-if-not-resolved=\"false\"></xref> enumerated value. </p>\n"
     - id: size
       type: System.Int32
-      description: 'The number of bytes to allocate for the underlying buffer. '
+      description: "\n<p>The number of bytes to allocate for the underlying buffer. </p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<em>size</em> is less than 2. These 2 bytes are needed to store <em>family</em>. "
+    description: "\n<p>\n<em>size</em> is less than 2. These 2 bytes are needed to store <em>family</em>. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -137,14 +142,18 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
-  summary: Gets the <xref href="System.Net.Sockets.AddressFamily" data-throw-if-not-resolved="false"></xref> enumerated value of the current <xref href="System.Net.SocketAddress" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Gets the <xref href=\"System.Net.Sockets.AddressFamily\" data-throw-if-not-resolved=\"false\"></xref> enumerated value of the current <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>This method gets the <xref href=\"System.Net.Sockets.AddressFamily\" data-throw-if-not-resolved=\"false\"></xref> enumerated value that represents the addressing scheme of the current <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref>. If you want to view the corresponding string representation of <xref href=\"System.Net.Sockets.AddressFamily\" data-throw-if-not-resolved=\"false\"></xref>, use the <xref href=\"System.Net.SocketAddress.ToString\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   syntax:
     content: public AddressFamily Family { get; }
     content.vb: Public ReadOnly Property Family As AddressFamily
     parameters: []
     return:
       type: System.Net.Sockets.AddressFamily
-      description: One of the <xref href="System.Net.Sockets.AddressFamily" data-throw-if-not-resolved="false"></xref> enumerated values.
+      description: "\n<p>One of the <xref href=\"System.Net.Sockets.AddressFamily\" data-throw-if-not-resolved=\"false\"></xref> enumerated values.</p>\n"
+  seealso:
+  - type: System.Net.Sockets.AddressFamily
+    commentId: T:System.Net.Sockets.AddressFamily
   modifiers.csharp:
   - public
   - get
@@ -172,21 +181,25 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
-  summary: Gets or sets the specified index element in the underlying buffer.
+  summary: "\n<p>Gets or sets the specified index element in the underlying buffer.</p>\n"
+  remarks: "\n<p>This property gets or sets the specified byte position in the underlying buffer.</p>\n<p>Be sure to call <xref href=\"System.Net.SocketAddress.Size\" data-throw-if-not-resolved=\"false\"></xref> before referring to elements in the underlying buffer. Referring to an index that does not exist will cause the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref> to throw an <xref href=\"System.IndexOutOfRangeException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public byte this[int offset] { get; set; }
     content.vb: Public Property Item(offset As Integer) As Byte
     parameters:
     - id: offset
       type: System.Int32
-      description: 'The array index element of the desired information. '
+      description: "\n<p>The array index element of the desired information. </p>\n"
     return:
       type: System.Byte
-      description: The value of the specified index element in the underlying buffer.
+      description: "\n<p>The value of the specified index element in the underlying buffer.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The specified index does not exist in the buffer. '
+    description: "\n<p>The specified index does not exist in the buffer. </p>\n"
+  seealso:
+  - type: System.Net.SocketAddress.Size
+    commentId: P:System.Net.SocketAddress.Size
   modifiers.csharp:
   - public
   - get
@@ -216,14 +229,15 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
-  summary: Gets the underlying buffer size of the <xref href="System.Net.SocketAddress" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Gets the underlying buffer size of the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>This property gets the underlying buffer size of the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref> in bytes.</p>\n"
   syntax:
     content: public int Size { get; }
     content.vb: Public ReadOnly Property Size As Integer
     parameters: []
     return:
       type: System.Int32
-      description: The underlying buffer size of the <xref href="System.Net.SocketAddress" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The underlying buffer size of the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -251,17 +265,20 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
-  summary: Determines whether the specified <xref href="System.Object" data-throw-if-not-resolved="false"></xref> is equal to the current <xref href="System.Net.SocketAddress" data-throw-if-not-resolved="false"></xref> instance.
+  summary: "\n<p>Determines whether the specified <strong>Object</strong> is equal to the current <strong>Object</strong>.</p>\n"
   syntax:
     content: public override bool Equals(object comparand)
     content.vb: Public Overrides Function Equals(comparand As Object) As Boolean
     parameters:
     - id: comparand
       type: System.Object
-      description: The specified <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to compare with the current <xref href="System.Net.SocketAddress" data-throw-if-not-resolved="false"></xref> instance.
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to compare with the current <strong>Object</strong>.</p>\n"
     return:
       type: System.Boolean
-      description: true if the specified object  is equal to the current object; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> if the specified <strong>Object</strong> is equal to the current <strong>Object</strong>; otherwise, <strong>false</strong>.</p>\n"
+  seealso:
+  - type: System.Object.Equals(System.Object)
+    commentId: M:System.Object.Equals(System.Object)
   modifiers.csharp:
   - public
   - override
@@ -289,13 +306,16 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
-  summary: Serves as a hash function for a particular type, suitable for use in hashing algorithms and data structures like a hash table.
+  summary: "\n<p>Serves as a hash function for a particular type, suitable for use in hashing algorithms and data structures like a hash table.</p>\n"
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
-      description: A hash code for the current object.
+      description: "\n<p>A hash code for the current <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  seealso:
+  - type: System.Object.GetHashCode
+    commentId: M:System.Object.GetHashCode
   modifiers.csharp:
   - public
   - override
@@ -323,13 +343,14 @@ items:
   assemblies:
   - System.Net.Primitives
   namespace: System.Net
-  summary: Returns information about the socket address.
+  summary: "\n<p>Returns information about the socket address.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Net.SocketAddress.ToString\" data-throw-if-not-resolved=\"false\"></xref> method returns a string that contains the <xref href=\"System.Net.Sockets.AddressFamily\" data-throw-if-not-resolved=\"false\"></xref> enumerated value, the size of the underlying buffer of the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref> structure, and the remaining contents of the buffer.</p>\n"
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
-      description: A string that contains information about the <xref href="System.Net.SocketAddress" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>A string that contains information about the <xref href=\"System.Net.SocketAddress\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - override

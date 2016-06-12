@@ -22,12 +22,24 @@ items:
   assemblies:
   - System.Diagnostics.Process
   namespace: System.Diagnostics
-  summary: Provides data for the <xref href="System.Diagnostics.Process.OutputDataReceived" data-throw-if-not-resolved="false"></xref> and <xref href="System.Diagnostics.Process.ErrorDataReceived" data-throw-if-not-resolved="false"></xref> events.
+  summary: "\n<p>Provides data for the <xref href=\"System.Diagnostics.Process.OutputDataReceived\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Diagnostics.Process.ErrorDataReceived\" data-throw-if-not-resolved=\"false\"></xref> events.</p>\n"
+  remarks: "\n<p>To asynchronously collect the redirected <xref href=\"System.Diagnostics.Process.StandardOutput\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Diagnostics.Process.StandardError\" data-throw-if-not-resolved=\"false\"></xref> stream output of a process, you must create a method that handles the redirected stream output events. The event-handler method is called when the process writes to the redirected stream. The event delegate calls your event handler with an instance of <xref href=\"System.Diagnostics.DataReceivedEventArgs\" data-throw-if-not-resolved=\"false\"></xref>. The <xref href=\"System.Diagnostics.DataReceivedEventArgs.Data\" data-throw-if-not-resolved=\"false\"></xref> property contains the text line that the process wrote to the redirected stream.</p>\n"
+  example:
+  - "\n<p>The following code example illustrates how to perform asynchronous read operations on the redirected <xref href=\"System.Diagnostics.Process.StandardOutput\" data-throw-if-not-resolved=\"false\"></xref> stream of the <strong>sort</strong> command. The <strong>sort</strong> command is a console application that reads and sorts text input.</p>\n<p>The example creates an event delegate for the <code>SortOutputHandler</code> event handler and associates it with the <xref href=\"System.Diagnostics.Process.OutputDataReceived\" data-throw-if-not-resolved=\"false\"></xref> event. The event handler receives text lines from the redirected <xref href=\"System.Diagnostics.Process.StandardOutput\" data-throw-if-not-resolved=\"false\"></xref> stream, formats the text, and writes the text to the screen.</p>Process_AsyncStreams#1"
   syntax:
     content: 'public class DataReceivedEventArgs : EventArgs'
     content.vb: >-
       Public Class DataReceivedEventArgs
           Inherits EventArgs
+  seealso:
+  - type: System.Diagnostics.DataReceivedEventHandler
+    commentId: T:System.Diagnostics.DataReceivedEventHandler
+  - type: System.Diagnostics.Process.OutputDataReceived
+    commentId: E:System.Diagnostics.Process.OutputDataReceived
+  - type: System.Diagnostics.Process.ErrorDataReceived
+    commentId: E:System.Diagnostics.Process.ErrorDataReceived
+  - type: System.Diagnostics.Process
+    commentId: T:System.Diagnostics.Process
   inheritance:
   - System.Object
   modifiers.csharp:
@@ -57,14 +69,17 @@ items:
   assemblies:
   - System.Diagnostics.Process
   namespace: System.Diagnostics
-  summary: Gets the line of characters that was written to a redirected <xref href="System.Diagnostics.Process" data-throw-if-not-resolved="false"></xref> output stream.
+  summary: "\n<p>Gets the line of characters that was written to a redirected <xref href=\"System.Diagnostics.Process\" data-throw-if-not-resolved=\"false\"></xref> output stream.</p>\n"
+  remarks: "\n<p>When you redirect the <xref href=\"System.Diagnostics.Process.StandardOutput\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Diagnostics.Process.StandardError\" data-throw-if-not-resolved=\"false\"></xref> stream of a <xref href=\"System.Diagnostics.Process\" data-throw-if-not-resolved=\"false\"></xref> to your event handler, an event is raised each time the process writes a line to the redirected stream. The <xref href=\"System.Diagnostics.DataReceivedEventArgs.Data\" data-throw-if-not-resolved=\"false\"></xref> property is the line that the <xref href=\"System.Diagnostics.Process\" data-throw-if-not-resolved=\"false\"></xref> wrote to the redirected output stream. Your event handler can use the <xref href=\"System.Diagnostics.DataReceivedEventArgs.Data\" data-throw-if-not-resolved=\"false\"></xref> property to filter process output or write output to an alternate location. For example, you might create an event handler that stores all error output lines into a designated error log file.</p>\n<p>A line is defined as a sequence of characters followed by a line feed (\"\\n\") or a carriage return immediately followed by a line feed (\"\\r\\n\"). The line characters are encoded using the default system ANSI code page. The <xref href=\"System.Diagnostics.DataReceivedEventArgs.Data\" data-throw-if-not-resolved=\"false\"></xref> property does not include the terminating carriage return or line feed.</p>\n<p>When the redirected stream is closed, a null line is sent to the event handler. Ensure your event handler checks the <xref href=\"System.Diagnostics.DataReceivedEventArgs.Data\" data-throw-if-not-resolved=\"false\"></xref> property appropriately before accessing it. For example, you can use the static method <xref href=\"System.String.IsNullOrEmpty(System.String)\" data-throw-if-not-resolved=\"false\"></xref> to validate the <xref href=\"System.Diagnostics.DataReceivedEventArgs.Data\" data-throw-if-not-resolved=\"false\"></xref> property in your event handler.</p>\n"
+  example:
+  - "\n<p>The following code example illustrates a simple event handler associated with the <xref href=\"System.Diagnostics.Process.OutputDataReceived\" data-throw-if-not-resolved=\"false\"></xref> event. The event handler receives text lines from the redirected <xref href=\"System.Diagnostics.Process.StandardOutput\" data-throw-if-not-resolved=\"false\"></xref> stream, formats the text, and writes the text to the screen.</p>Process_AsyncStreams#4"
   syntax:
     content: public string Data { get; }
     content.vb: Public ReadOnly Property Data As String
     parameters: []
     return:
       type: System.String
-      description: The line that was written by an associated <xref href="System.Diagnostics.Process" data-throw-if-not-resolved="false"></xref> to its redirected <xref href="System.Diagnostics.Process.StandardOutput" data-throw-if-not-resolved="false"></xref> or <xref href="System.Diagnostics.Process.StandardError" data-throw-if-not-resolved="false"></xref> stream.
+      description: "\n<p>The line that was written by an associated <xref href=\"System.Diagnostics.Process\" data-throw-if-not-resolved=\"false\"></xref> to its redirected <xref href=\"System.Diagnostics.Process.StandardOutput\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Diagnostics.Process.StandardError\" data-throw-if-not-resolved=\"false\"></xref> stream.</p>\n"
   modifiers.csharp:
   - public
   - get

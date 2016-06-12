@@ -15,16 +15,18 @@ items:
   type: Interface
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/IXmlNamespaceResolver.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IXmlNamespaceResolver
-    path: src/System.Xml.ReaderWriter/src/System/Xml/IXmlNamespaceResolver.cs
-    startLine: 12
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 27
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
-  summary: Provides read-only access to a set of prefix and namespace mappings.
+  summary: "\n<p>Provides read-only access to a set of prefix and namespace mappings.</p>\n"
+  example:
+  - 
   syntax:
     content: public interface IXmlNamespaceResolver
     content.vb: Public Interface IXmlNamespaceResolver
@@ -46,26 +48,29 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/IXmlNamespaceResolver.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetNamespacesInScope
-    path: src/System.Xml.ReaderWriter/src/System/Xml/IXmlNamespaceResolver.cs
-    startLine: 17
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 29
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
-  summary: Gets a collection of defined prefix-namespace mappings that are currently in scope.
+  summary: "\n<p>Gets a collection of defined prefix-namespace mappings that are currently in scope.</p>\n"
+  remarks: "\n<p>The collection is keyed by prefix and can be used to enumerate the namespaces currently in scope. The collection is a disconnected copy of the current namespace list.</p>\n<p>The following table lists the <xref href=\"System.Xml.XmlNamespaceScope\" data-throw-if-not-resolved=\"false\"></xref> values and how it affects the whether or not the default and built-in namespaces are returned by the <xref href=\"System.Xml.IXmlNamespaceResolver.GetNamespacesInScope(System.Xml.XmlNamespaceScope)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>XmlNamespaceScope value</p>\n<p>xmlns:xml</p>\n<p>xmlns:xmlns</p>\n<p>xmlns=\"\"</p>\n"
+  example:
+  - 
   syntax:
     content: Collections.Generic.IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
     content.vb: Function GetNamespacesInScope(scope As XmlNamespaceScope) As Collections.Generic.IDictionary(Of String, String)
     parameters:
     - id: scope
       type: System.Xml.XmlNamespaceScope
-      description: An <xref href="System.Xml.XmlNamespaceScope" data-throw-if-not-resolved="false"></xref> value that specifies the type of namespace nodes to return.
+      description: "\n<p>An <xref href=\"System.Xml.XmlNamespaceScope\" data-throw-if-not-resolved=\"false\"></xref> value that specifies the type of namespace nodes to return.</p>\n"
     return:
       type: System.Collections.Generic.IDictionary{System.String,System.String}
-      description: An <xref href="System.Collections.IDictionary" data-throw-if-not-resolved="false"></xref> that contains the current in-scope namespaces.
+      description: "\n<p>An <xref href=\"System.Collections.IDictionary\" data-throw-if-not-resolved=\"false\"></xref> that contains the current in-scope namespaces.</p>\n"
 - uid: System.Xml.IXmlNamespaceResolver.LookupNamespace(System.String)
   commentId: M:System.Xml.IXmlNamespaceResolver.LookupNamespace(System.String)
   id: LookupNamespace(System.String)
@@ -78,26 +83,29 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/IXmlNamespaceResolver.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: LookupNamespace
-    path: src/System.Xml.ReaderWriter/src/System/Xml/IXmlNamespaceResolver.cs
-    startLine: 25
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 30
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
-  summary: Gets the namespace URI mapped to the specified prefix.
+  summary: "\n<p>Gets the namespace URI mapped to the specified prefix.</p>\n"
+  remarks: "\n<p>Namespace URI-to-prefix mappings can change from node to node in an XML document. You cannot depend on the result of a lookup being consistent from one node to the next.</p>\n<p>The following table describes how the default and built-in namespaces are handled by the <xref href=\"System.Xml.IXmlNamespaceResolver.LookupNamespace(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>Prefix</p>\n<p>Return Value</p>\n<table><tbody><tr><td>\n<p>xml</p>\n</td><td>\n<p>http://www.w3.org/XML/1998/namespace</p>\n</td></tr><tr><td>\n<p>xmlns</p>\n</td><td>\n<p>http://www.w3.org/2000/xmlns/</p>\n</td></tr><tr><td>\n<p>\n<strong>String.Empty</strong> (A default namespace has been assigned).</p>\n</td><td>\n<p>The currently assigned default namespace.</p>\n</td></tr><tr><td>\n<p>\n<strong>String.Empty</strong> (The default namespace has not been explicitly assigned).</p>\n</td><td>\n<p>\n<strong>String.Empty</strong> (The blank prefix is associated with elements that are not in any namespace).</p>\n</td></tr></tbody></table>\n"
+  example:
+  - 
   syntax:
     content: string LookupNamespace(string prefix)
     content.vb: Function LookupNamespace(prefix As String) As String
     parameters:
     - id: prefix
       type: System.String
-      description: The prefix whose namespace URI you wish to find.
+      description: "\n<p>The prefix whose namespace URI you wish to find.</p>\n"
     return:
       type: System.String
-      description: The namespace URI that is mapped to the prefix; null if the prefix is not mapped to a namespace URI.
+      description: "\n<p>The namespace URI that is mapped to the prefix; <strong>null</strong> if the prefix is not mapped to a namespace URI.</p>\n"
 - uid: System.Xml.IXmlNamespaceResolver.LookupPrefix(System.String)
   commentId: M:System.Xml.IXmlNamespaceResolver.LookupPrefix(System.String)
   id: LookupPrefix(System.String)
@@ -110,26 +118,29 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/IXmlNamespaceResolver.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: LookupPrefix
-    path: src/System.Xml.ReaderWriter/src/System/Xml/IXmlNamespaceResolver.cs
-    startLine: 33
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 31
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
-  summary: Gets the prefix that is mapped to the specified namespace URI.
+  summary: "\n<p>Gets the prefix that is mapped to the specified namespace URI.</p>\n"
+  remarks: "\n<p>It is possible for a namespace URI to be mapped to multiple prefixes. Because the prefixes are not mapped in a predictable manner, you should not depend on getting back a particular prefix when a namespace URI is mapped to more than one prefix.</p>\n<p>Namespace URI to prefix mappings can change from node to node in an XML document. You cannot depend on the result of a lookup being consistent from one node to the next.</p>\n<p>The following table describes how the default and built-in namespaces are handled by the <xref href=\"System.Xml.IXmlNamespaceResolver.LookupPrefix(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>Namespace</p>\n<p>Return value</p>\n<table><tbody><tr><td>\n<p>http://www.w3.org/XML/1998/namespace</p>\n</td><td>\n<p>xml</p>\n</td></tr><tr><td>\n<p>http://www.w3.org/2000/xmlns/</p>\n</td><td>\n<p>xmlns</p>\n</td></tr><tr><td>\n<p>An empty namespace.</p>\n</td><td>\n<p>A default namespace that has not been defined.</p>\n</td></tr></tbody></table>\n"
+  example:
+  - 
   syntax:
     content: string LookupPrefix(string namespaceName)
     content.vb: Function LookupPrefix(namespaceName As String) As String
     parameters:
     - id: namespaceName
       type: System.String
-      description: The namespace URI whose prefix you wish to find.
+      description: "\n<p>The namespace URI whose prefix you wish to find.</p>\n"
     return:
       type: System.String
-      description: The prefix that is mapped to the namespace URI; null if the namespace URI is not mapped to a prefix.
+      description: "\n<p>The prefix that is mapped to the namespace URI; <strong>null</strong> if the namespace URI is not mapped to a prefix.</p>\n"
 references:
 - uid: System.Xml
   isExternal: false
@@ -186,13 +197,13 @@ references:
     fullName: )
 - uid: System.Collections.Generic.IDictionary`2
   isExternal: false
-  name: Generic.IDictionary<, >
+  name: Collections.Generic.IDictionary<, >
   fullName: System.Collections.Generic.IDictionary<, >
   fullname.vb: System.Collections.Generic.IDictionary(Of , )
-  name.vb: Generic.IDictionary(Of , )
+  name.vb: Collections.Generic.IDictionary(Of , )
   spec.csharp:
   - uid: System.Collections.Generic.IDictionary`2
-    name: Generic.IDictionary
+    name: Collections.Generic.IDictionary
     fullName: System.Collections.Generic.IDictionary
   - name: <
     fullName: <
@@ -204,7 +215,7 @@ references:
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IDictionary`2
-    name: Generic.IDictionary
+    name: Collections.Generic.IDictionary
     fullName: System.Collections.Generic.IDictionary
   - name: '(Of '
     fullName: '(Of '

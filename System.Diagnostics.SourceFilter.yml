@@ -24,7 +24,8 @@ items:
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
-  summary: Indicates whether a listener should trace a message based on the source of a trace.
+  summary: "\n<p>Indicates whether a listener should trace a message based on the source of a trace.</p>\n"
+  remarks: "\n<p>One of several different types of filters can be assigned to a trace listener to provide a layer of screening beyond that provided by the trace switch. The filter can be used to control the level of tracing that is produced by the listener.</p>\n<p>This class filters events based on a specific trace source set by the user.</p>\n<p>\n<xref href=\"System.Diagnostics.SourceFilter\" data-throw-if-not-resolved=\"false\"></xref> overrides the <xref href=\"System.Diagnostics.TraceFilter.ShouldTrace(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[],System.Object,System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> method and defines a <xref href=\"System.Diagnostics.SourceFilter.Source\" data-throw-if-not-resolved=\"false\"></xref> property that specifies the name of the trace source to be traced by the listener.</p>\n<p>This filter is provided because multiple trace sources can simultaneously use the same trace listener.</p>\n"
   syntax:
     content: 'public class SourceFilter : TraceFilter'
     content.vb: >-
@@ -60,14 +61,17 @@ items:
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
-  summary: 'Initializes a new instance of the <xref href="System.Diagnostics.SourceFilter" data-throw-if-not-resolved="false"></xref> class, specifying the name of the trace source. '
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Diagnostics.SourceFilter\" data-throw-if-not-resolved=\"false\"></xref> class, specifying the name of the trace source. </p>\n"
+  remarks: "\n<p>The value of the <em>source</em> parameter is used to initialize the <xref href=\"System.Diagnostics.SourceFilter.Source\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
+  example:
+  - "\n<p>The following code example calls the <see cref=\"Overload:System.Diagnostics.TraceSource.TraceData\"></see> method using two different source filters, one with a fictitious name, the other with the name of the current trace source. In the first case, the trace is not written to the console; in the second case, the trace is written. This code example is part of a larger example provided for the <xref href=\"System.Diagnostics.TraceSource\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.Diagnostics.TraceSource#28"
   syntax:
     content: public SourceFilter(string source)
     content.vb: Public Sub New(source As String)
     parameters:
     - id: source
       type: System.String
-      description: The name of the trace source.
+      description: "\n<p>The name of the trace source.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -93,18 +97,19 @@ items:
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
-  summary: Gets or sets the name of the trace source.
+  summary: "\n<p>Gets or sets the name of the trace source.</p>\n"
+  remarks: "\n<p>\n<xref href=\"System.Diagnostics.SourceFilter.Source\" data-throw-if-not-resolved=\"false\"></xref> identifies the trace source for which to write trace information. Trace information will not be written for other trace sources. The name of the trace source is the <em>name</em> parameter from the constructor for the <xref href=\"System.Diagnostics.TraceSource\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public string Source { get; set; }
     content.vb: Public Property Source As String
     parameters: []
     return:
       type: System.String
-      description: The name of the trace source.
+      description: "\n<p>The name of the trace source.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: 'The value is null. '
+    description: "\n<p>The value is <strong>null</strong>. </p>\n"
   modifiers.csharp:
   - public
   - get
@@ -132,43 +137,44 @@ items:
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
-  summary: Determines whether the trace listener should trace the event.
+  summary: "\n<p>Determines whether the trace listener should trace the event.</p>\n"
+  remarks: "\n<p>If the value of the <em>source</em> parameter matches the value of the <xref href=\"System.Diagnostics.SourceFilter.Source\" data-throw-if-not-resolved=\"false\"></xref> property, the method returns <strong>true</strong>.</p>\n"
   syntax:
     content: public override bool ShouldTrace(TraceEventCache cache, string source, TraceEventType eventType, int id, string formatOrMessage, object[] args, object data1, object[] data)
     content.vb: Public Overrides Function ShouldTrace(cache As TraceEventCache, source As String, eventType As TraceEventType, id As Integer, formatOrMessage As String, args As Object(), data1 As Object, data As Object()) As Boolean
     parameters:
     - id: cache
       type: System.Diagnostics.TraceEventCache
-      description: An object that represents the information cache for the trace event.
+      description: "\n<p>An object that represents the information cache for the trace event.</p>\n"
     - id: source
       type: System.String
-      description: The name of the source.
+      description: "\n<p>The name of the source.</p>\n"
     - id: eventType
       type: System.Diagnostics.TraceEventType
-      description: 'One of the enumeration values that identifies the event type. '
+      description: "\n<p>One of the enumeration values that identifies the event type. </p>\n"
     - id: id
       type: System.Int32
-      description: A trace identifier number.
+      description: "\n<p>A trace identifier number.</p>\n"
     - id: formatOrMessage
       type: System.String
-      description: The format to use for writing an array of arguments or a message to write.
+      description: "\n<p>The format to use for writing an array of arguments or a message to write.</p>\n"
     - id: args
       type: System.Object[]
-      description: An array of argument objects.
+      description: "\n<p>An array of argument objects.</p>\n"
     - id: data1
       type: System.Object
-      description: A trace data object.
+      description: "\n<p>A trace data object.</p>\n"
     - id: data
       type: System.Object[]
-      description: An array of trace data objects.
+      description: "\n<p>An array of trace data objects.</p>\n"
     return:
       type: System.Boolean
-      description: 'true if the trace should be produced; otherwise, false. '
+      description: "\n<p>\n<strong>true</strong> if the trace should be produced; otherwise, <strong>false</strong>. </p>\n"
   overridden: System.Diagnostics.TraceFilter.ShouldTrace(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[],System.Object,System.Object[])
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>source</em> is null. "
+    description: "\n<p>\n<em>source</em> is <strong>null</strong>. </p>\n"
   modifiers.csharp:
   - public
   - override

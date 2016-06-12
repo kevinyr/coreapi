@@ -46,7 +46,10 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Provides access to the column values within each row for a DataReader, and is implemented by .NET Framework data providers that access relational databases.
+  summary: "\n<p>Provides access to the column values within each row for a <strong>DataReader</strong>, and is implemented by .NET Framework data providers that access relational databases.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Data.IDataRecord\" data-throw-if-not-resolved=\"false\"></xref> interfaces enable an inheriting class to implement a <strong>DataReader</strong> class. This provides a way of reading one or more forward-only streams of result sets. For more information about <strong>DataReader</strong> classes, see Retrieving Data Using a DataReader. </p>\n<p>An application does not create an instance of the <xref href=\"System.Data.IDataRecord\" data-throw-if-not-resolved=\"false\"></xref> interface directly, but creates an instance of a class that inherits <xref href=\"System.Data.IDataRecord\" data-throw-if-not-resolved=\"false\"></xref>. Typically, you do this by obtaining a <strong>DataReader</strong> through the <strong>ExecuteReader</strong> method of the <strong>Command</strong> object.</p>\n<p>Classes that inherit <xref href=\"System.Data.IDataRecord\" data-throw-if-not-resolved=\"false\"></xref> must implement all inherited members, and typically define additional members to add provider-specific functionality.</p>\n<p>Providers implementing a <strong>DataReader</strong> are required to expose data in common language runtime (CLR) types. Type coercion is defined for some types not included in the CLR. These values may be accessed as alternative types that comply with CLR types. As an example, the following table lists suggested mappings from OLE DB data types to CLR types, with alternative types in parentheses.</p>\n<p>OLE DB type </p>\n<p>CLR type </p>\n<table><tbody><tr><td>\n<p>DBTYPE_BOOL </p>\n</td><td>\n<p>Int16 </p>\n</td></tr><tr><td>\n<p>DBTYPE_BSTR </p>\n</td><td>\n<p>string </p>\n</td></tr><tr><td>\n<p>DBTYPE_BYTES </p>\n</td><td>\n<p>byte[] </p>\n</td></tr><tr><td>\n<p>DBTYPE_CY </p>\n</td><td>\n<p>Decimal </p>\n</td></tr><tr><td>\n<p>DBTYPE_DATE </p>\n</td><td>\n<p>DateTime </p>\n</td></tr><tr><td>\n<p>DBTYPE_DBDATE </p>\n</td><td>\n<p>DateTime </p>\n</td></tr><tr><td>\n<p>DBTYPE_DBTIME </p>\n</td><td>\n<p>DateTime </p>\n</td></tr><tr><td>\n<p>DBTYPE_DBTIMESTAMP </p>\n</td><td>\n<p>DateTime </p>\n</td></tr><tr><td>\n<p>DBTYPE_DECIMAL </p>\n</td><td>\n<p>Decimal </p>\n</td></tr><tr><td>\n<p>DBTYPE_EMPTY </p>\n</td><td>\n<p>null </p>\n</td></tr><tr><td>\n<p>DBTYPE_ERROR </p>\n</td><td>\n<p>ExternalException </p>\n</td></tr><tr><td>\n<p>DBTYPE_FILETIME </p>\n</td><td>\n<p>DateTime </p>\n</td></tr><tr><td>\n<p>DBTYPE_GUID </p>\n</td><td>\n<p>Guid </p>\n</td></tr><tr><td>\n<p>DBTYPE_HCHAPTER </p>\n</td><td>\n<p>not supported </p>\n</td></tr><tr><td>\n<p>DBTYPE_I1 </p>\n</td><td>\n<p>SByte </p>\n</td></tr><tr><td>\n<p>DBTYPE_I2 </p>\n</td><td>\n<p>Int16 </p>\n</td></tr><tr><td>\n<p>DBTYPE_I4 </p>\n</td><td>\n<p>Int32 </p>\n</td></tr><tr><td>\n<p>DBTYPE_I8 </p>\n</td><td>\n<p>Int64 </p>\n</td></tr><tr><td>\n<p>DBTYPE_IDISPATCH </p>\n</td><td>\n<p>object </p>\n</td></tr><tr><td>\n<p>DBTYPE_IUNKNOWN </p>\n</td><td>\n<p>object </p>\n</td></tr><tr><td>\n<p>DBTYPE_NULL </p>\n</td><td>\n<p>DBNull.Value </p>\n</td></tr><tr><td>\n<p>DBTYPE_NUMERIC </p>\n</td><td>\n<p>Decimal </p>\n</td></tr><tr><td>\n<p>DBTYPE_PROPVARIANT </p>\n</td><td>\n<p>object </p>\n</td></tr><tr><td>\n<p>DBTYPE_R4 </p>\n</td><td>\n<p>Single </p>\n</td></tr><tr><td>\n<p>DBTYPE_R8 </p>\n</td><td>\n<p>Double </p>\n</td></tr><tr><td>\n<p>DBTYPE_STR </p>\n</td><td>\n<p>string </p>\n</td></tr><tr><td>\n<p>DBTYPE_UDT </p>\n</td><td>\n<p>not supported </p>\n</td></tr><tr><td>\n<p>DBTYPE_UI1 </p>\n</td><td>\n<p>byte (Int16) </p>\n</td></tr><tr><td>\n<p>DBTYPE_UI2 </p>\n</td><td>\n<p>UInt16 (Int32) </p>\n</td></tr><tr><td>\n<p>DBTYPE_UI4 </p>\n</td><td>\n<p>UInt32 (Int64) </p>\n</td></tr><tr><td>\n<p>DBTYPE_UI8 </p>\n</td><td>\n<p>UInt64 (Decimal) </p>\n</td></tr><tr><td>\n<p>DBTYPE_VARIANT </p>\n</td><td>\n<p>object </p>\n</td></tr><tr><td>\n<p>DBTYPE_VARNUMERIC </p>\n</td><td>\n<p>not supported </p>\n</td></tr><tr><td>\n<p>DBTYPE_WSTR </p>\n</td><td>\n<p>string </p>\n</td></tr></tbody></table>\n"
+  example:
+  - "\n<p>The following example creates instances of the derived classes, <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref>. The example reads through the data, writing it out to the console. Finally, the example closes the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref>, and then the <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref>.</p>Classic WebData SqlDataReader.Read Example#1"
   syntax:
     content: public interface IDataRecord
     content.vb: Public Interface IDataRecord
@@ -77,14 +80,15 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the number of columns in the current row.
+  summary: "\n<p>Gets the number of columns in the current row.</p>\n"
+  remarks: "\n<p>After executing a query that does not return rows (for example, using the <xref href=\"System.Data.IDbCommand.ExecuteNonQuery\" data-throw-if-not-resolved=\"false\"></xref> method), <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref> returns -1.</p>\n"
   syntax:
     content: int FieldCount { get; }
     content.vb: ReadOnly Property FieldCount As Integer
     parameters: []
     return:
       type: System.Int32
-      description: When not positioned in a valid recordset, 0; otherwise, the number of columns in the current record. The default is -1.
+      description: "\n<p>When not positioned in a valid recordset, 0; otherwise, the number of columns in the current record. The default is -1.</p>\n"
   modifiers.csharp:
   - get
   modifiers.vb:
@@ -110,21 +114,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the column located at the specified index.
+  summary: "\n<p>Gets the column located at the specified index.</p>\n"
   syntax:
     content: object this[int i] { get; }
     content.vb: ReadOnly Property Item(i As Integer) As Object
     parameters:
     - id: i
       type: System.Int32
-      description: 'The zero-based index of the column to get. '
+      description: "\n<p>The zero-based index of the column to get. </p>\n"
     return:
       type: System.Object
-      description: The column located at the specified index as an <xref href="System.Object" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The column located at the specified index as an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   modifiers.csharp:
   - get
   modifiers.vb:
@@ -152,21 +156,22 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the column with the specified name.
+  summary: "\n<p>Gets the column with the specified name.</p>\n"
+  remarks: "\n<p>A case-sensitive lookup is performed first. If it fails, a second case-insensitive search is made.</p>\n<p>This method is kana-width insensitive.</p>\n"
   syntax:
     content: object this[string name] { get; }
     content.vb: ReadOnly Property Item(name As String) As Object
     parameters:
     - id: name
       type: System.String
-      description: 'The name of the column to find. '
+      description: "\n<p>The name of the column to find. </p>\n"
     return:
       type: System.Object
-      description: The column with the specified name as an <xref href="System.Object" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The column with the specified name as an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'No column with the specified name was found. '
+    description: "\n<p>No column with the specified name was found. </p>\n"
   modifiers.csharp:
   - get
   modifiers.vb:
@@ -194,21 +199,22 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the value of the specified column as a Boolean.
+  summary: "\n<p>Gets the value of the specified column as a Boolean.</p>\n"
+  remarks: "\n<p>No conversions are performed. Therefore, the data retrieved must already be a Boolean; otherwise an exception is generated.</p>\n"
   syntax:
     content: bool GetBoolean(int i)
     content.vb: Function GetBoolean(i As Integer) As Boolean
     parameters:
     - id: i
       type: System.Int32
-      description: 'The zero-based column ordinal. '
+      description: "\n<p>The zero-based column ordinal. </p>\n"
     return:
       type: System.Boolean
-      description: The value of the column.
+      description: "\n<p>The value of the column.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetByte(System.Int32)
   commentId: M:System.Data.IDataRecord.GetByte(System.Int32)
   id: GetByte(System.Int32)
@@ -230,21 +236,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the 8-bit unsigned integer value of the specified column.
+  summary: "\n<p>Gets the 8-bit unsigned integer value of the specified column.</p>\n"
   syntax:
     content: byte GetByte(int i)
     content.vb: Function GetByte(i As Integer) As Byte
     parameters:
     - id: i
       type: System.Int32
-      description: 'The zero-based column ordinal. '
+      description: "\n<p>The zero-based column ordinal. </p>\n"
     return:
       type: System.Byte
-      description: The 8-bit unsigned integer value of the specified column.
+      description: "\n<p>The 8-bit unsigned integer value of the specified column.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)
   commentId: M:System.Data.IDataRecord.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)
   id: GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)
@@ -266,33 +272,34 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Reads a stream of bytes from the specified column offset into the buffer as an array, starting at the given buffer offset.
+  summary: "\n<p>Reads a stream of bytes from the specified column offset into the buffer as an array, starting at the given buffer offset.</p>\n"
+  remarks: "\n<p>\n<xref href=\"System.Data.IDataRecord.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> returns the number of available bytes in the field. Frequently this is the exact length of the field. However, the number returned may be less than the true length of the field if <strong>GetBytes</strong> has already been used to obtain bytes from the field.</p>\n<p>If you pass a buffer that is <strong>null</strong>, <xref href=\"System.Data.IDataRecord.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> returns the length of the row in bytes.</p>\n<p>No conversions are performed; therefore the data retrieved must already be a byte array.</p>\n"
   syntax:
     content: long GetBytes(int i, long fieldOffset, byte[] buffer, int bufferoffset, int length)
     content.vb: Function GetBytes(i As Integer, fieldOffset As Long, buffer As Byte(), bufferoffset As Integer, length As Integer) As Long
     parameters:
     - id: i
       type: System.Int32
-      description: 'The zero-based column ordinal. '
+      description: "\n<p>The zero-based column ordinal. </p>\n"
     - id: fieldOffset
       type: System.Int64
-      description: 'The index within the field from which to start the read operation. '
+      description: "\n<p>The index within the field from which to start the read operation. </p>\n"
     - id: buffer
       type: System.Byte[]
-      description: 'The buffer into which to read the stream of bytes. '
+      description: "\n<p>The buffer into which to read the stream of bytes. </p>\n"
     - id: bufferoffset
       type: System.Int32
-      description: 'The index for <em>buffer</em> to start the read operation. '
+      description: "\n<p>The index for <em>buffer</em> to start the read operation. </p>\n"
     - id: length
       type: System.Int32
-      description: 'The number of bytes to read. '
+      description: "\n<p>The number of bytes to read. </p>\n"
     return:
       type: System.Int64
-      description: The actual number of bytes read.
+      description: "\n<p>The actual number of bytes read.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   fullName.vb: System.Data.IDataRecord.GetBytes(System.Int32, System.Int64, System.Byte(), System.Int32, System.Int32)
   name.vb: GetBytes(Int32, Int64, Byte(), Int32, Int32)
 - uid: System.Data.IDataRecord.GetChar(System.Int32)
@@ -316,21 +323,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the character value of the specified column.
+  summary: "\n<p>Gets the character value of the specified column.</p>\n"
   syntax:
     content: char GetChar(int i)
     content.vb: Function GetChar(i As Integer) As Char
     parameters:
     - id: i
       type: System.Int32
-      description: 'The zero-based column ordinal. '
+      description: "\n<p>The zero-based column ordinal. </p>\n"
     return:
       type: System.Char
-      description: The character value of the specified column.
+      description: "\n<p>The character value of the specified column.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)
   commentId: M:System.Data.IDataRecord.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)
   id: GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)
@@ -352,33 +359,34 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Reads a stream of characters from the specified column offset into the buffer as an array, starting at the given buffer offset.
+  summary: "\n<p>Reads a stream of characters from the specified column offset into the buffer as an array, starting at the given buffer offset.</p>\n"
+  remarks: "\n<p>\n<xref href=\"System.Data.IDataRecord.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> returns the number of available characters in the field. Frequently this is the exact length of the field. However, the number returned may be less than the exact length of the field if <strong>GetChars</strong> has already been used to obtain characters from the field.</p>\n<p>If you pass a buffer that is <strong>null</strong>, <strong>GetChars</strong> returns the length of the field in characters.</p>\n<p>No conversions are performed; therefore the data retrieved must already be a character array.</p>\n"
   syntax:
     content: long GetChars(int i, long fieldoffset, char[] buffer, int bufferoffset, int length)
     content.vb: Function GetChars(i As Integer, fieldoffset As Long, buffer As Char(), bufferoffset As Integer, length As Integer) As Long
     parameters:
     - id: i
       type: System.Int32
-      description: 'The zero-based column ordinal. '
+      description: "\n<p>The zero-based column ordinal. </p>\n"
     - id: fieldoffset
       type: System.Int64
-      description: 'The index within the row from which to start the read operation. '
+      description: "\n<p>The index within the row from which to start the read operation. </p>\n"
     - id: buffer
       type: System.Char[]
-      description: 'The buffer into which to read the stream of bytes. '
+      description: "\n<p>The buffer into which to read the stream of bytes. </p>\n"
     - id: bufferoffset
       type: System.Int32
-      description: 'The index for <em>buffer</em> to start the read operation. '
+      description: "\n<p>The index for <em>buffer</em> to start the read operation. </p>\n"
     - id: length
       type: System.Int32
-      description: 'The number of bytes to read. '
+      description: "\n<p>The number of bytes to read. </p>\n"
     return:
       type: System.Int64
-      description: The actual number of characters read.
+      description: "\n<p>The actual number of characters read.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   fullName.vb: System.Data.IDataRecord.GetChars(System.Int32, System.Int64, System.Char(), System.Int32, System.Int32)
   name.vb: GetChars(Int32, Int64, Char(), Int32, Int32)
 - uid: System.Data.IDataRecord.GetData(System.Int32)
@@ -402,21 +410,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Returns an <xref href="System.Data.IDataReader" data-throw-if-not-resolved="false"></xref> for the specified column ordinal.
+  summary: "\n<p>Returns an <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> for the specified column ordinal.</p>\n"
   syntax:
     content: IDataReader GetData(int i)
     content.vb: Function GetData(i As Integer) As IDataReader
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Data.IDataReader
-      description: The <xref href="System.Data.IDataReader" data-throw-if-not-resolved="false"></xref> for the specified column ordinal.
+      description: "\n<p>The <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> for the specified column ordinal.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetDataTypeName(System.Int32)
   commentId: M:System.Data.IDataRecord.GetDataTypeName(System.Int32)
   id: GetDataTypeName(System.Int32)
@@ -438,21 +446,22 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the data type information for the specified field.
+  summary: "\n<p>Gets the data type information for the specified field.</p>\n"
+  remarks: "\n<p>The data type information can differ from the type information returned by <strong>GetFieldType</strong>, especially where the underlying data types do not map one for one to the runtime types supported by the language. (for example, <strong>DataTypeName</strong> may be \"integer\", while <strong>Type.Name</strong> may be \"Int32\".) </p>\n"
   syntax:
     content: string GetDataTypeName(int i)
     content.vb: Function GetDataTypeName(i As Integer) As String
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.String
-      description: The data type information for the specified field.
+      description: "\n<p>The data type information for the specified field.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetDateTime(System.Int32)
   commentId: M:System.Data.IDataRecord.GetDateTime(System.Int32)
   id: GetDateTime(System.Int32)
@@ -474,21 +483,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the date and time data value of the specified field.
+  summary: "\n<p>Gets the date and time data value of the specified field.</p>\n"
   syntax:
     content: DateTime GetDateTime(int i)
     content.vb: Function GetDateTime(i As Integer) As DateTime
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.DateTime
-      description: The date and time data value of the specified field.
+      description: "\n<p>The date and time data value of the specified field.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetDecimal(System.Int32)
   commentId: M:System.Data.IDataRecord.GetDecimal(System.Int32)
   id: GetDecimal(System.Int32)
@@ -510,21 +519,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the fixed-position numeric value of the specified field.
+  summary: "\n<p>Gets the fixed-position numeric value of the specified field.</p>\n"
   syntax:
     content: decimal GetDecimal(int i)
     content.vb: Function GetDecimal(i As Integer) As Decimal
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Decimal
-      description: The fixed-position numeric value of the specified field.
+      description: "\n<p>The fixed-position numeric value of the specified field.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetDouble(System.Int32)
   commentId: M:System.Data.IDataRecord.GetDouble(System.Int32)
   id: GetDouble(System.Int32)
@@ -546,21 +555,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the double-precision floating point number of the specified field.
+  summary: "\n<p>Gets the double-precision floating point number of the specified field.</p>\n"
   syntax:
     content: double GetDouble(int i)
     content.vb: Function GetDouble(i As Integer) As Double
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Double
-      description: The double-precision floating point number of the specified field.
+      description: "\n<p>The double-precision floating point number of the specified field.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetFieldType(System.Int32)
   commentId: M:System.Data.IDataRecord.GetFieldType(System.Int32)
   id: GetFieldType(System.Int32)
@@ -582,21 +591,22 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the <xref href="System.Type" data-throw-if-not-resolved="false"></xref> information corresponding to the type of <xref href="System.Object" data-throw-if-not-resolved="false"></xref> that would be returned from <xref href="System.Data.IDataRecord.GetValue(System.Int32)" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Gets the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> information corresponding to the type of <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that would be returned from <xref href=\"System.Data.IDataRecord.GetValue(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>This information can be used to increase performance by indicating the strongly-typed accessor to call. (for example, using <strong>GetInt32</strong> is roughly ten times faster than using <strong>GetValue</strong>.) </p>\n"
   syntax:
     content: Type GetFieldType(int i)
     content.vb: Function GetFieldType(i As Integer) As Type
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> information corresponding to the type of <xref href="System.Object" data-throw-if-not-resolved="false"></xref> that would be returned from <xref href="System.Data.IDataRecord.GetValue(System.Int32)" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> information corresponding to the type of <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that would be returned from <xref href=\"System.Data.IDataRecord.GetValue(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetFloat(System.Int32)
   commentId: M:System.Data.IDataRecord.GetFloat(System.Int32)
   id: GetFloat(System.Int32)
@@ -618,21 +628,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the single-precision floating point number of the specified field.
+  summary: "\n<p>Gets the single-precision floating point number of the specified field.</p>\n"
   syntax:
     content: float GetFloat(int i)
     content.vb: Function GetFloat(i As Integer) As Single
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Single
-      description: The single-precision floating point number of the specified field.
+      description: "\n<p>The single-precision floating point number of the specified field.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetGuid(System.Int32)
   commentId: M:System.Data.IDataRecord.GetGuid(System.Int32)
   id: GetGuid(System.Int32)
@@ -654,21 +664,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Returns the GUID value of the specified field.
+  summary: "\n<p>Returns the GUID value of the specified field.</p>\n"
   syntax:
     content: Guid GetGuid(int i)
     content.vb: Function GetGuid(i As Integer) As Guid
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Guid
-      description: The GUID value of the specified field.
+      description: "\n<p>The GUID value of the specified field.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetInt16(System.Int32)
   commentId: M:System.Data.IDataRecord.GetInt16(System.Int32)
   id: GetInt16(System.Int32)
@@ -690,21 +700,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the 16-bit signed integer value of the specified field.
+  summary: "\n<p>Gets the 16-bit signed integer value of the specified field.</p>\n"
   syntax:
     content: short GetInt16(int i)
     content.vb: Function GetInt16(i As Integer) As Short
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Int16
-      description: The 16-bit signed integer value of the specified field.
+      description: "\n<p>The 16-bit signed integer value of the specified field.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetInt32(System.Int32)
   commentId: M:System.Data.IDataRecord.GetInt32(System.Int32)
   id: GetInt32(System.Int32)
@@ -726,21 +736,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the 32-bit signed integer value of the specified field.
+  summary: "\n<p>Gets the 32-bit signed integer value of the specified field.</p>\n"
   syntax:
     content: int GetInt32(int i)
     content.vb: Function GetInt32(i As Integer) As Integer
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Int32
-      description: The 32-bit signed integer value of the specified field.
+      description: "\n<p>The 32-bit signed integer value of the specified field.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetInt64(System.Int32)
   commentId: M:System.Data.IDataRecord.GetInt64(System.Int32)
   id: GetInt64(System.Int32)
@@ -762,21 +772,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the 64-bit signed integer value of the specified field.
+  summary: "\n<p>Gets the 64-bit signed integer value of the specified field.</p>\n"
   syntax:
     content: long GetInt64(int i)
     content.vb: Function GetInt64(i As Integer) As Long
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Int64
-      description: The 64-bit signed integer value of the specified field.
+      description: "\n<p>The 64-bit signed integer value of the specified field.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetName(System.Int32)
   commentId: M:System.Data.IDataRecord.GetName(System.Int32)
   id: GetName(System.Int32)
@@ -798,21 +808,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the name for the field to find.
+  summary: "\n<p>Gets the name for the field to find.</p>\n"
   syntax:
     content: string GetName(int i)
     content.vb: Function GetName(i As Integer) As String
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.String
-      description: The name of the field or the empty string (""), if there is no value to return.
+      description: "\n<p>The name of the field or the empty string (\"\"), if there is no value to return.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetOrdinal(System.String)
   commentId: M:System.Data.IDataRecord.GetOrdinal(System.String)
   id: GetOrdinal(System.String)
@@ -834,17 +844,20 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Return the index of the named field.
+  summary: "\n<p>Return the index of the named field.</p>\n"
+  remarks: "\n<p>\n<strong>GetOrdinal</strong> performs a case-sensitive lookup first. If it fails, a second case-insensitive search is made.<strong> GetOrdinal</strong> is kana-width insensitive. If the index of the named field is not found, an <strong>IndexOutOfRangeException</strong> is thrown. </p>\n<p>Because ordinal-based lookups are more efficient than named lookups, it is inefficient to call <strong>GetOrdinal</strong> within a loop. Save time by calling <strong>GetOrdinal</strong> one time and assigning the results to an integer variable for use within the loop.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates how to use the inherited <xref href=\"System.Data.Odbc.OdbcDataReader.GetOrdinal(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>Classic WebData OdbcDataReader.GetOrdinal#1"
   syntax:
     content: int GetOrdinal(string name)
     content.vb: Function GetOrdinal(name As String) As Integer
     parameters:
     - id: name
       type: System.String
-      description: 'The name of the field to find. '
+      description: "\n<p>The name of the field to find. </p>\n"
     return:
       type: System.Int32
-      description: The index of the named field.
+      description: "\n<p>The index of the named field.</p>\n"
 - uid: System.Data.IDataRecord.GetString(System.Int32)
   commentId: M:System.Data.IDataRecord.GetString(System.Int32)
   id: GetString(System.Int32)
@@ -866,21 +879,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Gets the string value of the specified field.
+  summary: "\n<p>Gets the string value of the specified field.</p>\n"
   syntax:
     content: string GetString(int i)
     content.vb: Function GetString(i As Integer) As String
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.String
-      description: The string value of the specified field.
+      description: "\n<p>The string value of the specified field.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetValue(System.Int32)
   commentId: M:System.Data.IDataRecord.GetValue(System.Int32)
   id: GetValue(System.Int32)
@@ -902,21 +915,21 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Return the value of the specified field.
+  summary: "\n<p>Return the value of the specified field.</p>\n"
   syntax:
     content: object GetValue(int i)
     content.vb: Function GetValue(i As Integer) As Object
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Object
-      description: The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> which will contain the field value upon return.
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> which will contain the field value upon return.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 - uid: System.Data.IDataRecord.GetValues(System.Object[])
   commentId: M:System.Data.IDataRecord.GetValues(System.Object[])
   id: GetValues(System.Object[])
@@ -938,17 +951,18 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Populates an array of objects with the column values of the current record.
+  summary: "\n<p>Populates an array of objects with the column values of the current record.</p>\n"
+  remarks: "\n<p>For most applications, the <xref href=\"System.Data.IDataRecord.GetValues(System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> method provides an efficient means for retrieving all columns, instead of retrieving each column individually.</p>\n<p>You can pass an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> array that contains fewer than the number of columns that are contained in the resulting row. Only the amount of data the <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> array holds is copied to the array. You can also pass an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> array whose length is more than the number of columns that are contained in the resulting row.</p>\n"
   syntax:
     content: int GetValues(object[] values)
     content.vb: Function GetValues(values As Object()) As Integer
     parameters:
     - id: values
       type: System.Object[]
-      description: 'An array of <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to copy the attribute fields into. '
+      description: "\n<p>An array of <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to copy the attribute fields into. </p>\n"
     return:
       type: System.Int32
-      description: The number of instances of <xref href="System.Object" data-throw-if-not-resolved="false"></xref> in the array.
+      description: "\n<p>The number of instances of <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> in the array.</p>\n"
   fullName.vb: System.Data.IDataRecord.GetValues(System.Object())
   name.vb: GetValues(Object())
 - uid: System.Data.IDataRecord.IsDBNull(System.Int32)
@@ -972,21 +986,22 @@ items:
   assemblies:
   - System.Data.Common
   namespace: System.Data
-  summary: Return whether the specified field is set to null.
+  summary: "\n<p>Return whether the specified field is set to null.</p>\n"
+  remarks: "\n<p>Call this method to see if there are null column values before calling the typed get methods (for example, <xref href=\"System.Data.SqlClient.SqlDataReader.GetByte(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Data.SqlClient.SqlDataReader.GetChar(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, and so on) to avoid raising an error.</p>\n"
   syntax:
     content: bool IsDBNull(int i)
     content.vb: Function IsDBNull(i As Integer) As Boolean
     parameters:
     - id: i
       type: System.Int32
-      description: 'The index of the field to find. '
+      description: "\n<p>The index of the field to find. </p>\n"
     return:
       type: System.Boolean
-      description: true if the specified field is set to null; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> if the specified field is set to null; otherwise, <strong>false</strong>.</p>\n"
   exceptions:
   - type: System.IndexOutOfRangeException
     commentId: T:System.IndexOutOfRangeException
-    description: 'The index passed was outside the range of 0 through <xref href="System.Data.IDataRecord.FieldCount" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The index passed was outside the range of 0 through <xref href=\"System.Data.IDataRecord.FieldCount\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
 references:
 - uid: System.Data
   isExternal: false

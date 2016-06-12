@@ -25,7 +25,10 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Provides a type converter to convert Unicode character objects to and from various other representations.
+  summary: "\n<p>Provides a type converter to convert Unicode character objects to and from various other representations.</p>\n"
+  remarks: "\n<p>This converter can only convert a string, with a length of 1, to and from a character.</p>\n<p>For more information about type converters, see the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> base class and How to: Implement a Type Converter.</p>\n<p>You should never create an instance of a <xref href=\"System.ComponentModel.CharConverter\" data-throw-if-not-resolved=\"false\"></xref>. Instead, call the <xref href=\"System.ComponentModel.TypeDescriptor.GetConverter(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method of the <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> class. For more information, see the examples in the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> base class.</p>\n"
+  example:
+  - "\n<p>The following code example converts a variable of type <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> to a string variable, and vice versa.</p>Converters#5"
   syntax:
     content: 'public class CharConverter : TypeConverter'
     content.vb: >-
@@ -97,7 +100,7 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: 'Initializes a new instance of the <xref href="System.ComponentModel.CharConverter" data-throw-if-not-resolved="false"></xref> class. '
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.ComponentModel.CharConverter\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
   syntax:
     content: public CharConverter()
     content.vb: Public Sub New
@@ -126,21 +129,25 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets a value indicating whether this converter can convert an object in the given source type to a Unicode character object using the specified context.
+  summary: "\n<p>Gets a value indicating whether this converter can convert an object in the given source type to a Unicode character object using the specified context.</p>\n"
+  remarks: "\n<p>This converter can only convert a string, with a length of 1, to and from a character.</p>\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n"
   syntax:
     content: public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
     content.vb: Public Overrides Function CanConvertFrom(context As ITypeDescriptorContext, sourceType As Type) As Boolean
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     - id: sourceType
       type: System.Type
-      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that represents the type you want to convert from. '
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that represents the type you want to convert from. </p>\n"
     return:
       type: System.Boolean
-      description: true if this converter can perform the conversion; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> if this converter can perform the conversion; otherwise, <strong>false</strong>.</p>\n"
   overridden: System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  seealso:
+  - type: System.ComponentModel.TypeConverter
+    commentId: T:System.ComponentModel.TypeConverter
   modifiers.csharp:
   - public
   - override
@@ -168,31 +175,35 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Converts the given object to a Unicode character object.
+  summary: "\n<p>Converts the given object to a Unicode character object.</p>\n"
+  remarks: "\n<p>This converter can only convert a string, with a length of 1, to and from a character.</p>\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n"
   syntax:
     content: public override object ConvertFrom(ITypeDescriptorContext context, Globalization.CultureInfo culture, object value)
     content.vb: Public Overrides Function ConvertFrom(context As ITypeDescriptorContext, culture As Globalization.CultureInfo, value As Object) As Object
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     - id: culture
       type: System.Globalization.CultureInfo
-      description: The culture into which <em>value</em> will be converted.
+      description: "\n<p>The culture into which <em>value</em> will be converted.</p>\n"
     - id: value
       type: System.Object
-      description: 'The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to convert. '
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to convert. </p>\n"
     return:
       type: System.Object
-      description: An <xref href="System.Object" data-throw-if-not-resolved="false"></xref> that represents the converted <em>value</em>.
+      description: "\n<p>An <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that represents the converted <em>value</em>.</p>\n"
   overridden: System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
   exceptions:
   - type: System.FormatException
     commentId: T:System.FormatException
-    description: "\n<em>value</em> is not a valid value for the target type. "
+    description: "\n<p>\n<em>value</em> is not a valid value for the target type. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: 'The conversion cannot be performed. '
+    description: "\n<p>The conversion cannot be performed. </p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeConverter
+    commentId: T:System.ComponentModel.TypeConverter
   modifiers.csharp:
   - public
   - override
@@ -220,31 +231,31 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Converts the given value object to a Unicode character object using the arguments.
+  summary: "\n<p>Converts the given value object to a Unicode character object using the arguments.</p>\n"
   syntax:
     content: public override object ConvertTo(ITypeDescriptorContext context, Globalization.CultureInfo culture, object value, Type destinationType)
     content.vb: Public Overrides Function ConvertTo(context As ITypeDescriptorContext, culture As Globalization.CultureInfo, value As Object, destinationType As Type) As Object
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     - id: culture
       type: System.Globalization.CultureInfo
-      description: The culture into which <em>value</em> will be converted.
+      description: "\n<p>The culture into which <em>value</em> will be converted.</p>\n"
     - id: value
       type: System.Object
-      description: 'The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to convert. '
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to convert. </p>\n"
     - id: destinationType
       type: System.Type
-      description: 'The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> to convert the value to. '
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> to convert the value to. </p>\n"
     return:
       type: System.Object
-      description: An <xref href="System.Object" data-throw-if-not-resolved="false"></xref> that represents the converted value.
+      description: "\n<p>An <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that represents the converted value.</p>\n"
   overridden: System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: 'The conversion cannot be performed. '
+    description: "\n<p>The conversion cannot be performed. </p>\n"
   modifiers.csharp:
   - public
   - override
@@ -1535,7 +1546,7 @@ references:
 - uid: System.Globalization.CultureInfo
   parent: System.Globalization
   isExternal: false
-  name: Globalization.CultureInfo
+  name: CultureInfo
   fullName: System.Globalization.CultureInfo
 - uid: System.Globalization
   isExternal: false

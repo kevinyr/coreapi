@@ -26,12 +26,22 @@ items:
   assemblies:
   - System.ComponentModel.EventBasedAsync
   namespace: System.ComponentModel
-  summary: Provides data for the MethodNameCompleted event.
+  summary: "\n<p>Provides data for the MethodName<strong>Completed</strong> event.</p>\n"
+  remarks: "\n<p>If you are using a class that implements the Event-based Asynchronous Pattern Overview, the class will provide a MethodName<strong>Completed</strong> event. If you add an instance of the <xref href=\"System.ComponentModel.AsyncCompletedEventHandler\" data-throw-if-not-resolved=\"false\"></xref> delegate to the event, you will receive information about the outcome of asynchronous operations in the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs\" data-throw-if-not-resolved=\"false\"></xref> parameter of the corresponding event-handler method.</p>\n<p>The client application's event-handler delegate can check the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Cancelled\" data-throw-if-not-resolved=\"false\"></xref> property to determine if the asynchronous task was cancelled.</p>\n<p>The client application's event-handler delegate can check the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Error\" data-throw-if-not-resolved=\"false\"></xref> property to determine if an exception occurred during execution of the asynchronous task.</p>\n<p>If the class supports multiple asynchronous methods, or multiple calls to the same asynchronous method, you can determine which task raised the MethodName<strong>Completed</strong> event by checking the value of the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.UserState\" data-throw-if-not-resolved=\"false\"></xref> property. Your code will need to track these tokens, known as task IDs, as their corresponding asynchronous tasks start and complete.</p>\n"
+  example:
+  - "\n<p>The following code example demonstrates using an <xref href=\"System.ComponentModel.AsyncOperation\" data-throw-if-not-resolved=\"false\"></xref> to track the lifetime of asynchronous operations. This code example is part of a larger example provided for the <xref href=\"System.ComponentModel.AsyncOperationManager\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.ComponentModel.AsyncOperationManager#11,12"
   syntax:
     content: 'public class AsyncCompletedEventArgs : EventArgs'
     content.vb: >-
       Public Class AsyncCompletedEventArgs
           Inherits EventArgs
+  seealso:
+  - type: System.ComponentModel.AsyncCompletedEventHandler
+    commentId: T:System.ComponentModel.AsyncCompletedEventHandler
+  - type: System.ComponentModel.AsyncOperationManager
+    commentId: T:System.ComponentModel.AsyncOperationManager
+  - type: System.ComponentModel.AsyncOperation
+    commentId: T:System.ComponentModel.AsyncOperation
   inheritance:
   - System.Object
   modifiers.csharp:
@@ -61,20 +71,20 @@ items:
   assemblies:
   - System.ComponentModel.EventBasedAsync
   namespace: System.ComponentModel
-  summary: 'Initializes a new instance of the <xref href="System.ComponentModel.AsyncCompletedEventArgs" data-throw-if-not-resolved="false"></xref> class. '
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
   syntax:
     content: public AsyncCompletedEventArgs(Exception error, bool cancelled, object userState)
     content.vb: Public Sub New(error As Exception, cancelled As Boolean, userState As Object)
     parameters:
     - id: error
       type: System.Exception
-      description: Any error that occurred during the asynchronous operation.
+      description: "\n<p>Any error that occurred during the asynchronous operation.</p>\n"
     - id: cancelled
       type: System.Boolean
-      description: A value indicating whether the asynchronous operation was canceled.
+      description: "\n<p>A value indicating whether the asynchronous operation was canceled.</p>\n"
     - id: userState
       type: System.Object
-      description: The optional user-supplied state object passed to the <xref href="System.ComponentModel.BackgroundWorker.RunWorkerAsync(System.Object)" data-throw-if-not-resolved="false"></xref> method.
+      description: "\n<p>The optional user-supplied state object passed to the <xref href=\"System.ComponentModel.BackgroundWorker.RunWorkerAsync(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -100,14 +110,24 @@ items:
   assemblies:
   - System.ComponentModel.EventBasedAsync
   namespace: System.ComponentModel
-  summary: Gets a value indicating whether an asynchronous operation has been canceled.
+  summary: "\n<p>Gets a value indicating whether an asynchronous operation has been canceled.</p>\n"
+  remarks: "\n<p>When the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Cancelled\" data-throw-if-not-resolved=\"false\"></xref> property is <strong>true</strong>, the asynchronous operation was interrupted.</p>\n<p>The client application's event-handler delegate should check the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Cancelled\" data-throw-if-not-resolved=\"false\"></xref> property before accessing any properties in a class derived from <xref href=\"System.ComponentModel.AsyncCompletedEventArgs\" data-throw-if-not-resolved=\"false\"></xref>; otherwise, the property will raise an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> if the asynchronous operation was interrupted.</p>\n"
+  example:
+  - "\n<p>The following code example demonstrates the using an <xref href=\"System.ComponentModel.AsyncOperation\" data-throw-if-not-resolved=\"false\"></xref> to track the lifetime of asynchronous operations. This code example is part of a larger example provided for the <xref href=\"System.ComponentModel.AsyncOperationManager\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.ComponentModel.AsyncOperationManager#11,12"
   syntax:
     content: public bool Cancelled { get; }
     content.vb: Public ReadOnly Property Cancelled As Boolean
     parameters: []
     return:
       type: System.Boolean
-      description: true if the background operation has been canceled; otherwise false. The default is false.
+      description: "\n<p>\n<strong>true</strong> if the background operation has been canceled; otherwise <strong>false</strong>. The default is <strong>false</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.AsyncCompletedEventHandler
+    commentId: T:System.ComponentModel.AsyncCompletedEventHandler
+  - type: System.ComponentModel.AsyncOperationManager
+    commentId: T:System.ComponentModel.AsyncOperationManager
+  - type: System.ComponentModel.AsyncOperation
+    commentId: T:System.ComponentModel.AsyncOperation
   modifiers.csharp:
   - public
   - get
@@ -135,14 +155,24 @@ items:
   assemblies:
   - System.ComponentModel.EventBasedAsync
   namespace: System.ComponentModel
-  summary: Gets a value indicating which error occurred during an asynchronous operation.
+  summary: "\n<p>Gets a value indicating which error occurred during an asynchronous operation.</p>\n"
+  remarks: "\n<p>If an exception is raised during an asynchronous operation, the class will assign the exception to the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Error\" data-throw-if-not-resolved=\"false\"></xref> property. The client application's event-handler delegate should check the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Error\" data-throw-if-not-resolved=\"false\"></xref> property before accessing any properties in a class derived from <xref href=\"System.ComponentModel.AsyncCompletedEventArgs\" data-throw-if-not-resolved=\"false\"></xref>; otherwise, the property will raise a <xref href=\"System.Reflection.TargetInvocationException\" data-throw-if-not-resolved=\"false\"></xref> with its <xref href=\"System.Exception.InnerException\" data-throw-if-not-resolved=\"false\"></xref> property holding a reference to <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Error\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The value of the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Error\" data-throw-if-not-resolved=\"false\"></xref> property is <strong>null</strong> if the operation was canceled.</p>\n"
+  example:
+  - "\n<p>The following code example demonstrates using an <xref href=\"System.ComponentModel.AsyncOperation\" data-throw-if-not-resolved=\"false\"></xref> to track the lifetime of asynchronous operations. This code example is part of a larger example provided for the <xref href=\"System.ComponentModel.AsyncOperationManager\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.ComponentModel.AsyncOperationManager#11,12"
   syntax:
     content: public Exception Error { get; }
     content.vb: Public ReadOnly Property Error As Exception
     parameters: []
     return:
       type: System.Exception
-      description: An <xref href="System.Exception" data-throw-if-not-resolved="false"></xref> instance, if an error occurred during an asynchronous operation; otherwise null.
+      description: "\n<p>An <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> instance, if an error occurred during an asynchronous operation; otherwise <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.AsyncCompletedEventHandler
+    commentId: T:System.ComponentModel.AsyncCompletedEventHandler
+  - type: System.ComponentModel.AsyncOperationManager
+    commentId: T:System.ComponentModel.AsyncOperationManager
+  - type: System.ComponentModel.AsyncOperation
+    commentId: T:System.ComponentModel.AsyncOperation
   modifiers.csharp:
   - public
   - get
@@ -170,14 +200,24 @@ items:
   assemblies:
   - System.ComponentModel.EventBasedAsync
   namespace: System.ComponentModel
-  summary: Gets the unique identifier for the asynchronous task.
+  summary: "\n<p>Gets the unique identifier for the asynchronous task.</p>\n"
+  remarks: "\n<p>If a class supports multiple asynchronous methods, or multiple invocations of a single method, you can determine which task raised the MethodName<strong>Completed</strong> event by checking the value of the <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.UserState\" data-throw-if-not-resolved=\"false\"></xref> property. Your code will need track these tokens, known as task IDs, as their corresponding asynchronous tasks start and complete.</p>\n<p>The value of this property is set during the original call to the asynchronous method that started the task.</p>\n"
+  example:
+  - "\n<p>The following code example demonstrates using an <xref href=\"System.ComponentModel.AsyncOperation\" data-throw-if-not-resolved=\"false\"></xref> to track the lifetime of asynchronous operations. This code example is part of a larger example provided for the <xref href=\"System.ComponentModel.AsyncOperationManager\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.ComponentModel.AsyncOperationManager#11,12"
   syntax:
     content: public object UserState { get; }
     content.vb: Public ReadOnly Property UserState As Object
     parameters: []
     return:
       type: System.Object
-      description: An object reference that uniquely identifies the asynchronous task; otherwise, null if no value has been set.
+      description: "\n<p>An object reference that uniquely identifies the asynchronous task; otherwise, <strong>null</strong> if no value has been set.</p>\n"
+  seealso:
+  - type: System.ComponentModel.AsyncCompletedEventHandler
+    commentId: T:System.ComponentModel.AsyncCompletedEventHandler
+  - type: System.ComponentModel.AsyncOperationManager
+    commentId: T:System.ComponentModel.AsyncOperationManager
+  - type: System.ComponentModel.AsyncOperation
+    commentId: T:System.ComponentModel.AsyncOperation
   modifiers.csharp:
   - public
   - get
@@ -205,17 +245,24 @@ items:
   assemblies:
   - System.ComponentModel.EventBasedAsync
   namespace: System.ComponentModel
-  summary: Raises a user-supplied exception if an asynchronous operation failed.
+  summary: "\n<p>Raises a user-supplied exception if an asynchronous operation failed.</p>\n"
+  example:
+  - "\n<p>The following code example demonstrates using <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.RaiseExceptionIfNecessary\" data-throw-if-not-resolved=\"false\"></xref> in derived class properties.</p>System.ComponentModel.AsyncOperationManager#2,6"
   syntax:
     content: protected void RaiseExceptionIfNecessary()
     content.vb: Protected Sub RaiseExceptionIfNecessary
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: 'The <xref href="System.ComponentModel.AsyncCompletedEventArgs.Cancelled" data-throw-if-not-resolved="false"></xref> property is true. '
+    description: "\n<p>The <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Cancelled\" data-throw-if-not-resolved=\"false\"></xref> property is <strong>true</strong>. </p>\n"
   - type: System.Reflection.TargetInvocationException
     commentId: T:System.Reflection.TargetInvocationException
-    description: 'The <xref href="System.ComponentModel.AsyncCompletedEventArgs.Error" data-throw-if-not-resolved="false"></xref> property has been set by the asynchronous operation. The <xref href="System.Exception.InnerException" data-throw-if-not-resolved="false"></xref> property holds a reference to <xref href="System.ComponentModel.AsyncCompletedEventArgs.Error" data-throw-if-not-resolved="false"></xref>. '
+    description: "\n<p>The <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Error\" data-throw-if-not-resolved=\"false\"></xref> property has been set by the asynchronous operation. The <xref href=\"System.Exception.InnerException\" data-throw-if-not-resolved=\"false\"></xref> property holds a reference to <xref href=\"System.ComponentModel.AsyncCompletedEventArgs.Error\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
+  seealso:
+  - type: System.ComponentModel.AsyncOperationManager
+    commentId: T:System.ComponentModel.AsyncOperationManager
+  - type: System.ComponentModel.AsyncOperation
+    commentId: T:System.ComponentModel.AsyncOperation
   modifiers.csharp:
   - protected
   modifiers.vb:

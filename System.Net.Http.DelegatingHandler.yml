@@ -26,7 +26,8 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: A type for HTTP handlers that delegate the processing of HTTP response messages to another handler, called the inner handler.
+  summary: "\n<p>A type for HTTP handlers that delegate the processing of HTTP response messages to another handler, called the inner handler.</p>\n"
+  remarks: "\n<p>This application normally instantiate this class and then set the inner handler or provide an inner handler in the constructor.</p>\n<p>Note that <xref href=\"System.Net.Http.DelegatingHandler.InnerHandler\" data-throw-if-not-resolved=\"false\"></xref> property may be a delegating handler too. This approach allows the creation of handler stacks to process the HTTP response messages.</p>\n"
   syntax:
     content: 'public abstract class DelegatingHandler : HttpMessageHandler'
     content.vb: >-
@@ -66,7 +67,8 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: Creates a new instance of the <xref href="System.Net.Http.DelegatingHandler" data-throw-if-not-resolved="false"></xref> class.
+  summary: "\n<p>Creates a new instance of the <xref href=\"System.Net.Http.DelegatingHandler\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
+  remarks: "\n<p>The inner handle can be set using the <xref href=\"System.Net.Http.DelegatingHandler.InnerHandler\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: protected DelegatingHandler()
     content.vb: Protected Sub New
@@ -95,14 +97,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: Creates a new instance of the <xref href="System.Net.Http.DelegatingHandler" data-throw-if-not-resolved="false"></xref> class with a specific inner handler.
+  summary: "\n<p>Creates a new instance of the <xref href=\"System.Net.Http.DelegatingHandler\" data-throw-if-not-resolved=\"false\"></xref> class with a specific inner handler.</p>\n"
   syntax:
     content: protected DelegatingHandler(HttpMessageHandler innerHandler)
     content.vb: Protected Sub New(innerHandler As HttpMessageHandler)
     parameters:
     - id: innerHandler
       type: System.Net.Http.HttpMessageHandler
-      description: The inner handler which is responsible for processing the HTTP response messages.
+      description: "\n<p>The inner handler which is responsible for processing the HTTP response messages.</p>\n"
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -128,14 +130,15 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: Gets or sets the inner handler which processes the HTTP response messages.
+  summary: "\n<p>Gets or sets the inner handler which processes the HTTP response messages.</p>\n"
+  remarks: "\n<p>This <xref href=\"System.Net.Http.DelegatingHandler.InnerHandler\" data-throw-if-not-resolved=\"false\"></xref> property can only be set before the class is used (the <xref href=\"System.Net.Http.DelegatingHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method is called).</p>\n<p>Note that <xref href=\"System.Net.Http.DelegatingHandler.InnerHandler\" data-throw-if-not-resolved=\"false\"></xref> property may be a delegating handler too, although this is uncommon. This approach allows the creation of handler stacks for the HTTP response messages.</p>\n"
   syntax:
     content: public HttpMessageHandler InnerHandler { get; set; }
     content.vb: Public Property InnerHandler As HttpMessageHandler
     parameters: []
     return:
       type: System.Net.Http.HttpMessageHandler
-      description: Returns <xref href="System.Net.Http.HttpMessageHandler" data-throw-if-not-resolved="false"></xref>.The inner handler for HTTP response messages.
+      description: "\n<p>Returns <xref href=\"System.Net.Http.HttpMessageHandler\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The inner handler for HTTP response messages.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -163,14 +166,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: Releases the unmanaged resources used by the <xref href="System.Net.Http.DelegatingHandler" data-throw-if-not-resolved="false"></xref>, and optionally disposes of the managed resources.
+  summary: "\n<p>Releases the unmanaged resources used by the <xref href=\"System.Net.Http.DelegatingHandler\" data-throw-if-not-resolved=\"false\"></xref>, and optionally disposes of the managed resources.</p>\n"
   syntax:
     content: protected override void Dispose(bool disposing)
     content.vb: Protected Overrides Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
-      description: 'true to release both managed and unmanaged resources; false to releases only unmanaged resources. '
+      description: "\n<p>\n<strong>true</strong> to release both managed and unmanaged resources; <strong>false</strong> to releases only unmanaged resources. </p>\n"
   overridden: System.Net.Http.HttpMessageHandler.Dispose(System.Boolean)
   modifiers.csharp:
   - protected
@@ -199,25 +202,26 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: Sends an HTTP request to the inner handler to send to the server as an asynchronous operation.
+  summary: "\n<p>Sends an HTTP request to the inner handler to send to the server as an asynchronous operation.</p>\n"
+  remarks: "\n<p>This operation does not block. This overridable implementation of <xref href=\"System.Net.Http.HttpClientHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method forwards the HTTP request to the inner handler to send to the server as an asynchronous operation.</p>\n<p>The <xref href=\"System.Net.Http.DelegatingHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method is mainly used by the system and not by applications. When this method is called, it calls the <xref href=\"System.Net.Http.DelegatingHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method on the inner handler. </p>\n"
   syntax:
     content: protected override Threading.Tasks.Task<HttpResponseMessage> SendAsync(HttpRequestMessage request, Threading.CancellationToken cancellationToken)
     content.vb: Protected Overrides Function SendAsync(request As HttpRequestMessage, cancellationToken As Threading.CancellationToken) As Threading.Tasks.Task(Of HttpResponseMessage)
     parameters:
     - id: request
       type: System.Net.Http.HttpRequestMessage
-      description: The HTTP request message to send to the server.
+      description: "\n<p>The HTTP request message to send to the server.</p>\n"
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: A cancellation token to cancel operation.
+      description: "\n<p>A cancellation token to cancel operation.</p>\n"
     return:
       type: System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}
-      description: Returns <xref href="System.Threading.Tasks.Task`1" data-throw-if-not-resolved="false"></xref>. The task object representing the asynchronous operation.
+      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n<p>The task object representing the asynchronous operation.</p>\n"
   overridden: System.Net.Http.HttpMessageHandler.SendAsync(System.Net.Http.HttpRequestMessage,System.Threading.CancellationToken)
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: The <em>request</em> was null.
+    description: "\n<p>The <em>request</em> was <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - protected
   - override
@@ -345,7 +349,7 @@ references:
 - uid: System.Threading.CancellationToken
   parent: System.Threading
   isExternal: false
-  name: CancellationToken
+  name: Threading.CancellationToken
   fullName: System.Threading.CancellationToken
 - uid: System.Threading.Tasks.Task{System.Net.Http.HttpResponseMessage}
   definition: System.Threading.Tasks.Task`1
@@ -384,28 +388,26 @@ references:
 - uid: System.Threading.Tasks.Task`1
   parent: System.Threading.Tasks
   isExternal: false
-  name: Task<TResult>
-  fullName: System.Threading.Tasks.Task<TResult>
-  fullname.vb: System.Threading.Tasks.Task(Of TResult)
-  name.vb: Task(Of TResult)
+  name: Threading.Tasks.Task<>
+  fullName: System.Threading.Tasks.Task<>
+  fullname.vb: System.Threading.Tasks.Task(Of )
+  name.vb: Threading.Tasks.Task(Of )
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
   - name: <
     fullName: <
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
-    name: Task
+    name: Threading.Tasks.Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
     fullName: '(Of '
-  - name: TResult
-    fullName: TResult
+  - {}
   - name: )
     fullName: )
 - uid: System.Threading.Tasks

@@ -25,7 +25,10 @@ items:
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
-  summary: Represents a randomly accessed view of a memory-mapped file.
+  summary: "\n<p>Represents a randomly accessed view of a memory-mapped file.</p>\n"
+  remarks: "\n<p>Use the <xref href=\"System.IO.MemoryMappedFiles.MemoryMappedFile.CreateViewAccessor\" data-throw-if-not-resolved=\"false\"></xref> method of a <xref href=\"System.IO.MemoryMappedFiles.MemoryMappedFile\" data-throw-if-not-resolved=\"false\"></xref> object to get this view.</p>\n"
+  example:
+  - "\n<p>The following example obtains a <xref href=\"System.IO.MemoryMappedFiles.MemoryMappedViewAccessor\" data-throw-if-not-resolved=\"false\"></xref> from a large memory-mapped file for editing.</p>\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.MemoryMappedFiles.MemoryMappedFile\" data-throw-if-not-resolved=\"false\"></xref> class.</p>memorymappedfiles.memorymappedfile.createfromfile#2"
   syntax:
     content: 'public sealed class MemoryMappedViewAccessor : UnmanagedMemoryAccessor'
     content.vb: >-
@@ -62,18 +65,18 @@ items:
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
-  summary: '[Supported in the .NET Framework 4.5.1 and later versions] Gets the number of bytes by which the starting position of this view is offset from the beginning of the memory-mapped file. '
+  summary: "\n<p>[Supported in the .NET Framework 4.5.1 and later versions] </p>\n<p>Gets the number of bytes by which the starting position of this view is offset from the beginning of the memory-mapped file. </p>\n"
   syntax:
     content: public long PointerOffset { get; }
     content.vb: Public ReadOnly Property PointerOffset As Long
     parameters: []
     return:
       type: System.Int64
-      description: 'The number of bytes between the starting position of this view and the beginning of the memory-mapped file. '
+      description: "\n<p>The number of bytes between the starting position of this view and the beginning of the memory-mapped file. </p>\n"
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: 'The object from which this instance was created is null. '
+    description: "\n<p>The object from which this instance was created is <strong>null</strong>. </p>\n"
   modifiers.csharp:
   - public
   - get
@@ -101,14 +104,19 @@ items:
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
-  summary: Gets a handle to the view of a memory-mapped file.
+  summary: "\n<p>Gets a handle to the view of a memory-mapped file.</p>\n"
+  example:
+  - 
   syntax:
     content: public SafeMemoryMappedViewHandle SafeMemoryMappedViewHandle { get; }
     content.vb: Public ReadOnly Property SafeMemoryMappedViewHandle As SafeMemoryMappedViewHandle
     parameters: []
     return:
       type: Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle
-      description: 'A wrapper for the operating system''s handle to the view of the file. '
+      description: "\n<p>A wrapper for the operating system's handle to the view of the file. </p>\n"
+  see:
+  - type: System.Security.Permissions.SecurityPermission
+    commentId: T:System.Security.Permissions.SecurityPermission
   modifiers.csharp:
   - public
   - get
@@ -169,14 +177,17 @@ items:
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
-  summary: Clears all buffers for this view and causes any buffered data to be written to the underlying file.
+  summary: "\n<p>Clears all buffers for this view and causes any buffered data to be written to the underlying file.</p>\n"
+  remarks: "\n<p>If you are using views that are adjacent to each other, this method will also clear the following data, provided its size is equal to a multiple of the system page size:</p>\n<ul><li>\n<p>Any data that precedes the view up until the latest file offset.</p>\n</li><li>\n<p>Any data that follows the view up until the earliest file offset.</p>\n</li></ul>\n"
+  example:
+  - 
   syntax:
     content: public void Flush()
     content.vb: Public Sub Flush
   exceptions:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
-    description: Methods were called after the accessor was closed.
+    description: "\n<p>Methods were called after the accessor was closed.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:

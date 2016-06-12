@@ -27,7 +27,10 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: Permits late-bound registration of an event handler.
+  summary: "\n<p>Permits late-bound registration of an event handler.</p>\n"
+  remarks: "\n<p>Normally, compilers will automatically embed calls to the <xref href=\"System.Runtime.InteropServices.ComAwareEventInfo.AddEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Runtime.InteropServices.ComAwareEventInfo.RemoveEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> methods instead of using regular add handler and remove handler methods for events. This occurs if the interface that the corresponding event is defined on needs to be embedded.</p>\n<p>You can specify this by embedding the entire assembly that contains the interface by using the /link option on the compilers or by setting the Embed Interop Types property to <strong>True</strong> in Visual Studio.</p>\n<p>The <xref href=\"System.Runtime.InteropServices.ComAwareEventInfo\" data-throw-if-not-resolved=\"false\"></xref> type derives from the <xref href=\"System.Reflection.EventInfo\" data-throw-if-not-resolved=\"false\"></xref> class and overrides the <xref href=\"System.Reflection.EventInfo.AddEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Reflection.EventInfo.RemoveEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n"
+  example:
+  - 
   syntax:
     content: 'public class ComAwareEventInfo : EventInfo'
     content.vb: >-
@@ -62,17 +65,19 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: Initializes a new instance of the <xref href="System.Runtime.InteropServices.ComAwareEventInfo" data-throw-if-not-resolved="false"></xref> class by using the specified type and a name of the event on the type.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Runtime.InteropServices.ComAwareEventInfo\" data-throw-if-not-resolved=\"false\"></xref> class by using the specified type and a name of the event on the type.</p>\n"
+  example:
+  - 
   syntax:
     content: public ComAwareEventInfo(Type type, string eventName)
     content.vb: Public Sub New(type As Type, eventName As String)
     parameters:
     - id: type
       type: System.Type
-      description: 'The type of object. '
+      description: "\n<p>The type of object.</p>\n"
     - id: eventName
       type: System.String
-      description: The name of an event on <em>type</em>.
+      description: "\n<p>The name of an event on <em>type</em>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -98,14 +103,15 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: Gets the attributes for this event.
+  summary: "\n<p>Gets the attributes for this event.</p>\n"
+  remarks: "\n<p>The attributes are returned in a 4-byte integer, which represents a bitmap of the attributes set for the event that is reflected by this instance.</p>\n"
   syntax:
     content: public override EventAttributes Attributes { get; }
     content.vb: Public Overrides ReadOnly Property Attributes As EventAttributes
     parameters: []
     return:
       type: System.Reflection.EventAttributes
-      description: The read-only attributes for this event.
+      description: "\n<p>The read-only attributes for this event.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -135,14 +141,19 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: Gets the class that declares this member.
+  summary: "\n<p>Gets the class that declares this member.</p>\n"
+  example:
+  - 
   syntax:
     content: public override Type DeclaringType { get; }
     content.vb: Public Overrides ReadOnly Property DeclaringType As Type
     parameters: []
     return:
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> object for the class that declares this member.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object for the class that declares this member.</p>\n"
+  seealso:
+  - type: System.Reflection.MemberInfo.DeclaringType
+    commentId: P:System.Reflection.MemberInfo.DeclaringType
   modifiers.csharp:
   - public
   - override
@@ -172,14 +183,19 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: Gets the name of the current member.
+  summary: "\n<p>Gets the name of the current member.</p>\n"
+  example:
+  - 
   syntax:
     content: public override string Name { get; }
     content.vb: Public Overrides ReadOnly Property Name As String
     parameters: []
     return:
       type: System.String
-      description: The name of this member.
+      description: "\n<p>The name of this member.</p>\n"
+  seealso:
+  - type: System.Reflection.MemberInfo.Name
+    commentId: P:System.Reflection.MemberInfo.Name
   modifiers.csharp:
   - public
   - override
@@ -209,17 +225,23 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: Attaches an event handler to a COM object.
+  summary: "\n<p>Attaches an event handler to a COM object.</p>\n"
+  remarks: "\n<p>This method is similar to the <xref href=\"System.Reflection.EventInfo.AddEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> method except that it allows you to attach events to COM objects.</p>\n<p>If <em>target</em> is a COM object, this method adds a delegate to an event by using the <xref href=\"System.Runtime.InteropServices.ComEventsHelper.Combine(System.Object,System.Guid,System.Int32,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>\n<xref href=\"System.Runtime.InteropServices.ComAwareEventInfo.AddEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> facilitates registering COM event sinks that forward calls to corresponding managed delegates. It requires the following information:</p>\n<ul><li>\n<p>The target object itself (<em>target</em>).</p>\n</li><li>\n<p>The GUID of the source interface.</p>\n</li><li>\n<p>The DispID of the method on the COM interface that corresponds to the specified event.</p>\n</li><li>\n<p>The delegate that would be invoked when the COM object triggers the corresponding event (<em>handler</em>).</p>\n</li></ul>\n<p>\n<xref href=\"System.Runtime.InteropServices.ComAwareEventInfo.AddEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> looks up the corresponding COM source interface (specified as the first parameter of the <xref href=\"System.Runtime.InteropServices.ComEventInterfaceAttribute.#ctor(System.Type,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> constructor). It then looks up a method on the source interface whose name is identical to the event name. The value of <strong>GuidAttribute</strong> on the source interface is the GUID that is passed to <xref href=\"System.Runtime.InteropServices.ComEventsHelper.Combine(System.Object,System.Guid,System.Int32,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref>; the value of <strong>DispIDAttribute</strong> on the method is the DispID value that is passed to <xref href=\"System.Runtime.InteropServices.ComEventsHelper.Combine(System.Object,System.Guid,System.Int32,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - 
   syntax:
     content: public override void AddEventHandler(object target, Delegate handler)
     content.vb: Public Overrides Sub AddEventHandler(target As Object, handler As  Delegate)
     parameters:
     - id: target
       type: System.Object
-      description: The target object that the event delegate should bind to.
+      description: "\n<p>The target object that the event delegate should bind to.</p>\n"
     - id: handler
       type: System.Delegate
-      description: The event delegate.
+      description: "\n<p>The event delegate.</p>\n"
+  see:
+  - type: System.Security.Permissions.SecurityPermission
+    commentId: T:System.Security.Permissions.SecurityPermission
   modifiers.csharp:
   - public
   - override
@@ -247,30 +269,36 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: Detaches an event handler from a COM object.
+  summary: "\n<p>Detaches an event handler from a COM object.</p>\n"
+  remarks: "\n<p>This method is similar to the <xref href=\"System.Reflection.EventInfo.RemoveEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> method, except that it allows you to detach events from COM objects.</p>\n<p>If <em>target</em> is a COM object, this method releases a delegate to an event by using the <xref href=\"System.Runtime.InteropServices.ComEventsHelper.Remove(System.Object,System.Guid,System.Int32,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>\n<xref href=\"System.Runtime.InteropServices.ComAwareEventInfo.RemoveEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> facilitates unregistering COM event sinks that forward calls to corresponding managed delegates. It requires the following information:</p>\n<ul><li>\n<p>The target object itself (<em>target</em>).</p>\n</li><li>\n<p>The GUID of the source interface.</p>\n</li><li>\n<p>The DispID of the method on the COM interface that corresponds to the specified event.</p>\n</li><li>\n<p>The delegate that would be invoked when the COM object triggers the corresponding event (<em>handler</em>).</p>\n</li></ul>\n<p>\n<xref href=\"System.Runtime.InteropServices.ComAwareEventInfo.RemoveEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> looks up the corresponding COM source interface (specified as the first parameter of the <xref href=\"System.Runtime.InteropServices.ComEventInterfaceAttribute.#ctor(System.Type,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> constructor). It then it looks up a method on the source interface whose name is identical to the event name. The value of <strong>GuidAttribute</strong> on the source interface is the GUID that is passed to <xref href=\"System.Runtime.InteropServices.ComEventsHelper.Remove(System.Object,System.Guid,System.Int32,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref>; the value of <strong>DispIDAttribute</strong> on the method is the DispID value that is passed to <xref href=\"System.Runtime.InteropServices.ComEventsHelper.Remove(System.Object,System.Guid,System.Int32,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - 
   syntax:
     content: public override void RemoveEventHandler(object target, Delegate handler)
     content.vb: Public Overrides Sub RemoveEventHandler(target As Object, handler As  Delegate)
     parameters:
     - id: target
       type: System.Object
-      description: The target object that the event delegate is bound to.
+      description: "\n<p>The target object that the event delegate is bound to.</p>\n"
     - id: handler
       type: System.Delegate
-      description: The event delegate.
+      description: "\n<p>The event delegate.</p>\n"
   exceptions:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
-    description: The event does not have a public remove accessor.
+    description: "\n<p>The event does not have a public <strong>remove</strong> accessor.</p>\n"
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: The handler that was passed in cannot be used.
+    description: "\n<p>The handler that was passed in cannot be used.</p>\n"
   - type: System.Reflection.TargetException
     commentId: T:System.Reflection.TargetException
-    description: In the .NET for Windows Store apps or the Portable Class Library, catch <xref href="System.Exception" data-throw-if-not-resolved="false"></xref> instead.The <em>target</em> parameter is null and the event is not static.-or- The <xref href="System.Reflection.EventInfo" data-throw-if-not-resolved="false"></xref> is not declared on the target.
+    description: "\n<p>In the <see href=\"http://go.microsoft.com/fwlink/?LinkID=247912\">.NET for Windows Store apps</see> or the Portable Class Library, catch <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> instead.</p>\n<p>The <em>target</em> parameter is <strong>null</strong> and the event is not static.</p>\n<p>-or- </p>\n<p>The <xref href=\"System.Reflection.EventInfo\" data-throw-if-not-resolved=\"false\"></xref> is not declared on the target.</p>\n"
   - type: System.MethodAccessException
     commentId: T:System.MethodAccessException
-    description: In the .NET for Windows Store apps or the Portable Class Library, catch the base class exception, <xref href="System.MemberAccessException" data-throw-if-not-resolved="false"></xref>, instead.The caller does not have access permission to the member.
+    description: "\n<p>In the <see href=\"http://go.microsoft.com/fwlink/?LinkID=247912\">.NET for Windows Store apps</see> or the Portable Class Library, catch the base class exception, <xref href=\"System.MemberAccessException\" data-throw-if-not-resolved=\"false\"></xref>, instead.</p>\n<p>The caller does not have access permission to the member.</p>\n"
+  see:
+  - type: System.Security.Permissions.SecurityPermission
+    commentId: T:System.Security.Permissions.SecurityPermission
   modifiers.csharp:
   - public
   - override

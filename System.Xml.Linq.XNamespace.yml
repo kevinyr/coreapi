@@ -25,16 +25,17 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: XNamespace
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 13
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 323
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: 'Represents an XML namespace. This class cannot be inherited. '
+  summary: "\n<p>Represents an XML namespace. This class cannot be inherited. </p>\n"
+  remarks: "\n<p>This class represents the XML construct of namespaces.</p>\n<p>Every <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> contains an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>. Even if an element is not in a namespace, the element's <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> still contains a namespace, <xref href=\"System.Xml.Linq.XNamespace.None\" data-throw-if-not-resolved=\"false\"></xref>. The <xref href=\"System.Xml.Linq.XName.Namespace\" data-throw-if-not-resolved=\"false\"></xref> property is guaranteed to not be <strong>null</strong>. </p>\n"
   syntax:
     content: 'public sealed class XNamespace : object'
     content.vb: >-
@@ -62,23 +63,25 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: NamespaceName
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 43
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 326
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Gets the Uniform Resource Identifier (URI) of this namespace.
+  summary: "\n<p>Gets the Uniform Resource Identifier (URI) of this namespace.</p>\n"
+  example:
+  - "\n<p>The following example shows how to use this property:</p>\n<pre><code class=\"c#\">string markup =\n@\"<aw:Root\nxmlns:aw='http://www.adventure-works.com'/>\";\nXElement root = XElement.Parse(markup);\nConsole.WriteLine(root.Name.Namespace.NamespaceName);</code></pre>\n<pre><code class=\"vb\">Imports <xmlns:aw=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace(aw)\nDim root As XElement = <aw:Root/>\nConsole.WriteLine(root.Name.Namespace.NamespaceName)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output: </p>\n<pre><code>http://www.adventure-works.com</code></pre>\n"
   syntax:
     content: public string NamespaceName { get; }
     content.vb: Public ReadOnly Property NamespaceName As String
     parameters: []
     return:
       type: System.String
-      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that contains the URI of the namespace.
+      description: "\n<p>A <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> that contains the URI of the namespace.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -97,23 +100,26 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: None
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 77
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 327
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Gets the <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> object that corresponds to no namespace.
+  summary: "\n<p>Gets the <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> object that corresponds to no namespace.</p>\n"
+  remarks: "\n<p>If an element or attribute is in no namespace, its namespace will be set to the namespace returned by this property.</p>\n"
+  example:
+  - "\n<p>The following example shows uses this property to determine which elements are in no namespace.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\n\nXElement root = new XElement(\"Root\",\nnew XElement(aw + \"ChildInNamespace\", \"content\"),\nnew XElement(\"ChildInNoNamespace\", \"content\")\n);\n\nif (root.Name.Namespace == XNamespace.None)\nConsole.WriteLine(\"Root element is in no namespace\");\nelse\nConsole.WriteLine(\"Root element is in a namespace\");\n\nif (root.Element(aw + \"ChildInNamespace\").Name.Namespace == XNamespace.None)\nConsole.WriteLine(\"ChildInNamespace element is in no namespace\");\nelse\nConsole.WriteLine(\"ChildInNamespace element is in a namespace\");\n\nif (root.Element(\"ChildInNoNamespace\").Name.Namespace == XNamespace.None)\nConsole.WriteLine(\"ChildInNoNamespace element is in no namespace\");\nelse\nConsole.WriteLine(\"ChildInNoNamespace element is in a namespace\");</code></pre>\n<pre><code class=\"vb\">Imports <xmlns:aw=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim root As XElement = _\n    <Root>\n        <aw:ChildInNamespace>content</aw:ChildInNamespace>\n        <ChildInNoNamespace>content</ChildInNoNamespace>\n    </Root>\n\nIf (root.Name.Namespace Is XNamespace.None) Then\n    Console.WriteLine(\"Root element is in no namespace\")\nElse\n    Console.WriteLine(\"Root element is in a namespace\")\nEnd If\n\nIf (root.Element(GetXmlNamespace(aw) + \"ChildInNamespace\") _\n        .Name.Namespace Is XNamespace.None) Then\n    Console.WriteLine(\"ChildInNamespace element is in no namespace\")\nElse\n    Console.WriteLine(\"ChildInNamespace element is in a namespace\")\nEnd If\n\nIf (root.Element(\"ChildInNoNamespace\") _\n        .Name.Namespace Is XNamespace.None) Then\n    Console.WriteLine(\"ChildInNoNamespace element is in no namespace\")\nElse\n    Console.WriteLine(\"ChildInNoNamespace element is in a namespace\")\nEnd If\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Root element is in no namespace\nChildInNamespace element is in a namespace\nChildInNoNamespace element is in no namespace</code></pre>\n"
   syntax:
     content: public static XNamespace None { get; }
     content.vb: Public Shared ReadOnly Property None As XNamespace
     parameters: []
     return:
       type: System.Xml.Linq.XNamespace
-      description: The <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> that corresponds to no namespace.
+      description: "\n<p>The <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> that corresponds to no namespace.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -134,23 +140,26 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Xml
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 88
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 328
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Gets the <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> object that corresponds to the XML URI (http://www.w3.org/XML/1998/namespace).
+  summary: "\n<p>Gets the <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> object that corresponds to the XML URI (<code>http://www.w3.org/XML/1998/namespace</code>).</p>\n"
+  remarks: "\n<p>Certain standardized attributes, such as <code>space</code>, are in the <code>http://www.w3.org/XML/1998/namespace</code> namespace. The W3C standard specifies that this namespace does not have to be declared as an attribute in the XML tree. It is a reserved namespace that is always automatically available in the XML parser.</p>\n"
+  example:
+  - "\n<p>The following example shows how to create an <code>xml:space=\"preserve\"</code> attribute in an XML tree:</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(XNamespace.Xml + \"space\", \"preserve\"),\nnew XElement(\"Child\", \"content\")\n);\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = _\n<Root xml:space=\"preserve\">\n<Child>content</Child>\n</Root>\nConsole.WriteLine(root)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Root xml:space=\"preserve\">\n<Child>content</Child>\n</Root></code></pre>\n"
   syntax:
     content: public static XNamespace Xml { get; }
     content.vb: Public Shared ReadOnly Property Xml As XNamespace
     parameters: []
     return:
       type: System.Xml.Linq.XNamespace
-      description: The <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> that corresponds to the XML URI (http://www.w3.org/XML/1998/namespace).
+      description: "\n<p>The <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> that corresponds to the XML URI (<code>http://www.w3.org/XML/1998/namespace</code>).</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -171,23 +180,26 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Xmlns
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 99
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 329
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Gets the <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> object that corresponds to the xmlns URI (http://www.w3.org/2000/xmlns/).
+  summary: "\n<p>Gets the <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> object that corresponds to the xmlns URI (<code>http://www.w3.org/2000/xmlns/</code>).</p>\n"
+  remarks: "\n<p>When you declare namespaces, the namespace attributes themselves are in the <strong>xmlns</strong> namespace. The W3C standard specifies that this namespace does not have to be declared as an attribute in the XML tree. It is a reserved namespace that is always automatically available in the XML parser.</p>\n"
+  example:
+  - "\n<p>The following example shows how to add a namespace to an XML tree. The namespace for the attribute that declares the namespace is the namespace returned by this property.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nXElement root = new XElement(aw + \"Root\",\nnew XAttribute(XNamespace.Xmlns + \"aw\", \"http://www.adventure-works.com\"),\nnew XElement(aw + \"Child\", \"content\")\n);\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Dim root = <aw:Root xmlns:aw=\"http://www.adventure-works.com\">\n       <aw:Child>content</aw:Child>\n   </aw:Root>\nConsole.WriteLine(root)</code></pre>\n<p>In Visual Basic, the preferred idiom is:</p>\n<p>[vb]</p>\n<pre><code>Imports <xmlns:aw='http://www.adventure-works.com'>\n\nModule Module1\nSub Main()\nDim root As XElement = _\n    <aw:Root>\n        <aw:Child>content</aw:Child>\n    </aw:Root>\nConsole.WriteLine(root)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><aw:Root xmlns:aw=\"http://www.adventure-works.com\">\n<aw:Child>content</aw:Child>\n</aw:Root></code></pre>\n"
   syntax:
     content: public static XNamespace Xmlns { get; }
     content.vb: Public Shared ReadOnly Property Xmlns As XNamespace
     parameters: []
     return:
       type: System.Xml.Linq.XNamespace
-      description: The <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> that corresponds to the xmlns URI (http://www.w3.org/2000/xmlns/).
+      description: "\n<p>The <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> that corresponds to the <strong>xmlns</strong> URI (<code>http://www.w3.org/2000/xmlns/</code>).</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -208,26 +220,29 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Equals
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 155
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 330
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Determines whether the specified <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> is equal to the current <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Determines whether the specified <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> is equal to the current <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>For two <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> objects to be equal, they must have the same URI.</p>\n"
+  example:
+  - "\n<p>The following example compares two namespaces that refer to the same URI.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nConsole.WriteLine(aw == \"http://www.adventure-works.com\");</code></pre>\n<pre><code class=\"vb\">Imports <xmlns:aw=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nConsole.WriteLine(GetXmlNamespace(aw) = \"http://www.adventure-works.com\")\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>True</code></pre>\n"
   syntax:
     content: public override bool Equals(object obj)
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
     parameters:
     - id: obj
       type: System.Object
-      description: The <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> to compare to the current <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> to compare to the current <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.Boolean
-      description: A <xref href="System.Boolean" data-throw-if-not-resolved="false"></xref> that indicates whether the specified <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> is equal to the current <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>A <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> that indicates whether the specified <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> is equal to the current <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -246,26 +261,29 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Get
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 114
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 331
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Gets an <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> for the specified Uniform Resource Identifier (URI).
+  summary: "\n<p>Gets an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> for the specified Uniform Resource Identifier (URI).</p>\n"
+  remarks: "\n<p>The returned <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> object is guaranteed to be atomic (that is, it is the only one in the system for that particular URI).</p>\n"
+  example:
+  - "\n<p>The following example gets a <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> from a specified URI.</p>\n<pre><code class=\"c#\">XNamespace aw = XNamespace.Get(\"http://www.adventure-works.com\");\n\n// This is the preferred form.\nXNamespace aw2 = \"http://www.adventure-works.com\";\nConsole.WriteLine(aw);\nConsole.WriteLine(aw2);</code></pre>\n<pre><code class=\"vb\">Imports <xmlns:aw=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = XNamespace.Get(\"http://www.adventure-works.com\")\n\n' This is the preferred form.\nDim aw2 As XNamespace = GetXmlNamespace(aw)\nConsole.WriteLine(aw)\nConsole.WriteLine(aw2)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>http://www.adventure-works.com\nhttp://www.adventure-works.com</code></pre>\n"
   syntax:
     content: public static XNamespace Get(string namespaceName)
     content.vb: Public Shared Function Get(namespaceName As String) As XNamespace
     parameters:
     - id: namespaceName
       type: System.String
-      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that contains a namespace URI.
+      description: "\n<p>A <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> that contains a namespace URI.</p>\n"
     return:
       type: System.Xml.Linq.XNamespace
-      description: An <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> created from the specified URI.
+      description: "\n<p>An <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> created from the specified URI.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -284,22 +302,23 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetHashCode
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 164
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 332
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Gets a hash code for this <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Gets a hash code for this <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>This method serves as a hash function for <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>. You can use <xref href=\"System.Xml.Linq.XNamespace.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> in hashing algorithms and data structures like a hash table.</p>\n"
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
     return:
       type: System.Int32
-      description: An <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> that contains the hash code for the <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>An <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref> that contains the hash code for the <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -318,26 +337,29 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetName
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 55
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 333
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Returns an <xref href="System.Xml.Linq.XName" data-throw-if-not-resolved="false"></xref> object created from this <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> and the specified local name.
+  summary: "\n<p>Returns an <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> object created from this <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> and the specified local name.</p>\n"
+  remarks: "\n<p>The returned <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> object is guaranteed to be atomic (that is, it is the only one in the system for a specific expanded name).</p>\n"
+  example:
+  - "\n<p>The following example uses this property to retrieve an <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nXName name = aw.GetName(\"Root\");\nConsole.WriteLine(\"{0}\", name);</code></pre>\n<pre><code class=\"vb\">Imports <xmlns:aw=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace(aw)\nDim name As XName = aw.GetName(\"Root\")\nConsole.WriteLine(\"{0}\", name)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>{http://www.adventure-works.com}Root</code></pre>\n"
   syntax:
     content: public XName GetName(string localName)
     content.vb: Public Function GetName(localName As String) As XName
     parameters:
     - id: localName
       type: System.String
-      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that contains a local name.
+      description: "\n<p>A <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> that contains a local name.</p>\n"
     return:
       type: System.Xml.Linq.XName
-      description: An <xref href="System.Xml.Linq.XName" data-throw-if-not-resolved="false"></xref> created from this <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> and the specified local name.
+      description: "\n<p>An <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> created from this <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> and the specified local name.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -354,29 +376,32 @@ items:
   type: Operator
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: op_Addition
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 137
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 334
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Combines an <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> object with a local name to create an <xref href="System.Xml.Linq.XName" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Combines an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> object with a local name to create an <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>This operator enables the common idiom of combining a namespace and a local name in the construction of an element or attribute. This idiom provides some of the benefits of having namespace prefixes, in that you can refer to a namespace using a variable that is short. This eliminates syntactic noise in the code that creates XML trees.</p>\n"
+  example:
+  - "\n<p>The following example shows the use of the <strong>+</strong> operator to create an <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> from an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> and a local name.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nXElement root = new XElement(aw + \"Root\",\nnew XElement(aw + \"Child\")\n);\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Dim aw As XNamespace = \"http://www.adventure-works.com\"\nDim root As XElement = New XElement(aw + \"Root\", _\nNew XElement(aw + \"Child\") _\n)\nConsole.WriteLine(root)</code></pre>\n<p>In Visual Basic, this is the preferred idiom:</p>\n<pre><code class=\"vb\">Imports <xmlns=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace()\nDim root As XElement = _\n    <Root>\n        <Child/>\n    </Root>\nConsole.WriteLine(root)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Root xmlns=\"http://www.adventure-works.com\">\n<Child />\n</Root></code></pre>\n"
   syntax:
     content: public static XName operator +(XNamespace ns, string localName)
     content.vb: Public Shared Operator +(ns As XNamespace, localName As String) As XName
     parameters:
     - id: ns
       type: System.Xml.Linq.XNamespace
-      description: An <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> that contains the namespace.
+      description: "\n<p>An <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> that contains the namespace.</p>\n"
     - id: localName
       type: System.String
-      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that contains the local name.
+      description: "\n<p>A <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> that contains the local name.</p>\n"
     return:
       type: System.Xml.Linq.XName
-      description: The new <xref href="System.Xml.Linq.XName" data-throw-if-not-resolved="false"></xref> constructed from the namespace and local name.
+      description: "\n<p>The new <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> constructed from the namespace and local name.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -395,29 +420,32 @@ items:
   type: Operator
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: op_Equality
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 186
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 335
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Returns a value indicating whether two instances of <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> are equal.
+  summary: "\n<p>Returns a value indicating whether two instances of <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> are equal.</p>\n"
+  remarks: "\n<p>The operator overloads <code>==</code> and <code>!=</code> are provided to enable comparisons between <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> and string (for example, <code>element.Name.Namespace == \"http://www.adventure-works.com\"</code>). The predefined reference equality operators in C# require one operand to be convertible to the type of the other through reference conversions only, and do not consider the implicit conversion from string to <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example shows the comparison of an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> and a string.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nConsole.WriteLine(aw == \"http://www.adventure-works.com\");</code></pre>\n<pre><code class=\"vb\">Imports <xmlns=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace()\nConsole.WriteLine(aw = \"http://www.adventure-works.com\")\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>True</code></pre>\n"
   syntax:
     content: public static bool operator ==(XNamespace left, XNamespace right)
     content.vb: Public Shared Operator =(left As XNamespace, right As XNamespace) As Boolean
     parameters:
     - id: left
       type: System.Xml.Linq.XNamespace
-      description: The first <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> to compare.
+      description: "\n<p>The first <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> to compare.</p>\n"
     - id: right
       type: System.Xml.Linq.XNamespace
-      description: The second <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> to compare.
+      description: "\n<p>The second <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> to compare.</p>\n"
     return:
       type: System.Boolean
-      description: A <xref href="System.Boolean" data-throw-if-not-resolved="false"></xref> that indicates whether <em>left</em> and <em>right</em> are equal.
+      description: "\n<p>A <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> that indicates whether <em>left</em> and <em>right</em> are equal.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -436,26 +464,28 @@ items:
   type: Operator
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: op_Implicit
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 125
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 336
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Converts a string containing a Uniform Resource Identifier (URI) to an <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Converts a string containing a Uniform Resource Identifier (URI) to an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example shows the initialization of an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> variable by assigning a string to it.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nConsole.WriteLine(aw);</code></pre>\n<pre><code class=\"vb\">Imports <xmlns=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace()\nConsole.WriteLine(aw)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>http://www.adventure-works.com</code></pre>\n"
   syntax:
     content: public static implicit operator XNamespace(string namespaceName)
     content.vb: Public Shared Widening Operator CType(namespaceName As String) As XNamespace
     parameters:
     - id: namespaceName
       type: System.String
-      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> that contains the namespace URI.
+      description: "\n<p>A <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> that contains the namespace URI.</p>\n"
     return:
       type: System.Xml.Linq.XNamespace
-      description: An <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> constructed from the URI string.
+      description: "\n<p>An <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> constructed from the URI string.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -476,29 +506,32 @@ items:
   type: Operator
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: op_Inequality
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 201
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 338
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Returns a value indicating whether two instances of <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> are not equal.
+  summary: "\n<p>Returns a value indicating whether two instances of <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> are not equal.</p>\n"
+  remarks: "\n<p>The operator overloads <code>==</code> and <code>!=</code> are provided to enable comparisons between <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> and string (for example, <code>element.Name.Namespace == \"http://www.adventure-works.com\"</code>). The predefined reference equality operators in C# require one operand to be convertible to the type of the other through reference conversions only, and do not consider the implicit conversion from string to <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example shows a comparison of a <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> to a string.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nConsole.WriteLine(aw != \"http://www.adventure-works.com\");</code></pre>\n<pre><code class=\"vb\">Imports <xmlns=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace()\nConsole.WriteLine(aw <> \"http://www.adventure-works.com\")\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>False</code></pre>\n"
   syntax:
     content: public static bool operator !=(XNamespace left, XNamespace right)
     content.vb: Public Shared Operator <>(left As XNamespace, right As XNamespace) As Boolean
     parameters:
     - id: left
       type: System.Xml.Linq.XNamespace
-      description: The first <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> to compare.
+      description: "\n<p>The first <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> to compare.</p>\n"
     - id: right
       type: System.Xml.Linq.XNamespace
-      description: The second <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref> to compare.
+      description: "\n<p>The second <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> to compare.</p>\n"
     return:
       type: System.Boolean
-      description: A <xref href="System.Boolean" data-throw-if-not-resolved="false"></xref> that indicates whether <em>left</em> and <em>right</em> are not equal.
+      description: "\n<p>A <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> that indicates whether <em>left</em> and <em>right</em> are not equal.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -517,22 +550,24 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
+      path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ToString
-    path: src/System.Xml.XDocument/src/System/Xml/Linq/XNamespace.cs
-    startLine: 65
+    path: src/System.Xml.XDocument/ref/System.Xml.XDocument.cs
+    startLine: 339
   assemblies:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
-  summary: Returns the URI of this <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Returns the URI of this <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to print a namespace on the console.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nConsole.WriteLine(\"{0}\", aw.ToString());</code></pre>\n<pre><code class=\"vb\">Imports <xmlns=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace()\nConsole.WriteLine(\"{0}\", aw)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>http://www.adventure-works.com</code></pre>\n"
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
-      description: The URI of this <xref href="System.Xml.Linq.XNamespace" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The URI of this <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - override

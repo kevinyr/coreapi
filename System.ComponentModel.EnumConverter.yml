@@ -33,7 +33,10 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Provides a type converter to convert <xref href="System.Enum" data-throw-if-not-resolved="false"></xref> objects to and from various other representations.
+  summary: "\n<p>Provides a type converter to convert <xref href=\"System.Enum\" data-throw-if-not-resolved=\"false\"></xref> objects to and from various other representations.</p>\n"
+  remarks: "\n<p>This converter can only convert an enumeration object to and from a string. The <xref href=\"System.ComponentModel.EnumConverter\" data-throw-if-not-resolved=\"false\"></xref> class provides the <xref href=\"System.ComponentModel.EnumConverter.Comparer\" data-throw-if-not-resolved=\"false\"></xref> property to get an <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> interface that can be used to sort the values of the enumeration. By default, the enumeration values are sorted in the order they appear in the file.</p>\n<p>For more information about type converters, see the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> base class and How to: Implement a Type Converter.</p>\n<p>You should never create an instance of an <xref href=\"System.ComponentModel.EnumConverter\" data-throw-if-not-resolved=\"false\"></xref>. Instead, call the <xref href=\"System.ComponentModel.TypeDescriptor.GetConverter(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method of the <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> class. For more information, see the examples in the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> base class.</p>\n"
+  example:
+  - "\n<p>The following code example converts a variable of type <xref href=\"System.Enum\" data-throw-if-not-resolved=\"false\"></xref> to a string, and vice versa. The example requires that you have declared an <xref href=\"System.Enum\" data-throw-if-not-resolved=\"false\"></xref> called <code>Servers</code> and that it has the following members: </p>\n<pre><code>Windows=1, Exchange=2, BizTalk=3</code></pre>Converters#12"
   syntax:
     content: 'public class EnumConverter : TypeConverter'
     content.vb: >-
@@ -100,14 +103,14 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Initializes a new instance of the <xref href="System.ComponentModel.EnumConverter" data-throw-if-not-resolved="false"></xref> class for the given type.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.ComponentModel.EnumConverter\" data-throw-if-not-resolved=\"false\"></xref> class for the given type.</p>\n"
   syntax:
     content: public EnumConverter(Type type)
     content.vb: Public Sub New(type As Type)
     parameters:
     - id: type
       type: System.Type
-      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that represents the type of enumeration to associate with this enumeration converter. '
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that represents the type of enumeration to associate with this enumeration converter. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -133,14 +136,14 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Specifies the type of the enumerator this converter is associated with.
+  summary: "\n<p>Specifies the type of the enumerator this converter is associated with.</p>\n"
   syntax:
     content: protected Type EnumType { get; }
     content.vb: Protected ReadOnly Property EnumType As Type
     parameters: []
     return:
       type: System.Type
-      description: The type of the enumerator this converter is associated with.
+      description: "\n<p>The type of the enumerator this converter is associated with.</p>\n"
   modifiers.csharp:
   - protected
   - get
@@ -168,14 +171,15 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets an <xref href="System.Collections.IComparer" data-throw-if-not-resolved="false"></xref> that can be used to sort the values of the enumeration.
+  summary: "\n<p>Gets an <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> that can be used to sort the values of the enumeration.</p>\n"
+  remarks: "\n<p>By default, the enumeration values are sorted in the order they appear in the file.</p>\n"
   syntax:
     content: protected virtual Collections.IComparer Comparer { get; }
     content.vb: Protected Overridable ReadOnly Property Comparer As Collections.IComparer
     parameters: []
     return:
       type: System.Collections.IComparer
-      description: An <xref href="System.Collections.IComparer" data-throw-if-not-resolved="false"></xref> for sorting the enumeration values.
+      description: "\n<p>An <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> for sorting the enumeration values.</p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -205,21 +209,25 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets a value indicating whether this converter can convert an object in the given source type to an enumeration object using the specified context.
+  summary: "\n<p>Gets a value indicating whether this converter can convert an object in the given source type to an enumeration object using the specified context.</p>\n"
+  remarks: "\n<p>This converter can only convert an enumeration object to and from a string.</p>\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n"
   syntax:
     content: public override bool CanConvertFrom(ITypeDescriptorContext context, Type sourceType)
     content.vb: Public Overrides Function CanConvertFrom(context As ITypeDescriptorContext, sourceType As Type) As Boolean
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     - id: sourceType
       type: System.Type
-      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that represents the type you wish to convert from. '
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that represents the type you wish to convert from. </p>\n"
     return:
       type: System.Boolean
-      description: true if this converter can perform the conversion; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> if this converter can perform the conversion; otherwise, <strong>false</strong>.</p>\n"
   overridden: System.ComponentModel.TypeConverter.CanConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  seealso:
+  - type: System.ComponentModel.TypeConverter
+    commentId: T:System.ComponentModel.TypeConverter
   modifiers.csharp:
   - public
   - override
@@ -247,21 +255,25 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets a value indicating whether this converter can convert an object to the given destination type using the context.
+  summary: "\n<p>Gets a value indicating whether this converter can convert an object to the given destination type using the context.</p>\n"
+  remarks: "\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n"
   syntax:
     content: public override bool CanConvertTo(ITypeDescriptorContext context, Type destinationType)
     content.vb: Public Overrides Function CanConvertTo(context As ITypeDescriptorContext, destinationType As Type) As Boolean
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     - id: destinationType
       type: System.Type
-      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that represents the type you wish to convert to. '
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that represents the type you wish to convert to. </p>\n"
     return:
       type: System.Boolean
-      description: true if this converter can perform the conversion; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> if this converter can perform the conversion; otherwise, <strong>false</strong>.</p>\n"
   overridden: System.ComponentModel.TypeConverter.CanConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Type)
+  seealso:
+  - type: System.ComponentModel.ITypeDescriptorContext
+    commentId: T:System.ComponentModel.ITypeDescriptorContext
   modifiers.csharp:
   - public
   - override
@@ -289,31 +301,35 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Converts the specified value object to an enumeration object.
+  summary: "\n<p>Converts the specified value object to an enumeration object.</p>\n"
+  remarks: "\n<p>This converter can only convert an enumeration object to and from a string.</p>\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n"
   syntax:
     content: public override object ConvertFrom(ITypeDescriptorContext context, Globalization.CultureInfo culture, object value)
     content.vb: Public Overrides Function ConvertFrom(context As ITypeDescriptorContext, culture As Globalization.CultureInfo, value As Object) As Object
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     - id: culture
       type: System.Globalization.CultureInfo
-      description: 'An optional <xref href="System.Globalization.CultureInfo" data-throw-if-not-resolved="false"></xref>. If not supplied, the current culture is assumed. '
+      description: "\n<p>An optional <xref href=\"System.Globalization.CultureInfo\" data-throw-if-not-resolved=\"false\"></xref>. If not supplied, the current culture is assumed. </p>\n"
     - id: value
       type: System.Object
-      description: 'The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to convert. '
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to convert. </p>\n"
     return:
       type: System.Object
-      description: An <xref href="System.Object" data-throw-if-not-resolved="false"></xref> that represents the converted <em>value</em>.
+      description: "\n<p>An <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that represents the converted <em>value</em>.</p>\n"
   overridden: System.ComponentModel.TypeConverter.ConvertFrom(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object)
   exceptions:
   - type: System.FormatException
     commentId: T:System.FormatException
-    description: "\n<em>value</em> is not a valid value for the target type. "
+    description: "\n<p>\n<em>value</em> is not a valid value for the target type. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: 'The conversion cannot be performed. '
+    description: "\n<p>The conversion cannot be performed. </p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeConverter
+    commentId: T:System.ComponentModel.TypeConverter
   modifiers.csharp:
   - public
   - override
@@ -341,37 +357,38 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Converts the given value object to the specified destination type.
+  summary: "\n<p>Converts the given value object to the specified destination type.</p>\n"
+  remarks: "\n<p>This converter can only convert an enumeration object to and from a string.</p>\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n<p>The behavior of the <see cref=\"Overload:System.ComponentModel.EnumConverter.ConvertTo\"></see> method is undefined if the enumeration has multiple fields with the same value.</p>\n"
   syntax:
     content: public override object ConvertTo(ITypeDescriptorContext context, Globalization.CultureInfo culture, object value, Type destinationType)
     content.vb: Public Overrides Function ConvertTo(context As ITypeDescriptorContext, culture As Globalization.CultureInfo, value As Object, destinationType As Type) As Object
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     - id: culture
       type: System.Globalization.CultureInfo
-      description: 'An optional <xref href="System.Globalization.CultureInfo" data-throw-if-not-resolved="false"></xref>. If not supplied, the current culture is assumed. '
+      description: "\n<p>An optional <xref href=\"System.Globalization.CultureInfo\" data-throw-if-not-resolved=\"false\"></xref>. If not supplied, the current culture is assumed. </p>\n"
     - id: value
       type: System.Object
-      description: 'The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to convert. '
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to convert. </p>\n"
     - id: destinationType
       type: System.Type
-      description: 'The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> to convert the value to. '
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> to convert the value to. </p>\n"
     return:
       type: System.Object
-      description: An <xref href="System.Object" data-throw-if-not-resolved="false"></xref> that represents the converted <em>value</em>.
+      description: "\n<p>An <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that represents the converted <em>value</em>.</p>\n"
   overridden: System.ComponentModel.TypeConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>destinationType</em> is null. "
+    description: "\n<p>\n<em>destinationType</em> is <strong>null</strong>. </p>\n"
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\n<em>value</em> is not a valid value for the enumeration. "
+    description: "\n<p>\n<em>value</em> is not a valid value for the enumeration. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: 'The conversion cannot be performed. '
+    description: "\n<p>The conversion cannot be performed. </p>\n"
   modifiers.csharp:
   - public
   - override
@@ -399,18 +416,22 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets a collection of standard values for the data type this validator is designed for.
+  summary: "\n<p>Gets a collection of standard values for the data type this validator is designed for.</p>\n"
+  remarks: "\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n<p>Any fields of the enumeration that are marked with <xref href=\"System.ComponentModel.BrowsableAttribute\" data-throw-if-not-resolved=\"false\"></xref> set to <strong>false</strong> will not be returned.</p>\n"
   syntax:
     content: public override TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
     content.vb: Public Overrides Function GetStandardValues(context As ITypeDescriptorContext) As TypeConverter.StandardValuesCollection
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     return:
       type: System.ComponentModel.TypeConverter.StandardValuesCollection
-      description: A <xref href="System.ComponentModel.TypeConverter.StandardValuesCollection" data-throw-if-not-resolved="false"></xref> that holds a standard set of valid values, or null if the data type does not support a standard set of values.
+      description: "\n<p>A <xref href=\"System.ComponentModel.TypeConverter.StandardValuesCollection\" data-throw-if-not-resolved=\"false\"></xref> that holds a standard set of valid values, or <strong>null</strong> if the data type does not support a standard set of values.</p>\n"
   overridden: System.ComponentModel.TypeConverter.GetStandardValues(System.ComponentModel.ITypeDescriptorContext)
+  seealso:
+  - type: System.ComponentModel.ITypeDescriptorContext
+    commentId: T:System.ComponentModel.ITypeDescriptorContext
   modifiers.csharp:
   - public
   - override
@@ -438,18 +459,22 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets a value indicating whether the list of standard values returned from <xref href="System.ComponentModel.TypeConverter.GetStandardValues" data-throw-if-not-resolved="false"></xref> is an exclusive list using the specified context.
+  summary: "\n<p>Gets a value indicating whether the list of standard values returned from <xref href=\"System.ComponentModel.TypeConverter.GetStandardValues\" data-throw-if-not-resolved=\"false\"></xref> is an exclusive list using the specified context.</p>\n"
+  remarks: "\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n"
   syntax:
     content: public override bool GetStandardValuesExclusive(ITypeDescriptorContext context)
     content.vb: Public Overrides Function GetStandardValuesExclusive(context As ITypeDescriptorContext) As Boolean
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     return:
       type: System.Boolean
-      description: true if the <xref href="System.ComponentModel.TypeConverter.StandardValuesCollection" data-throw-if-not-resolved="false"></xref> returned from <xref href="System.ComponentModel.TypeConverter.GetStandardValues" data-throw-if-not-resolved="false"></xref> is an exhaustive list of possible values; false if other values are possible.
+      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.ComponentModel.TypeConverter.StandardValuesCollection\" data-throw-if-not-resolved=\"false\"></xref> returned from <xref href=\"System.ComponentModel.TypeConverter.GetStandardValues\" data-throw-if-not-resolved=\"false\"></xref> is an exhaustive list of possible values; <strong>false</strong> if other values are possible.</p>\n"
   overridden: System.ComponentModel.TypeConverter.GetStandardValuesExclusive(System.ComponentModel.ITypeDescriptorContext)
+  seealso:
+  - type: System.ComponentModel.ITypeDescriptorContext
+    commentId: T:System.ComponentModel.ITypeDescriptorContext
   modifiers.csharp:
   - public
   - override
@@ -477,18 +502,22 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets a value indicating whether this object supports a standard set of values that can be picked from a list using the specified context.
+  summary: "\n<p>Gets a value indicating whether this object supports a standard set of values that can be picked from a list using the specified context.</p>\n"
+  remarks: "\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n"
   syntax:
     content: public override bool GetStandardValuesSupported(ITypeDescriptorContext context)
     content.vb: Public Overrides Function GetStandardValuesSupported(context As ITypeDescriptorContext) As Boolean
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     return:
       type: System.Boolean
-      description: true because <xref href="System.ComponentModel.TypeConverter.GetStandardValues" data-throw-if-not-resolved="false"></xref> should be called to find a common set of values the object supports. This method never returns false.
+      description: "\n<p>\n<strong>true</strong> because <xref href=\"System.ComponentModel.TypeConverter.GetStandardValues\" data-throw-if-not-resolved=\"false\"></xref> should be called to find a common set of values the object supports. This method never returns <strong>false</strong>.</p>\n"
   overridden: System.ComponentModel.TypeConverter.GetStandardValuesSupported(System.ComponentModel.ITypeDescriptorContext)
+  seealso:
+  - type: System.ComponentModel.ITypeDescriptorContext
+    commentId: T:System.ComponentModel.ITypeDescriptorContext
   modifiers.csharp:
   - public
   - override
@@ -516,21 +545,25 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets a value indicating whether the given object value is valid for this type.
+  summary: "\n<p>Gets a value indicating whether the given object value is valid for this type.</p>\n"
+  remarks: "\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n"
   syntax:
     content: public override bool IsValid(ITypeDescriptorContext context, object value)
     content.vb: Public Overrides Function IsValid(context As ITypeDescriptorContext, value As Object) As Boolean
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: 'An <xref href="System.ComponentModel.ITypeDescriptorContext" data-throw-if-not-resolved="false"></xref> that provides a format context. '
+      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     - id: value
       type: System.Object
-      description: 'The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> to test. '
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to test. </p>\n"
     return:
       type: System.Boolean
-      description: true if the specified value is valid for this object; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> if the specified value is valid for this object; otherwise, <strong>false</strong>.</p>\n"
   overridden: System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)
+  seealso:
+  - type: System.ComponentModel.ITypeDescriptorContext
+    commentId: T:System.ComponentModel.ITypeDescriptorContext
   modifiers.csharp:
   - public
   - override
@@ -558,14 +591,14 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets or sets a <xref href="System.ComponentModel.TypeConverter.StandardValuesCollection" data-throw-if-not-resolved="false"></xref> that specifies the possible values for the enumeration.
+  summary: "\n<p>Gets or sets a <xref href=\"System.ComponentModel.TypeConverter.StandardValuesCollection\" data-throw-if-not-resolved=\"false\"></xref> that specifies the possible values for the enumeration.</p>\n"
   syntax:
     content: protected TypeConverter.StandardValuesCollection Values { get; set; }
     content.vb: Protected Property Values As TypeConverter.StandardValuesCollection
     parameters: []
     return:
       type: System.ComponentModel.TypeConverter.StandardValuesCollection
-      description: A <xref href="System.ComponentModel.TypeConverter.StandardValuesCollection" data-throw-if-not-resolved="false"></xref> that specifies the possible values for the enumeration.
+      description: "\n<p>A <xref href=\"System.ComponentModel.TypeConverter.StandardValuesCollection\" data-throw-if-not-resolved=\"false\"></xref> that specifies the possible values for the enumeration.</p>\n"
   modifiers.csharp:
   - protected
   - get
@@ -1597,7 +1630,7 @@ references:
 - uid: System.Collections.IComparer
   parent: System.Collections
   isExternal: false
-  name: IComparer
+  name: Collections.IComparer
   fullName: System.Collections.IComparer
 - uid: System.Collections
   isExternal: false
@@ -1745,7 +1778,7 @@ references:
 - uid: System.Globalization.CultureInfo
   parent: System.Globalization
   isExternal: false
-  name: Globalization.CultureInfo
+  name: CultureInfo
   fullName: System.Globalization.CultureInfo
 - uid: System.Globalization
   isExternal: false

@@ -30,7 +30,10 @@ items:
   assemblies:
   - System.Reflection.Context
   namespace: System.Reflection.Context
-  summary: Represents a customizable reflection context.
+  summary: "\n<p>Represents a customizable reflection context.</p>\n"
+  remarks: "\n<p>\n<xref href=\"System.Reflection.Context.CustomReflectionContext\" data-throw-if-not-resolved=\"false\"></xref> provides a way for you to add or remove custom attributes from reflection objects, or add dummy properties to those objects, without re-implementing the complete reflection model. The default <xref href=\"System.Reflection.Context.CustomReflectionContext\" data-throw-if-not-resolved=\"false\"></xref> simply wraps reflection objects without making any changes, but by subclassing and overriding the relevant methods, you can add, remove, or change the attributes that apply to any reflected parameter or member, or add new properties to a reflected type.</p>\n<p>For example, suppose that your code follows the convention of applying a particular attribute to factory methods, but you are now required to work with third-party code that lacks attributes. You can use <xref href=\"System.Reflection.Context.CustomReflectionContext\" data-throw-if-not-resolved=\"false\"></xref> to specify a rule for identifying the objects that should have attributes and to supply the objects with those attributes when they are viewed from your code.</p>\n<p>To use <xref href=\"System.Reflection.Context.CustomReflectionContext\" data-throw-if-not-resolved=\"false\"></xref> effectively, the code that uses the reflected objects must support the notion of specifying a reflection context, instead of assuming that all reflected objects are associated with the runtime reflection context. Many reflection methods in the .NET Framework provide a <xref href=\"System.Reflection.ReflectionContext\" data-throw-if-not-resolved=\"false\"></xref> parameter for this purpose.</p>\n<p>To modify the attributes that are applied to a reflected parameter or member, override the <xref href=\"System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.ParameterInfo,System.Collections.Generic.IEnumerable{System.Object})\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Reflection.Context.CustomReflectionContext.GetCustomAttributes(System.Reflection.MemberInfo,System.Collections.Generic.IEnumerable{System.Object})\" data-throw-if-not-resolved=\"false\"></xref> method. These methods take the reflected object and the list of attributes under its current reflection context, and return the list of attributes it should have under the custom reflection context.</p>\n<p>\n<xref href=\"System.Reflection.Context.CustomReflectionContext\" data-throw-if-not-resolved=\"false\"></xref> methods should not access the list of attributes of a reflected object or method directly by calling the <xref href=\"System.Reflection.MemberInfo.GetCustomAttributes(System.Type,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method on the provided <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Reflection.ParameterInfo\" data-throw-if-not-resolved=\"false\"></xref> instance, but should instead use the <em>declaredAttributes</em> list, which is passed as a parameter to the <see cref=\"Overload:System.Reflection.Context.CustomReflectionContext.GetCustomAttributes\"></see> method overloads.</p>\n<p>To add properties to a reflected type, override the <xref href=\"System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method. The method accepts a parameter that specifies the reflected type, and returns a list of additional properties. You should use the <xref href=\"System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute})\" data-throw-if-not-resolved=\"false\"></xref> method to create property objects to return. You can specify delegates when creating the property that will serve as the property accessor, and you can omit one of the accessors to create a read-only or write-only property. Note that such dummy properties have no metadata or Common Intermediate Language (CIL) backing. </p>\n<p>Be cautious about equality among reflected objects when you work with reflection contexts, because objects may represent the same reflected object in multiple contexts. You can use the <xref href=\"System.Reflection.Context.CustomReflectionContext.MapType(System.Reflection.TypeInfo)\" data-throw-if-not-resolved=\"false\"></xref> method to obtain a particular reflection context's version of a reflected object.</p>\n<p>A <xref href=\"System.Reflection.Context.CustomReflectionContext\" data-throw-if-not-resolved=\"false\"></xref> object alters the attributes returned by a particular reflection object, such as those obtained by the <xref href=\"System.Reflection.MemberInfo.GetCustomAttributes(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method. It does not alter the custom attribute data returned by the <xref href=\"System.Reflection.MemberInfo.GetCustomAttributesData\" data-throw-if-not-resolved=\"false\"></xref> method, and these two lists will not match when you use a custom reflection context.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates how to subclass  <xref href=\"System.Reflection.Context.CustomReflectionContext\" data-throw-if-not-resolved=\"false\"></xref> to add a custom attribute to all the members of a given type whose names begin with \"To\". To run this code, paste it into an empty console project, and make sure to include a reference to System.Reflection.Context.dll.</p>System.Reflection.Context.CustomReflectionContext#1"
   syntax:
     content: 'public abstract class CustomReflectionContext : ReflectionContext'
     content.vb: >-
@@ -67,7 +70,7 @@ items:
   assemblies:
   - System.Reflection.Context
   namespace: System.Reflection.Context
-  summary: Initializes a new instance of the <xref href="System.Reflection.Context.CustomReflectionContext" data-throw-if-not-resolved="false"></xref> class.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Reflection.Context.CustomReflectionContext\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: protected CustomReflectionContext()
     content.vb: Protected Sub New
@@ -96,14 +99,14 @@ items:
   assemblies:
   - System.Reflection.Context
   namespace: System.Reflection.Context
-  summary: Initializes a new instance of the <xref href="System.Reflection.Context.CustomReflectionContext" data-throw-if-not-resolved="false"></xref> class with the specified reflection context as a base.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Reflection.Context.CustomReflectionContext\" data-throw-if-not-resolved=\"false\"></xref> class with the specified reflection context as a base.</p>\n"
   syntax:
     content: protected CustomReflectionContext(ReflectionContext source)
     content.vb: Protected Sub New(source As ReflectionContext)
     parameters:
     - id: source
       type: System.Reflection.ReflectionContext
-      description: The reflection context to use as a base.
+      description: "\n<p>The reflection context to use as a base.</p>\n"
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -129,17 +132,18 @@ items:
   assemblies:
   - System.Reflection.Context
   namespace: System.Reflection.Context
-  summary: When overridden in a derived class, provides a collection of additional properties for the specified type, as represented in this reflection context.
+  summary: "\n<p>When overridden in a derived class, provides a collection of additional properties for the specified type, as represented in this reflection context.</p>\n"
+  remarks: "\n<p>Override this method to specify which properties should be added to a given type. To create the properties, use the <xref href=\"System.Reflection.Context.CustomReflectionContext.CreateProperty(System.Type,System.String,System.Func{System.Object,System.Object},System.Action{System.Object,System.Object},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute},System.Collections.Generic.IEnumerable{System.Attribute})\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   syntax:
     content: protected virtual Collections.Generic.IEnumerable<PropertyInfo> AddProperties(Type type)
     content.vb: Protected Overridable Function AddProperties(type As Type) As Collections.Generic.IEnumerable(Of PropertyInfo)
     parameters:
     - id: type
       type: System.Type
-      description: The type to add properties to.
+      description: "\n<p>The type to add properties to.</p>\n"
     return:
       type: System.Collections.Generic.IEnumerable{System.Reflection.PropertyInfo}
-      description: A collection of additional properties for the specified type.
+      description: "\n<p>A collection of additional properties for the specified type.</p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -167,26 +171,27 @@ items:
   assemblies:
   - System.Reflection.Context
   namespace: System.Reflection.Context
-  summary: Creates an object that represents a property to be added to a type, to be used with the <xref href="System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)" data-throw-if-not-resolved="false"></xref> method.
+  summary: "\n<p>Creates an object that represents a property to be added to a type, to be used with the <xref href=\"System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
+  remarks: "\n<p>Objects that are returned by this method are not complete <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> objects, and should be used only in the context of the <xref href=\"System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   syntax:
     content: protected PropertyInfo CreateProperty(Type propertyType, string name, Func<object, object> getter, Action<object, object> setter)
     content.vb: Protected Function CreateProperty(propertyType As Type, name As String, getter As Func(Of Object, Object), setter As Action(Of Object, Object)) As PropertyInfo
     parameters:
     - id: propertyType
       type: System.Type
-      description: The type of the property to create.
+      description: "\n<p>The type of the property to create.</p>\n"
     - id: name
       type: System.String
-      description: The name of the property to create.
+      description: "\n<p>The name of the property to create.</p>\n"
     - id: getter
       type: System.Func{System.Object,System.Object}
-      description: An object that represents the property's get accessor.
+      description: "\n<p>An object that represents the property's <strong>get</strong> accessor.</p>\n"
     - id: setter
       type: System.Action{System.Object,System.Object}
-      description: An object that represents the property's set accessor.
+      description: "\n<p>An object that represents the property's <strong>set</strong> accessor.</p>\n"
     return:
       type: System.Reflection.PropertyInfo
-      description: An object that represents the property.
+      description: "\n<p>An object that represents the property.</p>\n"
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -214,35 +219,36 @@ items:
   assemblies:
   - System.Reflection.Context
   namespace: System.Reflection.Context
-  summary: Creates an object that represents a property to be added to a type, to be used with the <xref href="System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)" data-throw-if-not-resolved="false"></xref> method and using the specified custom attributes.
+  summary: "\n<p>Creates an object that represents a property to be added to a type, to be used with the <xref href=\"System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method and using the specified custom attributes.</p>\n"
+  remarks: "\n<p>Objects that are returned by this method are not complete <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> objects, and should be used only in the context of the <xref href=\"System.Reflection.Context.CustomReflectionContext.AddProperties(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   syntax:
     content: protected PropertyInfo CreateProperty(Type propertyType, string name, Func<object, object> getter, Action<object, object> setter, Collections.Generic.IEnumerable<Attribute> propertyCustomAttributes, Collections.Generic.IEnumerable<Attribute> getterCustomAttributes, Collections.Generic.IEnumerable<Attribute> setterCustomAttributes)
     content.vb: Protected Function CreateProperty(propertyType As Type, name As String, getter As Func(Of Object, Object), setter As Action(Of Object, Object), propertyCustomAttributes As Collections.Generic.IEnumerable(Of Attribute), getterCustomAttributes As Collections.Generic.IEnumerable(Of Attribute), setterCustomAttributes As Collections.Generic.IEnumerable(Of Attribute)) As PropertyInfo
     parameters:
     - id: propertyType
       type: System.Type
-      description: The type of the property to create.
+      description: "\n<p>The type of the property to create.</p>\n"
     - id: name
       type: System.String
-      description: The name of the property to create.
+      description: "\n<p>The name of the property to create.</p>\n"
     - id: getter
       type: System.Func{System.Object,System.Object}
-      description: An object that represents the property's get accessor.
+      description: "\n<p>An object that represents the property's <strong>get</strong> accessor.</p>\n"
     - id: setter
       type: System.Action{System.Object,System.Object}
-      description: An object that represents the property's set accessor.
+      description: "\n<p>An object that represents the property's <strong>set</strong> accessor.</p>\n"
     - id: propertyCustomAttributes
       type: System.Collections.Generic.IEnumerable{System.Attribute}
-      description: A collection of custom attributes to apply to the property.
+      description: "\n<p>A collection of custom attributes to apply to the property.</p>\n"
     - id: getterCustomAttributes
       type: System.Collections.Generic.IEnumerable{System.Attribute}
-      description: A collection of custom attributes to apply to the property's get accessor.
+      description: "\n<p>A collection of custom attributes to apply to the property's <strong>get</strong> accessor.</p>\n"
     - id: setterCustomAttributes
       type: System.Collections.Generic.IEnumerable{System.Attribute}
-      description: A collection of custom attributes to apply to the property's set accessor.
+      description: "\n<p>A collection of custom attributes to apply to the property's <strong>set</strong> accessor.</p>\n"
     return:
       type: System.Reflection.PropertyInfo
-      description: An object that represents the property.
+      description: "\n<p>An object that represents the property.</p>\n"
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -270,20 +276,20 @@ items:
   assemblies:
   - System.Reflection.Context
   namespace: System.Reflection.Context
-  summary: When overridden in a derived class, provides a list of custom attributes for the specified member, as represented in this reflection context.
+  summary: "\n<p>When overridden in a derived class, provides a list of custom attributes for the specified member, as represented in this reflection context.</p>\n"
   syntax:
     content: protected virtual Collections.Generic.IEnumerable<object> GetCustomAttributes(MemberInfo member, Collections.Generic.IEnumerable<object> declaredAttributes)
     content.vb: Protected Overridable Function GetCustomAttributes(member As MemberInfo, declaredAttributes As Collections.Generic.IEnumerable(Of Object)) As Collections.Generic.IEnumerable(Of Object)
     parameters:
     - id: member
       type: System.Reflection.MemberInfo
-      description: The member whose custom attributes will be returned.
+      description: "\n<p>The member whose custom attributes will be returned.</p>\n"
     - id: declaredAttributes
       type: System.Collections.Generic.IEnumerable{System.Object}
-      description: A collection of the member's attributes in its current context.
+      description: "\n<p>A collection of the member's attributes in its current context.</p>\n"
     return:
       type: System.Collections.Generic.IEnumerable{System.Object}
-      description: A collection that represents the custom attributes of the specified member in this reflection context.
+      description: "\n<p>A collection that represents the custom attributes of the specified member in this reflection context.</p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -313,20 +319,20 @@ items:
   assemblies:
   - System.Reflection.Context
   namespace: System.Reflection.Context
-  summary: When overridden in a derived class, provides a list of custom attributes for the specified parameter, as represented in this reflection context.
+  summary: "\n<p>When overridden in a derived class, provides a list of custom attributes for the specified parameter, as represented in this reflection context.</p>\n"
   syntax:
     content: protected virtual Collections.Generic.IEnumerable<object> GetCustomAttributes(ParameterInfo parameter, Collections.Generic.IEnumerable<object> declaredAttributes)
     content.vb: Protected Overridable Function GetCustomAttributes(parameter As ParameterInfo, declaredAttributes As Collections.Generic.IEnumerable(Of Object)) As Collections.Generic.IEnumerable(Of Object)
     parameters:
     - id: parameter
       type: System.Reflection.ParameterInfo
-      description: The parameter whose custom attributes will be returned.
+      description: "\n<p>The parameter whose custom attributes will be returned.</p>\n"
     - id: declaredAttributes
       type: System.Collections.Generic.IEnumerable{System.Object}
-      description: A collection of the parameter's attributes in its current context.
+      description: "\n<p>A collection of the parameter's attributes in its current context.</p>\n"
     return:
       type: System.Collections.Generic.IEnumerable{System.Object}
-      description: A collection that represents the custom attributes of the specified parameter in this reflection context.
+      description: "\n<p>A collection that represents the custom attributes of the specified parameter in this reflection context.</p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -356,14 +362,17 @@ items:
   assemblies:
   - System.Reflection.Context
   namespace: System.Reflection.Context
+  summary: "\n<p>Gets the representation, in this reflection context, of an assembly that is represented by an object from another reflection context. </p>\n"
   syntax:
     content: public override Assembly MapAssembly(Assembly assembly)
     content.vb: Public Overrides Function MapAssembly(assembly As Assembly) As Assembly
     parameters:
     - id: assembly
       type: System.Reflection.Assembly
+      description: "\n<p>The external representation of the assembly to represent in this context.</p>\n"
     return:
       type: System.Reflection.Assembly
+      description: "\n<p>The representation of the assembly in this reflection context.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -391,14 +400,17 @@ items:
   assemblies:
   - System.Reflection.Context
   namespace: System.Reflection.Context
+  summary: "\n<p>Gets the representation, in this reflection context, of a type represented by an object from another reflection context. </p>\n"
   syntax:
     content: public override TypeInfo MapType(TypeInfo type)
     content.vb: Public Overrides Function MapType(type As TypeInfo) As TypeInfo
     parameters:
     - id: type
       type: System.Reflection.TypeInfo
+      description: "\n<p>The external representation of the type to represent in this context. </p>\n"
     return:
       type: System.Reflection.TypeInfo
+      description: "\n<p>The representation of the type in this reflection context. </p>\n"
   modifiers.csharp:
   - public
   - override

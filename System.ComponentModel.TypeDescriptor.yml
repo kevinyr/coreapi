@@ -85,12 +85,24 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Provides information about the characteristics for a component, such as its attributes, properties, and events. This class cannot be inherited.
+  summary: "\n<p>Provides information about the characteristics for a component, such as its attributes, properties, and events. This class cannot be inherited.</p>\n"
+  remarks: "\n<p>The .NET Framework provides two ways to access metadata on a type: the reflection API provided in the <xref href=\"System.Reflection\" data-throw-if-not-resolved=\"false\"></xref> namespace, and the <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> class. Reflection is a general mechanism available to all types because its foundation is established in the <xref href=\"System.Object.GetType\" data-throw-if-not-resolved=\"false\"></xref> method of the root <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> class. The information it returns for a type is not extensible, in that it cannot be modified after compilation of the target type. For more information, see the topics in Reflection in the .NET Framework.</p>\n<p>In contrast, <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> is an extensible inspection mechanism for components: those classes that implement the <xref href=\"System.ComponentModel.IComponent\" data-throw-if-not-resolved=\"false\"></xref> interface. Unlike reflection, it does not inspect for methods. <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> can be dynamically extended by several services available through the target component's <xref href=\"System.ComponentModel.Component.Site\" data-throw-if-not-resolved=\"false\"></xref>. The following table shows these services.</p>\n<p>Service name</p>\n<p>Description</p>\n<table><tbody><tr><td>\n<p>\n<xref href=\"System.ComponentModel.IExtenderProvider\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>Enables another class, such as <xref href=\"System.Windows.Forms.ToolTip\" data-throw-if-not-resolved=\"false\"></xref>, to provide extra properties to a component.</p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.ComponentModel.Design.ITypeDescriptorFilterService\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>Enables another object to modify the standard metadata that is exposed by a component. </p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.ComponentModel.ICustomTypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>Enables a class to completely and dynamically specify its own metadata, replacing the standard inspection mechanism of <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</td></tr></tbody></table>\n<p>The extensibility provided by <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> allows the design-time representation of a component to differ from its actual run-time representation, which makes <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> useful for building design-time infrastructure.</p>\n<p>All the methods in <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> are <strong>static</strong>. You cannot create an instance of this class, and this class cannot be inherited.</p>\n<p>You can set property and event values two different ways: specify them in the component class or change them at design time. Because you can set these values two ways, the overloaded methods of <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> take two different types of parameters: a class type or an object instance. </p>\n<p>When you want to access <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> information and you have an instance of the object, use the method that calls for a component. Use the method that calls for the class type only when you do not have an instance of the object.</p>\n<p>Properties and events are cached by <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> for speed. Typically, they are constant for the lifetime of an object. However, extender providers and designers can change the set of properties on an object. If this is the case, then the <see cref=\"Overload:System.ComponentModel.TypeDescriptor.Refresh\"></see> method must be called to update the cache.</p>\n"
   syntax:
     content: 'public sealed class TypeDescriptor : object'
     content.vb: >-
       Public NotInheritable Class TypeDescriptor
           Inherits Object
+  seealso:
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.Reflection
+    commentId: N:System.Reflection
+  - type: System.ComponentModel.IComponent
+    commentId: T:System.ComponentModel.IComponent
+  - type: System.ComponentModel.ISite
+    commentId: T:System.ComponentModel.ISite
   inheritance:
   - System.Object
   modifiers.csharp:
@@ -122,14 +134,17 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: 'Gets a type that represents a type description provider for all interface types. '
+  summary: "\n<p>Gets a type that represents a type description provider for all interface types. </p>\n"
+  remarks: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptor.InterfaceType\" data-throw-if-not-resolved=\"false\"></xref> property gets a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object that you can pass to the <see cref=\"Overload:System.ComponentModel.TypeDescriptor.AddProvider\"></see> methods to define a type description provider for interface types. </p>\n"
+  example:
+  - 
   syntax:
     content: public static Type InterfaceType { get; }
     content.vb: Public Shared ReadOnly Property InterfaceType As Type
     parameters: []
     return:
       type: System.Type
-      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that represents a custom type description provider for all interface types. '
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that represents a custom type description provider for all interface types. </p>\n"
   modifiers.csharp:
   - public
   - static
@@ -159,7 +174,10 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Occurs when the cache for a component is cleared.
+  summary: "\n<p>Occurs when the cache for a component is cleared.</p>\n"
+  remarks: "\n<p>For more information about handling events, see NIB: Consuming Events. </p>\n"
+  example:
+  - "\n<p>For an example of using this event, see the <xref href=\"System.ComponentModel.RefreshEventHandler\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public static event RefreshEventHandler Refreshed
     content.vb: Public Shared Event Refreshed As RefreshEventHandler
@@ -192,24 +210,28 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Adds class-level attributes to the target component instance.
+  summary: "\n<p>Adds class-level attributes to the target component instance.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptor.AddAttributes(System.Object,System.Attribute[])\" data-throw-if-not-resolved=\"false\"></xref> method adds class-level attributes to the specified instance of a component. Because this is a common requirement of applications using the Visual Studio Windows Forms Designer and Properties window, this method provides a shortcut by creating a type description provider that merges the provided attributes with the attributes that already exist on the class. The return value is the type description provider that was used to add the attributes. This provider can later be passed to the <xref href=\"System.ComponentModel.TypeDescriptor.RemoveProvider(System.ComponentModel.TypeDescriptionProvider,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method when the added attributes are no longer needed.</p>\n"
   syntax:
     content: public static TypeDescriptionProvider AddAttributes(object instance, params Attribute[] attributes)
     content.vb: Public Shared Function AddAttributes(instance As Object, ParamArray attributes As Attribute()) As TypeDescriptionProvider
     parameters:
     - id: instance
       type: System.Object
-      description: An instance of the target component.
+      description: "\n<p>An instance of the target component.</p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: An array of <xref href="System.Attribute" data-throw-if-not-resolved="false"></xref> objects to add to the component's class.
+      description: "\n<p>An array of <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> objects to add to the component's class.</p>\n"
     return:
       type: System.ComponentModel.TypeDescriptionProvider
-      description: The newly created <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> that was used to add the specified attributes.
+      description: "\n<p>The newly created <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> that was used to add the specified attributes.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters is null.
+    description: "\n<p>One or both of the parameters is <strong>null</strong>.</p>\n"
+  see:
+  - type: System.Security.NamedPermissionSet
+    commentId: T:System.Security.NamedPermissionSet
   modifiers.csharp:
   - public
   - static
@@ -239,24 +261,28 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Adds class-level attributes to the target component type.
+  summary: "\n<p>Adds class-level attributes to the target component type.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptor.AddAttributes(System.Type,System.Attribute[])\" data-throw-if-not-resolved=\"false\"></xref> method adds class-level attributes to the specified type of a component. Because this is a common requirement of applications using the Visual Studio Windows Forms Designer and Properties window, this method provides a shortcut by creating a type description provider that merges the provided attributes with the attributes that already exist on the class. The return value is the type description provider that was used to add the attributes. This provider can later be passed to the <xref href=\"System.ComponentModel.TypeDescriptor.RemoveProvider(System.ComponentModel.TypeDescriptionProvider,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method when the added attributes are no longer needed.</p>\n"
   syntax:
     content: public static TypeDescriptionProvider AddAttributes(Type type, params Attribute[] attributes)
     content.vb: Public Shared Function AddAttributes(type As Type, ParamArray attributes As Attribute()) As TypeDescriptionProvider
     parameters:
     - id: type
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: An array of <xref href="System.Attribute" data-throw-if-not-resolved="false"></xref> objects to add to the component's class.
+      description: "\n<p>An array of <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> objects to add to the component's class.</p>\n"
     return:
       type: System.ComponentModel.TypeDescriptionProvider
-      description: The newly created <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> that was used to add the specified attributes.
+      description: "\n<p>The newly created <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> that was used to add the specified attributes.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters is null.
+    description: "\n<p>One or both of the parameters is <strong>null</strong>.</p>\n"
+  see:
+  - type: System.Security.NamedPermissionSet
+    commentId: T:System.Security.NamedPermissionSet
   modifiers.csharp:
   - public
   - static
@@ -286,17 +312,18 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: 'Adds an editor table for the given editor base type. '
+  summary: "\n<p>Adds an editor table for the given editor base type. </p>\n"
+  remarks: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptor.AddEditorTable(System.Type,System.Collections.Hashtable)\" data-throw-if-not-resolved=\"false\"></xref> method adds an editor table for the given editor base type. Typically, editors are specified as metadata on a component. However, if no metadata for a requested editor base type can be found on the component, the associated <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> will search an editor table for the editor type, if one can be found. Once an editor table has been added to a type descriptor, it cannot be removed and is owned by the type descriptor. The type descriptor may freely make modifications to this table.</p>\n<p>The format for an editor table uses data types as keys and editors as values. The value portion of an entry in the table represents an editor instance. It can have one of three values. If it contains a string, the type descriptor will assume this is a fully qualified name of a type, and then load the type for the object. If it contains a type, an instance of this type will be created to obtain an editor. Finally, the value portion may contain an actual editor instance. If the type descriptor resolves an editor to an instance, it will store the instance back into the table for future use.</p>\n"
   syntax:
     content: public static void AddEditorTable(Type editorBaseType, Collections.Hashtable table)
     content.vb: Public Shared Sub AddEditorTable(editorBaseType As Type, table As Collections.Hashtable)
     parameters:
     - id: editorBaseType
       type: System.Type
-      description: 'The editor base type to add the editor table for. If a table already exists for this type, this method will do nothing. '
+      description: "\n<p>The editor base type to add the editor table for. If a table already exists for this type, this method will do nothing. </p>\n"
     - id: table
       type: System.Collections.Hashtable
-      description: 'The <xref href="System.Collections.Hashtable" data-throw-if-not-resolved="false"></xref> to add. '
+      description: "\n<p>The <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> to add. </p>\n"
   modifiers.csharp:
   - public
   - static
@@ -324,21 +351,30 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Adds a type description provider for a single instance of a component.
+  summary: "\n<p>Adds a type description provider for a single instance of a component.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptor.AddProvider(System.ComponentModel.TypeDescriptionProvider,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method adds a type description provider that supplies type information for a single instance of a component. If a provider is added by this method, the provider's <xref href=\"System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> method will not be called because the instance already exists. </p>\n<p>This method does not maintain a hard reference to the component, so it does not prevent the component from finalizing.</p>\n<p>It is possible to add multiple type description providers for the same type or object. If this occurs, the first type description provider encountered that provides type information will be used exclusively. Since type information providers are stored in a stack, the last provider added will be the first one queried. This behavior enables the <xref href=\"System.ComponentModel.TypeDescriptor.AddProvider(System.ComponentModel.TypeDescriptionProvider,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <see cref=\"Overload:System.ComponentModel.TypeDescriptor.RemoveProvider\"></see> methods to be used to push and pop type description providers as required for particular scenarios. </p>\n<p>If successful, this method calls the <xref href=\"System.ComponentModel.TypeDescriptor.Refresh(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method on the <em>instance</em> parameter.</p>\n<p>The two versions of this method produce results with different scopes. The <see cref=\"Overload:System.ComponentModel.TypeDescriptor.AddProvider\"></see> method that takes an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> parameter affects only that single instance of the component specified. In contrast, the other overload, which takes a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> parameter, affects all instances of the component described by that type.</p>\n<p>Use the <xref href=\"System.ComponentModel.TypeDescriptor.AddProviderTransparent(System.ComponentModel.TypeDescriptionProvider,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method if you need to call from partially trusted code.</p>\n"
   syntax:
     content: public static void AddProvider(TypeDescriptionProvider provider, object instance)
     content.vb: Public Shared Sub AddProvider(provider As TypeDescriptionProvider, instance As Object)
     parameters:
     - id: provider
       type: System.ComponentModel.TypeDescriptionProvider
-      description: The <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> to add.
+      description: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> to add.</p>\n"
     - id: instance
       type: System.Object
-      description: An instance of the target component.
+      description: "\n<p>An instance of the target component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor.GetProvider(System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.GetProvider(System.Object)
+  - type: System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
+  see:
+  - type: System.Security.NamedPermissionSet
+    commentId: T:System.Security.NamedPermissionSet
   modifiers.csharp:
   - public
   - static
@@ -366,21 +402,30 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Adds a type description provider for a component class.
+  summary: "\n<p>Adds a type description provider for a component class.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptor.AddProvider(System.ComponentModel.TypeDescriptionProvider,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method adds a type description provider that supplies type information for the specified class, derived classes, and all instances of these types.</p>\n<p>The <em>type</em> parameter can be any type, including an interface. For example, to provide custom type and instance information for all components, you would specify <code>typeof(IComponent)</code>. Passing <code>typeof(object)</code> will call the provider to supply type information for all types.</p>\n<p>This method does not maintain a hard reference to any object, so it does not prevent objects from finalizing.</p>\n<p>It is possible to add multiple type description providers for the same type or object. If this occurs, the first type description provider encountered that provides type information will be used exclusively. Because type information providers are stored in a stack, the last provider added will be the first one queried. This behavior enables the <xref href=\"System.ComponentModel.TypeDescriptor.AddProvider(System.ComponentModel.TypeDescriptionProvider,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> and <see cref=\"Overload:System.ComponentModel.TypeDescriptor.RemoveProvider\"></see> methods to be used to push and pop type description providers as required for particular scenarios. </p>\n<p>If successful, this method calls the <xref href=\"System.ComponentModel.TypeDescriptor.Refresh(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method on the <em>type</em> parameter.</p>\n<p>The two versions of this method produce results with different scopes. The <see cref=\"Overload:System.ComponentModel.TypeDescriptor.AddProvider\"></see> method that takes an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> parameter affects only that single instance of the component specified. In contrast, the other overload, which takes a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> parameter, affects all instances of the component described by that type.</p>\n<p>Use the <xref href=\"System.ComponentModel.TypeDescriptor.AddProviderTransparent(System.ComponentModel.TypeDescriptionProvider,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method if you need to call from partially trusted code.</p>\n"
   syntax:
     content: public static void AddProvider(TypeDescriptionProvider provider, Type type)
     content.vb: Public Shared Sub AddProvider(provider As TypeDescriptionProvider, type As Type)
     parameters:
     - id: provider
       type: System.ComponentModel.TypeDescriptionProvider
-      description: The <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> to add.
+      description: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> to add.</p>\n"
     - id: type
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor.GetProvider(System.Type)
+    commentId: M:System.ComponentModel.TypeDescriptor.GetProvider(System.Type)
+  - type: System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
+  see:
+  - type: System.Security.NamedPermissionSet
+    commentId: T:System.Security.NamedPermissionSet
   modifiers.csharp:
   - public
   - static
@@ -408,21 +453,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Adds a type description provider for a single instance of a component.
+  summary: "\n<p>Adds a type description provider for a single instance of a component.</p>\n"
+  remarks: "\n<p>This method can be called from partially trusted code. If <xref href=\"System.Security.Permissions.TypeDescriptorPermissionFlags.RestrictedRegistrationAccess\" data-throw-if-not-resolved=\"false\"></xref> is defined, the caller can register a provider for the specified instance if its type is also partially trusted.</p>\n<p>Use the <xref href=\"System.ComponentModel.TypeDescriptor.AddProvider(System.ComponentModel.TypeDescriptionProvider,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method if you do not need to call from partially trusted code.</p>\n"
+  example:
+  - 
   syntax:
     content: public static void AddProviderTransparent(TypeDescriptionProvider provider, object instance)
     content.vb: Public Shared Sub AddProviderTransparent(provider As TypeDescriptionProvider, instance As Object)
     parameters:
     - id: provider
       type: System.ComponentModel.TypeDescriptionProvider
-      description: The <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> to add.
+      description: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> to add.</p>\n"
     - id: instance
       type: System.Object
-      description: An instance of the target component.
+      description: "\n<p>An instance of the target component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
+  see:
+  - type: System.Security.Permissions.TypeDescriptorPermission
+    commentId: T:System.Security.Permissions.TypeDescriptorPermission
+  - type: System.Reflection.Assembly.PermissionSet
+    commentId: P:System.Reflection.Assembly.PermissionSet
   modifiers.csharp:
   - public
   - static
@@ -450,21 +503,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Adds a type description provider for a component class.
+  summary: "\n<p>Adds a type description provider for a component class.</p>\n"
+  remarks: "\n<p>This method can be called from partially trusted code. If <xref href=\"System.Security.Permissions.TypeDescriptorPermissionFlags.RestrictedRegistrationAccess\" data-throw-if-not-resolved=\"false\"></xref> is defined, the caller can register a provider for the specified type if it is also partially trusted. </p>\n<p>Use the <xref href=\"System.ComponentModel.TypeDescriptor.AddProvider(System.ComponentModel.TypeDescriptionProvider,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method if you do not need to call from partially trusted code.</p>\n"
+  example:
+  - 
   syntax:
     content: public static void AddProviderTransparent(TypeDescriptionProvider provider, Type type)
     content.vb: Public Shared Sub AddProviderTransparent(provider As TypeDescriptionProvider, type As Type)
     parameters:
     - id: provider
       type: System.ComponentModel.TypeDescriptionProvider
-      description: The <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> to add.
+      description: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> to add.</p>\n"
     - id: type
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
+  see:
+  - type: System.Security.Permissions.TypeDescriptorPermission
+    commentId: T:System.Security.Permissions.TypeDescriptorPermission
+  - type: System.Reflection.Assembly.PermissionSet
+    commentId: P:System.Reflection.Assembly.PermissionSet
   modifiers.csharp:
   - public
   - static
@@ -492,24 +553,33 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Creates a primary-secondary association between two objects.
+  summary: "\n<p>Creates a primary-secondary association between two objects.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptor.CreateAssociation(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method creates an association between a primary and a secondary object. Once an association is created, a designer or other filtering mechanism can add properties that route to either object into the primary object's property set. When a property invocation is made against the primary object, the <xref href=\"System.ComponentModel.TypeDescriptor.GetAssociation(System.Type,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method will be called to resolve the actual object instance that is related to its type parameter. </p>\n<p>A <xref href=\"System.WeakReference\" data-throw-if-not-resolved=\"false\"></xref> is used to maintain the association between the primary and secondary object; therefore, this method does not prevent either object from being finalized and reclaimed by garbage collection.</p>\n"
   syntax:
     content: public static void CreateAssociation(object primary, object secondary)
     content.vb: Public Shared Sub CreateAssociation(primary As Object, secondary As Object)
     parameters:
     - id: primary
       type: System.Object
-      description: The primary <xref href="System.Object" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The primary <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: secondary
       type: System.Object
-      description: The secondary <xref href="System.Object" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The secondary <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\n<em>primary</em> is equal to <em>secondary</em>."
+    description: "\n<p>\n<em>primary</em> is equal to <em>secondary</em>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor.RemoveAssociation(System.Object,System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.RemoveAssociation(System.Object,System.Object)
+  - type: System.ComponentModel.TypeDescriptor.GetAssociation(System.Type,System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.GetAssociation(System.Type,System.Object)
+  see:
+  - type: System.Security.NamedPermissionSet
+    commentId: T:System.Security.NamedPermissionSet
   modifiers.csharp:
   - public
   - static
@@ -537,23 +607,26 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Creates a new event descriptor that is identical to an existing event descriptor, when passed the existing <xref href="System.ComponentModel.EventDescriptor" data-throw-if-not-resolved="false"></xref>.
+  summary: "\n<p>Creates a new event descriptor that is identical to an existing event descriptor, when passed the existing <xref href=\"System.ComponentModel.EventDescriptor\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public static EventDescriptor CreateEvent(Type componentType, EventDescriptor oldEventDescriptor, params Attribute[] attributes)
     content.vb: Public Shared Function CreateEvent(componentType As Type, oldEventDescriptor As EventDescriptor, ParamArray attributes As Attribute()) As EventDescriptor
     parameters:
     - id: componentType
       type: System.Type
-      description: 'The type of the component for which to create the new event. '
+      description: "\n<p>The type of the component for which to create the new event. </p>\n"
     - id: oldEventDescriptor
       type: System.ComponentModel.EventDescriptor
-      description: 'The existing event information. '
+      description: "\n<p>The existing event information. </p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: 'The new attributes. '
+      description: "\n<p>The new attributes. </p>\n"
     return:
       type: System.ComponentModel.EventDescriptor
-      description: A new <xref href="System.ComponentModel.EventDescriptor" data-throw-if-not-resolved="false"></xref> that has merged the specified metadata attributes with the existing metadata attributes.
+      description: "\n<p>A new <xref href=\"System.ComponentModel.EventDescriptor\" data-throw-if-not-resolved=\"false\"></xref> that has merged the specified metadata attributes with the existing metadata attributes.</p>\n"
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
   modifiers.csharp:
   - public
   - static
@@ -583,26 +656,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Creates a new event descriptor that is identical to an existing event descriptor by dynamically generating descriptor information from a specified event on a type.
+  summary: "\n<p>Creates a new event descriptor that is identical to an existing event descriptor by dynamically generating descriptor information from a specified event on a type.</p>\n"
   syntax:
     content: public static EventDescriptor CreateEvent(Type componentType, string name, Type type, params Attribute[] attributes)
     content.vb: Public Shared Function CreateEvent(componentType As Type, name As String, type As Type, ParamArray attributes As Attribute()) As EventDescriptor
     parameters:
     - id: componentType
       type: System.Type
-      description: 'The type of the component the event lives on. '
+      description: "\n<p>The type of the component the event lives on. </p>\n"
     - id: name
       type: System.String
-      description: 'The name of the event. '
+      description: "\n<p>The name of the event. </p>\n"
     - id: type
       type: System.Type
-      description: 'The type of the delegate that handles the event. '
+      description: "\n<p>The type of the delegate that handles the event. </p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: 'The attributes for this event. '
+      description: "\n<p>The attributes for this event. </p>\n"
     return:
       type: System.ComponentModel.EventDescriptor
-      description: An <xref href="System.ComponentModel.EventDescriptor" data-throw-if-not-resolved="false"></xref> that is bound to a type.
+      description: "\n<p>An <xref href=\"System.ComponentModel.EventDescriptor\" data-throw-if-not-resolved=\"false\"></xref> that is bound to a type.</p>\n"
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
   modifiers.csharp:
   - public
   - static
@@ -632,33 +708,37 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: 'Creates an object that can substitute for another data type. '
+  summary: "\n<p>Creates an object that can substitute for another data type. </p>\n"
+  remarks: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> method will search for a <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> that is associated with the specified <em>objectType</em> data type. This method first tries to obtain a type description provider from the <em>provider</em> parameter. If this fails, it searches its own internal tables for a provider (these entries were created through previous calls to <see cref=\"Overload:System.ComponentModel.TypeDescriptor.AddProvider\"></see>). If it finds a provider, this method will delegate the creation call to that object. </p>\n"
   syntax:
     content: public static object CreateInstance(IServiceProvider provider, Type objectType, Type[] argTypes, object[] args)
     content.vb: Public Shared Function CreateInstance(provider As IServiceProvider, objectType As Type, argTypes As Type(), args As Object()) As Object
     parameters:
     - id: provider
       type: System.IServiceProvider
-      description: The service provider that provides a <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> service. This parameter can be null.
+      description: "\n<p>The service provider that provides a <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> service. This parameter can be <strong>null</strong>.</p>\n"
     - id: objectType
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of object to create.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of object to create.</p>\n"
     - id: argTypes
       type: System.Type[]
-      description: An optional array of parameter types to be passed to the object's constructor. This parameter can be null or an array of zero length.
+      description: "\n<p>An optional array of parameter types to be passed to the object's constructor. This parameter can be <strong>null</strong> or an array of zero length.</p>\n"
     - id: args
       type: System.Object[]
-      description: 'An optional array of parameter values to pass to the object''s constructor. If not null, the number of elements must be the same as <em>argTypes</em>. '
+      description: "\n<p>An optional array of parameter values to pass to the object's constructor. If not <strong>null</strong>, the number of elements must be the same as <em>argTypes</em>. </p>\n"
     return:
       type: System.Object
-      description: An instance of the substitute data type if an associated <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> is found; otherwise, null.
+      description: "\n<p>An instance of the substitute data type if an associated <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> is found; otherwise, <strong>null</strong>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>objectType</em> is null, or <em>args</em> is null when <em>argTypes</em> is not null."
+    description: "\n<p>\n<em>objectType</em> is <strong>null</strong>, or <em>args</em> is <strong>null</strong> when <em>argTypes</em> is not <strong>null</strong>.</p>\n"
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
-    description: "\n<em>argTypes</em> and <em>args</em> have different number of elements."
+    description: "\n<p>\n<em>argTypes</em> and <em>args</em> have different number of elements.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptionProvider.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
+    commentId: M:System.ComponentModel.TypeDescriptionProvider.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
   modifiers.csharp:
   - public
   - static
@@ -688,23 +768,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Creates a new property descriptor from an existing property descriptor, using the specified existing <xref href="System.ComponentModel.PropertyDescriptor" data-throw-if-not-resolved="false"></xref> and attribute array.
+  summary: "\n<p>Creates a new property descriptor from an existing property descriptor, using the specified existing <xref href=\"System.ComponentModel.PropertyDescriptor\" data-throw-if-not-resolved=\"false\"></xref> and attribute array.</p>\n"
   syntax:
     content: public static PropertyDescriptor CreateProperty(Type componentType, PropertyDescriptor oldPropertyDescriptor, params Attribute[] attributes)
     content.vb: Public Shared Function CreateProperty(componentType As Type, oldPropertyDescriptor As PropertyDescriptor, ParamArray attributes As Attribute()) As PropertyDescriptor
     parameters:
     - id: componentType
       type: System.Type
-      description: 'The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the component that the property is a member of. '
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the component that the property is a member of. </p>\n"
     - id: oldPropertyDescriptor
       type: System.ComponentModel.PropertyDescriptor
-      description: 'The existing property descriptor. '
+      description: "\n<p>The existing property descriptor. </p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: 'The new attributes for this property. '
+      description: "\n<p>The new attributes for this property. </p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptor
-      description: A new <xref href="System.ComponentModel.PropertyDescriptor" data-throw-if-not-resolved="false"></xref> that has the specified metadata attributes merged with the existing metadata attributes.
+      description: "\n<p>A new <xref href=\"System.ComponentModel.PropertyDescriptor\" data-throw-if-not-resolved=\"false\"></xref> that has the specified metadata attributes merged with the existing metadata attributes.</p>\n"
+  seealso:
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
   modifiers.csharp:
   - public
   - static
@@ -734,26 +820,32 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Creates and dynamically binds a property descriptor to a type, using the specified property name, type, and attribute array.
+  summary: "\n<p>Creates and dynamically binds a property descriptor to a type, using the specified property name, type, and attribute array.</p>\n"
   syntax:
     content: public static PropertyDescriptor CreateProperty(Type componentType, string name, Type type, params Attribute[] attributes)
     content.vb: Public Shared Function CreateProperty(componentType As Type, name As String, type As Type, ParamArray attributes As Attribute()) As PropertyDescriptor
     parameters:
     - id: componentType
       type: System.Type
-      description: 'The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the component that the property is a member of. '
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the component that the property is a member of. </p>\n"
     - id: name
       type: System.String
-      description: 'The name of the property. '
+      description: "\n<p>The name of the property. </p>\n"
     - id: type
       type: System.Type
-      description: 'The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the property. '
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the property. </p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: 'The new attributes for this property. '
+      description: "\n<p>The new attributes for this property. </p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptor
-      description: A <xref href="System.ComponentModel.PropertyDescriptor" data-throw-if-not-resolved="false"></xref> that is bound to the specified type and that has the specified metadata attributes merged with the existing metadata attributes.
+      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptor\" data-throw-if-not-resolved=\"false\"></xref> that is bound to the specified type and that has the specified metadata attributes merged with the existing metadata attributes.</p>\n"
+  seealso:
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
   modifiers.csharp:
   - public
   - static
@@ -783,24 +875,32 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns an instance of the type associated with the specified primary object.
+  summary: "\n<p>Returns an instance of the type associated with the specified primary object.</p>\n"
+  remarks: "\n<p>If a previous association has been made for the <em>type</em> parameter using the <xref href=\"System.ComponentModel.TypeDescriptor.CreateAssociation(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method, then the <xref href=\"System.ComponentModel.TypeDescriptor.GetAssociation(System.Type,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method returns the correct secondary object to invoke for the requested type. Otherwise, <xref href=\"System.ComponentModel.TypeDescriptor.GetAssociation(System.Type,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> searches for a compatible designer for <em>type</em> and returns the designer if one is found. This method never returns <strong>null</strong>.</p>\n<p>A <xref href=\"System.WeakReference\" data-throw-if-not-resolved=\"false\"></xref> is used to maintain the association between the primary and secondary object; therefore, this method does not prevent either the primary or secondary object from being finalized and reclaimed by garbage collection.</p>\n"
   syntax:
     content: public static object GetAssociation(Type type, object primary)
     content.vb: Public Shared Function GetAssociation(type As Type, primary As Object) As Object
     parameters:
     - id: type
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
     - id: primary
       type: System.Object
-      description: The primary object of the association.
+      description: "\n<p>The primary object of the association.</p>\n"
     return:
       type: System.Object
-      description: An instance of the secondary type that has been associated with the primary object if an association exists; otherwise, <em>primary</em> if no specified association exists.
+      description: "\n<p>An instance of the secondary type that has been associated with the primary object if an association exists; otherwise, <em>primary</em> if no specified association exists.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.Design.IDesignerHost.GetDesigner(System.ComponentModel.IComponent)
+    commentId: M:System.ComponentModel.Design.IDesignerHost.GetDesigner(System.ComponentModel.IComponent)
+  - type: System.ComponentModel.TypeDescriptor.CreateAssociation(System.Object,System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateAssociation(System.Object,System.Object)
+  - type: System.ComponentModel.TypeDescriptor.RemoveAssociation(System.Object,System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.RemoveAssociation(System.Object,System.Object)
   modifiers.csharp:
   - public
   - static
@@ -828,17 +928,27 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of attributes for the specified component.
+  summary: "\n<p>Returns the collection of attributes for the specified component.</p>\n"
+  remarks: "\n<p>The attributes returned by the <see cref=\"Overload:System.ComponentModel.TypeDescriptor.GetAttributes\"></see> method may be dynamically modified from the original component's source listing by extender providers (<xref href=\"System.ComponentModel.IExtenderProvider\" data-throw-if-not-resolved=\"false\"></xref>), filter services (<xref href=\"System.ComponentModel.Design.ITypeDescriptorFilterService\" data-throw-if-not-resolved=\"false\"></xref>), and attribute filters.</p>\n<p>When you define a custom attribute with <xref href=\"System.AttributeUsageAttribute.AllowMultiple\" data-throw-if-not-resolved=\"false\"></xref> set to <strong>true</strong>, you must override the <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> property to make it unique. If all instances of your attribute are unique, override <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> to return the object identity of your attribute. If only some instances of your attribute are unique, return a value from <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> that would return equality in those cases. For example, some attributes have a constructor parameter that acts as a unique key. For these attributes, return the value of the constructor parameter from the <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>The default implementation of <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> returns the type identity regardless of the value of the <xref href=\"System.AttributeUsageAttribute.AllowMultiple\" data-throw-if-not-resolved=\"false\"></xref> property. In order to return multiple instances of an <xref href=\"System.AttributeUsageAttribute.AllowMultiple\" data-throw-if-not-resolved=\"false\"></xref> attribute from the <xref href=\"System.ComponentModel.AttributeCollection\" data-throw-if-not-resolved=\"false\"></xref>, your attribute must override the <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
+  example:
+  - "\n<p>For an example of this method, see the <xref href=\"System.ComponentModel.AttributeCollection.Matches(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   syntax:
     content: public static AttributeCollection GetAttributes(object component)
     content.vb: Public Shared Function GetAttributes(component As Object) As AttributeCollection
     parameters:
     - id: component
       type: System.Object
-      description: 'The component for which you want to get attributes. '
+      description: "\n<p>The component for which you want to get attributes. </p>\n"
     return:
       type: System.ComponentModel.AttributeCollection
-      description: An <xref href="System.ComponentModel.AttributeCollection" data-throw-if-not-resolved="false"></xref> containing the attributes for the component. If <em>component</em> is null, this method returns an empty collection.
+      description: "\n<p>An <xref href=\"System.ComponentModel.AttributeCollection\" data-throw-if-not-resolved=\"false\"></xref> containing the attributes for the component. If <em>component</em> is <strong>null</strong>, this method returns an empty collection.</p>\n"
+  seealso:
+  - type: System.Attribute
+    commentId: T:System.Attribute
+  - type: System.ComponentModel.AttributeCollection
+    commentId: T:System.ComponentModel.AttributeCollection
+  - type: System.ComponentModel.CustomTypeDescriptor.GetAttributes
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetAttributes
   modifiers.csharp:
   - public
   - static
@@ -866,20 +976,30 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns a collection of attributes for the specified component and a Boolean indicating that a custom type descriptor has been created.
+  summary: "\n<p>Returns a collection of attributes for the specified component and a Boolean indicating that a custom type descriptor has been created.</p>\n"
+  remarks: "\n<p>The attributes returned by the <see cref=\"Overload:System.ComponentModel.TypeDescriptor.GetAttributes\"></see> method may be dynamically modified from the original components source listing by extender providers (<xref href=\"System.ComponentModel.IExtenderProvider\" data-throw-if-not-resolved=\"false\"></xref>), filter services (<xref href=\"System.ComponentModel.Design.ITypeDescriptorFilterService\" data-throw-if-not-resolved=\"false\"></xref>), and attribute filters.</p>\n<p>When you define a custom attribute with <xref href=\"System.AttributeUsageAttribute.AllowMultiple\" data-throw-if-not-resolved=\"false\"></xref> set to <strong>true</strong>, you must override the <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> property to make it unique. If all instances of your attribute are unique, override <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> to return the object identity of your attribute. If only some instances of your attribute are unique, return a value from <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> that would return equality in those cases. For example, some attributes have a constructor parameter that acts as a unique key. For these attributes, return the value of the constructor parameter from the <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>The default implementation of <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> returns the type identity regardless of the value of the <xref href=\"System.AttributeUsageAttribute.AllowMultiple\" data-throw-if-not-resolved=\"false\"></xref> property. In order to return multiple instances of an <xref href=\"System.AttributeUsageAttribute.AllowMultiple\" data-throw-if-not-resolved=\"false\"></xref> attribute from the <xref href=\"System.ComponentModel.AttributeCollection\" data-throw-if-not-resolved=\"false\"></xref>, your attribute must override the <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: public static AttributeCollection GetAttributes(object component, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetAttributes(component As Object, noCustomTypeDesc As Boolean) As AttributeCollection
     parameters:
     - id: component
       type: System.Object
-      description: 'The component for which you want to get attributes. '
+      description: "\n<p>The component for which you want to get attributes. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: true to use a baseline set of attributes from the custom type descriptor if <em>component</em> is of type <xref href="System.ComponentModel.ICustomTypeDescriptor" data-throw-if-not-resolved="false"></xref>; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> to use a baseline set of attributes from the custom type descriptor if <em>component</em> is of type <xref href=\"System.ComponentModel.ICustomTypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref>; otherwise, <strong>false</strong>.</p>\n"
     return:
       type: System.ComponentModel.AttributeCollection
-      description: An <xref href="System.ComponentModel.AttributeCollection" data-throw-if-not-resolved="false"></xref> with the attributes for the component. If the component is null, this method returns an empty collection.
+      description: "\n<p>An <xref href=\"System.ComponentModel.AttributeCollection\" data-throw-if-not-resolved=\"false\"></xref> with the attributes for the component. If the component is <strong>null</strong>, this method returns an empty collection.</p>\n"
+  seealso:
+  - type: System.Attribute
+    commentId: T:System.Attribute
+  - type: System.ComponentModel.AttributeCollection
+    commentId: T:System.ComponentModel.AttributeCollection
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
+  - type: System.ComponentModel.CustomTypeDescriptor.GetAttributes
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetAttributes
   modifiers.csharp:
   - public
   - static
@@ -907,17 +1027,25 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns a collection of attributes for the specified type of component.
+  summary: "\n<p>Returns a collection of attributes for the specified type of component.</p>\n"
+  remarks: "\n<p>Call this version of this method only when you do not have an instance of the object.</p>\n<p>For attributes with <xref href=\"System.AttributeUsageAttribute.AllowMultiple\" data-throw-if-not-resolved=\"false\"></xref> set to <strong>true</strong>, the attribute collection removes duplicate instances. These are instances in which the <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> property returns equal values.</p>\n<p>When you define a custom attribute with <xref href=\"System.AttributeUsageAttribute.AllowMultiple\" data-throw-if-not-resolved=\"false\"></xref> set to <strong>true</strong>, you must override the <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> property to make it unique. If all instances of your attribute are unique, override <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> to return the object identity of your attribute. If only some instances of your attribute are unique, return a value from <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> that would return equality in those cases. For example, some attributes have a constructor parameter that acts as a unique key. For these attributes, return the value of the constructor parameter from the <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>The default implementation of <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> returns the type identity regardless of the value of the <xref href=\"System.AttributeUsageAttribute.AllowMultiple\" data-throw-if-not-resolved=\"false\"></xref> property. In order to return multiple instances of an <xref href=\"System.AttributeUsageAttribute.AllowMultiple\" data-throw-if-not-resolved=\"false\"></xref> attribute from the <xref href=\"System.ComponentModel.AttributeCollection\" data-throw-if-not-resolved=\"false\"></xref>, your attribute must override the <xref href=\"System.Attribute.TypeId\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: public static AttributeCollection GetAttributes(Type componentType)
     content.vb: Public Shared Function GetAttributes(componentType As Type) As AttributeCollection
     parameters:
     - id: componentType
       type: System.Type
-      description: 'The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component. '
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component. </p>\n"
     return:
       type: System.ComponentModel.AttributeCollection
-      description: An <xref href="System.ComponentModel.AttributeCollection" data-throw-if-not-resolved="false"></xref> with the attributes for the type of the component. If the component is null, this method returns an empty collection.
+      description: "\n<p>An <xref href=\"System.ComponentModel.AttributeCollection\" data-throw-if-not-resolved=\"false\"></xref> with the attributes for the type of the component. If the component is <strong>null</strong>, this method returns an empty collection.</p>\n"
+  seealso:
+  - type: System.Attribute
+    commentId: T:System.Attribute
+  - type: System.ComponentModel.AttributeCollection
+    commentId: T:System.ComponentModel.AttributeCollection
+  - type: System.ComponentModel.CustomTypeDescriptor.GetAttributes
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetAttributes
   modifiers.csharp:
   - public
   - static
@@ -945,21 +1073,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the name of the class for the specified component using the default type descriptor.
+  summary: "\n<p>Returns the name of the class for the specified component using the default type descriptor.</p>\n"
+  remarks: "\n<p>Typically, this method returns the full <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> name for the <em>component</em> parameter type. For example, the class name for a button is \"System.Windows.Forms.Button\". If <em>component</em> implements <xref href=\"System.ComponentModel.ICustomTypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref>, it can return an alternate name. </p>\n<p>This method is equivalent to the overloaded <xref href=\"System.ComponentModel.TypeDescriptor.GetClassName(System.Object,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method with a second parameter of <strong>false</strong>.</p>\n"
   syntax:
     content: public static string GetClassName(object component)
     content.vb: Public Shared Function GetClassName(component As Object) As String
     parameters:
     - id: component
       type: System.Object
-      description: 'The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> for which you want the class name. '
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> for which you want the class name. </p>\n"
     return:
       type: System.String
-      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> containing the name of the class for the specified component.
+      description: "\n<p>A <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> containing the name of the class for the specified component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null. "
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>. </p>\n"
+  seealso:
+  - type: System.ComponentModel.CustomTypeDescriptor.GetClassName
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetClassName
+  - type: System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)
+  - type: System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
   modifiers.csharp:
   - public
   - static
@@ -987,27 +1123,37 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the name of the class for the specified component using a custom type descriptor.
+  summary: "\n<p>Returns the name of the class for the specified component using a custom type descriptor.</p>\n"
+  remarks: "\n<p>Typically, this method returns the full <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> name for the <em>component</em> parameter type. For example, the class name for a button is \"System.Windows.Forms.Button\". If the <em>component</em> parameter implements <xref href=\"System.ComponentModel.ICustomTypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref>, it can return an alternate name. </p>\n"
   syntax:
     content: public static string GetClassName(object component, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetClassName(component As Object, noCustomTypeDesc As Boolean) As String
     parameters:
     - id: component
       type: System.Object
-      description: 'The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> for which you want the class name. '
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> for which you want the class name. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: true to consider custom type description information; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> to consider custom type description information; otherwise, <strong>false</strong>.</p>\n"
     return:
       type: System.String
-      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> containing the name of the class for the specified component.
+      description: "\n<p>A <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> containing the name of the class for the specified component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null. "
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.CustomTypeDescriptor.GetClassName
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetClassName
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
+  - type: System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)
+  - type: System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
   modifiers.csharp:
   - public
   - static
@@ -1035,21 +1181,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the name of the class for the specified type.
+  summary: "\n<p>Returns the name of the class for the specified type.</p>\n"
+  remarks: "\n<p>This method uses the cached custom type descriptor for the specified type to discover the associated class name.</p>\n"
   syntax:
     content: public static string GetClassName(Type componentType)
     content.vb: Public Shared Function GetClassName(componentType As Type) As String
     parameters:
     - id: componentType
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
     return:
       type: System.String
-      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> containing the name of the class for the specified component type.
+      description: "\n<p>A <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> containing the name of the class for the specified component type.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>componentType</em> is null."
+    description: "\n<p>\n<em>componentType</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.CustomTypeDescriptor.GetClassName
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetClassName
+  - type: System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)
+  - type: System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
   modifiers.csharp:
   - public
   - static
@@ -1077,24 +1231,32 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the name of the specified component using the default type descriptor.
+  summary: "\n<p>Returns the name of the specified component using the default type descriptor.</p>\n"
+  remarks: "\n<p>Typically, this method returns the name for the site of the component, if one exists. For example, the class name for a button is \"System.Windows.Forms.Button\".</p>\n<p>This method is equivalent to the overloaded <xref href=\"System.ComponentModel.TypeDescriptor.GetComponentName(System.Object,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method with a second parameter of <strong>false</strong>.</p>\n<p>This method is used at design time to retrieve the name of an instance of a component.</p>\n"
   syntax:
     content: public static string GetComponentName(object component)
     content.vb: Public Shared Function GetComponentName(component As Object) As String
     parameters:
     - id: component
       type: System.Object
-      description: 'The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> for which you want the class name. '
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> for which you want the class name. </p>\n"
     return:
       type: System.String
-      description: A <xref href="System.String" data-throw-if-not-resolved="false"></xref> containing the name of the specified component, or null if there is no component name.
+      description: "\n<p>A <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> containing the name of the specified component, or <strong>null</strong> if there is no component name.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null. "
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.CustomTypeDescriptor.GetComponentName
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetComponentName
+  - type: System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)
+  - type: System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
   modifiers.csharp:
   - public
   - static
@@ -1122,27 +1284,37 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the name of the specified component using a custom type descriptor.
+  summary: "\n<p>Returns the name of the specified component using a custom type descriptor.</p>\n"
+  remarks: "\n<p>This method is used at design time to retrieve the name of an instance of a component. Typically, this method returns the name for the site of the component, if one exists. For example, the class name for a button is \"System.Windows.Forms.Button\". If the component implements the <xref href=\"System.ComponentModel.ICustomTypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> interface, it can return an alternate name.</p>\n"
   syntax:
     content: public static string GetComponentName(object component, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetComponentName(component As Object, noCustomTypeDesc As Boolean) As String
     parameters:
     - id: component
       type: System.Object
-      description: 'The <xref href="System.Object" data-throw-if-not-resolved="false"></xref> for which you want the class name. '
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> for which you want the class name. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: true to consider custom type description information; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> to consider custom type description information; otherwise, <strong>false</strong>.</p>\n"
     return:
       type: System.String
-      description: The name of the class for the specified component, or null if there is no component name.
+      description: "\n<p>The name of the class for the specified component, or <strong>null</strong> if there is no component name.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null. "
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.CustomTypeDescriptor.GetComponentName
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetComponentName
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
+  - type: System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)
+  - type: System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateInstance(System.IServiceProvider,System.Type,System.Type[],System.Object[])
   modifiers.csharp:
   - public
   - static
@@ -1170,24 +1342,32 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns a type converter for the type of the specified component.
+  summary: "\n<p>Returns a type converter for the type of the specified component.</p>\n"
+  remarks: "\n<p>This method locates an appropriate type converter by looking for a <xref href=\"System.ComponentModel.TypeConverterAttribute\" data-throw-if-not-resolved=\"false\"></xref>. If it cannot find a <xref href=\"System.ComponentModel.TypeConverterAttribute\" data-throw-if-not-resolved=\"false\"></xref>, it traverses the base class hierarchy of the class until it finds a primitive type.</p>\n<p>This method is equivalent to the overloaded <xref href=\"System.ComponentModel.TypeDescriptor.GetConverter(System.Object,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method with a second parameter of <strong>false</strong>.</p>\n"
+  example:
+  - "\n<p>For an example of using this method, see the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public static TypeConverter GetConverter(object component)
     content.vb: Public Shared Function GetConverter(component As Object) As TypeConverter
     parameters:
     - id: component
       type: System.Object
-      description: 'A component to get the converter for. '
+      description: "\n<p>A component to get the converter for. </p>\n"
     return:
       type: System.ComponentModel.TypeConverter
-      description: A <xref href="System.ComponentModel.TypeConverter" data-throw-if-not-resolved="false"></xref> for the specified component.
+      description: "\n<p>A <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> for the specified component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null. "
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeConverterAttribute
+    commentId: T:System.ComponentModel.TypeConverterAttribute
+  - type: System.ComponentModel.TypeDescriptor.CreateDesigner(System.ComponentModel.IComponent,System.Type)
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateDesigner(System.ComponentModel.IComponent,System.Type)
   modifiers.csharp:
   - public
   - static
@@ -1215,27 +1395,35 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns a type converter for the type of the specified component with a custom type descriptor.
+  summary: "\n<p>Returns a type converter for the type of the specified component with a custom type descriptor.</p>\n"
+  remarks: "\n<p>This method looks for the appropriate type converter by trying to find a <xref href=\"System.ComponentModel.TypeConverterAttribute\" data-throw-if-not-resolved=\"false\"></xref>. If it cannot find a <xref href=\"System.ComponentModel.TypeConverterAttribute\" data-throw-if-not-resolved=\"false\"></xref>, it traverses the base class hierarchy of the class until it finds a primitive type.</p>\n"
   syntax:
     content: public static TypeConverter GetConverter(object component, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetConverter(component As Object, noCustomTypeDesc As Boolean) As TypeConverter
     parameters:
     - id: component
       type: System.Object
-      description: 'A component to get the converter for. '
+      description: "\n<p>A component to get the converter for. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: true to consider custom type description information; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> to consider custom type description information; otherwise, <strong>false</strong>.</p>\n"
     return:
       type: System.ComponentModel.TypeConverter
-      description: A <xref href="System.ComponentModel.TypeConverter" data-throw-if-not-resolved="false"></xref> for the specified component.
+      description: "\n<p>A <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> for the specified component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null. "
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
+  - type: System.ComponentModel.TypeConverterAttribute
+    commentId: T:System.ComponentModel.TypeConverterAttribute
+  - type: System.ComponentModel.TypeDescriptor.CreateDesigner(System.ComponentModel.IComponent,System.Type)
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateDesigner(System.ComponentModel.IComponent,System.Type)
   modifiers.csharp:
   - public
   - static
@@ -1263,21 +1451,27 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns a type converter for the specified type.
+  summary: "\n<p>Returns a type converter for the specified type.</p>\n"
+  remarks: "\n<p>Call this version of this method only when you do not have an instance of the object.</p>\n<p>This method looks for the appropriate type converter by looking for a <xref href=\"System.ComponentModel.TypeConverterAttribute\" data-throw-if-not-resolved=\"false\"></xref>. If it cannot find a <xref href=\"System.ComponentModel.TypeConverterAttribute\" data-throw-if-not-resolved=\"false\"></xref>, it traverses the base class hierarchy of the class until it finds a primitive type.</p>\n"
   syntax:
     content: public static TypeConverter GetConverter(Type type)
     content.vb: Public Shared Function GetConverter(type As Type) As TypeConverter
     parameters:
     - id: type
       type: System.Type
-      description: 'The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component. '
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component. </p>\n"
     return:
       type: System.ComponentModel.TypeConverter
-      description: A <xref href="System.ComponentModel.TypeConverter" data-throw-if-not-resolved="false"></xref> for the specified type.
+      description: "\n<p>A <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> for the specified type.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null. "
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>. </p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeConverterAttribute
+    commentId: T:System.ComponentModel.TypeConverterAttribute
+  - type: System.ComponentModel.TypeDescriptor.CreateDesigner(System.ComponentModel.IComponent,System.Type)
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateDesigner(System.ComponentModel.IComponent,System.Type)
   modifiers.csharp:
   - public
   - static
@@ -1305,24 +1499,32 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the default event for the specified component.
+  summary: "\n<p>Returns the default event for the specified component.</p>\n"
+  remarks: "\n<p>This method is equivalent to the overloaded <xref href=\"System.ComponentModel.TypeDescriptor.GetDefaultEvent(System.Object,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method with a second parameter of <strong>false</strong>.</p>\n"
   syntax:
     content: public static EventDescriptor GetDefaultEvent(object component)
     content.vb: Public Shared Function GetDefaultEvent(component As Object) As EventDescriptor
     parameters:
     - id: component
       type: System.Object
-      description: 'The component to get the event for. '
+      description: "\n<p>The component to get the event for. </p>\n"
     return:
       type: System.ComponentModel.EventDescriptor
-      description: An <xref href="System.ComponentModel.EventDescriptor" data-throw-if-not-resolved="false"></xref> with the default event, or null if there are no events.
+      description: "\n<p>An <xref href=\"System.ComponentModel.EventDescriptor\" data-throw-if-not-resolved=\"false\"></xref> with the default event, or <strong>null</strong> if there are no events.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null. "
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.DefaultEventAttribute
+    commentId: T:System.ComponentModel.DefaultEventAttribute
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.CustomTypeDescriptor.GetDefaultEvent
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetDefaultEvent
   modifiers.csharp:
   - public
   - static
@@ -1350,27 +1552,36 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the default event for a component with a custom type descriptor.
+  summary: "\n<p>Returns the default event for a component with a custom type descriptor.</p>\n"
   syntax:
     content: public static EventDescriptor GetDefaultEvent(object component, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetDefaultEvent(component As Object, noCustomTypeDesc As Boolean) As EventDescriptor
     parameters:
     - id: component
       type: System.Object
-      description: 'The component to get the event for. '
+      description: "\n<p>The component to get the event for. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: true to consider custom type description information; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> to consider custom type description information; otherwise, <strong>false</strong>.</p>\n"
     return:
       type: System.ComponentModel.EventDescriptor
-      description: An <xref href="System.ComponentModel.EventDescriptor" data-throw-if-not-resolved="false"></xref> with the default event, or null if there are no events.
+      description: "\n<p>An <xref href=\"System.ComponentModel.EventDescriptor\" data-throw-if-not-resolved=\"false\"></xref> with the default event, or <strong>null</strong> if there are no events.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null. "
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.DefaultEventAttribute
+    commentId: T:System.ComponentModel.DefaultEventAttribute
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
+  - type: System.ComponentModel.CustomTypeDescriptor.GetDefaultEvent
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetDefaultEvent
   modifiers.csharp:
   - public
   - static
@@ -1398,21 +1609,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the default event for the specified type of component.
+  summary: "\n<p>Returns the default event for the specified type of component.</p>\n"
+  remarks: "\n<p>Call this version of this method only when you do not have an instance of the object.</p>\n"
   syntax:
     content: public static EventDescriptor GetDefaultEvent(Type componentType)
     content.vb: Public Shared Function GetDefaultEvent(componentType As Type) As EventDescriptor
     parameters:
     - id: componentType
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
     return:
       type: System.ComponentModel.EventDescriptor
-      description: An <xref href="System.ComponentModel.EventDescriptor" data-throw-if-not-resolved="false"></xref> with the default event, or null if there are no events.
+      description: "\n<p>An <xref href=\"System.ComponentModel.EventDescriptor\" data-throw-if-not-resolved=\"false\"></xref> with the default event, or <strong>null</strong> if there are no events.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null. "
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>. </p>\n"
+  seealso:
+  - type: System.ComponentModel.DefaultEventAttribute
+    commentId: T:System.ComponentModel.DefaultEventAttribute
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.CustomTypeDescriptor.GetDefaultEvent
+    commentId: M:System.ComponentModel.CustomTypeDescriptor.GetDefaultEvent
   modifiers.csharp:
   - public
   - static
@@ -1440,21 +1659,27 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the default property for the specified component.
+  summary: "\n<p>Returns the default property for the specified component.</p>\n"
+  remarks: "\n<p>If the <em>component</em> parameter is <strong>null</strong>, this method returns <strong>null</strong>.</p>\n"
   syntax:
     content: public static PropertyDescriptor GetDefaultProperty(object component)
     content.vb: Public Shared Function GetDefaultProperty(component As Object) As PropertyDescriptor
     parameters:
     - id: component
       type: System.Object
-      description: 'The component to get the default property for. '
+      description: "\n<p>The component to get the default property for. </p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptor
-      description: A <xref href="System.ComponentModel.PropertyDescriptor" data-throw-if-not-resolved="false"></xref> with the default property, or null if there are no properties.
+      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptor\" data-throw-if-not-resolved=\"false\"></xref> with the default property, or <strong>null</strong> if there are no properties.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.DefaultPropertyAttribute
+    commentId: T:System.ComponentModel.DefaultPropertyAttribute
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
   modifiers.csharp:
   - public
   - static
@@ -1482,24 +1707,32 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the default property for the specified component with a custom type descriptor.
+  summary: "\n<p>Returns the default property for the specified component with a custom type descriptor.</p>\n"
+  remarks: "\n<p>If the <em>component</em> parameter is <strong>null</strong>, this method returns <strong>null</strong>.</p>\n"
   syntax:
     content: public static PropertyDescriptor GetDefaultProperty(object component, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetDefaultProperty(component As Object, noCustomTypeDesc As Boolean) As PropertyDescriptor
     parameters:
     - id: component
       type: System.Object
-      description: 'The component to get the default property for. '
+      description: "\n<p>The component to get the default property for. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: true to consider custom type description information; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> to consider custom type description information; otherwise, <strong>false</strong>.</p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptor
-      description: A <xref href="System.ComponentModel.PropertyDescriptor" data-throw-if-not-resolved="false"></xref> with the default property, or null if there are no properties.
+      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptor\" data-throw-if-not-resolved=\"false\"></xref> with the default property, or <strong>null</strong> if there are no properties.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.DefaultPropertyAttribute
+    commentId: T:System.ComponentModel.DefaultPropertyAttribute
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
   modifiers.csharp:
   - public
   - static
@@ -1527,17 +1760,23 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the default property for the specified type of component.
+  summary: "\n<p>Returns the default property for the specified type of component.</p>\n"
+  remarks: "\n<p>Call this version of this method only when you do not have an instance of the object.</p>\n<p>If the <em>componentType</em> parameter is <strong>null</strong>, this method returns <strong>null</strong>.</p>\n"
   syntax:
     content: public static PropertyDescriptor GetDefaultProperty(Type componentType)
     content.vb: Public Shared Function GetDefaultProperty(componentType As Type) As PropertyDescriptor
     parameters:
     - id: componentType
       type: System.Type
-      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that represents the class to get the property for. '
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that represents the class to get the property for. </p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptor
-      description: A <xref href="System.ComponentModel.PropertyDescriptor" data-throw-if-not-resolved="false"></xref> with the default property, or null if there are no properties.
+      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptor\" data-throw-if-not-resolved=\"false\"></xref> with the default property, or <strong>null</strong> if there are no properties.</p>\n"
+  seealso:
+  - type: System.ComponentModel.DefaultPropertyAttribute
+    commentId: T:System.ComponentModel.DefaultPropertyAttribute
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
   modifiers.csharp:
   - public
   - static
@@ -1565,27 +1804,31 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets an editor with the specified base type for the specified component.
+  summary: "\n<p>Gets an editor with the specified base type for the specified component.</p>\n"
+  remarks: "\n<p>The type of <em>editorBaseType</em> is usually <xref href=\"System.Drawing.Design.UITypeEditor\" data-throw-if-not-resolved=\"false\"></xref>, but you can also use other types (for example, <xref href=\"System.ComponentModel.ComponentEditor\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.ComponentModel.InstanceCreationEditor\" data-throw-if-not-resolved=\"false\"></xref>).</p>\n<p>You can define multiple editors for a property. You use this method to select the editor you want to use.</p>\n"
   syntax:
     content: public static object GetEditor(object component, Type editorBaseType)
     content.vb: Public Shared Function GetEditor(component As Object, editorBaseType As Type) As Object
     parameters:
     - id: component
       type: System.Object
-      description: 'The component to get the editor for. '
+      description: "\n<p>The component to get the editor for. </p>\n"
     - id: editorBaseType
       type: System.Type
-      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that represents the base type of the editor you want to find. '
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that represents the base type of the editor you want to find. </p>\n"
     return:
       type: System.Object
-      description: An instance of the editor that can be cast to the specified editor type, or null if no editor of the requested type can be found.
+      description: "\n<p>An instance of the editor that can be cast to the specified editor type, or <strong>null</strong> if no editor of the requested type can be found.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> or <em>editorBaseType</em> is null. "
+    description: "\n<p>\n<em>component</em> or <em>editorBaseType</em> is <strong>null</strong>. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor.AddEditorTable(System.Type,System.Collections.Hashtable)
+    commentId: M:System.ComponentModel.TypeDescriptor.AddEditorTable(System.Type,System.Collections.Hashtable)
   modifiers.csharp:
   - public
   - static
@@ -1613,30 +1856,36 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns an editor with the specified base type and with a custom type descriptor for the specified component.
+  summary: "\n<p>Returns an editor with the specified base type and with a custom type descriptor for the specified component.</p>\n"
+  remarks: "\n<p>The type of <em>editorBaseType</em> is usually <xref href=\"System.Drawing.Design.UITypeEditor\" data-throw-if-not-resolved=\"false\"></xref>, but you can also use other types (for example <xref href=\"System.ComponentModel.ComponentEditor\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.ComponentModel.InstanceCreationEditor\" data-throw-if-not-resolved=\"false\"></xref>).</p>\n<p>You can define multiple editors for a property. You use this method to select the editor you want to use.</p>\n"
   syntax:
     content: public static object GetEditor(object component, Type editorBaseType, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetEditor(component As Object, editorBaseType As Type, noCustomTypeDesc As Boolean) As Object
     parameters:
     - id: component
       type: System.Object
-      description: 'The component to get the editor for. '
+      description: "\n<p>The component to get the editor for. </p>\n"
     - id: editorBaseType
       type: System.Type
-      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that represents the base type of the editor you want to find. '
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that represents the base type of the editor you want to find. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: A flag indicating whether custom type description information should be considered.
+      description: "\n<p>A flag indicating whether custom type description information should be considered.</p>\n"
     return:
       type: System.Object
-      description: An instance of the editor that can be cast to the specified editor type, or null if no editor of the requested type can be found.
+      description: "\n<p>An instance of the editor that can be cast to the specified editor type, or <strong>null</strong> if no editor of the requested type can be found.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> or <em>editorBaseType</em> is null. "
+    description: "\n<p>\n<em>component</em> or <em>editorBaseType</em> is <strong>null</strong>. </p>\n"
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
+  - type: System.ComponentModel.TypeDescriptor.AddEditorTable(System.Type,System.Collections.Hashtable)
+    commentId: M:System.ComponentModel.TypeDescriptor.AddEditorTable(System.Type,System.Collections.Hashtable)
   modifiers.csharp:
   - public
   - static
@@ -1664,24 +1913,28 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns an editor with the specified base type for the specified type.
+  summary: "\n<p>Returns an editor with the specified base type for the specified type.</p>\n"
+  remarks: "\n<p>The type of <em>editorBaseType</em> is usually <xref href=\"System.Drawing.Design.UITypeEditor\" data-throw-if-not-resolved=\"false\"></xref>, but you can also use other types (for example <xref href=\"System.ComponentModel.ComponentEditor\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.ComponentModel.InstanceCreationEditor\" data-throw-if-not-resolved=\"false\"></xref>).</p>\n<p>You can define multiple editors for a type. You use this method to select the one you want to use.</p>\n<p>Call this version of this method only when you do not have an instance of the object.</p>\n"
   syntax:
     content: public static object GetEditor(Type type, Type editorBaseType)
     content.vb: Public Shared Function GetEditor(type As Type, editorBaseType As Type) As Object
     parameters:
     - id: type
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
     - id: editorBaseType
       type: System.Type
-      description: 'A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that represents the base type of the editor you are trying to find. '
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that represents the base type of the editor you are trying to find. </p>\n"
     return:
       type: System.Object
-      description: An instance of the editor object that can be cast to the given base type, or null if no editor of the requested type can be found.
+      description: "\n<p>An instance of the editor object that can be cast to the given base type, or <strong>null</strong> if no editor of the requested type can be found.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>type</em> or <em>editorBaseType</em> is null. "
+    description: "\n<p>\n<em>type</em> or <em>editorBaseType</em> is <strong>null</strong>. </p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor.AddEditorTable(System.Type,System.Collections.Hashtable)
+    commentId: M:System.ComponentModel.TypeDescriptor.AddEditorTable(System.Type,System.Collections.Hashtable)
   modifiers.csharp:
   - public
   - static
@@ -1709,21 +1962,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of events for the specified component.
+  summary: "\n<p>Returns the collection of events for the specified component.</p>\n"
+  remarks: "\n<p>Retrieves a collection of events that the given <em>component</em> parameter instance provides. This collection can differ from the set of events the class provides. If the <em>component</em> parameter is sited, the site can add or remove additional events.</p>\n<p>If <em>component</em> is <strong>null</strong>, then an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
+  example:
+  - "\n<p>For an example of this method, see the <xref href=\"System.ComponentModel.EventDescriptorCollection.Count\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: public static EventDescriptorCollection GetEvents(object component)
     content.vb: Public Shared Function GetEvents(component As Object) As EventDescriptorCollection
     parameters:
     - id: component
       type: System.Object
-      description: 'A component to get the events for. '
+      description: "\n<p>A component to get the events for. </p>\n"
     return:
       type: System.ComponentModel.EventDescriptorCollection
-      description: An <xref href="System.ComponentModel.EventDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the events for this component.
+      description: "\n<p>An <xref href=\"System.ComponentModel.EventDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the events for this component.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.EventDescriptorCollection
+    commentId: T:System.ComponentModel.EventDescriptorCollection
   modifiers.csharp:
   - public
   - static
@@ -1751,24 +2012,30 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of events for a specified component using a specified array of attributes as a filter.
+  summary: "\n<p>Returns the collection of events for a specified component using a specified array of attributes as a filter.</p>\n"
+  remarks: "\n<p>The events for the <em>component</em> parameter can differ from the events of a class, because the site can add or remove events if the <em>component</em> parameter is sited.</p>\n<p>The <em>attributes</em> array can have a mix of <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> objects. Filtering is defined by the following rules: </p>\n<ul><li>\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> is treated as a wildcard; it matches any event that has the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> in its set of attributes.</p>\n</li><li>\n<p>If an event does not have an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> of the same class, the event is not included in the returned array.</p>\n</li><li>\n<p>If the attribute is an instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> class, the event must be an exact match or it is not included in the returned array.</p>\n</li><li>\n<p>If an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> instance is specified and it is the default event, it is included in the returned array even if there is no instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> in the event.</p>\n</li></ul>\n<p>If <em>component</em> is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
   syntax:
     content: public static EventDescriptorCollection GetEvents(object component, Attribute[] attributes)
     content.vb: Public Shared Function GetEvents(component As Object, attributes As Attribute()) As EventDescriptorCollection
     parameters:
     - id: component
       type: System.Object
-      description: 'A component to get the events for. '
+      description: "\n<p>A component to get the events for. </p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: 'An array of type <xref href="System.Attribute" data-throw-if-not-resolved="false"></xref> that you can use as a filter. '
+      description: "\n<p>An array of type <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> that you can use as a filter. </p>\n"
     return:
       type: System.ComponentModel.EventDescriptorCollection
-      description: An <xref href="System.ComponentModel.EventDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the events that match the specified attributes for this component.
+      description: "\n<p>An <xref href=\"System.ComponentModel.EventDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the events that match the specified attributes for this component.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.EventDescriptorCollection
+    commentId: T:System.ComponentModel.EventDescriptorCollection
   modifiers.csharp:
   - public
   - static
@@ -1798,27 +2065,35 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of events for a specified component using a specified array of attributes as a filter and using a custom type descriptor.
+  summary: "\n<p>Returns the collection of events for a specified component using a specified array of attributes as a filter and using a custom type descriptor.</p>\n"
+  remarks: "\n<p>The events for the <em>component</em> parameter can differ from the events of a class, because the site can add or remove events if the <em>component</em> parameter is sited.</p>\n<p>The <em>attributes</em> parameter array can have a mix of <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> objects. Filtering is defined by the following rules: </p>\n<ul><li>\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> is treated as a wildcard; it matches any event that has the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> in its set of attributes.</p>\n</li><li>\n<p>If an event does not have an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> of the same class, the event is not included in the returned array.</p>\n</li><li>\n<p>If the attribute is an instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> class, the event must be an exact match or it is not included in the returned array.</p>\n</li><li>\n<p>If an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> instance is specified and it is the default event, it is included in the returned array even if there is no instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> in the event.</p>\n</li></ul>\n<p>If <em>component</em> is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
   syntax:
     content: public static EventDescriptorCollection GetEvents(object component, Attribute[] attributes, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetEvents(component As Object, attributes As Attribute(), noCustomTypeDesc As Boolean) As EventDescriptorCollection
     parameters:
     - id: component
       type: System.Object
-      description: 'A component to get the events for. '
+      description: "\n<p>A component to get the events for. </p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: 'An array of type <xref href="System.Attribute" data-throw-if-not-resolved="false"></xref> to use as a filter. '
+      description: "\n<p>An array of type <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> to use as a filter. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: true to consider custom type description information; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> to consider custom type description information; otherwise, <strong>false</strong>.</p>\n"
     return:
       type: System.ComponentModel.EventDescriptorCollection
-      description: An <xref href="System.ComponentModel.EventDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the events that match the specified attributes for this component.
+      description: "\n<p>An <xref href=\"System.ComponentModel.EventDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the events that match the specified attributes for this component.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.EventDescriptorCollection
+    commentId: T:System.ComponentModel.EventDescriptorCollection
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
   modifiers.csharp:
   - public
   - static
@@ -1848,24 +2123,32 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of events for a specified component with a custom type descriptor.
+  summary: "\n<p>Returns the collection of events for a specified component with a custom type descriptor.</p>\n"
+  remarks: "\n<p>This method retrieves a collection of events that the given <em>component</em> parameter instance provides. This can differ from the set of events the class provides. If the <em>component</em> parameter is sited, the site can add or remove additional events.</p>\n<p>If <em>component</em> is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
   syntax:
     content: public static EventDescriptorCollection GetEvents(object component, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetEvents(component As Object, noCustomTypeDesc As Boolean) As EventDescriptorCollection
     parameters:
     - id: component
       type: System.Object
-      description: 'A component to get the events for. '
+      description: "\n<p>A component to get the events for. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: true to consider custom type description information; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> to consider custom type description information; otherwise, <strong>false</strong>.</p>\n"
     return:
       type: System.ComponentModel.EventDescriptorCollection
-      description: An <xref href="System.ComponentModel.EventDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the events for this component.
+      description: "\n<p>An <xref href=\"System.ComponentModel.EventDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the events for this component.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.EventDescriptorCollection
+    commentId: T:System.ComponentModel.EventDescriptorCollection
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
   modifiers.csharp:
   - public
   - static
@@ -1893,17 +2176,23 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of events for a specified type of component.
+  summary: "\n<p>Returns the collection of events for a specified type of component.</p>\n"
+  remarks: "\n<p>Call this version of this method only when you do not have an instance of the object.</p>\n<p>If the <em>componentType</em> parameter is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
   syntax:
     content: public static EventDescriptorCollection GetEvents(Type componentType)
     content.vb: Public Shared Function GetEvents(componentType As Type) As EventDescriptorCollection
     parameters:
     - id: componentType
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
     return:
       type: System.ComponentModel.EventDescriptorCollection
-      description: An <xref href="System.ComponentModel.EventDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the events for this component.
+      description: "\n<p>An <xref href=\"System.ComponentModel.EventDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the events for this component.</p>\n"
+  seealso:
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.EventDescriptorCollection
+    commentId: T:System.ComponentModel.EventDescriptorCollection
   modifiers.csharp:
   - public
   - static
@@ -1931,20 +2220,26 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of events for a specified type of component using a specified array of attributes as a filter.
+  summary: "\n<p>Returns the collection of events for a specified type of component using a specified array of attributes as a filter.</p>\n"
+  remarks: "\n<p>Call this version of this method only when you do not have an instance of the object.</p>\n<p>The <em>attributes</em> parameter array can have a mix of <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> objects. Filtering is defined by the following rules: </p>\n<ul><li>\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> is treated as a wildcard; it matches any event that has the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> in its set of attributes.</p>\n</li><li>\n<p>If an event does not have an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> of the same class, the event is not included in the returned array.</p>\n</li><li>\n<p>If the attribute is an instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> class, the event must be an exact match or it is not included in the returned array.</p>\n</li><li>\n<p>If an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> instance is specified and it is the default event, it is included in the returned array even if there is no instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> in the event.</p>\n</li></ul>\n<p>If the <em>componentType</em> parameter is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
   syntax:
     content: public static EventDescriptorCollection GetEvents(Type componentType, Attribute[] attributes)
     content.vb: Public Shared Function GetEvents(componentType As Type, attributes As Attribute()) As EventDescriptorCollection
     parameters:
     - id: componentType
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: 'An array of type <xref href="System.Attribute" data-throw-if-not-resolved="false"></xref> that you can use as a filter. '
+      description: "\n<p>An array of type <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> that you can use as a filter. </p>\n"
     return:
       type: System.ComponentModel.EventDescriptorCollection
-      description: An <xref href="System.ComponentModel.EventDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the events that match the specified attributes for this component.
+      description: "\n<p>An <xref href=\"System.ComponentModel.EventDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the events that match the specified attributes for this component.</p>\n"
+  seealso:
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.EventDescriptorCollection
+    commentId: T:System.ComponentModel.EventDescriptorCollection
   modifiers.csharp:
   - public
   - static
@@ -1974,21 +2269,25 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the fully qualified name of the component.
+  summary: "\n<p>Returns the fully qualified name of the component.</p>\n"
+  remarks: "\n<p>In many cases, the <xref href=\"System.ComponentModel.TypeDescriptor.GetFullComponentName(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method will return the same value as the <see cref=\"Overload:System.ComponentModel.TypeDescriptor.GetComponentName\"></see> method. However, if the component resides in a nested container or has other nested semantics, it may return a different fully qualified name.</p>\n"
   syntax:
     content: public static string GetFullComponentName(object component)
     content.vb: Public Shared Function GetFullComponentName(component As Object) As String
     parameters:
     - id: component
       type: System.Object
-      description: The <xref href="System.ComponentModel.Component" data-throw-if-not-resolved="false"></xref> to find the name for.
+      description: "\n<p>The <xref href=\"System.ComponentModel.Component\" data-throw-if-not-resolved=\"false\"></xref> to find the name for.</p>\n"
     return:
       type: System.String
-      description: The fully qualified name of the specified component, or null if the component has no name.
+      description: "\n<p>The fully qualified name of the specified component, or <strong>null</strong> if the component has no name.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>component</em> is null."
+    description: "\n<p>\n<em>component</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptionProvider.GetFullComponentName(System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptionProvider.GetFullComponentName(System.Object)
   modifiers.csharp:
   - public
   - static
@@ -2016,21 +2315,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of properties for a specified component.
+  summary: "\n<p>Returns the collection of properties for a specified component.</p>\n"
+  remarks: "\n<p>The properties for a component can differ from the properties of a class, because the site can add or remove properties if the component is sited.</p>\n<p>If the <em>component</em> parameter is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
+  example:
+  - "\n<p>The following code example demonstrates the use of the <xref href=\"System.ComponentModel.TypeDescriptor.GetProperties(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method to access the properties of a control. This code example is part of a larger example provided for the <xref href=\"System.ComponentModel.Design.ComponentDesigner\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.ComponentModel.Design.DesignerServices#8"
   syntax:
     content: public static PropertyDescriptorCollection GetProperties(object component)
     content.vb: Public Shared Function GetProperties(component As Object) As PropertyDescriptorCollection
     parameters:
     - id: component
       type: System.Object
-      description: 'A component to get the properties for. '
+      description: "\n<p>A component to get the properties for. </p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: A <xref href="System.ComponentModel.PropertyDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the properties for the specified component.
+      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the properties for the specified component.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.PropertyDescriptorCollection
+    commentId: T:System.ComponentModel.PropertyDescriptorCollection
   modifiers.csharp:
   - public
   - static
@@ -2058,24 +2365,32 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of properties for a specified component using a specified array of attributes as a filter.
+  summary: "\n<p>Returns the collection of properties for a specified component using a specified array of attributes as a filter.</p>\n"
+  remarks: "\n<p>The properties for the <em>component</em> parameter can differ from the properties of a class, because the site can add or remove properties if the <em>component</em> parameter is sited.</p>\n<p>The <em>attributes</em> parameter array is used to filter the array. Filtering is defined by the following rules: </p>\n<ul><li>\n<p>If a property does not have an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> of the same class, the property is not included in the returned array.</p>\n</li><li>\n<p>If the attribute is an instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> class, the property must be an exact match or it is not included in the returned array.</p>\n</li><li>\n<p>If an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> instance is specified and it is the default property, it is included in the returned array even if there is no instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> in the property.</p>\n</li><li>\n<p>If <em>attributes</em> has a default attribute, the <xref href=\"System.ComponentModel.TypeDescriptor.GetProperties(System.Object,System.Attribute[])\" data-throw-if-not-resolved=\"false\"></xref> method matches the case when the property does not have the attribute applied.</p>\n</li></ul>\n<p>If <em>component</em> is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
+  example:
+  - "\n<p>The following code example demonstrates how to implement the <xref href=\"System.Windows.Forms.Design.PropertyTab.GetProperties(System.Object,System.Attribute[])\" data-throw-if-not-resolved=\"false\"></xref> method. This code example is part of a larger example provided for the <xref href=\"System.Windows.Forms.Design.PropertyTab\" data-throw-if-not-resolved=\"false\"></xref> class.</p>PropertyTabExample#2"
   syntax:
     content: public static PropertyDescriptorCollection GetProperties(object component, Attribute[] attributes)
     content.vb: Public Shared Function GetProperties(component As Object, attributes As Attribute()) As PropertyDescriptorCollection
     parameters:
     - id: component
       type: System.Object
-      description: 'A component to get the properties for. '
+      description: "\n<p>A component to get the properties for. </p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: 'An array of type <xref href="System.Attribute" data-throw-if-not-resolved="false"></xref> to use as a filter. '
+      description: "\n<p>An array of type <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> to use as a filter. </p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: A <xref href="System.ComponentModel.PropertyDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the properties that match the specified attributes for the specified component.
+      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the properties that match the specified attributes for the specified component.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.PropertyDescriptorCollection
+    commentId: T:System.ComponentModel.PropertyDescriptorCollection
   modifiers.csharp:
   - public
   - static
@@ -2105,27 +2420,35 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of properties for a specified component using a specified array of attributes as a filter and using a custom type descriptor.
+  summary: "\n<p>Returns the collection of properties for a specified component using a specified array of attributes as a filter and using a custom type descriptor.</p>\n"
+  remarks: "\n<p>The properties for a <em>component</em> can differ from the properties of a class, because the site can add or remove properties if the <em>component</em> is sited.</p>\n<p>The <em>attributes</em> parameter array is used to filter the array. Filtering is defined by the following rules: </p>\n<ul><li>\n<p>If a property does not have an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> of the same class, the property is not included in the returned array.</p>\n</li><li>\n<p>If the attribute is an instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> class, the property must be an exact match or it is not included in the returned array.</p>\n</li><li>\n<p>If an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> instance is specified and it is the default property, it is included in the returned array even if there is no instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> in the property.</p>\n</li><li>\n<p>If <em>attributes</em> has a default attribute, the <xref href=\"System.ComponentModel.TypeDescriptor.GetProperties(System.Object,System.Attribute[],System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method matches the case when the property does not have the attribute applied.</p>\n</li></ul>\n<p>If the <em>component</em> parameter is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
   syntax:
     content: public static PropertyDescriptorCollection GetProperties(object component, Attribute[] attributes, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetProperties(component As Object, attributes As Attribute(), noCustomTypeDesc As Boolean) As PropertyDescriptorCollection
     parameters:
     - id: component
       type: System.Object
-      description: 'A component to get the properties for. '
+      description: "\n<p>A component to get the properties for. </p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: 'An array of type <xref href="System.Attribute" data-throw-if-not-resolved="false"></xref> to use as a filter. '
+      description: "\n<p>An array of type <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> to use as a filter. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: true to consider custom type description information; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> to consider custom type description information; otherwise, <strong>false</strong>.</p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: A <xref href="System.ComponentModel.PropertyDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the events that match the specified attributes for the specified component.
+      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the events that match the specified attributes for the specified component.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.PropertyDescriptorCollection
+    commentId: T:System.ComponentModel.PropertyDescriptorCollection
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
   modifiers.csharp:
   - public
   - static
@@ -2155,24 +2478,32 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of properties for a specified component using the default type descriptor.
+  summary: "\n<p>Returns the collection of properties for a specified component using the default type descriptor.</p>\n"
+  remarks: "\n<p>The properties for the <em>component</em> parameter can differ from the properties of a class, because the site can add or remove properties if the <em>component</em> parameter is sited.</p>\n<p>If <em>component</em> is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
   syntax:
     content: public static PropertyDescriptorCollection GetProperties(object component, bool noCustomTypeDesc)
     content.vb: Public Shared Function GetProperties(component As Object, noCustomTypeDesc As Boolean) As PropertyDescriptorCollection
     parameters:
     - id: component
       type: System.Object
-      description: 'A component to get the properties for. '
+      description: "\n<p>A component to get the properties for. </p>\n"
     - id: noCustomTypeDesc
       type: System.Boolean
-      description: true to not consider custom type description information; otherwise, false.
+      description: "\n<p>\n<strong>true</strong> to not consider custom type description information; otherwise, <strong>false</strong>.</p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: A <xref href="System.ComponentModel.PropertyDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the properties for a specified component.
+      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the properties for a specified component.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
-    description: "\n<em>component</em> is a cross-process remoted object."
+    description: "\n<p>\n<em>component</em> is a cross-process remoted object.</p>\n"
+  seealso:
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.PropertyDescriptorCollection
+    commentId: T:System.ComponentModel.PropertyDescriptorCollection
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
   modifiers.csharp:
   - public
   - static
@@ -2200,17 +2531,23 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of properties for a specified type of component.
+  summary: "\n<p>Returns the collection of properties for a specified type of component.</p>\n"
+  remarks: "\n<p>Call this version of this method only when you do not have an instance of the object.</p>\n<p>If the <em>componentType</em> parameter is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
   syntax:
     content: public static PropertyDescriptorCollection GetProperties(Type componentType)
     content.vb: Public Shared Function GetProperties(componentType As Type) As PropertyDescriptorCollection
     parameters:
     - id: componentType
       type: System.Type
-      description: A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that represents the component to get properties for.
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that represents the component to get properties for.</p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: A <xref href="System.ComponentModel.PropertyDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the properties for a specified type of component.
+      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the properties for a specified type of component.</p>\n"
+  seealso:
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.PropertyDescriptorCollection
+    commentId: T:System.ComponentModel.PropertyDescriptorCollection
   modifiers.csharp:
   - public
   - static
@@ -2238,20 +2575,28 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the collection of properties for a specified type of component using a specified array of attributes as a filter.
+  summary: "\n<p>Returns the collection of properties for a specified type of component using a specified array of attributes as a filter.</p>\n"
+  remarks: "\n<p>Call this version of this method only when you do not have an instance of the object.</p>\n<p>The <em>attributes</em> parameter array is used to filter the array. Filtering is defined by the following rules: </p>\n<ul><li>\n<p>If a property does not have an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> of the same class, the property is not included in the returned array.</p>\n</li><li>\n<p>If the attribute is an instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> class, the property must be an exact match or it is not included in the returned array.</p>\n</li><li>\n<p>If an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> instance is specified and it is the default property, it is included in the returned array even if there is no instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> in the property.</p>\n</li><li>\n<p>If <em>attributes</em> has a default attribute, the <xref href=\"System.ComponentModel.TypeDescriptor.GetProperties(System.Type,System.Attribute[])\" data-throw-if-not-resolved=\"false\"></xref> method matches the case when the property does not have the attribute applied.</p>\n</li></ul>\n<p>If the <em>componentType</em> parameter is <strong>null</strong>, an empty collection is returned.</p>\n<p>The order of the returned collection is not guaranteed to be identical between calls, so always order it before use.</p>\n"
+  example:
+  - "\n<p>The following code example demonstrates how to implement the <xref href=\"System.Windows.Forms.Design.PropertyTab.GetProperties(System.Object,System.Attribute[])\" data-throw-if-not-resolved=\"false\"></xref> method. This code example is part of a larger example provided for the <xref href=\"System.Windows.Forms.Design.PropertyTab\" data-throw-if-not-resolved=\"false\"></xref> class.</p>PropertyTabExample#2"
   syntax:
     content: public static PropertyDescriptorCollection GetProperties(Type componentType, Attribute[] attributes)
     content.vb: Public Shared Function GetProperties(componentType As Type, attributes As Attribute()) As PropertyDescriptorCollection
     parameters:
     - id: componentType
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: 'An array of type <xref href="System.Attribute" data-throw-if-not-resolved="false"></xref> to use as a filter. '
+      description: "\n<p>An array of type <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> to use as a filter. </p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: A <xref href="System.ComponentModel.PropertyDescriptorCollection" data-throw-if-not-resolved="false"></xref> with the properties that match the specified attributes for this type of component.
+      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the properties that match the specified attributes for this type of component.</p>\n"
+  seealso:
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.PropertyDescriptorCollection
+    commentId: T:System.ComponentModel.PropertyDescriptorCollection
   modifiers.csharp:
   - public
   - static
@@ -2281,21 +2626,27 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the type description provider for the specified component.
+  summary: "\n<p>Returns the type description provider for the specified component.</p>\n"
+  remarks: "\n<p>The <see cref=\"Overload:System.ComponentModel.TypeDescriptor.GetProvider\"></see> method will always return a type description provider. Even the default <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> implementation is built on a <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public static TypeDescriptionProvider GetProvider(object instance)
     content.vb: Public Shared Function GetProvider(instance As Object) As TypeDescriptionProvider
     parameters:
     - id: instance
       type: System.Object
-      description: An instance of the target component.
+      description: "\n<p>An instance of the target component.</p>\n"
     return:
       type: System.ComponentModel.TypeDescriptionProvider
-      description: A <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> associated with the specified component.
+      description: "\n<p>A <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> associated with the specified component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>instance</em> is null."
+    description: "\n<p>\n<em>instance</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptionProvider
+    commentId: T:System.ComponentModel.TypeDescriptionProvider
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
   modifiers.csharp:
   - public
   - static
@@ -2323,21 +2674,27 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns the type description provider for the specified type.
+  summary: "\n<p>Returns the type description provider for the specified type.</p>\n"
+  remarks: "\n<p>The <see cref=\"Overload:System.ComponentModel.TypeDescriptor.GetProvider\"></see> method will always return a type description provider. Even the default <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> implementation is built on a <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public static TypeDescriptionProvider GetProvider(Type type)
     content.vb: Public Shared Function GetProvider(type As Type) As TypeDescriptionProvider
     parameters:
     - id: type
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
     return:
       type: System.ComponentModel.TypeDescriptionProvider
-      description: A <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> associated with the specified type.
+      description: "\n<p>A <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> associated with the specified type.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>type</em> is null."
+    description: "\n<p>\n<em>type</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptionProvider
+    commentId: T:System.ComponentModel.TypeDescriptionProvider
+  - type: System.ComponentModel.ICustomTypeDescriptor
+    commentId: T:System.ComponentModel.ICustomTypeDescriptor
   modifiers.csharp:
   - public
   - static
@@ -2365,21 +2722,22 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns a <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that can be used to perform reflection, given an object.
+  summary: "\n<p>Returns a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that can be used to perform reflection, given an object.</p>\n"
+  remarks: "\n<p>The <see cref=\"Overload:System.ComponentModel.TypeDescriptor.GetReflectionType\"></see> method is a low-level version of the <see cref=\"Overload:System.ComponentModel.TypeDescriptionProvider.GetTypeDescriptor\"></see> method. <see cref=\"Overload:System.ComponentModel.TypeDescriptor.GetReflectionType\"></see> is typically used to perform standard reflection against an object when no custom type descriptor can be located for it.</p>\n"
   syntax:
     content: public static Type GetReflectionType(object instance)
     content.vb: Public Shared Function GetReflectionType(instance As Object) As Type
     parameters:
     - id: instance
       type: System.Object
-      description: An instance of the target component.
+      description: "\n<p>An instance of the target component.</p>\n"
     return:
       type: System.Type
-      description: A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> for the specified object.
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> for the specified object.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>instance</em> is null."
+    description: "\n<p>\n<em>instance</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -2407,21 +2765,22 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Returns a <xref href="System.Type" data-throw-if-not-resolved="false"></xref> that can be used to perform reflection, given a class type.
+  summary: "\n<p>Returns a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> that can be used to perform reflection, given a class type.</p>\n"
+  remarks: "\n<p>The <see cref=\"Overload:System.ComponentModel.TypeDescriptor.GetReflectionType\"></see> method is a low-level version of the <see cref=\"Overload:System.ComponentModel.TypeDescriptionProvider.GetTypeDescriptor\"></see> method. <see cref=\"Overload:System.ComponentModel.TypeDescriptor.GetReflectionType\"></see> is typically used to perform standard reflection against a class when no custom type descriptor can be located for it.</p>\n"
   syntax:
     content: public static Type GetReflectionType(Type type)
     content.vb: Public Shared Function GetReflectionType(type As Type) As Type
     parameters:
     - id: type
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
     return:
       type: System.Type
-      description: A <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the specified class.
+      description: "\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the specified class.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>type</em> is null."
+    description: "\n<p>\n<em>type</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -2449,14 +2808,24 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Clears the properties and events for the specified component from the cache.
+  summary: "\n<p>Clears the properties and events for the specified component from the cache.</p>\n"
+  remarks: "\n<p>Properties and events are cached by <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> for speed. Typically, they are constant for the lifetime of an object. However, extender providers and designers can change the set of properties on an object. If they do, they should call this method to clear the property and event descriptors of the object. This method is used only at design time. It is not used during run time.</p>\n<p>This method also raises a <xref href=\"System.ComponentModel.TypeDescriptor.Refreshed\" data-throw-if-not-resolved=\"false\"></xref> event when the properties or events of a component change. This event is only raised if there was a prior call to the <xref href=\"System.ComponentModel.TypeDescriptor.GetProperties(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.ComponentModel.TypeDescriptor.GetEvents(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method that cached the information.</p>\n"
+  example:
+  - "\n<p>For an example of using this method, see the <xref href=\"System.ComponentModel.RefreshEventHandler\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public static void Refresh(object component)
     content.vb: Public Shared Sub Refresh(component As Object)
     parameters:
     - id: component
       type: System.Object
-      description: 'A component for which the properties or events have changed. '
+      description: "\n<p>A component for which the properties or events have changed. </p>\n"
+  seealso:
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.TypeDescriptor.Refreshed
+    commentId: E:System.ComponentModel.TypeDescriptor.Refreshed
   modifiers.csharp:
   - public
   - static
@@ -2484,14 +2853,28 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Clears the properties and events for the specified assembly from the cache.
+  summary: "\n<p>Clears the properties and events for the specified assembly from the cache.</p>\n"
+  remarks: "\n<p>Properties and events are cached by <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> for speed. Typically, they are constant for the lifetime of an object. However, extender providers and designers can change the set of properties on an object. If they do, they can call this method to clear the property and event descriptors of the object. This method is used only at design time. It is not used during run time.</p>\n<p>Before you make a call to the <xref href=\"System.ComponentModel.TypeDescriptor.Refresh(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method to clear the cache, you need to call the <xref href=\"System.ComponentModel.TypeDescriptor.GetProperties(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method for the specific assembly to cache the information first.</p>\n<p>This method also raises a <xref href=\"System.ComponentModel.TypeDescriptor.Refreshed\" data-throw-if-not-resolved=\"false\"></xref> event to notify all classes that want to be notified when the property set of a component changes.</p>\n"
   syntax:
     content: public static void Refresh(Reflection.Assembly assembly)
     content.vb: Public Shared Sub Refresh(assembly As Reflection.Assembly)
     parameters:
     - id: assembly
       type: System.Reflection.Assembly
-      description: 'The <xref href="System.Reflection.Assembly" data-throw-if-not-resolved="false"></xref> that represents the assembly to refresh. Each <xref href="System.Type" data-throw-if-not-resolved="false"></xref> in this assembly will be refreshed. '
+      description: "\n<p>The <xref href=\"System.Reflection.Assembly\" data-throw-if-not-resolved=\"false\"></xref> that represents the assembly to refresh. Each <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> in this assembly will be refreshed. </p>\n"
+  seealso:
+  - type: System.Reflection.Assembly
+    commentId: T:System.Reflection.Assembly
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.IExtenderProvider
+    commentId: T:System.ComponentModel.IExtenderProvider
+  - type: System.ComponentModel.Design.IDesigner
+    commentId: T:System.ComponentModel.Design.IDesigner
+  - type: System.ComponentModel.TypeDescriptor.Refreshed
+    commentId: E:System.ComponentModel.TypeDescriptor.Refreshed
   modifiers.csharp:
   - public
   - static
@@ -2519,14 +2902,28 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Clears the properties and events for the specified module from the cache.
+  summary: "\n<p>Clears the properties and events for the specified module from the cache.</p>\n"
+  remarks: "\n<p>Properties and events are cached by <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> for speed. Typically, they are constant for the lifetime of an object. However, extender providers and designers can change the set of properties on an object. If they do, they can call this method to clear the property and event descriptors of the object. This method is used only at design time. It is not used during run time.</p>\n<p>Before you make a call to the <xref href=\"System.ComponentModel.TypeDescriptor.Refresh(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method to clear the cache, you need to call the <xref href=\"System.ComponentModel.TypeDescriptor.GetProperties(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method for the specific module to cache the information first.</p>\n<p>This method also raises a <xref href=\"System.ComponentModel.TypeDescriptor.Refreshed\" data-throw-if-not-resolved=\"false\"></xref> event to notify all classes that want to be notified when the property set of a component changes.</p>\n"
   syntax:
     content: public static void Refresh(Reflection.Module module)
     content.vb: Public Shared Sub Refresh(module As Reflection.Module)
     parameters:
     - id: module
       type: System.Reflection.Module
-      description: 'The <xref href="System.Reflection.Module" data-throw-if-not-resolved="false"></xref> that represents the module to refresh. Each <xref href="System.Type" data-throw-if-not-resolved="false"></xref> in this module will be refreshed. '
+      description: "\n<p>The <xref href=\"System.Reflection.Module\" data-throw-if-not-resolved=\"false\"></xref> that represents the module to refresh. Each <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> in this module will be refreshed. </p>\n"
+  seealso:
+  - type: System.Reflection.Module
+    commentId: T:System.Reflection.Module
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.IExtenderProvider
+    commentId: T:System.ComponentModel.IExtenderProvider
+  - type: System.ComponentModel.Design.IDesigner
+    commentId: T:System.ComponentModel.Design.IDesigner
+  - type: System.ComponentModel.TypeDescriptor.Refreshed
+    commentId: E:System.ComponentModel.TypeDescriptor.Refreshed
   modifiers.csharp:
   - public
   - static
@@ -2554,14 +2951,26 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Clears the properties and events for the specified type of component from the cache.
+  summary: "\n<p>Clears the properties and events for the specified type of component from the cache.</p>\n"
+  remarks: "\n<p>Call this version of this method only when you do not have an instance of the object.</p>\n<p>Properties and events are cached by <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> for speed. Typically, they are constant for the lifetime of an object. However, extender providers and designers can change the set of properties on an object. If they do, they can call this method to clear the property and event descriptors of the object. This method is used only at design time. It is not used during run time.</p>\n<p>This method also raises a <xref href=\"System.ComponentModel.TypeDescriptor.Refreshed\" data-throw-if-not-resolved=\"false\"></xref> event when the properties or events of a component change. This event is only raised if there was a prior call to the <xref href=\"System.ComponentModel.TypeDescriptor.GetProperties(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.ComponentModel.TypeDescriptor.GetEvents(System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method that cached the information.</p>\n"
   syntax:
     content: public static void Refresh(Type type)
     content.vb: Public Shared Sub Refresh(type As Type)
     parameters:
     - id: type
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
+  seealso:
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.ComponentModel.IExtenderProvider
+    commentId: T:System.ComponentModel.IExtenderProvider
+  - type: System.ComponentModel.Design.IDesigner
+    commentId: T:System.ComponentModel.Design.IDesigner
+  - type: System.ComponentModel.TypeDescriptor.Refreshed
+    commentId: E:System.ComponentModel.TypeDescriptor.Refreshed
   modifiers.csharp:
   - public
   - static
@@ -2589,21 +2998,30 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Removes an association between two objects.
+  summary: "\n<p>Removes an association between two objects.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptor.RemoveAssociation(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method removes an association between two objects formed by the <xref href=\"System.ComponentModel.TypeDescriptor.CreateAssociation(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>A <xref href=\"System.WeakReference\" data-throw-if-not-resolved=\"false\"></xref> is used to maintain the association between the primary and secondary object; therefore, this method does not influence when either object is finalized or reclaimed by garbage collection.</p>\n"
   syntax:
     content: public static void RemoveAssociation(object primary, object secondary)
     content.vb: Public Shared Sub RemoveAssociation(primary As Object, secondary As Object)
     parameters:
     - id: primary
       type: System.Object
-      description: The primary <xref href="System.Object" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The primary <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: secondary
       type: System.Object
-      description: The secondary <xref href="System.Object" data-throw-if-not-resolved="false"></xref>.
+      description: "\n<p>The secondary <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor.CreateAssociation(System.Object,System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateAssociation(System.Object,System.Object)
+  - type: System.ComponentModel.TypeDescriptor.GetAssociation(System.Type,System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.GetAssociation(System.Type,System.Object)
+  see:
+  - type: System.Security.NamedPermissionSet
+    commentId: T:System.Security.NamedPermissionSet
   modifiers.csharp:
   - public
   - static
@@ -2631,18 +3049,27 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Removes all associations for a primary object.
+  summary: "\n<p>Removes all associations for a primary object.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptor.RemoveAssociations(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method removes all associations between a primary object and all of its secondary objects, created by calls to the <xref href=\"System.ComponentModel.TypeDescriptor.CreateAssociation(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>A <xref href=\"System.WeakReference\" data-throw-if-not-resolved=\"false\"></xref> is used to maintain the association between the primary and secondary object; therefore, this method does not influence when either the primary of secondary objects are finalized or reclaimed by garbage collection.</p>\n"
   syntax:
     content: public static void RemoveAssociations(object primary)
     content.vb: Public Shared Sub RemoveAssociations(primary As Object)
     parameters:
     - id: primary
       type: System.Object
-      description: The primary <xref href="System.Object" data-throw-if-not-resolved="false"></xref> in an association.
+      description: "\n<p>The primary <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> in an association.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>primary</em> is null."
+    description: "\n<p>\n<em>primary</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor.CreateAssociation(System.Object,System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.CreateAssociation(System.Object,System.Object)
+  - type: System.ComponentModel.TypeDescriptor.GetAssociation(System.Type,System.Object)
+    commentId: M:System.ComponentModel.TypeDescriptor.GetAssociation(System.Type,System.Object)
+  see:
+  - type: System.Security.NamedPermissionSet
+    commentId: T:System.Security.NamedPermissionSet
   modifiers.csharp:
   - public
   - static
@@ -2670,21 +3097,28 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Removes a previously added type description provider that is associated with the specified object.
+  summary: "\n<p>Removes a previously added type description provider that is associated with the specified object.</p>\n"
+  remarks: "\n<p>This method removes a type description provider previously added with the <xref href=\"System.ComponentModel.TypeDescriptor.AddProvider(System.ComponentModel.TypeDescriptionProvider,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method. Removing a provider causes a <xref href=\"System.ComponentModel.TypeDescriptor.Refreshed\" data-throw-if-not-resolved=\"false\"></xref> event to be raised for the associated object.</p>\n<p>Use the <xref href=\"System.ComponentModel.TypeDescriptor.RemoveProviderTransparent(System.ComponentModel.TypeDescriptionProvider,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method if you need to call from partially trusted code.</p>\n"
   syntax:
     content: public static void RemoveProvider(TypeDescriptionProvider provider, object instance)
     content.vb: Public Shared Sub RemoveProvider(provider As TypeDescriptionProvider, instance As Object)
     parameters:
     - id: provider
       type: System.ComponentModel.TypeDescriptionProvider
-      description: The <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> to remove.
+      description: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> to remove.</p>\n"
     - id: instance
       type: System.Object
-      description: An instance of the target component.
+      description: "\n<p>An instance of the target component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptionProvider
+    commentId: T:System.ComponentModel.TypeDescriptionProvider
+  see:
+  - type: System.Security.NamedPermissionSet
+    commentId: T:System.Security.NamedPermissionSet
   modifiers.csharp:
   - public
   - static
@@ -2712,21 +3146,28 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Removes a previously added type description provider that is associated with the specified type.
+  summary: "\n<p>Removes a previously added type description provider that is associated with the specified type.</p>\n"
+  remarks: "\n<p>This method removes a type description provider previously added with the <xref href=\"System.ComponentModel.TypeDescriptor.AddProvider(System.ComponentModel.TypeDescriptionProvider,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method. Removing a provider causes a <xref href=\"System.ComponentModel.TypeDescriptor.Refreshed\" data-throw-if-not-resolved=\"false\"></xref> event to be raised for the associated type.</p>\n<p>Use the <xref href=\"System.ComponentModel.TypeDescriptor.RemoveProviderTransparent(System.ComponentModel.TypeDescriptionProvider,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method if you need to call from partially trusted code.</p>\n"
   syntax:
     content: public static void RemoveProvider(TypeDescriptionProvider provider, Type type)
     content.vb: Public Shared Sub RemoveProvider(provider As TypeDescriptionProvider, type As Type)
     parameters:
     - id: provider
       type: System.ComponentModel.TypeDescriptionProvider
-      description: The <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> to remove.
+      description: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> to remove.</p>\n"
     - id: type
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptionProvider
+    commentId: T:System.ComponentModel.TypeDescriptionProvider
+  see:
+  - type: System.Security.NamedPermissionSet
+    commentId: T:System.Security.NamedPermissionSet
   modifiers.csharp:
   - public
   - static
@@ -2754,21 +3195,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Removes a previously added type description provider that is associated with the specified object.
+  summary: "\n<p>Removes a previously added type description provider that is associated with the specified object.</p>\n"
+  remarks: "\n<p>This method removes a type description provider previously added with the <xref href=\"System.ComponentModel.TypeDescriptor.AddProvider(System.ComponentModel.TypeDescriptionProvider,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method. Removing a provider causes a <xref href=\"System.ComponentModel.TypeDescriptor.Refreshed\" data-throw-if-not-resolved=\"false\"></xref> event to be raised for the associated object.</p>\n<p>This method can be called from partially trusted code. If <xref href=\"System.Security.Permissions.TypeDescriptorPermissionFlags.RestrictedRegistrationAccess\" data-throw-if-not-resolved=\"false\"></xref> is defined, the caller can register a provider for the specified instance if its type is also partially trusted.</p>\n<p>Use the <xref href=\"System.ComponentModel.TypeDescriptor.RemoveProvider(System.ComponentModel.TypeDescriptionProvider,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method if you do not need to call from partially trusted code.</p>\n"
+  example:
+  - 
   syntax:
     content: public static void RemoveProviderTransparent(TypeDescriptionProvider provider, object instance)
     content.vb: Public Shared Sub RemoveProviderTransparent(provider As TypeDescriptionProvider, instance As Object)
     parameters:
     - id: provider
       type: System.ComponentModel.TypeDescriptionProvider
-      description: The <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> to remove.
+      description: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> to remove.</p>\n"
     - id: instance
       type: System.Object
-      description: An instance of the target component.
+      description: "\n<p>An instance of the target component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
+  see:
+  - type: System.Security.Permissions.TypeDescriptorPermission
+    commentId: T:System.Security.Permissions.TypeDescriptorPermission
+  - type: System.Reflection.Assembly.PermissionSet
+    commentId: P:System.Reflection.Assembly.PermissionSet
   modifiers.csharp:
   - public
   - static
@@ -2796,21 +3245,29 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Removes a previously added type description provider that is associated with the specified type.
+  summary: "\n<p>Removes a previously added type description provider that is associated with the specified type.</p>\n"
+  remarks: "\n<p>This method removes a type description provider previously added with the <xref href=\"System.ComponentModel.TypeDescriptor.AddProvider(System.ComponentModel.TypeDescriptionProvider,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method. Removing a provider causes a <xref href=\"System.ComponentModel.TypeDescriptor.Refreshed\" data-throw-if-not-resolved=\"false\"></xref> event to be raised for the associated type.</p>\n<p>This method can be called from partially trusted code. If <xref href=\"System.Security.Permissions.TypeDescriptorPermissionFlags.RestrictedRegistrationAccess\" data-throw-if-not-resolved=\"false\"></xref> is defined, the caller can unregister a provider for the specified type if it is also partially trusted.</p>\n<p>Use the <xref href=\"System.ComponentModel.TypeDescriptor.RemoveProvider(System.ComponentModel.TypeDescriptionProvider,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method if you do not need to call from partially trusted code.</p>\n"
+  example:
+  - 
   syntax:
     content: public static void RemoveProviderTransparent(TypeDescriptionProvider provider, Type type)
     content.vb: Public Shared Sub RemoveProviderTransparent(provider As TypeDescriptionProvider, type As Type)
     parameters:
     - id: provider
       type: System.ComponentModel.TypeDescriptionProvider
-      description: The <xref href="System.ComponentModel.TypeDescriptionProvider" data-throw-if-not-resolved="false"></xref> to remove.
+      description: "\n<p>The <xref href=\"System.ComponentModel.TypeDescriptionProvider\" data-throw-if-not-resolved=\"false\"></xref> to remove.</p>\n"
     - id: type
       type: System.Type
-      description: The <xref href="System.Type" data-throw-if-not-resolved="false"></xref> of the target component.
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the target component.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: One or both of the parameters are null.
+    description: "\n<p>One or both of the parameters are <strong>null</strong>.</p>\n"
+  see:
+  - type: System.Security.Permissions.TypeDescriptorPermission
+    commentId: T:System.Security.Permissions.TypeDescriptorPermission
+  - type: System.Reflection.Assembly.PermissionSet
+    commentId: P:System.Reflection.Assembly.PermissionSet
   modifiers.csharp:
   - public
   - static
@@ -2838,18 +3295,25 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Sorts descriptors using the name of the descriptor.
+  summary: "\n<p>Sorts descriptors using the name of the descriptor.</p>\n"
   syntax:
     content: public static void SortDescriptorArray(Collections.IList infos)
     content.vb: Public Shared Sub SortDescriptorArray(infos As Collections.IList)
     parameters:
     - id: infos
       type: System.Collections.IList
-      description: 'An <xref href="System.Collections.IList" data-throw-if-not-resolved="false"></xref> that contains the descriptors to sort. '
+      description: "\n<p>An <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> that contains the descriptors to sort. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>infos</em> is null."
+    description: "\n<p>\n<em>infos</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.EventDescriptor
+    commentId: T:System.ComponentModel.EventDescriptor
+  - type: System.ComponentModel.PropertyDescriptor
+    commentId: T:System.ComponentModel.PropertyDescriptor
+  - type: System.Collections.IList
+    commentId: T:System.Collections.IList
   modifiers.csharp:
   - public
   - static

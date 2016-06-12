@@ -26,12 +26,18 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Enables attribute redirection. This class cannot be inherited.
+  summary: "\n<p>Enables attribute redirection. This class cannot be inherited.</p>\n"
+  remarks: "\n<p>There are a few cases in the .NET Framework object model where a property is purposely typed to be vague. For example, the <xref href=\"System.Windows.Forms.DataGridView.DataSource\" data-throw-if-not-resolved=\"false\"></xref> property is typed as <strong>object</strong>. The reason for this is that this property can accept several types of input. Unfortunately, this provides no common place to add metadata to describe the characteristics of the property. Each <code>DataSource</code> property throughout the .NET Framework needs to have identical metadata for type converters, UI type editors, and other services that require metadata. The <xref href=\"System.ComponentModel.AttributeProviderAttribute\" data-throw-if-not-resolved=\"false\"></xref> remedies this situation.</p>\n<p>Once this attribute is placed on a property, the rules for obtaining attributes for the property descriptor's <xref href=\"System.ComponentModel.MemberDescriptor.Attributes\" data-throw-if-not-resolved=\"false\"></xref> collection differ. Typically, the property descriptor gathers local attributes, and then merges these with attributes from the property type. In this case, the attributes are taken from the type returned from the <xref href=\"System.ComponentModel.AttributeProviderAttribute\" data-throw-if-not-resolved=\"false\"></xref>, not from the actual property type. This attribute is used on <xref href=\"System.Windows.Forms.DataGridView.DataSource\" data-throw-if-not-resolved=\"false\"></xref> to point the <xref href=\"System.Windows.Forms.DataGridView.DataSource\" data-throw-if-not-resolved=\"false\"></xref> object's specific type to <xref href=\"System.ComponentModel.IListSource\" data-throw-if-not-resolved=\"false\"></xref>, and the appropriate metadata is placed on <xref href=\"System.ComponentModel.IListSource\" data-throw-if-not-resolved=\"false\"></xref> to enable data binding. In so doing, external parties can easily add metadata to all data sources.</p>\n<p>Attributes obtained from a type declared in the <xref href=\"System.ComponentModel.AttributeProviderAttribute\" data-throw-if-not-resolved=\"false\"></xref> have a priority in between the attributes of the property’s type and the attributes on the property. The following list, in priority order, shows the full set of available merged attributes:</p>\n<ul><li>\n<p>Property Attributes</p>\n</li><li>\n<p>Attribute Provider Attributes</p>\n</li><li>\n<p>Property Type Attributes</p>\n</li></ul>\n"
+  example:
+  - "\n<p>The following code example demonstrates using <xref href=\"System.ComponentModel.AttributeProviderAttribute\" data-throw-if-not-resolved=\"false\"></xref> to mark a <code>DataSource</code> property with a specific type of <xref href=\"System.ComponentModel.IListSource\" data-throw-if-not-resolved=\"false\"></xref>. For a full code listing, see How to: Apply Attributes in Windows Forms Controls.</p>System.ComponentModel.AttributesDemoControl#25"
   syntax:
     content: 'public class AttributeProviderAttribute : Attribute'
     content.vb: >-
       Public Class AttributeProviderAttribute
           Inherits Attribute
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor
+    commentId: T:System.ComponentModel.TypeDescriptor
   inheritance:
   - System.Object
   modifiers.csharp:
@@ -61,18 +67,21 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Initializes a new instance of the <xref href="System.ComponentModel.AttributeProviderAttribute" data-throw-if-not-resolved="false"></xref> class with the given type name.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.ComponentModel.AttributeProviderAttribute\" data-throw-if-not-resolved=\"false\"></xref> class with the given type name.</p>\n"
   syntax:
     content: public AttributeProviderAttribute(string typeName)
     content.vb: Public Sub New(typeName As String)
     parameters:
     - id: typeName
       type: System.String
-      description: The name of the type to specify.
+      description: "\n<p>The name of the type to specify.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>typeName</em> is null."
+    description: "\n<p>\n<em>typeName</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor
+    commentId: T:System.ComponentModel.TypeDescriptor
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -98,24 +107,27 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Initializes a new instance of the <xref href="System.ComponentModel.AttributeProviderAttribute" data-throw-if-not-resolved="false"></xref> class with the given type name and property name.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.ComponentModel.AttributeProviderAttribute\" data-throw-if-not-resolved=\"false\"></xref> class with the given type name and property name.</p>\n"
   syntax:
     content: public AttributeProviderAttribute(string typeName, string propertyName)
     content.vb: Public Sub New(typeName As String, propertyName As String)
     parameters:
     - id: typeName
       type: System.String
-      description: The name of the type to specify.
+      description: "\n<p>The name of the type to specify.</p>\n"
     - id: propertyName
       type: System.String
-      description: The name of the property for which attributes will be retrieved.
+      description: "\n<p>The name of the property for which attributes will be retrieved.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>typeName</em> is null."
+    description: "\n<p>\n<em>typeName</em> is <strong>null</strong>.</p>\n"
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>propertyName</em> is null."
+    description: "\n<p>\n<em>propertyName</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor
+    commentId: T:System.ComponentModel.TypeDescriptor
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -141,18 +153,23 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Initializes a new instance of the <xref href="System.ComponentModel.AttributeProviderAttribute" data-throw-if-not-resolved="false"></xref> class with the given type.
+  summary: "\n<p>Initializes a new instance of the <xref href=\"System.ComponentModel.AttributeProviderAttribute\" data-throw-if-not-resolved=\"false\"></xref> class with the given type.</p>\n"
+  example:
+  - "\n<p>The following code example demonstrates using <xref href=\"System.ComponentModel.AttributeProviderAttribute\" data-throw-if-not-resolved=\"false\"></xref> to mark a <code>DataSource</code> property with a specific type of <xref href=\"System.ComponentModel.IListSource\" data-throw-if-not-resolved=\"false\"></xref>. For a full code listing, see How to: Apply Attributes in Windows Forms Controls.</p>System.ComponentModel.AttributesDemoControl#25"
   syntax:
     content: public AttributeProviderAttribute(Type type)
     content.vb: Public Sub New(type As Type)
     parameters:
     - id: type
       type: System.Type
-      description: The type to specify.
+      description: "\n<p>The type to specify.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
-    description: "\n<em>type</em> is null."
+    description: "\n<p>\n<em>type</em> is <strong>null</strong>.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor
+    commentId: T:System.ComponentModel.TypeDescriptor
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -178,14 +195,17 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets the name of the property for which attributes will be retrieved.
+  summary: "\n<p>Gets the name of the property for which attributes will be retrieved.</p>\n"
   syntax:
     content: public string PropertyName { get; }
     content.vb: Public ReadOnly Property PropertyName As String
     parameters: []
     return:
       type: System.String
-      description: The name of the property for which attributes will be retrieved.
+      description: "\n<p>The name of the property for which attributes will be retrieved.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor
+    commentId: T:System.ComponentModel.TypeDescriptor
   modifiers.csharp:
   - public
   - get
@@ -213,14 +233,17 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: Gets the assembly qualified type name passed into the constructor.
+  summary: "\n<p>Gets the assembly qualified type name passed into the constructor.</p>\n"
   syntax:
     content: public string TypeName { get; }
     content.vb: Public ReadOnly Property TypeName As String
     parameters: []
     return:
       type: System.String
-      description: The assembly qualified name of the type specified in the constructor.
+      description: "\n<p>The assembly qualified name of the type specified in the constructor.</p>\n"
+  seealso:
+  - type: System.ComponentModel.TypeDescriptor
+    commentId: T:System.ComponentModel.TypeDescriptor
   modifiers.csharp:
   - public
   - get
