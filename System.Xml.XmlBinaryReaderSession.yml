@@ -27,10 +27,6 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
-  summary: "\n<p>Enables optimized strings to be managed in a dynamic way.</p>\n"
-  remarks: "\n<p>Session objects (this class together with <xref href=\"System.Xml.XmlBinaryWriterSession\" data-throw-if-not-resolved=\"false\"></xref>) enable dynamic string atomization that can span an entire conversation. These session objects manage dynamic dictionaries of <xref href=\"System.Xml.XmlDictionaryString\" data-throw-if-not-resolved=\"false\"></xref> instances. For more information about dynamic dictionaries see <xref href=\"System.Xml.XmlDictionary\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Due to asynchronous processing, it is possible for messages that arrive synchronously to be processed in a different order than they order in which they were sent. String atomization that spans messages must ensure the messages are processed in the original order, or the atomized strings must be conveyed using a different mechanism.</p>\n<p>To use them you create a session object and pass it to the constructor or initializer for a binary XML reader or writer.</p>\n<p>To reuse a dynamic dictionary simply pass the same session object to all subsequent readers and/or writers.</p>\n"
-  example:
-  - 
   syntax:
     content: 'public class XmlBinaryReaderSession : object, IXmlDictionary'
     content.vb: >-
@@ -68,9 +64,6 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.XmlBinaryReaderSession\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - 
   syntax:
     content: public XmlBinaryReaderSession()
     content.vb: Public Sub New
@@ -99,32 +92,16 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
-  summary: "\n<p>Creates an <xref href=\"System.Xml.XmlDictionaryString\" data-throw-if-not-resolved=\"false\"></xref> from the input parameters and adds it to an internal collection.</p>\n"
-  example:
-  - 
   syntax:
     content: public XmlDictionaryString Add(int id, string value)
     content.vb: Public Function Add(id As Integer, value As String) As XmlDictionaryString
     parameters:
     - id: id
       type: System.Int32
-      description: "\n<p>The key value.</p>\n"
     - id: value
       type: System.String
-      description: "\n<p>The value.</p>\n"
     return:
       type: System.Xml.XmlDictionaryString
-      description: "\n<p>The newly created <xref href=\"System.Xml.XmlDictionaryString\" data-throw-if-not-resolved=\"false\"></xref> that is added to an internal collection.</p>\n"
-  exceptions:
-  - type: System.ArgumentOutOfRangeException
-    commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<p>\n<em>id</em> is less than zero.</p>\n"
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>value</em> is <strong>null</strong>.</p>\n"
-  - type: System.InvalidOperationException
-    commentId: T:System.InvalidOperationException
-    description: "\n<p>An entry with key = <em>id</em> already exists.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -150,9 +127,6 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
-  summary: "\n<p>Clears the internal collection of all contents.</p>\n"
-  example:
-  - 
   syntax:
     content: public void Clear()
     content.vb: Public Sub Clear
@@ -181,26 +155,16 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
-  summary: "\n<p>Checks whether the internal collection contains an entry matching a key.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool TryLookup(int key, out XmlDictionaryString result)
     content.vb: Public Function TryLookup(key As Integer, ByRef result As XmlDictionaryString) As Boolean
     parameters:
     - id: key
       type: System.Int32
-      description: "\n<p>The key to search on.</p>\n"
     - id: result
       type: System.Xml.XmlDictionaryString
-      description: "\n<p>When this method returns, contains a string if an entry is found; otherwise, <strong>null</strong>. This parameter is passed uninitialized.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if an entry matching the <em>key</em> was found; otherwise, <strong>false</strong>.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>key</em> is <strong>null</strong>.</p>\n"
   implements:
   - System.Xml.IXmlDictionary.TryLookup(System.Int32,System.Xml.XmlDictionaryString@)
   modifiers.csharp:
@@ -230,26 +194,16 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
-  summary: "\n<p>Checks whether the internal collection contains an entry matching a value.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool TryLookup(string value, out XmlDictionaryString result)
     content.vb: Public Function TryLookup(value As String, ByRef result As XmlDictionaryString) As Boolean
     parameters:
     - id: value
       type: System.String
-      description: "\n<p>The value to search for.</p>\n"
     - id: result
       type: System.Xml.XmlDictionaryString
-      description: "\n<p>When this method returns, contains a string if an entry is found; otherwise, <strong>null</strong>. This parameter is passed uninitialized.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if an entry matching the <em>value</em> was found; otherwise, <strong>false</strong>.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>value</em> is <strong>null</strong>.</p>\n"
   implements:
   - System.Xml.IXmlDictionary.TryLookup(System.String,System.Xml.XmlDictionaryString@)
   modifiers.csharp:
@@ -279,26 +233,16 @@ items:
   assemblies:
   - System.Runtime.Serialization.Xml
   namespace: System.Xml
-  summary: "\n<p>Checks whether the internal collection contains an entry matching a value.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool TryLookup(XmlDictionaryString value, out XmlDictionaryString result)
     content.vb: Public Function TryLookup(value As XmlDictionaryString, ByRef result As XmlDictionaryString) As Boolean
     parameters:
     - id: value
       type: System.Xml.XmlDictionaryString
-      description: "\n<p>The value to search for.</p>\n"
     - id: result
       type: System.Xml.XmlDictionaryString
-      description: "\n<p>When this method returns, contains a string if an entry is found; otherwise, <strong>null</strong>. This parameter is passed uninitialized.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if an entry matching the <em>value</em> was found; otherwise, <strong>false</strong>.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>value</em> is <strong>null</strong>.</p>\n"
   implements:
   - System.Xml.IXmlDictionary.TryLookup(System.Xml.XmlDictionaryString,System.Xml.XmlDictionaryString@)
   modifiers.csharp:
@@ -461,16 +405,3 @@ references:
     fullName: System.Xml.XmlDictionaryString
   - name: )
     fullName: )
-- uid: System.ArgumentOutOfRangeException
-  isExternal: false
-  name: ArgumentOutOfRangeException
-  fullName: System.ArgumentOutOfRangeException
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException
-- uid: System.InvalidOperationException
-  parent: System
-  isExternal: false
-  name: InvalidOperationException
-  fullName: System.InvalidOperationException

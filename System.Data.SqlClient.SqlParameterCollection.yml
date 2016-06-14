@@ -52,15 +52,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Represents a collection of parameters associated with a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> and their respective mappings to columns in a <xref href=\"System.Data.DataSet\" data-throw-if-not-resolved=\"false\"></xref>. This class cannot be inherited.</p>\n"
-  remarks: "\n<p>If the command contains an ad hoc SQL statement, as opposed to a stored-procedure name, the number of the parameters in the collection must be equal to the number of parameter placeholders within the command text, or SQL Server raises an error. With a stored procedure, all the parameters declared in the stored procedure without a default value must be provided. Parameters declared with a default value are optional. This lets you specify a value other than the default.</p>\n<p>For more information with additional sample code demonstrating how to use parameters, see Commands and Parameters.</p>\n"
-  example:
-  - "\n<p>The following example creates multiple instances of <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> through the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> collection. The parameters are used to select data within the data source and populate the <xref href=\"System.Data.DataSet\" data-throw-if-not-resolved=\"false\"></xref>. This code assumes that a <xref href=\"System.Data.DataSet\" data-throw-if-not-resolved=\"false\"></xref> and a <xref href=\"System.Data.SqlClient.SqlDataAdapter\" data-throw-if-not-resolved=\"false\"></xref> have already been created with the appropriate schema, commands, and connection.</p>Classic WebData SqlParameter Example#1"
   syntax:
-    content: 'public sealed class SqlParameterCollection : Common.DbParameterCollection'
+    content: 'public sealed class SqlParameterCollection : DbParameterCollection, DbParameterCollection'
     content.vb: >-
       Public NotInheritable Class SqlParameterCollection
-          Inherits Common.DbParameterCollection
+          Inherits DbParameterCollection
+          Implements DbParameterCollection
   inheritance:
   - System.Object
   modifiers.csharp:
@@ -92,14 +89,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Returns an Integer that contains the number of elements in the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>. Read-only. </p>\n"
   syntax:
     content: public override int Count { get; }
     content.vb: Public Overrides ReadOnly Property Count As Integer
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>The number of elements in the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> as an Integer.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -129,23 +124,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Gets the <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> at the specified index.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates creating <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> objects to supply an input parameter to a stored procedure that returns results in an output parameter. The code iterates through the items in the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> and displays some parameter properties in the console window. This example assumes a valid connection string to the <strong>AdventureWorks</strong> sample database on an instance of SQL Server.</p>Classic WebData SqlParameterCollection.Parent Example#1"
   syntax:
     content: public SqlParameter this[int index] { get; set; }
     content.vb: Public Property Item(index As Integer) As SqlParameter
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index of the parameter to retrieve. </p>\n"
     return:
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> at the specified index.</p>\n"
-  exceptions:
-  - type: System.IndexOutOfRangeException
-    commentId: T:System.IndexOutOfRangeException
-    description: "\n<p>The specified index does not exist. </p>\n"
   modifiers.csharp:
   - public
   - get
@@ -175,22 +161,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Gets the <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> with the specified name.</p>\n"
-  remarks: "\n<p>The <em>parameterName</em> is used to look up the index value in the underlying <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>. If the <em>parameterName</em> is not valid, an <xref href=\"System.IndexOutOfRangeException\" data-throw-if-not-resolved=\"false\"></xref> will be thrown.</p>\n"
   syntax:
     content: public SqlParameter this[string parameterName] { get; set; }
     content.vb: Public Property Item(parameterName As String) As SqlParameter
     parameters:
     - id: parameterName
       type: System.String
-      description: "\n<p>The name of the parameter to retrieve. </p>\n"
     return:
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> with the specified name.</p>\n"
-  exceptions:
-  - type: System.IndexOutOfRangeException
-    commentId: T:System.IndexOutOfRangeException
-    description: "\n<p>The specified <em>parameterName</em> is not valid. </p>\n"
   modifiers.csharp:
   - public
   - get
@@ -220,14 +198,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Gets an object that can be used to synchronize access to the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   syntax:
     content: public override object SyncRoot { get; }
     content.vb: Public Overrides ReadOnly Property SyncRoot As Object
     parameters: []
     return:
       type: System.Object
-      description: "\n<p>An object that can be used to synchronize access to the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -257,29 +233,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Adds the specified <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object to the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - Classic WebData SqlParameterCollection.Add Example#1
   syntax:
     content: public SqlParameter Add(SqlParameter value)
     content.vb: Public Function Add(value As SqlParameter) As SqlParameter
     parameters:
     - id: value
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> to add to the collection. </p>\n"
     return:
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>A new <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> specified in the <em>value</em> parameter is already added to this or another <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  - type: System.InvalidCastException
-    commentId: T:System.InvalidCastException
-    description: "\n<p>The parameter passed was not a <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>The <em>value</em> parameter is null. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -305,17 +266,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Adds the specified <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object to the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public override int Add(object value)
     content.vb: Public Overrides Function Add(value As Object) As Integer
     parameters:
     - id: value
       type: System.Object
-      description: "\n<p>An <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.Int32
-      description: "\n<p>The index of the new <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -343,22 +301,16 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Adds a <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> to the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> given the parameter name and the data type.</p>\n"
-  example:
-  - Classic WebData SqlParameterCollection.Add3 Example#1
   syntax:
     content: public SqlParameter Add(string parameterName, SqlDbType sqlDbType)
     content.vb: Public Function Add(parameterName As String, sqlDbType As SqlDbType) As SqlParameter
     parameters:
     - id: parameterName
       type: System.String
-      description: "\n<p>The name of the parameter. </p>\n"
     - id: sqlDbType
       type: System.Data.SqlDbType
-      description: "\n<p>One of the <xref href=\"System.Data.SqlDbType\" data-throw-if-not-resolved=\"false\"></xref> values. </p>\n"
     return:
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>A new <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -384,26 +336,18 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Adds a <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> to the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>, given the specified parameter name, <xref href=\"System.Data.SqlDbType\" data-throw-if-not-resolved=\"false\"></xref> and size.</p>\n"
-  remarks: "\n<p>This overload is useful when you are adding a parameter of a variable-length data type such as <strong>varchar</strong> or <strong>binary</strong>.</p>\n"
-  example:
-  - Classic WebData SqlParameterCollection.Add1 Example#1
   syntax:
     content: public SqlParameter Add(string parameterName, SqlDbType sqlDbType, int size)
     content.vb: Public Function Add(parameterName As String, sqlDbType As SqlDbType, size As Integer) As SqlParameter
     parameters:
     - id: parameterName
       type: System.String
-      description: "\n<p>The name of the parameter. </p>\n"
     - id: sqlDbType
       type: System.Data.SqlDbType
-      description: "\n<p>The <xref href=\"System.Data.SqlDbType\" data-throw-if-not-resolved=\"false\"></xref> of the <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> to add to the collection. </p>\n"
     - id: size
       type: System.Int32
-      description: "\n<p>The size as an <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>A new <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -429,14 +373,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Adds an array of values to the end of the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public override void AddRange(Array values)
     content.vb: Public Overrides Sub AddRange(values As Array)
     parameters:
     - id: values
       type: System.Array
-      description: "\n<p>The <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> values to add.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -464,14 +406,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Adds an array of <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> values to the end of the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public void AddRange(SqlParameter[] values)
     content.vb: Public Sub AddRange(values As SqlParameter())
     parameters:
     - id: values
       type: System.Data.SqlClient.SqlParameter[]
-      description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> values to add.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -499,23 +439,16 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Adds a value to the end of the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Data.SqlClient.SqlParameterCollection.AddWithValue(System.String,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> replaces the <strong>SqlParameterCollection.Add </strong>method that takes a <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> and an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>. The overload of <strong>Add</strong> that takes a string and an object was deprecated because of possible ambiguity with the <strong>SqlParameterCollection.Add</strong> overload that takes a <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> and a <xref href=\"System.Data.SqlDbType\" data-throw-if-not-resolved=\"false\"></xref> enumeration value where passing an integer with the string could be interpreted as being either the parameter value or the corresponding <xref href=\"System.Data.SqlDbType\" data-throw-if-not-resolved=\"false\"></xref> value. Use <xref href=\"System.Data.SqlClient.SqlParameterCollection.AddWithValue(System.String,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> whenever you want to add a parameter by specifying its name and value.</p>\n<p>For <xref href=\"System.Data.SqlDbType\" data-throw-if-not-resolved=\"false\"></xref><strong>Xml</strong> enumeration values, you can use a string, an XML value, an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> derived type instance, or a <xref href=\"System.Data.SqlTypes.SqlXml\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates how to use the <strong>AddWithValue</strong> method.</p>DataWorks SqlParameterCollection.AddWithValue#1"
   syntax:
     content: public SqlParameter AddWithValue(string parameterName, object value)
     content.vb: Public Function AddWithValue(parameterName As String, value As Object) As SqlParameter
     parameters:
     - id: parameterName
       type: System.String
-      description: "\n<p>The name of the parameter.</p>\n"
     - id: value
       type: System.Object
-      description: "\n<p>The value to be added. Use <xref href=\"System.DBNull.Value\" data-throw-if-not-resolved=\"false\"></xref> instead of null, to indicate a null value.</p>\n"
     return:
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>A <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -541,7 +474,6 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Removes all the <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> objects from the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public override void Clear()
     content.vb: Public Overrides Sub Clear
@@ -572,17 +504,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Determines whether the specified <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> is in this <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public bool Contains(SqlParameter value)
     content.vb: Public Function Contains(value As SqlParameter) As Boolean
     parameters:
     - id: value
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> value.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> contains the value; otherwise <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -608,17 +537,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Determines whether the specified <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> is in this <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public override bool Contains(object value)
     content.vb: Public Overrides Function Contains(value As Object) As Boolean
     parameters:
     - id: value
       type: System.Object
-      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> value.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> contains the value; otherwise <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -646,17 +572,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Determines whether the specified parameter name is in this <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public override bool Contains(string value)
     content.vb: Public Overrides Function Contains(value As String) As Boolean
     parameters:
     - id: value
       type: System.String
-      description: "\n<p>The <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> value.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> contains the value; otherwise <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -684,17 +607,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Copies all the elements of the current <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> to the specified one-dimensional <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> starting at the specified destination <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> index.</p>\n"
   syntax:
     content: public override void CopyTo(Array array, int index)
     content.vb: Public Overrides Sub CopyTo(array As Array, index As Integer)
     parameters:
     - id: array
       type: System.Array
-      description: "\n<p>The one-dimensional <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> that is the destination of the elements copied from the current <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: index
       type: System.Int32
-      description: "\n<p>A 32-bit integer that represents the index in the <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> at which copying starts.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -722,17 +642,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Copies all the elements of the current <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> to the specified <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> starting at the specified destination index.</p>\n"
   syntax:
     content: public void CopyTo(SqlParameter[] array, int index)
     content.vb: Public Sub CopyTo(array As SqlParameter(), index As Integer)
     parameters:
     - id: array
       type: System.Data.SqlClient.SqlParameter[]
-      description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> that is the destination of the elements copied from the current <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: index
       type: System.Int32
-      description: "\n<p>A 32-bit integer that represents the index in the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> at which copying starts.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -760,13 +677,11 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Returns an enumerator that iterates through the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   syntax:
     content: public override Collections.IEnumerator GetEnumerator()
     content.vb: Public Overrides Function GetEnumerator As Collections.IEnumerator
     return:
       type: System.Collections.IEnumerator
-      description: "\n<p>An <xref href=\"System.Collections.IEnumerator\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   modifiers.csharp:
   - public
   - override
@@ -795,13 +710,13 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   syntax:
-    content: protected override Common.DbParameter GetParameter(int index)
-    content.vb: Protected Overrides Function GetParameter(index As Integer) As Common.DbParameter
+    content: protected override DbParameter GetParameter(int index)
+    content.vb: Protected Overrides Function GetParameter(index As Integer) As DbParameter
     parameters:
     - id: index
       type: System.Int32
     return:
-      type: System.Data.Common.DbParameter
+      type: DbParameter
   modifiers.csharp:
   - protected
   - override
@@ -830,13 +745,13 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   syntax:
-    content: protected override Common.DbParameter GetParameter(string parameterName)
-    content.vb: Protected Overrides Function GetParameter(parameterName As String) As Common.DbParameter
+    content: protected override DbParameter GetParameter(string parameterName)
+    content.vb: Protected Overrides Function GetParameter(parameterName As String) As DbParameter
     parameters:
     - id: parameterName
       type: System.String
     return:
-      type: System.Data.Common.DbParameter
+      type: DbParameter
   modifiers.csharp:
   - protected
   - override
@@ -864,17 +779,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Gets the location of the specified <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> within the collection.</p>\n"
   syntax:
     content: public int IndexOf(SqlParameter value)
     content.vb: Public Function IndexOf(value As SqlParameter) As Integer
     parameters:
     - id: value
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> to find. </p>\n"
     return:
       type: System.Int32
-      description: "\n<p>The zero-based location of the specified <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> that is a <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> within the collection. Returns -1 when the object does not exist in the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -900,17 +812,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Gets the location of the specified <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> within the collection.</p>\n"
   syntax:
     content: public override int IndexOf(object value)
     content.vb: Public Overrides Function IndexOf(value As Object) As Integer
     parameters:
     - id: value
       type: System.Object
-      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to find. </p>\n"
     return:
       type: System.Int32
-      description: "\n<p>The zero-based location of the specified <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that is a <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> within the collection. Returns -1 when the object does not exist in the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -938,17 +847,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Gets the location of the specified <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> with the specified name.</p>\n"
   syntax:
     content: public override int IndexOf(string parameterName)
     content.vb: Public Overrides Function IndexOf(parameterName As String) As Integer
     parameters:
     - id: parameterName
       type: System.String
-      description: "\n<p>The case-sensitive name of the <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> to find.</p>\n"
     return:
       type: System.Int32
-      description: "\n<p>The zero-based location of the specified <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> with the specified case-sensitive name. Returns -1 when the object does not exist in the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -976,17 +882,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Inserts a <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object into the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> at the specified index.</p>\n"
   syntax:
     content: public void Insert(int index, SqlParameter value)
     content.vb: Public Sub Insert(index As Integer, value As SqlParameter)
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index at which value should be inserted.</p>\n"
     - id: value
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>A <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object to be inserted in the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1012,17 +915,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Inserts an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> into the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> at the specified index.</p>\n"
   syntax:
     content: public override void Insert(int index, object value)
     content.vb: Public Overrides Sub Insert(index As Integer, value As Object)
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index at which value should be inserted.</p>\n"
     - id: value
       type: System.Object
-      description: "\n<p>An <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to be inserted in the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -1050,23 +950,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Removes the specified <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> from the collection.</p>\n"
-  example:
-  - "\n<p>The following example searches for a <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object in a <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> collection. If the parameter exists, the example removes it. This example assumes that a <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> collection has already been created by a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref>.</p>Classic WebData SqlParameterCollection.Remove Example#1"
   syntax:
     content: public void Remove(SqlParameter value)
     content.vb: Public Sub Remove(value As SqlParameter)
     parameters:
     - id: value
       type: System.Data.SqlClient.SqlParameter
-      description: "\n<p>A <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object to remove from the collection. </p>\n"
-  exceptions:
-  - type: System.InvalidCastException
-    commentId: T:System.InvalidCastException
-    description: "\n<p>The parameter is not a <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  - type: System.SystemException
-    commentId: T:System.SystemException
-    description: "\n<p>The parameter does not exist in the collection. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1092,14 +981,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Removes the specified <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> from the collection.</p>\n"
   syntax:
     content: public override void Remove(object value)
     content.vb: Public Overrides Sub Remove(value As Object)
     parameters:
     - id: value
       type: System.Object
-      description: "\n<p>The object to remove from the collection. </p>\n"
   modifiers.csharp:
   - public
   - override
@@ -1127,14 +1014,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Removes the <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> from the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> at the specified index.</p>\n"
   syntax:
     content: public override void RemoveAt(int index)
     content.vb: Public Overrides Sub RemoveAt(index As Integer)
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index of the <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> object to remove.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -1162,14 +1047,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Removes the <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> from the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref> at the specified parameter name.</p>\n"
   syntax:
     content: public override void RemoveAt(string parameterName)
     content.vb: Public Overrides Sub RemoveAt(parameterName As String)
     parameters:
     - id: parameterName
       type: System.String
-      description: "\n<p>The name of the <xref href=\"System.Data.SqlClient.SqlParameter\" data-throw-if-not-resolved=\"false\"></xref> to remove.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -1330,21 +1213,3 @@ references:
   isExternal: false
   name: System.Data.Common
   fullName: System.Data.Common
-- uid: System.IndexOutOfRangeException
-  isExternal: false
-  name: IndexOutOfRangeException
-  fullName: System.IndexOutOfRangeException
-- uid: System.ArgumentException
-  parent: System
-  isExternal: false
-  name: ArgumentException
-  fullName: System.ArgumentException
-- uid: System.InvalidCastException
-  isExternal: false
-  name: InvalidCastException
-  fullName: System.InvalidCastException
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException
-- uid: System.SystemException

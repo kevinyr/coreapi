@@ -42,10 +42,11 @@ items:
   example:
   - "\n<p>The following example shows how to loop through all the files and directories, querying some information about each entry.</p>FileSystemInfo#1"
   syntax:
-    content: 'public abstract class FileSystemInfo : object'
+    content: 'public abstract class FileSystemInfo : object, IFileSystemObject'
     content.vb: >-
       Public MustInherit Class FileSystemInfo
           Inherits Object
+          Implements IFileSystemObject
   seealso:
   - type: System.IO.FileSystemWatcher
     commentId: T:System.IO.FileSystemWatcher
@@ -87,10 +88,10 @@ items:
   namespace: System.IO
   summary: "\n<p>Represents the fully qualified path of the directory or file.</p>\n"
   syntax:
-    content: protected string FullPath
+    content: protected String FullPath
     content.vb: Protected FullPath As String
     return:
-      type: System.String
+      type: String
   exceptions:
   - type: System.IO.PathTooLongException
     commentId: T:System.IO.PathTooLongException
@@ -126,10 +127,10 @@ items:
   summary: "\n<p>The path originally specified by the user, whether relative or absolute.</p>\n"
   remarks: "\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
-    content: protected string OriginalPath
+    content: protected String OriginalPath
     content.vb: Protected OriginalPath As String
     return:
-      type: System.String
+      type: String
   seealso:
   - type: System.IO.FileSystemWatcher
     commentId: T:System.IO.FileSystemWatcher
@@ -200,8 +201,7 @@ items:
     content.vb: Public Property Attributes As FileAttributes
     parameters: []
     return:
-      type: System.IO.FileAttributes
-      description: "\n<p>\n<xref href=\"System.IO.FileAttributes\" data-throw-if-not-resolved=\"false\"></xref> of the current <xref href=\"System.IO.FileSystemInfo\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: FileAttributes
   exceptions:
   - type: System.IO.FileNotFoundException
     commentId: T:System.IO.FileNotFoundException
@@ -260,8 +260,7 @@ items:
     content.vb: Public Property CreationTime As DateTime
     parameters: []
     return:
-      type: System.DateTime
-      description: "\n<p>The creation date and time of the current <xref href=\"System.IO.FileSystemInfo\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+      type: DateTime
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
@@ -315,8 +314,7 @@ items:
     content.vb: Public Property CreationTimeUtc As DateTime
     parameters: []
     return:
-      type: System.DateTime
-      description: "\n<p>The creation date and time in UTC format of the current <xref href=\"System.IO.FileSystemInfo\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+      type: DateTime
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
@@ -371,7 +369,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the file or directory exists; otherwise, <strong>false</strong>.</p>\n"
   seealso:
   - type: System.IO.FileSystemWatcher
     commentId: T:System.IO.FileSystemWatcher
@@ -407,12 +404,11 @@ items:
   summary: "\n<p>Gets the string representing the extension part of the file.</p>\n"
   remarks: "\n<p>The <strong>Extension</strong> property returns the <xref href=\"System.IO.FileSystemInfo\" data-throw-if-not-resolved=\"false\"></xref> extension, including the period (.). For example, for a file c:\\NewFile.txt, this property returns \".txt\".</p>\n<p>The following table lists examples of other typical or related I/O tasks.</p>\n<p>To do this... </p>\n<p>See the example in this topic... </p>\n<table><tbody><tr><td>\n<p>Create a text file. </p>\n</td><td>\n<p>How to: Write Text to a File</p>\n</td></tr><tr><td>\n<p>Write to a text file. </p>\n</td><td>\n<p>How to: Write Text to a File</p>\n</td></tr><tr><td>\n<p>Read from a text file. </p>\n</td><td>\n<p>How to: Read Text from a File</p>\n</td></tr><tr><td>\n<p>Retrieve the fully qualified path of a file. </p>\n</td><td>\n<p>\n<xref href=\"System.IO.Path.GetFullPath(System.String)\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td></tr><tr><td>\n<p>Retrieve only the file name a path. </p>\n</td><td>\n<p>\n<xref href=\"System.IO.Path.GetFileNameWithoutExtension(System.String)\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td></tr><tr><td>\n<p>Retrieve only the directory name from a path. </p>\n</td><td>\n<p>\n<xref href=\"System.IO.Path.GetDirectoryName(System.String)\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td></tr><tr><td>\n<p>Change the extension of a file. </p>\n</td><td>\n<p>\n<xref href=\"System.IO.Path.ChangeExtension(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td></tr></tbody></table>\n"
   syntax:
-    content: public string Extension { get; }
+    content: public String Extension { get; }
     content.vb: Public ReadOnly Property Extension As String
     parameters: []
     return:
-      type: System.String
-      description: "\n<p>A string containing the <xref href=\"System.IO.FileSystemInfo\" data-throw-if-not-resolved=\"false\"></xref> extension.</p>\n"
+      type: String
   seealso:
   - type: System.IO.FileSystemWatcher
     commentId: T:System.IO.FileSystemWatcher
@@ -448,12 +444,11 @@ items:
   example:
   - "\n<p>The following example demonstrates the <xref href=\"System.IO.FileSystemInfo.FullName\" data-throw-if-not-resolved=\"false\"></xref> property. This code example is part of a larger example provided for the <xref href=\"System.IO.FileSystemInfo\" data-throw-if-not-resolved=\"false\"></xref> class.</p>FileSystemInfo#2"
   syntax:
-    content: public virtual string FullName { get; }
+    content: public virtual String FullName { get; }
     content.vb: Public Overridable ReadOnly Property FullName As String
     parameters: []
     return:
-      type: System.String
-      description: "\n<p>A string containing the full path.</p>\n"
+      type: String
   exceptions:
   - type: System.IO.PathTooLongException
     commentId: T:System.IO.PathTooLongException
@@ -505,8 +500,7 @@ items:
     content.vb: Public Property LastAccessTime As DateTime
     parameters: []
     return:
-      type: System.DateTime
-      description: "\n<p>The time that the current file or directory was last accessed.</p>\n"
+      type: DateTime
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
@@ -557,8 +551,7 @@ items:
     content.vb: Public Property LastAccessTimeUtc As DateTime
     parameters: []
     return:
-      type: System.DateTime
-      description: "\n<p>The UTC time that the current file or directory was last accessed.</p>\n"
+      type: DateTime
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
@@ -611,8 +604,7 @@ items:
     content.vb: Public Property LastWriteTime As DateTime
     parameters: []
     return:
-      type: System.DateTime
-      description: "\n<p>The time the current file was last written.</p>\n"
+      type: DateTime
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
@@ -663,8 +655,7 @@ items:
     content.vb: Public Property LastWriteTimeUtc As DateTime
     parameters: []
     return:
-      type: System.DateTime
-      description: "\n<p>The UTC time when the current file was last written to.</p>\n"
+      type: DateTime
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
@@ -711,12 +702,11 @@ items:
   summary: "\n<p>For files, gets the name of the file. For directories, gets the name of the last directory in the hierarchy if a hierarchy exists. Otherwise, the <strong>Name</strong> property gets the name of the directory.</p>\n"
   remarks: "\n<p>For a directory, <strong>Name</strong> returns only the name of the parent directory, such as Dir, not c:\\Dir. For a subdirectory, <strong>Name</strong> returns only the name of the subdirectory, such as Sub1, not c:\\Dir\\Sub1.</p>\n<p>For a file, <strong>Name</strong> returns only the file name and file name extension, such as MyFile.txt, not c:\\Dir\\Myfile.txt.</p>\n"
   syntax:
-    content: public abstract string Name { get; }
+    content: public abstract String Name { get; }
     content.vb: Public MustOverride ReadOnly Property Name As String
     parameters: []
     return:
-      type: System.String
-      description: "\n<p>A string that is the name of the parent directory, the name of the last directory in the hierarchy, or the name of a file, including the file name extension.</p>\n"
+      type: String
   seealso:
   - type: System.IO.FileSystemWatcher
     commentId: T:System.IO.FileSystemWatcher

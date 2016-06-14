@@ -35,7 +35,6 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>A base class representing an HTTP entity body and content headers.</p>\n"
   syntax:
     content: 'public abstract class HttpContent : IDisposable'
     content.vb: >-
@@ -72,7 +71,6 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Net.Http.HttpContent\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: protected HttpContent()
     content.vb: Protected Sub New
@@ -101,14 +99,12 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Gets the HTTP content headers as defined in RFC 2616.</p>\n"
   syntax:
     content: public HttpContentHeaders Headers { get; }
     content.vb: Public ReadOnly Property Headers As HttpContentHeaders
     parameters: []
     return:
       type: System.Net.Http.Headers.HttpContentHeaders
-      description: "\n<p>Returns <xref href=\"System.Net.Http.Headers.HttpContentHeaders\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The content headers as defined in RFC 2616.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -136,18 +132,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Serialize the HTTP content into a stream of bytes and copies it to the stream object provided as the <em>stream</em> parameter.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object will complete after all of the content has been written to the stream object passed as the <em>stream</em> parameter.</p>\n"
   syntax:
     content: public Threading.Tasks.Task CopyToAsync(IO.Stream stream)
     content.vb: Public Function CopyToAsync(stream As IO.Stream) As Threading.Tasks.Task
     parameters:
     - id: stream
       type: System.IO.Stream
-      description: "\n<p>The target stream.</p>\n"
     return:
       type: System.Threading.Tasks.Task
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -173,21 +165,16 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Serialize the HTTP content into a stream of bytes and copies it to the stream object provided as the <em>stream</em> parameter.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object will complete after all of the content has been written to the stream object passed as the <em>stream</em> parameter.</p>\n"
   syntax:
     content: public Threading.Tasks.Task CopyToAsync(IO.Stream stream, TransportContext context)
     content.vb: Public Function CopyToAsync(stream As IO.Stream, context As TransportContext) As Threading.Tasks.Task
     parameters:
     - id: stream
       type: System.IO.Stream
-      description: "\n<p>The target stream.</p>\n"
     - id: context
       type: System.Net.TransportContext
-      description: "\n<p>Information about the transport (channel binding token, for example). This parameter may be <strong>null</strong>.</p>\n"
     return:
       type: System.Threading.Tasks.Task
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -213,14 +200,11 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Serialize the HTTP content to a memory stream as an asynchronous operation.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object will complete after all of the content has been written to the memory stream.</p>\n<p>Once the operation completes, the  <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property on the returned task object contains the memory stream that that represents the HTTP content. The returned stream can then be used to read the content using various stream APIs.</p>\n<p>The <xref href=\"System.Net.Http.HttpContent.CreateContentReadStreamAsync\" data-throw-if-not-resolved=\"false\"></xref>  method buffers the content to a memory stream. Derived classes can override this behavior if there is a better way to retrieve the content as stream. For example, a byte array or a string could use a more efficient method way such as wrapping a read-only <xref href=\"System.IO.MemoryStream\" data-throw-if-not-resolved=\"false\"></xref> around the bytes or string.)</p>\n"
   syntax:
-    content: protected virtual Threading.Tasks.Task<IO.Stream> CreateContentReadStreamAsync()
-    content.vb: Protected Overridable Function CreateContentReadStreamAsync As Threading.Tasks.Task(Of IO.Stream)
+    content: protected virtual Task<Stream> CreateContentReadStreamAsync()
+    content.vb: Protected Overridable Function CreateContentReadStreamAsync As Task(Of Stream)
     return:
-      type: System.Threading.Tasks.Task{System.IO.Stream}
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
+      type: Task{Stream}
   modifiers.csharp:
   - protected
   - virtual
@@ -248,7 +232,6 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Releases the unmanaged resources and disposes of the managed resources used by the <xref href=\"System.Net.Http.HttpContent\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
@@ -277,15 +260,12 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Releases the unmanaged resources used by the <xref href=\"System.Net.Http.HttpContent\" data-throw-if-not-resolved=\"false\"></xref> and optionally disposes of the managed resources.</p>\n"
-  remarks: "\n<p>This method is called by the public <strong>Dispose()</strong> method and the <xref href=\"System.Object.Finalize\" data-throw-if-not-resolved=\"false\"></xref> method. <strong>Dispose()</strong> invokes the protected <strong>Dispose(Boolean)</strong> method with the <em>disposing</em> parameter set to <strong>true</strong>. <xref href=\"System.Object.Finalize\" data-throw-if-not-resolved=\"false\"></xref> invokes <strong>Dispose</strong> with <em>disposing</em> set to <strong>false</strong>.When the <em>disposing</em> parameter is <strong>true</strong>, this method releases all resources held by any managed objects that this <xref href=\"System.Net.Http.HttpContent\" data-throw-if-not-resolved=\"false\"></xref> references. This method invokes the <strong>Dispose()</strong> method of each referenced object.</p>\n"
   syntax:
     content: protected virtual void Dispose(bool disposing)
     content.vb: Protected Overridable Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> to release both managed and unmanaged resources; <strong>false</strong> to releases only unmanaged resources.</p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -313,14 +293,11 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Serialize the HTTP content to a memory buffer as an asynchronous operation.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object will complete after all of the content has been serialized to the memory buffer.</p>\n<p>After content is serialized to a memory buffer, calls to one of the  <xref href=\"System.Net.Http.HttpContent.CopyToAsync(System.IO.Stream)\" data-throw-if-not-resolved=\"false\"></xref> methods will copy the content of the memory buffer to the target stream.</p>\n"
   syntax:
-    content: public Threading.Tasks.Task LoadIntoBufferAsync()
-    content.vb: Public Function LoadIntoBufferAsync As Threading.Tasks.Task
+    content: public Task LoadIntoBufferAsync()
+    content.vb: Public Function LoadIntoBufferAsync As Task
     return:
-      type: System.Threading.Tasks.Task
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
+      type: Task
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -346,18 +323,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Serialize the HTTP content to a memory buffer as an asynchronous operation.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>  object will complete after all of the content has been serialized to the memory buffer.</p>\n<p>After content is serialized to a memory buffer, calls to one of the  <xref href=\"System.Net.Http.HttpContent.CopyToAsync(System.IO.Stream)\" data-throw-if-not-resolved=\"false\"></xref> methods will copy the content of the memory buffer to the target stream.</p>\n<p>If the content exceeds the value  passed in the <em>maxBufferSize</em> parameter , an exception is thrown.</p>\n"
   syntax:
-    content: public Threading.Tasks.Task LoadIntoBufferAsync(long maxBufferSize)
-    content.vb: Public Function LoadIntoBufferAsync(maxBufferSize As Long) As Threading.Tasks.Task
+    content: public Task LoadIntoBufferAsync(long maxBufferSize)
+    content.vb: Public Function LoadIntoBufferAsync(maxBufferSize As Long) As Task
     parameters:
     - id: maxBufferSize
       type: System.Int64
-      description: "\n<p>The maximum size, in bytes, of the buffer to use.</p>\n"
     return:
-      type: System.Threading.Tasks.Task
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
+      type: Task
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -383,14 +356,11 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Serialize the HTTP content to a byte array as an asynchronous operation.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object will complete after all of the content has been written as a byte array.</p>\n<p>Once the operation completes, the  <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property on the returned task object contains the byte array with the HTTP content.</p>\n"
   syntax:
-    content: public Threading.Tasks.Task<byte[]> ReadAsByteArrayAsync()
-    content.vb: Public Function ReadAsByteArrayAsync As Threading.Tasks.Task(Of Byte())
+    content: public Task<byte[]> ReadAsByteArrayAsync()
+    content.vb: Public Function ReadAsByteArrayAsync As Task(Of Byte())
     return:
-      type: System.Threading.Tasks.Task{System.Byte[]}
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
+      type: Task{System.Byte[]}
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -416,14 +386,11 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Serialize the HTTP content and return a stream that represents the content as an asynchronous operation. </p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object will complete after all of the stream that represents content has been read. </p>\n<p>Once the operation completes, the  <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property on the returned task object contains the stream that that represents the HTTP content. The returned stream can then be used to read the content using various stream APIs.</p>\n"
   syntax:
-    content: public Threading.Tasks.Task<IO.Stream> ReadAsStreamAsync()
-    content.vb: Public Function ReadAsStreamAsync As Threading.Tasks.Task(Of IO.Stream)
+    content: public Task<Stream> ReadAsStreamAsync()
+    content.vb: Public Function ReadAsStreamAsync As Task(Of Stream)
     return:
-      type: System.Threading.Tasks.Task{System.IO.Stream}
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
+      type: Task{Stream}
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -449,14 +416,11 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Serialize the HTTP content to a string as an asynchronous operation.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object will complete after all of the content has been written as a string.</p>\n<p>Once the operation completes, the  <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property on the returned task object contains the string with the HTTP content.</p>\n"
   syntax:
-    content: public Threading.Tasks.Task<string> ReadAsStringAsync()
-    content.vb: Public Function ReadAsStringAsync As Threading.Tasks.Task(Of String)
+    content: public Task<string> ReadAsStringAsync()
+    content.vb: Public Function ReadAsStringAsync As Task(Of String)
     return:
-      type: System.Threading.Tasks.Task{System.String}
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
+      type: Task{System.String}
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -482,21 +446,16 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Serialize the HTTP content to a stream as an asynchronous operation.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object will complete after all of the content has been serialized to the stream object passed in the <em>stream</em> parameter.</p>\n"
   syntax:
     content: protected abstract Threading.Tasks.Task SerializeToStreamAsync(IO.Stream stream, TransportContext context)
     content.vb: Protected MustOverride Function SerializeToStreamAsync(stream As IO.Stream, context As TransportContext) As Threading.Tasks.Task
     parameters:
     - id: stream
       type: System.IO.Stream
-      description: "\n<p>The target stream.</p>\n"
     - id: context
       type: System.Net.TransportContext
-      description: "\n<p>Information about the transport (channel binding token, for example). This parameter may be <strong>null</strong>.</p>\n"
     return:
       type: System.Threading.Tasks.Task
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
   modifiers.csharp:
   - protected
   - abstract
@@ -524,18 +483,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Determines whether the HTTP content has a valid length in bytes.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Net.Http.HttpContent.TryComputeLength(System.Int64@)\" data-throw-if-not-resolved=\"false\"></xref> method gives a HTTP content the ability to calculate the content length. This is useful for content types which are able to easily calculate the content length. If computing the content length is not possible or expensive (would require the system to buffer the whole content where the serialization would be expensive or require the system to allocate a lot of memory), this method can return <strong>false</strong>. If this method returns <strong>false</strong>, this implies that either chunked transfer is needed or the content must get buffered before being sent to the server.</p>\n"
   syntax:
     content: protected abstract bool TryComputeLength(out long length)
     content.vb: Protected MustOverride Function TryComputeLength(ByRef length As Long) As Boolean
     parameters:
     - id: length
       type: System.Int64
-      description: "\n<p>The length in bytes of the HTTP content.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>Returns <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<strong>true</strong> if <em>length</em> is a valid length; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - protected
   - abstract

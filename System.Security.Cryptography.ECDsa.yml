@@ -32,15 +32,12 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>Provides an abstract base class that encapsulates the Elliptic Curve Digital Signature Algorithm (ECDSA).</p>\n"
-  remarks: "\n<p>This class serves as the abstract base class for <xref href=\"System.Security.Cryptography.ECDsaCng\" data-throw-if-not-resolved=\"false\"></xref> derivations.</p>\n"
-  example:
-  - 
   syntax:
-    content: 'public abstract class ECDsa : AsymmetricAlgorithm'
+    content: 'public abstract class ECDsa : AsymmetricAlgorithm, AsymmetricAlgorithm'
     content.vb: >-
       Public MustInherit Class ECDsa
           Inherits AsymmetricAlgorithm
+          Implements AsymmetricAlgorithm
   inheritance:
   - System.Object
   modifiers.csharp:
@@ -72,10 +69,6 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Security.Cryptography.ECDsa\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  remarks: "\n<p>This constructor is called by classes that derive from the <xref href=\"System.Security.Cryptography.ECDsa\" data-throw-if-not-resolved=\"false\"></xref> class. The <xref href=\"System.Security.Cryptography.ECDsaCng\" data-throw-if-not-resolved=\"false\"></xref> class is the only implementation currently supported by the .NET Framework. You may provide your own custom implementation.</p>\n"
-  example:
-  - 
   syntax:
     content: protected ECDsa()
     content.vb: Protected Sub New
@@ -104,30 +97,20 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>When overridden in a derived class, computes the hash value of the specified portion of a byte array by using the specified hashing algorithm. </p>\n"
   syntax:
     content: protected abstract byte[] HashData(byte[] data, int offset, int count, HashAlgorithmName hashAlgorithm)
     content.vb: Protected MustOverride Function HashData(data As Byte(), offset As Integer, count As Integer, hashAlgorithm As HashAlgorithmName) As Byte()
     parameters:
     - id: data
       type: System.Byte[]
-      description: "\n<p>The data to be hashed. </p>\n"
     - id: offset
       type: System.Int32
-      description: "\n<p>The index of the first byte in <em>data</em> to be hashed.  </p>\n"
     - id: count
       type: System.Int32
-      description: "\n<p>The number of bytes to hash. </p>\n"
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
-      description: "\n<p>The algorithm to use to hash the data. </p>\n"
     return:
       type: System.Byte[]
-      description: "\n<p>The hashed data. </p>\n"
-  exceptions:
-  - type: System.NotImplementedException
-    commentId: T:System.NotImplementedException
-    description: "\n<p>A derived class must override this method. </p>\n"
   modifiers.csharp:
   - protected
   - abstract
@@ -157,24 +140,16 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>When overridden in a derived class, computes the hash value of the specified binary stream by using the specified hashing algorithm.</p>\n"
   syntax:
     content: protected abstract byte[] HashData(IO.Stream data, HashAlgorithmName hashAlgorithm)
     content.vb: Protected MustOverride Function HashData(data As IO.Stream, hashAlgorithm As HashAlgorithmName) As Byte()
     parameters:
     - id: data
       type: System.IO.Stream
-      description: "\n<p>The binary stream to hash. </p>\n"
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
-      description: "\n<p>The algorithm to use to hash the data.</p>\n"
     return:
       type: System.Byte[]
-      description: "\n<p>The hashed data.</p>\n"
-  exceptions:
-  - type: System.NotImplementedException
-    commentId: T:System.NotImplementedException
-    description: "\n<p>A derived class must override this method. </p>\n"
   modifiers.csharp:
   - protected
   - abstract
@@ -202,36 +177,20 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>Computes the hash value of a portion of the specified byte array using the specified hash algorithm and signs the resulting hash value. </p>\n"
   syntax:
     content: public virtual byte[] SignData(byte[] data, int offset, int count, HashAlgorithmName hashAlgorithm)
     content.vb: Public Overridable Function SignData(data As Byte(), offset As Integer, count As Integer, hashAlgorithm As HashAlgorithmName) As Byte()
     parameters:
     - id: data
       type: System.Byte[]
-      description: "\n<p>The input data for which to compute the hash. </p>\n"
     - id: offset
       type: System.Int32
-      description: "\n<p>The offset into the array at which to begin using data. </p>\n"
     - id: count
       type: System.Int32
-      description: "\n<p>The number of bytes in the array to use as data. </p>\n"
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
-      description: "\n<p>The hash algorithm to use to create the hash value. </p>\n"
     return:
       type: System.Byte[]
-      description: "\n<p>The ECDSA signature for the specified data. </p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>data</em> is <strong>null</strong>. </p>\n"
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>hashAlgorithm</em>.<xref href=\"System.Security.Cryptography.HashAlgorithmName.Name\" data-throw-if-not-resolved=\"false\"></xref> is <strong>null</strong> or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  - type: System.ArgumentOutOfRangeException
-    commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<p>\n<em>offset</em> is less than zero. </p>\n<p>-or-</p>\n<p>\n<em>count</em> is less than zero. </p>\n<p>-or-</p>\n<p>\n<em>offset</em> + <em>count</em> – 1 results in an index that is beyond the upper bound of <em>data</em>.  </p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -261,27 +220,16 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>Computes the hash value of the specified byte array using the specified hash algorithm and signs the resulting hash value. </p>\n"
   syntax:
     content: public virtual byte[] SignData(byte[] data, HashAlgorithmName hashAlgorithm)
     content.vb: Public Overridable Function SignData(data As Byte(), hashAlgorithm As HashAlgorithmName) As Byte()
     parameters:
     - id: data
       type: System.Byte[]
-      description: "\n<p>The input data for which to compute the hash. </p>\n"
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
-      description: "\n<p>The hash algorithm to use to create the hash value. </p>\n"
     return:
       type: System.Byte[]
-      description: "\n<p>The ECDSA signature for the specified data. </p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>data</em> is <strong>null</strong>. </p>\n"
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>hashAlgorithm</em>.<xref href=\"System.Security.Cryptography.HashAlgorithmName.Name\" data-throw-if-not-resolved=\"false\"></xref> is <strong>null</strong> or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -311,27 +259,16 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>Computes the hash value of the specified stream using the specified hash algorithm and signs the resulting hash value.</p>\n"
   syntax:
     content: public virtual byte[] SignData(IO.Stream data, HashAlgorithmName hashAlgorithm)
     content.vb: Public Overridable Function SignData(data As IO.Stream, hashAlgorithm As HashAlgorithmName) As Byte()
     parameters:
     - id: data
       type: System.IO.Stream
-      description: "\n<p>The input stream for which to compute the hash. </p>\n"
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
-      description: "\n<p>The hash algorithm to use to create the hash value. </p>\n"
     return:
       type: System.Byte[]
-      description: "\n<p>The ECDSA signature for the specified data. </p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>data</em> is <strong>null</strong>. </p>\n"
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>hashAlgorithm</em>.<xref href=\"System.Security.Cryptography.HashAlgorithmName.Name\" data-throw-if-not-resolved=\"false\"></xref> is <strong>null</strong> or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -359,23 +296,14 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>Generates a digital signature for the specified hash value. </p>\n"
-  example:
-  - 
   syntax:
     content: public abstract byte[] SignHash(byte[] hash)
     content.vb: Public MustOverride Function SignHash(hash As Byte()) As Byte()
     parameters:
     - id: hash
       type: System.Byte[]
-      description: "\n<p>The hash value of the data that is being signed.</p>\n"
     return:
       type: System.Byte[]
-      description: "\n<p>A digital signature that consists of the given hash value encrypted with the private key.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>The <em>hash</em> parameter is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -405,30 +333,18 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>Verifies that a digital signature is valid by calculating the hash value of the specified data using the specified hash algorithm and comparing it to the provided signature. </p>\n"
   syntax:
     content: public bool VerifyData(byte[] data, byte[] signature, HashAlgorithmName hashAlgorithm)
     content.vb: Public Function VerifyData(data As Byte(), signature As Byte(), hashAlgorithm As HashAlgorithmName) As Boolean
     parameters:
     - id: data
       type: System.Byte[]
-      description: "\n<p>The signed data. </p>\n"
     - id: signature
       type: System.Byte[]
-      description: "\n<p>The signature data to be verified. </p>\n"
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
-      description: "\n<p>The hash algorithm used to create the hash value of the data. </p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the signature is valid; otherwise, <strong>false</strong>. </p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>data</em> is <strong>null</strong>. </p>\n<p>-or-</p>\n<p>\n<em>signature</em> is <strong>null</strong>.</p>\n"
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>hashAlgorithm</em>.<xref href=\"System.Security.Cryptography.HashAlgorithmName.Name\" data-throw-if-not-resolved=\"false\"></xref> is <strong>null</strong> or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -456,39 +372,22 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>Verifies that a digital signature is valid by calculating the hash value of the data in a portion of a byte array using the specified hash algorithm and comparing it to the provided signature. </p>\n"
   syntax:
     content: public virtual bool VerifyData(byte[] data, int offset, int count, byte[] signature, HashAlgorithmName hashAlgorithm)
     content.vb: Public Overridable Function VerifyData(data As Byte(), offset As Integer, count As Integer, signature As Byte(), hashAlgorithm As HashAlgorithmName) As Boolean
     parameters:
     - id: data
       type: System.Byte[]
-      description: "\n<p>The signed data. </p>\n"
     - id: offset
       type: System.Int32
-      description: "\n<p>The starting index at which to compute the hash. </p>\n"
     - id: count
       type: System.Int32
-      description: "\n<p>The number of bytes to hash. </p>\n"
     - id: signature
       type: System.Byte[]
-      description: "\n<p>The signature data to be verified. </p>\n"
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
-      description: "\n<p>The hash algorithm used to create the hash value of the data. </p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the signature is valid; otherwise, <strong>false</strong>. </p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>data</em> is <strong>null</strong>. </p>\n<p>-or-</p>\n<p>\n<em>signature</em> is <strong>null</strong>.</p>\n"
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>hashAlgorithm</em>.<xref href=\"System.Security.Cryptography.HashAlgorithmName.Name\" data-throw-if-not-resolved=\"false\"></xref> is <strong>null</strong> or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  - type: System.ArgumentOutOfRangeException
-    commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<p>\n<em>offset</em> is less than zero. </p>\n<p>-or-</p>\n<p>\n<em>count</em> is less than zero.</p>\n<p>-or-</p>\n<p>\n<em>offset</em> + <em>count</em> – 1 results in an index that is beyond the upper bound of <em>data</em>.  </p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -518,30 +417,18 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>Verifies that a digital signature is valid by calculating the hash value of the specified stream using the specified hash algorithm and comparing it to the provided signature. </p>\n"
   syntax:
     content: public bool VerifyData(IO.Stream data, byte[] signature, HashAlgorithmName hashAlgorithm)
     content.vb: Public Function VerifyData(data As IO.Stream, signature As Byte(), hashAlgorithm As HashAlgorithmName) As Boolean
     parameters:
     - id: data
       type: System.IO.Stream
-      description: "\n<p>The signed data. </p>\n"
     - id: signature
       type: System.Byte[]
-      description: "\n<p>The signature data to be verified. </p>\n"
     - id: hashAlgorithm
       type: System.Security.Cryptography.HashAlgorithmName
-      description: "\n<p>The hash algorithm used to create the hash value of the data. </p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the signature is valid; otherwise, <strong>false</strong>. </p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>data</em> is <strong>null</strong>. </p>\n<p>-or-</p>\n<p>\n<em>signature</em> is <strong>null</strong>.</p>\n"
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>hashAlgorithm</em>.<xref href=\"System.Security.Cryptography.HashAlgorithmName.Name\" data-throw-if-not-resolved=\"false\"></xref> is <strong>null</strong> or <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -569,23 +456,16 @@ items:
   assemblies:
   - System.Security.Cryptography.Algorithms
   namespace: System.Security.Cryptography
-  summary: "\n<p>Verifies a digital signature against the specified hash value.</p>\n"
-  remarks: "\n<p>The signature is first decrypted by using the public key, and then compared to the hash value for verification.</p>\n"
-  example:
-  - 
   syntax:
     content: public abstract bool VerifyHash(byte[] hash, byte[] signature)
     content.vb: Public MustOverride Function VerifyHash(hash As Byte(), signature As Byte()) As Boolean
     parameters:
     - id: hash
       type: System.Byte[]
-      description: "\n<p>The hash value of a block of data.</p>\n"
     - id: signature
       type: System.Byte[]
-      description: "\n<p>The digital signature to be verified.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the hash value equals the decrypted signature; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -650,20 +530,3 @@ references:
   isExternal: false
   name: Boolean
   fullName: System.Boolean
-- uid: System.NotImplementedException
-  isExternal: false
-  name: NotImplementedException
-  fullName: System.NotImplementedException
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException
-- uid: System.ArgumentException
-  parent: System
-  isExternal: false
-  name: ArgumentException
-  fullName: System.ArgumentException
-- uid: System.ArgumentOutOfRangeException
-  isExternal: false
-  name: ArgumentOutOfRangeException
-  fullName: System.ArgumentOutOfRangeException

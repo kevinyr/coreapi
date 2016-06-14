@@ -29,8 +29,6 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: "\n<p>Tracks outstanding handles and forces a garbage collection when the specified threshold is reached.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Runtime.InteropServices.HandleCollector\" data-throw-if-not-resolved=\"false\"></xref> class keeps track of a limited number of handles to unmanaged resources.  Typically, unmanaged resources include handles to <strong>HDC</strong>s, <strong>HWnd</strong>s, and so on.</p>\n"
   syntax:
     content: 'public sealed class HandleCollector : object'
     content.vb: >-
@@ -67,21 +65,14 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Runtime.InteropServices.HandleCollector\" data-throw-if-not-resolved=\"false\"></xref> class using a name and a threshold at which to begin handle collection. </p>\n"
   syntax:
     content: public HandleCollector(string name, int initialThreshold)
     content.vb: Public Sub New(name As String, initialThreshold As Integer)
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>A name for the collector. This parameter allows you to name collectors that track handle types separately.</p>\n"
     - id: initialThreshold
       type: System.Int32
-      description: "\n<p>A value that specifies the point at which collections should begin.</p>\n"
-  exceptions:
-  - type: System.ArgumentOutOfRangeException
-    commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<p>The <em>initialThreshold</em> parameter is less than 0.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -107,27 +98,16 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Runtime.InteropServices.HandleCollector\" data-throw-if-not-resolved=\"false\"></xref> class using a name, a threshold at which to begin handle collection, and a threshold at which handle collection must occur. </p>\n"
   syntax:
     content: public HandleCollector(string name, int initialThreshold, int maximumThreshold)
     content.vb: Public Sub New(name As String, initialThreshold As Integer, maximumThreshold As Integer)
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>A name for the collector.  This parameter allows you to name collectors that track handle types separately.</p>\n"
     - id: initialThreshold
       type: System.Int32
-      description: "\n<p>A value that specifies the point at which collections should begin.</p>\n"
     - id: maximumThreshold
       type: System.Int32
-      description: "\n<p>A value that specifies the point at which collections must occur. This should be set to the maximum number of available handles.</p>\n"
-  exceptions:
-  - type: System.ArgumentOutOfRangeException
-    commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<p>The <em>initialThreshold</em> parameter is less than 0.</p>\n<p>-or-</p>\n<p>The <em>maximumThreshold</em> parameter is less than 0.</p>\n"
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>The <em>maximumThreshold</em> parameter is less than the <em>initialThreshold</em> parameter.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -153,14 +133,12 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: "\n<p>Gets the number of handles collected.</p>\n"
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>The number of handles collected.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -188,14 +166,12 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: "\n<p>Gets a value that specifies the point at which collections should begin.</p>\n"
   syntax:
     content: public int InitialThreshold { get; }
     content.vb: Public ReadOnly Property InitialThreshold As Integer
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>A value that specifies the point at which collections should begin.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -223,14 +199,12 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: "\n<p>Gets a value that specifies the point at which collections must occur.</p>\n"
   syntax:
     content: public int MaximumThreshold { get; }
     content.vb: Public ReadOnly Property MaximumThreshold As Integer
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>A value that specifies the point at which collections must occur.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -258,14 +232,12 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: "\n<p>Gets the name of a <xref href=\"System.Runtime.InteropServices.HandleCollector\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   syntax:
     content: public string Name { get; }
     content.vb: Public ReadOnly Property Name As String
     parameters: []
     return:
       type: System.String
-      description: "\n<p>This <xref href=\"System.Runtime.InteropServices.HandleCollector.Name\" data-throw-if-not-resolved=\"false\"></xref> property allows you to name collectors that track handle types separately.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -293,14 +265,9 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: "\n<p>Increments the current handle count.</p>\n"
   syntax:
     content: public void Add()
     content.vb: Public Sub Add
-  exceptions:
-  - type: System.InvalidOperationException
-    commentId: T:System.InvalidOperationException
-    description: "\n<p>The <xref href=\"System.Runtime.InteropServices.HandleCollector.Count\" data-throw-if-not-resolved=\"false\"></xref> property is less than 0.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -326,14 +293,9 @@ items:
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
-  summary: "\n<p>Decrements the current handle count.</p>\n"
   syntax:
     content: public void Remove()
     content.vb: Public Sub Remove
-  exceptions:
-  - type: System.InvalidOperationException
-    commentId: T:System.InvalidOperationException
-    description: "\n<p>The <xref href=\"System.Runtime.InteropServices.HandleCollector.Count\" data-throw-if-not-resolved=\"false\"></xref> property is less than 0.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -362,17 +324,3 @@ references:
   isExternal: false
   name: Int32
   fullName: System.Int32
-- uid: System.ArgumentOutOfRangeException
-  isExternal: false
-  name: ArgumentOutOfRangeException
-  fullName: System.ArgumentOutOfRangeException
-- uid: System.ArgumentException
-  parent: System
-  isExternal: false
-  name: ArgumentException
-  fullName: System.ArgumentException
-- uid: System.InvalidOperationException
-  parent: System
-  isExternal: false
-  name: InvalidOperationException
-  fullName: System.InvalidOperationException

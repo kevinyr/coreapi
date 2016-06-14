@@ -36,16 +36,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Collection of <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> objects that inherits from <xref href=\"System.Collections.CollectionBase\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Column mappings define the mapping between data source and the target table.</p>\n<p>If mappings are not defined—that is, the <xref href=\"System.Data.SqlClient.SqlBulkCopy.ColumnMappings\" data-throw-if-not-resolved=\"false\"></xref> collection is empty—the columns are mapped implicitly based on ordinal position. For this to work, source and target schemas must match. If they do not, an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n<p>If the <xref href=\"System.Data.SqlClient.SqlBulkCopy.ColumnMappings\" data-throw-if-not-resolved=\"false\"></xref> collection is not empty, not every column present in the data source has to be specified. Those not mapped by the collection are ignored.</p>\n<p>You can refer to source and target columns by either name or ordinal. You can mix by-name and by-ordinal column references in the same mappings collection.</p>\n"
-  example:
-  - "\n<p>The following example bulk copies data from a source table in the <strong>AdventureWorks</strong> sample database to a destination table in the same database. Although the number of columns in the destination matches the number of columns in the source, the column names and ordinal positions do not match. <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> are added to the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> object to create a column map for the bulk copy.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.ColumnMappingCollection#1"
   syntax:
-    content: 'public sealed class SqlBulkCopyColumnMappingCollection : Collections.ICollection, Collections.IEnumerable, Collections.IList'
+    content: 'public sealed class SqlBulkCopyColumnMappingCollection : ICollection, IEnumerable, IList'
     content.vb: >-
       Public NotInheritable Class SqlBulkCopyColumnMappingCollection
-          Inherits Collections.ICollection
-          Implements Collections.IEnumerable, Collections.IList
+          Inherits ICollection
+          Implements IEnumerable, IList
   inheritance:
   - System.Object
   implements:
@@ -80,17 +76,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Gets the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object at the specified index.</p>\n"
   syntax:
     content: public SqlBulkCopyColumnMapping this[int index] { get; }
     content.vb: Public ReadOnly Property Item(index As Integer) As SqlBulkCopyColumnMapping
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index of the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> to find.</p>\n"
     return:
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>A <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -120,19 +113,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Adds the specified mapping to the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example bulk copies data from a source table in the <strong>AdventureWorks</strong> sample database to a destination table in the same database. Although the number of columns in the destination matches the number of columns in the source, the column names and ordinal positions do not match. <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> objects are used to create a column map for the bulk copy.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.ColumnMapping#1"
   syntax:
     content: public SqlBulkCopyColumnMapping Add(SqlBulkCopyColumnMapping bulkCopyColumnMapping)
     content.vb: Public Function Add(bulkCopyColumnMapping As SqlBulkCopyColumnMapping) As SqlBulkCopyColumnMapping
     parameters:
     - id: bulkCopyColumnMapping
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object that describes the mapping to be added to the collection.</p>\n"
     return:
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>A <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -158,23 +146,16 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Creates a new <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> and adds it to the collection, using ordinals to specify both source and destination columns.</p>\n"
-  remarks: "\n<p>Mappings in a collection must be uniform: either all integer/integer pairs, all string/string pairs, all integer/string pairs, or all string/integer pairs. If you try to add a mapping that is different from others already in the collection, an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n"
-  example:
-  - "\n<p>The following example bulk copies data from a source table in the <strong>AdventureWorks</strong> sample database to a destination table in the same database. Although the number of columns in the destination matches the number of columns in the source, the column names and ordinal positions do not match. <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> objects are used to create a column map for the bulk copy using the ordinal position of the source and destination columns.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.ColumnMappingCollectionOrdinal#1"
   syntax:
     content: public SqlBulkCopyColumnMapping Add(int sourceColumnIndex, int destinationColumnIndex)
     content.vb: Public Function Add(sourceColumnIndex As Integer, destinationColumnIndex As Integer) As SqlBulkCopyColumnMapping
     parameters:
     - id: sourceColumnIndex
       type: System.Int32
-      description: "\n<p>The ordinal position of the source column within the data source.</p>\n"
     - id: destinationColumnIndex
       type: System.Int32
-      description: "\n<p>The ordinal position of the destination column within the destination table.</p>\n"
     return:
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>A column mapping.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -200,23 +181,16 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Creates a new <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> and adds it to the collection, using an ordinal for the source column and a string for the destination column.</p>\n"
-  remarks: "\n<p>Mappings in a collection must be uniform: either all integer/integer pairs, all string/string pairs, all integer/string pairs, or all string/integer pairs. If you try to add a mapping that is different from others already in the collection, an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n"
-  example:
-  - "\n<p>The following example bulk copies data from a source table in the <strong>AdventureWorks </strong>sample database to a destination table in the same database. Although the number of columns in the destination matches the number of columns in the source, the column names and ordinal positions do not match. <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> objects are used to create a column map for the bulk copy.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.ColumnMappingIndexColName#1"
   syntax:
     content: public SqlBulkCopyColumnMapping Add(int sourceColumnIndex, string destinationColumn)
     content.vb: Public Function Add(sourceColumnIndex As Integer, destinationColumn As String) As SqlBulkCopyColumnMapping
     parameters:
     - id: sourceColumnIndex
       type: System.Int32
-      description: "\n<p>The ordinal position of the source column within the data source.</p>\n"
     - id: destinationColumn
       type: System.String
-      description: "\n<p>The name of the destination column within the destination table.</p>\n"
     return:
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>A column mapping.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -242,23 +216,16 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Creates a new <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> and adds it to the collection, using a column name to describe the source column and an ordinal to specify the destination column.</p>\n"
-  remarks: "\n<p>Mappings in a collection must be uniform: either all integer/integer pairs, all string/string pairs, all integer/string pairs, or all string/integer pairs. If you try to add a mapping that is different from others already in the collection, an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n"
-  example:
-  - "\n<p>The following example bulk copies data from a source table in the <strong>AdventureWorks</strong> sample database to a destination table in the same database. Although the number of columns in the destination matches the number of columns in the source, the column names and ordinal positions do not match. <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> objects are used to create a column map for the bulk copy.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.ColumnMappingColNameIndex#1"
   syntax:
     content: public SqlBulkCopyColumnMapping Add(string sourceColumn, int destinationColumnIndex)
     content.vb: Public Function Add(sourceColumn As String, destinationColumnIndex As Integer) As SqlBulkCopyColumnMapping
     parameters:
     - id: sourceColumn
       type: System.String
-      description: "\n<p>The name of the source column within the data source.</p>\n"
     - id: destinationColumnIndex
       type: System.Int32
-      description: "\n<p>The ordinal position of the destination column within the destination table.</p>\n"
     return:
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>A column mapping.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -284,23 +251,16 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Creates a new <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> and adds it to the collection, using column names to specify both source and destination columns.</p>\n"
-  remarks: "\n<p>Mappings in a collection must be uniform: either all integer/integer pairs, all string/string pairs, all integer/string pairs, or all string/integer pairs. If you try to add a mapping that is different from others already in the collection, an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n"
-  example:
-  - "\n<p>The following example bulk copies data from a source table in the <strong>AdventureWorks</strong> sample database to a destination table in the same database. Although the number of columns in the destination matches the number of columns in the source, the column names and ordinal positions do not match. The code creates a <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object by specifying the column names.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.ColumnMappingCollection#1"
   syntax:
     content: public SqlBulkCopyColumnMapping Add(string sourceColumn, string destinationColumn)
     content.vb: Public Function Add(sourceColumn As String, destinationColumn As String) As SqlBulkCopyColumnMapping
     parameters:
     - id: sourceColumn
       type: System.String
-      description: "\n<p>The name of the source column within the data source.</p>\n"
     - id: destinationColumn
       type: System.String
-      description: "\n<p>The name of the destination column within the destination table.</p>\n"
     return:
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>A column mapping.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -326,17 +286,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Gets a value indicating whether a specified <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object exists in the collection.</p>\n"
   syntax:
     content: public bool Contains(SqlBulkCopyColumnMapping value)
     content.vb: Public Function Contains(value As SqlBulkCopyColumnMapping) As Boolean
     parameters:
     - id: value
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>A valid <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the specified mapping exists in the collection; otherwise <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -362,17 +319,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Copies the elements of the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection\" data-throw-if-not-resolved=\"false\"></xref> to an array of <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> items, starting at a particular index.</p>\n"
   syntax:
     content: public void CopyTo(SqlBulkCopyColumnMapping[] array, int index)
     content.vb: Public Sub CopyTo(array As SqlBulkCopyColumnMapping(), index As Integer)
     parameters:
     - id: array
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping[]
-      description: "\n<p>The one-dimensional <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> array that is the destination of the elements copied from <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection\" data-throw-if-not-resolved=\"false\"></xref>. The array must have zero-based indexing. </p>\n"
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index in <em>array</em> at which copying begins. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -400,17 +354,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Gets the index of the specified <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   syntax:
     content: public int IndexOf(SqlBulkCopyColumnMapping value)
     content.vb: Public Function IndexOf(value As SqlBulkCopyColumnMapping) As Integer
     parameters:
     - id: value
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>The <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object for which to search.</p>\n"
     return:
       type: System.Int32
-      description: "\n<p>The zero-based index of the column mapping, or -1 if the column mapping is not found in the collection.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -436,17 +387,14 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Insert a new <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> at the index specified.</p>\n"
   syntax:
     content: public void Insert(int index, SqlBulkCopyColumnMapping value)
     content.vb: Public Sub Insert(index As Integer, value As SqlBulkCopyColumnMapping)
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>Integer value of the location within the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection\" data-throw-if-not-resolved=\"false\"></xref>  at which to insert the new <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: value
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>\n<xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object to be inserted in the collection.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -472,17 +420,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Removes the specified <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> element from the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.Remove(System.Data.SqlClient.SqlBulkCopyColumnMapping)\" data-throw-if-not-resolved=\"false\"></xref> method is most commonly used when you use a single <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance to process more than one bulk copy operation. If you create column mappings for one bulk copy operation, you must remove mappings that no longer apply after the <see cref=\"Overload:System.Data.SqlClient.SqlBulkCopy.WriteToServer\"></see> method is called and before defining mapping for the next bulk copy. You can clear the entire collection by using the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.Clear\" data-throw-if-not-resolved=\"false\"></xref> method, or remove mappings individually using the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.Remove(System.Data.SqlClient.SqlBulkCopyColumnMapping)\" data-throw-if-not-resolved=\"false\"></xref> method or the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.RemoveAt(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>Performing several bulk copies using the same <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance will usually be more efficient from a performance point of view than using a separate <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> for each operation.</p>\n"
-  example:
-  - "\n<p>The following example performs two bulk copy operations. The first operation copies sales order header information, and the second copies sales order details. Although not strictly necessary in this example (because the ordinal positions of the source and destination columns do match), the example defines column mappings for each bulk copy operation. Both bulk copies include a mapping for the <strong>SalesOrderID</strong>, so rather than clearing the entire collection between bulk copy operations, the example removes all mappings except for the <strong>SalesOrderID</strong> mapping and then adds the appropriate mappings for the second bulk copy operation.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.ColumnMappingRemove#1"
   syntax:
     content: public void Remove(SqlBulkCopyColumnMapping value)
     content.vb: Public Sub Remove(value As SqlBulkCopyColumnMapping)
     parameters:
     - id: value
       type: System.Data.SqlClient.SqlBulkCopyColumnMapping
-      description: "\n<p>\n<xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object to be removed from the collection.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -541,10 +484,6 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Clears the contents of the collection.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.Clear\" data-throw-if-not-resolved=\"false\"></xref> method is most commonly used when you use a single <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance to process more than one bulk copy operation. If you create column mappings for one bulk copy operation, you must clear the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection\" data-throw-if-not-resolved=\"false\"></xref> after the <see cref=\"Overload:System.Data.SqlClient.SqlBulkCopy.WriteToServer\"></see> method and before processing the next bulk copy.</p>\n<p>Performing several bulk copies using the same <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance will usually be more efficient from a performance point of view than using a separate <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> for each operation.</p>\n"
-  example:
-  - "\n<p>The following example performs two bulk copy operations. The first operation copies sales order header information, and the second copies sales order details. Although not strictly necessary in this example (because the ordinal positions of the source and destination columns do match), the example defines column mappings for each bulk copy operation. The <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.Clear\" data-throw-if-not-resolved=\"false\"></xref> method must be used after the first bulk copy is performed and before the next bulk copy's column mappings are defined.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.ColumnMappingOrdersDetails#1"
   syntax:
     content: public void Clear()
     content.vb: Public Sub Clear
@@ -574,10 +513,10 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   syntax:
-    content: public Collections.IEnumerator GetEnumerator()
-    content.vb: Public Function GetEnumerator As Collections.IEnumerator
+    content: public IEnumerator GetEnumerator()
+    content.vb: Public Function GetEnumerator As IEnumerator
     return:
-      type: System.Collections.IEnumerator
+      type: IEnumerator
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -603,17 +542,12 @@ items:
   assemblies:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
-  summary: "\n<p>Removes the mapping at the specified index from the collection.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.RemoveAt(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method is most commonly used when you use a single <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance to process more than one bulk copy operation. If you create column mappings for one bulk copy operation, you must remove mappings that no longer apply after the <see cref=\"Overload:System.Data.SqlClient.SqlBulkCopy.WriteToServer\"></see> method is called and before defining mapping for the next bulk copy. You can clear the entire collection by using the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.Clear\" data-throw-if-not-resolved=\"false\"></xref> method, or remove mappings individually using the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.Remove(System.Data.SqlClient.SqlBulkCopyColumnMapping)\" data-throw-if-not-resolved=\"false\"></xref> method or the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMappingCollection.RemoveAt(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>Performing several bulk copies using the same <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref>  instance will usually be more efficient from a performance point of view than using a separate <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> for each operation.</p>\n"
-  example:
-  - "\n<p>The following example performs two bulk copy operations. The first operation copies sales order header information, and the second copies sales order details. Although not strictly necessary in this example (because the ordinal positions of the source and destination columns do match), the example defines column mappings for each bulk copy operation. Both bulk copies include a mapping for the <strong>SalesOrderID</strong>, so rather than clearing the entire collection between bulk copy operations, the example removes all mappings except for the <strong>SalesOrderID</strong> mapping and then adds the appropriate mappings for the second bulk copy operation.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.ColumnMappingRemoveAt#1"
   syntax:
     content: public void RemoveAt(int index)
     content.vb: Public Sub RemoveAt(index As Integer)
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index of the <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> object to be removed from the collection.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:

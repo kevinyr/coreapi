@@ -275,12 +275,11 @@ items:
   summary: "\n<p>Gets a collection that contains all of the claims from all of the claims identities associated with this claims principal.</p>\n"
   remarks: "\n<p>A claims principal has a collection of <xref href=\"System.Security.Claims.ClaimsIdentity\" data-throw-if-not-resolved=\"false\"></xref> objects that is accessible through the Identities property. Each <xref href=\"System.Security.Claims.ClaimsIdentity\" data-throw-if-not-resolved=\"false\"></xref> in the collection contains one or more claims. The <xref href=\"System.Security.Claims.ClaimsPrincipal.Claims\" data-throw-if-not-resolved=\"false\"></xref> property returns all of the claims from all of the claims identities in this collection.</p>\n<p>The <xref href=\"System.Security.Claims.ClaimsPrincipal.Claims\" data-throw-if-not-resolved=\"false\"></xref> property can be examined by custom implementations of the <xref href=\"System.Security.Claims.ClaimsAuthenticationManager\" data-throw-if-not-resolved=\"false\"></xref> class to make authentication decisions or to filter, transform, or enrich an incoming claim set; by custom implementations of the <xref href=\"System.Security.Claims.ClaimsAuthorizationManager\" data-throw-if-not-resolved=\"false\"></xref> class to enforce authorization policy; or by application code to make authorization decisions or to customize user experience based on the claims present in the collection.</p>\n"
   syntax:
-    content: public virtual Collections.Generic.IEnumerable<Claim> Claims { get; }
-    content.vb: Public Overridable ReadOnly Property Claims As Collections.Generic.IEnumerable(Of Claim)
+    content: public virtual IEnumerable<Claim> Claims { get; }
+    content.vb: Public Overridable ReadOnly Property Claims As IEnumerable(Of Claim)
     parameters: []
     return:
-      type: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
-      description: "\n<p>The claims associated with this principal.</p>\n"
+      type: IEnumerable{System.Security.Claims.Claim}
   modifiers.csharp:
   - public
   - virtual
@@ -317,8 +316,7 @@ items:
     content.vb: Public Shared Property ClaimsPrincipalSelector As Func(Of ClaimsPrincipal)
     parameters: []
     return:
-      type: System.Func{System.Security.Claims.ClaimsPrincipal}
-      description: "\n<p>The delegate. The default is <strong>null</strong>.</p>\n"
+      type: Func{System.Security.Claims.ClaimsPrincipal}
   seealso:
   - type: System.Security.Claims.ClaimsPrincipal.Current
     commentId: P:System.Security.Claims.ClaimsPrincipal.Current
@@ -362,7 +360,6 @@ items:
     parameters: []
     return:
       type: System.Security.Claims.ClaimsPrincipal
-      description: "\n<p>The current claims principal.</p>\n"
   seealso:
   - type: System.Security.Claims.ClaimsPrincipal.ClaimsPrincipalSelector
     commentId: P:System.Security.Claims.ClaimsPrincipal.ClaimsPrincipalSelector
@@ -402,7 +399,6 @@ items:
     parameters: []
     return:
       type: System.Byte[]
-      description: "\n<p></p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -435,12 +431,11 @@ items:
   summary: "\n<p>Gets a collection that contains all of the claims identities associated with this claims principal.</p>\n"
   remarks: "\n<p>In the common case, the collection contains only a single element.</p>\n<p>It is possible for the collection to contain some elements which are <strong>null</strong>.</p>\n"
   syntax:
-    content: public virtual Collections.Generic.IEnumerable<ClaimsIdentity> Identities { get; }
-    content.vb: Public Overridable ReadOnly Property Identities As Collections.Generic.IEnumerable(Of ClaimsIdentity)
+    content: public virtual IEnumerable<ClaimsIdentity> Identities { get; }
+    content.vb: Public Overridable ReadOnly Property Identities As IEnumerable(Of ClaimsIdentity)
     parameters: []
     return:
-      type: System.Collections.Generic.IEnumerable{System.Security.Claims.ClaimsIdentity}
-      description: "\n<p>The collection of claims identities.</p>\n"
+      type: IEnumerable{System.Security.Claims.ClaimsIdentity}
   modifiers.csharp:
   - public
   - virtual
@@ -478,7 +473,6 @@ items:
     parameters: []
     return:
       type: System.Security.Principal.IIdentity
-      description: "\n<p>The primary claims identity associated with this claims principal.</p>\n"
   seealso:
   - type: System.Security.Claims.ClaimsPrincipal.PrimaryIdentitySelector
     commentId: P:System.Security.Claims.ClaimsPrincipal.PrimaryIdentitySelector
@@ -514,12 +508,11 @@ items:
   summary: "\n<p>Gets and sets the delegate used to select the claims identity returned by the <xref href=\"System.Security.Claims.ClaimsPrincipal.Identity\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   remarks: "\n<p>You can set this property to override the default behavior of the <xref href=\"System.Security.Claims.ClaimsPrincipal.Identity\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
-    content: public static Func<Collections.Generic.IEnumerable<ClaimsIdentity>, ClaimsIdentity> PrimaryIdentitySelector { get; set; }
-    content.vb: Public Shared Property PrimaryIdentitySelector As Func(Of Collections.Generic.IEnumerable(Of ClaimsIdentity), ClaimsIdentity)
+    content: public static Func<IEnumerable<ClaimsIdentity>, ClaimsIdentity> PrimaryIdentitySelector { get; set; }
+    content.vb: Public Shared Property PrimaryIdentitySelector As Func(Of IEnumerable(Of ClaimsIdentity), ClaimsIdentity)
     parameters: []
     return:
-      type: System.Func{System.Collections.Generic.IEnumerable{System.Security.Claims.ClaimsIdentity},System.Security.Claims.ClaimsIdentity}
-      description: "\n<p>The delegate. The default is <strong>null</strong>.</p>\n"
+      type: Func{IEnumerable{System.Security.Claims.ClaimsIdentity},System.Security.Claims.ClaimsIdentity}
   seealso:
   - type: System.Security.Claims.ClaimsPrincipal.Identity
     commentId: P:System.Security.Claims.ClaimsPrincipal.Identity
@@ -608,7 +601,7 @@ items:
     parameters:
     - id: identity
       type: System.Security.Claims.ClaimsIdentity
-      description: "\n<p>The claims identity to add.</p>\n"
+      description: the <xref href="System.Security.Claims.ClaimsIdentity" data-throw-if-not-resolved="false"></xref>add.
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -649,7 +642,6 @@ items:
     content.vb: Public Overridable Function Clone As ClaimsPrincipal
     return:
       type: System.Security.Claims.ClaimsPrincipal
-      description: "\n<p>A new copy of the <xref href=\"System.Security.Claims.ClaimsPrincipal\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -763,15 +755,15 @@ items:
   summary: "\n<p>Retrieves all or the claims that have the specified claim type.</p>\n"
   remarks: "\n<p>Returns claims from all identities associated with the claims principal. The comparison is made using Ordinal case in-sensitive on <em>type</em>.</p>\n"
   syntax:
-    content: public virtual Collections.Generic.IEnumerable<Claim> FindAll(string type)
-    content.vb: Public Overridable Function FindAll(type As String) As Collections.Generic.IEnumerable(Of Claim)
+    content: public virtual IEnumerable<Claim> FindAll(string type)
+    content.vb: Public Overridable Function FindAll(type As String) As IEnumerable(Of Claim)
     parameters:
     - id: type
       type: System.String
-      description: "\n<p>The claim type against which to match claims.</p>\n"
+      description: The type of the claim to match.
     return:
-      type: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
-      description: "\n<p>The matching claims.</p>\n"
+      type: IEnumerable{System.Security.Claims.Claim}
+      description: A <see cref="!:IEnumerable<Claim>"></see> of matched claims.
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -854,10 +846,10 @@ items:
     parameters:
     - id: type
       type: System.String
-      description: "\n<p>The claim type to match.</p>\n"
+      description: The type of the claim to match.
     return:
       type: System.Security.Claims.Claim
-      description: "\n<p>The first matching claim or <strong>null</strong> if no match is found.</p>\n"
+      description: A <xref href="System.Security.Claims.Claim" data-throw-if-not-resolved="false"></xref>, null if nothing matches.
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -941,13 +933,13 @@ items:
     parameters:
     - id: type
       type: System.String
-      description: "\n<p>The type of the claim to match.</p>\n"
+      description: the type of the claim to match.
     - id: value
       type: System.String
-      description: "\n<p>The value of the claim to match.</p>\n"
+      description: the value of the claim to match.
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if a matching claim exists; otherwise, <strong>false</strong>.</p>\n"
+      description: true if a claim is matched, false otherwise.
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -987,10 +979,10 @@ items:
     parameters:
     - id: role
       type: System.String
-      description: "\n<p>The role for which to check.</p>\n"
+      description: The role to check for.
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if claims principal is in the specified role; otherwise, <strong>false</strong>.</p>\n"
+      description: "'True' if a claim is found. Otherwise 'False'."
   modifiers.csharp:
   - public
   - virtual

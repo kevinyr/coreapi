@@ -24,8 +24,6 @@ items:
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
-  summary: "\n<p>Indicates whether a listener should trace based on the event type.</p>\n"
-  remarks: "\n<p>One of several different types of filters can be assigned to a trace listener through the <xref href=\"System.Diagnostics.TraceListener.Filter\" data-throw-if-not-resolved=\"false\"></xref> property to provide a layer of screening beyond that provided by the <xref href=\"System.Diagnostics.TraceSwitch\" data-throw-if-not-resolved=\"false\"></xref>. The filter can be used to control the event types that are produced by the listener.</p>\n<p>This class filters events based on the value of the <xref href=\"System.Diagnostics.EventTypeFilter.EventType\" data-throw-if-not-resolved=\"false\"></xref> property.  This property can be set by code or in a configuration file to specify the event type of messages that should be traced by the listener. The value of the property indicates the threshold at which to begin tracing. Event types at and above the specified level are traced. The <xref href=\"System.Diagnostics.TraceFilter.ShouldTrace(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[],System.Object,System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> method, called by listeners  to determine if an event should be traced, uses the value of the <xref href=\"System.Diagnostics.EventTypeFilter.EventType\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>To set the event type at which to begin tracing, edit the configuration file that corresponds to the name of your application. Within this file, you can add a listener, set its filter type, and specify the event type to trace. The configuration file should be formatted as follows. </p>\n<pre><code><configuration>\n<system.diagnostics>\n<sharedListeners>\n<add name=\"Console\" type=\"System.Diagnostics.ConsoleTraceListener\">\n<filter type=\"System.Diagnostics.EventTypeFilter\" \n  initializeData=\"Warning\" />\n</add>\n</sharedListeners>\n</system.diagnostics>\n</configuration></code></pre>\n<p>For more information about how to initialize data for an <xref href=\"System.Diagnostics.EventTypeFilter\" data-throw-if-not-resolved=\"false\"></xref>, see <filter> Element for <add> for <sharedListeners>.</p>\n"
   syntax:
     content: 'public class EventTypeFilter : TraceFilter'
     content.vb: >-
@@ -61,15 +59,12 @@ items:
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Diagnostics.EventTypeFilter\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
-  remarks: "\n<p>The value of the <em>level</em> parameter is used to initialize the <xref href=\"System.Diagnostics.EventTypeFilter.EventType\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: public EventTypeFilter(SourceLevels level)
     content.vb: Public Sub New(level As SourceLevels)
     parameters:
     - id: level
       type: System.Diagnostics.SourceLevels
-      description: "\n<p>A bitwise combination of the <xref href=\"System.Diagnostics.SourceLevels\" data-throw-if-not-resolved=\"false\"></xref> values that specifies the event type of the messages to trace. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -95,15 +90,12 @@ items:
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
-  summary: "\n<p>Gets or sets the event type of the messages to trace.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Diagnostics.EventTypeFilter.EventType\" data-throw-if-not-resolved=\"false\"></xref> property indicates the level at which to trace.</p>\n"
   syntax:
     content: public SourceLevels EventType { get; set; }
     content.vb: Public Property EventType As SourceLevels
     parameters: []
     return:
       type: System.Diagnostics.SourceLevels
-      description: "\n<p>A bitwise combination of the <xref href=\"System.Diagnostics.SourceLevels\" data-throw-if-not-resolved=\"false\"></xref> values.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -131,39 +123,28 @@ items:
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
-  summary: "\n<p>Determines whether the trace listener should trace the event. </p>\n"
-  remarks: "\n<p>If the value of the <em>eventType</em> parameter is greater than or equal to the value of the <xref href=\"System.Diagnostics.EventTypeFilter.EventType\" data-throw-if-not-resolved=\"false\"></xref> property, the method returns <strong>true</strong>.</p>\n"
   syntax:
     content: public override bool ShouldTrace(TraceEventCache cache, string source, TraceEventType eventType, int id, string formatOrMessage, object[] args, object data1, object[] data)
     content.vb: Public Overrides Function ShouldTrace(cache As TraceEventCache, source As String, eventType As TraceEventType, id As Integer, formatOrMessage As String, args As Object(), data1 As Object, data As Object()) As Boolean
     parameters:
     - id: cache
       type: System.Diagnostics.TraceEventCache
-      description: "\n<p>A <xref href=\"System.Diagnostics.TraceEventCache\" data-throw-if-not-resolved=\"false\"></xref> that represents the information cache for the trace event.</p>\n"
     - id: source
       type: System.String
-      description: "\n<p>The name of the source.</p>\n"
     - id: eventType
       type: System.Diagnostics.TraceEventType
-      description: "\n<p>One of the <xref href=\"System.Diagnostics.TraceEventType\" data-throw-if-not-resolved=\"false\"></xref> values. </p>\n"
     - id: id
       type: System.Int32
-      description: "\n<p>A trace identifier number.</p>\n"
     - id: formatOrMessage
       type: System.String
-      description: "\n<p>The format to use for writing an array of arguments, or a message to write.</p>\n"
     - id: args
       type: System.Object[]
-      description: "\n<p>An array of argument objects.</p>\n"
     - id: data1
       type: System.Object
-      description: "\n<p>A trace data object.</p>\n"
     - id: data
       type: System.Object[]
-      description: "\n<p>An array of trace data objects.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong>if the trace should be produced; otherwise, <strong>false</strong>.</p>\n"
   overridden: System.Diagnostics.TraceFilter.ShouldTrace(System.Diagnostics.TraceEventCache,System.String,System.Diagnostics.TraceEventType,System.Int32,System.String,System.Object[],System.Object,System.Object[])
   modifiers.csharp:
   - public

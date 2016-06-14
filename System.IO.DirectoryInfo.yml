@@ -55,10 +55,11 @@ items:
   example:
   - "\n<p>The following example demonstrates some of the main members of the <strong>DirectoryInfo</strong> class.</p>DirInfo Class Example#1<p>The following example demonstrates how to copy a directory and its contents.</p>IO.DirectoryInfo-CopyDir#1"
   syntax:
-    content: 'public sealed class DirectoryInfo : FileSystemInfo'
+    content: 'public sealed class DirectoryInfo : FileSystemInfo, IFileSystemObject'
     content.vb: >-
       Public NotInheritable Class DirectoryInfo
           Inherits FileSystemInfo
+          Implements IFileSystemObject
   seealso:
   - type: System.IO.File
     commentId: T:System.IO.File
@@ -180,7 +181,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the directory exists; otherwise, <strong>false</strong>.</p>\n"
   overridden: System.IO.FileSystemInfo.Exists
   modifiers.csharp:
   - public
@@ -216,12 +216,11 @@ items:
   example:
   - "\n<p>The following example displays the name of the current <strong>DirectoryInfo</strong> instance only.</p>Classic DirectoryInfo.Name Example#1"
   syntax:
-    content: public override string Name { get; }
+    content: public override String Name { get; }
     content.vb: Public Overrides ReadOnly Property Name As String
     parameters: []
     return:
-      type: System.String
-      description: "\n<p>The directory name.</p>\n"
+      type: String
   overridden: System.IO.FileSystemInfo.Name
   seealso:
   - type: System.IO.FileSystemInfo.FullName
@@ -265,7 +264,6 @@ items:
     parameters: []
     return:
       type: System.IO.DirectoryInfo
-      description: "\n<p>The parent directory, or <strong>null</strong> if the path is null or if the file path denotes a root (such as \"\\\", \"C:\", or * \"\\\\server\\share\").</p>\n"
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
@@ -309,7 +307,6 @@ items:
     parameters: []
     return:
       type: System.IO.DirectoryInfo
-      description: "\n<p>An object that represents the root of the directory.</p>\n"
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
@@ -508,7 +505,6 @@ items:
     parameters:
     - id: recursive
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> to delete this directory, its subdirectories, and all files; otherwise, <strong>false</strong>. </p>\n"
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -555,11 +551,10 @@ items:
   example:
   - "\n<p>The following example enumerates the subdirectories under the C:\\Program Files directory and uses a LINQ query to return the names of all directories that were created before 2009 by checking the value of the <xref href=\"System.IO.FileSystemInfo.CreationTimeUtc\" data-throw-if-not-resolved=\"false\"></xref> property. </p>\n<p>If you only need the names of the subdirectories, use the static <xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> class for better performance. For an example, see the <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.IO.DirectoryInfo.EnumDirs#1"
   syntax:
-    content: public Collections.Generic.IEnumerable<DirectoryInfo> EnumerateDirectories()
-    content.vb: Public Function EnumerateDirectories As Collections.Generic.IEnumerable(Of DirectoryInfo)
+    content: public IEnumerable<DirectoryInfo> EnumerateDirectories()
+    content.vb: Public Function EnumerateDirectories As IEnumerable(Of DirectoryInfo)
     return:
-      type: System.Collections.Generic.IEnumerable{System.IO.DirectoryInfo}
-      description: "\n<p>An enumerable collection of directories in the current directory.</p>\n"
+      type: IEnumerable{System.IO.DirectoryInfo}
   exceptions:
   - type: System.IO.DirectoryNotFoundException
     commentId: T:System.IO.DirectoryNotFoundException
@@ -702,11 +697,10 @@ items:
   - "\n<p>The following example enumerates the files under a specified directory and uses a LINQ query to return the names of all files that were created before 2009 by checking the value of the <xref href=\"System.IO.FileSystemInfo.CreationTimeUtc\" data-throw-if-not-resolved=\"false\"></xref> property. </p>\n<p>If you only need the names of the files, use the static <xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> class for better performance. For an example, see the <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.IO.DirectoryInfo.EnumFiles#1"
   - "\n<p>The following example shows how to enumerate files in a directory by using different search options. The example assumes a directory that has files named log1.txt, log2.txt, test1.txt, test2.txt, test3.txt, and a subdirectory that has a file named SubFile.txt.</p>System.IO.DirectoryInfo.EnumFiles#2"
   syntax:
-    content: public Collections.Generic.IEnumerable<FileInfo> EnumerateFiles()
-    content.vb: Public Function EnumerateFiles As Collections.Generic.IEnumerable(Of FileInfo)
+    content: public IEnumerable<FileInfo> EnumerateFiles()
+    content.vb: Public Function EnumerateFiles As IEnumerable(Of FileInfo)
     return:
-      type: System.Collections.Generic.IEnumerable{System.IO.FileInfo}
-      description: "\n<p>An enumerable collection of the files in the current directory.</p>\n"
+      type: IEnumerable{System.IO.FileInfo}
   exceptions:
   - type: System.IO.DirectoryNotFoundException
     commentId: T:System.IO.DirectoryNotFoundException
@@ -848,11 +842,10 @@ items:
   example:
   - 
   syntax:
-    content: public Collections.Generic.IEnumerable<FileSystemInfo> EnumerateFileSystemInfos()
-    content.vb: Public Function EnumerateFileSystemInfos As Collections.Generic.IEnumerable(Of FileSystemInfo)
+    content: public IEnumerable<FileSystemInfo> EnumerateFileSystemInfos()
+    content.vb: Public Function EnumerateFileSystemInfos As IEnumerable(Of FileSystemInfo)
     return:
-      type: System.Collections.Generic.IEnumerable{System.IO.FileSystemInfo}
-      description: "\n<p>An enumerable collection of file system information in the current directory. </p>\n"
+      type: IEnumerable{System.IO.FileSystemInfo}
   exceptions:
   - type: System.IO.DirectoryNotFoundException
     commentId: T:System.IO.DirectoryNotFoundException
@@ -1007,7 +1000,6 @@ items:
     content.vb: Public Function GetDirectories As DirectoryInfo()
     return:
       type: System.IO.DirectoryInfo[]
-      description: "\n<p>An array of <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> objects.</p>\n"
   exceptions:
   - type: System.IO.DirectoryNotFoundException
     commentId: T:System.IO.DirectoryNotFoundException
@@ -1171,7 +1163,6 @@ items:
     content.vb: Public Function GetFiles As FileInfo()
     return:
       type: System.IO.FileInfo[]
-      description: "\n<p>An array of type <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.IO.DirectoryNotFoundException
     commentId: T:System.IO.DirectoryNotFoundException
@@ -1329,7 +1320,6 @@ items:
     content.vb: Public Function GetFileSystemInfos As FileSystemInfo()
     return:
       type: System.IO.FileSystemInfo[]
-      description: "\n<p>An array of strongly typed <xref href=\"System.IO.FileSystemInfo\" data-throw-if-not-resolved=\"false\"></xref> entries.</p>\n"
   exceptions:
   - type: System.IO.DirectoryNotFoundException
     commentId: T:System.IO.DirectoryNotFoundException
@@ -1542,11 +1532,10 @@ items:
   namespace: System.IO
   summary: "\n<p>Returns the original path that was passed by the user.</p>\n"
   syntax:
-    content: public override string ToString()
+    content: public override String ToString()
     content.vb: Public Overrides Function ToString As String
     return:
-      type: System.String
-      description: "\n<p>Returns the original path that was passed by the user.</p>\n"
+      type: String
   modifiers.csharp:
   - public
   - override

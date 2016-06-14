@@ -32,16 +32,14 @@ items:
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Represents a read-only, generic collection of key/value pairs.</p>\n"
   syntax:
-    content: 'public class ReadOnlyDictionary<TKey, TValue> : Generic.ICollection<Generic.KeyValuePair<TKey, TValue>>, Generic.IDictionary<TKey, TValue>, Generic.IEnumerable<Generic.KeyValuePair<TKey, TValue>>, Generic.IReadOnlyCollection<Generic.KeyValuePair<TKey, TValue>>, Generic.IReadOnlyDictionary<TKey, TValue>, ICollection, IDictionary, IEnumerable'
+    content: 'public class ReadOnlyDictionary<TKey, TValue> : IDictionary<TKey, TValue>, IDictionary, IReadOnlyDictionary<TKey, TValue>'
     content.vb: >-
       Public Class ReadOnlyDictionary(Of TKey, TValue)
-          Inherits Generic.ICollection(Of Generic.KeyValuePair(Of TKey, TValue))
-          Implements Generic.IDictionary(Of TKey, TValue), Generic.IEnumerable(Of Generic.KeyValuePair(Of TKey, TValue)), Generic.IReadOnlyCollection(Of Generic.KeyValuePair(Of TKey, TValue)), Generic.IReadOnlyDictionary(Of TKey, TValue), ICollection, IDictionary, IEnumerable
+          Inherits IDictionary(Of TKey, TValue)
+          Implements IDictionary, IReadOnlyDictionary(Of TKey, TValue)
     typeParameters:
     - id: TKey
-      description: "\n<p>The type of keys in the dictionary.</p>\n"
     - id: TValue
-      description: "\n<p>The type of values in the dictionary.</p>\n"
   inheritance:
   - System.Object
   implements:
@@ -123,7 +121,6 @@ items:
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>The number of items in the dictionary.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -154,12 +151,11 @@ items:
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Gets the dictionary that is wrapped by this <xref href=\"System.Collections.ObjectModel.ReadOnlyDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   syntax:
-    content: protected Generic.IDictionary<TKey, TValue> Dictionary { get; }
-    content.vb: Protected ReadOnly Property Dictionary As Generic.IDictionary(Of TKey, TValue)
+    content: protected IDictionary<TKey, TValue> Dictionary { get; }
+    content.vb: Protected ReadOnly Property Dictionary As IDictionary(Of TKey, TValue)
     parameters: []
     return:
-      type: System.Collections.Generic.IDictionary{{TKey},{TValue}}
-      description: "\n<p>The dictionary that is wrapped by this object.</p>\n"
+      type: IDictionary{{TKey},{TValue}}
   modifiers.csharp:
   - protected
   - get
@@ -195,10 +191,8 @@ items:
     parameters:
     - id: key
       type: '{TKey}'
-      description: "\n<p>The key of the element to get.</p>\n"
     return:
       type: '{TValue}'
-      description: "\n<p>The element that has the specified key.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -242,7 +236,6 @@ items:
     parameters: []
     return:
       type: System.Collections.ObjectModel.ReadOnlyDictionary`2.KeyCollection
-      description: "\n<p>A key collection that contains the keys of the dictionary.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -278,7 +271,6 @@ items:
     parameters: []
     return:
       type: System.Collections.ObjectModel.ReadOnlyDictionary`2.ValueCollection
-      description: "\n<p>A collection that contains the values in the object that implements <xref href=\"System.Collections.ObjectModel.ReadOnlyDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -314,10 +306,8 @@ items:
     parameters:
     - id: key
       type: '{TKey}'
-      description: "\n<p>The key to locate in the dictionary.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the dictionary contains an element that has the specified key; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -346,11 +336,10 @@ items:
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Returns an enumerator that iterates through the <xref href=\"System.Collections.ObjectModel.ReadOnlyDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
-    content: public Generic.IEnumerator<Generic.KeyValuePair<TKey, TValue>> GetEnumerator()
-    content.vb: Public Function GetEnumerator As Generic.IEnumerator(Of Generic.KeyValuePair(Of TKey, TValue))
+    content: public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
+    content.vb: Public Function GetEnumerator As IEnumerator(Of KeyValuePair(Of TKey, TValue))
     return:
-      type: System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{{TKey},{TValue}}}
-      description: "\n<p>An enumerator that can be used to iterate through the collection.</p>\n"
+      type: IEnumerator{KeyValuePair{{TKey},{TValue}}}
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -384,13 +373,10 @@ items:
     parameters:
     - id: key
       type: '{TKey}'
-      description: "\n<p>The key whose value will be retrieved.</p>\n"
     - id: value
       type: '{TValue}'
-      description: "\n<p>When this method returns, the value associated with the specified key, if the key is found; otherwise, the default value for the type of the <em>value</em> parameter. This parameter is passed uninitialized.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the object that implements <xref href=\"System.Collections.ObjectModel.ReadOnlyDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> contains an element with the specified key; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:

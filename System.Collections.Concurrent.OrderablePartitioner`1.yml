@@ -40,7 +40,7 @@ items:
           Inherits Partitioner(Of TSource)
     typeParameters:
     - id: TSource
-      description: "\n<p>Type of the elements in the collection.</p>\n"
+      description: Type of the elements in the collection.
   inheritance:
   - System.Object
   - System.Collections.Concurrent.Partitioner{{TSource}}
@@ -87,13 +87,13 @@ items:
     parameters:
     - id: keysOrderedInEachPartition
       type: System.Boolean
-      description: "\n<p>Indicates whether the elements in each partition are yielded in the order of increasing keys.</p>\n"
+      description: "\nIndicates whether the elements in each partition are yielded in the order of\nincreasing keys.\n"
     - id: keysOrderedAcrossPartitions
       type: System.Boolean
-      description: "\n<p>Indicates whether elements in an earlier partition always come before elements in a later partition. If true, each element in partition 0 has a smaller order key than any element in partition 1, each element in partition 1 has a smaller order key than any element in partition 2, and so on.</p>\n"
+      description: "\nIndicates whether elements in an earlier partition always come before\nelements in a later partition. If true, each element in partition 0 has a smaller order key than\nany element in partition 1, each element in partition 1 has a smaller order key than any element\nin partition 2, and so on.\n"
     - id: keysNormalized
       type: System.Boolean
-      description: "\n<p>Indicates whether keys are normalized. If true, all order keys are distinct integers in the range [0 .. numberOfElements-1]. If false, order keys must still be distinct, but only their relative order is considered, not their absolute values.</p>\n"
+      description: "\nIndicates whether keys are normalized. If true, all order keys are distinct\nintegers in the range [0 .. numberOfElements-1]. If false, order keys must still be distinct, but\nonly their relative order is considered, not their absolute values.\n"
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -130,7 +130,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>true if the keys are normalized; otherwise false.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -169,7 +168,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>true if the elements in an earlier partition always come before elements in a later partition; otherwise false.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -208,7 +206,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>true if the elements in each partition are yielded in the order of increasing keys; otherwise false.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -242,11 +239,11 @@ items:
   example:
   - 
   syntax:
-    content: public override Generic.IEnumerable<TSource> GetDynamicPartitions()
-    content.vb: Public Overrides Function GetDynamicPartitions As Generic.IEnumerable(Of TSource)
+    content: public override IEnumerable<TSource> GetDynamicPartitions()
+    content.vb: Public Overrides Function GetDynamicPartitions As IEnumerable(Of TSource)
     return:
-      type: System.Collections.Generic.IEnumerable{{TSource}}
-      description: "\n<p>An object that can create partitions over the underlying data source.</p>\n"
+      type: IEnumerable{{TSource}}
+      description: An object that can create partitions over the underlying data source.
   overridden: System.Collections.Concurrent.Partitioner{{TSource}}.GetDynamicPartitions
   exceptions:
   - type: System.NotSupportedException
@@ -285,11 +282,11 @@ items:
   example:
   - 
   syntax:
-    content: public virtual Generic.IEnumerable<Generic.KeyValuePair<long, TSource>> GetOrderableDynamicPartitions()
-    content.vb: Public Overridable Function GetOrderableDynamicPartitions As Generic.IEnumerable(Of Generic.KeyValuePair(Of Long, TSource))
+    content: public virtual IEnumerable<KeyValuePair<long, TSource>> GetOrderableDynamicPartitions()
+    content.vb: Public Overridable Function GetOrderableDynamicPartitions As IEnumerable(Of KeyValuePair(Of Long, TSource))
     return:
-      type: System.Collections.Generic.IEnumerable{System.Collections.Generic.KeyValuePair{System.Int64,{TSource}}}
-      description: "\n<p>An object that can create partitions over the underlying data source.</p>\n"
+      type: IEnumerable{KeyValuePair{System.Int64,{TSource}}}
+      description: An object that can create partitions over the underlying data source.
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
@@ -327,15 +324,15 @@ items:
   example:
   - 
   syntax:
-    content: public abstract Generic.IList<Generic.IEnumerator<Generic.KeyValuePair<long, TSource>>> GetOrderablePartitions(int partitionCount)
-    content.vb: Public MustOverride Function GetOrderablePartitions(partitionCount As Integer) As Generic.IList(Of Generic.IEnumerator(Of Generic.KeyValuePair(Of Long, TSource)))
+    content: public abstract IList<IEnumerator<KeyValuePair<long, TSource>>> GetOrderablePartitions(int partitionCount)
+    content.vb: Public MustOverride Function GetOrderablePartitions(partitionCount As Integer) As IList(Of IEnumerator(Of KeyValuePair(Of Long, TSource)))
     parameters:
     - id: partitionCount
       type: System.Int32
-      description: "\n<p>The number of partitions to create.</p>\n"
+      description: The number of partitions to create.
     return:
-      type: System.Collections.Generic.IList{System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{System.Int64,{TSource}}}}
-      description: "\n<p>A list containing <em>partitionCount</em> enumerators.</p>\n"
+      type: IList{IEnumerator{KeyValuePair{System.Int64,{TSource}}}}
+      description: A list containing <em>partitionCount</em> enumerators.
   modifiers.csharp:
   - public
   - abstract
@@ -369,15 +366,15 @@ items:
   example:
   - 
   syntax:
-    content: public override Generic.IList<Generic.IEnumerator<TSource>> GetPartitions(int partitionCount)
-    content.vb: Public Overrides Function GetPartitions(partitionCount As Integer) As Generic.IList(Of Generic.IEnumerator(Of TSource))
+    content: public override IList<IEnumerator<TSource>> GetPartitions(int partitionCount)
+    content.vb: Public Overrides Function GetPartitions(partitionCount As Integer) As IList(Of IEnumerator(Of TSource))
     parameters:
     - id: partitionCount
       type: System.Int32
-      description: "\n<p>The number of partitions to create.</p>\n"
+      description: The number of partitions to create.
     return:
-      type: System.Collections.Generic.IList{System.Collections.Generic.IEnumerator{{TSource}}}
-      description: "\n<p>A list containing <em>partitionCount</em> enumerators.</p>\n"
+      type: IList{IEnumerator{{TSource}}}
+      description: A list containing <em>partitionCount</em> enumerators.
   overridden: System.Collections.Concurrent.Partitioner{{TSource}}.GetPartitions(System.Int32)
   modifiers.csharp:
   - public

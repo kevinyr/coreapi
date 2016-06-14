@@ -32,8 +32,6 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>The WebSocket class allows applications to send and receive data after the WebSocket upgrade has completed.</p>\n"
-  remarks: "\n<p>Some of the classes in the <xref href=\"System.Net.WebSockets\" data-throw-if-not-resolved=\"false\"></xref> namespace are supported on Windows 7, Windows Vista SP2, and Windows Server 2008. However, the only public implementations of client and server WebSockets are supported on Windows 8 and Windows Server 2012. The classes and class elements in the <xref href=\"System.Net.WebSockets\" data-throw-if-not-resolved=\"false\"></xref> namespace that are supported on Windows 7, Windows Vista SP2, and Windows Server 2008 are abstract classes. This allows an application developer to inherit and extend these abstract classes with an actual implementation of client WebSockets.\n</p>\n"
   syntax:
     content: 'public abstract class WebSocket : IDisposable'
     content.vb: >-
@@ -70,7 +68,6 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>Creates an instance of the <xref href=\"System.Net.WebSockets.WebSocket\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: protected WebSocket()
     content.vb: Protected Sub New
@@ -99,15 +96,12 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>Indicates the reason why the remote endpoint initiated the close handshake.</p>\n"
-  remarks: "\n<p>If the close handshake has not been initiated yet, WebSocketCloseStatus.None is returned.</p>\n"
   syntax:
-    content: public abstract Nullable<WebSocketCloseStatus> CloseStatus { get; }
-    content.vb: Public MustOverride ReadOnly Property CloseStatus As Nullable(Of WebSocketCloseStatus)
+    content: public abstract WebSocketCloseStatus? CloseStatus { get; }
+    content.vb: Public MustOverride ReadOnly Property CloseStatus As WebSocketCloseStatus?
     parameters: []
     return:
       type: System.Nullable{System.Net.WebSockets.WebSocketCloseStatus}
-      description: "\n<p>Returns <xref href=\"System.Net.WebSockets.WebSocketCloseStatus\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -137,14 +131,12 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>Allows the remote endpoint to describe the reason why the connection was closed.</p>\n"
   syntax:
     content: public abstract string CloseStatusDescription { get; }
     content.vb: Public MustOverride ReadOnly Property CloseStatusDescription As String
     parameters: []
     return:
       type: System.String
-      description: "\n<p>Returns <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -174,14 +166,12 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>Returns the current state of the WebSocket connection.</p>\n"
   syntax:
     content: public abstract WebSocketState State { get; }
     content.vb: Public MustOverride ReadOnly Property State As WebSocketState
     parameters: []
     return:
       type: System.Net.WebSockets.WebSocketState
-      description: "\n<p>Returns <xref href=\"System.Net.WebSockets.WebSocketState\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -211,14 +201,12 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>The subprotocol that was negotiated during the opening handshake.</p>\n"
   syntax:
     content: public abstract string SubProtocol { get; }
     content.vb: Public MustOverride ReadOnly Property SubProtocol As String
     parameters: []
     return:
       type: System.String
-      description: "\n<p>Returns <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -248,7 +236,6 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>Aborts the WebSocket connection and cancels any pending IO operations.</p>\n"
   syntax:
     content: public abstract void Abort()
     content.vb: Public MustOverride Sub Abort
@@ -279,24 +266,18 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>Closes the WebSocket connection as an asynchronous operation using the close handshake defined in the <see href=\"http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-06\">WebSocket protocol specification</see> section 7.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>   object will complete after the WebSocket has been closed.</p>\n<p>This method closes the WebSocket connection using the close handshake defined in the <see href=\"http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-06\">WebSocket protocol specification</see> section 7.</p>\n"
   syntax:
     content: public abstract Threading.Tasks.Task CloseAsync(WebSocketCloseStatus closeStatus, string statusDescription, Threading.CancellationToken cancellationToken)
     content.vb: Public MustOverride Function CloseAsync(closeStatus As WebSocketCloseStatus, statusDescription As String, cancellationToken As Threading.CancellationToken) As Threading.Tasks.Task
     parameters:
     - id: closeStatus
       type: System.Net.WebSockets.WebSocketCloseStatus
-      description: "\n<p>Indicates the reason for closing the WebSocket connection.</p>\n"
     - id: statusDescription
       type: System.String
-      description: "\n<p>Specifies a human readable explanation as to why the connection is closed.</p>\n"
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n<p>The token that can be used to propagate notification that operations should be canceled.</p>\n"
     return:
       type: System.Threading.Tasks.Task
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation. </p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -324,24 +305,18 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>Initiates or completes the close handshake defined in the <see href=\"http://tools.ietf.org/html/draft-ietf-hybi-thewebsocketprotocol-06\">WebSocket protocol specification section 7</see>.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>   object will complete after the output on the WebSocket has been closed.</p>\n"
   syntax:
     content: public abstract Threading.Tasks.Task CloseOutputAsync(WebSocketCloseStatus closeStatus, string statusDescription, Threading.CancellationToken cancellationToken)
     content.vb: Public MustOverride Function CloseOutputAsync(closeStatus As WebSocketCloseStatus, statusDescription As String, cancellationToken As Threading.CancellationToken) As Threading.Tasks.Task
     parameters:
     - id: closeStatus
       type: System.Net.WebSockets.WebSocketCloseStatus
-      description: "\n<p>Indicates the reason for closing the WebSocket connection.</p>\n"
     - id: statusDescription
       type: System.String
-      description: "\n<p>Allows applications to specify a human readable explanation as to why the connection is closed.</p>\n"
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n<p>The token that can be used to propagate notification that operations should be canceled.</p>\n"
     return:
       type: System.Threading.Tasks.Task
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation. </p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -369,7 +344,6 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>Used to clean up unmanaged resources for ASP.NET and self-hosted implementations.</p>\n"
   syntax:
     content: public abstract void Dispose()
     content.vb: Public MustOverride Sub Dispose
@@ -400,21 +374,16 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>Receives data from the WebSocket connection asynchronously.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref>   object will complete after the data has been received on the  WebSocket.</p>\n"
   syntax:
     content: public abstract Threading.Tasks.Task<WebSocketReceiveResult> ReceiveAsync(ArraySegment<byte> buffer, Threading.CancellationToken cancellationToken)
     content.vb: Public MustOverride Function ReceiveAsync(buffer As ArraySegment(Of Byte), cancellationToken As Threading.CancellationToken) As Threading.Tasks.Task(Of WebSocketReceiveResult)
     parameters:
     - id: buffer
       type: System.ArraySegment{System.Byte}
-      description: "\n<p>References the application buffer that is the storage location for the received data.</p>\n"
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n<p>Propagate the notification that operations should be canceled.</p>\n"
     return:
       type: System.Threading.Tasks.Task{System.Net.WebSockets.WebSocketReceiveResult}
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation. The <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property on the task object returns a <xref href=\"System.Byte\" data-throw-if-not-resolved=\"false\"></xref> array containing the received data.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -444,27 +413,20 @@ items:
   assemblies:
   - System.Net.WebSockets
   namespace: System.Net.WebSockets
-  summary: "\n<p>Sends data over the WebSocket connection asynchronously.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>   object will complete after the data has been sent on the WebSocket.</p>\n"
   syntax:
     content: public abstract Threading.Tasks.Task SendAsync(ArraySegment<byte> buffer, WebSocketMessageType messageType, bool endOfMessage, Threading.CancellationToken cancellationToken)
     content.vb: Public MustOverride Function SendAsync(buffer As ArraySegment(Of Byte), messageType As WebSocketMessageType, endOfMessage As Boolean, cancellationToken As Threading.CancellationToken) As Threading.Tasks.Task
     parameters:
     - id: buffer
       type: System.ArraySegment{System.Byte}
-      description: "\n<p>The buffer to be sent over the connection.</p>\n"
     - id: messageType
       type: System.Net.WebSockets.WebSocketMessageType
-      description: "\n<p>Indicates whether the application is sending a binary or text message.</p>\n"
     - id: endOfMessage
       type: System.Boolean
-      description: "\n<p>Indicates whether the data in “buffer” is the last part of a message.</p>\n"
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n<p>The token that propagates the notification that operations should be canceled.</p>\n"
     return:
       type: System.Threading.Tasks.Task
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation. </p>\n"
   modifiers.csharp:
   - public
   - abstract

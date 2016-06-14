@@ -51,10 +51,10 @@ items:
   example:
   - "\n<p>The following example shows the use of members of <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> class.  For an example showing how to obtain a Windows account token through a call to the unmanaged Win32 LogonUser function, and use that token to impersonate another user, see the <xref href=\"System.Security.Principal.WindowsImpersonationContext\" data-throw-if-not-resolved=\"false\"></xref> class.   </p>System.Security.Principal.WindowsIdentity_AllMembers#1"
   syntax:
-    content: 'public class WindowsIdentity : Claims.ClaimsIdentity, IDisposable'
+    content: 'public class WindowsIdentity : ClaimsIdentity, IDisposable'
     content.vb: >-
       Public Class WindowsIdentity
-          Inherits Claims.ClaimsIdentity
+          Inherits ClaimsIdentity
           Implements IDisposable
   inheritance:
   - System.Object
@@ -225,7 +225,6 @@ items:
     parameters:
     - id: sUserPrincipalName
       type: System.String
-      description: "\n<p>The UPN for the user on whose behalf the code is running. </p>\n"
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -273,7 +272,6 @@ items:
     parameters: []
     return:
       type: Microsoft.Win32.SafeHandles.SafeAccessTokenHandle
-      description: "\n<p>Returns a <xref href=\"Microsoft.Win32.SafeHandles.SafeAccessTokenHandle\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -311,7 +309,6 @@ items:
     parameters: []
     return:
       type: System.String
-      description: "\n<p>The type of authentication used to identify the user.</p>\n"
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -355,12 +352,11 @@ items:
   namespace: System.Security.Principal
   summary: "\n<p>Gets all claims for the user represented by this Windows identity.</p>\n"
   syntax:
-    content: public override Collections.Generic.IEnumerable<Claims.Claim> Claims { get; }
-    content.vb: Public Overrides ReadOnly Property Claims As Collections.Generic.IEnumerable(Of Claims.Claim)
+    content: public override IEnumerable<Claim> Claims { get; }
+    content.vb: Public Overrides ReadOnly Property Claims As IEnumerable(Of Claim)
     parameters: []
     return:
-      type: System.Collections.Generic.IEnumerable{System.Security.Claims.Claim}
-      description: "\n<p>A collection of claims for this <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+      type: IEnumerable{Claim}
   modifiers.csharp:
   - public
   - override
@@ -399,7 +395,6 @@ items:
     parameters: []
     return:
       type: System.Security.Principal.IdentityReferenceCollection
-      description: "\n<p>An object representing the groups the current Windows user belongs to.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -436,8 +431,7 @@ items:
     content.vb: Public ReadOnly Property ImpersonationLevel As TokenImpersonationLevel
     parameters: []
     return:
-      type: System.Security.Principal.TokenImpersonationLevel
-      description: "\n<p>One of the enumeration values that specifies the impersonation level. </p>\n"
+      type: TokenImpersonationLevel
   modifiers.csharp:
   - public
   - get
@@ -475,7 +469,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the user account is an anonymous account; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -512,7 +505,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the user was authenticated; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -551,7 +543,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the user account is a <xref href=\"System.Security.Principal.WindowsAccountType.Guest\" data-throw-if-not-resolved=\"false\"></xref> account; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -590,7 +581,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the user account is a <xref href=\"System.Security.Principal.WindowsAccountType.System\" data-throw-if-not-resolved=\"false\"></xref> account; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -630,7 +620,6 @@ items:
     parameters: []
     return:
       type: System.String
-      description: "\n<p>The Windows logon name of the user on whose behalf the code is being run.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -670,7 +659,6 @@ items:
     parameters: []
     return:
       type: System.Security.Principal.SecurityIdentifier
-      description: "\n<p>An object for the token owner.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -706,7 +694,6 @@ items:
     parameters: []
     return:
       type: System.Security.Principal.SecurityIdentifier
-      description: "\n<p>An object for the user.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -736,11 +723,10 @@ items:
   namespace: System.Security.Principal
   summary: "\n<p>Creates a new  object that is a copy of the current instance.</p>\n"
   syntax:
-    content: public override Claims.ClaimsIdentity Clone()
-    content.vb: Public Overrides Function Clone As Claims.ClaimsIdentity
+    content: public override ClaimsIdentity Clone()
+    content.vb: Public Overrides Function Clone As ClaimsIdentity
     return:
-      type: System.Security.Claims.ClaimsIdentity
-      description: "\n<p>A copy of the current instance.</p>\n"
+      type: ClaimsIdentity
   modifiers.csharp:
   - public
   - override
@@ -806,7 +792,6 @@ items:
     parameters:
     - id: disposing
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> to release both managed and unmanaged resources; <strong>false</strong> to release only unmanaged resources. </p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -843,7 +828,6 @@ items:
     content.vb: Public Shared Function GetAnonymous As WindowsIdentity
     return:
       type: System.Security.Principal.WindowsIdentity
-      description: "\n<p>An object that represents an anonymous user.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -879,7 +863,6 @@ items:
     content.vb: Public Shared Function GetCurrent As WindowsIdentity
     return:
       type: System.Security.Principal.WindowsIdentity
-      description: "\n<p>An object that represents the current user.</p>\n"
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
@@ -922,10 +905,8 @@ items:
     parameters:
     - id: ifImpersonating
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> to return the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> only if the thread is currently impersonating; <strong>false</strong> to return the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref>   of the thread if it is impersonating or the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> of the process if the thread is not currently impersonating.</p>\n"
     return:
       type: System.Security.Principal.WindowsIdentity
-      description: "\n<p>An object that represents a Windows user.</p>\n"
   see:
   - type: System.Security.Permissions.SecurityPermission
     commentId: T:System.Security.Permissions.SecurityPermission
@@ -964,10 +945,8 @@ items:
     parameters:
     - id: desiredAccess
       type: System.Security.Principal.TokenAccessLevels
-      description: "\n<p>A bitwise combination of the enumeration values. </p>\n"
     return:
       type: System.Security.Principal.WindowsIdentity
-      description: "\n<p>An object that represents the current user.</p>\n"
   see:
   - type: System.Security.Permissions.SecurityPermission
     commentId: T:System.Security.Permissions.SecurityPermission

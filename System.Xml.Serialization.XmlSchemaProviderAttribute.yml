@@ -15,31 +15,20 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+      path: src/System.Xml.ReaderWriter/src/System/Xml/Serialization/XmlSchemaProviderAttribute.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: XmlSchemaProviderAttribute
-    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
-    startLine: 518
+    path: src/System.Xml.ReaderWriter/src/System/Xml/Serialization/XmlSchemaProviderAttribute.cs
+    startLine: 13
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml.Serialization
-  summary: "\n<p>When applied to a type, stores the name of a static method of the type that returns an XML schema and a <xref href=\"System.Xml.XmlQualifiedName\" data-throw-if-not-resolved=\"false\"></xref> (or <xref href=\"System.Xml.Schema.XmlSchemaType\" data-throw-if-not-resolved=\"false\"></xref> for anonymous types) that controls the serialization of the type.</p>\n"
-  remarks: "\n<p>The main purpose of the <xref href=\"System.Xml.Serialization.XmlSchemaProviderAttribute\" data-throw-if-not-resolved=\"false\"></xref> is to enable the <xref href=\"System.Xml.Serialization.XmlSchemaExporter\" data-throw-if-not-resolved=\"false\"></xref> class to return a schema when queried by the Web Services Description Language tool (WSDL.exe), or when using the Add Web Reference feature of Visual Studio. You can control the actual schema for the type in the static method.</p>\n<p>The target class of the attribute must implement the <xref href=\"System.Xml.Serialization.IXmlSerializable\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n<p>The <xref href=\"System.Xml.Serialization.XmlSchemaProviderAttribute.MethodName\" data-throw-if-not-resolved=\"false\"></xref> property returns the name of a static method through reflection. The method, which must be implemented, must take a single parameter, an <xref href=\"System.Xml.Schema.XmlSchemaSet\" data-throw-if-not-resolved=\"false\"></xref> object, which the method populates with an <xref href=\"System.Xml.Schema.XmlSchema\" data-throw-if-not-resolved=\"false\"></xref> object. The method must also return an <xref href=\"System.Xml.XmlQualifiedName\" data-throw-if-not-resolved=\"false\"></xref> object that identifies the data type.</p>\n"
-  example:
-  - <p>The following example applies the <xref href="System.Xml.Serialization.XmlSchemaProviderAttribute" data-throw-if-not-resolved="false"></xref> to a server-side class. When invoked, the method named by the <xref href="System.Xml.Serialization.XmlSchemaProviderAttribute.MethodName" data-throw-if-not-resolved="false"></xref> property creates the schema. This simple implementation reads an existing schema off the disk. However, you can also create a custom schema, if necessary, using the types found in the <xref href="System.Xml.Schema" data-throw-if-not-resolved="false"></xref> namespace.</p>HowToChunkSerializedData#2
   syntax:
     content: 'public sealed class XmlSchemaProviderAttribute : Attribute'
     content.vb: >-
       Public NotInheritable Class XmlSchemaProviderAttribute
           Inherits Attribute
-  seealso:
-  - type: System.Xml.Schema.XmlSchema
-    commentId: T:System.Xml.Schema.XmlSchema
-  - type: System.Xml.Schema.XmlSchemaSet
-    commentId: T:System.Xml.Schema.XmlSchemaSet
-  - type: System.Xml.Serialization.XmlReflectionImporter
-    commentId: T:System.Xml.Serialization.XmlReflectionImporter
   inheritance:
   - System.Object
   modifiers.csharp:
@@ -62,23 +51,21 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+      path: src/System.Xml.ReaderWriter/src/System/Xml/Serialization/XmlSchemaProviderAttribute.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
-    startLine: 521
+    path: src/System.Xml.ReaderWriter/src/System/Xml/Serialization/XmlSchemaProviderAttribute.cs
+    startLine: 23
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml.Serialization
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.Serialization.XmlSchemaProviderAttribute\" data-throw-if-not-resolved=\"false\"></xref> class, taking the name of the static method that supplies the type's XML schema.</p>\n"
   syntax:
     content: public XmlSchemaProviderAttribute(string methodName)
     content.vb: Public Sub New(methodName As String)
     parameters:
     - id: methodName
       type: System.String
-      description: "\n<p>The name of the static method that must be implemented.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -95,24 +82,21 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+      path: src/System.Xml.ReaderWriter/src/System/Xml/Serialization/XmlSchemaProviderAttribute.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IsAny
-    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
-    startLine: 522
+    path: src/System.Xml.ReaderWriter/src/System/Xml/Serialization/XmlSchemaProviderAttribute.cs
+    startLine: 41
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml.Serialization
-  summary: "\n<p>Gets or sets a value that determines whether the target class is a wildcard, or that the schema for the class has contains only an <strong>xs:any</strong> element.</p>\n"
-  remarks: "\n<p>The target class of the attribute can be any class. This can be achieved in the following ways:</p>\n<ul><li>\n<p>The method named by the attribute can return <strong>null</strong>.</p>\n</li><li>\n<p>Set the value of this property to <strong>true</strong> to prevent the method from being called.</p>\n</li></ul>\n"
   syntax:
     content: public bool IsAny { get; set; }
     content.vb: Public Property IsAny As Boolean
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong>, if the class is a wildcard, or if the schema contains only the <strong>xs:any</strong> element; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -131,23 +115,21 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+      path: src/System.Xml.ReaderWriter/src/System/Xml/Serialization/XmlSchemaProviderAttribute.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: MethodName
-    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
-    startLine: 523
+    path: src/System.Xml.ReaderWriter/src/System/Xml/Serialization/XmlSchemaProviderAttribute.cs
+    startLine: 32
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml.Serialization
-  summary: "\n<p>Gets the name of the static method that supplies the type's XML schema and the name of its XML Schema data type.</p>\n"
   syntax:
     content: public string MethodName { get; }
     content.vb: Public ReadOnly Property MethodName As String
     parameters: []
     return:
       type: System.String
-      description: "\n<p>The name of the method that is invoked by the XML infrastructure to return an XML schema.</p>\n"
   modifiers.csharp:
   - public
   - get

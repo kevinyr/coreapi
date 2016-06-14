@@ -57,11 +57,10 @@ items:
   example:
   - "\n<p>The following example shows how to create, initialize and perform various functions to a <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> and how to print out its keys and values.</p>System.Collections.Hashtable_ClassExample#00"
   syntax:
-    content: 'public class Hashtable : ICollection, IDictionary, IEnumerable'
+    content: 'public class Hashtable : IDictionary'
     content.vb: >-
       Public Class Hashtable
-          Inherits ICollection
-          Implements IDictionary, IEnumerable
+          Inherits IDictionary
   seealso:
   - type: System.Collections.IDictionary
     commentId: T:System.Collections.IDictionary
@@ -395,7 +394,6 @@ items:
     parameters:
     - id: capacity
       type: System.Int32
-      description: "\n<p>The approximate number of elements that the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object can initially contain. </p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -486,10 +484,8 @@ items:
     parameters:
     - id: capacity
       type: System.Int32
-      description: "\n<p>The approximate number of elements that the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object can initially contain. </p>\n"
     - id: loadFactor
       type: System.Single
-      description: "\n<p>A number in the range from 0.1 through 1.0 that is multiplied by the default value which provides the best performance. The result is the maximum ratio of elements to buckets. </p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -584,7 +580,6 @@ items:
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>The number of key/value pairs contained in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -621,8 +616,7 @@ items:
     content.vb: Protected ReadOnly Property EqualityComparer As IEqualityComparer
     parameters: []
     return:
-      type: System.Collections.IEqualityComparer
-      description: "\n<p>The <xref href=\"System.Collections.IEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref> to use for the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: IEqualityComparer
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -667,7 +661,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> has a fixed size; otherwise, <strong>false</strong>. The default is <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -705,7 +698,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> is read-only; otherwise, <strong>false</strong>. The default is <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -745,7 +737,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if access to the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> is synchronized (thread safe); otherwise, <strong>false</strong>. The default is <strong>false</strong>.</p>\n"
   seealso:
   - type: System.Collections.Hashtable.Synchronized(System.Collections.Hashtable)
     commentId: M:System.Collections.Hashtable.Synchronized(System.Collections.Hashtable)
@@ -840,8 +831,7 @@ items:
     content.vb: Public Overridable ReadOnly Property Keys As ICollection
     parameters: []
     return:
-      type: System.Collections.ICollection
-      description: "\n<p>An <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> containing the keys in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: ICollection
   seealso:
   - type: System.Collections.ICollection
     commentId: T:System.Collections.ICollection
@@ -879,12 +869,11 @@ items:
   summary: "\n<p>Gets an object that can be used to synchronize access to the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>To create a synchronized version of the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>, use the <xref href=\"System.Collections.Hashtable.Synchronized(System.Collections.Hashtable)\" data-throw-if-not-resolved=\"false\"></xref> method. However, derived classes can provide their own synchronized version of the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> using the <xref href=\"System.Collections.Hashtable.SyncRoot\" data-throw-if-not-resolved=\"false\"></xref>  property. The synchronizing code must perform operations on the <xref href=\"System.Collections.Hashtable.SyncRoot\" data-throw-if-not-resolved=\"false\"></xref> of the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>, not directly on the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> . This ensures proper operation of collections that are derived from other objects. Specifically, it maintains proper synchronization with other threads that might be simultaneously modifying the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>Enumerating through a collection is intrinsically not a thread safe procedure. Even when a collection is synchronized, other threads can still modify the collection, which causes the enumerator to throw an exception. To guarantee thread safety during enumeration, you can either lock the collection during the entire enumeration or catch the exceptions resulting from changes made by other threads.</p>\n<p>The following code example shows how to lock the collection using the <xref href=\"System.Collections.Hashtable.SyncRoot\" data-throw-if-not-resolved=\"false\"></xref> during the entire enumeration:</p>Classic Hashtable.IsSynchronized Example#2"
   syntax:
-    content: public virtual object SyncRoot { get; }
+    content: public virtual Object SyncRoot { get; }
     content.vb: Public Overridable ReadOnly Property SyncRoot As Object
     parameters: []
     return:
-      type: System.Object
-      description: "\n<p>An object that can be used to synchronize access to the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: Object
   seealso:
   - type: System.Collections.Hashtable.IsSynchronized
     commentId: P:System.Collections.Hashtable.IsSynchronized
@@ -926,8 +915,7 @@ items:
     content.vb: Public Overridable ReadOnly Property Values As ICollection
     parameters: []
     return:
-      type: System.Collections.ICollection
-      description: "\n<p>An <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> containing the values in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: ICollection
   seealso:
   - type: System.Collections.ICollection
     commentId: T:System.Collections.ICollection
@@ -1064,11 +1052,10 @@ items:
   summary: "\n<p>Creates a shallow copy of the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>A shallow copy of a collection copies only the elements of the collection, whether they are reference types or value types, but it does not copy the objects that the references refer to. The references in the new collection point to the same objects that the references in the original collection point to.</p>\n<p>In contrast, a deep copy of a collection copies the elements and everything directly or indirectly referenced by the elements.</p>\n<p>The <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> clone has the same count, the same capacity, the same <xref href=\"System.Collections.IHashCodeProvider\" data-throw-if-not-resolved=\"false\"></xref> implementation, and the same <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> implementation as the original <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Hashtable.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
-    content: public virtual object Clone()
+    content: public virtual Object Clone()
     content.vb: Public Overridable Function Clone As Object
     return:
-      type: System.Object
-      description: "\n<p>A shallow copy of the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: Object
   seealso:
   - type: System.Collections.Hashtable.CopyTo(System.Array,System.Int32)
     commentId: M:System.Collections.Hashtable.CopyTo(System.Array,System.Int32)
@@ -1314,8 +1301,7 @@ items:
     content: public virtual IDictionaryEnumerator GetEnumerator()
     content.vb: Public Overridable Function GetEnumerator As IDictionaryEnumerator
     return:
-      type: System.Collections.IDictionaryEnumerator
-      description: "\n<p>An <xref href=\"System.Collections.IDictionaryEnumerator\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: IDictionaryEnumerator
   seealso:
   - type: System.Collections.IDictionaryEnumerator
     commentId: T:System.Collections.IDictionaryEnumerator
@@ -1511,10 +1497,8 @@ items:
     parameters:
     - id: table
       type: System.Collections.Hashtable
-      description: "\n<p>The <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> to synchronize. </p>\n"
     return:
       type: System.Collections.Hashtable
-      description: "\n<p>A synchronized (thread-safe) wrapper for the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException

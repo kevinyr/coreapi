@@ -56,10 +56,11 @@ items:
   example:
   - <p>The following example demonstrates some of the <xref href="System.IO.FileStream" data-throw-if-not-resolved="false"></xref> constructors.</p>fstream class#1<p>The following example shows how to write to a file asynchronously. This code runs in a WPF app that has a TextBlock named UserInput and a button hooked up to a Click event handler that is named Button_Click. The file path needs to be changed to a file than exits on the computer.</p>Asynchronous_File_IO_async#3
   syntax:
-    content: 'public class FileStream : Stream'
+    content: 'public class FileStream : Stream, Stream'
     content.vb: >-
       Public Class FileStream
           Inherits Stream
+          Implements Stream
   seealso:
   - type: System.IO.File
     commentId: T:System.IO.File
@@ -292,10 +293,8 @@ items:
     parameters:
     - id: path
       type: System.String
-      description: "\n<p>A relative or absolute path for the file that the current <strong>FileStream</strong> object will encapsulate. </p>\n"
     - id: mode
       type: System.IO.FileMode
-      description: "\n<p>A constant that determines how to open or create the file. </p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -771,7 +770,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the stream supports reading; <strong>false</strong> if the stream is closed or was opened with write-only access.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -811,7 +809,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the stream supports seeking; <strong>false</strong> if the stream is closed or if the <strong>FileStream</strong> was constructed from an operating-system handle such as a pipe or output to the console.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -851,7 +848,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the stream supports writing; <strong>false</strong> if the stream is closed or was opened with read-only access.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -891,7 +887,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <strong>FileStream</strong> was opened asynchronously; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -931,7 +926,6 @@ items:
     parameters: []
     return:
       type: System.Int64
-      description: "\n<p>A long value representing the length of the stream in bytes.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
@@ -978,7 +972,6 @@ items:
     parameters: []
     return:
       type: System.String
-      description: "\n<p>A string that is the name of the <strong>FileStream</strong>.</p>\n"
   see:
   - type: System.Security.Permissions.FileIOPermission
     commentId: T:System.Security.Permissions.FileIOPermission
@@ -1019,7 +1012,6 @@ items:
     parameters: []
     return:
       type: System.Int64
-      description: "\n<p>The current position of this stream.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
@@ -1072,7 +1064,6 @@ items:
     parameters: []
     return:
       type: Microsoft.Win32.SafeHandles.SafeFileHandle
-      description: "\n<p>An object that represents the operating system file handle for the file that the current <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object encapsulates.</p>\n"
   see:
   - type: System.Security.Permissions.SecurityPermission
     commentId: T:System.Security.Permissions.SecurityPermission
@@ -1117,7 +1108,6 @@ items:
     parameters:
     - id: disposing
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> to release both managed and unmanaged resources; <strong>false</strong> to release only unmanaged resources. </p>\n"
   modifiers.csharp:
   - protected
   - override
@@ -1229,7 +1219,6 @@ items:
     parameters:
     - id: flushToDisk
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> to flush all intermediate file buffers; otherwise, <strong>false</strong>. </p>\n"
   seealso:
   - type: System.IO.FileStream.Flush
     commentId: M:System.IO.FileStream.Flush
@@ -1308,21 +1297,17 @@ items:
   example:
   - "\n<p>The following example reads the contents from a <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> and writes it into another <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref>.</p>FSRead#1"
   syntax:
-    content: public override int Read(byte[] array, int offset, int count)
-    content.vb: Public Overrides Function Read(array As Byte(), offset As Integer, count As Integer) As Integer
+    content: public override int Read(byte[] buffer, int offset, int count)
+    content.vb: Public Overrides Function Read(buffer As Byte(), offset As Integer, count As Integer) As Integer
     parameters:
-    - id: array
+    - id: buffer
       type: System.Byte[]
-      description: "\n<p>When this method returns, contains the specified byte array with the values between <em>offset</em> and (<em>offset</em> + <em>count</em> - 1<em>)</em> replaced by the bytes read from the current source. </p>\n"
     - id: offset
       type: System.Int32
-      description: "\n<p>The byte offset in <em>array</em> at which the read bytes will be placed. </p>\n"
     - id: count
       type: System.Int32
-      description: "\n<p>The maximum number of bytes to read. </p>\n"
     return:
       type: System.Int32
-      description: "\n<p>The total number of bytes read into the buffer. This might be less than the number of bytes requested if that number of bytes are not currently available, or zero if the end of the stream is reached.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1451,7 +1436,6 @@ items:
     content.vb: Public Overrides Function ReadByte As Integer
     return:
       type: System.Int32
-      description: "\n<p>The byte, cast to an <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>, or -1 if the end of the stream has been reached.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
@@ -1551,7 +1535,6 @@ items:
     parameters:
     - id: value
       type: System.Int64
-      description: "\n<p>The new length of the stream. </p>\n"
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
@@ -1594,18 +1577,15 @@ items:
   example:
   - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.FileStream.Lock(System.Int64,System.Int64)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.IO.FileStream3#3"
   syntax:
-    content: public override void Write(byte[] array, int offset, int count)
-    content.vb: Public Overrides Sub Write(array As Byte(), offset As Integer, count As Integer)
+    content: public override void Write(byte[] buffer, int offset, int count)
+    content.vb: Public Overrides Sub Write(buffer As Byte(), offset As Integer, count As Integer)
     parameters:
-    - id: array
+    - id: buffer
       type: System.Byte[]
-      description: "\n<p>The buffer containing data to write to the stream.</p>\n"
     - id: offset
       type: System.Int32
-      description: "\n<p>The zero-based byte offset in <em>array</em> from which to begin copying bytes to the stream. </p>\n"
     - id: count
       type: System.Int32
-      description: "\n<p>The maximum number of bytes to write. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1735,7 +1715,6 @@ items:
     parameters:
     - id: value
       type: System.Byte
-      description: "\n<p>A byte to write to the stream. </p>\n"
   exceptions:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException

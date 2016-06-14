@@ -50,22 +50,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Represents a collection of objects that is maintained in sorted order.</p>\n"
-  remarks: "\n<p>A <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object maintains a sorted order without affecting performance as elements are inserted and deleted. Duplicate elements are not allowed. Changing the sort values of existing items is not supported and may lead to unexpected behavior.</p>\n<p>For a thread safe alternative to <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>, see <xref href=\"System.Collections.Immutable.ImmutableSortedSet`1\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
-  example:
-  - "\n<p>The following example demonstrates a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class that is created with the constructor that takes an <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> as a parameter. This comparer (<code>ByFileExtension</code>) is used to sort a list of file names by their extensions.</p>\n<p>This example demonstrates how to create a sorted set of media file names, remove unwanted elements, view a range of elements, and compare the set with another sorted set.</p>System.Collections.Generic.SortedSet#1"
   syntax:
-    content: 'public class SortedSet<T> : ICollection<T>, IEnumerable<T>, IReadOnlyCollection<T>, ISet<T>, ICollection, IEnumerable'
+    content: 'public class SortedSet<T> : object, ISet<T>, ICollection<T>, ICollection<T>, ICollection, IReadOnlyCollection<T>'
     content.vb: >-
       Public Class SortedSet(Of T)
-          Inherits ICollection(Of T)
-          Implements IEnumerable(Of T), IReadOnlyCollection(Of T), ISet(Of T), ICollection, IEnumerable
+          Inherits Object
+          Implements ISet(Of T), ICollection(Of T), ICollection(Of T), ICollection, IReadOnlyCollection(Of T)
     typeParameters:
     - id: T
-      description: "\n<p>The type of elements in the set.</p>\n"
-  seealso:
-  - type: System.Collections.Immutable.ImmutableSortedSet`1
-    commentId: T:System.Collections.Immutable.ImmutableSortedSet`1
   inheritance:
   - System.Object
   implements:
@@ -103,9 +95,6 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
-  example:
-  - 
   syntax:
     content: public SortedSet()
     content.vb: Public Sub New
@@ -135,21 +124,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class that uses a specified comparer.</p>\n"
-  remarks: "\n<p>If <em>comparer</em> does not implement <xref href=\"System.IComparable`1\" data-throw-if-not-resolved=\"false\"></xref>, you must specify an <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> object to be used.</p>\n"
-  example:
-  - "\n<p>The following example defines a comparer (<code>ByFileExtension</code>) that is used to construct a sorted set that sorts file names by their extensions. This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.Collections.Generic.SortedSet#2,9"
   syntax:
     content: public SortedSet(IComparer<T> comparer)
     content.vb: Public Sub New(comparer As IComparer(Of T))
     parameters:
     - id: comparer
       type: System.Collections.Generic.IComparer{{T}}
-      description: "\n<p>The default comparer to use for comparing objects. </p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>comparer</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -177,17 +157,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class that contains elements copied from a specified enumerable collection.</p>\n"
-  remarks: "\n<p>Duplicate elements in the enumerable collection are not copied into the new instance of the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class, and no exceptions are thrown.</p>\n<p>This constructor is an O(<em>n</em> log <em>n</em>) operation, where <em>n</em> is the number of elements in the <em>collection</em> parameter.</p>\n"
-  example:
-  - 
   syntax:
     content: public SortedSet(IEnumerable<T> collection)
     content.vb: Public Sub New(collection As IEnumerable(Of T))
     parameters:
     - id: collection
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The enumerable collection to be copied. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -215,23 +190,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class that contains elements copied from a specified enumerable collection and that uses a specified comparer.</p>\n"
-  example:
-  - 
   syntax:
     content: public SortedSet(IEnumerable<T> collection, IComparer<T> comparer)
     content.vb: Public Sub New(collection As IEnumerable(Of T), comparer As IComparer(Of T))
     parameters:
     - id: collection
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The enumerable collection to be copied. </p>\n"
     - id: comparer
       type: System.Collections.Generic.IComparer{{T}}
-      description: "\n<p>The default comparer to use for comparing objects. </p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>collection</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -259,17 +225,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Gets the <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> object that is used to order the values in the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The returned comparer can be either the default comparer of the type for a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>, or the comparer used for its constructor. </p>\n<p>Retrieving the value of this property is an O(1) operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public IComparer<T> Comparer { get; }
     content.vb: Public ReadOnly Property Comparer As IComparer(Of T)
     parameters: []
     return:
-      type: System.Collections.Generic.IComparer{{T}}
-      description: "\n<p>The comparer that is used to order the values in the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: IComparer{{T}}
   modifiers.csharp:
   - public
   - get
@@ -298,17 +259,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Gets the number of elements in the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Retrieving the value of this property is an O(1) operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>The number of elements in the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -337,16 +293,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Gets the maximum value in the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>, as defined by the comparer.</p>\n"
-  example:
-  - 
   syntax:
     content: public T Max { get; }
     content.vb: Public ReadOnly Property Max As T
     parameters: []
     return:
       type: '{T}'
-      description: "\n<p>The maximum value in the set.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -375,16 +327,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Gets the minimum value in the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>, as defined by the comparer.</p>\n"
-  example:
-  - 
   syntax:
     content: public T Min { get; }
     content.vb: Public ReadOnly Property Min As T
     parameters: []
     return:
       type: '{T}'
-      description: "\n<p>The minimum value in the set.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -413,20 +361,15 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Adds an element to the set and returns a value that indicates if it was successfully added.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class does not accept duplicate elements. If <em>item</em> is already in the set, this method returns <strong>false</strong> and does not throw an exception.</p>\n<p>If <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref> already equals the capacity of the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object, the capacity is automatically adjusted to accommodate the new item.</p>\n"
-  example:
-  - "\n<p>The following example adds elements to a sorted set. This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.Collections.Generic.SortedSet#3"
   syntax:
     content: public bool Add(T item)
     content.vb: Public Function Add(item As T) As Boolean
     parameters:
     - id: item
       type: '{T}'
-      description: "\n<p>The element to add to the set.</p>\n"
+      description: item to be added
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if <em>item</em> is added to the set; otherwise, <strong>false</strong>. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -453,8 +396,6 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Removes all elements from the set.</p>\n"
-  remarks: "\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public virtual void Clear()
     content.vb: Public Overridable Sub Clear
@@ -486,20 +427,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Determines whether the set contains a specific element.</p>\n"
-  remarks: "\n<p>This method is an O(ln n) operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual bool Contains(T item)
     content.vb: Public Overridable Function Contains(item As T) As Boolean
     parameters:
     - id: item
       type: '{T}'
-      description: "\n<p>The element to locate in the set.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the set contains <em>item</em>; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -528,24 +463,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Copies the complete <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> to a compatible one-dimensional array, starting at the beginning of the target array.</p>\n"
-  remarks: "\n<p>The indexing of <em>array</em> must be zero-based.</p>\n"
-  example:
-  - 
   syntax:
     content: public void CopyTo(T[] array)
     content.vb: Public Sub CopyTo(array As T())
     parameters:
     - id: array
       type: '{T}[]'
-      description: "\n<p>A one-dimensional array that is the destination of the elements copied from the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>The number of elements in the source <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> exceeds the number of elements that the destination array can contain. </p>\n"
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>array</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -573,30 +496,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Copies the complete <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> to a compatible one-dimensional array, starting at the specified array index.</p>\n"
-  remarks: "\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public void CopyTo(T[] array, int index)
     content.vb: Public Sub CopyTo(array As T(), index As Integer)
     parameters:
     - id: array
       type: '{T}[]'
-      description: "\n<p>A one-dimensional array that is the destination of the elements copied from the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>. The array must have zero-based indexing.</p>\n"
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index in <em>array</em> at which copying begins.</p>\n"
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>The number of elements in the source array is greater than the available space from <em>index</em> to the end of the destination array.</p>\n"
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>array</em> is <strong>null</strong>.</p>\n"
-  - type: System.ArgumentOutOfRangeException
-    commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<p>\n<em>index</em> is less than zero.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -624,33 +531,16 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Copies a specified number of elements from <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> to a compatible one-dimensional array, starting at the specified array index.</p>\n"
-  remarks: "\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <em>count</em>.</p>\n"
-  example:
-  - 
   syntax:
     content: public void CopyTo(T[] array, int index, int count)
     content.vb: Public Sub CopyTo(array As T(), index As Integer, count As Integer)
     parameters:
     - id: array
       type: '{T}[]'
-      description: "\n<p>A one-dimensional array that is the destination of the elements copied from the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>. The array must have zero-based indexing.</p>\n"
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index in <em>array</em> at which copying begins.</p>\n"
     - id: count
       type: System.Int32
-      description: "\n<p>The number of elements to copy.</p>\n"
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>The number of elements in the source array is greater than the available space from <em>index</em> to the end of the destination array.</p>\n"
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>array</em> is <strong>null</strong>.</p>\n"
-  - type: System.ArgumentOutOfRangeException
-    commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<p>\n<em>index</em> is less than zero.</p>\n<p>-or-</p>\n<p>\n<em>count</em> is less than zero.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -678,21 +568,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Removes all elements that are in a specified collection from the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>This method removes any element in the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> that is also in <em>other</em>. Duplicate values in <em>other</em> are ignored.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is the number of elements in the <em>other</em> parameter.</p>\n"
-  example:
-  - "\n<p>The following example removes elements from a sorted set that are duplicated in another sorted set. This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.Collections.Generic.SortedSet#6"
   syntax:
     content: public void ExceptWith(IEnumerable<T> other)
     content.vb: Public Sub ExceptWith(other As IEnumerable(Of T))
     parameters:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection of items to remove from the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>other</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -720,16 +601,11 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Returns an enumerator that iterates through the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Any changes to the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> will invalidate the enumerator.</p>\n<p>This method is an O(log n) operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public SortedSet<T>.Enumerator GetEnumerator()
     content.vb: Public Function GetEnumerator As SortedSet(Of T).Enumerator
     return:
       type: System.Collections.Generic.SortedSet`1.Enumerator
-      description: "\n<p>An enumerator that iterates through the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> in sorted order.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -756,30 +632,16 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Returns a view of a subset in a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>This method returns a view of the range of elements that fall between <em>lowerValue </em>and <em>upperValue</em>, as defined by the comparer. This method does not copy elements from the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>, but provides a window into the underlying <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> itself. You can make changes in both the view and in the underlying <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example uses the <xref href=\"System.Collections.Generic.SortedSet`1.GetViewBetween(`0,`0)\" data-throw-if-not-resolved=\"false\"></xref> method to list only the AVI files from a sorted set of media file names. The comparer evaluates file names according to their extensions. The <em>lowerValue </em>is \"AVI\" and the <em>upperValue</em> is only one value higher, \"AVJ\", to get the view of all AVI files. This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class. </p>System.Collections.Generic.SortedSet#5"
   syntax:
     content: public virtual SortedSet<T> GetViewBetween(T lowerValue, T upperValue)
     content.vb: Public Overridable Function GetViewBetween(lowerValue As T, upperValue As T) As SortedSet(Of T)
     parameters:
     - id: lowerValue
       type: '{T}'
-      description: "\n<p>The lowest desired value in the view.</p>\n"
     - id: upperValue
       type: '{T}'
-      description: "\n<p>The highest desired value in the view. </p>\n"
     return:
       type: System.Collections.Generic.SortedSet`1
-      description: "\n<p>A subset view that contains only the values in the specified range.</p>\n"
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>lowerValue</em> is more than <em>upperValue</em> according to the comparer.</p>\n"
-  - type: System.ArgumentOutOfRangeException
-    commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<p>A tried operation on the view was outside the range specified by <em>lowerValue</em> and <em>upperValue</em>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -808,21 +670,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Modifies the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object so that it contains only elements that are also in a specified collection.</p>\n"
-  remarks: "\n<p>This method ignores any duplicate elements in <em>other</em>.</p>\n<p>If the collection represented by the <em>other</em> parameter is a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> collection with the same equality comparer as the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object, this method is an O(<em>n</em>) operation. Otherwise, this method is an O(<em>n</em> + <em>m</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref> and <em>m</em> is the number of elements in <em>other</em>.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual void IntersectWith(IEnumerable<T> other)
     content.vb: Public Overridable Sub IntersectWith(other As IEnumerable(Of T))
     parameters:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection to compare to the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>other</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -852,24 +705,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Determines whether a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is a proper subset of the specified collection.</p>\n"
-  remarks: "\n<p>An empty set is a proper subset of any other collection. Therefore, this method returns <strong>true</strong> if the collection represented by the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is empty unless the <em>other</em> parameter is also an empty set.</p>\n<p>This method always returns <strong>false</strong> if <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref> is greater than or equal to the number of elements in <em>other</em>.</p>\n<p>If the collection represented by <em>other</em> is a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> collection with the same equality comparer as the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object, then this method is an O(<em>n</em>) operation. Otherwise, this method is an O(<em>n</em> + <em>m</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref> and <em>m</em> is the number of elements in <em>other</em>.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool IsProperSubsetOf(IEnumerable<T> other)
     content.vb: Public Function IsProperSubsetOf(other As IEnumerable(Of T)) As Boolean
     parameters:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection to compare to the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is a proper subset of <em>other</em>; otherwise, <strong>false</strong>.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>other</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -897,24 +740,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Determines whether a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is a proper superset of the specified collection.</p>\n"
-  remarks: "\n<p>An empty set is a proper superset of any other collection. Therefore, this method returns <strong>true</strong> if the collection represented by the <em>other</em> parameter is empty unless the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> collection is also empty.</p>\n<p>This method always returns <strong>false</strong> if <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref> is less than or equal to the number of elements in <em>other</em>.</p>\n<p>If the collection represented by <em>other</em> is a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> collection with the same equality comparer as the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object, this method is an O(<em>n</em>) operation. Otherwise, this method is an O(<em>n</em> + <em>m</em>) operation, where <em>n</em> is the number of elements in <em>other</em> and <em>m</em> is <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool IsProperSupersetOf(IEnumerable<T> other)
     content.vb: Public Function IsProperSupersetOf(other As IEnumerable(Of T)) As Boolean
     parameters:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection to compare to the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is a proper superset of <em>other</em>; otherwise, <strong>false</strong>.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>other</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -942,22 +775,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Determines whether a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is a subset of the specified collection.</p>\n"
-  remarks: "\n<p>An empty set is a subset of any other collection, including an empty set; therefore, this method returns <strong>true</strong> if the collection represented by the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is empty, even if the <em>other</em> parameter is an empty set.</p>\n<p>This method always returns <strong>false</strong> if <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref> is greater than the number of elements in <em>other</em>.</p>\n<p>If the collection represented by <em>other</em> is a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> collection with the same equality comparer as the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object, this method is an O(<em>n</em>) operation. Otherwise, this method is an O(<em>n</em> + <em>m</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref> and <em>m</em> is the number of elements in <em>other</em>.</p>\n"
   syntax:
     content: public bool IsSubsetOf(IEnumerable<T> other)
     content.vb: Public Function IsSubsetOf(other As IEnumerable(Of T)) As Boolean
     parameters:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection to compare to the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is a subset of <em>other</em>; otherwise, <strong>false</strong>.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>other</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -985,24 +810,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Determines whether a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is a superset of the specified collection.</p>\n"
-  remarks: "\n<p>All collections, including the empty set, are supersets of the empty set. Therefore, this method returns <strong>true</strong> if the collection represented by the <em>other</em> parameter is empty, even if the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is empty.</p>\n<p>This method always returns <strong>false</strong> if <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref> is less than the number of elements in <em>other</em>.</p>\n<p>If the collection represented by <em>other</em> is a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> collection with the same equality comparer as the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object, this method is an O(<em>n</em>) operation. Otherwise, this method is an O(<em>n</em> + <em>m</em>) operation, where <em>n</em> is the number of elements in <em>other</em> and <em>m</em> is <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool IsSupersetOf(IEnumerable<T> other)
     content.vb: Public Function IsSupersetOf(other As IEnumerable(Of T)) As Boolean
     parameters:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection to compare to the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is a superset of <em>other</em>; otherwise, <strong>false</strong>.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>other</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1030,24 +845,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Determines whether the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object and a specified collection share common elements.</p>\n"
-  remarks: "\n<p>Any duplicate elements in <em>other</em> are ignored.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is the number of elements in <em>other</em>.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool Overlaps(IEnumerable<T> other)
     content.vb: Public Function Overlaps(other As IEnumerable(Of T)) As Boolean
     parameters:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection to compare to the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object and <em>other</em> share at least one common element; otherwise, <strong>false</strong>.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>other</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1075,20 +880,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Removes a specified item from the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>If the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object does not contain the specified element, the object remains unchanged and no exception is thrown.</p>\n<p>\n<em>item</em> can be <strong>null</strong> for reference types.</p>\n<p>This method is an O(log n) operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool Remove(T item)
     content.vb: Public Function Remove(item As T) As Boolean
     parameters:
     - id: item
       type: '{T}'
-      description: "\n<p>The element to remove.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the element is found and successfully removed; otherwise, <strong>false</strong>. </p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1115,24 +914,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Removes all elements that match the conditions defined by the specified predicate from a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>\n<em>match</em> must not modify the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref>. Doing so can cause unexpected results.</p>\n<p>Calling this method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example removes unwanted elements from a sorted set. This code example is part of a larger example provided for the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.Collections.Generic.SortedSet#4,8"
   syntax:
     content: public int RemoveWhere(Predicate<T> match)
     content.vb: Public Function RemoveWhere(match As Predicate(Of T)) As Integer
     parameters:
     - id: match
       type: System.Predicate{{T}}
-      description: "\n<p>The delegate that defines the conditions of the elements to remove.</p>\n"
     return:
       type: System.Int32
-      description: "\n<p>The number of elements that were removed from the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> collection.. </p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>match</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1160,15 +949,11 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Returns an <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> that iterates over the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> in reverse order.</p>\n"
-  example:
-  - 
   syntax:
     content: public IEnumerable<T> Reverse()
     content.vb: Public Function Reverse As IEnumerable(Of T)
     return:
-      type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>An enumerator that iterates over the <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> in reverse order.</p>\n"
+      type: IEnumerable{{T}}
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1195,24 +980,14 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Determines whether the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object and the specified collection contain the same elements.</p>\n"
-  remarks: "\n<p>This method ignores the order of elements and any duplicate elements in <em>other</em>.</p>\n<p>If the collection represented by <em>other</em> is a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> collection with the same equality comparer as the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object, this method is an O(log<em>n</em>) operation. Otherwise, this method is an O(<em>n</em> + <em>m</em>) operation, where <em>n</em> is the number of elements in <em>other</em> and <em>m</em> is <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool SetEquals(IEnumerable<T> other)
     content.vb: Public Function SetEquals(other As IEnumerable(Of T)) As Boolean
     parameters:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection to compare to the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object is equal to <em>other</em>; otherwise, false.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>other</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1240,21 +1015,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Modifies the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object so that it contains only elements that are present either in the current object or in the specified collection, but not both.</p>\n"
-  remarks: "\n<p>Any duplicate elements in <em>other</em> are ignored.</p>\n<p>If the <em>other</em> parameter is a <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> collection with the same equality comparer as the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object, this method is an O(n log <em>m</em>) operation. Otherwise, this method is an O(<em>n</em> log <em>m</em>) + O(<em>n</em>  log <em>n</em>) operation, where <em>n</em> is the number of elements in <em>other</em> and <em>m</em> is <xref href=\"System.Collections.Generic.SortedSet`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public void SymmetricExceptWith(IEnumerable<T> other)
     content.vb: Public Sub SymmetricExceptWith(other As IEnumerable(Of T))
     parameters:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection to compare to the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>other</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1282,21 +1048,12 @@ items:
   assemblies:
   - System.Collections
   namespace: System.Collections.Generic
-  summary: "\n<p>Modifies the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object so that it contains all elements that are present in either the current object or the specified collection.</p>\n"
-  remarks: "\n<p>Any duplicate elements in <em>other</em> are ignored.</p>\n"
-  example:
-  - 
   syntax:
     content: public void UnionWith(IEnumerable<T> other)
     content.vb: Public Sub UnionWith(other As IEnumerable(Of T))
     parameters:
     - id: other
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection to compare to the current <xref href=\"System.Collections.Generic.SortedSet`1\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>other</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1673,16 +1430,3 @@ references:
   - {}
   - name: )
     fullName: )
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException
-- uid: System.ArgumentException
-  parent: System
-  isExternal: false
-  name: ArgumentException
-  fullName: System.ArgumentException
-- uid: System.ArgumentOutOfRangeException
-  isExternal: false
-  name: ArgumentOutOfRangeException
-  fullName: System.ArgumentOutOfRangeException

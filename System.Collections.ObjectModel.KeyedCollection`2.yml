@@ -46,9 +46,7 @@ items:
           Inherits Collection(Of TItem)
     typeParameters:
     - id: TKey
-      description: "\n<p>The type of keys in the collection.</p>\n"
     - id: TItem
-      description: "\n<p>The type of items in the collection.</p>\n"
   seealso:
   - type: System.Collections.Specialized.StringDictionary
     commentId: T:System.Collections.Specialized.StringDictionary
@@ -211,12 +209,11 @@ items:
   summary: "\n<p>Gets the generic equality comparer that is used to determine equality of keys in the collection.</p>\n"
   remarks: "\n<p>Retrieving the value of this property is an O(1) operation.</p>\n"
   syntax:
-    content: public Generic.IEqualityComparer<TKey> Comparer { get; }
-    content.vb: Public ReadOnly Property Comparer As Generic.IEqualityComparer(Of TKey)
+    content: public IEqualityComparer<TKey> Comparer { get; }
+    content.vb: Public ReadOnly Property Comparer As IEqualityComparer(Of TKey)
     parameters: []
     return:
-      type: System.Collections.Generic.IEqualityComparer{{TKey}}
-      description: "\n<p>The implementation of the <xref href=\"System.Collections.Generic.IEqualityComparer`1\" data-throw-if-not-resolved=\"false\"></xref> generic interface that is used to determine equality of keys in the collection.</p>\n"
+      type: IEqualityComparer{{TKey}}
   modifiers.csharp:
   - public
   - get
@@ -250,12 +247,11 @@ items:
   example:
   - "\n<p>The following code example shows how to override the protected <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.ChangeItemKey(`1,`0)\" data-throw-if-not-resolved=\"false\"></xref> method to support mutable keys, and how to override the protected <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.InsertItem(System.Int32,`1)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.RemoveItem(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.ClearItems\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.SetItem(System.Int32,`1)\" data-throw-if-not-resolved=\"false\"></xref> methods to maintain the integrity of the keys and the collection.</p>\n<p>The code example creates the <code>MutableKeys</code> collection, which derives from <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>, and the <code>MutableKey</code> class. The <code>MutableKey</code> class has a settable <code>Key</code> property. When a new key is assigned to the property, the property setter calls the <strong>internal</strong> (<strong>Friend</strong> in Visual Basic) <code>ChangeKey</code> method of the collection to test whether the new key would conflict with an existing key. If so, an exception is thrown and the property value is not changed.</p>\n<p>In order to maintain the connection between a <code>MutableKey</code> object and the <code>MutableKeys</code> collection and to prevent an object from being inserted into two collections, the <code>MutableKey</code> class has an <strong>internal</strong> (<strong>Friend</strong> in Visual Basic) <code>Collection</code> field. This field is maintained by the protected methods that provide custom behavior for adding and removing items from the collection, such as the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.InsertItem(System.Int32,`1)\" data-throw-if-not-resolved=\"false\"></xref> method. The field is set when the item is added to a collection and cleared when the item is removed.</p>KeyedCollectionMutable#1"
   syntax:
-    content: protected Generic.IDictionary<TKey, TItem> Dictionary { get; }
-    content.vb: Protected ReadOnly Property Dictionary As Generic.IDictionary(Of TKey, TItem)
+    content: protected IDictionary<TKey, TItem> Dictionary { get; }
+    content.vb: Protected ReadOnly Property Dictionary As IDictionary(Of TKey, TItem)
     parameters: []
     return:
-      type: System.Collections.Generic.IDictionary{{TKey},{TItem}}
-      description: "\n<p>The lookup dictionary of the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>, if it exists; otherwise, <strong>null</strong>.</p>\n"
+      type: IDictionary{{TKey},{TItem}}
   seealso:
   - type: System.Collections.Generic.IDictionary`2
     commentId: T:System.Collections.Generic.IDictionary`2
@@ -297,10 +293,8 @@ items:
     parameters:
     - id: key
       type: '{TKey}'
-      description: "\n<p>The key of the element to get.</p>\n"
     return:
       type: '{TItem}'
-      description: "\n<p>The element with the specified key. If an element with the specified key is not found, an exception is thrown.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -355,10 +349,8 @@ items:
     parameters:
     - id: item
       type: '{TItem}'
-      description: "\n<p>The element to change the key of.</p>\n"
     - id: newKey
       type: '{TKey}'
-      description: "\n<p>The new key for <em>item</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -458,10 +450,8 @@ items:
     parameters:
     - id: key
       type: '{TKey}'
-      description: "\n<p>The key to locate in the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> contains an element with the specified key; otherwise, <strong>false</strong>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -508,10 +498,8 @@ items:
     parameters:
     - id: item
       type: '{TItem}'
-      description: "\n<p>The element from which to extract the key.</p>\n"
     return:
       type: '{TKey}'
-      description: "\n<p>The key for the specified element.</p>\n"
   seealso:
   - type: System.Collections.ObjectModel.KeyedCollection`2.ChangeItemKey(`1,`0)
     commentId: M:System.Collections.ObjectModel.KeyedCollection`2.ChangeItemKey(`1,`0)
@@ -566,10 +554,8 @@ items:
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index at which <em>item</em> should be inserted.</p>\n"
     - id: item
       type: '{TItem}'
-      description: "\n<p>The object to insert.</p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -615,10 +601,8 @@ items:
     parameters:
     - id: key
       type: '{TKey}'
-      description: "\n<p>The key of the element to remove.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the element is successfully removed; otherwise, <strong>false</strong>.  This method also returns <strong>false</strong> if <em>key</em> is not found in the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -675,7 +659,6 @@ items:
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The index of the element to remove.</p>\n"
   seealso:
   - type: System.Collections.ObjectModel.KeyedCollection`2.Remove(`0)
     commentId: M:System.Collections.ObjectModel.KeyedCollection`2.Remove(`0)
@@ -730,10 +713,8 @@ items:
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index of the item to be replaced.</p>\n"
     - id: item
       type: '{TItem}'
-      description: "\n<p>The new item.</p>\n"
   seealso:
   - type: System.Collections.ObjectModel.KeyedCollection`2.Item(`0)
     commentId: P:System.Collections.ObjectModel.KeyedCollection`2.Item(`0)

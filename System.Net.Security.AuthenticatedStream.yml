@@ -30,15 +30,11 @@ items:
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
-  summary: "\n<p>Provides methods for passing credentials across a stream and requesting or performing authentication for client-server applications.</p>\n"
-  remarks: "\n<p>This abstract class provides methods and properties that are common to authenticated streams. </p>\n<p>Authenticated streams can provide authentication, data signing, and encryption services that can help maintain the integrity and confidentiality of data transmitted using the <xref href=\"System.Net.Security.AuthenticatedStream.InnerStream\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n<p>The security protocol implemented by a class that derives from <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref> together with the security protocols supported on the client and server will determine the security features that are available to an application. The <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> classes inherit from <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref> and implement the Negotiate and Secure Sockets Layer security protocols, respectively.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates displaying the properties of an authenticated stream.</p>NclNegoAsyncClient#6"
   syntax:
-    content: 'public abstract class AuthenticatedStream : IO.Stream'
+    content: 'public abstract class AuthenticatedStream : Stream'
     content.vb: >-
       Public MustInherit Class AuthenticatedStream
-          Inherits IO.Stream
+          Inherits Stream
   inheritance:
   - System.Object
   modifiers.csharp:
@@ -70,22 +66,14 @@ items:
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
-  remarks: "\n<p>When you specify <strong>true</strong> for the <em>leaveStreamOpen</em> parameter, closing the <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref> has no effect on the <em>innerStream</em> stream.</p>\n<p>This constructor is provided for implementers of authenticated streams, and can be called only by classes that are derived from <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: protected AuthenticatedStream(IO.Stream innerStream, bool leaveInnerStreamOpen)
     content.vb: Protected Sub New(innerStream As IO.Stream, leaveInnerStreamOpen As Boolean)
     parameters:
     - id: innerStream
       type: System.IO.Stream
-      description: "\n<p>A <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> object used by the <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref>  for sending and receiving data.</p>\n"
     - id: leaveInnerStreamOpen
       type: System.Boolean
-      description: "\n<p>A <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> that indicates whether closing this <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref>  object also closes <em>innerStream</em>.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>innerStream</em> is <strong>null</strong>.</p>\n<p>-or-</p>\n<p>\n<em>innerStream</em> is equal to <xref href=\"System.IO.Stream.Null\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -111,17 +99,12 @@ items:
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
-  summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether authentication was successful.</p>\n"
-  remarks: "\n<p>The methods called to perform authentication are defined in the classes that inherit from <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  example:
-  - "\n<p>The following code example demonstrates displaying the value of this property.</p>NclNegoAsyncClient#6"
   syntax:
     content: public abstract bool IsAuthenticated { get; }
     content.vb: Public MustOverride ReadOnly Property IsAuthenticated As Boolean
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if successful authentication occurred; otherwise, <strong>false</strong>. </p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -151,17 +134,12 @@ items:
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
-  summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether data sent using this <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref> is encrypted.</p>\n"
-  remarks: "\n<p>Encryption helps to protect the privacy of the data; namely, it helps to ensure that while data is in transit, it cannot be deciphered by third parties.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates displaying the value of this property.</p>NclNegoAsyncClient#6"
   syntax:
     content: public abstract bool IsEncrypted { get; }
     content.vb: Public MustOverride ReadOnly Property IsEncrypted As Boolean
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if data is encrypted before being transmitted over the network and decrypted when it reaches the remote endpoint; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -191,17 +169,12 @@ items:
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
-  summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether both server and client have been authenticated.</p>\n"
-  remarks: "\n<p>Not all security protocols support mutual authentication. To determine whether mutual authentication is supported by the security protocol implemented in a class that inherits from <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref>, check the class documentation.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates displaying the value of this property.</p>NclNegoAsyncClient#6"
   syntax:
     content: public abstract bool IsMutuallyAuthenticated { get; }
     content.vb: Public MustOverride ReadOnly Property IsMutuallyAuthenticated As Boolean
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the client and server have been authenticated; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -231,17 +204,12 @@ items:
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
-  summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the local side of the connection was authenticated as the server.</p>\n"
-  remarks: "\n<p>Most security protocols used for client-server authentication define specific behavior and requirements for supplying credentials for authentication based on whether you are the client or the server. </p>\n"
-  example:
-  - "\n<p>The following code example demonstrates displaying the value of this property.</p>NclNegoAsyncClient#6"
   syntax:
     content: public abstract bool IsServer { get; }
     content.vb: Public MustOverride ReadOnly Property IsServer As Boolean
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the local endpoint was authenticated as the server side of a client-server authenticated connection; <strong>false</strong> if the local endpoint was authenticated as the client.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -271,17 +239,12 @@ items:
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
-  summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the data sent using this stream is signed.</p>\n"
-  remarks: "\n<p>Data signing helps to protect the integrity of the data; namely, it helps the recipient determine whether the data has been tampered with while in transit. </p>\n"
-  example:
-  - "\n<p>The following code example demonstrates displaying the value of this property.</p>NclNegoAsyncClient#6"
   syntax:
     content: public abstract bool IsSigned { get; }
     content.vb: Public MustOverride ReadOnly Property IsSigned As Boolean
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the data is signed before being transmitted; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - abstract
@@ -311,15 +274,12 @@ items:
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
-  summary: "\n<p>Gets whether the stream used by this <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref> for sending and receiving data has been left open.</p>\n"
-  remarks: "\n<p>When set to <strong>true</strong>, the stream passed to the constructor of this class will not be closed after the instance of this class is closed. When set to <strong>false</strong>, closing the instance of this class will also close the underlined transport stream. The default value of this property is <strong>false</strong>.</p>\n"
   syntax:
     content: public bool LeaveInnerStreamOpen { get; }
     content.vb: Public ReadOnly Property LeaveInnerStreamOpen As Boolean
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the inner stream has been left open; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -347,15 +307,12 @@ items:
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
-  summary: "\n<p>Gets the stream used by this <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref> for sending and receiving data.</p>\n"
-  remarks: "\n<p>Classes that inherit from <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref> can use this property to access the stream passed to the <xref href=\"System.Net.Security.AuthenticatedStream.#ctor(System.IO.Stream,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
-    content: protected IO.Stream InnerStream { get; }
-    content.vb: Protected ReadOnly Property InnerStream As IO.Stream
+    content: protected Stream InnerStream { get; }
+    content.vb: Protected ReadOnly Property InnerStream As Stream
     parameters: []
     return:
-      type: System.IO.Stream
-      description: "\n<p>A <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+      type: Stream
   modifiers.csharp:
   - protected
   - get
@@ -383,17 +340,12 @@ items:
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
-  summary: "\n<p>Releases the unmanaged resources used by the <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref> and optionally releases the managed resources. </p>\n"
-  remarks: "\n<p>This method is called by the public <strong>Dispose()</strong><strong></strong>method and the <xref href=\"System.Object.Finalize\" data-throw-if-not-resolved=\"false\"></xref> method. <strong>Dispose()</strong> invokes the protected <strong>Dispose(Boolean)</strong> method with the <em>disposing</em> parameter set to <strong>true</strong>. <xref href=\"System.Object.Finalize\" data-throw-if-not-resolved=\"false\"></xref> invokes <strong>Dispose</strong> with <em>disposing</em> set to <strong>false</strong>.</p>\n<p>When the <em>disposing</em> parameter is true, this method releases all resources held by any managed objects that this <xref href=\"System.Net.Security.AuthenticatedStream\" data-throw-if-not-resolved=\"false\"></xref> references. This method invokes the <strong>Dispose()</strong> method of each referenced object.</p>\n"
-  example:
-  - "\n<p></p>\n"
   syntax:
     content: protected override void Dispose(bool disposing)
     content.vb: Protected Overrides Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> to release both managed and unmanaged resources; <strong>false</strong> to release only unmanaged resources. </p>\n"
   modifiers.csharp:
   - protected
   - override
@@ -428,7 +380,3 @@ references:
   isExternal: false
   name: System.IO
   fullName: System.IO
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException

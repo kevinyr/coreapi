@@ -32,19 +32,15 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Represents a thread-safe, unordered collection of objects.</p>\n"
-  remarks: "\n<p>Bags are useful for storing objects when ordering doesn't matter, and unlike sets, bags support duplicates. <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> is a thread-safe bag implementation, optimized for scenarios where the same thread will be both producing and consuming data stored in the bag. </p>\n<p>\n<xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> accepts <strong>null</strong> as a valid value for reference types. </p>\n<p>For more information, see the entry <see href=\"http://blogs.msdn.com/b/pfxteam/archive/2010/01/26/9953725.aspx\">FAQ: Are all of the new concurrent collections lock-free?</see> in the Parallel Programming with .NET blog.</p>\n"
-  example:
-  - "\n<p>The following example shows how to add and remove items from a <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>:</p>System.Collections.Concurrent.ConcurrentBag#1"
   syntax:
-    content: 'public class ConcurrentBag<T> : object, IProducerConsumerCollection<T>, Generic.IEnumerable<T>, Generic.IReadOnlyCollection<T>, ICollection, IEnumerable'
+    content: 'public class ConcurrentBag<T> : object, IProducerConsumerCollection<T>, IEnumerable<T>, ICollection, IReadOnlyCollection<T>'
     content.vb: >-
       Public Class ConcurrentBag(Of T)
           Inherits Object
-          Implements IProducerConsumerCollection(Of T), Generic.IEnumerable(Of T), Generic.IReadOnlyCollection(Of T), ICollection, IEnumerable
+          Implements IProducerConsumerCollection(Of T), IEnumerable(Of T), ICollection, IReadOnlyCollection(Of T)
     typeParameters:
     - id: T
-      description: "\n<p>The type of the elements to be stored in the collection.</p>\n"
+      description: Specifies the type of elements in the bag.
   inheritance:
   - System.Object
   implements:
@@ -82,9 +78,6 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - 
   syntax:
     content: public ConcurrentBag()
     content.vb: Public Sub New
@@ -114,20 +107,12 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> class that contains elements copied from the specified collection.</p>\n"
-  example:
-  - 
   syntax:
     content: public ConcurrentBag(Generic.IEnumerable<T> collection)
     content.vb: Public Sub New(collection As Generic.IEnumerable(Of T))
     parameters:
     - id: collection
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection whose elements are copied to the new <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>collection</em> is a null reference (Nothing in Visual Basic).</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -155,17 +140,13 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Gets the number of elements contained in the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The count returned represents a moment-in-time snapshot of the contents of the bag. It is possible that other threads might add or remove items immediately after you access the <strong>Count</strong> property.</p>\n"
-  example:
-  - 
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>The number of elements contained in the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      description: The number of elements contained in the <xref href="System.Collections.Concurrent.ConcurrentBag`1" data-throw-if-not-resolved="false"></xref>.
   modifiers.csharp:
   - public
   - get
@@ -194,16 +175,13 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Gets a value that indicates whether the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> is empty.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool IsEmpty { get; }
     content.vb: Public ReadOnly Property IsEmpty As Boolean
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>true if the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> is empty; otherwise, false.</p>\n"
+      description: true if the <xref href="System.Collections.Concurrent.ConcurrentBag`1" data-throw-if-not-resolved="false"></xref> is empty; otherwise, false.
   modifiers.csharp:
   - public
   - get
@@ -232,16 +210,18 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Adds an object to the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public void Add(T item)
     content.vb: Public Sub Add(item As T)
     parameters:
     - id: item
       type: '{T}'
-      description: "\n<p>The object to be added to the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>. The value can be a null reference (Nothing in Visual Basic) for reference types.</p>\n"
+      description: >-
+        The object to be added to the
+
+        <xref href="System.Collections.Concurrent.ConcurrentBag`1" data-throw-if-not-resolved="false"></xref>. The value can be a null reference
+
+        (Nothing in Visual Basic) for reference types.
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -268,29 +248,24 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Copies the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> elements to an existing one-dimensional <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref>, starting at the specified array index.</p>\n"
-  example:
-  - 
   syntax:
     content: public void CopyTo(T[] array, int index)
     content.vb: Public Sub CopyTo(array As T(), index As Integer)
     parameters:
     - id: array
       type: '{T}[]'
-      description: "\n<p>The one-dimensional <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> that is the destination of the elements copied from the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>. The <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> must have zero-based indexing.</p>\n"
+      description: >-
+        The one-dimensional <xref href="System.Array" data-throw-if-not-resolved="false"></xref> that is the
+
+        destination of the elements copied from the
+
+        <xref href="System.Collections.Concurrent.ConcurrentBag`1" data-throw-if-not-resolved="false"></xref>. The <xref href="System.Array" data-throw-if-not-resolved="false"></xref> must have zero-based indexing.
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index in <em>array</em> at which copying begins.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>array</em> is a null reference (Nothing in Visual Basic).</p>\n"
-  - type: System.ArgumentOutOfRangeException
-    commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<p>\n<em>index</em> is less than zero.</p>\n"
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>index</em> is equal to or greater than the length of the <em>array</em> -or- the number of elements in the source <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> is greater than the available space from <em>index</em> to the end of the destination <em>array</em>.</p>\n"
+      description: >-
+        The zero-based index in <em>array</em> at which copying
+
+        begins.
   implements:
   - System.Collections.Concurrent.IProducerConsumerCollection{{T}}.CopyTo({T}[],System.Int32)
   modifiers.csharp:
@@ -320,16 +295,12 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Returns an enumerator that iterates through the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The enumeration represents a moment-in-time snapshot of the contents of the bag. It does not reflect any updates to the collection after <xref href=\"System.Collections.Concurrent.ConcurrentBag`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> was called. The enumerator is safe to use concurrently with reads from and writes to the bag.</p>\n"
-  example:
-  - 
   syntax:
-    content: public Generic.IEnumerator<T> GetEnumerator()
-    content.vb: Public Function GetEnumerator As Generic.IEnumerator(Of T)
+    content: public IEnumerator<T> GetEnumerator()
+    content.vb: Public Function GetEnumerator As IEnumerator(Of T)
     return:
-      type: System.Collections.Generic.IEnumerator{{T}}
-      description: "\n<p>An enumerator for the contents of the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: IEnumerator{{T}}
+      description: An enumerator for the contents of the <xref href="System.Collections.Concurrent.ConcurrentBag`1" data-throw-if-not-resolved="false"></xref>.
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -357,19 +328,16 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Attempts to add an object to the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: bool IProducerConsumerCollection<T>.TryAdd(T item)
     content.vb: Function System.Collections.Concurrent.IProducerConsumerCollection<T>.TryAdd(item As T) As Boolean Implements IProducerConsumerCollection(Of T).TryAdd
     parameters:
     - id: item
       type: '{T}'
-      description: "\n<p>The object to be added to the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>. The value can be a null reference (Nothing in Visual Basic) for reference types.</p>\n"
+      description: "The object to be added to the \n<xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>. The value can be a null reference\n(Nothing in Visual Basic) for reference types."
     return:
       type: System.Boolean
-      description: "\n<p>Always returns true</p>\n"
+      description: Always returns true
   implements:
   - System.Collections.Concurrent.IProducerConsumerCollection{{T}}.TryAdd({T})
   fullName.vb: System.Collections.Concurrent.ConcurrentBag(Of T).System.Collections.Concurrent.IProducerConsumerCollection<T>.TryAdd(T)
@@ -395,15 +363,12 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Copies the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> elements to a new array.</p>\n"
-  example:
-  - 
   syntax:
     content: public T[] ToArray()
     content.vb: Public Function ToArray As T()
     return:
       type: '{T}[]'
-      description: "\n<p>A new array containing a snapshot of elements copied from the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      description: A new array containing a snapshot of elements copied from the <xref href="System.Collections.Concurrent.ConcurrentBag`1" data-throw-if-not-resolved="false"></xref>.
   implements:
   - System.Collections.Concurrent.IProducerConsumerCollection{{T}}.ToArray
   modifiers.csharp:
@@ -432,19 +397,21 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Attempts to return an object from the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> without removing it.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool TryPeek(out T result)
     content.vb: Public Function TryPeek(ByRef result As T) As Boolean
     parameters:
     - id: result
       type: '{T}'
-      description: "\n<p>When this method returns, <em>result</em> contains an object from the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> or the default value of <em>T</em> if the operation failed.</p>\n"
+      description: >-
+        When this method returns, <em>result</em> contains an object from
+
+        the <xref href="System.Collections.Concurrent.ConcurrentBag`1" data-throw-if-not-resolved="false"></xref> or the default value of
+
+        <em>T</em> if the operation failed.
     return:
       type: System.Boolean
-      description: "\n<p>true if and object was returned successfully; otherwise, false.</p>\n"
+      description: true if and object was returned successfully; otherwise, false.
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -472,19 +439,21 @@ items:
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
-  summary: "\n<p>Attempts to remove and return an object from the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool TryTake(out T result)
     content.vb: Public Function TryTake(ByRef result As T) As Boolean
     parameters:
     - id: result
       type: '{T}'
-      description: "\n<p>When this method returns, <em>result</em> contains the object removed from the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> or the default value of <em>T</em> if the bag is empty.</p>\n"
+      description: >-
+        When this method returns, <em>result</em> contains the object
+
+        removed from the <xref href="System.Collections.Concurrent.ConcurrentBag`1" data-throw-if-not-resolved="false"></xref> or the default value
+
+        of <em>T</em> if the operation failed.
     return:
       type: System.Boolean
-      description: "\n<p>true if an object was removed successfully; otherwise, false.</p>\n"
+      description: true if an object was removed successfully; otherwise, false.
   implements:
   - System.Collections.Concurrent.IProducerConsumerCollection{{T}}.TryTake({T}@)
   modifiers.csharp:
@@ -999,16 +968,3 @@ references:
     fullName: T
   - name: )
     fullName: )
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException
-- uid: System.ArgumentOutOfRangeException
-  isExternal: false
-  name: ArgumentOutOfRangeException
-  fullName: System.ArgumentOutOfRangeException
-- uid: System.ArgumentException
-  parent: System
-  isExternal: false
-  name: ArgumentException
-  fullName: System.ArgumentException

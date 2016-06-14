@@ -35,19 +35,11 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Serves as the base class for all validation attributes.</p>\n"
-  remarks: "\n<p>This class enforces validation, based on the metadata that is associated with the data table. You can override this class to create custom validation attributes. </p>\n"
-  example:
-  - 
   syntax:
     content: 'public abstract class ValidationAttribute : Attribute'
     content.vb: >-
       Public MustInherit Class ValidationAttribute
           Inherits Attribute
-  exceptions:
-  - type: System.ComponentModel.DataAnnotations.ValidationException
-    commentId: T:System.ComponentModel.DataAnnotations.ValidationException
-    description: "\n<p>The <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceName\" data-throw-if-not-resolved=\"false\"></xref> properties for localized error message are set at the same time that the non-localized <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessage\" data-throw-if-not-resolved=\"false\"></xref> property error message is set.</p>\n"
   inheritance:
   - System.Object
   modifiers.csharp:
@@ -79,9 +71,6 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - 
   syntax:
     content: protected ValidationAttribute()
     content.vb: Protected Sub New
@@ -110,21 +99,12 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute\" data-throw-if-not-resolved=\"false\"></xref> class by using the function that enables access to validation resources.</p>\n"
-  remarks: "\n<p>This constructor provides a resource accessor function that is used by the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageString\" data-throw-if-not-resolved=\"false\"></xref> property to retrieve an error message. </p>\n"
-  example:
-  - 
   syntax:
     content: protected ValidationAttribute(Func<string> errorMessageAccessor)
     content.vb: Protected Sub New(errorMessageAccessor As Func(Of String))
     parameters:
     - id: errorMessageAccessor
       type: System.Func{System.String}
-      description: "\n<p>The function that enables access to validation resources.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>errorMessageAccessor</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -152,16 +132,13 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute\" data-throw-if-not-resolved=\"false\"></xref> class by using the error message to associate with a validation control.</p>\n"
-  example:
-  - 
   syntax:
     content: protected ValidationAttribute(string errorMessage)
     content.vb: Protected Sub New(errorMessage As String)
     parameters:
     - id: errorMessage
       type: System.String
-      description: "\n<p>The error message to associate with a validation control.</p>\n"
+      description: A non-localized error message to use in <xref href="System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageString" data-throw-if-not-resolved="false"></xref>.
   modifiers.csharp:
   - protected
   modifiers.vb:
@@ -187,15 +164,13 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Gets or sets an error message to associate with a validation control if validation fails.</p>\n"
-  remarks: "\n<p>This property is the error message that you associate with the validation control. It is used for non-localized error messages.</p>\n"
   syntax:
     content: public string ErrorMessage { get; set; }
     content.vb: Public Property ErrorMessage As String
     parameters: []
     return:
       type: System.String
-      description: "\n<p>The error message that is associated with the validation control.</p>\n"
+      description: "\n    This property is intended to be used for non-localizable error messages.  Use\n<xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceName\" data-throw-if-not-resolved=\"false\"></xref> for localizable error messages.\n"
   modifiers.csharp:
   - public
   - get
@@ -223,17 +198,13 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Gets or sets the error message resource name to use in order to look up the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType\" data-throw-if-not-resolved=\"false\"></xref> property value if validation fails.</p>\n"
-  remarks: "\n<p>You use the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceName\" data-throw-if-not-resolved=\"false\"></xref> property together with the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType\" data-throw-if-not-resolved=\"false\"></xref> property in order to provide a localized error message. </p>\n"
-  example:
-  - 
   syntax:
     content: public string ErrorMessageResourceName { get; set; }
     content.vb: Public Property ErrorMessageResourceName As String
     parameters: []
     return:
       type: System.String
-      description: "\n<p>The error message resource that is associated with a validation control.</p>\n"
+      description: "\n    Use this property to set the name of the property within <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType\" data-throw-if-not-resolved=\"false\"></xref>\n    that will provide a localized error message.  Use <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessage\" data-throw-if-not-resolved=\"false\"></xref> for non-localized error messages.\n"
   modifiers.csharp:
   - public
   - get
@@ -261,17 +232,13 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Gets or sets the resource type to use for error-message lookup if validation fails.</p>\n"
-  remarks: "\n<p>You use the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType\" data-throw-if-not-resolved=\"false\"></xref> property together with the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceName\" data-throw-if-not-resolved=\"false\"></xref> property in to provide a localized error message.</p>\n"
-  example:
-  - 
   syntax:
     content: public Type ErrorMessageResourceType { get; set; }
     content.vb: Public Property ErrorMessageResourceType As Type
     parameters: []
     return:
-      type: System.Type
-      description: "\n<p>The type of error message that is associated with a validation control.</p>\n"
+      type: Type
+      description: "\n    Use this property only in conjunction with <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceName\" data-throw-if-not-resolved=\"false\"></xref>.  They are\n    used together to retrieve localized error messages at runtime.\n<p>\n    Use <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessage\" data-throw-if-not-resolved=\"false\"></xref> instead of this pair if error messages are not localized.\n</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -299,17 +266,12 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Gets the localized validation error message.</p>\n"
-  remarks: "\n<p>The error message string is obtained by evaluating the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessage\" data-throw-if-not-resolved=\"false\"></xref> property or by evaluating the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceType\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageResourceName\" data-throw-if-not-resolved=\"false\"></xref> properties. The two cases are mutually exclusive. The second case is used if you want to display a localized error message.</p>\n"
-  example:
-  - 
   syntax:
     content: protected string ErrorMessageString { get; }
     content.vb: Protected ReadOnly Property ErrorMessageString As String
     parameters: []
     return:
       type: System.String
-      description: "\n<p>The localized validation error message.</p>\n"
   modifiers.csharp:
   - protected
   - get
@@ -337,14 +299,12 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Gets a value that indicates whether the attribute requires validation context.</p>\n"
   syntax:
     content: public virtual bool RequiresValidationContext { get; }
     content.vb: Public Overridable ReadOnly Property RequiresValidationContext As Boolean
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the attribute requires validation context; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -374,20 +334,16 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Applies formatting to an error message, based on the data field where the error occurred. </p>\n"
-  remarks: "\n<p>This method formats an error message by using the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.ErrorMessageString\" data-throw-if-not-resolved=\"false\"></xref> property. This method appends the name of the data field that triggered the error to the formatted error message. You can customize how the error message is formatted by creating a derived class that overrides this method.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual string FormatErrorMessage(string name)
     content.vb: Public Overridable Function FormatErrorMessage(name As String) As String
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>The name to include in the formatted message.</p>\n"
+      description: The user-visible name to include in the formatted message.
     return:
       type: System.String
-      description: "\n<p>An instance of the formatted error message.</p>\n"
+      description: The localized string describing the validation error
   modifiers.csharp:
   - public
   - virtual
@@ -415,26 +371,19 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Checks whether the specified value is valid with respect to the current validation attribute.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.GetValidationResult(System.Object,System.ComponentModel.DataAnnotations.ValidationContext)\" data-throw-if-not-resolved=\"false\"></xref> method checks validity without throwing an exception.</p>\n"
-  example:
-  - 
   syntax:
     content: public ValidationResult GetValidationResult(object value, ValidationContext validationContext)
     content.vb: Public Function GetValidationResult(value As Object, validationContext As ValidationContext) As ValidationResult
     parameters:
     - id: value
       type: System.Object
-      description: "\n<p>The value to validate.</p>\n"
+      description: The value to validate
     - id: validationContext
       type: System.ComponentModel.DataAnnotations.ValidationContext
-      description: "\n<p>The context information about the validation operation.</p>\n"
+      description: "\n    A <xref href=\"System.ComponentModel.DataAnnotations.ValidationContext\" data-throw-if-not-resolved=\"false\"></xref> instance that provides\n    context about the validation operation, such as the object and member being validated.\n"
     return:
       type: System.ComponentModel.DataAnnotations.ValidationResult
-      description: "\n<p>An instance of the <xref href=\"System.ComponentModel.DataAnnotations.ValidationResult\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
-  seealso:
-  - type: System.ComponentModel.DataAnnotations.ValidationResult
-    commentId: T:System.ComponentModel.DataAnnotations.ValidationResult
+      description: "\n    When validation is valid, <xref href=\"System.ComponentModel.DataAnnotations.ValidationResult.Success\" data-throw-if-not-resolved=\"false\"></xref>.\n<p>\n    When validation is invalid, an instance of <xref href=\"System.ComponentModel.DataAnnotations.ValidationResult\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -460,20 +409,16 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Determines whether the specified value of the object is valid. </p>\n"
-  remarks: "\n<p>If you inherit from the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute\" data-throw-if-not-resolved=\"false\"></xref> class, you must implement the validation logic in this method.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual bool IsValid(object value)
     content.vb: Public Overridable Function IsValid(value As Object) As Boolean
     parameters:
     - id: value
       type: System.Object
-      description: "\n<p>The value of the object to validate. </p>\n"
+      description: The value to validate
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the specified value is valid; otherwise, <strong>false</strong>.</p>\n"
+      description: <code>true</code> if the <em>value</em> is acceptable, <code>false</code> if it is not acceptable
   modifiers.csharp:
   - public
   - virtual
@@ -501,25 +446,19 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Validates the specified value with respect to the current validation attribute.</p>\n"
-  example:
-  - 
   syntax:
     content: protected virtual ValidationResult IsValid(object value, ValidationContext validationContext)
     content.vb: Protected Overridable Function IsValid(value As Object, validationContext As ValidationContext) As ValidationResult
     parameters:
     - id: value
       type: System.Object
-      description: "\n<p>The value to validate.</p>\n"
+      description: The value to validate.
     - id: validationContext
       type: System.ComponentModel.DataAnnotations.ValidationContext
-      description: "\n<p>The context information about the validation operation.</p>\n"
+      description: "\n    A <xref href=\"System.ComponentModel.DataAnnotations.ValidationContext\" data-throw-if-not-resolved=\"false\"></xref> instance that provides\n    context about the validation operation, such as the object and member being validated.\n"
     return:
       type: System.ComponentModel.DataAnnotations.ValidationResult
-      description: "\n<p>An instance of the <xref href=\"System.ComponentModel.DataAnnotations.ValidationResult\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
-  seealso:
-  - type: System.ComponentModel.DataAnnotations.ValidationResult
-    commentId: T:System.ComponentModel.DataAnnotations.ValidationResult
+      description: "\n    When validation is valid, <xref href=\"System.ComponentModel.DataAnnotations.ValidationResult.Success\" data-throw-if-not-resolved=\"false\"></xref>.\n<p>\n    When validation is invalid, an instance of <xref href=\"System.ComponentModel.DataAnnotations.ValidationResult\" data-throw-if-not-resolved=\"false\"></xref>.\n</p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -547,24 +486,16 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Validates the specified object.</p>\n"
-  remarks: "\n<p>This method calls the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method to determine whether the object that is specified by the <em>value</em> parameter is valid. If the <see cref=\"Overload:System.ComponentModel.DataAnnotations.ValidationAttribute.Validate\"></see> method returns <strong>false</strong>, this method calls the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.FormatErrorMessage(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to get a localized message that states the problem. It then throws a <xref href=\"System.ComponentModel.DataAnnotations.ValidationException\" data-throw-if-not-resolved=\"false\"></xref> exception.</p>\n"
-  example:
-  - 
   syntax:
     content: public void Validate(object value, ValidationContext validationContext)
     content.vb: Public Sub Validate(value As Object, validationContext As ValidationContext)
     parameters:
     - id: value
       type: System.Object
-      description: "\n<p>The object to validate.</p>\n"
+      description: The value to validate
     - id: validationContext
       type: System.ComponentModel.DataAnnotations.ValidationContext
-      description: "\n<p>The <xref href=\"System.ComponentModel.DataAnnotations.ValidationContext\" data-throw-if-not-resolved=\"false\"></xref> object that describes the context where the validation checks are performed. This parameter cannot be <strong>null</strong>.</p>\n"
-  exceptions:
-  - type: System.ComponentModel.DataAnnotations.ValidationException
-    commentId: T:System.ComponentModel.DataAnnotations.ValidationException
-    description: "\n<p>Validation failed.</p>\n"
+      description: Additional context that may be used for validation.  It cannot be null.
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -590,24 +521,16 @@ items:
   assemblies:
   - System.ComponentModel.Annotations
   namespace: System.ComponentModel.DataAnnotations
-  summary: "\n<p>Validates the specified object.</p>\n"
-  remarks: "\n<p>This method validates the value of the object or property on which the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute\" data-throw-if-not-resolved=\"false\"></xref> attribute is declared. It calls the <xref href=\"System.ComponentModel.DataAnnotations.ValidationAttribute.IsValid(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method and passes <em>value</em> as a parameter. If validation fails, a <xref href=\"System.ComponentModel.DataAnnotations.ValidationException\" data-throw-if-not-resolved=\"false\"></xref> exception is thrown. </p>\n"
-  example:
-  - 
   syntax:
     content: public void Validate(object value, string name)
     content.vb: Public Sub Validate(value As Object, name As String)
     parameters:
     - id: value
       type: System.Object
-      description: "\n<p>The value of the object to validate.</p>\n"
+      description: The value to validate
     - id: name
       type: System.String
-      description: "\n<p>The name to include in the error message.</p>\n"
-  exceptions:
-  - type: System.ComponentModel.DataAnnotations.ValidationException
-    commentId: T:System.ComponentModel.DataAnnotations.ValidationException
-    description: "\n<p>\n<em>value</em> is not valid.</p>\n"
+      description: The string to be included in the validation error message if <em>value</em> is not valid
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -708,11 +631,3 @@ references:
   isExternal: false
   name: ValidationResult
   fullName: System.ComponentModel.DataAnnotations.ValidationResult
-- uid: System.ComponentModel.DataAnnotations.ValidationException
-  isExternal: false
-  name: ValidationException
-  fullName: System.ComponentModel.DataAnnotations.ValidationException
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException

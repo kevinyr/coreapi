@@ -29,13 +29,12 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Provides a collection of <xref href=\"System.Net.Http.HttpContent\" data-throw-if-not-resolved=\"false\"></xref> objects that get serialized using the multipart/* content type specification.</p>\n"
   syntax:
-    content: 'public class MultipartContent : HttpContent, Collections.Generic.IEnumerable<HttpContent>, Collections.IEnumerable'
+    content: 'public class MultipartContent : HttpContent, IEnumerable<HttpContent>'
     content.vb: >-
       Public Class MultipartContent
           Inherits HttpContent
-          Implements Collections.Generic.IEnumerable(Of HttpContent), Collections.IEnumerable
+          Implements IEnumerable(Of HttpContent)
   inheritance:
   - System.Object
   - System.Net.Http.HttpContent
@@ -80,7 +79,6 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Creates a new instance of the <xref href=\"System.Net.Http.MultipartContent\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public MultipartContent()
     content.vb: Public Sub New
@@ -109,18 +107,12 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Creates a new instance of the <xref href=\"System.Net.Http.MultipartContent\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public MultipartContent(string subtype)
     content.vb: Public Sub New(subtype As String)
     parameters:
     - id: subtype
       type: System.String
-      description: "\n<p>The subtype of the multipart content.</p>\n"
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>The <em>subtype</em> was <strong>null</strong> or contains only white space characters.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -146,24 +138,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Creates a new instance of the <xref href=\"System.Net.Http.MultipartContent\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public MultipartContent(string subtype, string boundary)
     content.vb: Public Sub New(subtype As String, boundary As String)
     parameters:
     - id: subtype
       type: System.String
-      description: "\n<p>The subtype of the multipart content.</p>\n"
     - id: boundary
       type: System.String
-      description: "\n<p>The boundary string for the multipart content.</p>\n"
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>The <em>subtype</em> was <strong>null</strong> or an empty string.</p>\n<p>The <em>boundary</em> was <strong>null</strong> or contains only white space characters.</p>\n<p>-or-</p>\n<p>The <em>boundary</em> ends with a space character.</p>\n"
-  - type: System.ArgumentOutOfRangeException
-    commentId: T:System.ArgumentOutOfRangeException
-    description: "\n<p>The length of the <em>boundary</em> was greater than 70.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -189,18 +171,12 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Add multipart HTTP content to a collection of <xref href=\"System.Net.Http.HttpContent\" data-throw-if-not-resolved=\"false\"></xref> objects that get serialized using the multipart/* content type specification.</p>\n"
   syntax:
     content: public virtual void Add(HttpContent content)
     content.vb: Public Overridable Sub Add(content As HttpContent)
     parameters:
     - id: content
       type: System.Net.Http.HttpContent
-      description: "\n<p>The HTTP content to add to the collection.</p>\n"
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>The <em>content</em> was <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -228,15 +204,12 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Releases the unmanaged resources used by the <xref href=\"System.Net.Http.MultipartContent\" data-throw-if-not-resolved=\"false\"></xref> and optionally disposes of the managed resources.</p>\n"
-  remarks: "\n<p>This method is called by the public <strong>Dispose()</strong> method and the <xref href=\"System.Object.Finalize\" data-throw-if-not-resolved=\"false\"></xref> method. <strong>Dispose()</strong> invokes the protected <strong>Dispose(Boolean)</strong> method with the <em>disposing</em> parameter set to <strong>true</strong>. <xref href=\"System.Object.Finalize\" data-throw-if-not-resolved=\"false\"></xref> invokes <strong>Dispose</strong> with <em>disposing</em> set to <strong>false</strong>.When the <em>disposing</em> parameter is <strong>true</strong>, this method releases all resources held by any managed objects that this <xref href=\"System.Net.Http.MultipartContent\" data-throw-if-not-resolved=\"false\"></xref> references. This method invokes the <strong>Dispose()</strong> method of each referenced object.</p>\n"
   syntax:
     content: protected override void Dispose(bool disposing)
     content.vb: Protected Overrides Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> to release both managed and unmanaged resources; <strong>false</strong> to releases only unmanaged resources.</p>\n"
   overridden: System.Net.Http.HttpContent.Dispose(System.Boolean)
   modifiers.csharp:
   - protected
@@ -265,14 +238,11 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Returns an enumerator that iterates through the collection of <xref href=\"System.Net.Http.HttpContent\" data-throw-if-not-resolved=\"false\"></xref> objects that get serialized using the multipart/* content type specification..</p>\n"
-  remarks: "\n<p>The foreach statement of the C# language (For Each in Visual Basic) hides the complexity of the enumerators. Therefore, using foreach is recommended, instead of directly manipulating the enumerator.</p>\n<p>Enumerators can be used to read the data in the collection, but they cannot be used to modify the underlying collection.</p>\n<p>Initially, the enumerator is positioned before the first element in the collection.</p>\n"
   syntax:
-    content: public Collections.Generic.IEnumerator<HttpContent> GetEnumerator()
-    content.vb: Public Function GetEnumerator As Collections.Generic.IEnumerator(Of HttpContent)
+    content: public IEnumerator<HttpContent> GetEnumerator()
+    content.vb: Public Function GetEnumerator As IEnumerator(Of HttpContent)
     return:
-      type: System.Collections.Generic.IEnumerator{System.Net.Http.HttpContent}
-      description: "\n<p>Returns <xref href=\"System.Collections.Generic.IEnumerator`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>An object that can be used to iterate through the collection.</p>\n"
+      type: IEnumerator{System.Net.Http.HttpContent}
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -298,21 +268,16 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Serialize the multipart HTTP content to a stream as an asynchronous operation.</p>\n"
-  remarks: "\n<p>This operation will not block. The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object will complete after all of the content has been serialized to the target stream.</p>\n"
   syntax:
     content: protected override Threading.Tasks.Task SerializeToStreamAsync(IO.Stream stream, TransportContext context)
     content.vb: Protected Overrides Function SerializeToStreamAsync(stream As IO.Stream, context As TransportContext) As Threading.Tasks.Task
     parameters:
     - id: stream
       type: System.IO.Stream
-      description: "\n<p>The target stream.</p>\n"
     - id: context
       type: System.Net.TransportContext
-      description: "\n<p>Information about the transport (channel binding token, for example). This parameter may be <strong>null</strong>.</p>\n"
     return:
       type: System.Threading.Tasks.Task
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
   overridden: System.Net.Http.HttpContent.SerializeToStreamAsync(System.IO.Stream,System.Net.TransportContext)
   modifiers.csharp:
   - protected
@@ -341,18 +306,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
-  summary: "\n<p>Determines whether the HTTP multipart content has a valid length in bytes.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Net.Http.MultipartContent.TryComputeLength(System.Int64@)\" data-throw-if-not-resolved=\"false\"></xref> method gives HTTP multipart content the ability to calculate the content length. This is useful for content types which are able to easily calculate the content length. If computing the content length is not possible or expensive (would require the system to buffer the whole content where the serialization would be expensive or require the system to allocate a lot of memory), this method can return <strong>false</strong>. If this method returns <strong>false</strong>, this implies that either chunked transfer is needed or the content must get buffered before being sent to the server.</p>\n"
   syntax:
     content: protected override bool TryComputeLength(out long length)
     content.vb: Protected Overrides Function TryComputeLength(ByRef length As Long) As Boolean
     parameters:
     - id: length
       type: System.Int64
-      description: "\n<p>The length in bytes of the HHTP content.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>Returns <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<strong>true</strong> if <em>length</em> is a valid length; otherwise, <strong>false</strong>.</p>\n"
   overridden: System.Net.Http.HttpContent.TryComputeLength(System.Int64@)
   modifiers.csharp:
   - protected
@@ -870,16 +831,3 @@ references:
   isExternal: false
   name: Int64
   fullName: System.Int64
-- uid: System.ArgumentException
-  parent: System
-  isExternal: false
-  name: ArgumentException
-  fullName: System.ArgumentException
-- uid: System.ArgumentOutOfRangeException
-  isExternal: false
-  name: ArgumentOutOfRangeException
-  fullName: System.ArgumentOutOfRangeException
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException

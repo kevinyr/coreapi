@@ -25,16 +25,11 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: "\n<p>Provides a type converter to convert <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> objects to and from various other representations.</p>\n"
-  remarks: "\n<p>For more information about type converters, see the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> base class and How to: Implement a Type Converter.</p>\n<p>You should never create an instance of the <xref href=\"System.ComponentModel.ArrayConverter\" data-throw-if-not-resolved=\"false\"></xref> class. Instead, call the <xref href=\"System.ComponentModel.TypeDescriptor.GetConverter(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method of the <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> class. For more information, see the examples in the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> base class.</p>\n"
   syntax:
     content: 'public class ArrayConverter : CollectionConverter'
     content.vb: >-
       Public Class ArrayConverter
           Inherits CollectionConverter
-  seealso:
-  - type: System.ComponentModel.TypeDescriptor
-    commentId: T:System.ComponentModel.TypeDescriptor
   inheritance:
   - System.Object
   - System.ComponentModel.TypeConverter
@@ -102,7 +97,6 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.ComponentModel.ArrayConverter\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
   syntax:
     content: public ArrayConverter()
     content.vb: Public Sub New
@@ -131,35 +125,21 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: "\n<p>Converts the given value object to the specified destination type.</p>\n"
-  remarks: "\n<p>This converter can convert an array to a string.</p>\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n<p>The converted result will be shown in the property browser. For example, if you are converting a char array into a string, it will be displayed as <code>char[] array</code>.</p>\n"
   syntax:
     content: public override object ConvertTo(ITypeDescriptorContext context, Globalization.CultureInfo culture, object value, Type destinationType)
     content.vb: Public Overrides Function ConvertTo(context As ITypeDescriptorContext, culture As Globalization.CultureInfo, value As Object, destinationType As Type) As Object
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     - id: culture
       type: System.Globalization.CultureInfo
-      description: "\n<p>The culture into which <em>value</em> will be converted.</p>\n"
     - id: value
       type: System.Object
-      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to convert. </p>\n"
     - id: destinationType
       type: System.Type
-      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> to convert the value to. </p>\n"
     return:
       type: System.Object
-      description: "\n<p>An <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that represents the converted value.</p>\n"
   overridden: System.ComponentModel.CollectionConverter.ConvertTo(System.ComponentModel.ITypeDescriptorContext,System.Globalization.CultureInfo,System.Object,System.Type)
-  exceptions:
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>destinationType</em> is <strong>null</strong>. </p>\n"
-  - type: System.NotSupportedException
-    commentId: T:System.NotSupportedException
-    description: "\n<p>The conversion cannot be performed. </p>\n"
   modifiers.csharp:
   - public
   - override
@@ -187,24 +167,18 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: "\n<p>Gets a collection of properties for the type of array specified by the value parameter.</p>\n"
-  remarks: "\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n<p>The attributes array will be used to filter the array. The <em>attributes</em> parameter can specify a mix of <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> objects. Filtering is defined by the following rules: </p>\n<ul><li>\n<p>A <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> will be treated as a wildcard; it will match any property that has the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> in its set of attributes.</p>\n</li><li>\n<p>If a property does not have an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> of the same class, the property will not be included in the returned array.</p>\n</li><li>\n<p>If the attribute is an instance of <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref>, the property must be an exact match or it will not be included in the returned array.</p>\n</li><li>\n<p>If an <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> instance is specified and it is the default property, it will be included in the returned array even if there is no instance of the <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> in the property.</p>\n</li></ul>\n"
   syntax:
     content: public override PropertyDescriptorCollection GetProperties(ITypeDescriptorContext context, object value, Attribute[] attributes)
     content.vb: Public Overrides Function GetProperties(context As ITypeDescriptorContext, value As Object, attributes As Attribute()) As PropertyDescriptorCollection
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     - id: value
       type: System.Object
-      description: "\n<p>An <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that specifies the type of array to get the properties for. </p>\n"
     - id: attributes
       type: System.Attribute[]
-      description: "\n<p>An array of type <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> that will be used as a filter. </p>\n"
     return:
       type: System.ComponentModel.PropertyDescriptorCollection
-      description: "\n<p>A <xref href=\"System.ComponentModel.PropertyDescriptorCollection\" data-throw-if-not-resolved=\"false\"></xref> with the properties that are exposed for an array, or <strong>null</strong> if there are no properties.</p>\n"
   overridden: System.ComponentModel.CollectionConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])
   modifiers.csharp:
   - public
@@ -235,18 +209,14 @@ items:
   assemblies:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
-  summary: "\n<p>Gets a value indicating whether this object supports properties.</p>\n"
-  remarks: "\n<p>The <em>context</em> parameter can be used to extract additional information about the environment this converter is being invoked from. This can be <strong>null</strong>, so always check. Also, properties on the context object can return <strong>null</strong>.</p>\n"
   syntax:
     content: public override bool GetPropertiesSupported(ITypeDescriptorContext context)
     content.vb: Public Overrides Function GetPropertiesSupported(context As ITypeDescriptorContext) As Boolean
     parameters:
     - id: context
       type: System.ComponentModel.ITypeDescriptorContext
-      description: "\n<p>An <xref href=\"System.ComponentModel.ITypeDescriptorContext\" data-throw-if-not-resolved=\"false\"></xref> that provides a format context. </p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> because <xref href=\"System.ComponentModel.ArrayConverter.GetProperties(System.ComponentModel.ITypeDescriptorContext,System.Object,System.Attribute[])\" data-throw-if-not-resolved=\"false\"></xref> should be called to find the properties of this object. This method never returns <strong>false</strong>.</p>\n"
   overridden: System.ComponentModel.CollectionConverter.GetPropertiesSupported(System.ComponentModel.ITypeDescriptorContext)
   modifiers.csharp:
   - public
@@ -1637,12 +1607,3 @@ references:
   isExternal: false
   name: Boolean
   fullName: System.Boolean
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException
-- uid: System.NotSupportedException
-  parent: System
-  isExternal: false
-  name: NotSupportedException
-  fullName: System.NotSupportedException

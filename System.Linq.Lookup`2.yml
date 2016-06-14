@@ -26,21 +26,15 @@ items:
   assemblies:
   - System.Linq
   namespace: System.Linq
-  summary: "\n<p>Represents a collection of keys each mapped to one or more values.</p>\n"
-  remarks: "\n<p>A <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> resembles a <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref>. The difference is that a <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref> maps keys to single values, whereas a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> maps keys to collections of values.</p>\n<p>You can create an instance of a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> by calling <xref href=\"System.Linq.Enumerable.ToLookup``2(System.Collections.Generic.IEnumerable{``0},System.Func{``0,``1})\" data-throw-if-not-resolved=\"false\"></xref> on an object that implements <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>There is no public constructor to create a new instance of a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>. Additionally, <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> objects are immutable, that is, you cannot add or remove elements or keys from a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> object after it has been created.</p>\n"
-  example:
-  - "\n<p>The following example creates a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> from a collection of objects. It then enumerates the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> and outputs each key and each value in the key's associated collection of values. It also demonstrates how to use the properties <xref href=\"System.Linq.Lookup`2.Count\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Linq.Lookup`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> and the methods <xref href=\"System.Linq.Lookup`2.Contains(`0)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Linq.Lookup`2.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Linq.Lookup#1"
   syntax:
-    content: 'public class Lookup<TKey, TElement> : Collections.Generic.IEnumerable<IGrouping<TKey, TElement>>, ILookup<TKey, TElement>, Collections.Generic.IEnumerable<IGrouping<TKey, TElement>>, Collections.IEnumerable'
+    content: 'public class Lookup<TKey, TElement> : object, ILookup<TKey, TElement>, IIListProvider<IGrouping<TKey, TElement>>, IEnumerable<IGrouping<TKey, TElement>>'
     content.vb: >-
       Public Class Lookup(Of TKey, TElement)
-          Inherits Collections.Generic.IEnumerable(Of IGrouping(Of TKey, TElement))
-          Implements ILookup(Of TKey, TElement), Collections.Generic.IEnumerable(Of IGrouping(Of TKey, TElement)), Collections.IEnumerable
+          Inherits Object
+          Implements ILookup(Of TKey, TElement), IIListProvider(Of IGrouping(Of TKey, TElement)), IEnumerable(Of IGrouping(Of TKey, TElement))
     typeParameters:
     - id: TKey
-      description: "\n<p>The type of the keys in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: TElement
-      description: "\n<p>The type of the elements of each <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> value in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   inheritance:
   - System.Object
   implements:
@@ -76,17 +70,12 @@ items:
   assemblies:
   - System.Linq
   namespace: System.Linq
-  summary: "\n<p>Gets the number of key/value collection pairs in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The value of the <xref href=\"System.Linq.Lookup`2.Count\" data-throw-if-not-resolved=\"false\"></xref> property does not change because items cannot be added to or removed from a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> object after it has been created.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates how to use <xref href=\"System.Linq.Lookup`2.Count\" data-throw-if-not-resolved=\"false\"></xref> to determine the number of key/value collection pairs in a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>. This code example is part of a larger example provided for the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.Linq.Lookup#2"
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>The number of key/value collection pairs in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   implements:
   - System.Linq.ILookup{{TKey},{TElement}}.Count
   modifiers.csharp:
@@ -117,20 +106,14 @@ items:
   assemblies:
   - System.Linq
   namespace: System.Linq
-  summary: "\n<p>Gets the collection of values indexed by the specified key.</p>\n"
-  remarks: "\n<p>This indexed property provides the ability to index a specific collection of values in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> by using the following syntax: <code>myLookup[key]</code> in Visual C# or <code>myLookup(key)</code> in Visual Basic. If the <em>key</em> is not found in the collection, an empty sequence is returned.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates how to use <xref href=\"System.Linq.Lookup`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> to index directly into a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>. This code example is part of a larger example provided for the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.Linq.Lookup#3"
   syntax:
-    content: public Collections.Generic.IEnumerable<TElement> this[TKey key] { get; }
-    content.vb: Public ReadOnly Property Item(key As TKey) As Collections.Generic.IEnumerable(Of TElement)
+    content: public IEnumerable<TElement> this[TKey key] { get; }
+    content.vb: Public ReadOnly Property Item(key As TKey) As IEnumerable(Of TElement)
     parameters:
     - id: key
       type: '{TKey}'
-      description: "\n<p>The key of the desired collection of values.</p>\n"
     return:
-      type: System.Collections.Generic.IEnumerable{{TElement}}
-      description: "\n<p>The collection of values indexed by the specified key.</p>\n"
+      type: IEnumerable{{TElement}}
   implements:
   - System.Linq.ILookup{{TKey},{TElement}}.Item({TKey})
   modifiers.csharp:
@@ -162,22 +145,16 @@ items:
   assemblies:
   - System.Linq
   namespace: System.Linq
-  summary: "\n<p>Applies a transform function to each key and its associated values and returns the results.</p>\n"
-  example:
-  - 
   syntax:
     content: public Collections.Generic.IEnumerable<TResult> ApplyResultSelector<TResult>(Func<TKey, Collections.Generic.IEnumerable<TElement>, TResult> resultSelector)
     content.vb: Public Function ApplyResultSelector(Of TResult)(resultSelector As Func(Of TKey, Collections.Generic.IEnumerable(Of TElement), TResult)) As Collections.Generic.IEnumerable(Of TResult)
     parameters:
     - id: resultSelector
       type: System.Func{{TKey},System.Collections.Generic.IEnumerable{{TElement}},{TResult}}
-      description: "\n<p>A function to project a result value from each key and its associated values.</p>\n"
     typeParameters:
     - id: TResult
-      description: "\n<p>The type of the result values produced by <em>resultSelector</em>.</p>\n"
     return:
       type: System.Collections.Generic.IEnumerable{{TResult}}
-      description: "\n<p>A collection that contains one value for each key/value collection pair in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -205,19 +182,14 @@ items:
   assemblies:
   - System.Linq
   namespace: System.Linq
-  summary: "\n<p>Determines whether a specified key is in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates how to use <xref href=\"System.Linq.Lookup`2.Contains(`0)\" data-throw-if-not-resolved=\"false\"></xref> to determine whether a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> contains a specified key. This code example is part of a larger example provided for the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.Linq.Lookup#4"
   syntax:
     content: public bool Contains(TKey key)
     content.vb: Public Function Contains(key As TKey) As Boolean
     parameters:
     - id: key
       type: '{TKey}'
-      description: "\n<p>The key to find in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if <em>key</em> is in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>; otherwise, <strong>false</strong>.</p>\n"
   implements:
   - System.Linq.ILookup{{TKey},{TElement}}.Contains({TKey})
   modifiers.csharp:
@@ -246,15 +218,11 @@ items:
   assemblies:
   - System.Linq
   namespace: System.Linq
-  summary: "\n<p>Returns a generic enumerator that iterates through the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates how to use <xref href=\"System.Linq.Lookup`2.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> to iterate through the keys and values of a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>. This code example is part of a larger example provided for the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.Linq.Lookup#5"
   syntax:
-    content: public Collections.Generic.IEnumerator<IGrouping<TKey, TElement>> GetEnumerator()
-    content.vb: Public Function GetEnumerator As Collections.Generic.IEnumerator(Of IGrouping(Of TKey, TElement))
+    content: public IEnumerator<IGrouping<TKey, TElement>> GetEnumerator()
+    content.vb: Public Function GetEnumerator As IEnumerator(Of IGrouping(Of TKey, TElement))
     return:
-      type: System.Collections.Generic.IEnumerator{System.Linq.IGrouping{{TKey},{TElement}}}
-      description: "\n<p>An enumerator for the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: IEnumerator{System.Linq.IGrouping{{TKey},{TElement}}}
   modifiers.csharp:
   - public
   modifiers.vb:

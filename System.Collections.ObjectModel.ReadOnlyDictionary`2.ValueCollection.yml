@@ -26,11 +26,11 @@ items:
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Represents a read-only collection of the values of a <xref href=\"System.Collections.ObjectModel.ReadOnlyDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   syntax:
-    content: 'public sealed class ValueCollection : Generic.ICollection<TValue>, Generic.IEnumerable<TValue>, Generic.IReadOnlyCollection<TValue>, ICollection, IEnumerable'
+    content: 'public sealed class ValueCollection : ICollection<TValue>, ICollection, IReadOnlyCollection<TValue>'
     content.vb: >-
       Public NotInheritable Class ValueCollection
-          Inherits Generic.ICollection(Of TValue)
-          Implements Generic.IEnumerable(Of TValue), Generic.IReadOnlyCollection(Of TValue), ICollection, IEnumerable
+          Inherits ICollection(Of TValue)
+          Implements ICollection, IReadOnlyCollection(Of TValue)
   inheritance:
   - System.Object
   implements:
@@ -76,7 +76,6 @@ items:
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>The number of elements in the collection.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -112,10 +111,8 @@ items:
     parameters:
     - id: array
       type: '{TValue}[]'
-      description: "\n<p>The one-dimensional array that is the destination of the elements copied from the collection. The array must have zero-based indexing.</p>\n"
     - id: arrayIndex
       type: System.Int32
-      description: "\n<p>The zero-based index in <em>array</em> at which copying begins.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -155,11 +152,10 @@ items:
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Returns an enumerator that iterates through the collection.</p>\n"
   syntax:
-    content: public Generic.IEnumerator<TValue> GetEnumerator()
-    content.vb: Public Function GetEnumerator As Generic.IEnumerator(Of TValue)
+    content: public IEnumerator<TValue> GetEnumerator()
+    content.vb: Public Function GetEnumerator As IEnumerator(Of TValue)
     return:
-      type: System.Collections.Generic.IEnumerator{{TValue}}
-      description: "\n<p>An enumerator that can be used to iterate through the collection.</p>\n"
+      type: IEnumerator{{TValue}}
   modifiers.csharp:
   - public
   modifiers.vb:

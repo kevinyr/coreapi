@@ -26,10 +26,6 @@ items:
   assemblies:
   - System.Net.Ping
   namespace: System.Net.NetworkInformation
-  summary: "\n<p>Provides information about the status and data resulting from a <see cref=\"Overload:System.Net.NetworkInformation.Ping.Send\"></see> or <see cref=\"Overload:System.Net.NetworkInformation.Ping.SendAsync\"></see> operation.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Net.NetworkInformation.Ping\" data-throw-if-not-resolved=\"false\"></xref> class attempts to send an Internet Control Message Protocol (ICMP) echo request to a remote computer and receive information back from the computer via an ICMP echo reply message. The <xref href=\"System.Net.NetworkInformation.Ping\" data-throw-if-not-resolved=\"false\"></xref> class uses instances of the <xref href=\"System.Net.NetworkInformation.PingReply\" data-throw-if-not-resolved=\"false\"></xref> class to return information about the operation, such as its status and the time taken to send the request and receive the reply. </p>\n<p>The <see cref=\"Overload:System.Net.NetworkInformation.Ping.Send\"></see> methods return instances of the <xref href=\"System.Net.NetworkInformation.PingReply\" data-throw-if-not-resolved=\"false\"></xref> class directly. The <see cref=\"Overload:System.Net.NetworkInformation.Ping.SendAsync\"></see> methods return a <xref href=\"System.Net.NetworkInformation.PingReply\" data-throw-if-not-resolved=\"false\"></xref> in the <xref href=\"System.Net.NetworkInformation.PingCompletedEventHandler\" data-throw-if-not-resolved=\"false\"></xref> method's <xref href=\"System.Net.NetworkInformation.PingCompletedEventArgs\" data-throw-if-not-resolved=\"false\"></xref> parameter. The <xref href=\"System.Net.NetworkInformation.PingReply\" data-throw-if-not-resolved=\"false\"></xref> is accessed through the <xref href=\"System.Net.NetworkInformation.PingCompletedEventArgs.Reply\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>If the value of <xref href=\"System.Net.NetworkInformation.PingReply.Status\" data-throw-if-not-resolved=\"false\"></xref> is not <xref href=\"System.Net.NetworkInformation.IPStatus.Success\" data-throw-if-not-resolved=\"false\"></xref>, you should not use the values returned by the <xref href=\"System.Net.NetworkInformation.PingReply.RoundtripTime\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Net.NetworkInformation.PingReply.Options\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Net.NetworkInformation.PingReply.Buffer\" data-throw-if-not-resolved=\"false\"></xref> properties. The <xref href=\"System.Net.NetworkInformation.PingReply.RoundtripTime\" data-throw-if-not-resolved=\"false\"></xref> property will return zero, the <xref href=\"System.Net.NetworkInformation.PingReply.Buffer\" data-throw-if-not-resolved=\"false\"></xref> property will return an empty array, and the <xref href=\"System.Net.NetworkInformation.PingReply.Options\" data-throw-if-not-resolved=\"false\"></xref> property will return <strong>null</strong>.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates using <xref href=\"System.Net.NetworkInformation.Ping\" data-throw-if-not-resolved=\"false\"></xref> class to send an ICMP echo request synchronously and display the response.</p>NCLPingSync#1"
   syntax:
     content: 'public class PingReply : object'
     content.vb: >-
@@ -64,17 +60,12 @@ items:
   assemblies:
   - System.Net.Ping
   namespace: System.Net.NetworkInformation
-  summary: "\n<p>Gets the address of the host that sends the Internet Control Message Protocol (ICMP) echo reply.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Net.NetworkInformation.PingReply.Address\" data-throw-if-not-resolved=\"false\"></xref> returned by any of the <see cref=\"Overload:System.Net.NetworkInformation.Ping.Send\"></see> overloads can originate from a malicious remote computer. Do not connect to the remote computer using this address. Use DNS to determine the IP address of the machine to which you want to connect.</p>\n"
-  example:
-  - "\n<p>The following code example sends an ICMP echo request synchronously and displays the value of this property. </p>NclPingSampler#2"
   syntax:
     content: public IPAddress Address { get; }
     content.vb: Public ReadOnly Property Address As IPAddress
     parameters: []
     return:
-      type: System.Net.IPAddress
-      description: "\n<p>An <xref href=\"System.Net.IPAddress\" data-throw-if-not-resolved=\"false\"></xref> containing the destination for the ICMP echo message.</p>\n"
+      type: IPAddress
   modifiers.csharp:
   - public
   - get
@@ -102,17 +93,12 @@ items:
   assemblies:
   - System.Net.Ping
   namespace: System.Net.NetworkInformation
-  summary: "\n<p>Gets the buffer of data received in an Internet Control Message Protocol (ICMP) echo reply message.</p>\n"
-  remarks: "\n<p>The data buffer sent with the ICMP echo request is returned to the sender in the echo reply so the roundtrip travel time for a packet of a known size can be computed. The data buffer, combined with the <xref href=\"System.Net.NetworkInformation.PingOptions.DontFragment\" data-throw-if-not-resolved=\"false\"></xref> option, can be used to discover the maximum transmission unit for the network path between the source and destination computers. For additional information, see \"Traceroute\" in RFC 1574, Section 3.2, available at http://www.ietf.org.</p>\n<p>The default buffer used with <see cref=\"Overload:System.Net.NetworkInformation.Ping.Send\"></see>  and <see cref=\"Overload:System.Net.NetworkInformation.Ping.SendAsync\"></see> contains 32 bytes of data. </p>\n"
-  example:
-  - "\n<p>The following code example sends an ICMP echo request synchronously and displays the size of the buffer returned by this property. </p>NclPingSampler#4"
   syntax:
     content: public byte[] Buffer { get; }
     content.vb: Public ReadOnly Property Buffer As Byte()
     parameters: []
     return:
       type: System.Byte[]
-      description: "\n<p>A <xref href=\"System.Byte\" data-throw-if-not-resolved=\"false\"></xref> array containing the data received in an ICMP echo reply message, or an empty array, if no reply was received.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -140,17 +126,12 @@ items:
   assemblies:
   - System.Net.Ping
   namespace: System.Net.NetworkInformation
-  summary: "\n<p>Gets the options used to transmit the reply to an Internet Control Message Protocol (ICMP) echo request.</p>\n"
-  remarks: "\n<p>The TTL defines the number of times nodes can forward a packet as it travels between its source and destination. If the number of forwards, also known as hops, exceeds the value specified for the TTL, the packet is deemed undeliverable and is discarded. </p>\n<p>The <xref href=\"System.Net.NetworkInformation.PingOptions.DontFragment\" data-throw-if-not-resolved=\"false\"></xref> value specified in the ICMP echo request controls packet fragmentation. If <xref href=\"System.Net.NetworkInformation.PingOptions.DontFragment\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong> and the packet size exceeds the maximum transmission unit of the network path taken by the packet, the packet is discarded and the <xref href=\"System.Net.NetworkInformation.IPStatus.PacketTooBig\" data-throw-if-not-resolved=\"false\"></xref> error is returned.</p>\n"
-  example:
-  - "\n<p>The following code example sends an ICMP echo request synchronously and displays the values stored in the <xref href=\"System.Net.NetworkInformation.PingOptions\" data-throw-if-not-resolved=\"false\"></xref> object returned by this property. </p>NclPingSampler#3"
   syntax:
     content: public PingOptions Options { get; }
     content.vb: Public ReadOnly Property Options As PingOptions
     parameters: []
     return:
       type: System.Net.NetworkInformation.PingOptions
-      description: "\n<p>A <xref href=\"System.Net.NetworkInformation.PingOptions\" data-throw-if-not-resolved=\"false\"></xref> object that contains the Time to Live (TTL) and the fragmentation directive used for transmitting the reply if <xref href=\"System.Net.NetworkInformation.PingReply.Status\" data-throw-if-not-resolved=\"false\"></xref> is <xref href=\"System.Net.NetworkInformation.IPStatus.Success\" data-throw-if-not-resolved=\"false\"></xref>; otherwise, <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -178,17 +159,12 @@ items:
   assemblies:
   - System.Net.Ping
   namespace: System.Net.NetworkInformation
-  summary: "\n<p>Gets the number of milliseconds taken to send an Internet Control Message Protocol (ICMP) echo request and receive the corresponding ICMP echo reply message.</p>\n"
-  remarks: "\n<p>If the Echo request fails, the <xref href=\"System.Net.NetworkInformation.PingReply.RoundtripTime\" data-throw-if-not-resolved=\"false\"></xref> time is reported as 0, which is also a valid value when the request succeeds. You must check the <xref href=\"System.Net.NetworkInformation.PingReply.Status\" data-throw-if-not-resolved=\"false\"></xref> to determine whether the value returned by this property should be ignored.</p>\n"
-  example:
-  - "\n<p>The following code example sends an ICMP echo request synchronously and displays the size of the buffer returned by this property.</p>NclPingSampler#4"
   syntax:
     content: public long RoundtripTime { get; }
     content.vb: Public ReadOnly Property RoundtripTime As Long
     parameters: []
     return:
       type: System.Int64
-      description: "\n<p>An <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref> that specifies the round trip time, in milliseconds.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -216,17 +192,12 @@ items:
   assemblies:
   - System.Net.Ping
   namespace: System.Net.NetworkInformation
-  summary: "\n<p>Gets the status of an attempt to send an Internet Control Message Protocol (ICMP) echo request and receive the corresponding ICMP echo reply message.</p>\n"
-  remarks: "\n<p>If the value of <xref href=\"System.Net.NetworkInformation.PingReply.Status\" data-throw-if-not-resolved=\"false\"></xref> is not <xref href=\"System.Net.NetworkInformation.IPStatus.Success\" data-throw-if-not-resolved=\"false\"></xref>, you should not use the values returned by the <xref href=\"System.Net.NetworkInformation.PingReply.RoundtripTime\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Net.NetworkInformation.PingReply.Options\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Net.NetworkInformation.PingReply.Buffer\" data-throw-if-not-resolved=\"false\"></xref> properties. The <xref href=\"System.Net.NetworkInformation.PingReply.RoundtripTime\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.NetworkInformation.PingReply.Buffer\" data-throw-if-not-resolved=\"false\"></xref> properties will return zero, and the <xref href=\"System.Net.NetworkInformation.PingReply.Options\" data-throw-if-not-resolved=\"false\"></xref> property will return <strong>null</strong>.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates using <xref href=\"System.Net.NetworkInformation.Ping\" data-throw-if-not-resolved=\"false\"></xref> class to send an ICMP echo request synchronously and display the response.</p>NCLPingSync#1"
   syntax:
     content: public IPStatus Status { get; }
     content.vb: Public ReadOnly Property Status As IPStatus
     parameters: []
     return:
       type: System.Net.NetworkInformation.IPStatus
-      description: "\n<p>An <xref href=\"System.Net.NetworkInformation.IPStatus\" data-throw-if-not-resolved=\"false\"></xref> value indicating the result of the request.</p>\n"
   modifiers.csharp:
   - public
   - get

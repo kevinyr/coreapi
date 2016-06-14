@@ -33,13 +33,11 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>A collection of headers and their values as defined in RFC 2616.</p>\n"
   syntax:
-    content: 'public abstract class HttpHeaders : Collections.Generic.IEnumerable<Collections.Generic.KeyValuePair<string, Collections.Generic.IEnumerable<string>>>, Collections.IEnumerable'
+    content: 'public abstract class HttpHeaders : IEnumerable<KeyValuePair<string, IEnumerable<string>>>'
     content.vb: >-
       Public MustInherit Class HttpHeaders
-          Inherits Collections.Generic.IEnumerable(Of Collections.Generic.KeyValuePair(Of String, Collections.Generic.IEnumerable(Of String)))
-          Implements Collections.IEnumerable
+          Inherits IEnumerable(Of KeyValuePair(Of String, IEnumerable(Of String)))
   inheritance:
   - System.Object
   implements:
@@ -73,7 +71,6 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: protected HttpHeaders()
     content.vb: Protected Sub New
@@ -102,18 +99,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Adds the specified header and its values into the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
-  remarks: "\n<p>The header <em>values</em> will be parsed and validated.</p>\n<p>If the specified header does not exist, the <xref href=\"System.Net.Http.Headers.HttpHeaders.Add(System.String,System.Collections.Generic.IEnumerable{System.String})\" data-throw-if-not-resolved=\"false\"></xref> method inserts a new header into the list of header name/value pairs.</p>\n<p>If the specified header is already present, <em>values</em> are added to the comma-separated list of values associated with the header.</p>\n"
   syntax:
     content: public void Add(string name, Collections.Generic.IEnumerable<string> values)
     content.vb: Public Sub Add(name As String, values As Collections.Generic.IEnumerable(Of String))
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>The header to add to the collection.</p>\n"
     - id: values
       type: System.Collections.Generic.IEnumerable{System.String}
-      description: "\n<p>A list of header values to add to the collection.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -141,18 +134,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Adds the specified header and its value into the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
-  remarks: "\n<p>The header <em>value</em> will be parsed and validated.</p>\n<p>If the specified header does not exist, the <xref href=\"System.Net.Http.Headers.HttpHeaders.Add(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method inserts a new header into the list of header name/value pairs.</p>\n<p>If the specified header is already present, <em>value</em> is added to the comma-separated list of values associated with the header.</p>\n"
   syntax:
     content: public void Add(string name, string value)
     content.vb: Public Sub Add(name As String, value As String)
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>The header to add to the collection.</p>\n"
     - id: value
       type: System.String
-      description: "\n<p>The content of the header.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -178,7 +167,6 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Removes all headers from the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
   syntax:
     content: public void Clear()
     content.vb: Public Sub Clear
@@ -207,17 +195,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Returns if  a specific header exists in the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
   syntax:
     content: public bool Contains(string name)
     content.vb: Public Function Contains(name As String) As Boolean
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>The specific header.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>Returns <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<strong>true</strong> is the specified header exists in the collection; otherwise <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -243,13 +228,11 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Returns an enumerator that can iterate through the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
   syntax:
-    content: public Collections.Generic.IEnumerator<Collections.Generic.KeyValuePair<string, Collections.Generic.IEnumerable<string>>> GetEnumerator()
-    content.vb: Public Function GetEnumerator As Collections.Generic.IEnumerator(Of Collections.Generic.KeyValuePair(Of String, Collections.Generic.IEnumerable(Of String)))
+    content: public IEnumerator<KeyValuePair<string, IEnumerable<string>>> GetEnumerator()
+    content.vb: Public Function GetEnumerator As IEnumerator(Of KeyValuePair(Of String, IEnumerable(Of String)))
     return:
-      type: System.Collections.Generic.IEnumerator{System.Collections.Generic.KeyValuePair{System.String,System.Collections.Generic.IEnumerable{System.String}}}
-      description: "\n<p>Returns <xref href=\"System.Collections.Generic.IEnumerator`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>An enumerator for the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+      type: IEnumerator{KeyValuePair{System.String,IEnumerable{System.String}}}
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -275,17 +258,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Returns all header values for a specified header stored in the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
   syntax:
-    content: public Collections.Generic.IEnumerable<string> GetValues(string name)
-    content.vb: Public Function GetValues(name As String) As Collections.Generic.IEnumerable(Of String)
+    content: public IEnumerable<string> GetValues(string name)
+    content.vb: Public Function GetValues(name As String) As IEnumerable(Of String)
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>The specified header to return values for.</p>\n"
     return:
-      type: System.Collections.Generic.IEnumerable{System.String}
-      description: "\n<p>Returns <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>An array of header strings.</p>\n"
+      type: IEnumerable{System.String}
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -311,17 +291,14 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Removes the specified header from the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
   syntax:
     content: public bool Remove(string name)
     content.vb: Public Function Remove(name As String) As Boolean
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>The name of the header to remove from the collection. </p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>Returns <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -347,13 +324,11 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Returns a string that represents the current <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
-      description: "\n<p>Returns <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>A string that represents the current object.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -381,20 +356,16 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Returns a value that indicates whether the specified header and its values were added to the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> collection without validating the provided information.</p>\n"
   syntax:
     content: public bool TryAddWithoutValidation(string name, Collections.Generic.IEnumerable<string> values)
     content.vb: Public Function TryAddWithoutValidation(name As String, values As Collections.Generic.IEnumerable(Of String)) As Boolean
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>The header to add to the collection.</p>\n"
     - id: values
       type: System.Collections.Generic.IEnumerable{System.String}
-      description: "\n<p>The values of the header.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>Returns <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<strong>true</strong> if the specified header <em>name</em> and <em>values</em> could be added to the collection; otherwise <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -422,20 +393,16 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Returns a value that indicates whether the specified header and its value were added to the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> collection without validating the provided information.</p>\n"
   syntax:
     content: public bool TryAddWithoutValidation(string name, string value)
     content.vb: Public Function TryAddWithoutValidation(name As String, value As String) As Boolean
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>The header to add to the collection.</p>\n"
     - id: value
       type: System.String
-      description: "\n<p>The content of the header.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>Returns <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<strong>true</strong> if the specified header <em>name</em> and <em>value</em> could be added to the collection; otherwise <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -461,20 +428,16 @@ items:
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http.Headers
-  summary: "\n<p>Return if a specified header and specified values are stored in the <xref href=\"System.Net.Http.Headers.HttpHeaders\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
   syntax:
     content: public bool TryGetValues(string name, out Collections.Generic.IEnumerable<string> values)
     content.vb: Public Function TryGetValues(name As String, ByRef values As Collections.Generic.IEnumerable(Of String)) As Boolean
     parameters:
     - id: name
       type: System.String
-      description: "\n<p>The specified header.</p>\n"
     - id: values
       type: System.Collections.Generic.IEnumerable{System.String}
-      description: "\n<p>The specified header values.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>Returns <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<strong>true</strong> is the specified header <em>name</em> and <strong>values</strong> are stored in the collection; otherwise <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:

@@ -47,10 +47,11 @@ items:
   example:
   - "\n<p>The following example demonstrates some of the main members of the <strong>FileInfo</strong> class.</p>\n<p>When the properties are first retrieved, <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> calls the <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> method and caches information about the file. On subsequent calls, you must call <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> to get the latest copy of the information.</p>FInfo Class#1<p>This example produces output similar to the following.</p><pre><code>Hello\nAnd\nWelcome\nC:\\Users\\userName\\AppData\\Local\\Temp\\tmp70AB.tmp was copied to C:\\Users\\userName\\AppData\\Local\\Temp\\tmp70CB.tmp.\nC:\\Users\\userName\\AppData\\Local\\Temp\\tmp70CB.tmp was successfully deleted.</code></pre>"
   syntax:
-    content: 'public sealed class FileInfo : FileSystemInfo'
+    content: 'public sealed class FileInfo : FileSystemInfo, IFileSystemObject'
     content.vb: >-
       Public NotInheritable Class FileInfo
           Inherits FileSystemInfo
+          Implements IFileSystemObject
   seealso:
   - type: System.IO.FileSystemWatcher
     commentId: T:System.IO.FileSystemWatcher
@@ -169,7 +170,6 @@ items:
     parameters: []
     return:
       type: System.IO.DirectoryInfo
-      description: "\n<p>A <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> object representing the parent directory of this file.</p>\n"
   exceptions:
   - type: System.IO.DirectoryNotFoundException
     commentId: T:System.IO.DirectoryNotFoundException
@@ -212,12 +212,11 @@ items:
   example:
   - "\n<p>The following example retrieves the full path of the specified file.</p>System.IO.FileInfo members#3"
   syntax:
-    content: public string DirectoryName { get; }
+    content: public String DirectoryName { get; }
     content.vb: Public ReadOnly Property DirectoryName As String
     parameters: []
     return:
-      type: System.String
-      description: "\n<p>A string representing the directory's full path.</p>\n"
+      type: String
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -268,7 +267,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the file exists; <strong>false</strong> if the file does not exist or if the file is a directory.</p>\n"
   overridden: System.IO.FileSystemInfo.Exists
   modifiers.csharp:
   - public
@@ -309,7 +307,6 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the current file is read only; otherwise, <strong>false</strong>.</p>\n"
   exceptions:
   - type: System.IO.FileNotFoundException
     commentId: T:System.IO.FileNotFoundException
@@ -363,7 +360,6 @@ items:
     parameters: []
     return:
       type: System.Int64
-      description: "\n<p>The size of the current file in bytes.</p>\n"
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
@@ -403,12 +399,11 @@ items:
   example:
   - "\n<p>The following example uses the <strong>Name</strong> property to display the names of files in the current directory.</p>fileinfoname#1"
   syntax:
-    content: public override string Name { get; }
+    content: public override String Name { get; }
     content.vb: Public Overrides ReadOnly Property Name As String
     parameters: []
     return:
-      type: System.String
-      description: "\n<p>The name of the file.</p>\n"
+      type: String
   overridden: System.IO.FileSystemInfo.Name
   modifiers.csharp:
   - public
@@ -446,8 +441,7 @@ items:
     content: public StreamWriter AppendText()
     content.vb: Public Function AppendText As StreamWriter
     return:
-      type: System.IO.StreamWriter
-      description: "\n<p>A new <strong>StreamWriter</strong>.</p>\n"
+      type: StreamWriter
   seealso:
   - type: System.IO.StreamWriter
     commentId: T:System.IO.StreamWriter
@@ -625,7 +619,6 @@ items:
     content.vb: Public Function Create As FileStream
     return:
       type: System.IO.FileStream
-      description: "\n<p>A new file.</p>\n"
   see:
   - type: System.Security.Permissions.FileIOPermission
     commentId: T:System.Security.Permissions.FileIOPermission
@@ -662,8 +655,7 @@ items:
     content: public StreamWriter CreateText()
     content.vb: Public Function CreateText As StreamWriter
     return:
-      type: System.IO.StreamWriter
-      description: "\n<p>A new <strong>StreamWriter</strong>.</p>\n"
+      type: StreamWriter
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -1006,7 +998,6 @@ items:
     content.vb: Public Function OpenRead As FileStream
     return:
       type: System.IO.FileStream
-      description: "\n<p>A new read-only <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -1052,8 +1043,7 @@ items:
     content: public StreamReader OpenText()
     content.vb: Public Function OpenText As StreamReader
     return:
-      type: System.IO.StreamReader
-      description: "\n<p>A new <strong>StreamReader</strong> with UTF8 encoding.</p>\n"
+      type: StreamReader
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
@@ -1109,7 +1099,6 @@ items:
     content.vb: Public Function OpenWrite As FileStream
     return:
       type: System.IO.FileStream
-      description: "\n<p>A write-only unshared <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object for a new or existing file.</p>\n"
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -1148,11 +1137,10 @@ items:
   summary: "\n<p>Returns the path as a string.</p>\n"
   remarks: "\n<p>The string returned by the <xref href=\"System.IO.FileInfo.ToString\" data-throw-if-not-resolved=\"false\"></xref> method represents path that was passed to the constructor.  When you create a <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> object using the constructors, the <xref href=\"System.IO.FileInfo.ToString\" data-throw-if-not-resolved=\"false\"></xref> method returns the fully qualified path.  However, there are cases where the string returned by the <xref href=\"System.IO.FileInfo.ToString\" data-throw-if-not-resolved=\"false\"></xref> method does not represent the fully qualified path.  For example, when you create a <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> object using the <see cref=\"Overload:System.IO.DirectoryInfo.GetFiles\"></see> method, the <xref href=\"System.IO.FileInfo.ToString\" data-throw-if-not-resolved=\"false\"></xref> method does not represent the fully qualified path.      </p>\n"
   syntax:
-    content: public override string ToString()
+    content: public override String ToString()
     content.vb: Public Overrides Function ToString As String
     return:
-      type: System.String
-      description: "\n<p>A string representing the path.</p>\n"
+      type: String
   modifiers.csharp:
   - public
   - override

@@ -34,9 +34,6 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Represents the name of a version of the .NET Framework.</p>\n"
-  example:
-  - 
   syntax:
     content: 'public sealed class FrameworkName : IEquatable<FrameworkName>'
     content.vb: >-
@@ -73,24 +70,12 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> class from a string that contains information about a version of the .NET Framework.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Runtime.Versioning.FrameworkName.#ctor(System.String)\" data-throw-if-not-resolved=\"false\"></xref> constructor parses a string in the following format. </p>\n<p>identifier, Version=versionNumber[, Profile=profileName]</p>\n<p>Components in square brackets are optional. The following table describes each component.</p>\n<p>Component</p>\n<p>Description</p>\n<table><tbody><tr><td>\n<p>identifier</p>\n</td><td>\n<p>An arbitrary string that identifies this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n</td></tr><tr><td>\n<p>versionNumber</p>\n</td><td>\n<p>A string that represents the version of the .NET Framework, in the form [v]major.minor[.build.revision], where \"v\" can be either uppercase or lowercase, and the brackets denote optional elements of a version number.</p>\n</td></tr><tr><td>\n<p>profileName</p>\n</td><td>\n<p>An arbitrary string that represents the profile of the .NET Framework version. Typically, it is used to denote some subset of the .NET Framework, such as the .NET Compact Framework or Silverlight.</p>\n</td></tr></tbody></table>\n<p>If both versionNumber and profileName are present, they can appear in any order after identifier. These strings are defined by the \"Version\" and \"Profile\" keywords, which are not case-sensitive. </p>\n<p>The values of the identifier, versionNumber, and profileName components define the values of this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object's properties as follows:</p>\n<ul><li>\n<p>Any leading or trailing white space in the identifier component is removed and the resulting string is assigned to the <xref href=\"System.Runtime.Versioning.FrameworkName.Identifier\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n</li><li>\n<p>Any leading or trailing white space and the initial \"v\" or \"V\", if present, are removed from the <em>versionNumber</em>. The returned string is then passed to the <xref href=\"System.Version.#ctor(System.String)\" data-throw-if-not-resolved=\"false\"></xref> constructor, and the resulting <xref href=\"System.Version\" data-throw-if-not-resolved=\"false\"></xref> object is assigned to the <xref href=\"System.Runtime.Versioning.FrameworkName.Version\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n</li><li>\n<p>Any leading or trailing white space in the <em>profileName</em> component is removed and the resulting string is assigned to the <xref href=\"System.Runtime.Versioning.FrameworkName.Profile\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n</li></ul>\n<p>The following are examples of valid strings that can be passed to the <xref href=\"System.Runtime.Versioning.FrameworkName.#ctor(System.String)\" data-throw-if-not-resolved=\"false\"></xref> constructor: </p>\n<ul><li>\n<p>.NET Framework, Version=4.0</p>\n</li><li>\n<p>.NETFramework, Version=4.0</p>\n</li><li>\n<p>.NET Framework, Version=2.0, Profile=Compact</p>\n</li><li>\n<p>.NET Framework, Version=v4.0, Profile=Compact</p>\n</li><li>\n<p>.NET Framework, Profile=Full, Version=2.0.0</p>\n</li></ul>\n"
-  example:
-  - 
   syntax:
     content: public FrameworkName(string frameworkName)
     content.vb: Public Sub New(frameworkName As String)
     parameters:
     - id: frameworkName
       type: System.String
-      description: "\n<p>A string that contains .NET Framework version information.</p>\n"
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>frameworkName</em> is <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>-or-</p>\n<p>\n<em>frameworkName</em> has fewer than two components or more than three components.</p>\n<p>-or-</p>\n<p>\n<em>frameworkName</em> does not include a major and minor version number.</p>\n<p>-or-</p>\n<p>\n<em>frameworkName </em>does not include a valid version number.</p>\n"
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>frameworkName</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -116,27 +101,14 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> class from a string and a <xref href=\"System.Version\" data-throw-if-not-resolved=\"false\"></xref> object that identify a .NET Framework version.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> class requires that a <xref href=\"System.Runtime.Versioning.FrameworkName.Version\" data-throw-if-not-resolved=\"false\"></xref> object include at least a major and minor version number. </p>\n"
-  example:
-  - 
   syntax:
     content: public FrameworkName(string identifier, Version version)
     content.vb: Public Sub New(identifier As String, version As Version)
     parameters:
     - id: identifier
       type: System.String
-      description: "\n<p>A string that identifies a .NET Framework version.</p>\n"
     - id: version
       type: System.Version
-      description: "\n<p>An object that contains .NET Framework version information.</p>\n"
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>identifier</em> is <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>identifier</em> is <strong>null</strong>.</p>\n<p>-or-</p>\n<p>\n<em>version</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -162,30 +134,16 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Initializes a new instance of the <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> class from a string, a <xref href=\"System.Version\" data-throw-if-not-resolved=\"false\"></xref> object that identifies a .NET Framework version, and a profile name.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> class requires that a <xref href=\"System.Runtime.Versioning.FrameworkName.Version\" data-throw-if-not-resolved=\"false\"></xref> object include at least a major and minor version number.</p>\n"
-  example:
-  - 
   syntax:
     content: public FrameworkName(string identifier, Version version, string profile)
     content.vb: Public Sub New(identifier As String, version As Version, profile As String)
     parameters:
     - id: identifier
       type: System.String
-      description: "\n<p>A string that identifies a .NET Framework version.</p>\n"
     - id: version
       type: System.Version
-      description: "\n<p>An object that contains .NET Framework version information.</p>\n"
     - id: profile
       type: System.String
-      description: "\n<p>A profile name.</p>\n"
-  exceptions:
-  - type: System.ArgumentException
-    commentId: T:System.ArgumentException
-    description: "\n<p>\n<em>identifier</em> is <xref href=\"System.String.Empty\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  - type: System.ArgumentNullException
-    commentId: T:System.ArgumentNullException
-    description: "\n<p>\n<em>identifier</em> is <strong>null</strong>.</p>\n<p>-or-</p>\n<p>\n<em>version</em> is <strong>null</strong>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -211,17 +169,12 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Gets the full name of this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The string returned by the <xref href=\"System.Runtime.Versioning.FrameworkName.FullName\" data-throw-if-not-resolved=\"false\"></xref> property has the following format:</p>\n<p>identifier, Version=version[, Profile=profile]</p>\n<p>where identifier corresponds to the <xref href=\"System.Runtime.Versioning.FrameworkName.Identifier\" data-throw-if-not-resolved=\"false\"></xref> property, <em>version</em> is equivalent to calling <xref href=\"System.Version.ToString\" data-throw-if-not-resolved=\"false\"></xref> on the value of the <xref href=\"System.Runtime.Versioning.FrameworkName.Version\" data-throw-if-not-resolved=\"false\"></xref> property, and <em>profile</em> corresponds to the <xref href=\"System.Runtime.Versioning.FrameworkName.Profile\" data-throw-if-not-resolved=\"false\"></xref> property. If a profile has not been assigned to the <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object, the profile component is not included in the string.</p>\n<p>The value of the <xref href=\"System.Runtime.Versioning.FrameworkName.FullName\" data-throw-if-not-resolved=\"false\"></xref> property is identical to the string returned by the <xref href=\"System.Runtime.Versioning.FrameworkName.ToString\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
-  example:
-  - 
   syntax:
-    content: public string FullName { get; }
+    content: public String FullName { get; }
     content.vb: Public ReadOnly Property FullName As String
     parameters: []
     return:
-      type: System.String
-      description: "\n<p>The full name of this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+      type: String
   modifiers.csharp:
   - public
   - get
@@ -249,17 +202,12 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Gets the identifier of this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The value of the read-only <xref href=\"System.Runtime.Versioning.FrameworkName.Identifier\" data-throw-if-not-resolved=\"false\"></xref> property is set in the <see cref=\"Overload:System.Runtime.Versioning.FrameworkName.#ctor\"></see> class constructor.</p>\n"
-  example:
-  - 
   syntax:
-    content: public string Identifier { get; }
+    content: public String Identifier { get; }
     content.vb: Public ReadOnly Property Identifier As String
     parameters: []
     return:
-      type: System.String
-      description: "\n<p>The identifier of this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+      type: String
   modifiers.csharp:
   - public
   - get
@@ -287,17 +235,12 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Gets the profile name of this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The value of the read-only <xref href=\"System.Runtime.Versioning.FrameworkName.Profile\" data-throw-if-not-resolved=\"false\"></xref> property is set in the <see cref=\"Overload:System.Runtime.Versioning.FrameworkName.#ctor\"></see> class constructor.</p>\n"
-  example:
-  - 
   syntax:
-    content: public string Profile { get; }
+    content: public String Profile { get; }
     content.vb: Public ReadOnly Property Profile As String
     parameters: []
     return:
-      type: System.String
-      description: "\n<p>The profile name of this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+      type: String
   modifiers.csharp:
   - public
   - get
@@ -325,17 +268,12 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Gets the version of this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The value of the read-only <xref href=\"System.Runtime.Versioning.FrameworkName.Version\" data-throw-if-not-resolved=\"false\"></xref> property is set in the <see cref=\"Overload:System.Runtime.Versioning.FrameworkName.#ctor\"></see> class constructor.</p>\n"
-  example:
-  - 
   syntax:
     content: public Version Version { get; }
     content.vb: Public ReadOnly Property Version As Version
     parameters: []
     return:
-      type: System.Version
-      description: "\n<p>An object that contains version information about this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+      type: Version
   modifiers.csharp:
   - public
   - get
@@ -363,20 +301,14 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Returns a value that indicates whether this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> instance represents the same .NET Framework version as a specified object.</p>\n"
-  remarks: "\n<p>The method converts <em>obj</em> to a <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object and calls the <xref href=\"System.Runtime.Versioning.FrameworkName.Equals(System.Runtime.Versioning.FrameworkName)\" data-throw-if-not-resolved=\"false\"></xref> overload to test for equality. If the conversion does not succeed or if <em>obj</em> is <strong>null</strong>, the method returns <strong>false</strong>.</p>\n"
-  example:
-  - 
   syntax:
     content: public override bool Equals(object obj)
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
     parameters:
     - id: obj
       type: System.Object
-      description: "\n<p>The object to compare to the current instance.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if every component of the current <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object matches the corresponding component of <em>obj</em>; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - override
@@ -404,20 +336,14 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Returns a value that indicates whether this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> instance represents the same .NET Framework version as a specified <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
-  remarks: "\n<p>The method tests for equality by returning the result of the following comparisons:</p>\n<ul><li>\n<p>An ordinal comparison of the <xref href=\"System.Runtime.Versioning.FrameworkName.Identifier\" data-throw-if-not-resolved=\"false\"></xref> property values of the current instance and <em>other</em>.</p>\n</li><li>\n<p>An ordinal comparison of the <xref href=\"System.Runtime.Versioning.FrameworkName.Profile\" data-throw-if-not-resolved=\"false\"></xref> property values of the current instance and <em>other</em>.</p>\n</li><li>\n<p>A comparison of the version properties by calling the <xref href=\"System.Version.Equals(System.Version)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n</li></ul>\n"
-  example:
-  - 
   syntax:
-    content: public bool Equals(FrameworkName other)
+    content: public Boolean Equals(FrameworkName other)
     content.vb: Public Function Equals(other As FrameworkName) As Boolean
     parameters:
     - id: other
       type: System.Runtime.Versioning.FrameworkName
-      description: "\n<p>The object to compare to the current instance.</p>\n"
     return:
-      type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if every component of the current <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object matches the corresponding component of <em>other</em>; otherwise, <strong>false</strong>.</p>\n"
+      type: Boolean
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -443,15 +369,11 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Returns the hash code for the <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  example:
-  - 
   syntax:
-    content: public override int GetHashCode()
-    content.vb: Public Overrides Function GetHashCode As Integer
+    content: public override Int32 GetHashCode()
+    content.vb: Public Overrides Function GetHashCode As Int32
     return:
-      type: System.Int32
-      description: "\n<p>A 32-bit signed integer that represents the hash code of this instance.</p>\n"
+      type: Int32
   modifiers.csharp:
   - public
   - override
@@ -479,23 +401,16 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Returns a value that indicates whether two <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> objects represent the same .NET Framework version.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Runtime.Versioning.FrameworkName.op_Equality(System.Runtime.Versioning.FrameworkName,System.Runtime.Versioning.FrameworkName)\" data-throw-if-not-resolved=\"false\"></xref> method defines the operation of the equality operator for <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> objects. </p>\n<p>Languages that do not support custom operators can call the <xref href=\"System.Runtime.Versioning.FrameworkName.Equals(System.Runtime.Versioning.FrameworkName)\" data-throw-if-not-resolved=\"false\"></xref> method instead.</p>\n"
-  example:
-  - "\n<p>The following example uses the equality operator to determine whether a  <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object that represents the running version of the .NET Framework is equal to a supported version of the .NET Framework. Note that the two versions are not equal because they do not have identical version numbers. </p>System.Runtime.Versioning.FrameworkName.Operators#1"
   syntax:
-    content: public static bool operator ==(FrameworkName left, FrameworkName right)
+    content: public static Boolean operator ==(FrameworkName left, FrameworkName right)
     content.vb: Public Shared Operator =(left As FrameworkName, right As FrameworkName) As Boolean
     parameters:
     - id: left
       type: System.Runtime.Versioning.FrameworkName
-      description: "\n<p>The first object to compare.</p>\n"
     - id: right
       type: System.Runtime.Versioning.FrameworkName
-      description: "\n<p>The second object to compare.</p>\n"
     return:
-      type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <em>left</em> and <em>right</em> parameters represent the same .NET Framework version; otherwise, <strong>false</strong>.</p>\n"
+      type: Boolean
   modifiers.csharp:
   - public
   - static
@@ -523,23 +438,16 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Returns a value that indicates whether two <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> objects represent different .NET Framework versions.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Runtime.Versioning.FrameworkName.op_Inequality(System.Runtime.Versioning.FrameworkName,System.Runtime.Versioning.FrameworkName)\" data-throw-if-not-resolved=\"false\"></xref> method defines the operation of the inequality operator for <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> objects. </p>\n<p>Languages that do not support custom operators can test for inequality by calling the <xref href=\"System.Runtime.Versioning.FrameworkName.Equals(System.Runtime.Versioning.FrameworkName)\" data-throw-if-not-resolved=\"false\"></xref> method and reversing its value.</p>\n"
-  example:
-  - "\n<p>The following example uses the equality operator to determine whether a <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object that represents the running version of the .NET Framework is equal to a supported version of the .NET Framework. Note that the two versions are not equal because they do not have identical version numbers. </p>System.Runtime.Versioning.FrameworkName.Operators#2"
   syntax:
-    content: public static bool operator !=(FrameworkName left, FrameworkName right)
+    content: public static Boolean operator !=(FrameworkName left, FrameworkName right)
     content.vb: Public Shared Operator <>(left As FrameworkName, right As FrameworkName) As Boolean
     parameters:
     - id: left
       type: System.Runtime.Versioning.FrameworkName
-      description: "\n<p>The first object to compare.</p>\n"
     - id: right
       type: System.Runtime.Versioning.FrameworkName
-      description: "\n<p>The second object to compare.</p>\n"
     return:
-      type: System.Boolean
-      description: "\n<p>\n<strong>true</strong> if the <em>left</em> and <em>right</em> parameters represent different .NET Framework versions; otherwise, <strong>false</strong>.</p>\n"
+      type: Boolean
   modifiers.csharp:
   - public
   - static
@@ -567,16 +475,11 @@ items:
   assemblies:
   - System.Runtime.Extensions
   namespace: System.Runtime.Versioning
-  summary: "\n<p>Returns the string representation of this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The string returned by the <xref href=\"System.Runtime.Versioning.FrameworkName.ToString\" data-throw-if-not-resolved=\"false\"></xref> method has the following format:</p>\n<p>identifier, Version=version[, Profile=profile]</p>\n<p>where identifier corresponds to the <xref href=\"System.Runtime.Versioning.FrameworkName.Identifier\" data-throw-if-not-resolved=\"false\"></xref> property, <em>version</em> is equivalent to calling <xref href=\"System.Version.ToString\" data-throw-if-not-resolved=\"false\"></xref> on the value of the <xref href=\"System.Runtime.Versioning.FrameworkName.Version\" data-throw-if-not-resolved=\"false\"></xref> property, and <em>profile</em> corresponds to the <xref href=\"System.Runtime.Versioning.FrameworkName.Profile\" data-throw-if-not-resolved=\"false\"></xref> property. If a profile has not been assigned to the <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object, the profile component is not included in the returned string.</p>\n<p>The value returned by the <xref href=\"System.Runtime.Versioning.FrameworkName.ToString\" data-throw-if-not-resolved=\"false\"></xref> method is identical to the value of the <xref href=\"System.Runtime.Versioning.FrameworkName.FullName\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
-  example:
-  - 
   syntax:
-    content: public override string ToString()
+    content: public override String ToString()
     content.vb: Public Overrides Function ToString As String
     return:
-      type: System.String
-      description: "\n<p>A string that represents this <xref href=\"System.Runtime.Versioning.FrameworkName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+      type: String
   modifiers.csharp:
   - public
   - override
@@ -622,12 +525,3 @@ references:
   isExternal: false
   name: Int32
   fullName: System.Int32
-- uid: System.ArgumentException
-  parent: System
-  isExternal: false
-  name: ArgumentException
-  fullName: System.ArgumentException
-- uid: System.ArgumentNullException
-  isExternal: false
-  name: ArgumentNullException
-  fullName: System.ArgumentNullException
