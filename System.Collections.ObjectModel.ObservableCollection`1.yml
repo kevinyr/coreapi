@@ -27,26 +27,34 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ObservableCollection
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 27
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 19
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Represents a dynamic data collection that provides notifications when items get added, removed, or when the whole list is refreshed.</p>\n"
   remarks: "\n<p>In many cases the data that you work with is a collection of objects. For example, a common scenario in data binding is to use an <xref href=\"System.Windows.Controls.ItemsControl\" data-throw-if-not-resolved=\"false\"></xref> such as a <xref href=\"System.Windows.Controls.ListBox\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Windows.Controls.ListView\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.Windows.Controls.TreeView\" data-throw-if-not-resolved=\"false\"></xref> to display a collection of records.</p>\n<p>You can enumerate over any collection that implements the <xref href=\"System.Collections.IEnumerable\" data-throw-if-not-resolved=\"false\"></xref> interface. However, to set up dynamic bindings so that insertions or deletions in the collection update the UI automatically, the collection must implement the <xref href=\"System.Collections.Specialized.INotifyCollectionChanged\" data-throw-if-not-resolved=\"false\"></xref> interface. This interface exposes the <xref href=\"System.Collections.Specialized.INotifyCollectionChanged.CollectionChanged\" data-throw-if-not-resolved=\"false\"></xref> event, an event that should be raised whenever the underlying collection changes.</p>\n<p>WPF provides the <xref href=\"System.Collections.ObjectModel.ObservableCollection`1\" data-throw-if-not-resolved=\"false\"></xref> class, which is a built-in implementation of a data collection that implements the <xref href=\"System.Collections.Specialized.INotifyCollectionChanged\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n<p>Before implementing your own collection, consider using <xref href=\"System.Collections.ObjectModel.ObservableCollection`1\" data-throw-if-not-resolved=\"false\"></xref> or one of the existing collection classes, such as <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Collections.ObjectModel.Collection`1\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.ComponentModel.BindingList`1\" data-throw-if-not-resolved=\"false\"></xref>, among many others. If you have an advanced scenario and want to implement your own collection, consider using <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref>, which provides a non-generic collection of objects that can be individually accessed by index. Implementing <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> provides the best performance with the data binding engine.</p>\n<p> To fully support transferring data values from binding source objects to binding targets, each object in your collection that supports bindable properties must implement an appropriate property changed notification mechanism such as the <xref href=\"System.ComponentModel.INotifyPropertyChanged\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n<p>For more information, see \"Binding to Collections\" in Data Binding Overview.</p>\n"
   syntax:
-    content: 'public class ObservableCollection<T> : Collection<T>, IList<T>, ICollection<T>, IList, ICollection, IReadOnlyList<T>, IReadOnlyCollection<T>, IEnumerable<T>, IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged'
+    content: >-
+      [DebuggerTypeProxy(typeof (CollectionDebugView<>))]
+
+      [DebuggerDisplay("Count = {Count}")]
+
+      public class ObservableCollection<T> : Collection<T>, IList<T>, ICollection<T>, IList, ICollection, IReadOnlyList<T>, IReadOnlyCollection<T>, IEnumerable<T>, IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged
     content.vb: >-
+      <DebuggerTypeProxy(GetType(CollectionDebugView(Of )))>
+
+      <DebuggerDisplay("Count = {Count}")>
+
       Public Class ObservableCollection(Of T)
           Inherits Collection(Of T)
           Implements IList(Of T), ICollection(Of T), IList, ICollection, IReadOnlyList(Of T), IReadOnlyCollection(Of T), IEnumerable(Of T), IEnumerable, INotifyCollectionChanged, INotifyPropertyChanged
     typeParameters:
     - id: T
-      description: "\n<p>The type of elements in the collection.</p>\n"
   seealso:
   - type: System.Collections.ObjectModel.ReadOnlyObservableCollection`1
     commentId: T:System.Collections.ObjectModel.ReadOnlyObservableCollection`1
@@ -121,12 +129,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 29
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 33
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -153,12 +161,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 30
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 46
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -172,7 +180,7 @@ items:
     parameters:
     - id: collection
       type: System.Collections.Generic.IEnumerable{{T}}
-      description: "\n<p>The collection from which the elements are copied.</p>\n"
+      description: The collection whose elements are copied to the new list.
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -195,12 +203,12 @@ items:
   type: Event
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CollectionChanged
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 31
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 113
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -236,12 +244,12 @@ items:
   type: Event
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: PropertyChanged
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 32
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 215
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -276,12 +284,12 @@ items:
   type: Event
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: System.ComponentModel.INotifyPropertyChanged.PropertyChanged
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 33
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 92
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -309,12 +317,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BlockReentrancy
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 34
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 250
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -326,7 +334,6 @@ items:
     content.vb: Protected Function BlockReentrancy As IDisposable
     return:
       type: System.IDisposable
-      description: "\n<p>An <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> object that can be used to dispose of the object.</p>\n"
   seealso:
   - type: System.Collections.ObjectModel.ObservableCollection`1.CheckReentrancy
     commentId: M:System.Collections.ObjectModel.ObservableCollection`1.CheckReentrancy
@@ -347,12 +354,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CheckReentrancy
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 35
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 259
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -386,12 +393,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ClearItems
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 36
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 130
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -422,12 +429,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: InsertItem
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 37
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 159
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -441,10 +448,8 @@ items:
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index at which <em>item</em> should be inserted.</p>\n"
     - id: item
       type: '{T}'
-      description: "\n<p>The object to insert.</p>\n"
   overridden: System.Collections.ObjectModel.Collection{{T}}.InsertItem(System.Int32,{T})
   modifiers.csharp:
   - protected
@@ -465,12 +470,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Move
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 38
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 70
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -484,10 +489,8 @@ items:
     parameters:
     - id: oldIndex
       type: System.Int32
-      description: "\n<p>The zero-based index specifying the location of the item to be moved.</p>\n"
     - id: newIndex
       type: System.Int32
-      description: "\n<p>The zero-based index specifying the new location of the item.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -505,12 +508,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: MoveItem
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 39
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 187
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -524,10 +527,8 @@ items:
     parameters:
     - id: oldIndex
       type: System.Int32
-      description: "\n<p>The zero-based index specifying the location of the item to be moved.</p>\n"
     - id: newIndex
       type: System.Int32
-      description: "\n<p>The zero-based index specifying the new location of the item.</p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -547,12 +548,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: OnCollectionChanged
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 40
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 226
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -566,7 +567,6 @@ items:
     parameters:
     - id: e
       type: System.Collections.Specialized.NotifyCollectionChangedEventArgs
-      description: "\n<p>Arguments of the event being raised.</p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -586,12 +586,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: OnPropertyChanged
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 41
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 204
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -604,7 +604,6 @@ items:
     parameters:
     - id: e
       type: System.ComponentModel.PropertyChangedEventArgs
-      description: "\n<p>Arguments of the event being raised.</p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -624,12 +623,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: RemoveItem
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 42
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 143
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -643,7 +642,6 @@ items:
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index of the element to remove.</p>\n"
   overridden: System.Collections.ObjectModel.Collection{{T}}.RemoveItem(System.Int32)
   modifiers.csharp:
   - protected
@@ -664,12 +662,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.ObjectModel/ref/System.ObjectModel.cs
+      path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SetItem
-    path: src/System.ObjectModel/ref/System.ObjectModel.cs
-    startLine: 43
+    path: src/System.ObjectModel/src/System/Collections/ObjectModel/ObservableCollection.cs
+    startLine: 173
   assemblies:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
@@ -683,10 +681,8 @@ items:
     parameters:
     - id: index
       type: System.Int32
-      description: "\n<p>The zero-based index of the element to replace.</p>\n"
     - id: item
       type: '{T}'
-      description: "\n<p>The new value for the element at the specified index.</p>\n"
   overridden: System.Collections.ObjectModel.Collection{{T}}.SetItem(System.Int32,{T})
   modifiers.csharp:
   - protected
