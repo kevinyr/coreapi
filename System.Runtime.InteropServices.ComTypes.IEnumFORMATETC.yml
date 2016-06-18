@@ -16,12 +16,12 @@ items:
   type: Interface
   source:
     remote:
-      path: src/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.cs
+      path: src/System.Runtime.InteropServices/src/System/Runtime/InteropServices/ComTypes/IEnumFormatETC.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IEnumFORMATETC
-    path: src/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.cs
-    startLine: 1127
+    path: src/System.Runtime.InteropServices/src/System/Runtime/InteropServices/ComTypes/IEnumFormatETC.cs
+    startLine: 11
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices.ComTypes
@@ -29,10 +29,18 @@ items:
   remarks: "\n<p>This interface enumerates an array of <xref href=\"System.Runtime.InteropServices.ComTypes.FORMATETC\" data-throw-if-not-resolved=\"false\"></xref> structures.</p>\n<p>For more information about the <strong>IEnumFORMATETC</strong> interface, see the MSDN Library.</p>\n<p>The common language runtime throws an exception when a COM method in native code returns an HRESULT. For more information, see How to: Map HRESULTs and Exceptions.</p>\n"
   syntax:
     content: >-
+      [ComImport]
+
+      [Guid("00000103-0000-0000-C000-000000000046")]
+
       [InterfaceType(ComInterfaceType.InterfaceIsIUnknown)]
 
       public interface IEnumFORMATETC
     content.vb: >-
+      <ComImport>
+
+      <Guid("00000103-0000-0000-C000-000000000046")>
+
       <InterfaceType(ComInterfaceType.InterfaceIsIUnknown)>
 
       Public Interface IEnumFORMATETC
@@ -60,12 +68,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.cs
+      path: src/System.Runtime.InteropServices/src/System/Runtime/InteropServices/ComTypes/IEnumFormatETC.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Clone
-    path: src/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.cs
-    startLine: 1131
+    path: src/System.Runtime.InteropServices/src/System/Runtime/InteropServices/ComTypes/IEnumFormatETC.cs
+    startLine: 44
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices.ComTypes
@@ -77,7 +85,6 @@ items:
     parameters:
     - id: newEnum
       type: System.Runtime.InteropServices.ComTypes.IEnumFORMATETC
-      description: "\n<p>When this method returns, contains a reference to the newly created enumerator. This parameter is passed uninitialized.</p>\n"
   fullName.vb: System.Runtime.InteropServices.ComTypes.IEnumFORMATETC.Clone(ByRef System.Runtime.InteropServices.ComTypes.IEnumFORMATETC)
   name.vb: Clone(ByRef IEnumFORMATETC)
 - uid: System.Runtime.InteropServices.ComTypes.IEnumFORMATETC.Next(System.Int32,System.Runtime.InteropServices.ComTypes.FORMATETC[],System.Int32[])
@@ -92,33 +99,57 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.cs
+      path: src/System.Runtime.InteropServices/src/System/Runtime/InteropServices/ComTypes/IEnumFormatETC.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Next
-    path: src/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.cs
-    startLine: 1132
+    path: src/System.Runtime.InteropServices/src/System/Runtime/InteropServices/ComTypes/IEnumFormatETC.cs
+    startLine: 23
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices.ComTypes
   summary: "\n<p>Retrieves a specified number of items in the enumeration sequence.</p>\n"
   remarks: "\n<p>For more information about <strong>IEnumFORMATETC::Next</strong>, see the MSDN Library.</p>\n"
   syntax:
-    content: int Next(int celt, FORMATETC[] rgelt, int[] pceltFetched)
-    content.vb: Function Next(celt As Integer, rgelt As FORMATETC(), pceltFetched As Integer()) As Integer
+    content: >-
+      [PreserveSig]
+
+      int Next(int celt, [Out, MarshalAs(UnmanagedType.LPArray, SizeParamIndex = (short)0)] FORMATETC[] rgelt, [Out, MarshalAs(UnmanagedType.LPArray)] int[] pceltFetched)
+    content.vb: >-
+      <PreserveSig>
+
+      Function Next(celt As Integer, rgelt As FORMATETC(), pceltFetched As Integer()) As Integer
     parameters:
     - id: celt
       type: System.Int32
-      description: "\n<p>The number of <xref href=\"System.Runtime.InteropServices.ComTypes.FORMATETC\" data-throw-if-not-resolved=\"false\"></xref> references to return in <em>rgelt</em>.</p>\n"
     - id: rgelt
       type: System.Runtime.InteropServices.ComTypes.FORMATETC[]
-      description: "\n<p>When this method returns, contains a reference to the enumerated <xref href=\"System.Runtime.InteropServices.ComTypes.FORMATETC\" data-throw-if-not-resolved=\"false\"></xref> references. This parameter is passed uninitialized.</p>\n"
+      attributes:
+      - type: System.Runtime.InteropServices.OutAttribute
+        ctor: System.Runtime.InteropServices.OutAttribute.#ctor
+        arguments: []
+      - type: System.Runtime.InteropServices.MarshalAsAttribute
+        ctor: System.Runtime.InteropServices.MarshalAsAttribute.#ctor(System.Runtime.InteropServices.UnmanagedType)
+        arguments:
+        - type: System.Runtime.InteropServices.UnmanagedType
+          value: 42
+        namedArguments:
+        - name: SizeParamIndex
+          type: System.Int16
+          value: 0
     - id: pceltFetched
       type: System.Int32[]
-      description: "\n<p>When this method returns, contains a reference to the actual number of references enumerated in <em>rgelt</em>. This parameter is passed uninitialized.</p>\n"
+      attributes:
+      - type: System.Runtime.InteropServices.OutAttribute
+        ctor: System.Runtime.InteropServices.OutAttribute.#ctor
+        arguments: []
+      - type: System.Runtime.InteropServices.MarshalAsAttribute
+        ctor: System.Runtime.InteropServices.MarshalAsAttribute.#ctor(System.Runtime.InteropServices.UnmanagedType)
+        arguments:
+        - type: System.Runtime.InteropServices.UnmanagedType
+          value: 42
     return:
       type: System.Int32
-      description: "\n<p>\n<strong>S_OK</strong> if the <em>pceltFetched</em> parameter equals the <em>celt</em> parameter; otherwise, <strong>S_FALSE</strong>.</p>\n"
   fullName.vb: System.Runtime.InteropServices.ComTypes.IEnumFORMATETC.Next(System.Int32, System.Runtime.InteropServices.ComTypes.FORMATETC(), System.Int32())
   name.vb: Next(Int32, FORMATETC(), Int32())
 - uid: System.Runtime.InteropServices.ComTypes.IEnumFORMATETC.Reset
@@ -133,23 +164,28 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.cs
+      path: src/System.Runtime.InteropServices/src/System/Runtime/InteropServices/ComTypes/IEnumFormatETC.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Reset
-    path: src/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.cs
-    startLine: 1133
+    path: src/System.Runtime.InteropServices/src/System/Runtime/InteropServices/ComTypes/IEnumFormatETC.cs
+    startLine: 35
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices.ComTypes
   summary: "\n<p>Resets the enumeration sequence to the beginning.</p>\n"
   remarks: "\n<p>For more information about <strong>IEnumFORMATETC::Reset</strong>, see the MSDN Library.</p>\n"
   syntax:
-    content: int Reset()
-    content.vb: Function Reset As Integer
+    content: >-
+      [PreserveSig]
+
+      int Reset()
+    content.vb: >-
+      <PreserveSig>
+
+      Function Reset As Integer
     return:
       type: System.Int32
-      description: "\n<p>An HRESULT with the value <strong>S_OK</strong>.</p>\n"
 - uid: System.Runtime.InteropServices.ComTypes.IEnumFORMATETC.Skip(System.Int32)
   commentId: M:System.Runtime.InteropServices.ComTypes.IEnumFORMATETC.Skip(System.Int32)
   id: Skip(System.Int32)
@@ -162,27 +198,31 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.cs
+      path: src/System.Runtime.InteropServices/src/System/Runtime/InteropServices/ComTypes/IEnumFormatETC.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Skip
-    path: src/System.Runtime.InteropServices/ref/System.Runtime.InteropServices.cs
-    startLine: 1134
+    path: src/System.Runtime.InteropServices/src/System/Runtime/InteropServices/ComTypes/IEnumFormatETC.cs
+    startLine: 29
   assemblies:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices.ComTypes
   summary: "\n<p>Skips a specified number of items in the enumeration sequence.</p>\n"
   remarks: "\n<p>For more information about <strong>IEnumFORMATETC::Skip</strong>, see the MSDN Library.</p>\n"
   syntax:
-    content: int Skip(int celt)
-    content.vb: Function Skip(celt As Integer) As Integer
+    content: >-
+      [PreserveSig]
+
+      int Skip(int celt)
+    content.vb: >-
+      <PreserveSig>
+
+      Function Skip(celt As Integer) As Integer
     parameters:
     - id: celt
       type: System.Int32
-      description: "\n<p>The number of elements to skip in the enumeration.</p>\n"
     return:
       type: System.Int32
-      description: "\n<p>\n<strong>S_OK</strong> if the number of elements skipped equals the <em>celt</em> parameter; otherwise, <strong>S_FALSE</strong>.</p>\n"
 references:
 - uid: System.Runtime.InteropServices.ComTypes
   isExternal: false
