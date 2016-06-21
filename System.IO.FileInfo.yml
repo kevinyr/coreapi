@@ -33,12 +33,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: FileInfo
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 16
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 33
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -47,10 +47,20 @@ items:
   example:
   - "\n<p>The following example demonstrates some of the main members of the <strong>FileInfo</strong> class.</p>\n<p>When the properties are first retrieved, <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> calls the <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> method and caches information about the file. On subsequent calls, you must call <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> to get the latest copy of the information.</p>FInfo Class#1<p>This example produces output similar to the following.</p><pre><code>Hello\nAnd\nWelcome\nC:\\Users\\userName\\AppData\\Local\\Temp\\tmp70AB.tmp was copied to C:\\Users\\userName\\AppData\\Local\\Temp\\tmp70CB.tmp.\nC:\\Users\\userName\\AppData\\Local\\Temp\\tmp70CB.tmp was successfully deleted.</code></pre>"
   syntax:
-    content: 'public sealed class FileInfo : FileSystemInfo'
+    content: >-
+      [Serializable]
+
+      [ComVisible(true)]
+
+      public sealed class FileInfo : FileSystemInfo, ISerializable
     content.vb: >-
+      <Serializable>
+
+      <ComVisible(True)>
+
       Public NotInheritable Class FileInfo
           Inherits FileSystemInfo
+          Implements ISerializable
   seealso:
   - type: System.IO.FileSystemWatcher
     commentId: T:System.IO.FileSystemWatcher
@@ -98,12 +108,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 23
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 61
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -123,6 +133,7 @@ items:
     parameters:
     - id: fileName
       type: System.String
+      description: "\n<p>The fully qualified name of the new file, or the relative file name. Do not end the path with the directory separator character.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -161,12 +172,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Directory
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 90
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 166
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -180,6 +191,7 @@ items:
     parameters: []
     return:
       type: System.IO.DirectoryInfo
+      description: "\n<p>A <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> object representing the parent directory of this file.</p>\n"
   exceptions:
   - type: System.IO.DirectoryNotFoundException
     commentId: T:System.IO.DirectoryNotFoundException
@@ -208,12 +220,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: DirectoryName
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 80
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 146
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -233,6 +245,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: "\n<p>A string representing the directory's full path.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -264,12 +277,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Exists
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 205
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 316
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -289,6 +302,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the file exists; <strong>false</strong> if the file does not exist or if the file is a directory.</p>\n"
   overridden: System.IO.FileSystemInfo.Exists
   modifiers.csharp:
   - public
@@ -310,12 +324,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IsReadOnly
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 101
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 177
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -329,6 +343,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the current file is read only; otherwise, <strong>false</strong>.</p>\n"
   exceptions:
   - type: System.IO.FileNotFoundException
     commentId: T:System.IO.FileNotFoundException
@@ -363,12 +378,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Length
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 66
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 129
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -388,6 +403,7 @@ items:
     parameters: []
     return:
       type: System.Int64
+      description: "\n<p>The size of the current file in bytes.</p>\n"
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
@@ -413,12 +429,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Name
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 60
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 124
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -432,6 +448,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: "\n<p>The name of the file.</p>\n"
   overridden: System.IO.FileSystemInfo.Name
   modifiers.csharp:
   - public
@@ -453,12 +470,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AppendText
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 129
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 217
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -470,6 +487,7 @@ items:
     content.vb: Public Function AppendText As StreamWriter
     return:
       type: System.IO.StreamWriter
+      description: "\n<p>A new <strong>StreamWriter</strong>.</p>\n"
   seealso:
   - type: System.IO.StreamWriter
     commentId: T:System.IO.StreamWriter
@@ -492,12 +510,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CopyTo
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 145
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 232
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -511,8 +529,10 @@ items:
     parameters:
     - id: destFileName
       type: System.String
+      description: "\n<p>The name of the new file to copy to. </p>\n"
     return:
       type: System.IO.FileInfo
+      description: "\n<p>A new file with a fully qualified path.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -557,12 +577,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CopyTo
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 167
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 253
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -576,10 +596,13 @@ items:
     parameters:
     - id: destFileName
       type: System.String
+      description: "\n<p>The name of the new file to copy to. </p>\n"
     - id: overwrite
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> to allow an existing file to be overwritten; otherwise, <strong>false</strong>. </p>\n"
     return:
       type: System.IO.FileInfo
+      description: "\n<p>A new file, or an overwrite of an existing file if <em>overwrite</em> is <strong>true</strong>. If the file exists and <em>overwrite</em> is <strong>false</strong>, an <xref href=\"System.IO.IOException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -624,12 +647,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Create
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 179
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 264
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -642,6 +665,7 @@ items:
     content.vb: Public Function Create As FileStream
     return:
       type: System.IO.FileStream
+      description: "\n<p>A new file.</p>\n"
   see:
   - type: System.Security.Permissions.FileIOPermission
     commentId: T:System.Security.Permissions.FileIOPermission
@@ -661,12 +685,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CreateText
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 123
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 212
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -679,6 +703,7 @@ items:
     content.vb: Public Function CreateText As StreamWriter
     return:
       type: System.IO.StreamWriter
+      description: "\n<p>A new <strong>StreamWriter</strong>.</p>\n"
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -711,12 +736,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Delete
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 194
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 278
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -765,12 +790,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: MoveTo
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 260
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 382
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -790,6 +815,7 @@ items:
     parameters:
     - id: destFileName
       type: System.String
+      description: "\n<p>The path to move the file to, which can specify a different file name. </p>\n"
   exceptions:
   - type: System.IO.IOException
     commentId: T:System.IO.IOException
@@ -837,12 +863,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Open
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 222
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 341
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -855,8 +881,10 @@ items:
     parameters:
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>A <xref href=\"System.IO.FileMode\" data-throw-if-not-resolved=\"false\"></xref> constant specifying the mode (for example, <strong>Open</strong> or <strong>Append</strong>) in which to open the file. </p>\n"
     return:
       type: System.IO.FileStream
+      description: "\n<p>A file opened in the specified mode, with read/write access and unshared.</p>\n"
   exceptions:
   - type: System.IO.FileNotFoundException
     commentId: T:System.IO.FileNotFoundException
@@ -889,12 +917,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Open
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 227
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 345
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -907,10 +935,13 @@ items:
     parameters:
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>A <xref href=\"System.IO.FileMode\" data-throw-if-not-resolved=\"false\"></xref> constant specifying the mode (for example, <strong>Open</strong> or <strong>Append</strong>) in which to open the file. </p>\n"
     - id: access
       type: System.IO.FileAccess
+      description: "\n<p>A <xref href=\"System.IO.FileAccess\" data-throw-if-not-resolved=\"false\"></xref> constant specifying whether to open the file with <strong>Read</strong>, <strong>Write</strong>, or <strong>ReadWrite</strong> file access. </p>\n"
     return:
       type: System.IO.FileStream
+      description: "\n<p>A <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object opened in the specified mode and access, and unshared.</p>\n"
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
@@ -946,12 +977,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Open
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 232
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 349
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -964,12 +995,16 @@ items:
     parameters:
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>A <xref href=\"System.IO.FileMode\" data-throw-if-not-resolved=\"false\"></xref> constant specifying the mode (for example, <strong>Open</strong> or <strong>Append</strong>) in which to open the file. </p>\n"
     - id: access
       type: System.IO.FileAccess
+      description: "\n<p>A <xref href=\"System.IO.FileAccess\" data-throw-if-not-resolved=\"false\"></xref> constant specifying whether to open the file with <strong>Read</strong>, <strong>Write</strong>, or <strong>ReadWrite</strong> file access. </p>\n"
     - id: share
       type: System.IO.FileShare
+      description: "\n<p>A <xref href=\"System.IO.FileShare\" data-throw-if-not-resolved=\"false\"></xref> constant specifying the type of access other <strong>FileStream</strong> objects have to this file. </p>\n"
     return:
       type: System.IO.FileStream
+      description: "\n<p>A <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object opened with the specified mode, access, and sharing options.</p>\n"
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
@@ -1005,12 +1040,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: OpenRead
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 238
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 355
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1029,6 +1064,7 @@ items:
       Public Function OpenRead As FileStream
     return:
       type: System.IO.FileStream
+      description: "\n<p>A new read-only <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -1058,12 +1094,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: OpenText
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 116
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 206
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1081,6 +1117,7 @@ items:
       Public Function OpenText As StreamReader
     return:
       type: System.IO.StreamReader
+      description: "\n<p>A new <strong>StreamReader</strong> with UTF8 encoding.</p>\n"
   exceptions:
   - type: System.Security.SecurityException
     commentId: T:System.Security.SecurityException
@@ -1118,12 +1155,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: OpenWrite
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 246
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 364
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1136,6 +1173,7 @@ items:
     content.vb: Public Function OpenWrite As FileStream
     return:
       type: System.IO.FileStream
+      description: "\n<p>A write-only unshared <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object for a new or existing file.</p>\n"
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -1162,12 +1200,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ToString
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 294
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 425
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1178,6 +1216,7 @@ items:
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
+      description: "\n<p>A string representing the path.</p>\n"
   overridden: System.Object.ToString
   modifiers.csharp:
   - public

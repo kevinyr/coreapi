@@ -36,12 +36,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: MemoryMappedFile
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 10
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 23
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -84,12 +84,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SafeMemoryMappedFileHandle
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 488
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 26
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -97,17 +97,12 @@ items:
   example:
   - 
   syntax:
-    content: >-
-      public SafeMemoryMappedFileHandle SafeMemoryMappedFileHandle
-
-      {
-          [SecurityCritical]
-          get;
-      }
+    content: public SafeMemoryMappedFileHandle SafeMemoryMappedFileHandle { get; }
     content.vb: Public ReadOnly Property SafeMemoryMappedFileHandle As SafeMemoryMappedFileHandle
     parameters: []
     return:
-      type: SafeMemoryMappedFileHandle
+      type: Microsoft.Win32.SafeHandles.SafeMemoryMappedFileHandle
+      description: "\n<p>The handle to the memory-mapped file.</p>\n"
   see:
   - type: System.Security.Permissions.SecurityPermission
     commentId: T:System.Security.Permissions.SecurityPermission
@@ -192,12 +187,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateFromFile
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 95
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 28
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -210,8 +205,10 @@ items:
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>The path to file to map.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -246,12 +243,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateFromFile
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 99
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 29
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -265,10 +262,13 @@ items:
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>The path to file to map.</p>\n"
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>Access mode; must be <xref href=\"System.IO.FileMode.Open\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file that has the specified access mode.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -303,12 +303,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateFromFile
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 104
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 30
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -322,12 +322,16 @@ items:
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>The path to the file to map.</p>\n"
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>Access mode; must be <xref href=\"System.IO.FileMode.Open\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: mapName
       type: System.String
+      description: "\n<p>A name to assign to the memory-mapped file. </p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file that has the specified name and access mode.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -362,12 +366,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateFromFile
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 109
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 31
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -381,14 +385,19 @@ items:
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>The path to the file to map.</p>\n"
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>Access mode; can be any of the <xref href=\"System.IO.FileMode\" data-throw-if-not-resolved=\"false\"></xref> enumeration values except <xref href=\"System.IO.FileMode.Append\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: mapName
       type: System.String
+      description: "\n<p>A name to assign to the memory-mapped file. </p>\n"
     - id: capacity
       type: System.Int64
+      description: "\n<p>The maximum size, in bytes, to allocate to the memory-mapped file. Specify 0 to set the capacity to the size of the file on disk.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file that has the specified characteristics.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -426,12 +435,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateFromFile
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 114
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 32
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -440,27 +449,27 @@ items:
   example:
   - 
   syntax:
-    content: >-
-      [SecurityCritical]
-
-      public static MemoryMappedFile CreateFromFile(string path, FileMode mode, string mapName, long capacity, MemoryMappedFileAccess access)
-    content.vb: >-
-      <SecurityCritical>
-
-      Public Shared Function CreateFromFile(path As String, mode As FileMode, mapName As String, capacity As Long, access As MemoryMappedFileAccess) As MemoryMappedFile
+    content: public static MemoryMappedFile CreateFromFile(string path, FileMode mode, string mapName, long capacity, MemoryMappedFileAccess access)
+    content.vb: Public Shared Function CreateFromFile(path As String, mode As FileMode, mapName As String, capacity As Long, access As MemoryMappedFileAccess) As MemoryMappedFile
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>The path to the file to map.</p>\n"
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>Access mode; can be any of the <xref href=\"System.IO.FileMode\" data-throw-if-not-resolved=\"false\"></xref> enumeration values except <xref href=\"System.IO.FileMode.Append\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: mapName
       type: System.String
+      description: "\n<p>A name to assign to the memory-mapped file. </p>\n"
     - id: capacity
       type: System.Int64
+      description: "\n<p>The maximum size, in bytes, to allocate to the memory-mapped file. Specify 0 to set the capacity to the size of the file on disk.</p>\n"
     - id: access
       type: System.IO.MemoryMappedFiles.MemoryMappedFileAccess
+      description: "\n<p>One of the enumeration values that specifies the type of access allowed to the memory-mapped file.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file that has the specified characteristics.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -501,12 +510,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateNew
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 260
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 33
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -520,10 +529,13 @@ items:
     parameters:
     - id: mapName
       type: System.String
+      description: "\n<p>A name to assign to the memory-mapped file.</p>\n"
     - id: capacity
       type: System.Int64
+      description: "\n<p>The maximum size, in bytes, to allocate to the memory-mapped file.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file that has the specified name and capacity.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -552,12 +564,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateNew
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 266
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 34
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -571,12 +583,16 @@ items:
     parameters:
     - id: mapName
       type: System.String
+      description: "\n<p>A name to assign to the memory-mapped file.</p>\n"
     - id: capacity
       type: System.Int64
+      description: "\n<p>The maximum size, in bytes, to allocate to the memory-mapped file.</p>\n"
     - id: access
       type: System.IO.MemoryMappedFiles.MemoryMappedFileAccess
+      description: "\n<p>One of the enumeration values that specifies the type of access allowed to the memory-mapped file. The default is <xref href=\"System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadWrite\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file that has the specified characteristics.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -665,12 +681,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateOrOpen
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 321
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 36
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -684,10 +700,13 @@ items:
     parameters:
     - id: mapName
       type: System.String
+      description: "\n<p>A name to assign to the memory-mapped file.</p>\n"
     - id: capacity
       type: System.Int64
+      description: "\n<p>The maximum size, in bytes, to allocate to the memory-mapped file.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file that has the specified name and size.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -716,12 +735,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateOrOpen
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 327
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 37
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -735,12 +754,16 @@ items:
     parameters:
     - id: mapName
       type: System.String
+      description: "\n<p>A name to assign to the memory-mapped file.</p>\n"
     - id: capacity
       type: System.Int64
+      description: "\n<p>The maximum size, in bytes, to allocate to the memory-mapped file.</p>\n"
     - id: access
       type: System.IO.MemoryMappedFiles.MemoryMappedFileAccess
+      description: "\n<p>One of the enumeration values that specifies the type of access allowed to the memory-mapped file. The default is <xref href=\"System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadWrite\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file that has the specified characteristics.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -835,12 +858,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateViewAccessor
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 426
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 39
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -851,6 +874,7 @@ items:
     content.vb: Public Function CreateViewAccessor As MemoryMappedViewAccessor
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedViewAccessor
+      description: "\n<p>A randomly accessible block of memory.</p>\n"
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -871,12 +895,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateViewAccessor
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 431
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 40
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -890,10 +914,13 @@ items:
     parameters:
     - id: offset
       type: System.Int64
+      description: "\n<p>The byte at which to start the view.</p>\n"
     - id: size
       type: System.Int64
+      description: "\n<p>The size of the view. Specify 0 (zero) to create a view that starts at <em>offset</em> and ends approximately at the end of the memory-mapped file.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedViewAccessor
+      description: "\n<p>A randomly accessible block of memory.</p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -920,12 +947,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateViewAccessor
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 436
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 41
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -934,23 +961,21 @@ items:
   example:
   - 
   syntax:
-    content: >-
-      [SecurityCritical]
-
-      public MemoryMappedViewAccessor CreateViewAccessor(long offset, long size, MemoryMappedFileAccess access)
-    content.vb: >-
-      <SecurityCritical>
-
-      Public Function CreateViewAccessor(offset As Long, size As Long, access As MemoryMappedFileAccess) As MemoryMappedViewAccessor
+    content: public MemoryMappedViewAccessor CreateViewAccessor(long offset, long size, MemoryMappedFileAccess access)
+    content.vb: Public Function CreateViewAccessor(offset As Long, size As Long, access As MemoryMappedFileAccess) As MemoryMappedViewAccessor
     parameters:
     - id: offset
       type: System.Int64
+      description: "\n<p>The byte at which to start the view.</p>\n"
     - id: size
       type: System.Int64
+      description: "\n<p>The size of the view. Specify 0 (zero) to create a view that starts at <em>offset</em> and ends approximately at the end of the memory-mapped file.</p>\n"
     - id: access
       type: System.IO.MemoryMappedFiles.MemoryMappedFileAccess
+      description: "\n<p>One of the enumeration values that specifies the type of access allowed to the memory-mapped file. The default is <xref href=\"System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadWrite\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedViewAccessor
+      description: "\n<p>A randomly accessible block of memory.</p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -980,12 +1005,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateViewStream
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 388
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 42
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -998,6 +1023,7 @@ items:
     content.vb: Public Function CreateViewStream As MemoryMappedViewStream
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedViewStream
+      description: "\n<p>A stream of memory.</p>\n"
   exceptions:
   - type: System.UnauthorizedAccessException
     commentId: T:System.UnauthorizedAccessException
@@ -1018,12 +1044,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateViewStream
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 393
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 43
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -1037,10 +1063,13 @@ items:
     parameters:
     - id: offset
       type: System.Int64
+      description: "\n<p>The byte at which to start the view.</p>\n"
     - id: size
       type: System.Int64
+      description: "\n<p>The size of the view. Specify 0 (zero) to create a view that starts at <em>offset</em> and ends approximately at the end of the memory-mapped file.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedViewStream
+      description: "\n<p>A stream of memory that has the specified offset and size.</p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -1067,12 +1096,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CreateViewStream
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 398
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 44
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -1081,23 +1110,21 @@ items:
   example:
   - 
   syntax:
-    content: >-
-      [SecurityCritical]
-
-      public MemoryMappedViewStream CreateViewStream(long offset, long size, MemoryMappedFileAccess access)
-    content.vb: >-
-      <SecurityCritical>
-
-      Public Function CreateViewStream(offset As Long, size As Long, access As MemoryMappedFileAccess) As MemoryMappedViewStream
+    content: public MemoryMappedViewStream CreateViewStream(long offset, long size, MemoryMappedFileAccess access)
+    content.vb: Public Function CreateViewStream(offset As Long, size As Long, access As MemoryMappedFileAccess) As MemoryMappedViewStream
     parameters:
     - id: offset
       type: System.Int64
+      description: "\n<p>The byte at which to start the view.</p>\n"
     - id: size
       type: System.Int64
+      description: "\n<p>The size of the view. Specify 0 (zero) to create a view that starts at <em>offset</em> and ends approximately at the end of the memory-mapped file.</p>\n"
     - id: access
       type: System.IO.MemoryMappedFiles.MemoryMappedFileAccess
+      description: "\n<p>One of the enumeration values that specifies the type of access allowed to the memory-mapped file. The default is <xref href=\"System.IO.MemoryMappedFiles.MemoryMappedFileAccess.ReadWrite\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedViewStream
+      description: "\n<p>A stream of memory that has the specified characteristics.</p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -1127,12 +1154,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 463
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 45
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -1160,12 +1187,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 469
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 46
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -1173,17 +1200,12 @@ items:
   example:
   - 
   syntax:
-    content: >-
-      [SecuritySafeCritical]
-
-      protected virtual void Dispose(bool disposing)
-    content.vb: >-
-      <SecuritySafeCritical>
-
-      Protected Overridable Sub Dispose(disposing As Boolean)
+    content: protected virtual void Dispose(bool disposing)
+    content.vb: Protected Overridable Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> to release both managed and unmanaged resources; <strong>false</strong> to release only unmanaged resources. </p>\n"
   modifiers.csharp:
   - protected
   - virtual
@@ -1202,12 +1224,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: OpenExisting
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 49
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 47
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -1221,8 +1243,10 @@ items:
     parameters:
     - id: mapName
       type: System.String
+      description: "\n<p>The name of the memory-mapped file to open.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file that has the specified name. </p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -1251,12 +1275,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
+      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: OpenExisting
-    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedFile.cs
-    startLine: 54
+    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+    startLine: 48
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -1269,10 +1293,13 @@ items:
     parameters:
     - id: mapName
       type: System.String
+      description: "\n<p>The name of the memory-mapped file to open.</p>\n"
     - id: desiredAccessRights
       type: System.IO.MemoryMappedFiles.MemoryMappedFileRights
+      description: "\n<p>One of the enumeration values that specifies the access rights to apply to the memory-mapped file.</p>\n"
     return:
       type: System.IO.MemoryMappedFiles.MemoryMappedFile
+      description: "\n<p>A memory-mapped file that has the specified characteristics.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException

@@ -42,12 +42,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: FileStream
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 10
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 374
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -56,8 +56,13 @@ items:
   example:
   - <p>The following example demonstrates some of the <xref href="System.IO.FileStream" data-throw-if-not-resolved="false"></xref> constructors.</p>fstream class#1<p>The following example shows how to write to a file asynchronously. This code runs in a WPF app that has a TextBlock named UserInput and a button hooked up to a Click event handler that is named Button_Click. The file path needs to be changed to a file than exits on the computer.</p>Asynchronous_File_IO_async#3
   syntax:
-    content: 'public class FileStream : Stream, IDisposable'
+    content: >-
+      [ComVisible(true)]
+
+      public class FileStream : Stream, IDisposable
     content.vb: >-
+      <ComVisible(True)>
+
       Public Class FileStream
           Inherits Stream
           Implements IDisposable
@@ -127,12 +132,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 29
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 874
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -141,13 +146,21 @@ items:
   example:
   - 
   syntax:
-    content: public FileStream(SafeFileHandle handle, FileAccess access)
-    content.vb: Public Sub New(handle As SafeFileHandle, access As FileAccess)
+    content: >-
+      [SecuritySafeCritical]
+
+      public FileStream(SafeFileHandle handle, FileAccess access)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Sub New(handle As SafeFileHandle, access As FileAccess)
     parameters:
     - id: handle
       type: Microsoft.Win32.SafeHandles.SafeFileHandle
+      description: "\n<p>A file handle for the file that the current <strong>FileStream</strong> object will encapsulate. </p>\n"
     - id: access
       type: System.IO.FileAccess
+      description: "\n<p>A constant that sets the <xref href=\"System.IO.FileStream.CanRead\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.FileStream.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> properties of the <strong>FileStream</strong> object. </p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -180,12 +193,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/ref/System.IO.FileSystem.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/ref/System.IO.FileSystem.cs
-    startLine: 181
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 879
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -194,8 +207,14 @@ items:
   example:
   - 
   syntax:
-    content: public FileStream(SafeFileHandle handle, FileAccess access, int bufferSize)
-    content.vb: Public Sub New(handle As SafeFileHandle, access As FileAccess, bufferSize As Integer)
+    content: >-
+      [SecuritySafeCritical]
+
+      public FileStream(SafeFileHandle handle, FileAccess access, int bufferSize)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Sub New(handle As SafeFileHandle, access As FileAccess, bufferSize As Integer)
     parameters:
     - id: handle
       type: Microsoft.Win32.SafeHandles.SafeFileHandle
@@ -243,12 +262,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/ref/System.IO.FileSystem.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/ref/System.IO.FileSystem.cs
-    startLine: 182
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 884
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -257,8 +276,18 @@ items:
   example:
   - 
   syntax:
-    content: public FileStream(SafeFileHandle handle, FileAccess access, int bufferSize, bool isAsync)
-    content.vb: Public Sub New(handle As SafeFileHandle, access As FileAccess, bufferSize As Integer, isAsync As Boolean)
+    content: >-
+      [SecuritySafeCritical]
+
+      [SecurityPermission(SecurityAction.Demand, Flags = SecurityPermissionFlag.UnmanagedCode)]
+
+      public FileStream(SafeFileHandle handle, FileAccess access, int bufferSize, bool isAsync)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      <SecurityPermission(SecurityAction.Demand, Flags:=SecurityPermissionFlag.UnmanagedCode)>
+
+      Public Sub New(handle As SafeFileHandle, access As FileAccess, bufferSize As Integer, isAsync As Boolean)
     parameters:
     - id: handle
       type: Microsoft.Win32.SafeHandles.SafeFileHandle
@@ -309,12 +338,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 34
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 405
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -323,13 +352,21 @@ items:
   example:
   - "\n<p>The following code example shows how to write data to a file, byte by byte, and then verify that the data was written correctly.</p>System.IO.FileStream1#1"
   syntax:
-    content: public FileStream(string path, FileMode mode)
-    content.vb: Public Sub New(path As String, mode As FileMode)
+    content: >-
+      [SecuritySafeCritical]
+
+      public FileStream(string path, FileMode mode)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Sub New(path As String, mode As FileMode)
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>A relative or absolute path for the file that the current <strong>FileStream</strong> object will encapsulate. </p>\n"
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>A constant that determines how to open or create the file. </p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -380,27 +417,36 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 38
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 410
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> class with the specified path, creation mode, and read/write permission.</p>\n"
   remarks: "\n<p>The .NET Framework does not support direct access to physical disks through paths that are device names, such as \"\\\\.\\PHYSICALDRIVE0 \".</p>\n<p>The <em>path</em> parameter can be a file name, including a file on a Universal Naming Convention (UNC) share.</p>\n<p>The constructor is given read/write access to the file, and it is opened sharing Read access (that is, requests to open the file for writing by this or another process will fail until the <strong>FileStream</strong> object has been closed, but read attempts will succeed). The buffer size is set to the default size of 4096 bytes (4 KB).</p>\n<p>\n<em>path</em> is not required to be a file stored on disk; it can be any part of a system that supports access through streams. For example, depending on the system, this class can access a physical device.</p>\n<p>\n<xref href=\"System.IO.Stream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong> for all <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> objects that encapsulate files. If <em>path</em> indicates a device that does not support seeking, the <xref href=\"System.IO.FileStream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref> property on the resulting <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> is <strong>false</strong>. For additional information, see <xref href=\"System.IO.Stream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<strong>FileShare.Read</strong> is the default for those <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> constructors without a <strong>FileShare</strong> parameter.</p>\n<p>When you compile a set of characters with a particular cultural setting and retrieve those same characters with a different cultural setting, the characters might not be interpretable, and could cause an exception to be thrown.</p>\n<p>For a list of common file and directory operations, see Common I/O Tasks.</p>\n"
   syntax:
-    content: public FileStream(string path, FileMode mode, FileAccess access)
-    content.vb: Public Sub New(path As String, mode As FileMode, access As FileAccess)
+    content: >-
+      [SecuritySafeCritical]
+
+      public FileStream(string path, FileMode mode, FileAccess access)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Sub New(path As String, mode As FileMode, access As FileAccess)
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>A relative or absolute path for the file that the current <strong>FileStream</strong> object will encapsulate. </p>\n"
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>A constant that determines how to open or create the file. </p>\n"
     - id: access
       type: System.IO.FileAccess
+      description: "\n<p>A constant that determines how the file can be accessed by the <strong>FileStream</strong> object. This also determines the values returned by the <xref href=\"System.IO.FileStream.CanRead\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.FileStream.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> properties of the <strong>FileStream</strong> object. <xref href=\"System.IO.FileStream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong> if <em>path</em> specifies a disk file. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -451,12 +497,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 42
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 415
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -465,17 +511,27 @@ items:
   example:
   - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.FileStream.Lock(System.Int64,System.Int64)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.IO.FileStream3#2"
   syntax:
-    content: public FileStream(string path, FileMode mode, FileAccess access, FileShare share)
-    content.vb: Public Sub New(path As String, mode As FileMode, access As FileAccess, share As FileShare)
+    content: >-
+      [SecuritySafeCritical]
+
+      public FileStream(string path, FileMode mode, FileAccess access, FileShare share)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Sub New(path As String, mode As FileMode, access As FileAccess, share As FileShare)
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>A relative or absolute path for the file that the current <strong>FileStream</strong> object will encapsulate. </p>\n"
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>A constant that determines how to open or create the file. </p>\n"
     - id: access
       type: System.IO.FileAccess
+      description: "\n<p>A constant that determines how the file can be accessed by the <strong>FileStream</strong> object. This also determines the values returned by the <xref href=\"System.IO.FileStream.CanRead\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.FileStream.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> properties of the <strong>FileStream</strong> object. <xref href=\"System.IO.FileStream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong> if <em>path</em> specifies a disk file. </p>\n"
     - id: share
       type: System.IO.FileShare
+      description: "\n<p>A constant that determines how the file will be shared by processes. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -526,31 +582,42 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 46
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 420
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> class with the specified path, creation mode, read/write and sharing permission, and buffer size.</p>\n"
   remarks: "\n<p>The .NET Framework does not support direct access to physical disks through paths that are device names, such as \"\\\\.\\PHYSICALDRIVE0 \".</p>\n<p>The <em>path</em> parameter can be a file name, including a file on a Universal Naming Convention (UNC) share.</p>\n<p>\n<em>path</em> is not required to be a file stored on disk; it can be any part of a system that supports access through streams. For example, depending on the system, this class can access a physical device.</p>\n<p>\n<xref href=\"System.IO.Stream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong> for all <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> objects that encapsulate files. If <em>path</em> indicates a device that does not support seeking, the <xref href=\"System.IO.FileStream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref> property on the resulting <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> is <strong>false</strong>. For additional information, see <xref href=\"System.IO.Stream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>When you compile a set of characters with a particular cultural setting and retrieve those same characters with a different cultural setting, the characters might not be interpretable, and could cause an exception to be thrown.</p>\n<p>For a list of common file and directory operations, see Common I/O Tasks.</p>\n"
   syntax:
-    content: public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize)
-    content.vb: Public Sub New(path As String, mode As FileMode, access As FileAccess, share As FileShare, bufferSize As Integer)
+    content: >-
+      [SecuritySafeCritical]
+
+      public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Sub New(path As String, mode As FileMode, access As FileAccess, share As FileShare, bufferSize As Integer)
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>A relative or absolute path for the file that the current <strong>FileStream</strong> object will encapsulate. </p>\n"
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>A constant that determines how to open or create the file. </p>\n"
     - id: access
       type: System.IO.FileAccess
+      description: "\n<p>A constant that determines how the file can be accessed by the <strong>FileStream</strong> object. This also determines the values returned by the <xref href=\"System.IO.FileStream.CanRead\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.FileStream.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> properties of the <strong>FileStream</strong> object. <xref href=\"System.IO.FileStream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong> if <em>path</em> specifies a disk file. </p>\n"
     - id: share
       type: System.IO.FileShare
+      description: "\n<p>A constant that determines how the file will be shared by processes. </p>\n"
     - id: bufferSize
       type: System.Int32
+      description: "\n<p>A positive <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref> value greater than 0 indicating the buffer size. The default buffer size is 4096. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -601,12 +668,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 50
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 456
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -615,21 +682,33 @@ items:
   example:
   - "\n<p>The following code example shows how to asynchronously write data to a file and then verify that the data was written correctly. A <strong>State</strong> object is created to pass information from the main thread to the <strong>EndReadCallback</strong> and <strong>EndWriteCallback</strong> methods.</p>System.IO.FileStream2#1"
   syntax:
-    content: public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool useAsync)
-    content.vb: Public Sub New(path As String, mode As FileMode, access As FileAccess, share As FileShare, bufferSize As Integer, useAsync As Boolean)
+    content: >-
+      [SecurityCritical]
+
+      public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, bool useAsync)
+    content.vb: >-
+      <SecurityCritical>
+
+      Public Sub New(path As String, mode As FileMode, access As FileAccess, share As FileShare, bufferSize As Integer, useAsync As Boolean)
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>A relative or absolute path for the file that the current <strong>FileStream</strong> object will encapsulate. </p>\n"
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>A constant that determines how to open or create the file. </p>\n"
     - id: access
       type: System.IO.FileAccess
+      description: "\n<p>A constant that determines how the file can be accessed by the <strong>FileStream</strong> object. This also determines the values returned by the <xref href=\"System.IO.FileStream.CanRead\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.FileStream.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> properties of the <strong>FileStream</strong> object. <xref href=\"System.IO.FileStream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong> if <em>path</em> specifies a disk file. </p>\n"
     - id: share
       type: System.IO.FileShare
+      description: "\n<p>A constant that determines how the file will be shared by processes. </p>\n"
     - id: bufferSize
       type: System.Int32
+      description: "\n<p>A positive <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref> value greater than 0 indicating the buffer size. The default buffer size is 4096.. </p>\n"
     - id: useAsync
       type: System.Boolean
+      description: "\n<p>Specifies whether to use asynchronous I/O or synchronous I/O. However, note that the underlying operating system might not support asynchronous I/O, so when specifying <strong>true</strong>, the handle might be opened synchronously depending on the platform. When opened asynchronously, the <xref href=\"System.IO.FileStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.FileStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods perform better on large reads or writes, but they might be much slower for small reads or writes. If the application is designed to take advantage of asynchronous I/O, set the <em>useAsync</em> parameter to <strong>true</strong>. Using asynchronous I/O correctly can speed up applications by as much as a factor of 10, but using it without redesigning the application for asynchronous I/O can decrease performance by as much as a factor of 10. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -683,12 +762,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 54
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 449
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -697,21 +776,33 @@ items:
   example:
   - "\n<p>The following example writes data to a file and then reads the data using the <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object.</p>IO.FileStream.ctor1#1"
   syntax:
-    content: public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, FileOptions options)
-    content.vb: Public Sub New(path As String, mode As FileMode, access As FileAccess, share As FileShare, bufferSize As Integer, options As FileOptions)
+    content: >-
+      [SecuritySafeCritical]
+
+      public FileStream(string path, FileMode mode, FileAccess access, FileShare share, int bufferSize, FileOptions options)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Sub New(path As String, mode As FileMode, access As FileAccess, share As FileShare, bufferSize As Integer, options As FileOptions)
     parameters:
     - id: path
       type: System.String
+      description: "\n<p>A relative or absolute path for the file that the current <strong>FileStream</strong> object will encapsulate. </p>\n"
     - id: mode
       type: System.IO.FileMode
+      description: "\n<p>A constant that determines how to open or create the file. </p>\n"
     - id: access
       type: System.IO.FileAccess
+      description: "\n<p>A constant that determines how the file can be accessed by the <strong>FileStream</strong> object. This also determines the values returned by the <xref href=\"System.IO.FileStream.CanRead\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.FileStream.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> properties of the <strong>FileStream</strong> object. <xref href=\"System.IO.FileStream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong> if <em>path</em> specifies a disk file. </p>\n"
     - id: share
       type: System.IO.FileShare
+      description: "\n<p>A constant that determines how the file will be shared by processes. </p>\n"
     - id: bufferSize
       type: System.Int32
+      description: "\n<p>A positive <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref> value greater than 0 indicating the buffer size. The default buffer size is 4096.</p>\n"
     - id: options
       type: System.IO.FileOptions
+      description: "\n<p>A value that specifies additional file options.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -762,12 +853,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CanRead
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 141
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1030
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -781,6 +872,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the stream supports reading; <strong>false</strong> if the stream is closed or was opened with write-only access.</p>\n"
   overridden: System.IO.Stream.CanRead
   modifiers.csharp:
   - public
@@ -802,12 +894,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CanSeek
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 146
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1040
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -821,6 +913,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the stream supports seeking; <strong>false</strong> if the stream is closed or if the <strong>FileStream</strong> was constructed from an operating-system handle such as a pipe or output to the console.</p>\n"
   overridden: System.IO.Stream.CanSeek
   modifiers.csharp:
   - public
@@ -842,12 +935,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CanWrite
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 151
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1035
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -861,6 +954,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the stream supports writing; <strong>false</strong> if the stream is closed or was opened with read-only access.</p>\n"
   overridden: System.IO.Stream.CanWrite
   modifiers.csharp:
   - public
@@ -882,12 +976,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IsAsync
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 128
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1045
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -901,6 +995,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the <strong>FileStream</strong> was opened asynchronously; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -921,12 +1016,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Length
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 156
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1049
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -935,11 +1030,18 @@ items:
   example:
   - "\n<p>The following example uses the <strong>Length</strong> and <strong>Position</strong> properties to check for an end-of-file condition.</p>Classic FileStream.Length Example#1"
   syntax:
-    content: public override long Length { get; }
+    content: >-
+      public override long Length
+
+      {
+          [SecuritySafeCritical]
+          get;
+      }
     content.vb: Public Overrides ReadOnly Property Length As Long
     parameters: []
     return:
       type: System.Int64
+      description: "\n<p>A long value representing the length of the stream in bytes.</p>\n"
   overridden: System.IO.Stream.Length
   exceptions:
   - type: System.NotSupportedException
@@ -968,12 +1070,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Name
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 129
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1073
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -982,11 +1084,18 @@ items:
   example:
   - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.FileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.Int32,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> constructor.</p>System.IO.FileStream2#4"
   syntax:
-    content: public string Name { get; }
+    content: >-
+      public string Name
+
+      {
+          [SecuritySafeCritical]
+          get;
+      }
     content.vb: Public ReadOnly Property Name As String
     parameters: []
     return:
       type: System.String
+      description: "\n<p>A string that is the name of the <strong>FileStream</strong>.</p>\n"
   see:
   - type: System.Security.Permissions.FileIOPermission
     commentId: T:System.Security.Permissions.FileIOPermission
@@ -1008,12 +1117,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Position
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 161
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1096
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1022,11 +1131,19 @@ items:
   example:
   - "\n<p>The following example uses the <strong>Length</strong> and <strong>Position</strong> properties to check for an end-of-file condition.</p>Classic FileStream.Length Example#1"
   syntax:
-    content: public override long Position { get; set; }
+    content: >-
+      public override long Position
+
+      {
+          [SecuritySafeCritical]
+          get;
+          set;
+      }
     content.vb: Public Overrides Property Position As Long
     parameters: []
     return:
       type: System.Int64
+      description: "\n<p>The current position of this stream.</p>\n"
   overridden: System.IO.Stream.Position
   exceptions:
   - type: System.NotSupportedException
@@ -1061,12 +1178,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SafeFileHandle
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 130
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1293
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1075,11 +1192,18 @@ items:
   example:
   - 
   syntax:
-    content: public virtual SafeFileHandle SafeFileHandle { get; }
+    content: >-
+      public virtual SafeFileHandle SafeFileHandle
+
+      {
+          [SecurityCritical]
+          get;
+      }
     content.vb: Public Overridable ReadOnly Property SafeFileHandle As SafeFileHandle
     parameters: []
     return:
       type: Microsoft.Win32.SafeHandles.SafeFileHandle
+      description: "\n<p>An object that represents the operating system file handle for the file that the current <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object encapsulates.</p>\n"
   see:
   - type: System.Security.Permissions.SecurityPermission
     commentId: T:System.Security.Permissions.SecurityPermission
@@ -1107,23 +1231,30 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Dispose
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 192
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1144
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Releases the unmanaged resources used by the <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> and optionally releases the managed resources.</p>\n"
   remarks: "\n<p>This method is called by the public <xref href=\"System.ComponentModel.Component.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method and the <xref href=\"System.Object.Finalize\" data-throw-if-not-resolved=\"false\"></xref> method. <xref href=\"System.ComponentModel.Component.Dispose\" data-throw-if-not-resolved=\"false\"></xref> invokes the protected <xref href=\"System.IO.FileStream.Dispose(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method with the <em>disposing</em> parameter set to <strong>true</strong>. <xref href=\"System.Object.Finalize\" data-throw-if-not-resolved=\"false\"></xref> invokes <xref href=\"System.IO.FileStream.Dispose(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> with <em>disposing</em> set to <strong>false</strong>.</p>\n<p>When the <em>disposing</em> parameter is <strong>true</strong>, this method releases all resources held by any managed objects that this <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> references. This method invokes the <xref href=\"System.ComponentModel.Component.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method of each referenced object.</p>\n"
   syntax:
-    content: protected override void Dispose(bool disposing)
-    content.vb: Protected Overrides Sub Dispose(disposing As Boolean)
+    content: >-
+      [SecuritySafeCritical]
+
+      protected override void Dispose(bool disposing)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Protected Overrides Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> to release both managed and unmanaged resources; <strong>false</strong> to release only unmanaged resources. </p>\n"
   overridden: System.IO.Stream.Dispose(System.Boolean)
   modifiers.csharp:
   - protected
@@ -1143,12 +1274,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Finalize
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 295
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1180
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1179,12 +1310,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Flush
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 202
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1189
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1224,12 +1355,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Flush
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 132
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1194
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1238,11 +1369,18 @@ items:
   example:
   - 
   syntax:
-    content: public virtual void Flush(bool flushToDisk)
-    content.vb: Public Overridable Sub Flush(flushToDisk As Boolean)
+    content: >-
+      [SecuritySafeCritical]
+
+      public virtual void Flush(bool flushToDisk)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Overridable Sub Flush(flushToDisk As Boolean)
     parameters:
     - id: flushToDisk
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> to flush all intermediate file buffers; otherwise, <strong>false</strong>. </p>\n"
   seealso:
   - type: System.IO.FileStream.Flush
     commentId: M:System.IO.FileStream.Flush
@@ -1264,25 +1402,41 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: FlushAsync
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 207
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 2648
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Asynchronously clears all buffers for this stream, causes any buffered data to be written to the underlying device, and monitors cancellation requests. </p>\n"
   remarks: "\n<p>When you call the <xref href=\"System.IO.FileStream.FlushAsync(System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method, the operating system I/O buffer is also flushed.</p>\n<p>If the operation is canceled before it completes, the returned task contains the <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref> value for the <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property. If the handle to the file is disposed, the returned task contains the <xref href=\"System.ObjectDisposedException\" data-throw-if-not-resolved=\"false\"></xref> exception in the <xref href=\"System.Threading.Tasks.Task.Exception\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
-    content: public override Task FlushAsync(CancellationToken cancellationToken)
-    content.vb: Public Overrides Function FlushAsync(cancellationToken As CancellationToken) As Task
+    content: >-
+      [HostProtection(ExternalThreading = true)]
+
+      [ComVisible(false)]
+
+      [SecuritySafeCritical]
+
+      public override Task FlushAsync(CancellationToken cancellationToken)
+    content.vb: >-
+      <HostProtection(ExternalThreading:=True)>
+
+      <ComVisible(False)>
+
+      <SecuritySafeCritical>
+
+      Public Overrides Function FlushAsync(cancellationToken As CancellationToken) As Task
     parameters:
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: "\n<p>The token to monitor for cancellation requests.</p>\n"
     return:
       type: System.Threading.Tasks.Task
+      description: "\n<p>A task that represents the asynchronous flush operation. </p>\n"
   overridden: System.IO.Stream.FlushAsync(System.Threading.CancellationToken)
   exceptions:
   - type: System.ObjectDisposedException
@@ -1306,12 +1460,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Read
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 219
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1365
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1320,17 +1474,34 @@ items:
   example:
   - "\n<p>The following example reads the contents from a <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> and writes it into another <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref>.</p>FSRead#1"
   syntax:
-    content: public override int Read(byte[] buffer, int offset, int count)
-    content.vb: Public Overrides Function Read(buffer As Byte(), offset As Integer, count As Integer) As Integer
+    content: >-
+      [SecuritySafeCritical]
+
+      public override int Read([In, Out] byte[] array, int offset, int count)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Overrides Function Read(array As Byte(), offset As Integer, count As Integer) As Integer
     parameters:
-    - id: buffer
+    - id: array
       type: System.Byte[]
+      description: "\n<p>When this method returns, contains the specified byte array with the values between <em>offset</em> and (<em>offset</em> + <em>count</em> - 1<em>)</em> replaced by the bytes read from the current source. </p>\n"
+      attributes:
+      - type: System.Runtime.InteropServices.InAttribute
+        ctor: System.Runtime.InteropServices.InAttribute.#ctor
+        arguments: []
+      - type: System.Runtime.InteropServices.OutAttribute
+        ctor: System.Runtime.InteropServices.OutAttribute.#ctor
+        arguments: []
     - id: offset
       type: System.Int32
+      description: "\n<p>The byte offset in <em>array</em> at which the read bytes will be placed. </p>\n"
     - id: count
       type: System.Int32
+      description: "\n<p>The maximum number of bytes to read. </p>\n"
     return:
       type: System.Int32
+      description: "\n<p>The total number of bytes read into the buffer. This might be less than the number of bytes requested if that number of bytes are not currently available, or zero if the end of the stream is reached.</p>\n"
   overridden: System.IO.Stream.Read(System.Byte[],System.Int32,System.Int32)
   exceptions:
   - type: System.ArgumentNullException
@@ -1371,12 +1542,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ReadAsync
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 224
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 2423
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1385,19 +1556,38 @@ items:
   example:
   - "\n<p>The following example shows how to read from a file asynchronously.</p>Asynchronous_File_IO_async#4"
   syntax:
-    content: public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
-    content.vb: Public Overrides Function ReadAsync(buffer As Byte(), offset As Integer, count As Integer, cancellationToken As CancellationToken) As Task(Of Integer)
+    content: >-
+      [HostProtection(ExternalThreading = true)]
+
+      [ComVisible(false)]
+
+      [SecuritySafeCritical]
+
+      public override Task<int> ReadAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+    content.vb: >-
+      <HostProtection(ExternalThreading:=True)>
+
+      <ComVisible(False)>
+
+      <SecuritySafeCritical>
+
+      Public Overrides Function ReadAsync(buffer As Byte(), offset As Integer, count As Integer, cancellationToken As CancellationToken) As Task(Of Integer)
     parameters:
     - id: buffer
       type: System.Byte[]
+      description: "\n<p>The buffer to write the data into.</p>\n"
     - id: offset
       type: System.Int32
+      description: "\n<p>The byte offset in <em>buffer</em> at which to begin writing data from the stream.</p>\n"
     - id: count
       type: System.Int32
+      description: "\n<p>The maximum number of bytes to read.</p>\n"
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: "\n<p>The token to monitor for cancellation requests.</p>\n"
     return:
       type: System.Threading.Tasks.Task{System.Int32}
+      description: "\n<p>A task that represents the asynchronous read operation. The value of the <em>TResult</em> parameter contains the total number of bytes read into the buffer. The result value can be less than the number of bytes requested if the number of bytes currently available is less than the requested number, or it can be 0 (zero) if the end of the stream has been reached. </p>\n"
   overridden: System.IO.Stream.ReadAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)
   exceptions:
   - type: System.ArgumentNullException
@@ -1438,12 +1628,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ReadByte
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 246
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 2007
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1452,10 +1642,17 @@ items:
   example:
   - "\n<p>The following code example shows how to write data to a file, byte by byte, and then verify that the data was written correctly.</p>System.IO.FileStream1#1"
   syntax:
-    content: public override int ReadByte()
-    content.vb: Public Overrides Function ReadByte As Integer
+    content: >-
+      [SecuritySafeCritical]
+
+      public override int ReadByte()
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Overrides Function ReadByte As Integer
     return:
       type: System.Int32
+      description: "\n<p>The byte, cast to an <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>, or -1 if the end of the stream has been reached.</p>\n"
   overridden: System.IO.Stream.ReadByte
   exceptions:
   - type: System.NotSupportedException
@@ -1482,12 +1679,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Seek
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 251
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1476
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1496,15 +1693,24 @@ items:
   example:
   - "\n<p>The following example shows how to write data to a file, byte by byte, and then verify that the data was written correctly.</p>System.IO.FileStream1#1<p>The following example reads text in the reverse direction, from the end of file to the beginning of the file, by using the various <xref href=\"System.IO.SeekOrigin\" data-throw-if-not-resolved=\"false\"></xref> values with the <xref href=\"System.IO.FileStream.Seek(System.Int64,System.IO.SeekOrigin)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.IO.FileStream.Seek#1"
   syntax:
-    content: public override long Seek(long offset, SeekOrigin origin)
-    content.vb: Public Overrides Function Seek(offset As Long, origin As SeekOrigin) As Long
+    content: >-
+      [SecuritySafeCritical]
+
+      public override long Seek(long offset, SeekOrigin origin)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Overrides Function Seek(offset As Long, origin As SeekOrigin) As Long
     parameters:
     - id: offset
       type: System.Int64
+      description: "\n<p>The point relative to <em>origin</em> from which to begin seeking. </p>\n"
     - id: origin
       type: System.IO.SeekOrigin
+      description: "\n<p>Specifies the beginning, the end, or the current position as a reference point for <em>offset</em>, using a value of type <xref href=\"System.IO.SeekOrigin\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
     return:
       type: System.Int64
+      description: "\n<p>The new position in the stream.</p>\n"
   overridden: System.IO.Stream.Seek(System.Int64,System.IO.SeekOrigin)
   exceptions:
   - type: System.IO.IOException
@@ -1537,23 +1743,30 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetLength
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 256
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1311
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the length of this stream to the given value.</p>\n"
   remarks: "\n<p>This method overrides <xref href=\"System.IO.Stream.SetLength(System.Int64)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the given value is less than the current length of the stream, the stream is truncated. In this scenario, if the current position is greater than the new length, the current position is moved to the last byte of the stream. If the given value is larger than the current length of the stream, the stream is expanded, and the current position remains the same. If the stream is expanded, the contents of the stream between the old and the new length are undefined.</p>\n<p>A stream must support both writing and seeking for <strong>SetLength</strong> to work.</p>\n<p>Use the <xref href=\"System.IO.FileStream.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether the current instance supports writing, and the <xref href=\"System.IO.FileStream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether seeking is supported. For additional information, see <xref href=\"System.IO.Stream.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Stream.CanSeek\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common file and directory operations, see Common I/O Tasks.</p>\n"
   syntax:
-    content: public override void SetLength(long value)
-    content.vb: Public Overrides Sub SetLength(value As Long)
+    content: >-
+      [SecuritySafeCritical]
+
+      public override void SetLength(long value)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Overrides Sub SetLength(value As Long)
     parameters:
     - id: value
       type: System.Int64
+      description: "\n<p>The new length of the stream. </p>\n"
   overridden: System.IO.Stream.SetLength(System.Int64)
   exceptions:
   - type: System.IO.IOException
@@ -1583,12 +1796,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Write
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 261
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 1618
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1597,15 +1810,24 @@ items:
   example:
   - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.FileStream.Lock(System.Int64,System.Int64)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.IO.FileStream3#3"
   syntax:
-    content: public override void Write(byte[] buffer, int offset, int count)
-    content.vb: Public Overrides Sub Write(buffer As Byte(), offset As Integer, count As Integer)
+    content: >-
+      [SecuritySafeCritical]
+
+      public override void Write(byte[] array, int offset, int count)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Overrides Sub Write(array As Byte(), offset As Integer, count As Integer)
     parameters:
-    - id: buffer
+    - id: array
       type: System.Byte[]
+      description: "\n<p>The buffer containing data to write to the stream.</p>\n"
     - id: offset
       type: System.Int32
+      description: "\n<p>The zero-based byte offset in <em>array</em> from which to begin copying bytes to the stream. </p>\n"
     - id: count
       type: System.Int32
+      description: "\n<p>The maximum number of bytes to write. </p>\n"
   overridden: System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32)
   exceptions:
   - type: System.ArgumentNullException
@@ -1646,12 +1868,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: WriteAsync
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 266
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 2475
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1660,19 +1882,38 @@ items:
   example:
   - "\n<p>The following example shows how to write asynchronously to a file.</p>Asynchronous_File_IO_async#3"
   syntax:
-    content: public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
-    content.vb: Public Overrides Function WriteAsync(buffer As Byte(), offset As Integer, count As Integer, cancellationToken As CancellationToken) As Task
+    content: >-
+      [HostProtection(ExternalThreading = true)]
+
+      [ComVisible(false)]
+
+      [SecuritySafeCritical]
+
+      public override Task WriteAsync(byte[] buffer, int offset, int count, CancellationToken cancellationToken)
+    content.vb: >-
+      <HostProtection(ExternalThreading:=True)>
+
+      <ComVisible(False)>
+
+      <SecuritySafeCritical>
+
+      Public Overrides Function WriteAsync(buffer As Byte(), offset As Integer, count As Integer, cancellationToken As CancellationToken) As Task
     parameters:
     - id: buffer
       type: System.Byte[]
+      description: "\n<p>The buffer to write data from. </p>\n"
     - id: offset
       type: System.Int32
+      description: "\n<p>The zero-based byte offset in <em>buffer</em> from which to begin copying bytes to the stream.</p>\n"
     - id: count
       type: System.Int32
+      description: "\n<p>The maximum number of bytes to write.</p>\n"
     - id: cancellationToken
       type: System.Threading.CancellationToken
+      description: "\n<p>The token to monitor for cancellation requests.</p>\n"
     return:
       type: System.Threading.Tasks.Task
+      description: "\n<p>A task that represents the asynchronous write operation.</p>\n"
   overridden: System.IO.Stream.WriteAsync(System.Byte[],System.Int32,System.Int32,System.Threading.CancellationToken)
   exceptions:
   - type: System.ArgumentNullException
@@ -1713,12 +1954,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
+      path: src/mscorlib/src/System/IO/FileStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: WriteByte
-    path: src/System.IO.FileSystem/src/System/IO/FileStream.cs
-    startLine: 288
+    path: src/mscorlib/src/System/IO/FileStream.cs
+    startLine: 2237
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1727,11 +1968,18 @@ items:
   example:
   - "\n<p>The following code example shows how to write data to a file, byte by byte, and then verify that the data was written correctly.</p>System.IO.FileStream1#1"
   syntax:
-    content: public override void WriteByte(byte value)
-    content.vb: Public Overrides Sub WriteByte(value As Byte)
+    content: >-
+      [SecuritySafeCritical]
+
+      public override void WriteByte(byte value)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Overrides Sub WriteByte(value As Byte)
     parameters:
     - id: value
       type: System.Byte
+      description: "\n<p>A byte to write to the stream. </p>\n"
   overridden: System.IO.Stream.WriteByte(System.Byte)
   exceptions:
   - type: System.ObjectDisposedException

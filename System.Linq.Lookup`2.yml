@@ -18,12 +18,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Linq/src/System/Linq/Lookup.cs
+      path: src/System.Linq/ref/System.Linq.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Lookup
-    path: src/System.Linq/src/System/Linq/Lookup.cs
-    startLine: 67
+    path: src/System.Linq/ref/System.Linq.cs
+    startLine: 204
   assemblies:
   - System.Linq
   namespace: System.Linq
@@ -32,13 +32,15 @@ items:
   example:
   - "\n<p>The following example creates a <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> from a collection of objects. It then enumerates the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref> and outputs each key and each value in the key's associated collection of values. It also demonstrates how to use the properties <xref href=\"System.Linq.Lookup`2.Count\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Linq.Lookup`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> and the methods <xref href=\"System.Linq.Lookup`2.Contains(`0)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Linq.Lookup`2.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Linq.Lookup#1"
   syntax:
-    content: 'public class Lookup<TKey, TElement> : ILookup<TKey, TElement>, IIListProvider<IGrouping<TKey, TElement>>, IEnumerable<IGrouping<TKey, TElement>>, IEnumerable'
+    content: 'public class Lookup<TKey, TElement> : ILookup<TKey, TElement>, IEnumerable<IGrouping<TKey, TElement>>, IEnumerable'
     content.vb: >-
       Public Class Lookup(Of TKey, TElement)
-          Implements ILookup(Of TKey, TElement), IIListProvider(Of IGrouping(Of TKey, TElement)), IEnumerable(Of IGrouping(Of TKey, TElement)), IEnumerable
+          Implements ILookup(Of TKey, TElement), IEnumerable(Of IGrouping(Of TKey, TElement)), IEnumerable
     typeParameters:
     - id: TKey
+      description: "\n<p>The type of the keys in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     - id: TElement
+      description: "\n<p>The type of the elements of each <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> value in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   inheritance:
   - System.Object
   implements:
@@ -73,12 +75,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Linq/src/System/Linq/Lookup.cs
+      path: src/System.Linq/ref/System.Linq.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Count
-    path: src/System.Linq/src/System/Linq/Lookup.cs
-    startLine: 124
+    path: src/System.Linq/ref/System.Linq.cs
+    startLine: 207
   assemblies:
   - System.Linq
   namespace: System.Linq
@@ -92,6 +94,7 @@ items:
     parameters: []
     return:
       type: System.Int32
+      description: "\n<p>The number of key/value collection pairs in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   implements:
   - System.Linq.ILookup{{TKey},{TElement}}.Count
   modifiers.csharp:
@@ -113,12 +116,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Linq/src/System/Linq/Lookup.cs
+      path: src/System.Linq/ref/System.Linq.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: this[]
-    path: src/System.Linq/src/System/Linq/Lookup.cs
-    startLine: 129
+    path: src/System.Linq/ref/System.Linq.cs
+    startLine: 208
   assemblies:
   - System.Linq
   namespace: System.Linq
@@ -132,8 +135,10 @@ items:
     parameters:
     - id: key
       type: '{TKey}'
+      description: "\n<p>The key of the desired collection of values.</p>\n"
     return:
       type: System.Collections.Generic.IEnumerable{{TElement}}
+      description: "\n<p>The collection of values indexed by the specified key.</p>\n"
   implements:
   - System.Linq.ILookup{{TKey},{TElement}}.Item({TKey})
   modifiers.csharp:
@@ -156,12 +161,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Linq/src/System/Linq/Lookup.cs
+      path: src/System.Linq/ref/System.Linq.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ApplyResultSelector
-    path: src/System.Linq/src/System/Linq/Lookup.cs
-    startLine: 241
+    path: src/System.Linq/ref/System.Linq.cs
+    startLine: 209
   assemblies:
   - System.Linq
   namespace: System.Linq
@@ -174,10 +179,13 @@ items:
     parameters:
     - id: resultSelector
       type: System.Func{{TKey},System.Collections.Generic.IEnumerable{{TElement}},{TResult}}
+      description: "\n<p>A function to project a result value from each key and its associated values.</p>\n"
     typeParameters:
     - id: TResult
+      description: "\n<p>The type of the result values produced by <em>resultSelector</em>.</p>\n"
     return:
       type: System.Collections.Generic.IEnumerable{{TResult}}
+      description: "\n<p>A collection that contains one value for each key/value collection pair in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -196,12 +204,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Linq/src/System/Linq/Lookup.cs
+      path: src/System.Linq/ref/System.Linq.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Contains
-    path: src/System.Linq/src/System/Linq/Lookup.cs
-    startLine: 143
+    path: src/System.Linq/ref/System.Linq.cs
+    startLine: 210
   assemblies:
   - System.Linq
   namespace: System.Linq
@@ -214,8 +222,10 @@ items:
     parameters:
     - id: key
       type: '{TKey}'
+      description: "\n<p>The key to find in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if <em>key</em> is in the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>; otherwise, <strong>false</strong>.</p>\n"
   implements:
   - System.Linq.ILookup{{TKey},{TElement}}.Contains({TKey})
   modifiers.csharp:
@@ -235,12 +245,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Linq/src/System/Linq/Lookup.cs
+      path: src/System.Linq/ref/System.Linq.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetEnumerator
-    path: src/System.Linq/src/System/Linq/Lookup.cs
-    startLine: 148
+    path: src/System.Linq/ref/System.Linq.cs
+    startLine: 211
   assemblies:
   - System.Linq
   namespace: System.Linq
@@ -252,6 +262,7 @@ items:
     content.vb: Public Function GetEnumerator As IEnumerator(Of IGrouping(Of TKey, TElement))
     return:
       type: System.Collections.Generic.IEnumerator{System.Linq.IGrouping{{TKey},{TElement}}}
+      description: "\n<p>An enumerator for the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   implements:
   - System.Collections.Generic.IEnumerable{System.Linq.IGrouping{{TKey},{TElement}}}.GetEnumerator
   modifiers.csharp:
@@ -272,12 +283,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Linq/src/System/Linq/Lookup.cs
+      path: src/System.Linq/ref/System.Linq.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: System.Collections.IEnumerable.GetEnumerator
-    path: src/System.Linq/src/System/Linq/Lookup.cs
-    startLine: 256
+    path: src/System.Linq/ref/System.Linq.cs
+    startLine: 212
   assemblies:
   - System.Linq
   namespace: System.Linq
@@ -289,6 +300,7 @@ items:
     content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
     return:
       type: System.Collections.IEnumerator
+      description: "\n<p>An enumerator for the <xref href=\"System.Linq.Lookup`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   implements:
   - System.Collections.IEnumerable.GetEnumerator
   fullName.vb: System.Linq.Lookup(Of TKey, TElement).System.Collections.IEnumerable.GetEnumerator()

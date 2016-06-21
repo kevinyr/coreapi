@@ -16,12 +16,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Comparer.cs
+      path: src/mscorlib/src/System/Collections/Comparer.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Comparer
-    path: src/System.Collections.NonGeneric/src/System/Collections/Comparer.cs
-    startLine: 18
+    path: src/mscorlib/src/System/Collections/Comparer.cs
+    startLine: 22
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -30,10 +30,19 @@ items:
   example:
   - "\n<p>The following code example shows how <xref href=\"System.Collections.Comparer.Compare(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> returns different values depending on the culture associated with the <xref href=\"System.Collections.Comparer\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Collections.Comparer#1"
   syntax:
-    content: 'public sealed class Comparer : IComparer'
+    content: >-
+      [Serializable]
+
+      [ComVisible(true)]
+
+      public sealed class Comparer : IComparer, ISerializable
     content.vb: >-
+      <Serializable>
+
+      <ComVisible(True)>
+
       Public NotInheritable Class Comparer
-          Implements IComparer
+          Implements IComparer, ISerializable
   seealso:
   - type: System.Collections.IComparer
     commentId: T:System.Collections.IComparer
@@ -81,12 +90,12 @@ items:
   type: Field
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Comparer.cs
+      path: src/mscorlib/src/System/Collections/Comparer.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Default
-    path: src/System.Collections.NonGeneric/src/System/Collections/Comparer.cs
-    startLine: 21
+    path: src/mscorlib/src/System/Collections/Comparer.cs
+    startLine: 27
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -122,12 +131,12 @@ items:
   type: Field
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Comparer.cs
+      path: src/mscorlib/src/System/Collections/Comparer.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: DefaultInvariant
-    path: src/System.Collections.NonGeneric/src/System/Collections/Comparer.cs
-    startLine: 22
+    path: src/mscorlib/src/System/Collections/Comparer.cs
+    startLine: 28
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -165,12 +174,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Comparer.cs
+      path: src/mscorlib/src/System/Collections/Comparer.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Comparer.cs
-    startLine: 26
+    path: src/mscorlib/src/System/Collections/Comparer.cs
+    startLine: 36
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -184,6 +193,7 @@ items:
     parameters:
     - id: culture
       type: System.Globalization.CultureInfo
+      description: "\n<p>The <xref href=\"System.Globalization.CultureInfo\" data-throw-if-not-resolved=\"false\"></xref> to use for the new <xref href=\"System.Collections.Comparer\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -209,12 +219,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Comparer.cs
+      path: src/mscorlib/src/System/Collections/Comparer.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Compare
-    path: src/System.Collections.NonGeneric/src/System/Collections/Comparer.cs
-    startLine: 42
+    path: src/mscorlib/src/System/Collections/Comparer.cs
+    startLine: 63
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -228,10 +238,13 @@ items:
     parameters:
     - id: a
       type: System.Object
+      description: "\n<p>The first object to compare. </p>\n"
     - id: b
       type: System.Object
+      description: "\n<p>The second object to compare. </p>\n"
     return:
       type: System.Int32
+      description: "\n<p>A signed integer that indicates the relative values of <em>a</em> and <em>b</em>, as shown in the following table.</p>\n<p>Value </p>\n<p>Meaning </p>\n<table><tbody><tr><td>\n<p>Less than zero </p>\n</td><td>\n<p>\n<em>a</em> is less than <em>b</em>. </p>\n</td></tr><tr><td>\n<p>Zero </p>\n</td><td>\n<p>\n<em>a</em> equals <em>b</em>. </p>\n</td></tr><tr><td>\n<p>Greater than zero </p>\n</td><td>\n<p>\n<em>a</em> is greater than <em>b</em>. </p>\n</td></tr></tbody></table>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException

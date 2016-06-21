@@ -51,12 +51,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SerializationInfo
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 10
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 30
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -65,8 +65,14 @@ items:
   example:
   - "\n<p>The following code example demonstrates the <xref href=\"System.Runtime.Serialization.SerializationInfo\" data-throw-if-not-resolved=\"false\"></xref> for custom serialization and deserialization of various values.</p>ISerializable Interface Example#1"
   syntax:
-    content: public sealed class SerializationInfo
-    content.vb: Public NotInheritable Class SerializationInfo
+    content: >-
+      [ComVisible(true)]
+
+      public sealed class SerializationInfo
+    content.vb: >-
+      <ComVisible(True)>
+
+      Public NotInheritable Class SerializationInfo
   seealso:
   - type: System.Runtime.Serialization.ISerializable
     commentId: T:System.Runtime.Serialization.ISerializable
@@ -100,12 +106,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 29
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 52
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -123,8 +129,10 @@ items:
     parameters:
     - id: type
       type: System.Type
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the object to serialize. </p>\n"
     - id: converter
       type: System.Runtime.Serialization.IFormatterConverter
+      description: "\n<p>The <xref href=\"System.Runtime.Serialization.IFormatterConverter\" data-throw-if-not-resolved=\"false\"></xref> used during deserialization. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -151,23 +159,31 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AssemblyName
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 73
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 107
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
   summary: "\n<p>Gets or sets the assembly name of the type to serialize during serialization only.</p>\n"
   remarks: "\n<p>The <xref href=\"System.Runtime.Serialization.SerializationInfo.AssemblyName\" data-throw-if-not-resolved=\"false\"></xref> is the same as the value returned by <xref href=\"System.Reflection.Assembly.FullName\" data-throw-if-not-resolved=\"false\"></xref> property of the assembly of the containing type. This is the assembly name that the formatter uses when serializing type information for this object.</p>\n<p>The assembly name contains the name of the assembly, version, culture, and some security information about the object. </p>\n<p>Users who are changing the type being serialized (for example, to send a proxy for a particular type) will set the value of this property.</p>\n<p>Do not use this property during deserialization because the value of this property is undefined.</p>\n"
   syntax:
-    content: public string AssemblyName { get; set; }
+    content: >-
+      public string AssemblyName
+
+      {
+          get;
+          [SecuritySafeCritical]
+          set;
+      }
     content.vb: Public Property AssemblyName As String
     parameters: []
     return:
       type: System.String
+      description: "\n<p>The full name of the assembly of the type to serialize.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -190,12 +206,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: FullTypeName
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 55
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 88
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -207,6 +223,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: "\n<p>The full name of the type to serialize.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -229,12 +246,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: MemberCount
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 107
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 202
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -245,6 +262,7 @@ items:
     parameters: []
     return:
       type: System.Int32
+      description: "\n<p>The number of members that have been added to the current <xref href=\"System.Runtime.Serialization.SerializationInfo\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -263,12 +281,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ObjectType
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 115
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 210
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -279,6 +297,7 @@ items:
     parameters: []
     return:
       type: System.Type
+      description: "\n<p>The type of the object being serialized.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -297,12 +316,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 193
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 304
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -314,8 +333,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Boolean
+      description: "\n<p>The Boolean value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -339,12 +360,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 209
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 321
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -356,8 +377,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Byte
+      description: "\n<p>The byte value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -381,12 +404,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 198
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 309
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -398,8 +421,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Char
+      description: "\n<p>The character value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -423,12 +448,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 262
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 374
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -440,8 +465,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.DateTime
+      description: "\n<p>The <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -465,12 +492,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 257
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 369
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -482,8 +509,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Decimal
+      description: "\n<p>The decimal value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -507,12 +536,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 252
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 364
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -524,8 +553,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Double
+      description: "\n<p>The double value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -549,12 +580,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 214
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 326
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -566,8 +597,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Int16
+      description: "\n<p>The <strong>Int16</strong> value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -591,12 +624,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 225
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 337
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -610,8 +643,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Int32
+      description: "\n<p>The <strong>Int32</strong> value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -635,12 +670,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 236
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 348
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -652,8 +687,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Int64
+      description: "\n<p>The Int64 value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -677,12 +714,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 181
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 292
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -694,8 +731,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Object
+      description: "\n<p>The value to be serialized. Any children of this object will automatically be serialized. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -719,12 +758,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 166
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 276
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -736,10 +775,13 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Object
+      description: "\n<p>The value to be serialized. Any children of this object will automatically be serialized. </p>\n"
     - id: type
       type: System.Type
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> to associate with the current object. This parameter must always be the type of the object itself or of one of its base classes. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -763,12 +805,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 203
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 315
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -786,8 +828,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.SByte
+      description: "\n<p>The <strong>Sbyte</strong> value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -817,12 +861,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 247
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 359
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -834,8 +878,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.Single
+      description: "\n<p>The single value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -859,12 +905,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 219
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 331
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -882,8 +928,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.UInt16
+      description: "\n<p>The <strong>UInt16</strong> value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -913,12 +961,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 230
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 342
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -938,8 +986,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.UInt32
+      description: "\n<p>The <strong>UInt32</strong> value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -969,12 +1019,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AddValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 241
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 353
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -992,8 +1042,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name to associate with the value, so it can be deserialized later. </p>\n"
     - id: value
       type: System.UInt64
+      description: "\n<p>The <strong>UInt64</strong> value to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1023,12 +1075,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetBoolean
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 355
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 570
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1040,8 +1092,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve. </p>\n"
     return:
       type: System.Boolean
+      description: "\n<p>The Boolean value associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1068,12 +1122,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetByte
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 395
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 610
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1085,8 +1139,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve. </p>\n"
     return:
       type: System.Byte
+      description: "\n<p>The 8-bit unsigned integer associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1113,12 +1169,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetChar
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 368
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 583
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1130,8 +1186,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.</p>\n"
     return:
       type: System.Char
+      description: "\n<p>The Unicode character associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1158,12 +1216,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDateTime
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 529
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 744
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1175,8 +1233,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.  </p>\n"
     return:
       type: System.DateTime
+      description: "\n<p>The <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> value associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1203,12 +1263,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDecimal
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 516
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 731
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1220,8 +1280,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.  </p>\n"
     return:
       type: System.Decimal
+      description: "\n<p>A decimal value from the <xref href=\"System.Runtime.Serialization.SerializationInfo\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1248,12 +1310,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDouble
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 503
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 718
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1265,8 +1327,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.</p>\n"
     return:
       type: System.Double
+      description: "\n<p>The double-precision floating-point value associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1293,12 +1357,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetEnumerator
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 123
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 234
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1309,6 +1373,7 @@ items:
     content.vb: Public Function GetEnumerator As SerializationInfoEnumerator
     return:
       type: System.Runtime.Serialization.SerializationInfoEnumerator
+      description: "\n<p>A <xref href=\"System.Runtime.Serialization.SerializationInfoEnumerator\" data-throw-if-not-resolved=\"false\"></xref> for parsing the name-value pairs contained in the <xref href=\"System.Runtime.Serialization.SerializationInfo\" data-throw-if-not-resolved=\"false\"></xref> store.</p>\n"
   modifiers.csharp:
   - public
   modifiers.vb:
@@ -1325,12 +1390,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetInt16
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 408
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 623
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1342,8 +1407,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.</p>\n"
     return:
       type: System.Int16
+      description: "\n<p>The 16-bit signed integer associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1370,12 +1437,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetInt32
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 435
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 650
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1389,8 +1456,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name of the value to retrieve. </p>\n"
     return:
       type: System.Int32
+      description: "\n<p>The 32-bit signed integer associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1417,12 +1486,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetInt64
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 462
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 677
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1434,8 +1503,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.</p>\n"
     return:
       type: System.Int64
+      description: "\n<p>The 64-bit signed integer associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1462,12 +1533,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetSByte
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 381
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 596
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1485,8 +1556,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.</p>\n"
     return:
       type: System.SByte
+      description: "\n<p>The 8-bit signed integer associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1519,12 +1592,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetSingle
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 489
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 704
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1536,8 +1609,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name of the value to retrieve. </p>\n"
     return:
       type: System.Single
+      description: "\n<p>The single-precision floating-point value associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1564,12 +1639,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetString
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 542
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 757
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1581,8 +1656,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.</p>\n"
     return:
       type: System.String
+      description: "\n<p>The <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1609,12 +1686,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetUInt16
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 421
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 636
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1632,8 +1709,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.</p>\n"
     return:
       type: System.UInt16
+      description: "\n<p>The 16-bit unsigned integer associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1666,12 +1745,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetUInt32
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 448
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 663
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1689,8 +1768,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.</p>\n"
     return:
       type: System.UInt32
+      description: "\n<p>The 32-bit unsigned integer associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1723,12 +1804,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetUInt64
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 475
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 690
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1746,8 +1827,10 @@ items:
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.</p>\n"
     return:
       type: System.UInt64
+      description: "\n<p>The 64-bit unsigned integer associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1780,12 +1863,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetValue
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 334
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 501
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1794,15 +1877,24 @@ items:
   example:
   - "\n<p>The following code example demonstrates the use of the <xref href=\"System.Runtime.Serialization.SerializationInfo.GetValue(System.String,System.Type)\" data-throw-if-not-resolved=\"false\"></xref> method: </p>Classic SerializationInfo.GetValue Example#1"
   syntax:
-    content: public object GetValue(string name, Type type)
-    content.vb: Public Function GetValue(name As String, type As Type) As Object
+    content: >-
+      [SecuritySafeCritical]
+
+      public object GetValue(string name, Type type)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Function GetValue(name As String, type As Type) As Object
     parameters:
     - id: name
       type: System.String
+      description: "\n<p>The name associated with the value to retrieve.</p>\n"
     - id: type
       type: System.Type
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the value to retrieve. If the stored value cannot be converted to this type, the system will throw a <xref href=\"System.InvalidCastException\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
     return:
       type: System.Object
+      description: "\n<p>The object of the specified <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> associated with <em>name</em>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1829,12 +1921,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetType
-    path: src/System.Runtime.Serialization.Formatters/src/System/Runtime/Serialization/SerializationInfo.cs
-    startLine: 91
+    path: src/mscorlib/src/System/Runtime/Serialization/SerializationInfo.cs
+    startLine: 130
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
@@ -1843,11 +1935,18 @@ items:
   example:
   - IObjectReference Interface Example#1
   syntax:
-    content: public void SetType(Type type)
-    content.vb: Public Sub SetType(type As Type)
+    content: >-
+      [SecuritySafeCritical]
+
+      public void SetType(Type type)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Sub SetType(type As Type)
     parameters:
     - id: type
       type: System.Type
+      description: "\n<p>The <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the object to serialize. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException

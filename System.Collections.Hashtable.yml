@@ -44,12 +44,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Hashtable
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 54
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 69
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -63,14 +63,22 @@ items:
 
       [DebuggerDisplay("Count = {Count}")]
 
-      public class Hashtable : IDictionary, ICollection, IEnumerable
+      [ComVisible(true)]
+
+      [Serializable]
+
+      public class Hashtable : IDictionary, ICollection, IEnumerable, ISerializable, IDeserializationCallback, ICloneable
     content.vb: >-
       <DebuggerTypeProxy(GetType(Hashtable.HashtableDebugView))>
 
       <DebuggerDisplay("Count = {Count}")>
 
+      <ComVisible(True)>
+
+      <Serializable>
+
       Public Class Hashtable
-          Implements IDictionary, ICollection, IEnumerable
+          Implements IDictionary, ICollection, IEnumerable, ISerializable, IDeserializationCallback, ICloneable
   seealso:
   - type: System.Collections.IDictionary
     commentId: T:System.Collections.IDictionary
@@ -118,12 +126,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 159
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 247
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -155,12 +163,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 227
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 354
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -174,6 +182,7 @@ items:
     parameters:
     - id: d
       type: System.Collections.IDictionary
+      description: "\n<p>The <xref href=\"System.Collections.IDictionary\" data-throw-if-not-resolved=\"false\"></xref> object to copy to a new <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -201,12 +210,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 239
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 369
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -220,8 +229,10 @@ items:
     parameters:
     - id: d
       type: System.Collections.IDictionary
+      description: "\n<p>The <xref href=\"System.Collections.IDictionary\" data-throw-if-not-resolved=\"false\"></xref> object to copy to a new <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
     - id: equalityComparer
       type: System.Collections.IEqualityComparer
+      description: "\n<p>The <xref href=\"System.Collections.IEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref> object that defines the hash code provider and the comparer to use with the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>-or- </p>\n<p>\n<strong>null</strong> to use the default hash code provider and the default comparer. The default hash code provider is each key's implementation of <xref href=\"System.Object.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> and the default comparer is each key's implementation of <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -247,12 +258,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 234
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 360
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -266,8 +277,10 @@ items:
     parameters:
     - id: d
       type: System.Collections.IDictionary
+      description: "\n<p>The <xref href=\"System.Collections.IDictionary\" data-throw-if-not-resolved=\"false\"></xref> object to copy to a new <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
     - id: loadFactor
       type: System.Single
+      description: "\n<p>A number in the range from 0.1 through 1.0 that is multiplied by the default value which provides the best performance. The result is the maximum ratio of elements to buckets.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -298,12 +311,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 244
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 384
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -317,10 +330,13 @@ items:
     parameters:
     - id: d
       type: System.Collections.IDictionary
+      description: "\n<p>The <xref href=\"System.Collections.IDictionary\" data-throw-if-not-resolved=\"false\"></xref> object to copy to a new <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
     - id: loadFactor
       type: System.Single
+      description: "\n<p>A number in the range from 0.1 through 1.0 that is multiplied by the default value which provides the best performance. The result is the maximum ratio of elements to buckets.</p>\n"
     - id: equalityComparer
       type: System.Collections.IEqualityComparer
+      description: "\n<p>The <xref href=\"System.Collections.IEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref> object that defines the hash code provider and the comparer to use with the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>-or- </p>\n<p>\n<strong>null</strong> to use the default hash code provider and the default comparer. The default hash code provider is each key's implementation of <xref href=\"System.Object.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> and the default comparer is each key's implementation of <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -347,12 +363,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 215
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 335
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -366,6 +382,7 @@ items:
     parameters:
     - id: equalityComparer
       type: System.Collections.IEqualityComparer
+      description: "\n<p>The <xref href=\"System.Collections.IEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref> object that defines the hash code provider and the comparer to use with the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>-or- </p>\n<p>\n<strong>null</strong> to use the default hash code provider and the default comparer. The default hash code provider is each key's implementation of <xref href=\"System.Object.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> and the default comparer is each key's implementation of <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   seealso:
   - type: System.Collections.IEqualityComparer
     commentId: T:System.Collections.IEqualityComparer
@@ -385,12 +402,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 170
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 257
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -404,6 +421,7 @@ items:
     parameters:
     - id: capacity
       type: System.Int32
+      description: "\n<p>The approximate number of elements that the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object can initially contain. </p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -429,12 +447,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 219
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 347
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -448,8 +466,10 @@ items:
     parameters:
     - id: capacity
       type: System.Int32
+      description: "\n<p>The approximate number of elements that the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object can initially contain. </p>\n"
     - id: equalityComparer
       type: System.Collections.IEqualityComparer
+      description: "\n<p>The <xref href=\"System.Collections.IEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref> object that defines the hash code provider and the comparer to use with the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>-or- </p>\n<p>\n<strong>null</strong> to use the default hash code provider and the default comparer. The default hash code provider is each key's implementation of <xref href=\"System.Object.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> and the default comparer is each key's implementation of <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -473,12 +493,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 185
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 271
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -492,8 +512,10 @@ items:
     parameters:
     - id: capacity
       type: System.Int32
+      description: "\n<p>The approximate number of elements that the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object can initially contain. </p>\n"
     - id: loadFactor
       type: System.Single
+      description: "\n<p>A number in the range from 0.1 through 1.0 that is multiplied by the default value which provides the best performance. The result is the maximum ratio of elements to buckets. </p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -522,12 +544,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 210
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 323
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -541,10 +563,13 @@ items:
     parameters:
     - id: capacity
       type: System.Int32
+      description: "\n<p>The approximate number of elements that the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object can initially contain. </p>\n"
     - id: loadFactor
       type: System.Single
+      description: "\n<p>A number in the range from 0.1 through 1.0 that is multiplied by the default value which provides the best performance. The result is the maximum ratio of elements to buckets.</p>\n"
     - id: equalityComparer
       type: System.Collections.IEqualityComparer
+      description: "\n<p>The <xref href=\"System.Collections.IEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref> object that defines the hash code provider and the comparer to use with the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>-or- </p>\n<p>\n<strong>null</strong> to use the default hash code provider and the default comparer. The default hash code provider is each key's implementation of <xref href=\"System.Object.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> and the default comparer is each key's implementation of <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -568,12 +593,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Count
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 993
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 1127
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -585,6 +610,7 @@ items:
     parameters: []
     return:
       type: System.Int32
+      description: "\n<p>The number of key/value pairs contained in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   implements:
   - System.Collections.ICollection.Count
   modifiers.csharp:
@@ -607,12 +633,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EqualityComparer
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 143
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 231
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -624,6 +650,7 @@ items:
     parameters: []
     return:
       type: System.Collections.IEqualityComparer
+      description: "\n<p>The <xref href=\"System.Collections.IEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref> to use for the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -651,12 +678,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IsFixedSize
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 685
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 807
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -668,6 +695,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> has a fixed size; otherwise, <strong>false</strong>. The default is <strong>false</strong>.</p>\n"
   implements:
   - System.Collections.IDictionary.IsFixedSize
   modifiers.csharp:
@@ -690,12 +718,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IsReadOnly
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 680
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 803
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -707,6 +735,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> is read-only; otherwise, <strong>false</strong>. The default is <strong>false</strong>.</p>\n"
   implements:
   - System.Collections.IDictionary.IsReadOnly
   modifiers.csharp:
@@ -729,12 +758,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IsSynchronized
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 691
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 812
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -748,6 +777,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if access to the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> is synchronized (thread safe); otherwise, <strong>false</strong>. The default is <strong>false</strong>.</p>\n"
   seealso:
   - type: System.Collections.Hashtable.Synchronized(System.Collections.Hashtable)
     commentId: M:System.Collections.Hashtable.Synchronized(System.Collections.Hashtable)
@@ -775,12 +805,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: this[]
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 515
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 642
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -792,8 +822,10 @@ items:
     parameters:
     - id: key
       type: System.Object
+      description: "\n<p>The key whose value to get or set. </p>\n"
     return:
       type: System.Object
+      description: "\n<p>The value associated with the specified key. If the specified key is not found, attempting to get it returns <strong>null</strong>, and attempting to set it creates a new element using the specified key.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -828,12 +860,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Keys
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 725
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 844
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -845,6 +877,7 @@ items:
     parameters: []
     return:
       type: System.Collections.ICollection
+      description: "\n<p>An <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> containing the keys in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   seealso:
   - type: System.Collections.ICollection
     commentId: T:System.Collections.ICollection
@@ -872,12 +905,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SyncRoot
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 979
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 1116
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -889,6 +922,7 @@ items:
     parameters: []
     return:
       type: System.Object
+      description: "\n<p>An object that can be used to synchronize access to the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   seealso:
   - type: System.Collections.Hashtable.IsSynchronized
     commentId: P:System.Collections.Hashtable.IsSynchronized
@@ -916,12 +950,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Values
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 744
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 861
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -933,6 +967,7 @@ items:
     parameters: []
     return:
       type: System.Collections.ICollection
+      description: "\n<p>An <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> containing the values in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   seealso:
   - type: System.Collections.ICollection
     commentId: T:System.Collections.ICollection
@@ -960,12 +995,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Add
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 294
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 439
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -979,8 +1014,10 @@ items:
     parameters:
     - id: key
       type: System.Object
+      description: "\n<p>The key of the element to add. </p>\n"
     - id: value
       type: System.Object
+      description: "\n<p>The value of the element to add. The value can be <strong>null</strong>. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1018,12 +1055,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Clear
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 300
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 444
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1032,8 +1069,14 @@ items:
   example:
   - "\n<p>The following example shows how to clear the values of the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>Classic Hashtable.Clear Example#1"
   syntax:
-    content: public virtual void Clear()
-    content.vb: Public Overridable Sub Clear
+    content: >-
+      [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
+
+      public virtual void Clear()
+    content.vb: >-
+      <ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)>
+
+      Public Overridable Sub Clear
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
@@ -1061,12 +1104,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Clone
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 324
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 473
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1077,6 +1120,7 @@ items:
     content.vb: Public Overridable Function Clone As Object
     return:
       type: System.Object
+      description: "\n<p>A shallow copy of the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   seealso:
   - type: System.Collections.Hashtable.CopyTo(System.Array,System.Int32)
     commentId: M:System.Collections.Hashtable.CopyTo(System.Array,System.Int32)
@@ -1098,12 +1142,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Contains
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 347
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 494
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1117,8 +1161,10 @@ items:
     parameters:
     - id: key
       type: System.Object
+      description: "\n<p>The key to locate in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> contains an element with the specified key; otherwise, <strong>false</strong>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1148,12 +1194,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ContainsKey
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 355
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 501
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1167,8 +1213,10 @@ items:
     parameters:
     - id: key
       type: System.Object
+      description: "\n<p>The key to locate in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> contains an element with the specified key; otherwise, <strong>false</strong>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1196,12 +1244,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ContainsValue
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 395
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 537
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1215,8 +1263,10 @@ items:
     parameters:
     - id: value
       type: System.Object
+      description: "\n<p>The value to locate in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>. The value can be <strong>null</strong>. </p>\n"
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> contains an element with the specified <em>value</em>; otherwise, <strong>false</strong>.</p>\n"
   seealso:
   - type: System.Collections.Hashtable.ContainsKey(System.Object)
     commentId: M:System.Collections.Hashtable.ContainsKey(System.Object)
@@ -1240,12 +1290,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CopyTo
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 457
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 589
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1259,8 +1309,10 @@ items:
     parameters:
     - id: array
       type: System.Array
+      description: "\n<p>The one-dimensional <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> that is the destination of the <xref href=\"System.Collections.DictionaryEntry\" data-throw-if-not-resolved=\"false\"></xref> objects copied from <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>. The <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> must have zero-based indexing. </p>\n"
     - id: arrayIndex
       type: System.Int32
+      description: "\n<p>The zero-based index in <em>array</em> at which copying begins. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1301,12 +1353,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetEnumerator
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 664
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 788
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1319,6 +1371,7 @@ items:
     content.vb: Public Overridable Function GetEnumerator As IDictionaryEnumerator
     return:
       type: System.Collections.IDictionaryEnumerator
+      description: "\n<p>An <xref href=\"System.Collections.IDictionaryEnumerator\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   seealso:
   - type: System.Collections.IDictionaryEnumerator
     commentId: T:System.Collections.IDictionaryEnumerator
@@ -1344,12 +1397,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetHash
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 672
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 795
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1361,8 +1414,10 @@ items:
     parameters:
     - id: key
       type: System.Object
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> for which a hash code is to be returned. </p>\n"
     return:
       type: System.Int32
+      description: "\n<p>The hash code for <em>key</em>.</p>\n"
   exceptions:
   - type: System.NullReferenceException
     commentId: T:System.NullReferenceException
@@ -1392,12 +1447,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: KeyEquals
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 700
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 820
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1409,10 +1464,13 @@ items:
     parameters:
     - id: item
       type: System.Object
+      description: "\n<p>The <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> to compare with <em>key</em>. </p>\n"
     - id: key
       type: System.Object
+      description: "\n<p>The key in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> to compare with <em>item</em>. </p>\n"
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if <em>item</em> and <em>key</em> are equal; otherwise, <strong>false</strong>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1442,12 +1500,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Remove
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 934
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 1068
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1456,11 +1514,18 @@ items:
   example:
   - "\n<p>The following example shows how to remove elements from the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>Classic Hashtable.Remove Example#1"
   syntax:
-    content: public virtual void Remove(object key)
-    content.vb: Public Overridable Sub Remove(key As Object)
+    content: >-
+      [ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)]
+
+      public virtual void Remove(object key)
+    content.vb: >-
+      <ReliabilityContract(Consistency.WillNotCorruptState, Cer.MayFail)>
+
+      Public Overridable Sub Remove(key As Object)
     parameters:
     - id: key
       type: System.Object
+      description: "\n<p>The key of the element to remove. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1493,12 +1558,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Synchronized
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 1000
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 1133
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1507,13 +1572,21 @@ items:
   example:
   - "\n<p>The following example shows how to synchronize a <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>, determine if a <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> is synchronized, and use a synchronized <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>Classic Hashtable.IsSynchronized Example#1"
   syntax:
-    content: public static Hashtable Synchronized(Hashtable table)
-    content.vb: Public Shared Function Synchronized(table As Hashtable) As Hashtable
+    content: >-
+      [HostProtection(Synchronization = true)]
+
+      public static Hashtable Synchronized(Hashtable table)
+    content.vb: >-
+      <HostProtection(Synchronization:=True)>
+
+      Public Shared Function Synchronized(table As Hashtable) As Hashtable
     parameters:
     - id: table
       type: System.Collections.Hashtable
+      description: "\n<p>The <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> to synchronize. </p>\n"
     return:
       type: System.Collections.Hashtable
+      description: "\n<p>A synchronized (thread-safe) wrapper for the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
@@ -1542,12 +1615,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
+      path: src/mscorlib/src/System/Collections/Hashtable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: System.Collections.IEnumerable.GetEnumerator
-    path: src/System.Collections.NonGeneric/src/System/Collections/Hashtable.cs
-    startLine: 654
+    path: src/mscorlib/src/System/Collections/Hashtable.cs
+    startLine: 779
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
@@ -1558,6 +1631,7 @@ items:
     content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
     return:
       type: System.Collections.IEnumerator
+      description: "\n<p>An <xref href=\"System.Collections.IEnumerator\" data-throw-if-not-resolved=\"false\"></xref> that can be used to iterate through the collection.</p>\n"
   seealso:
   - type: System.Collections.IEnumerator
     commentId: T:System.Collections.IEnumerator

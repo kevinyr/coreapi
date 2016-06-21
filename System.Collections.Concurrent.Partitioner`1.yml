@@ -16,12 +16,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
+      path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Partitioner
-    path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
-    startLine: 45
+    path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
+    startLine: 46
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
@@ -30,11 +30,17 @@ items:
   example:
   - "\n<p>The following example shows how to implement a partitioner that returns a single element at a time:</p>System.Collections.Concurrent.Partitioner#1"
   syntax:
-    content: public abstract class Partitioner<TSource>
-    content.vb: Public MustInherit Class Partitioner(Of TSource)
+    content: >-
+      [HostProtection(Synchronization = true, ExternalThreading = true)]
+
+      public abstract class Partitioner<TSource>
+    content.vb: >-
+      <HostProtection(Synchronization:=True, ExternalThreading:=True)>
+
+      Public MustInherit Class Partitioner(Of TSource)
     typeParameters:
     - id: TSource
-      description: Type of the elements in the collection.
+      description: "\n<p>Type of the elements in the collection.</p>\n"
   seealso:
   - type: System.Collections.Concurrent.OrderablePartitioner`1
     commentId: T:System.Collections.Concurrent.OrderablePartitioner`1
@@ -109,12 +115,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
+      path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SupportsDynamicPartitions
-    path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
-    startLine: 69
+    path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
+    startLine: 71
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
@@ -128,7 +134,7 @@ items:
     parameters: []
     return:
       type: System.Boolean
-      description: "\ntrue if the <xref href=\"System.Collections.Concurrent.Partitioner`1\" data-throw-if-not-resolved=\"false\"></xref> can create partitions dynamically as they are\nrequested; false if the <xref href=\"System.Collections.Concurrent.Partitioner`1\" data-throw-if-not-resolved=\"false\"></xref> can only allocate\npartitions statically.\n"
+      description: "\n<p>true if the <xref href=\"System.Collections.Concurrent.Partitioner`1\" data-throw-if-not-resolved=\"false\"></xref> can create partitions dynamically as they are requested; false if the <xref href=\"System.Collections.Concurrent.Partitioner`1\" data-throw-if-not-resolved=\"false\"></xref> can only allocate partitions statically.</p>\n"
   seealso:
   - type: System.Collections.Concurrent.OrderablePartitioner`1
     commentId: T:System.Collections.Concurrent.OrderablePartitioner`1
@@ -155,12 +161,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
+      path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDynamicPartitions
-    path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
-    startLine: 94
+    path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
+    startLine: 96
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
@@ -173,7 +179,7 @@ items:
     content.vb: Public Overridable Function GetDynamicPartitions As IEnumerable(Of TSource)
     return:
       type: System.Collections.Generic.IEnumerable{{TSource}}
-      description: An object that can create partitions over the underlying data source.
+      description: "\n<p>An object that can create partitions over the underlying data source.</p>\n"
   exceptions:
   - type: System.NotSupportedException
     commentId: T:System.NotSupportedException
@@ -202,12 +208,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
+      path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetPartitions
-    path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
-    startLine: 52
+    path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
+    startLine: 54
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
@@ -221,10 +227,10 @@ items:
     parameters:
     - id: partitionCount
       type: System.Int32
-      description: The number of partitions to create.
+      description: "\n<p>The number of partitions to create.</p>\n"
     return:
       type: System.Collections.Generic.IList{System.Collections.Generic.IEnumerator{{TSource}}}
-      description: A list containing <em>partitionCount</em> enumerators.
+      description: "\n<p>A list containing <em>partitionCount</em> enumerators.</p>\n"
   seealso:
   - type: System.Collections.Concurrent.OrderablePartitioner`1
     commentId: T:System.Collections.Concurrent.OrderablePartitioner`1
