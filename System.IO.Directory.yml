@@ -51,20 +51,26 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Directory
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 19
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 36
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Exposes static methods for creating, moving, and enumerating through directories and subdirectories. This class cannot be inherited.</p>\n<p>To browse the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/io/directory.cs#b3ad5f0ba800bb28\">Reference Source</see>.</p>\n"
   remarks: "\n<p>To view the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/io/directory.cs#b3ad5f0ba800bb28\">Reference Source</see>. You can browse through the source code online, download the reference for offline viewing, and step through the sources (including patches and updates) during debugging; see <see href=\"http://referencesource.microsoft.com/\">instructions</see>.</p>\n<p>Use the <xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> class for typical operations such as copying, moving, renaming, creating, and deleting directories. </p>\n<ul><li>\n<p>To create a directory, use one of the <xref href=\"System.IO.Directory.CreateDirectory(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n</li><li>\n<p>To delete a directory, use one of the <xref href=\"System.IO.Directory.Delete(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n</li><li>\n<p>To get or set the current directory for an app, use the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Directory.SetCurrentDirectory(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n</li><li>\n<p>To manipulate <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> information related to the creation, access, and writing of a directory, use methods such as <xref href=\"System.IO.Directory.SetLastAccessTime(System.String,System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.SetCreationTime(System.String,System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</li></ul>\n<p>The static methods of the <xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> class perform security checks on all methods. If you are going to reuse an object several times, consider using the corresponding instance method of <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> instead, because the security check will not always be necessary.</p>\n<p>If you are performing only one directory-related action, it might be more efficient to use a static <xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> method rather than a corresponding <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> instance method. Most <xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> methods require the path to the directory that you are manipulating. </p>\n<p>In members that accept a string <em>path</em> parameter, that path must be well-formed or an exception is raised. For example, if a path is fully qualified but begins with a space (\" c:\\temp\"), the path string isn't trimmed, so the path is considered malformed and an exception is raised. In addition, a path or a combination of paths cannot be fully qualified twice. For example, \"c:\\temp c:\\windows\" also raises an exception. Ensure that your paths are well-formed when using methods that accept a path string. For more information see <xref href=\"System.IO.Path\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>In members that accept a path, the path can refer to a file or a directory. You can use a full path, a relative path, or a Universal Naming Convention (UNC) path for a server and share name. For example, all the following are acceptable paths: </p>\n<ul><li>\n<p>\"c:\\\\MyDir\" in C#, or \"c:\\MyDir\" in Visual Basic.</p>\n</li><li>\n<p>\"MyDir\\\\MySubdir\" in C#, or \"MyDir\\MySubDir\" in Visual Basic.</p>\n</li><li>\n<p>\"\\\\\\\\MyServer\\\\MyShare\" in C#, or \"\\\\MyServer\\MyShare\" in Visual Basic.</p>\n</li></ul>\n<p>By default, full read/write access to new directories is granted to all users. However, the app must have the correct security to access existing directories. </p>\n<p>To demand permissions for a directory and all its subdirectories, end the path string with the directory separator character. (For example, \"C:\\Temp\\\" grants access to C:\\Temp\\ and all its subdirectories.) To demand permissions only for a specific directory, end the path string with a period. (For example, \"C:\\Temp\\.\" grants access only to C:\\Temp\\, not to its subdirectories.)</p>\n<p>In members that accept a <em>searchPattern</em> parameter, the search string can be any combination of literal characters and two wildcard characters; * and ?. This parameter does not recognize regular expressions. For more information, see the <xref href=\"System.IO.Directory.EnumerateDirectories(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method or any other method that uses the <em>searchPattern</em> parameter.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n<p>\n<xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> are not supported for use in Windows Store apps. For information about how to access files and folders in Windows Store apps, see <see href=\"http://msdn.microsoft.com/library/windows/apps/hh758319.aspx\">Accessing data and files (Windows Store apps)</see>.</p>\n"
   syntax:
-    content: public class Directory
-    content.vb: Public Class Directory
+    content: >-
+      [ComVisible(true)]
+
+      public class Directory
+    content.vb: >-
+      <ComVisible(True)>
+
+      Public Class Directory
   seealso:
   - type: System.IO.DriveInfo
     commentId: T:System.IO.DriveInfo
@@ -104,12 +110,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CreateDirectory
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 38
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 55
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -177,12 +183,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Delete
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 568
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 1146
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -241,12 +247,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Delete
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 575
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 1153
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -308,12 +314,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 335
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 733
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -369,12 +375,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 344
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 742
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -433,12 +439,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 355
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 753
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -503,12 +509,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 377
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 775
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -564,12 +570,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 387
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 785
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -628,12 +634,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 399
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 797
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -698,12 +704,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 423
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 821
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -759,12 +765,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 433
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 831
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -823,12 +829,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 445
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 843
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -893,12 +899,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Exists
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 74
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 337
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -944,12 +950,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetCreationTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 109
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 425
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1002,12 +1008,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetCreationTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 114
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 430
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1060,12 +1066,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetCurrentDirectory
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 507
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 948
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1111,12 +1117,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 216
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 579
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1175,12 +1181,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 228
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 591
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1242,12 +1248,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 242
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 605
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1315,12 +1321,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDirectoryRoot
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 481
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 916
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1376,12 +1382,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 164
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 517
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1437,12 +1443,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 176
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 529
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1501,12 +1507,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 190
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 543
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1571,12 +1577,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 269
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 643
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1637,12 +1643,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 281
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 655
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1706,12 +1712,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 295
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 669
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1779,12 +1785,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetLastAccessTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 153
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 483
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1840,12 +1846,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetLastAccessTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 158
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 488
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1901,12 +1907,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetLastWriteTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 131
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 454
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1959,12 +1965,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetLastWriteTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 136
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 459
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -2017,12 +2023,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetParent
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 21
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 38
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -2081,12 +2087,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Move
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 530
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 1076
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -2148,12 +2154,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetCreationTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 97
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 406
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -2215,20 +2221,26 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetCreationTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 103
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 411
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the creation date and time, in Coordinated Universal Time (UTC) format, for the specified file or directory.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
-    content: public static void SetCreationTimeUtc(string path, DateTime creationTimeUtc)
-    content.vb: Public Shared Sub SetCreationTimeUtc(path As String, creationTimeUtc As Date)
+    content: >-
+      [SecuritySafeCritical]
+
+      public static void SetCreationTimeUtc(string path, DateTime creationTimeUtc)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Shared Sub SetCreationTimeUtc(path As String, creationTimeUtc As Date)
     parameters:
     - id: path
       type: System.String
@@ -2282,12 +2294,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetCurrentDirectory
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 514
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 1043
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -2354,12 +2366,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetLastAccessTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 141
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 464
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -2421,20 +2433,26 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetLastAccessTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 147
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 469
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the date and time, in Coordinated Universal Time (UTC) format, that the specified file or directory was last accessed.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
-    content: public static void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtc)
-    content.vb: Public Shared Sub SetLastAccessTimeUtc(path As String, lastAccessTimeUtc As Date)
+    content: >-
+      [SecuritySafeCritical]
+
+      public static void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtc)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Shared Sub SetLastAccessTimeUtc(path As String, lastAccessTimeUtc As Date)
     parameters:
     - id: path
       type: System.String
@@ -2488,12 +2506,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetLastWriteTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 119
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 435
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -2555,20 +2573,26 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetLastWriteTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 125
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 440
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the date and time, in Coordinated Universal Time (UTC) format, that a directory was last written to.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
-    content: public static void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtc)
-    content.vb: Public Shared Sub SetLastWriteTimeUtc(path As String, lastWriteTimeUtc As Date)
+    content: >-
+      [SecuritySafeCritical]
+
+      public static void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtc)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Shared Sub SetLastWriteTimeUtc(path As String, lastWriteTimeUtc As Date)
     parameters:
     - id: path
       type: System.String
