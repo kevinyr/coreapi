@@ -69,8 +69,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Provides static methods for the creation, copying, deletion, moving, and opening of a single file, and aids in the creation of <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> objects.</p>\n<p>To browse the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/io/file.cs#1c7421e464f67b7e\">Reference Source</see>.</p>\n"
   remarks: "\n<p>To view the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/io/file.cs#1c7421e464f67b7e\">Reference Source</see>. You can browse through the source code online, download the reference for offline viewing, and step through the sources (including patches and updates) during debugging; see <see href=\"http://referencesource.microsoft.com/\">instructions</see>.</p>\n<p>Use the <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> class for typical operations such as copying, moving, renaming, creating, opening, deleting, and appending to a single file at a time. You can also use the <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> class to get and set file attributes or <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> information related to the creation, access, and writing of a file. If you want to perform operations on multiple files, see <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.DirectoryInfo.GetFiles\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Many of the <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> methods return other I/O types when you create or open files. You can use these other types to further manipulate a file. For more information, see specific <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> members such as <xref href=\"System.IO.File.OpenText(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.File.CreateText(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.IO.File.Create(System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Because all <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> methods are static, it might be more efficient to use a <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> method rather than a corresponding <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> instance method if you want to perform only one action. All <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> methods require the path to the file that you are manipulating.</p>\n<p>The static methods of the <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> class perform security checks on all methods. If you are going to reuse an object several times, consider using the corresponding instance method of <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> instead, because the security check will not always be necessary.</p>\n<p>By default, full read/write access to new files is granted to all users.</p>\n<p>The following table describes the enumerations that are used to customize the behavior of various <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n<p>Enumeration </p>\n<p>Description </p>\n<table><tbody><tr><td>\n<p>\n<xref href=\"System.IO.FileAccess\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>Specifies read and write access to a file. </p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.IO.FileShare\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>Specifies the level of access permitted for a file that is already in use. </p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.IO.FileMode\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>Specifies whether the contents of an existing file are preserved or overwritten, and whether requests to create an existing file cause an exception. </p>\n</td></tr></tbody></table>\n<p>In members that accept a path as an input string, that path must be well-formed or an exception is raised. For example, if a path is fully qualified but begins with a space, the path is not trimmed in methods of the class. Therefore, the path is malformed and an exception is raised. Similarly, a path or a combination of paths cannot be fully qualified twice. For example, \"c:\\temp c:\\windows\" also raises an exception in most cases. Ensure that your paths are well-formed when using methods that accept a path string.</p>\n<p>In members that accept a path, the path can refer to a file or just a directory. The specified path can also refer to a relative path or a Universal Naming Convention (UNC) path for a server and share name. For example, all the following are acceptable paths: </p>\n<ul><li>\n<p>\"c:\\\\MyDir\\\\MyFile.txt\" in C#, or \"c:\\MyDir\\MyFile.txt\" in Visual Basic.</p>\n</li><li>\n<p>\"c:\\\\MyDir\" in C#, or \"c:\\MyDir\" in Visual Basic.</p>\n</li><li>\n<p>\"MyDir\\\\MySubdir\" in C#, or \"MyDir\\MySubDir\" in Visual Basic.</p>\n</li><li>\n<p>\"\\\\\\\\MyServer\\\\MyShare\" in C#, or \"\\\\MyServer\\MyShare\" in Visual Basic.</p>\n</li></ul>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates how to use the <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> class to check whether a file exists, and depending on the result, either create a new file and write to it, or open the existing file and read from it. Before running the code, create a c:\\temp folder.</p>File Class Example#1"
   syntax:
     content: public class File
     content.vb: Public Class File
@@ -118,8 +116,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Appends lines to a file, and then closes the file. If the specified file does not exist, this method creates a file, writes the specified lines to the file, and then closes the file.</p>\n"
   remarks: "\n<p>The method creates the file if it doesn’t exist, but it doesn't create new directories. Therefore, the value of the <em>path</em> parameter must contain existing directories.</p>\n"
-  example:
-  - "\n<p>The following example writes selected lines from a sample data file to a file, and then appends more lines. The directory named <strong>temp</strong> on drive C must exist for the example to complete successfully.</p>System.IO.File.WriteAllAppendAll#1"
   syntax:
     content: public static void AppendAllLines(string path, IEnumerable<string> contents)
     content.vb: Public Shared Sub AppendAllLines(path As String, contents As IEnumerable(Of String))
@@ -189,8 +185,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Appends lines to a file by using a specified encoding, and then closes the file. If the specified file does not exist, this method creates a file, writes the specified lines to the file, and then closes the file.</p>\n"
   remarks: "\n<p>The method creates the file if it doesn’t exist, but it doesn't create new directories. Therefore, the value of the <em>path</em> parameter must contain existing directories.</p>\n<p>You can use this method to create a file that contains the following:</p>\n<ul><li>\n<p>The results of a LINQ to Objects query on the lines of a file, as obtained by using the <see cref=\"Overload:System.IO.File.ReadLines\"></see> method.</p>\n</li><li>\n<p>The contents of a collection that implements an <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> of strings. </p>\n</li></ul>\n"
-  example:
-  - 
   syntax:
     content: public static void AppendAllLines(string path, IEnumerable<string> contents, Encoding encoding)
     content.vb: Public Shared Sub AppendAllLines(path As String, contents As IEnumerable(Of String), encoding As Encoding)
@@ -263,8 +257,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens a file, appends the specified string to the file, and then closes the file. If the file does not exist, this method creates a file, writes the specified string to the file, then closes the file.</p>\n"
   remarks: "\n<p>Given a string and a file path, this method opens the specified file, appends the string to the end of the file, and then closes the file. The file handle is guaranteed to be closed by this method, even if exceptions are raised.</p>\n<p>The method creates the file if it doesn’t exist, but it doesn't create new directories. Therefore, the value of the <em>path</em> parameter must contain existing directories.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the use of the <xref href=\"System.IO.File.AppendAllText(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to add extra text to the end of a file. In this example, a file is created if it doesn't already exist, and text is added to it. However, the directory named <strong>temp</strong> on drive C must exist for the example to complete successfully.</p>System.IO.File.AllText#00"
   syntax:
     content: public static void AppendAllText(string path, string contents)
     content.vb: Public Shared Sub AppendAllText(path As String, contents As String)
@@ -332,8 +324,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Appends the specified string to the file, creating the file if it does not already exist.</p>\n"
   remarks: "\n<p>Given a string and a file path, this method opens the specified file, appends the string to the end of the file using the specified encoding, and then closes the file. The file handle is guaranteed to be closed by this method, even if exceptions are raised.</p>\n<p>The method creates the file if it doesn’t exist, but it doesn't create new directories. Therefore, the value of the <em>path</em> parameter must contain existing directories.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the use of the <xref href=\"System.IO.File.AppendAllText(System.String,System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> method to add extra text to the end of a file. In this example, a file is created if it doesn't already exist, and text is added to it. However, the directory named <strong>temp</strong> on drive C must exist for the example to complete successfully.</p>System.IO.File.AllText_Encoding#00"
   syntax:
     content: public static void AppendAllText(string path, string contents, Encoding encoding)
     content.vb: Public Shared Sub AppendAllText(path As String, contents As String, encoding As Encoding)
@@ -404,8 +394,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Creates a <xref href=\"System.IO.StreamWriter\" data-throw-if-not-resolved=\"false\"></xref> that appends UTF-8 encoded text to an existing file, or to a new file if the specified file does not exist.</p>\n"
   remarks: "\n<p>This method is equivalent to the <xref href=\"System.IO.StreamWriter.#ctor(System.String,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> constructor overload. If the file specified by <em>path</em> does not exist, it is created. If the file does exist, write operations to the <xref href=\"System.IO.StreamWriter\" data-throw-if-not-resolved=\"false\"></xref> append text to the file. Additional threads are permitted to read the file while it is open.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example appends text to a file. The method creates a new file if the file doesn’t exist. However, the directory named <strong>temp</strong> on drive C must exist for the example to complete successfully.</p>File_AppendText#1"
   syntax:
     content: public static StreamWriter AppendText(string path)
     content.vb: Public Shared Function AppendText(path As String) As StreamWriter
@@ -470,8 +458,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Copies an existing file to a new file. Overwriting a file of the same name is not allowed.</p>\n"
   remarks: "\n<p>This method is equivalent to the <xref href=\"System.IO.File.Copy(System.String,System.String,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref>  method overload with the <em>overwrite</em> parameter set to <strong>false</strong>.</p>\n<p>The <em>sourceFileName</em> and <em>destFileName</em> parameters can specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method. This method does not support wildcard characters in the parameters.</p>\n<p>The attributes of the original file are retained in the copied file.</p>\n"
-  example:
-  - "\n<p>The following example copies files to the C:\\archives\\2008 backup folder. It uses the two overloads of the <see cref=\"Overload:System.IO.File.Copy\"></see> method as follows:</p>\n<ul><li>\n<p>It first uses the <xref href=\"System.IO.File.Copy(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref>method overload to copy text (.txt) files. The code demonstrates that this overload does not allow overwriting files that were already copied. </p>\n</li><li>\n<p>It then uses the <xref href=\"System.IO.File.Copy(System.String,System.String,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method overload to copy pictures (.jpg files). The code demonstrates that this overload does allow overwriting files that were already copied.</p>\n</li></ul>FileCopyDelete#1"
   syntax:
     content: public static void Copy(string sourceFileName, string destFileName)
     content.vb: Public Shared Sub Copy(sourceFileName As String, destFileName As String)
@@ -544,8 +530,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Copies an existing file to a new file. Overwriting a file of the same name is allowed.</p>\n"
   remarks: "\n<p>The <em>sourceFileName</em> and <em>destFileName</em> parameters can specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. This method does not support wildcard characters in the parameters.</p>\n<p>The attributes of the original file are retained in the copied file.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example copies files to the C:\\archives\\2008 backup folder. It uses the two overloads of the <see cref=\"Overload:System.IO.File.Copy\"></see> method as follows:</p>\n<ul><li>\n<p>It first uses the <xref href=\"System.IO.File.Copy(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method overload to copy text (.txt) files. The code demonstrates that this overload does not allow overwriting files that were already copied. </p>\n</li></ul>\n<p>It then uses the <xref href=\"System.IO.File.Copy(System.String,System.String,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method overload to copy pictures (.jpg files). The code demonstrates that this overload does allow overwriting files that were already copied. </p>FileCopyDelete#1"
   syntax:
     content: public static void Copy(string sourceFileName, string destFileName, bool overwrite)
     content.vb: Public Shared Sub Copy(sourceFileName As String, destFileName As String, overwrite As Boolean)
@@ -621,8 +605,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Creates or overwrites a file in the specified path.</p>\n"
   remarks: "\n<p>The <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object created by this method has a default <xref href=\"System.IO.FileShare\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.FileShare.None\" data-throw-if-not-resolved=\"false\"></xref>; no other process or code can access the created file until the original file handle is closed.</p>\n<p>This method is equivalent to the <xref href=\"System.IO.File.Create(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method overload using the default buffer size.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the specified file does not exist, it is created; if it does exist and it is not read-only, the contents are overwritten.</p>\n<p>By default, full read/write access to new files is granted to all users. The file is opened with read/write access and must be closed before it can be opened by another application.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example creates a file in the specified path, writes some information to the file, and reads from the file.</p>File Create1#1"
   syntax:
     content: public static FileStream Create(string path)
     content.vb: Public Shared Function Create(path As String) As FileStream
@@ -687,8 +669,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Creates or overwrites the specified file.</p>\n"
   remarks: "\n<p>The <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object created by this method has a default <xref href=\"System.IO.FileShare\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.FileShare.None\" data-throw-if-not-resolved=\"false\"></xref>; no other process or code can access the created file until the original file handle is closed.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method is equivalent to the <xref href=\"System.IO.FileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor overload. If the specified file does not exist, it is created; if it does exist and it is not read-only, the contents are overwritten.</p>\n<p>By default, full read/write access to new files is granted to all users. The file is opened with read/write access and must be closed before it can be opened by another application.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example creates a file with the specified buffer size.</p>File Create2#1"
   syntax:
     content: public static FileStream Create(string path, int bufferSize)
     content.vb: Public Shared Function Create(path As String, bufferSize As Integer) As FileStream
@@ -756,8 +736,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Creates or overwrites the specified file, specifying a buffer size and a <xref href=\"System.IO.FileOptions\" data-throw-if-not-resolved=\"false\"></xref> value that describes how to create or overwrite the file.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method is equivalent to the <xref href=\"System.IO.FileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor overload. If the specified file does not exist, it is created; if it does exist and it is not read-only, the contents are overwritten.</p>\n<p>By default, full read/write access to new files is granted to all users. The file is opened with read/write access and must be closed before it can be opened by another application.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - 
   syntax:
     content: public static FileStream Create(string path, int bufferSize, FileOptions options)
     content.vb: Public Shared Function Create(path As String, bufferSize As Integer, options As FileOptions) As FileStream
@@ -834,8 +812,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Creates or opens a file for writing UTF-8 encoded text.</p>\n"
   remarks: "\n<p>This method is equivalent to the <xref href=\"System.IO.StreamWriter.#ctor(System.String,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> constructor overload with the <em>append</em> parameter set to <strong>false</strong>. If the file specified by <em>path</em> does not exist, it is created. If the file does exist, its contents are overwritten. Additional threads are permitted to read the file while it is open.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example creates a file for text writing and reading.</p>File CreateText#1"
   syntax:
     content: public static StreamWriter CreateText(string path)
     content.vb: Public Shared Function CreateText(path As String) As StreamWriter
@@ -897,8 +873,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Deletes the specified file. </p>\n"
   remarks: "\n<p>Specify a file name with any relative or absolute path information for the <em>path</em> parameter. Wildcard characters cannot be included. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the file to be deleted does not exist, no exception is thrown.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example copies groups of files to the C:\\archives\\2008 backup folder and then deletes them from the source folder.</p>FileCopyDelete#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -966,8 +940,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Determines whether the specified file exists.</p>\n"
   remarks: "\n<p>The <xref href=\"System.IO.File.Exists(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method should not be used for path validation, this method merely checks if the file specified in <em>path</em> exists. Passing an invalid path to <xref href=\"System.IO.File.Exists(System.String)\" data-throw-if-not-resolved=\"false\"></xref> returns <strong>false</strong>. To check whether the path contains any invalid characters, you can call the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method to retrieve the characters that are invalid for the file system. You can also create a regular expression to test the whether the path is valid for your environment. For examples of acceptable paths, see <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>To check if a directory exists, see <xref href=\"System.IO.Directory.Exists(System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Be aware that another process can potentially do something with the file in between the time you call the <xref href=\"System.IO.File.Exists(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method and perform another operation on the file, such as <xref href=\"System.IO.File.Delete(System.String)\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If <em>path</em> describes a directory, this method returns <strong>false</strong>. Trailing spaces are removed from the <em>path</em> parameter before determining if the file exists.</p>\n<p>The <xref href=\"System.IO.File.Exists(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method returns <strong>false</strong> if any error occurs while trying to determine if the specified file exists. This can occur in situations that raise exceptions such as passing a file name with invalid characters or too many characters, a failing or missing disk, or if the caller does not have permission to read the file.</p>\n"
-  example:
-  - "\n<p>The following example determines if a file exists.</p>File Exists#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1019,8 +991,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Gets the <xref href=\"System.IO.FileAttributes\" data-throw-if-not-resolved=\"false\"></xref> of the file on the path.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates the <strong>GetAttributes</strong> and <strong>SetAttributes</strong> methods by applying the <strong>Archive</strong> and <strong>Hidden</strong> attributes to a file.</p>File GetAttributes#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1091,8 +1061,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Returns the creation date and time of the specified file or directory.</p>\n"
   remarks: "\n<p>This method may return an inaccurate value, because it uses native functions whose values may not be continuously updated by the operating system.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the file described in the <em>path</em> parameter does not exist, this method returns 12:00 midnight, January 1, 1601 A.D. (C.E.) Coordinated Universal Time (UTC), adjusted to local time.</p>\n<p>NTFS-formatted drives may cache information about a file, such as file creation time, for a short period of time. As a result, it may be necessary to explicitly set the creation time of a file if you are overwriting or replacing an existing file.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates <strong>GetCreationTime</strong>.</p>System.IO.File.GetCreationTime#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1160,8 +1128,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Returns the creation date and time, in coordinated universal time (UTC), of the specified file or directory.</p>\n"
   remarks: "\n<p>This method may return an inaccurate value, because it uses native functions whose values may not be continuously updated by the operating system.</p>\n<p>If the file described in the <em>path</em> parameter does not exist, this method returns 12:00 midnight, January 1, 1601 A.D. (C.E.) Coordinated Universal Time (UTC).</p>\n<p>NTFS-formatted drives may cache information about a file, such as file creation time, for a short period of time. As a result, it may be necessary to explicitly set the creation time of a file if you are overwriting or replacing an existing file.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates the <xref href=\"System.IO.File.GetCreationTimeUtc(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.IO.File.GetCreationTime#2"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1229,8 +1195,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Returns the date and time the specified file or directory was last accessed.</p>\n"
   remarks: "\n<p>This method may return an inaccurate value, because it uses native functions whose values may not be continuously updated by the operating system.</p>\n<p>If the file described in the <em>path</em> parameter does not exist, this method returns 12:00 midnight, January 1, 1601 A.D. (C.E.) Coordinated Universal Time (UTC), adjusted to local time.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates <strong>GetLastAccessTime</strong>.</p>File GetLastAccess#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1365,8 +1329,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Returns the date and time the specified file or directory was last written to.</p>\n"
   remarks: "\n<p>This method may return an inaccurate value, because it uses native functions whose values may not be continuously updated by the operating system. Each operating system manages the last write time according to its own rules. To improve performance, an operating system might not set the last write time value to the exact time of the last write operation, but might set it to a close approximation instead.</p>\n<p>If the file described in the <em>path</em> parameter does not exist, this method returns 12:00 midnight, January 1, 1601 A.D. (C.E.) Coordinated Universal Time (UTC), adjusted to local time.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates <strong>GetLastWriteTime</strong>.</p>File GetLastWrite#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1501,8 +1463,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Moves a specified file to a new location, providing the option to specify a new file name.</p>\n"
   remarks: "\n<p>This method works across disk volumes, and it does not throw an exception if the source and destination are the same. Note that if you attempt to replace a file by moving a file of the same name into that directory, you get an <xref href=\"System.IO.IOException\" data-throw-if-not-resolved=\"false\"></xref>. You cannot use the Move method to overwrite an existing file.</p>\n<p>The <em>sourceFileName</em> and <em>destFileName</em> arguments can include relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If you try to move a file across disk volumes and that file is in use, the file is copied to the destination, but it is not deleted from the source.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example moves a file.</p>File Move#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1573,8 +1533,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens a <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> on the specified path with read/write access.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following code example creates a temporary file and writes some text to it. The example then opens the file, using T:System.IO.FileMode.Open; that is, if the file did not already exist, it would not be created.</p>File Open1#1"
   syntax:
     content: public static FileStream Open(string path, FileMode mode)
     content.vb: Public Shared Function Open(path As String, mode As FileMode) As FileStream
@@ -1648,8 +1606,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens a <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> on the specified path, with the specified mode and access.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example opens a file with read-only access.</p>file open2#1"
   syntax:
     content: public static FileStream Open(string path, FileMode mode, FileAccess access)
     content.vb: Public Shared Function Open(path As String, mode As FileMode, access As FileAccess) As FileStream
@@ -1726,8 +1682,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens a <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> on the specified path, having the specified mode with read, write, or read/write access and the specified sharing option.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example opens a file with read-only access and with file sharing disallowed.</p>file open3#1"
   syntax:
     content: public static FileStream Open(string path, FileMode mode, FileAccess access, FileShare share)
     content.vb: Public Shared Function Open(path As String, mode As FileMode, access As FileAccess, share As FileShare) As FileStream
@@ -1807,8 +1761,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens an existing file for reading.</p>\n"
   remarks: "\n<p>This method is equivalent to the <xref href=\"System.IO.FileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)\" data-throw-if-not-resolved=\"false\"></xref> constructor overload with a <xref href=\"System.IO.FileMode\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.FileMode.Open\" data-throw-if-not-resolved=\"false\"></xref>, a <xref href=\"System.IO.FileAccess\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.FileAccess.Read\" data-throw-if-not-resolved=\"false\"></xref> and a <xref href=\"System.IO.FileShare\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.IO.FileShare.Read\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example opens a file for reading.</p>file openread#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1882,8 +1834,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens an existing UTF-8 encoded text file for reading.</p>\n"
   remarks: "\n<p>This method is equivalent to the <xref href=\"System.IO.StreamReader.#ctor(System.String)\" data-throw-if-not-resolved=\"false\"></xref> constructor overload.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example opens a text file for reading.</p>file opentext#1"
   syntax:
     content: public static StreamReader OpenText(string path)
     content.vb: Public Shared Function OpenText(path As String) As StreamReader
@@ -1948,8 +1898,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens an existing file or creates a new file for writing.</p>\n"
   remarks: "\n<p>This method is equivalent to the <xref href=\"System.IO.FileStream.#ctor(System.String,System.IO.FileMode,System.IO.FileAccess,System.IO.FileShare)\" data-throw-if-not-resolved=\"false\"></xref> constructor overload with file mode set to <xref href=\"System.IO.FileMode.OpenOrCreate\" data-throw-if-not-resolved=\"false\"></xref>, the access set to <xref href=\"System.IO.FileAccess.Write\" data-throw-if-not-resolved=\"false\"></xref>, and the share mode set to <xref href=\"System.IO.FileShare.None\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <xref href=\"System.IO.File.OpenWrite(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method opens a file if one already exists for the file path, or creates a new file if one does not exist. For an existing file, it does not append the new text to the existing text. Instead, it overwrites the existing characters with the new characters. If you overwrite a longer string (such as “This is a test of the OpenWrite method”) with a shorter string (such as “Second run”), the file will contain a mix of the strings (“Second runtest of the OpenWrite method”).</p>\n<p>The <em>path</em> parameter may specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, use the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example opens a file for reading and writing.</p>file openwrite#1"
   syntax:
     content: public static FileStream OpenWrite(string path)
     content.vb: Public Shared Function OpenWrite(path As String) As FileStream
@@ -2087,8 +2035,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens a text file, reads all lines of the file, and then closes the file.</p>\n"
   remarks: "\n<p>This method opens a file, reads each line of the file, then adds each line as an element of a string array. It then closes the file. A line is defined as a sequence of characters followed by a carriage return ('\\r'), a line feed ('\\n'), or a carriage return immediately followed by a line feed. The resulting string does not contain the terminating carriage return and/or line feed.</p>\n<p>This method attempts to automatically detect the encoding of a file based on the presence of byte order marks. Encoding formats UTF-8 and UTF-32 (both big-endian and little-endian) can be detected.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the use of the <xref href=\"System.IO.File.ReadAllLines(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to display the contents of a file. In this example a file is created, if it doesn't already exist, and text is added to it.</p>System.IO.File.AllLines#00"
   syntax:
     content: public static string[] ReadAllLines(string path)
     content.vb: Public Shared Function ReadAllLines(path As String) As String()
@@ -2159,8 +2105,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens a file, reads all lines of the file with the specified encoding, and then closes the file.</p>\n"
   remarks: "\n<p>This method opens a file, reads each line of the file, and then adds each line as an element of a string array. It then closes the file. A line is defined as a sequence of characters followed by a carriage return ('\\r'), a line feed ('\\n'), or a carriage return immediately followed by a line feed. The resulting string does not contain the terminating carriage return and/or line feed.</p>\n<p>This method attempts to automatically detect the encoding of a file based on the presence of byte order marks. Encoding formats UTF-8 and UTF-32 (both big-endian and little-endian) can be detected.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the use of the <xref href=\"System.IO.File.ReadAllLines(System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> method to display the contents of a file. In this example a file is created, if it doesn't already exist, and text is added to it.</p>System.IO.File.AllLines_Encoding#00"
   syntax:
     content: public static string[] ReadAllLines(string path, Encoding encoding)
     content.vb: Public Shared Function ReadAllLines(path As String, encoding As Encoding) As String()
@@ -2234,8 +2178,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens a text file, reads all lines of the file, and then closes the file.</p>\n"
   remarks: "\n<p>This method opens a file, reads each line of the file, and then adds each line as an element of a string. It then closes the file. A line is defined as a sequence of characters followed by a carriage return ('\\r'), a line feed ('\\n'), or a carriage return immediately followed by a line feed. The resulting string does not contain the terminating carriage return and/or line feed.</p>\n<p>This method attempts to automatically detect the encoding of a file based on the presence of byte order marks. Encoding formats UTF-8 and UTF-32 (both big-endian and little-endian) can be detected.</p>\n<p>Use the <xref href=\"System.IO.File.ReadAllText(System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> method overload when reading files that might contain imported text, because unrecognized characters may not be read correctly.  </p>\n<p>The file handle is guaranteed to be closed by this method, even if exceptions are raised.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the use of the <xref href=\"System.IO.File.ReadAllText(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to display the contents of a file. In this example a file is created, if it doesn't already exist, and text is added to it.</p>System.IO.File.AllText#00"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -2312,8 +2254,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Opens a file, reads all lines of the file with the specified encoding, and then closes the file.</p>\n"
   remarks: "\n<p>This method opens a file, reads each line of the file, and then adds each line as an element of a string. It then closes the file. A line is defined as a sequence of characters followed by a carriage return ('\\r'), a line feed ('\\n'), or a carriage return immediately followed by a line feed. The resulting string does not contain the terminating carriage return and/or line feed.</p>\n<p>This method attempts to automatically detect the encoding of a file based on the presence of byte order marks. Encoding formats UTF-8 and UTF-32 (both big-endian and little-endian) can be detected.</p>\n<p>The file handle is guaranteed to be closed by this method, even if exceptions are raised.</p>\n<p>To use the encoding settings as configured for your operating system, specify the <xref href=\"System.Text.Encoding.Default\" data-throw-if-not-resolved=\"false\"></xref> property for the <em>encoding</em> parameter.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the use of the <xref href=\"System.IO.File.ReadAllText(System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> method to display the contents of a file. In this example a file is created, if it doesn't already exist, and text is added to it.</p>System.IO.File.AllText_Encoding#00"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -2393,9 +2333,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Reads the lines of a file.</p>\n"
   remarks: "\n<p>The <xref href=\"System.IO.File.ReadLines(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.File.ReadAllLines(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.File.ReadLines(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of strings before the whole collection is returned; when you use <xref href=\"System.IO.File.ReadAllLines(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of strings be returned before you can access the array. Therefore, when you are working with very large files, <xref href=\"System.IO.File.ReadLines(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient. </p>\n<p>You can use the <xref href=\"System.IO.File.ReadLines(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to do the following:</p>\n<ul><li>\n<p>Perform LINQ to Objects queries on a file to obtain a filtered set of its lines.</p>\n</li><li>\n<p>Write the returned collection of lines to a file with the <xref href=\"System.IO.File.WriteAllLines(System.String,System.Collections.Generic.IEnumerable{System.String})\" data-throw-if-not-resolved=\"false\"></xref> method, or append them to an existing file with the <xref href=\"System.IO.File.AppendAllLines(System.String,System.Collections.Generic.IEnumerable{System.String})\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n</li><li>\n<p>Create an immediately populated instance of a collection that takes an <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> collection of strings for its constructor, such as a <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> or a <xref href=\"System.Collections.Generic.Queue`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</li></ul>\n<p>This method uses <xref href=\"System.Text.Encoding.UTF8\" data-throw-if-not-resolved=\"false\"></xref> for the encoding value.</p>\n"
-  example:
-  - "\n<p>The following example reads the lines of a file to find lines that contain specified strings.</p>System.IO.File.ReadLines#1"
-  - "\n<p>The following example uses the <xref href=\"System.IO.File.ReadLines(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method in a LINQ query that enumerates all directories for files that have a .txt extension, reads each line of the file, and displays the line if it contains the string \"Microsoft\".</p>System.IO.Directory.EnumerateFiles#1"
   syntax:
     content: public static IEnumerable<string> ReadLines(string path)
     content.vb: Public Shared Function ReadLines(path As String) As IEnumerable(Of String)
@@ -2460,8 +2397,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Read the lines of a file that has a specified encoding.</p>\n"
   remarks: "\n<p>Use this method to specify an encoding to use read the file.</p>\n<p>The <xref href=\"System.IO.File.ReadLines(System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.File.ReadAllLines(System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.File.ReadLines(System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of strings before the whole collection is returned. When you use <xref href=\"System.IO.File.ReadAllLines(System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of strings be returned before you can access the array. Therefore, when you are working with very large files, <xref href=\"System.IO.File.ReadLines(System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient. </p>\n<p>You can use the <xref href=\"System.IO.File.ReadLines(System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref>  method to do the following:</p>\n<ul><li>\n<p>Perform LINQ to Objects queries on a file to obtain a filtered set of its lines.</p>\n</li><li>\n<p>Write the returned collection of lines to a file with the <xref href=\"System.IO.File.WriteAllLines(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> method, or append them to an existing file with the <xref href=\"System.IO.File.AppendAllLines(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n</li><li>\n<p>Create an immediately populated instance of a collection that takes an <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> collection of strings for its constructor, such as a <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> or a <xref href=\"System.Collections.Generic.Queue`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</li></ul>\n<p></p>\n"
-  example:
-  - 
   syntax:
     content: public static IEnumerable<string> ReadLines(string path, Encoding encoding)
     content.vb: Public Shared Function ReadLines(path As String, encoding As Encoding) As IEnumerable(Of String)
@@ -2529,8 +2464,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Sets the specified <xref href=\"System.IO.FileAttributes\" data-throw-if-not-resolved=\"false\"></xref> of the file on the specified path.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Certain file attributes, such as <xref href=\"System.IO.FileAttributes.Hidden\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.FileAttributes.ReadOnly\" data-throw-if-not-resolved=\"false\"></xref>, can be combined. Other attributes, such as <xref href=\"System.IO.FileAttributes.Normal\" data-throw-if-not-resolved=\"false\"></xref>, must be used alone.  </p>\n<p>It is not possible to change the compression status of a <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> object using the <xref href=\"System.IO.File.SetAttributes(System.String,System.IO.FileAttributes)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates the <strong>GetAttributes</strong> and <strong>SetAttributes</strong> methods by applying the <strong>Archive</strong> and <strong>Hidden</strong> attributes to a file.</p>File GetAttributes#1"
   syntax:
     content: >-
       [SecurityCritical]
@@ -2739,8 +2672,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Sets the date and time the specified file was last accessed.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example checks the file system for the specified file, creating it if necessary, and then sets and gets the last access time.</p>file setlastaccess#1"
   syntax:
     content: public static void SetLastAccessTime(string path, DateTime lastAccessTime)
     content.vb: Public Shared Sub SetLastAccessTime(path As String, lastAccessTime As Date)
@@ -2875,8 +2806,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Sets the date and time that the specified file was last written to.</p>\n"
   remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
-  example:
-  - "\n<p>The following example checks the file system for the specified file, creating the file if necessary, and then sets and gets the last write time of the file.</p>file setlastwrite#1"
   syntax:
     content: public static void SetLastWriteTime(string path, DateTime lastWriteTime)
     content.vb: Public Shared Sub SetLastWriteTime(path As String, lastWriteTime As Date)
@@ -3086,8 +3015,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Creates a new file, writes a collection of strings to the file, and then closes the file.</p>\n"
   remarks: "\n<p>The default behavior of the <xref href=\"System.IO.File.WriteAllLines(System.String,System.Collections.Generic.IEnumerable{System.String})\" data-throw-if-not-resolved=\"false\"></xref> method is to write out data by using UTF-8 encoding without a byte order mark (BOM). If it is necessary to include a UTF-8 identifier, such as a byte order mark, at the beginning of a file, use the <xref href=\"System.IO.File.WriteAllLines(System.String,System.Collections.Generic.IEnumerable{System.String},System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> method overload with <xref href=\"System.Text.Encoding.UTF8\" data-throw-if-not-resolved=\"false\"></xref> encoding.</p>\n<p>If the target file already exists, it is overwritten.</p>\n<p>You can use this method to create the contents for a collection class that takes an <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> in its constructor, such as a <xref href=\"System.Collections.Generic.List`1.#ctor(System.Collections.Generic.IEnumerable{`0})\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Collections.Generic.HashSet`1.#ctor\" data-throw-if-not-resolved=\"false\"></xref>, or a <xref href=\"System.Collections.Generic.SortedSet`1.#ctor\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - "\n<p>The following example writes selected lines from a sample data file to a file.</p>System.IO.File.WriteAllAppendAll#1"
   syntax:
     content: public static void WriteAllLines(string path, IEnumerable<string> contents)
     content.vb: Public Shared Sub WriteAllLines(path As String, contents As IEnumerable(Of String))
@@ -3154,8 +3081,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Creates a new file by using the specified encoding, writes a collection of strings to the file, and then closes the file.</p>\n"
   remarks: "\n<p>If the target file already exists, it is overwritten.</p>\n<p>You can use this method to create a file that contains the following:</p>\n<ul><li>\n<p>The results of a LINQ to Objects query on the lines of a file, as obtained by using the <see cref=\"Overload:System.IO.File.ReadLines\"></see> method.</p>\n</li><li>\n<p>The contents of a collection that implements an <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> of strings.</p>\n</li></ul>\n"
-  example:
-  - 
   syntax:
     content: public static void WriteAllLines(string path, IEnumerable<string> contents, Encoding encoding)
     content.vb: Public Shared Sub WriteAllLines(path As String, contents As IEnumerable(Of String), encoding As Encoding)
@@ -3225,8 +3150,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Creates a new file, writes the specified string to the file, and then closes the file. If the target file already exists, it is overwritten.</p>\n"
   remarks: "\n<p>This method uses UTF-8 encoding without a Byte-Order Mark (BOM), so using the <xref href=\"System.Text.Encoding.GetPreamble\" data-throw-if-not-resolved=\"false\"></xref> method will return an empty byte array. If it is necessary to include a UTF-8 identifier, such as a byte order mark, at the beginning of a file, use the <xref href=\"System.IO.File.WriteAllText(System.String,System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> method overload with <xref href=\"System.Text.Encoding.UTF8\" data-throw-if-not-resolved=\"false\"></xref> encoding.</p>\n<p>Given a string and a file path, this method opens the specified file, writes the string to the file, and then closes the file.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the use of the <xref href=\"System.IO.File.WriteAllText(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to write text to a file. In this example a file is created, if it doesn't already exist, and text is added to it.</p>System.IO.File.AllText#00"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -3300,8 +3223,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Creates a new file, writes the specified string to the file using the specified encoding, and then closes the file. If the target file already exists, it is overwritten.</p>\n"
   remarks: "\n<p>Given a string and a file path, this method opens the specified file, writes the string to the file using the specified encoding, and then closes the file. The file handle is guaranteed to be closed by this method, even if exceptions are raised.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the use of the <xref href=\"System.IO.File.WriteAllText(System.String,System.String,System.Text.Encoding)\" data-throw-if-not-resolved=\"false\"></xref> method to write text to a file. In this example a file is created, if it doesn't already exist, and text is added to it.</p>System.IO.File.AllText_Encoding#00"
   syntax:
     content: >-
       [SecuritySafeCritical]

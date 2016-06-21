@@ -54,8 +54,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Represents a key-level node in the Windows registry. This class is a registry encapsulation.</p>\n"
   remarks: "\n<p>To get an instance of <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref>, use one of the static members of the <xref href=\"Microsoft.Win32.Registry\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n<p>The registry acts as a central repository of information for the operating system and the applications on a computer. The registry is organized in a hierarchical format, based on a logical ordering of the elements stored within it (please see <xref href=\"Microsoft.Win32.Registry\" data-throw-if-not-resolved=\"false\"></xref> for the base-level items in this hierarchy). When storing information in the registry, select the appropriate location based on the type of information being stored. Be sure to avoid destroying information created by other applications, because this can cause those applications to exhibit unexpected behavior, and can also have an adverse effect upon your own application.</p>\n<p>This type implements the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface. When you have finished using the type, you should dispose of it either directly or indirectly. To dispose of the type directly, call its <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method in a <strong>try</strong>/<strong>catch</strong> block. To dispose of it indirectly, use a language construct such as <strong>using</strong> (in C#) or <strong>Using</strong> (in Visual Basic). For more information, see the “Using an Object that Implements IDisposable” section in the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface topic.</p>\n<p>Registry keys are the base unit of organization in the registry, and can be compared to folders in File Explorer. A particular key can have subkeys, just as a folder can have subfolders. Each key can be deleted, as long as the user has the appropriate permissions to do so, and the key is not a base key or at the level directly under the base keys. Each key can also have multiple values associated with it (a value can be compared to a file), which are used to store the information — for example, information about an application installed on the computer. Each value holds one particular piece of information, which can be retrieved or updated when required. For instance, you can create a <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> for your company, under the key HKEY_LOCAL_MACHINE\\Software, and then a subkey for each application that your company creates. Each subkey holds the information specific to that application, such as color settings, screen location and size, or recognized file extensions.</p>\n<p>Note that information stored in the registry is available to other applications and users, and therefore should not be used to store security data or critical application information.</p>\n<p>Do not expose <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> objects in such a way that a malicious program could create thousands of meaningless subkeys or key/value pairs. For example, do not allow callers to enter arbitrary keys or values.</p>\n<p>Starting in the .NET Framework 4, the length of a registry key is no longer limited to 255 characters.</p>\n"
-  example:
-  - "\n<p>The following code example shows how to create a subkey under HKEY_CURRENT_USER, manipulate its contents, and then delete the subkey.</p>Microsoft.Win32.RegistryKey2#1"
   syntax:
     content: >-
       [ComVisible(true)]
@@ -112,8 +110,6 @@ items:
   - Microsoft.Win32.Registry
   namespace: Microsoft.Win32
   summary: "\n<p>Gets a <xref href=\"Microsoft.Win32.SafeHandles.SafeRegistryHandle\" data-throw-if-not-resolved=\"false\"></xref> object that represents the registry key that the current <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> object encapsulates.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       public SafeRegistryHandle Handle
@@ -174,8 +170,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves the name of the key.</p>\n"
   remarks: "\n<p>The name of the key includes the absolute path of this key in the registry, always starting at a base key, for example, HKEY_LOCAL_MACHINE.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Microsoft.Win32.RegistryKey2#4"
   syntax:
     content: >-
       public string Name
@@ -225,8 +219,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves the count of subkeys of the current key.</p>\n"
   remarks: "\n<p>This property does not recursively count names. It only returns the count of names on the base level from which it was called.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Microsoft.Win32.RegistryKey2#2"
   syntax:
     content: >-
       public int SubKeyCount
@@ -288,8 +280,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves the count of values in the key.</p>\n"
   remarks: "\n<p>Each registry key has a default value that is not associated with any name. This unnamed value can be set by using the <see cref=\"Overload:Microsoft.Win32.RegistryKey.SetValue\"></see> method and specifying either <strong>null</strong> or the empty string (\"\") for <em>name</em>. If the default value has never been set, it does not contribute to the total count returned by the <xref href=\"Microsoft.Win32.RegistryKey.ValueCount\" data-throw-if-not-resolved=\"false\"></xref> property; once it has been set, however, it is always counted.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Microsoft.Win32.RegistryKey2#2"
   syntax:
     content: >-
       public int ValueCount
@@ -348,8 +338,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Gets the view that was used to create the registry key. </p>\n"
   remarks: "\n<p>On the 64-bit versions of Windows, portions of the registry are stored separately for 32-bit and 64-bit applications. There is a 32-bit view for 32-bit applications and a 64-bit view for 64-bit applications.</p>\n<p>Do not assume that the view always corresponds to the actual view of the <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [ComVisible(false)]
@@ -397,8 +385,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Creates a new subkey or opens an existing subkey for write access.  </p>\n"
   remarks: "\n<p>In order to perform this action, the user must have permission at this level and below in the registry hierarchy.</p>\n<p>Do not expose <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> objects in such a way that a malicious program could create thousands of meaningless subkeys or key/value pairs. For example, do not allow callers to enter arbitrary keys or values.</p>\n"
-  example:
-  - "\n<p>The following code example shows how to create a subkey under HKEY_CURRENT_USER, manipulate its contents, and then delete the subkey.</p>Microsoft.Win32.RegistryKey2#1"
   syntax:
     content: >-
       [SuppressMessage("Microsoft.Concurrency", "CA8001", Justification = "Reviewed for thread safety")]
@@ -592,8 +578,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Deletes the specified subkey. </p>\n"
   remarks: "\n<p>To delete child subkeys, use <xref href=\"Microsoft.Win32.RegistryKey.DeleteSubKeyTree(System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Use caution when deleting registry keys.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates how to use <xref href=\"Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>Microsoft.Win32.RegistryKey2#5"
   syntax:
     content: public void DeleteSubKey(string subkey)
     content.vb: Public Sub DeleteSubKey(subkey As String)
@@ -737,8 +721,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Deletes a subkey and any child subkeys recursively. </p>\n"
   remarks: "\n<p>You must have appropriate permissions to delete the subkey and its tree.</p>\n<p>Deleting a particular key will remove all entries below the key in the tree. No warning will be provided. If you want to delete a subkey only when it has no child subkeys, use the <xref href=\"Microsoft.Win32.RegistryKey.DeleteSubKey(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Microsoft.Win32.RegistryKey2#4"
   syntax:
     content: public void DeleteSubKeyTree(string subkey)
     content.vb: Public Sub DeleteSubKeyTree(subkey As String)
@@ -807,8 +789,6 @@ items:
   - Microsoft.Win32.Registry
   namespace: Microsoft.Win32
   summary: "\n<p>Deletes the specified subkey and any child subkeys recursively, and specifies whether an exception is raised if the subkey is not found. </p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -877,8 +857,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Deletes the specified value from this key.</p>\n"
   remarks: "\n<p>On Windows 95, Windows 98, Windows 98 Second Edition, and Windows Millennium Edition, specifying an empty string for the <em>name</em> parameter does not delete the default value.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Microsoft.Win32.RegistryKey2#3"
   syntax:
     content: public void DeleteValue(string name)
     content.vb: Public Sub DeleteValue(name As String)
@@ -1144,8 +1122,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Creates a registry key from a specified handle and registry view setting. </p>\n"
   remarks: "\n<p>The <em>view</em> parameter for this method is used in subsequent operations, such as opening subkeys. </p>\n<p>If <em>view</em> is <xref href=\"Microsoft.Win32.RegistryView.Registry64\" data-throw-if-not-resolved=\"false\"></xref> but the machine is running a 32-bit operating system, the returned key will use the <xref href=\"Microsoft.Win32.RegistryView.Registry32\" data-throw-if-not-resolved=\"false\"></xref> view.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [SecurityCritical]
@@ -1216,8 +1192,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves an array of strings that contains all the subkey names.</p>\n"
   remarks: "\n<p>This method does not recursively find names. It returns the names on the base level from which it was called.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Microsoft.Win32.RegistryKey2#2"
   syntax:
     content: >-
       [SecurityCritical]
@@ -1278,8 +1252,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves the value associated with the specified name. Returns <strong>null</strong> if the name/value pair does not exist in the registry.</p>\n"
   remarks: "\n<p>A registry key can have one value that is not associated with any name. When this unnamed value is displayed in the registry editor, the string \"(Default)\" appears instead of a name. To retrieve this unnamed value, specify either <strong>null</strong> or the empty string (\"\") for <em>name</em>.</p>\n<p>When the <xref href=\"Microsoft.Win32.RegistryKey.GetValue(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method retrieves expandable string values (<xref href=\"Microsoft.Win32.RegistryValueKind.ExpandString\" data-throw-if-not-resolved=\"false\"></xref>), it expands environment strings using data from the local environment. To retrieve expandable string values from the registry on a remote computer, use the <xref href=\"Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object,Microsoft.Win32.RegistryValueOptions)\" data-throw-if-not-resolved=\"false\"></xref> method overload to specify that you do not want environment strings expanded.</p>\n<p>If a value containing expandable references to environment variables has been stored as a string (<xref href=\"Microsoft.Win32.RegistryValueKind.String\" data-throw-if-not-resolved=\"false\"></xref>), rather than as an expandable string (<xref href=\"Microsoft.Win32.RegistryValueKind.ExpandString\" data-throw-if-not-resolved=\"false\"></xref>), <xref href=\"Microsoft.Win32.RegistryKey.GetValue(System.String)\" data-throw-if-not-resolved=\"false\"></xref> does not expand it. You can expand such a string after it has been retrieved by calling the <xref href=\"System.Environment.ExpandEnvironmentVariables(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The recommended way to retrieve data from the <xref href=\"Microsoft.Win32.Registry.PerformanceData\" data-throw-if-not-resolved=\"false\"></xref> key is to use the <xref href=\"System.Diagnostics.PerformanceCounter\" data-throw-if-not-resolved=\"false\"></xref> class rather than the <see cref=\"Overload:Microsoft.Win32.RegistryKey.GetValue\"></see> method.</p>\n<p>\n<xref href=\"Microsoft.Win32.RegistryKey.GetValue(System.String)\" data-throw-if-not-resolved=\"false\"></xref> does not support reading values of type REG_NONE or REG_LINK.  In both cases, the default value (<strong>null</strong>) is returned instead of the actual value.</p>\n"
-  example:
-  - "\n<p>The following code example creates a test key and adds values of different data types to the key. The example then reads the name/value pairs and displays them to the console, using the <xref href=\"Microsoft.Win32.RegistryKey.GetValueKind(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to retrieve the corresponding registry data types.</p>Microsoft.Win32.RegistryValueKind#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1350,8 +1322,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves the value associated with the specified name. If the name is not found, returns the default value that you provide.</p>\n"
   remarks: "\n<p>Use this overload of <see cref=\"Overload:Microsoft.Win32.RegistryKey.GetValue\"></see> to handle the case where a name does not exist yet — for example, the first time your application is run. Whenever you call this overload, use the <em>defaultValue</em> parameter to specify the value to return if <em>name</em> does not exist.</p>\n<p>A registry key can have one value that is not associated with any name. When this unnamed value is displayed in the registry editor, the string \"(Default)\" appears instead of a name. To retrieve this unnamed value, specify either <strong>null</strong> or the empty string (\"\") for <em>name</em>.</p>\n<p>When the <xref href=\"Microsoft.Win32.RegistryKey.GetValue(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method retrieves expandable string values (<xref href=\"Microsoft.Win32.RegistryValueKind.ExpandString\" data-throw-if-not-resolved=\"false\"></xref>), it expands environment strings using data from the local environment. To retrieve expandable string values from the registry on a remote computer, use the <xref href=\"Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object,Microsoft.Win32.RegistryValueOptions)\" data-throw-if-not-resolved=\"false\"></xref> overload to specify that you do not want environment strings expanded.</p>\n<p>If a value containing expandable references to environment variables has been stored as a string (<xref href=\"Microsoft.Win32.RegistryValueKind.String\" data-throw-if-not-resolved=\"false\"></xref>), rather than as an expandable string (<xref href=\"Microsoft.Win32.RegistryValueKind.ExpandString\" data-throw-if-not-resolved=\"false\"></xref>), the <xref href=\"Microsoft.Win32.RegistryKey.GetValue(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method does not expand it. You can expand such a string after it has been retrieved by calling the <xref href=\"System.Environment.ExpandEnvironmentVariables(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The recommended way to retrieve data from the <xref href=\"Microsoft.Win32.Registry.PerformanceData\" data-throw-if-not-resolved=\"false\"></xref> key is to use the <xref href=\"System.Diagnostics.PerformanceCounter\" data-throw-if-not-resolved=\"false\"></xref> class rather than the <see cref=\"Overload:Microsoft.Win32.RegistryKey.GetValue\"></see> method.</p>\n<p>\n<xref href=\"Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> does not support reading values of type REG_NONE or REG_LINK.  In both cases, the default value (<strong>null</strong>) is returned instead of the actual value.</p>\n"
-  example:
-  - "\n<p>The following code example creates a test key with a value and retrieves that value. The example then attempts to retrieve a nonexistent value from the key; in this case the <xref href=\"Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method returns the specified default value.</p>Classic RegistryKey.GetValue Example#1"
   syntax:
     content: >-
       [SecurityCritical]
@@ -1425,8 +1395,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves the value associated with the specified name and retrieval options. If the name is not found, returns the default value that you provide.</p>\n"
   remarks: "\n<p>Use this overload to specify special processing of the retrieved value. For example, you can specify <xref href=\"Microsoft.Win32.RegistryValueOptions.DoNotExpandEnvironmentNames\" data-throw-if-not-resolved=\"false\"></xref> when retrieving a registry value of type <xref href=\"Microsoft.Win32.RegistryValueKind.ExpandString\" data-throw-if-not-resolved=\"false\"></xref> to retrieve the string without expanding embedded environment variables.</p>\n<p>Use the <em>defaultValue</em> parameter to specify the value to return if <em>name</em> does not exist.</p>\n<p>A registry key can have one value that is not associated with any name. When this unnamed value is displayed in the registry editor, the string \"(Default)\" appears instead of a name. To retrieve this unnamed value, specify either <strong>null</strong> or the empty string (\"\") for <em>name</em>.</p>\n<p>\n<xref href=\"Microsoft.Win32.RegistryKey.GetValue(System.String,System.Object,Microsoft.Win32.RegistryValueOptions)\" data-throw-if-not-resolved=\"false\"></xref> does not support reading values of type REG_NONE or REG_LINK.  In both cases, the default value (<strong>null</strong>) is returned instead of the actual value.</p>\n"
-  example:
-  - "\n<p>The following code sample creates a test key, adds a value with an embedded environment variable, and retrieves the value in both expanded and unexpanded forms.</p>RegistryValueOptions#1"
   syntax:
     content: >-
       [SecurityCritical]
@@ -1512,8 +1480,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves the registry data type of the value associated with the specified name.</p>\n"
   remarks: "\n<p>A registry key can have one value that is not associated with any name. When this unnamed value is displayed in the registry editor, the string \"(Default)\" appears instead of a name. To retrieve the registry data type of this unnamed value, specify either <strong>null</strong> or the empty string (\"\") for <em>name</em>.</p>\n<p>For a description of supported registry data types, please see the <xref href=\"Microsoft.Win32.RegistryValueKind\" data-throw-if-not-resolved=\"false\"></xref> enumeration.</p>\n"
-  example:
-  - "\n<p>The following code example creates a test key and adds values of different data types to the key. The example then reads the name/value pairs and displays them to the console, using the <xref href=\"Microsoft.Win32.RegistryKey.GetValueKind(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to retrieve the corresponding registry data types.</p>Microsoft.Win32.RegistryValueKind#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1586,8 +1552,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves an array of strings that contains all the value names associated with this key.</p>\n"
   remarks: "\n<p>If no value names for the key are found, an empty array is returned.</p>\n<p>A registry key can have a default value — that is, a name/value pair in which the name is the empty string (\"\"). If a default value has been set for a registry key, the array returned by the <xref href=\"Microsoft.Win32.RegistryKey.GetValueNames\" data-throw-if-not-resolved=\"false\"></xref> method includes the empty string.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Microsoft.Win32.RegistryKey2#2"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1647,8 +1611,6 @@ items:
   - Microsoft.Win32.Registry
   namespace: Microsoft.Win32
   summary: "\n<p>Opens a new <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> that represents the requested key on the local machine with the specified view.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1711,8 +1673,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves a subkey as read-only.</p>\n"
   remarks: "\n<p>You must open a key before it can be manipulated with other methods and properties. To modify a key, you must open it with an overload of the <see cref=\"Overload:Microsoft.Win32.RegistryKey.OpenSubKey\"></see> method that allows you to specify write access, such as the <xref href=\"Microsoft.Win32.RegistryKey.OpenSubKey(System.String,Microsoft.Win32.RegistryKeyPermissionCheck)\" data-throw-if-not-resolved=\"false\"></xref> overload or the <xref href=\"Microsoft.Win32.RegistryKey.OpenSubKey(System.String,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> overload.</p>\n<p>If the specified subkey cannot be found, then <strong>null</strong> is returned.</p>\n<p>In order to use the <xref href=\"Microsoft.Win32.RegistryKey.OpenSubKey(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method, you must have an instance of <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref>. To get an instance of <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref>, use the one of the static members of the <xref href=\"Microsoft.Win32.Registry\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - "\n<p>The following code example creates a test key and uses the <see cref=\"Overload:Microsoft.Win32.RegistryKey.OpenSubKey\"></see> method to open it, demonstrating both overloads of the method.</p>RegistryKey.OpenSubKey#1"
   syntax:
     content: >-
       [SecurityCritical]
@@ -1786,8 +1746,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves a specified subkey, and specifies whether write access is to be applied to the key. </p>\n"
   remarks: "\n<p>If the requested key does not exist, this method returns <strong>null</strong> instead of throwing an exception.</p>\n<p>If <em>writable</em> is <strong>true</strong>, the key will be opened for reading and writing, otherwise, the key will be opened as read-only.</p>\n<p>In order to use the <xref href=\"Microsoft.Win32.RegistryKey.OpenSubKey(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method, you must have an instance of the <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> method. To get an instance of <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref>, use one of the static members of the <xref href=\"Microsoft.Win32.Registry\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - "\n<p>The following code example creates a test key and uses the <see cref=\"Overload:Microsoft.Win32.RegistryKey.OpenSubKey\"></see> method to open it, demonstrating both overloads of the method.</p>RegistryKey.OpenSubKey#1"
   syntax:
     content: >-
       [SecurityCritical]
@@ -1914,8 +1872,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Sets the specified name/value pair.</p>\n"
   remarks: "\n<p>Because many values can be stored in each key in the registry, you must use the <em>name</em> parameter to specify the particular value you want to set.</p>\n<p>A registry key can have one value that is not associated with any name. When this unnamed value is displayed in the registry editor, the string \"(Default)\" appears instead of a name. To set this unnamed value, specify either <strong>null</strong> or the empty string (\"\") for <em>name</em>.</p>\n<p>In order to set values in a key, you must open the key with write access. After you have opened a key with write access, you can change any of the name/value pairs in that key.</p>\n<p>If the specified <em>name</em> does not exist in the key, it is created and the associated value is set to <em>value</em>.</p>\n<p>This overload of <see cref=\"Overload:Microsoft.Win32.RegistryKey.SetValue\"></see> stores 64-bit integers as strings (<xref href=\"Microsoft.Win32.RegistryValueKind.String\" data-throw-if-not-resolved=\"false\"></xref>). To store 64-bit numbers as <xref href=\"Microsoft.Win32.RegistryValueKind.QWord\" data-throw-if-not-resolved=\"false\"></xref> values, use the <xref href=\"Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object,Microsoft.Win32.RegistryValueKind)\" data-throw-if-not-resolved=\"false\"></xref> overload that specifies <xref href=\"Microsoft.Win32.RegistryValueKind\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This overload of <see cref=\"Overload:Microsoft.Win32.RegistryKey.SetValue\"></see> stores all string values as <xref href=\"Microsoft.Win32.RegistryValueKind.String\" data-throw-if-not-resolved=\"false\"></xref>, even if they contain expandable references to environment variables. To save string values as expandable strings (<xref href=\"Microsoft.Win32.RegistryValueKind.ExpandString\" data-throw-if-not-resolved=\"false\"></xref>), use the <xref href=\"Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object,Microsoft.Win32.RegistryValueKind)\" data-throw-if-not-resolved=\"false\"></xref> overload that specifies <xref href=\"Microsoft.Win32.RegistryValueKind\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Numeric types other than 32-bit integers are stored as strings by this method overload. Enumeration elements are stored as strings containing the element names.</p>\n<p>Do not expose <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> objects in such a way that a malicious program could create thousands of meaningless subkeys or key/value pairs. For example, do not allow callers to enter arbitrary keys or values.</p>\n<p>On Windows 98 and Windows Millennium Edition the registry is not Unicode, and not all Unicode characters are valid for all code pages. A Unicode character that is invalid for the current code page is replaced by the best available match. No exception is thrown.</p>\n"
-  example:
-  - "\n<p>The following code example shows how the <xref href=\"Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method determines the registry data type when it sets values. The example creates a test key and adds values of different data types to the key. The example then reads the name/value pairs and displays them to the console, using the <xref href=\"Microsoft.Win32.RegistryKey.GetValueKind(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to display the corresponding registry data types.</p>Microsoft.Win32.RegistryKey.SetValue1#1"
   syntax:
     content: public void SetValue(string name, object value)
     content.vb: Public Sub SetValue(name As String, value As Object)
@@ -1984,8 +1940,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Sets the value of a name/value pair in the registry key, using the specified registry data type.</p>\n"
   remarks: "\n<p>Because many values can be stored in each key in the registry, you must use the <em>name</em> parameter to specify the particular value you want to set.</p>\n<p>A registry key can have one value that is not associated with any name. When this unnamed value is displayed in the registry editor, the string \"(Default)\" appears instead of a name. To set this unnamed value, specify either <strong>null</strong> or the empty string (\"\") for <em>name</em>.</p>\n<p>In order to set values in a key, you must open the key with write access. After you have opened a key with write access, you can change any of the name/value pairs in that key.</p>\n<p>If the specified <em>name</em> does not exist in the key, it is created, and the associated value is set to <em>value</em>.</p>\n<p>Specifying the registry data type <xref href=\"Microsoft.Win32.RegistryValueKind.Unknown\" data-throw-if-not-resolved=\"false\"></xref> is the same as using the <xref href=\"Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> overload.</p>\n<p>If the type of the specified <em>value</em> does not match the specified <em>valueKind</em>, and the data cannot be converted, <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref> is thrown. For example, you can store a <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref> as a <xref href=\"Microsoft.Win32.RegistryValueKind.DWord\" data-throw-if-not-resolved=\"false\"></xref>, but only if its value is less than the maximum value of a <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>. You cannot store a single string value as a <xref href=\"Microsoft.Win32.RegistryValueKind.MultiString\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If boxed values are passed for <xref href=\"Microsoft.Win32.RegistryValueKind.DWord\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"Microsoft.Win32.RegistryValueKind.QWord\" data-throw-if-not-resolved=\"false\"></xref>, the conversion is done using the invariant culture.</p>\n<p>Do not expose <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> objects in such a way that a malicious program could create thousands of meaningless subkeys or key/value pairs. For example, do not allow callers to enter arbitrary keys or values.</p>\n<p>On Windows 98 and Windows Millennium Edition the registry is not Unicode, and not all Unicode characters are valid for all code pages. A Unicode character that is invalid for the current code page is replaced by the best available match. No exception is thrown.</p>\n"
-  example:
-  - "\n<p>The following code example creates a test key and uses the <xref href=\"Microsoft.Win32.RegistryKey.SetValue(System.String,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method to store several values, specifying the registry data type for each value. The example then reads the name/value pairs and displays them to the console, using the <xref href=\"Microsoft.Win32.RegistryKey.GetValueKind(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to display the corresponding registry data types.</p>Microsoft.Win32.RegistryValueKind#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -2069,8 +2023,6 @@ items:
   namespace: Microsoft.Win32
   summary: "\n<p>Retrieves a string representation of this key.</p>\n"
   remarks: "\n<p>The return value includes the registry path of the specified key and the hexadecimal value for the key. The registry path includes the absolute root of the specified key, always starts at one of the base keys for the registry, for example, HKEY_LOCAL_MACHINE.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"Microsoft.Win32.RegistryKey\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Microsoft.Win32.RegistryKey2#4"
   syntax:
     content: >-
       [SecuritySafeCritical]

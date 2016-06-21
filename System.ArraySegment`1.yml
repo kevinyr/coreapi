@@ -46,8 +46,6 @@ items:
   namespace: System
   summary: "\n<p>Delimits a section of a one-dimensional array.</p>\n"
   remarks: "\n<p>\n<xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> is a wrapper around an array that delimits a range of elements in that array. Multiple <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instances can refer to the same original array and can overlap. The original array must be one-dimensional and must have zero-based indexing. </p>\n<p>\n<xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> implements the <xref href=\"System.Collections.Generic.IReadOnlyCollection`1\" data-throw-if-not-resolved=\"false\"></xref> interface starting with the .NET Framework 4.6; in previous versions of the .NET Framework, the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure did not implement this interface. </p>\n<p>The <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure is useful whenever the elements of an array will be manipulated in distinct segments. For example: </p>\n<ul><li>\n<p>You can pass an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> object that represents only a portion of an array as an argument to a method, rather than call a relatively expensive method like <xref href=\"System.Array.Copy(System.Array,System.Int32,System.Array,System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to pass a copy of a portion of an array.  </p>\n</li><li>\n<p>In a multithreaded app, you can use the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure to have each thread operate on only a portion of the array. </p>\n</li><li>\n<p>For task-based asynchronous operations, you can use an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> object to ensure that each task operates on a distinct segment of the array. The following example divides an array into individual segments with up to ten elements. Each element in the segment is multiplied by its segment number. The result shows that using the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> class to manipulate elements in this way changes the values of its underlying array. </p>System.ArraySegment#2</li></ul>\n<p>Note, however, that although the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure can be used to divide an array into distinct segments, the segments are not completely independent of one another. The <xref href=\"System.ArraySegment`1.Array\" data-throw-if-not-resolved=\"false\"></xref> property returns the entire original array, not a copy of the array; therefore, changes made to the array returned by the <xref href=\"System.ArraySegment`1.Array\" data-throw-if-not-resolved=\"false\"></xref> property are made to the original array. If this is undesirable, you should perform operations on a copy of the array, rather than an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> object that represents a portion of the array. </p>\n<p>The<xref href=\"System.ArraySegment`1.Equals(System.ArraySegment{`0})\" data-throw-if-not-resolved=\"false\"></xref> method and the equality and inequality operators test for reference equality when they compare two <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> objects. For two <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> objects to be considered equal, they must meet all of the following conditions: </p>\n<ul><li>\n<p>Reference the same array. </p>\n</li><li>\n<p>Begin at the same index in the array. </p>\n</li><li>\n<p>Have the same number of elements. </p>\n</li></ul>\n<p>If you want to retrieve an element by its index in the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> object, you must cast it to an <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> object and retrieve it or modify it by using the <xref href=\"System.Collections.Generic.IList`1.Item(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> property. The following example retrieves the element in an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> object that delimits a section of a string array. </p>System.ArraySegment.Class#1"
-  example:
-  - "\n<p>The following code example passes an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure to a method.</p>System.ArraySegment#1"
   syntax:
     content: >-
       [Serializable]
@@ -113,8 +111,6 @@ items:
   namespace: System
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure that delimits all the elements in the specified array.</p>\n"
   remarks: "\n<p>This constructor creates an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> that delimits all the elements of <em>array</em>. That is, the <xref href=\"System.ArraySegment`1.Offset\" data-throw-if-not-resolved=\"false\"></xref> property of the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> is 0 and its <xref href=\"System.ArraySegment`1.Count\" data-throw-if-not-resolved=\"false\"></xref> property is the length of <em>array</em>. To create an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> that delimits only part of an array, use the <xref href=\"System.ArraySegment`1.#ctor(`0[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor.</p>\n<p>The original array must be one-dimensional and must have zero-based indexing.</p>\n<p>Multiple <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instances can refer to the same original array and can overlap.</p>\n"
-  example:
-  - "\n<p>The following code example passes an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure to a method.</p>System.ArraySegment#1"
   syntax:
     content: public ArraySegment(T[] array)
     content.vb: Public Sub New(array As T())
@@ -158,8 +154,6 @@ items:
   namespace: System
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure that delimits the specified range of the elements in the specified array.</p>\n"
   remarks: "\n<p>The original array must be one-dimensional and must have zero-based indexing.</p>\n<p>Multiple <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instances can refer to the same original array and can overlap.</p>\n"
-  example:
-  - "\n<p>The following code example passes an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure to a method.</p>System.ArraySegment#1"
   syntax:
     content: public ArraySegment(T[] array, int offset, int count)
     content.vb: Public Sub New(array As T(), offset As Integer, count As Integer)
@@ -215,8 +209,6 @@ items:
   namespace: System
   summary: "\n<p>Gets the original array containing the range of elements that the array segment delimits.</p>\n"
   remarks: "\n<p>The <xref href=\"System.ArraySegment`1.Array\" data-throw-if-not-resolved=\"false\"></xref> property returns the original array, not a copy of the array; therefore, changes made through the property are made directly to the original array. </p>\n"
-  example:
-  - "\n<p>The following code example passes an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> to a method.</p>System.ArraySegment#1"
   syntax:
     content: public T[] Array { get; }
     content.vb: Public ReadOnly Property Array As T()
@@ -256,8 +248,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Gets the number of elements in the range delimited by the array segment.</p>\n"
-  example:
-  - "\n<p>The following code example passes an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure to a method.</p>System.ArraySegment#1"
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
@@ -302,8 +292,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Gets the position of the first element in the range delimited by the array segment, relative to the start of the original array.</p>\n"
-  example:
-  - "\n<p>The following code example passes an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure to a method.</p>System.ArraySegment#1"
   syntax:
     content: public int Offset { get; }
     content.vb: Public ReadOnly Property Offset As Integer

@@ -209,8 +209,6 @@ items:
   namespace: System.Security.Cryptography
   summary: "\n<p>Gets a safe handle that represents a native key (NCRYPT_KEY_HANDLE). </p>\n"
   remarks: "\n<p>The returned handle is a duplicate of the handle in the current <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> object. It will persist even if the current <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> is disposed, and must be disposed of separately. </p>\n<p>You can release the current object and the handle in any order without any adverse effects. </p>\n"
-  example:
-  - 
   syntax:
     content: public SafeNCryptKeyHandle Handle { get; }
     content.vb: Public ReadOnly Property Handle As SafeNCryptKeyHandle
@@ -500,8 +498,6 @@ items:
   namespace: System.Security.Cryptography
   summary: "\n<p>Gets a native handle (an NCRYPT_PROV_HANDLE) to the key storage provider (KSP).</p>\n"
   remarks: "\n<p>The returned handle is a duplicate of the handle in the current <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> object. It will persist even if the current <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> is disposed, and must be disposed of separately.</p>\n<p>You can release the current object and the handle in any order without any adverse effects.</p>\n"
-  example:
-  - 
   syntax:
     content: public SafeNCryptProviderHandle ProviderHandle { get; }
     content.vb: Public ReadOnly Property ProviderHandle As SafeNCryptProviderHandle
@@ -613,8 +609,6 @@ items:
   namespace: System.Security.Cryptography
   summary: "\n<p>Creates a <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> object that can be used with the specified algorithm.</p>\n"
   remarks: "\n<p>This overload creates a key without a name, which means that the key is ephemeral (that is, it will not be persisted). It also creates a default <xref href=\"System.Security.Cryptography.CngKeyCreationParameters\" data-throw-if-not-resolved=\"false\"></xref> object that specifies a default <xref href=\"System.Security.Cryptography.CngProvider\" data-throw-if-not-resolved=\"false\"></xref> and other advanced parameters for the key.</p>\n"
-  example:
-  - 
   syntax:
     content: public static CngKey Create(CngAlgorithm algorithm)
     content.vb: Public Shared Function Create(algorithm As CngAlgorithm) As CngKey
@@ -780,8 +774,6 @@ items:
   namespace: System.Security.Cryptography
   summary: "\n<p>Removes the key that is associated with the object.</p>\n"
   remarks: "\n<ul><li>\n<p>When you call the <xref href=\"System.Security.Cryptography.CngKey.Delete\" data-throw-if-not-resolved=\"false\"></xref> method on an ephemeral key, it closes the handle to the key.</p>\n</li></ul>\n<p>When you call the <xref href=\"System.Security.Cryptography.CngKey.Delete\" data-throw-if-not-resolved=\"false\"></xref> method on a named key, the <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> object can no longer be used after the named key is deleted.</p>\n"
-  example:
-  - 
   syntax:
     content: public void Delete()
     content.vb: Public Sub Delete
@@ -1057,8 +1049,6 @@ items:
   namespace: System.Security.Cryptography
   summary: "\n<p>Gets a property, given a name and a set of property options.</p>\n"
   remarks: "\n<p>The purpose of this method is to return the value of an arbitrary property of the key. The typical way to retrieve properties is by using the property accessors provided by the <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> class. <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> provides wrappers for several, but not all, properties. The <xref href=\"System.Security.Cryptography.CngKey.GetProperty(System.String,System.Security.Cryptography.CngPropertyOptions)\" data-throw-if-not-resolved=\"false\"></xref> method is primarily used to access the value of a property that is not wrapped.</p>\n<p>This method is useful in the following cases:</p>\n<ul><li>\n<p>A new version of the operating system supports a new Cryptography Next Generation (CNG) key property that does not have a wrapper.</p>\n</li><li>\n<p>You add a custom property to the key.</p>\n</li></ul>\n<p>The <em>options</em> parameter is specifically used to indicate the following:</p>\n<ul><li>\n<p>Whether the property is built-in, or custom.</p>\n</li><li>\n<p>Whether the property should be persisted with the key.</p>\n</li></ul>\n<p>These options must match the value that the property was set with, or the property will not be found.</p>\n<p>\n<xref href=\"System.Security.Cryptography.CryptographicException\" data-throw-if-not-resolved=\"false\"></xref> is thrown if the property cannot be found. You should call the <xref href=\"System.Security.Cryptography.CngKey.HasProperty(System.String,System.Security.Cryptography.CngPropertyOptions)\" data-throw-if-not-resolved=\"false\"></xref> method first to avoid the exception instead of wrapping the method call in a <strong>try/catch</strong> block. </p>\n"
-  example:
-  - 
   syntax:
     content: public CngProperty GetProperty(string name, CngPropertyOptions options)
     content.vb: Public Function GetProperty(name As String, options As CngPropertyOptions) As CngProperty
@@ -1270,8 +1260,6 @@ items:
   namespace: System.Security.Cryptography
   summary: "\n<p>Creates an instance of an <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> object by using a handle to an existing key.</p>\n"
   remarks: "\n<p>This overload enables advanced users to use the CNG classes even if they rely on platform invoke or the managed interop capability of C++. For example, if you have a native library that returns the key as an NCRYPT_KEY_HANDLE, this overload lets you create a managed wrapper around the key and use the CNG classes to manipulate it.</p>\n<p>When you open a key by using its handle, you cannot determine the key's ephemeral state and must specify it yourself. Several properties of the <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> class rely on this value to be correct. Therefore, make sure that you pass the correct flag value to the <see cref=\"Overload:System.Security.Cryptography.CngKey.Open\"></see> methods.</p>\n"
-  example:
-  - 
   syntax:
     content: public static CngKey Open(SafeNCryptKeyHandle keyHandle, CngKeyHandleOpenOptions keyHandleOpenOptions)
     content.vb: Public Shared Function Open(keyHandle As SafeNCryptKeyHandle, keyHandleOpenOptions As CngKeyHandleOpenOptions) As CngKey
@@ -1382,8 +1370,6 @@ items:
   namespace: System.Security.Cryptography
   summary: "\n<p>Creates an instance of an <xref href=\"System.Security.Cryptography.CngKey\" data-throw-if-not-resolved=\"false\"></xref> object that represents an existing named key, using the specified key storage provider (KSP).</p>\n"
   remarks: "\n<p>Unlike the <xref href=\"System.Security.Cryptography.CngKey.Open(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method overload, this overload lets you specify the provider. In addition, a default <xref href=\"System.Security.Cryptography.CngKeyOpenOptions\" data-throw-if-not-resolved=\"false\"></xref> value of <xref href=\"System.Security.Cryptography.CngKeyOpenOptions.None\" data-throw-if-not-resolved=\"false\"></xref> is created and bound to the key.</p>\n"
-  example:
-  - 
   syntax:
     content: public static CngKey Open(string keyName, CngProvider provider)
     content.vb: Public Shared Function Open(keyName As String, provider As CngProvider) As CngKey
@@ -1497,8 +1483,6 @@ items:
   namespace: System.Security.Cryptography
   summary: "\n<p>Sets a named property on the key.</p>\n"
   remarks: "\n<p>This method enables you to add a new custom property to an existing key by using a <xref href=\"System.Security.Cryptography.CngProperty\" data-throw-if-not-resolved=\"false\"></xref> object. The options set on the <xref href=\"System.Security.Cryptography.CngProperty\" data-throw-if-not-resolved=\"false\"></xref> object must exactly match the options in the <xref href=\"System.Security.Cryptography.CngKey.GetProperty(System.String,System.Security.Cryptography.CngPropertyOptions)\" data-throw-if-not-resolved=\"false\"></xref> call. Otherwise, the property will not be found.</p>\n"
-  example:
-  - 
   syntax:
     content: public void SetProperty(CngProperty property)
     content.vb: Public Sub SetProperty(property As CngProperty)

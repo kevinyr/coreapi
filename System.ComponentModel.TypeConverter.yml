@@ -62,8 +62,6 @@ items:
   namespace: System.ComponentModel
   summary: "\n<p>Provides a unified way of converting types of values to other types, as well as for accessing standard values and subproperties.</p>\n"
   remarks: "\n<p>The most common type of converter is one that converts to and from a text representation. The type converter for a class is bound to the class with a <xref href=\"System.ComponentModel.TypeConverterAttribute\" data-throw-if-not-resolved=\"false\"></xref>. Unless this attribute is overridden, all classes that inherit from this class use the same type converter as the base class.</p>\n<p>For general type system purposes, do not access a type converter directly. Instead, access the appropriate converter by using <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref>. For more information, see the code examples provided.</p>\n<p>Note   For XAML purposes, a XAML processor searches for the <xref href=\"System.ComponentModel.TypeConverterAttribute\" data-throw-if-not-resolved=\"false\"></xref> directly, instead of going through <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref>. For cases where you do want a <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> instance from code, or where you create a shared instance in WPF resources, it is acceptable to construct it directly without referencing <xref href=\"System.ComponentModel.TypeDescriptor\" data-throw-if-not-resolved=\"false\"></xref> or other reflection and type system support.</p>\n<p>Classes derived from <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> are often referenced as part of how a XAML processor converts an attribute or initialization text value from markup (which is inherently a string) and generates an object for a run-time representation. Custom type authors that intend to support a type conversion behavior for XAML typically implement a <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> class that supports their own unique <strong>ConvertFrom</strong> behavior from a string. This behavior enables type conversion from the string provided as a XAML attribute value and provides a XAML processor with the support needed to create an object from the string, so that the object can be produced in a parsed object graph. Custom types or members of custom types are indicated by applying <xref href=\"System.ComponentModel.TypeConverterAttribute\" data-throw-if-not-resolved=\"false\"></xref> to the definitions, with the attribute referencing the custom <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> implementation. For more information, see Type Converters for XAML Overview.</p>\n"
-  example:
-  - "\n<p>The following code example shows how to create an instance of a type converter and bind it to a class. The class implementing the converter, <code>MyClassConverter</code>, must inherit from the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> class.</p>Classic TypeConverter Example#1<p>When you have a property that has an enumeration, check to see whether an enumeration value is valid before setting the property. The next code example requires that an enumeration called <code>MyPropertyEnum</code> has been declared.</p>Classic TypeConverter Example#2<p>Another common type converter usage is to convert an object to a string. The following code example prints out the name of the <xref href=\"System.Drawing.Color\" data-throw-if-not-resolved=\"false\"></xref> stored in the variable <code>c</code>.</p>Classic TypeConverter Example#3<p>You can also use a type converter to convert a value from its name, as shown in the next code example.</p>Classic TypeConverter Example#4<p>In the following code example, you can use a type converter to print out the set of standard values that the object supports.</p>Classic TypeConverter Example#5"
   syntax:
     content: public class TypeConverter
     content.vb: Public Class TypeConverter
@@ -588,8 +586,6 @@ items:
   namespace: System.ComponentModel
   summary: "\n<p>Converts the specified text to an object.</p>\n"
   remarks: "\n<p>The default implementation always returns <strong>null</strong>.</p>\n"
-  example:
-  - "\n<p>For an example of this function, see the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public object ConvertFromString(string text)
     content.vb: Public Function ConvertFromString(text As String) As Object
@@ -930,8 +926,6 @@ items:
   namespace: System.ComponentModel
   summary: "\n<p>Converts the specified value to a string representation.</p>\n"
   remarks: "\n<p>Depending on the implementation of the value formatter, it might be possible to pass the returned string back into the value formatter to re-create an instance of the object.</p>\n"
-  example:
-  - "\n<p>For an example on this function, see the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public string ConvertToString(object value)
     content.vb: Public Function ConvertToString(value As Object) As String
@@ -1457,8 +1451,6 @@ items:
   namespace: System.ComponentModel
   summary: "\n<p>Returns a collection of standard values for the data type this type converter is designed for when provided with a format context.</p>\n"
   remarks: "\n<p>As implemented in <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref>, this method always returns <strong>null</strong>.</p>\n"
-  example:
-  - "\n<p>For an example on this function, see the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public virtual TypeConverter.StandardValuesCollection GetStandardValues(ITypeDescriptorContext context)
     content.vb: Public Overridable Function GetStandardValues(context As ITypeDescriptorContext) As TypeConverter.StandardValuesCollection
@@ -1650,8 +1642,6 @@ items:
   namespace: System.ComponentModel
   summary: "\n<p>Returns whether the given value object is valid for this type and for the specified context.</p>\n"
   remarks: "\n<p>Use the <em>context</em> parameter to extract additional information about the environment from which this converter is invoked. This parameter can be <strong>null</strong>, so always check it. Also, properties on the context object can return <strong>null</strong>. </p>\n<p>Starting in .NET Framework 4, the <xref href=\"System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method catches exceptions from the <see cref=\"Overload:System.ComponentModel.TypeConverter.CanConvertFrom\"></see> and <see cref=\"Overload:System.ComponentModel.TypeConverter.ConvertFrom\"></see> methods. If the input value type causes <see cref=\"Overload:System.ComponentModel.TypeConverter.CanConvertFrom\"></see> to return <strong>false</strong>, or if the input value causes <see cref=\"Overload:System.ComponentModel.TypeConverter.ConvertFrom\"></see> to raise an exception, the <xref href=\"System.ComponentModel.TypeConverter.IsValid(System.ComponentModel.ITypeDescriptorContext,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method returns <strong>false</strong>. </p>\n<p>To enable the legacy behavior, insert the following lines into the configuration file of the application, for example, application1.exe.config. </p>\n<pre><code class=\"xml\"><configuration>\n<appSettings>\n<add key=\"UseCompatibleTypeConverterBehavior\" value=\"true\" />\n</appSettings>\n</configuration></code></pre>\n<p></p>\n"
-  example:
-  - "\n<p>For an example of this function, see the <xref href=\"System.ComponentModel.TypeConverter\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public virtual bool IsValid(ITypeDescriptorContext context, object value)
     content.vb: Public Overridable Function IsValid(context As ITypeDescriptorContext, value As Object) As Boolean

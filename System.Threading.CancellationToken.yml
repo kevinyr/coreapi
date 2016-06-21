@@ -38,8 +38,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Propagates notification that operations should be canceled.</p>\n"
   remarks: "\n<p>A <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> enables cooperative cancellation between threads, thread pool work items, or <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects. You create a cancellation token by instantiating a <xref href=\"System.Threading.CancellationTokenSource\" data-throw-if-not-resolved=\"false\"></xref> object, which manages cancellation tokens retrieved from its <xref href=\"System.Threading.CancellationTokenSource.Token\" data-throw-if-not-resolved=\"false\"></xref> property. You then  pass the cancellation token to any number of threads, tasks, or operations that should receive notice of cancellation. The token cannot be used to initiate cancellation. When the owning object calls <xref href=\"System.Threading.CancellationTokenSource.Cancel\" data-throw-if-not-resolved=\"false\"></xref>, the <xref href=\"System.Threading.CancellationToken.IsCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> property on every copy of the cancellation token is set to <strong>true</strong>. The objects that receive the notification can respond in whatever manner is appropriate.</p>\n<p>For more information and code examples see Cancellation in Managed Threads.</p>\n"
-  example:
-  - "\n<p>The following example uses a random number generator to emulate a data collection application that reads 10 integral values from eleven different instruments. A value of zero indicates that the measurement has failed for one instrument, in which case the operation should be cancelled and no overall mean should be computed. </p>\n<p>To handle the possible cancellation of the operation, the example instantiates a <xref href=\"System.Threading.CancellationTokenSource\" data-throw-if-not-resolved=\"false\"></xref> object that generates a cancellation token which is passed to a <xref href=\"System.Threading.Tasks.TaskFactory\" data-throw-if-not-resolved=\"false\"></xref> object. The <xref href=\"System.Threading.Tasks.TaskFactory\" data-throw-if-not-resolved=\"false\"></xref> object in turn passes the cancellation token to each of the tasks responsible for collecting readings for a particular instrument. The <xref href=\"System.Threading.Tasks.TaskFactory.ContinueWhenAll``2(System.Threading.Tasks.Task{``0}[],System.Func{System.Threading.Tasks.Task{``0}[],``1},System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method is called to ensure that the mean is computed only after all readings have been gathered successfully. If a task has not because it has been cancelled, the call to the <xref href=\"System.Threading.Tasks.TaskFactory.ContinueWhenAll``2(System.Threading.Tasks.Task{``0}[],System.Func{System.Threading.Tasks.Task{``0}[],``1},System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method throws an exception. </p>System.Threading.CancellationTokenSource.Class#1"
   syntax:
     content: >-
       [ComVisible(false)]
@@ -97,8 +95,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Initializes the <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>Tokens created with this constructor will remain in the canceled state specified by the <em>canceled</em> parameter. If <em>canceled</em> is <strong>false</strong>, both <xref href=\"System.Threading.CancellationToken.CanBeCanceled\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Threading.CancellationToken.IsCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> will be <strong>false</strong>.</p>\n<p> If <em>canceled</em> is <strong>true</strong>, both <xref href=\"System.Threading.CancellationToken.CanBeCanceled\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Threading.CancellationToken.IsCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> will be <strong>true</strong>.</p>\n"
-  example:
-  - 
   syntax:
     content: public CancellationToken(bool canceled)
     content.vb: Public Sub New(canceled As Boolean)
@@ -133,8 +129,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Gets whether this token is capable of being in the canceled state. </p>\n"
   remarks: "\n<p>If <xref href=\"System.Threading.CancellationToken.CanBeCanceled\" data-throw-if-not-resolved=\"false\"></xref> returns <strong>false</strong>, it is guaranteed that the token will never transition into a canceled state, meaning that <xref href=\"System.Threading.CancellationToken.IsCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> will never return <strong>true</strong>. A cancellation token that cannot be canceled is returned by the static <xref href=\"System.Threading.CancellationToken.None\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>You can optionally use this property to determine whether a cancellation token can be canceled before examing the value of the <xref href=\"System.Threading.CancellationToken.IsCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether it has been canceled.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool CanBeCanceled { get; }
     content.vb: Public ReadOnly Property CanBeCanceled As Boolean
@@ -171,8 +165,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Gets whether cancellation has been requested for this token.</p>\n"
   remarks: "\n<p> This property indicates whether cancellation has been requested for this token, either through the token initially being constructed in a canceled state, or through calling <xref href=\"System.Threading.CancellationTokenSource.Cancel\" data-throw-if-not-resolved=\"false\"></xref> on the token's associated <xref href=\"System.Threading.CancellationTokenSource\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>  If this property is <strong>true</strong>, it only guarantees that cancellation has been requested. It does not guarantee that every registered handler has finished executing, nor that cancellation requests have finished propagating to all registered handlers. Additional synchronization may be required, particularly in situations where related objects are being canceled concurrently.</p>\n"
-  example:
-  - "\n<p>The following is a simple example that executes a server process until the <xref href=\"System.Threading.CancellationToken.IsCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> property returns <strong>true</strong>. </p>System.Threading.Tasks.CancellationToken.IsCancellationRequested#12<p>The example instantiates a <xref href=\"System.Threading.CancellationTokenSource\" data-throw-if-not-resolved=\"false\"></xref> object, which controls access to the cancellation token. It then defines two thread procedures. The first is defined as a lambda expression that pools the keyboard and, when the \"C\" key is pressed, calls <xref href=\"System.Threading.CancellationTokenSource.Cancel\" data-throw-if-not-resolved=\"false\"></xref> to set the cancellation token to the cancelled state. The second is a parameterized method, <code>ServerClass.StaticMethod</code>, that executes a loop until the <xref href=\"System.Threading.CancellationToken.IsCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> property is <strong>true</strong>. </p><p>The main thread then starts the two threads and blocks until the thread that executes the <code>ServerClass.StaticMethod</code> method terminates. </p>"
   syntax:
     content: public bool IsCancellationRequested { get; }
     content.vb: Public ReadOnly Property IsCancellationRequested As Boolean
@@ -209,8 +201,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Returns an empty <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> value.</p>\n"
   remarks: "\n<p>The cancellation token returned by this property cannot be canceled; that is, its <xref href=\"System.Threading.CancellationToken.CanBeCanceled\" data-throw-if-not-resolved=\"false\"></xref> property is <strong>false</strong>. </p>\n<p>You can also use the C#  default(CancellationToken) statement to create an empty cancellation token. </p>\n"
-  example:
-  - 
   syntax:
     content: public static CancellationToken None { get; }
     content.vb: Public Shared ReadOnly Property None As CancellationToken
@@ -249,8 +239,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Gets a <xref href=\"System.Threading.WaitHandle\" data-throw-if-not-resolved=\"false\"></xref> that is signaled when the token is canceled.</p>\n"
   remarks: "\n<p>Accessing this property causes a <xref href=\"System.Threading.WaitHandle\" data-throw-if-not-resolved=\"false\"></xref> to be instantiated. It is preferable to only use this property when necessary, and to then dispose the associated <xref href=\"System.Threading.CancellationTokenSource\" data-throw-if-not-resolved=\"false\"></xref> instance at the earliest opportunity (disposing the source will dispose of this allocated handle). The handle should not be closed or disposed directly.</p>\n"
-  example:
-  - 
   syntax:
     content: public WaitHandle WaitHandle { get; }
     content.vb: Public ReadOnly Property WaitHandle As WaitHandle
@@ -290,8 +278,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading
   summary: "\n<p>Determines whether the current <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> instance is equal to the specified <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public override bool Equals(object other)
     content.vb: Public Overrides Function Equals(other As Object) As Boolean
@@ -335,8 +321,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading
   summary: "\n<p>Determines whether the current <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> instance is equal to the specified token.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool Equals(CancellationToken other)
     content.vb: Public Function Equals(other As CancellationToken) As Boolean
@@ -373,8 +357,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading
   summary: "\n<p>Serves as a hash function for a <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public override int GetHashCode()
     content.vb: Public Overrides Function GetHashCode As Integer
@@ -410,8 +392,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading
   summary: "\n<p>Determines whether two <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> instances are equal.</p>\n"
-  example:
-  - 
   syntax:
     content: public static bool operator ==(CancellationToken left, CancellationToken right)
     content.vb: Public Shared Operator =(left As CancellationToken, right As CancellationToken) As Boolean
@@ -457,8 +437,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading
   summary: "\n<p>Determines whether two <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> instances are not equal.</p>\n"
-  example:
-  - 
   syntax:
     content: public static bool operator !=(CancellationToken left, CancellationToken right)
     content.vb: Public Shared Operator <>(left As CancellationToken, right As CancellationToken) As Boolean
@@ -505,8 +483,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Registers a delegate that will be called when this <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> is canceled.</p>\n"
   remarks: "\n<p> If this token is already in the canceled state, the delegate will be run immediately and synchronously. Any exception the delegate generates will be propagated out of this method call.</p>\n<p>  The current <xref href=\"System.Threading.ExecutionContext\" data-throw-if-not-resolved=\"false\"></xref>, if one exists, will be captured along with the delegate and will be used when executing it.</p>\n<p></p>\n"
-  example:
-  - 
   syntax:
     content: public CancellationTokenRegistration Register(Action callback)
     content.vb: Public Function Register(callback As Action) As CancellationTokenRegistration
@@ -551,8 +527,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Registers a delegate that will be called when this <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> is canceled.</p>\n"
   remarks: "\n<p> If this token is already in the canceled state, the delegate will be run immediately and synchronously. Any exception the delegate generates will be propogated out of this method call.</p>\n<p>If <em>useSynchronizationContext</em> is <strong>true</strong>, the current <xref href=\"System.Threading.ExecutionContext\" data-throw-if-not-resolved=\"false\"></xref>, if one exists, will be captured along with the delegate and will be used when executing it.</p>\n<p></p>\n"
-  example:
-  - 
   syntax:
     content: public CancellationTokenRegistration Register(Action callback, bool useSynchronizationContext)
     content.vb: Public Function Register(callback As Action, useSynchronizationContext As Boolean) As CancellationTokenRegistration
@@ -600,8 +574,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Registers a delegate that will be called when this <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> is canceled.</p>\n"
   remarks: "\n<p> If this token is already in the canceled state, the delegate will be run immediately and synchronously. Any exception the delegate generates will be propogated out of this method call.</p>\n<p>  The current <xref href=\"System.Threading.ExecutionContext\" data-throw-if-not-resolved=\"false\"></xref>, if one exists, will be captured along with the delegate and will be used when executing it.</p>\n<p></p>\n"
-  example:
-  - 
   syntax:
     content: public CancellationTokenRegistration Register(Action<object> callback, object state)
     content.vb: Public Function Register(callback As Action(Of Object), state As Object) As CancellationTokenRegistration
@@ -651,8 +623,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Registers a delegate that will be called when this <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> is canceled.</p>\n"
   remarks: "\n<p> If this token is already in the canceled state, the delegate will be run immediately and synchronously. Any exception the delegate generates will be propogated out of this method call.</p>\n<p>  The current <xref href=\"System.Threading.ExecutionContext\" data-throw-if-not-resolved=\"false\"></xref>, if one exists, will be captured along with the delegate and will be used when executing it.</p>\n<p></p>\n"
-  example:
-  - 
   syntax:
     content: public CancellationTokenRegistration Register(Action<object> callback, object state, bool useSynchronizationContext)
     content.vb: Public Function Register(callback As Action(Of Object), state As Object, useSynchronizationContext As Boolean) As CancellationTokenRegistration
@@ -705,8 +675,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Throws a <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> if this token has had cancellation requested.</p>\n"
   remarks: "\n<p>This method provides functionality equivalent to:</p>\n<p>C#</p>\n<pre><code>    if (token.IsCancellationRequested) \nthrow new OperationCanceledException(token);</code></pre>\n<pre><code class=\"vb#\">    If token.IsCancellationRequested Then\nThrow New OperationCanceledException(token)\nEnd If</code></pre>\n"
-  example:
-  - 
   syntax:
     content: public void ThrowIfCancellationRequested()
     content.vb: Public Sub ThrowIfCancellationRequested

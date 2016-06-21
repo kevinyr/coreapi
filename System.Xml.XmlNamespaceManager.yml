@@ -82,8 +82,6 @@ items:
   namespace: System.Xml
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> class with the specified <xref href=\"System.Xml.XmlNameTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>The name table is used to look up prefixes and namespaces. An existing name table with pre-atomized strings can be specified in the constructor. There are several advantages in doing so. For example, if the name table of an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> object is used, after each read, any namespace and prefix strings pushed into the name table can be re-used by <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n<p>For more information on atomized strings, see <xref href=\"System.Xml.XmlNameTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If you specify an existing name table, any namespaces in the name table are not automatically added to <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref>. You must use <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Xml.XmlNamespaceManager.RemoveNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> to add or remove namespaces.</p>\n"
-  example:
-  - "\n<p>The following example creates an <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> using the name table of the reader.</p>Classic WebData XmlNamespaceManager.XmlNamespaceManager Example#1"
   syntax:
     content: public XmlNamespaceManager(XmlNameTable nameTable)
     content.vb: Public Sub New(nameTable As XmlNameTable)
@@ -122,8 +120,6 @@ items:
   namespace: System.Xml
   summary: "\n<p>Gets the namespace URI for the default namespace.</p>\n"
   remarks: "\n<p>This method is equivalent to calling LookupNamespace(String.Empty).</p>\n"
-  example:
-  - "\n<p>The following example displays the default namespace, if one exists.</p>Classic WebData XmlNamespaceManager.DefaultNamespace Example#1"
   syntax:
     content: public virtual string DefaultNamespace { get; }
     content.vb: Public Overridable ReadOnly Property DefaultNamespace As String
@@ -206,8 +202,6 @@ items:
   namespace: System.Xml
   summary: "\n<p>Adds the given namespace to the collection.</p>\n"
   remarks: "\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> does not check <em>prefix</em> and <em>uri</em> for conformance.</p>\n<p>\n<xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> checks names, including prefixes and namespaces, to ensure they are valid XML names according to the World Wide Web Consortium (W3C) <see href=\"http://www.w3.org/TR/REC-xml-names/\">Namespaces specification</see>. <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> is used internally by <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>, so to avoid a duplication of efforts, <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> assumes all prefixes and namespaces are valid.</p>\n<p>If the prefix and namespace already exist within the current scope, the new prefix and namespace pair will replace the existing prefix/namespace combination. The same prefix and namespace combination can exist across different scopes.</p>\n<p>The following prefix/namespace pairs are added by default to the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref>. They can be determined at any scope.</p>\n<p>Prefix </p>\n<p>Namespace </p>\n<table><tbody><tr><td>\n<p>xmlns </p>\n</td><td>\n<p>http://www.w3.org/2000/xmlns/ (the xmlns prefix namespace) </p>\n</td></tr><tr><td>\n<p>xml </p>\n</td><td>\n<p>http://www.w3.org/XML/1998/namespace (the XML namespace) </p>\n</td></tr><tr><td>\n<p>String.Empty </p>\n</td><td>\n<p>String.Empty (the empty namespace). This value can be reassigned a different prefix. For example, xmlns=\"\" defines the default namespace to be the empty namespace </p>\n</td></tr></tbody></table>\n"
-  example:
-  - "\n<p>The following example uses <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> to resolve namespaces in an XML fragment.</p>Classic WebData XmlNamespaceManager.AddNamespace Example#1"
   syntax:
     content: public virtual void AddNamespace(string prefix, string uri)
     content.vb: Public Overridable Sub AddNamespace(prefix As String, uri As String)
@@ -335,8 +329,6 @@ items:
   namespace: System.Xml
   summary: "\n<p>Gets a value indicating whether the supplied prefix has a namespace defined for the current pushed scope.</p>\n"
   remarks: "\n<p>To determine whether there is a default empty namespace defined, set <em>prefix</em> to String.Empty. A return value of <strong>true</strong> indicates that there is a default namespace defined in the current scope; <strong>false</strong> indicates that no default namespace is defined.</p>\n<p>xmlns:x= \"\" is illegal according to the <see href=\"http://www.w3.org/TR/REC-xml-names/\">W3C Namespaces</see> recommendation.</p>\n"
-  example:
-  - "\n<p>The following example displays the default namespace, if one exists.</p>Classic WebData XmlNamespaceManager.DefaultNamespace Example#1"
   syntax:
     content: public virtual bool HasNamespace(string prefix)
     content.vb: Public Overridable Function HasNamespace(prefix As String) As Boolean
@@ -375,8 +367,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Gets the namespace URI for the specified prefix.</p>\n"
-  example:
-  - "\n<p>The following example adds prefix/namespace pairs to the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref>, and then displays all the pairs in the collection.</p>Classic WebData XmlNamespaceManager.PopScope Example#1"
   syntax:
     content: public virtual string LookupNamespace(string prefix)
     content.vb: Public Overridable Function LookupNamespace(prefix As String) As String
@@ -421,9 +411,6 @@ items:
   namespace: System.Xml
   summary: "\n<p>Finds the prefix declared for the given namespace URI.</p>\n"
   remarks: "\n<p>This method finds the mapped prefix by walking the stack (that is, it looks globally). The supplied string must be atomized for the lookup to succeed. In other words, the supplied string object must exist in the namespace manager's name table (<xref href=\"System.Xml.XmlNamespaceManager.NameTable\" data-throw-if-not-resolved=\"false\"></xref>).</p>\n<p>The returned string is also atomized. For more information on atomized strings, see the <xref href=\"System.Xml.XmlNameTable\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - "\n<p>The following example shows how to use the <xref href=\"System.Xml.XmlNamespaceManager.LookupPrefix(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method when writing an attribute. It uses the <xref href=\"System.Xml.XmlWriter.WriteStartAttribute(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to start the attribute, looks up the prefix for the <code>urn:samples</code> namespace URI, and then uses that prefix in the <xref href=\"System.Xml.XmlWriter.WriteStartAttribute(System.String)\" data-throw-if-not-resolved=\"false\"></xref> when writing the <code>ISBN</code> attribute:</p>\n<pre><code class=\"vb#\">Dim prefix As String = nsMgr.LookupPrefix(\"urn:samples\")\nwriter.WriteStartAttribute(prefix, \"ISBN\", \"urn:samples\")</code></pre>\n<pre><code class=\"c#\">XmlNameTable nt = new XmlNameTable();\nXmlNamespaceManager nsMgr = new XmlNamespaceManager(nt);\nnsMgr.AddNamespace(\"bk\",\"urn:samples\");string prefix = writer nsMgr.LookupPrefix(\"urn:samples\");\nwriter.WriteStartAttribute(prefix, \"ISBN\", \"urn:samples\");</code></pre>\n<p>The following example uses <xref href=\"System.Xml.XmlNamespaceManager.LookupPrefix(System.String)\" data-throw-if-not-resolved=\"false\"></xref> to find the prefix defined on an element.</p>\n<pre><code class=\"vb#\">writer.WriteStartElement(\"root\", \"book\")\nwriter.WriteStartElement(\"x\", \"node\", \"author\")\ns = writer.LookupPrefix(\"author\")\nCError.Compare(s, \"x\", \"Error in nested element\")\nwriter.WriteEndElement()\ns = writer.LookupPrefix(\"book\")\nCError.Compare(s, Nothing, \"Error in root element\")\nwriter.WriteEndElement()</code></pre>\n<p>\n<strong>Output</strong>\n</p>\n<pre><code><root xmlns=\"book\">\n<x:node xmlns:x=\"author\" /> \n</root></code></pre>\n"
-  - "\n<p></p>\n"
   syntax:
     content: public virtual string LookupPrefix(string uri)
     content.vb: Public Overridable Function LookupPrefix(uri As String) As String
@@ -468,8 +455,6 @@ items:
   namespace: System.Xml
   summary: "\n<p>Pops a namespace scope off the stack.</p>\n"
   remarks: "\n<p>When you call this method, all namespaces which were added to <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> (by calling <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref>) since the last call to <xref href=\"System.Xml.XmlNamespaceManager.PopScope\" data-throw-if-not-resolved=\"false\"></xref> are removed.</p>\n"
-  example:
-  - "\n<p>The following example adds prefix/namespace pairs to the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> and then displays all the pairs in the collection.</p>Classic WebData XmlNamespaceManager.PopScope Example#1"
   syntax:
     content: public virtual bool PopScope()
     content.vb: Public Overridable Function PopScope As Boolean
@@ -508,8 +493,6 @@ items:
   namespace: System.Xml
   summary: "\n<p>Pushes a namespace scope onto the stack.</p>\n"
   remarks: "\n<p>After a call to this method, all namespaces, which are added to <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> (by calling <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref>), belong to the pushed namespace scope.</p>\n"
-  example:
-  - "\n<p>The following example adds prefix/namespace pairs to the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> and then displays all the pairs in the collection.</p>Classic WebData XmlNamespaceManager.PopScope Example#1"
   syntax:
     content: public virtual void PushScope()
     content.vb: Public Overridable Sub PushScope

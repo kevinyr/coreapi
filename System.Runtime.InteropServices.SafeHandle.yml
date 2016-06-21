@@ -36,19 +36,6 @@ items:
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Represents a wrapper class for operating system handles. This class must be inherited.</p>\n"
   remarks: "\n<p>The <xref href=\"System.Runtime.InteropServices.SafeHandle\" data-throw-if-not-resolved=\"false\"></xref> class provides critical finalization of handle resources, preventing handles from being reclaimed prematurely by garbage collection and from being recycled by Windows to reference unintended unmanaged objects. </p>\n<p>This topic includes the following sections: </p>\n<p>Why SafeHandle?What SafeHandle doesClasses derived from SafeHandle</p>\n"
-  example:
-  - >-
-    <p>The following code example creates a custom safe handle for an operating system file handle, deriving from <xref href="Microsoft.Win32.SafeHandles.SafeHandleZeroOrMinusOneIsInvalid" data-throw-if-not-resolved="false"></xref>. It reads bytes from a file and displays their hexadecimal values. It also contains a fault testing harness that causes the thread to abort, but the handle value is freed.  When using an <xref href="System.IntPtr" data-throw-if-not-resolved="false"></xref> to represent handles, the handle is occasionally leaked due to the asynchronous thread abort.</p>
-
-    <p>You will need a text file in the same folder as the compiled application. Assuming that you name the application "HexViewer", the command line usage is:</p>
-
-    <p>
-
-    <code>HexViewer <filename> -Fault</code>
-
-    </p>
-
-    <p>Optionally specify <code>-Fault</code> to intentionally attempt to leak the handle by aborting the thread in a certain window. Use the Windows Perform.exe tool to monitor handle counts while injecting faults.</p>SafeHandle#1
   syntax:
     content: >-
       [SecurityCritical]
@@ -248,8 +235,6 @@ items:
   namespace: System.Runtime.InteropServices
   summary: "\n<p>When overridden in a derived class, gets a value indicating whether the handle value is invalid.</p>\n"
   remarks: "\n<p>Derived classes must implement the <xref href=\"System.Runtime.InteropServices.SafeHandle.IsInvalid\" data-throw-if-not-resolved=\"false\"></xref> property so that the common language runtime can determine whether critical finalization is required. Derived classes must provide an implementation that suits the general type of handle they support (0 or -1 is invalid). These classes can then be further derived for specific safe handle types.</p>\n<p>Unlike the <xref href=\"System.Runtime.InteropServices.SafeHandle.IsClosed\" data-throw-if-not-resolved=\"false\"></xref> property, which reports whether the <xref href=\"System.Runtime.InteropServices.SafeHandle\" data-throw-if-not-resolved=\"false\"></xref> object has finished using the underlying handle, the <xref href=\"System.Runtime.InteropServices.SafeHandle.IsInvalid\" data-throw-if-not-resolved=\"false\"></xref> property calculates whether the given handle value is always considered invalid. Therefore, the <xref href=\"System.Runtime.InteropServices.SafeHandle.IsInvalid\" data-throw-if-not-resolved=\"false\"></xref> property always returns the same value for any one handle value.</p>\n"
-  example:
-  - "\n<p>The following example checks if a file was opened successfully. This code example is part of a larger example provided for the <xref href=\"System.Runtime.InteropServices.SafeHandle\" data-throw-if-not-resolved=\"false\"></xref> class.</p>SafeHandle#2"
   syntax:
     content: >-
       public abstract bool IsInvalid
@@ -545,8 +530,6 @@ items:
   namespace: System.Runtime.InteropServices
   summary: "\n<p>When overridden in a derived class, executes the code required to free the handle.</p>\n"
   remarks: "\n<p>The <xref href=\"System.Runtime.InteropServices.SafeHandle.ReleaseHandle\" data-throw-if-not-resolved=\"false\"></xref> method is guaranteed to be called only once and only if the handle is valid as defined by the <xref href=\"System.Runtime.InteropServices.SafeHandle.IsInvalid\" data-throw-if-not-resolved=\"false\"></xref> property. Implement this method in your <xref href=\"System.Runtime.InteropServices.SafeHandle\" data-throw-if-not-resolved=\"false\"></xref> derived classes to execute any code that is required to free the handle. Because one of the functions of <xref href=\"System.Runtime.InteropServices.SafeHandle\" data-throw-if-not-resolved=\"false\"></xref> is to guarantee prevention of resource leaks, the code in your implementation of <xref href=\"System.Runtime.InteropServices.SafeHandle.ReleaseHandle\" data-throw-if-not-resolved=\"false\"></xref> must never fail. The garbage collector calls <xref href=\"System.Runtime.InteropServices.SafeHandle.ReleaseHandle\" data-throw-if-not-resolved=\"false\"></xref>after normal finalizers have been run for objects that were garbage collected at the same time. The garbage collector guarantees the resources to invoke this method and that the method will not be interrupted while it is in progress. This method will be prepared as a constrained execution region (CER) at instance construction time (along with all the methods in its statically determinable call graph). Although this prevents thread abort interrupts, you must still be careful not to introduce any fault paths in your overridden <xref href=\"System.Runtime.InteropServices.SafeHandle.ReleaseHandle\" data-throw-if-not-resolved=\"false\"></xref> method. In particular, apply the <xref href=\"System.Runtime.ConstrainedExecution.ReliabilityContractAttribute\" data-throw-if-not-resolved=\"false\"></xref> attribute to any methods you call from <xref href=\"System.Runtime.InteropServices.SafeHandle.ReleaseHandle\" data-throw-if-not-resolved=\"false\"></xref>. In most cases this code should be:</p>\n<p>\n<code>ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)</code>\n</p>\n<p>Additionally, for simple cleanup (for example, calling the Win32 API <strong>CloseHandle</strong> on a file handle) you can check the return value for the single platform invoke call. For complex cleanup, you may have a lot of program logic and many method calls, some of which might fail. You must ensure that your program logic has fallback code for each of those cases.</p>\n<p>If <xref href=\"System.Runtime.InteropServices.SafeHandle.ReleaseHandle\" data-throw-if-not-resolved=\"false\"></xref> returns <strong>false</strong> for any reason, it generates a releaseHandleFailed MDA Managed Debugging Assistant.  This helps you detect cases where your attempt to release resources fails.</p>\n"
-  example:
-  - "\n<p>The following code example releases the handle and is part of a larger example provided for the <xref href=\"System.Runtime.InteropServices.SafeHandle\" data-throw-if-not-resolved=\"false\"></xref> class.</p>SafeHandle#3"
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]

@@ -90,8 +90,6 @@ items:
   namespace: System
   summary: "\n<p>Represents a character as a UTF-16 code unit.</p>\n"
   remarks: "\n<p>The .NET Framework uses the <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> structure to represent a Unicode character. The Unicode Standard identifies each Unicode character with a unique 21-bit scalar number called a code point, and defines the UTF-16 encoding form that specifies how a code point is encoded into a sequence of one or more 16-bit values. Each 16-bit value ranges from hexadecimal 0x0000 through 0xFFFF and is stored in a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> structure.  The value of a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object is its 16-bit numeric (ordinal) value.</p>\n<p>The following sections examine the relationship between a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object and a character and discuss some common tasks performed with <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> instances. </p>\n<p>Char objects, Unicode characters, and stringsCharacters and character categoriesCharacters and text elementsCommon operationsChar values and interop</p>\n"
-  example:
-  - <p>The following code example demonstrates some of the methods in <xref href="System.Char" data-throw-if-not-resolved="false"></xref>.</p>System.Char [Type Level]#23
   syntax:
     content: >-
       [ComVisible(true)]
@@ -235,8 +233,6 @@ items:
   namespace: System
   summary: "\n<p>Compares this instance to a specified <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object and indicates whether this instance precedes, follows, or appears in the same position in the sort order as the specified <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   remarks: "\n<p>This method implements the <xref href=\"System.IComparable`1\" data-throw-if-not-resolved=\"false\"></xref> interface and performs slightly better than the <xref href=\"System.Char.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method because it does not have to convert the <em>value</em> parameter to an object.</p>\n<p>The comparison performed by this method is based on the encoded values of this instance and <em>value</em>, not their lexicographical characteristics.</p>\n<p>If the <xref href=\"System.Char.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method parameter type has fewer bits (is narrower) than the instance type, some programming languages perform an implicit widening conversion that transforms the value of the parameter into a value with more bits.</p>\n<p>For example, suppose the instance type is <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref> and the parameter type is <xref href=\"System.Byte\" data-throw-if-not-resolved=\"false\"></xref>. The Microsoft C# compiler generates instructions to represent the value of the parameter as an <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref> object, then generates a <xref href=\"System.Int32.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method that compares the values of the <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref> instance and the <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref> parameter representation.</p>\n<p>Typically, implicit widening conversions are performed on numeric types. Consult your programming language's documentation to determine if its compiler performs widening conversions. If the instance and parameter types mismatch and a suitable conversion is not available, the compiler generates instructions to box the parameter and invoke the <xref href=\"System.Char.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> overload that takes an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> parameter.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates generic and non-generic versions of the <strong>CompareTo</strong> method for several value and reference types.</p>T.CompareTo#1"
   syntax:
     content: public int CompareTo(char value)
     content.vb: Public Function CompareTo(value As Char) As Integer
@@ -281,8 +277,6 @@ items:
   namespace: System
   summary: "\n<p>Converts the specified Unicode code point into a UTF-16 encoded string.</p>\n"
   remarks: "\n<p>Use this method to convert a 21-bit Unicode code point to a UTF-16 encoded string before testing the string with methods such as <xref href=\"System.Char.IsLowSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Char.IsHighSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>A valid code point outside the Basic Multilingual Plane (BMP) always yields a valid surrogate pair. However, a valid code point within the BMP might not yield a valid result according to the Unicode standard because no linguistic processing is used in the conversion. For that reason, use the <xref href=\"System.Text.UTF32Encoding\" data-throw-if-not-resolved=\"false\"></xref> class to convert bulk UTF-32 data into bulk UTF-16 data.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the <xref href=\"System.Char.ConvertToUtf32(System.Char,System.Char)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Char.ConvertFromUtf32(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>char.cvtutf32#1"
   syntax:
     content: public static string ConvertFromUtf32(int utf32)
     content.vb: Public Shared Function ConvertFromUtf32(utf32 As Integer) As String
@@ -331,8 +325,6 @@ items:
   namespace: System
   summary: "\n<p>Converts the value of a UTF-16 encoded surrogate pair into a Unicode code point.</p>\n"
   remarks: "\n<p>Use this method to convert a surrogate pair into a 21-bit Unicode code point. To convert UTF-16 data into UTF-32 data, use the <xref href=\"System.Text.UTF32Encoding\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n<p>Ordinarily, UTF-16 encoding represents a single Unicode character as a 16-bit code unit. However, it also supports surrogate pairs, which allow a single abstract character to be represented as two 16-bit code units. These two <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> objects must have code units that range from U+D800 to U+DBFF for the first (high) surrogate and from U+DC00 to U+DFFF for the second (low) surrogate. Surrogate pairs are supported only by UTF-16 encoding. This method allows a character represented by a UTF-16 surrogate pair to be converted to a character using UTF-32 encoding. </p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the <xref href=\"System.Char.ConvertToUtf32(System.Char,System.Char)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Char.ConvertFromUtf32(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>char.cvtutf32#1"
   syntax:
     content: public static int ConvertToUtf32(char highSurrogate, char lowSurrogate)
     content.vb: Public Shared Function ConvertToUtf32(highSurrogate As Char, lowSurrogate As Char) As Integer
@@ -384,8 +376,6 @@ items:
   namespace: System
   summary: "\n<p>Converts the value of a UTF-16 encoded character or surrogate pair at a specified position in a string into a Unicode code point.</p>\n"
   remarks: "\n<p>Use this method to convert a character or surrogate pair into a 21-bit Unicode code point. To convert UTF-16 data into UTF-32 data, use the <xref href=\"System.Text.UTF32Encoding\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the <xref href=\"System.Char.ConvertToUtf32(System.Char,System.Char)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Char.ConvertFromUtf32(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>char.cvtutf32#1"
   syntax:
     content: public static int ConvertToUtf32(string s, int index)
     content.vb: Public Shared Function ConvertToUtf32(s As String, index As Integer) As Integer
@@ -443,8 +433,6 @@ items:
   namespace: System
   summary: "\n<p>Returns a value that indicates whether this instance is equal to the specified <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   remarks: "\n<p>This method implements the <xref href=\"System.IEquatable`1\" data-throw-if-not-resolved=\"false\"></xref> interface, and performs slightly better than <xref href=\"System.Char.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> because it does not need to unbox the <em>obj</em> parameter.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [NonVersionable]
@@ -493,8 +481,6 @@ items:
   namespace: System
   summary: "\n<p>Returns a value that indicates whether this instance is equal to a specified object.</p>\n"
   remarks: "\n<p>The comparison performed by this method is based on the encoded values of this instance and <em>obj</em>, not necessarily their lexicographical characteristics.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.Equals#20"
   syntax:
     content: public override bool Equals(object obj)
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
@@ -573,8 +559,6 @@ items:
   namespace: System
   summary: "\n<p>Converts the specified numeric Unicode character to a double-precision floating point number.</p>\n"
   remarks: "\n<p>The <em>c</em> parameter must be the <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> representation of a numeric value. For example, if <em>c</em> is \"5\", the return value is 5. However, if <em>c</em> is \"z\", the return value is -1.0.</p>\n<p>A character has an associated numeric value if and only if it is a member of one of the following <xref href=\"System.Globalization.UnicodeCategory\" data-throw-if-not-resolved=\"false\"></xref> categories: <strong>DecimalDigitNumber</strong>, <strong>LetterNumber</strong>, or <strong>OtherNumber</strong>.</p>\n<p>The <xref href=\"System.Char.GetNumericValue(System.Char)\" data-throw-if-not-resolved=\"false\"></xref> method assumes that <em>c</em> corresponds to a single linguistic character and checks whether that character can be converted to a decimal digit. However, some numbers in the Unicode standard are represented by two <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> objects that form a surrogate pair. For example, the Aegean numbering system consists of code points U+10107 through U+10133. The following example uses the <xref href=\"System.Char.ConvertFromUtf32(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to instantiate a string that represents AEGEAN NUMBER ONE. As the output from the example shows, the <xref href=\"System.Char.GetNumericValue(System.Char)\" data-throw-if-not-resolved=\"false\"></xref> method returns -1 if it is passed either a high surrogate or a low surrogate of this character.</p>System.Char.GetNumericValue#2"
-  example:
-  - "\n<p>The following example demonstrates <xref href=\"System.Char.GetNumericValue(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.GetNumericValue#1"
   syntax:
     content: public static double GetNumericValue(char c)
     content.vb: Public Shared Function GetNumericValue(c As Char) As Double
@@ -614,8 +598,6 @@ items:
   namespace: System
   summary: "\n<p>Converts the numeric Unicode character at the specified position in a specified string to a double-precision floating point number.</p>\n"
   remarks: "\n<p>The <em>s</em> parameter must be the string representation of a numeric value. For example, if the character at position <em>index</em> in <em>s</em> is \"5\", the return value is 5. However, if the character at position <em>index</em> in <em>s</em> is \"z\", the return value is -1.</p>\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>A character has an associated numeric value if and only if it is a member of one of the following <xref href=\"System.Globalization.UnicodeCategory\" data-throw-if-not-resolved=\"false\"></xref> categories: <strong>DecimalDigitNumber</strong>, <strong>LetterNumber</strong>, or <strong>OtherNumber</strong>.</p>\n<p>If the <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object at position <em>index</em> is the first character of a valid surrogate pair, the <xref href=\"System.Char.GetNumericValue(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method determines whether the surrogate pair forms a numeric digit. For example, the Aegean numbering system consists of code points U+10107 through U+10133. The following example uses the <xref href=\"System.Char.ConvertFromUtf32(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to instantiate a string that represents each Aegean number. As the output from the example shows, the <xref href=\"System.Char.GetNumericValue(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method returns the correct numeric value if it is passed the high surrogate of an Aegean number. However, if it is passed the low surrogate, it considers only the low surrogate in isolation and returns -1.</p>System.Char.GetNumericValue#3"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.GetNumericValue(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.GetNumericValue#1"
   syntax:
     content: public static double GetNumericValue(string s, int index)
     content.vb: Public Shared Function GetNumericValue(s As String, index As Integer) As Double
@@ -665,8 +647,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified Unicode character is categorized as a control character.</p>\n"
   remarks: "\n<p>Control characters are formatting and other non-printing characters, such as ACK, BEL, CR, FF, LF, and VT. T The Unicode standard assigns code points from \\U0000 to \\U001F, \\U007F, and from \\U0080 to \\U009F to control characters. According to the Unicode standard, these values are to be interpreted as control characters unless their use is otherwise defined by an application. Valid control characters are members of the <xref href=\"System.Globalization.UnicodeCategory.Control\" data-throw-if-not-resolved=\"false\"></xref> category. </p>\n"
-  example:
-  - "\n<p>The following example lists the Unicode code point of each of the control characters.</p>System.Char.IsControl#1"
   syntax:
     content: public static bool IsControl(char c)
     content.vb: Public Shared Function IsControl(c As Char) As Boolean
@@ -706,8 +686,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string is categorized as a control character.</p>\n"
   remarks: "\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>Control characters are formatting and other non-printing characters, such as ACK, BEL, CR, FF, LF, and VT. The Unicode standard assigns code points from \\U0000 to \\U001F, \\U007F, and from \\U0080 to \\U009F to control characters. According to the Unicode standard, these values are to be interpreted as control characters unless their use is otherwise defined by an application. Valid control characters are members of the <xref href=\"System.Globalization.UnicodeCategory.Control\" data-throw-if-not-resolved=\"false\"></xref> category. </p>\n"
-  example:
-  - "\n<p>The following example enumerates the characters in a string and determines whether any are control characters.</p>System.Char.IsControl#2"
   syntax:
     content: public static bool IsControl(string s, int index)
     content.vb: Public Shared Function IsControl(s As String, index As Integer) As Boolean
@@ -757,8 +735,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified Unicode character is categorized as a decimal digit.</p>\n"
   remarks: "\n<p>This method determines whether a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> is a radix-10 digit. This contrasts with <xref href=\"System.Char.IsNumber(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, which determines whether a <strong>Char</strong> is of any numeric Unicode category. Numbers include characters such as fractions, subscripts, superscripts, Roman numerals, currency numerators, encircled numbers, and script-specific digits.</p>\n<p>Valid digits are members of the <xref href=\"System.Globalization.UnicodeCategory.DecimalDigitNumber\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsDigit(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsDigit#4"
   syntax:
     content: public static bool IsDigit(char c)
     content.vb: Public Shared Function IsDigit(c As Char) As Boolean
@@ -803,8 +779,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string is categorized as a decimal digit.</p>\n"
   remarks: "\n<p>This method determines whether a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> is a radix-10 digit. This contrasts with <xref href=\"System.Char.IsNumber(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, which determines whether a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> is of any numeric Unicode category. Numbers include characters such as fractions, subscripts, superscripts, Roman numerals, currency numerators, encircled numbers, and script-specific digits.</p>\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>Valid digits are members of the <xref href=\"System.Globalization.UnicodeCategory.DecimalDigitNumber\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsDigit(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsDigit#4"
   syntax:
     content: public static bool IsDigit(string s, int index)
     content.vb: Public Shared Function IsDigit(s As String, index As Integer) As Boolean
@@ -859,8 +833,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object is a high surrogate.</p>\n"
   remarks: "\n<p>In addition to representing single characters using a 16-bit code point, UTF-16 encoding allows abstract characters to be represented using two 16-bit code points, which is known as a surrogate pair. The first element in this pair is the high surrogate. Its code point can range from U+D800 to U+DBFF. An individual surrogate has no interpretation of its own; it is meaningful only when used as part of a surrogate pair. </p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the <xref href=\"System.Char.IsHighSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Char.IsLowSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Char.IsSurrogatePair(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>char.surrogate#1"
   syntax:
     content: public static bool IsHighSurrogate(char c)
     content.vb: Public Shared Function IsHighSurrogate(c As Char) As Boolean
@@ -900,8 +872,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object at the specified position in a string is a high surrogate.</p>\n"
   remarks: "\n<p>The <em>index</em> parameter is zero-based.</p>\n<p>In addition to representing single characters using a 16-bit code point, UTF-16 encoding allows abstract characters to be represented using two 16-bit code points, which is known as a surrogate pair. The first element in this pair is the high surrogate. Its code point can range from U+D800 to U+DBFF. An individual surrogate has no interpretation of its own; it is meaningful only when used as part of a surrogate pair. </p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the <xref href=\"System.Char.IsHighSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Char.IsLowSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Char.IsSurrogatePair(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>char.surrogate#1"
   syntax:
     content: public static bool IsHighSurrogate(string s, int index)
     content.vb: Public Shared Function IsHighSurrogate(s As String, index As Integer) As Boolean
@@ -951,8 +921,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified Unicode character is categorized as a Unicode letter. </p>\n"
   remarks: "\n<p>This method determines whether a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> is a member of any category of Unicode letter. Unicode letters include the following:</p>\n<ul><li>\n<p>Uppercase letters, such as U+0041 (LATIN CAPITAL LETTER A) through U+005A (LATIN CAPITAL LETTER Z), or U+0400 (CYRILLIC CAPITAL LETTER IE WITH GRAVE) through U+042F (CYRILLIC CAPITAL LETTER YA). These characters are members of the <xref href=\"System.Globalization.UnicodeCategory.UppercaseLetter\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n</li><li>\n<p>Lowercase letters, such as U+0061 (LATIN SMALL LETTER A) through U+007A (LATIN SMALL LETTER Z), or U+03AC (GREEK SMALL LETTER ALPHA WITH TONOS) through U+03CE (GREEK SMALL LETTER OMEGA WITH TONOS). These characters are members of the <xref href=\"System.Globalization.UnicodeCategory.LowercaseLetter\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n</li><li>\n<p>Title case letters, such as U+01C5 (LATIN CAPITAL LETTER D WITH SMALL LETTER Z WITH CARON) or U+1FFC (GREEK CAPITAL LETTER OMEGA WITH PROSGEGRAMMENI). These characters are members of the <xref href=\"System.Globalization.UnicodeCategory.TitlecaseLetter\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n</li><li>\n<p>Modifiers, such as U+02B0 (MODIFIER LETTER SMALL H) through U+02C1 (MODIFIER LETTER REVERSED GLOTTAL STOP), or U+1D2C (MODIFIER LETTER CAPITAL A) through U+1D61 (MODIFIER LETTER SMALL CHI). These characters are members of the <xref href=\"System.Globalization.UnicodeCategory.ModifierLetter\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n</li><li>\n<p>Other letters, such as U+05D0 (HEBREW LETTER ALEF) through U+05EA (HEBREW LETTER TAV), U+0621 (ARABIC LETTER HAMZA) through U+063A (ARABIC LETTER GHAIN), or U+4E00 (<CJK Ideograph, First>) through U+9FC3 (<CJK Ideograph, Last>). These characters are members of the <xref href=\"System.Globalization.UnicodeCategory.OtherLetter\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n</li></ul>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsLetter(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsLetter#5"
   syntax:
     content: public static bool IsLetter(char c)
     content.vb: Public Shared Function IsLetter(c As Char) As Boolean
@@ -995,8 +963,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string is categorized as a Unicode letter.</p>\n"
   remarks: "\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>This method determines whether the character at a specified index position in a string is a member of any category of Unicode letter. Unicode letters include the following:</p>\n<ul><li>\n<p>Uppercase letters, such as U+0041 (LATIN CAPITAL LETTER A) through U+005A (LATIN CAPITAL LETTER Z), or U+0400 (CYRILLIC CAPITAL LETTER IE WITH GRAVE) through U+042F (CYRILLIC CAPITAL LETTER YA). These characters are members of the <xref href=\"System.Globalization.UnicodeCategory.UppercaseLetter\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n</li><li>\n<p>Lowercase letters, such as U+0061 (LATIN SMALL LETTER A) through U+007A (LATIN SMALL LETTER Z), or U+03AC (GREEK SMALL LETTER ALPHA WITH TONOS) through U+03CE (GREEK SMALL LETTER OMEGA WITH TONOS). These characters are members of the <xref href=\"System.Globalization.UnicodeCategory.LowercaseLetter\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n</li><li>\n<p>Title case letters, such as U+01C5 (LATIN CAPITAL LETTER D WITH SMALL LETTER Z WITH CARON) or U+1FFC (GREEK CAPITAL LETTER OMEGA WITH PROSGEGRAMMENI). These characters are members of the <xref href=\"System.Globalization.UnicodeCategory.TitlecaseLetter\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n</li><li>\n<p>Modifiers, such as U+02B0 (MODIFIER LETTER SMALL H) through U+02C1 (MODIFIER LETTER REVERSED GLOTTAL STOP), or U+1D2C (MODIFIER LETTER CAPITAL A) through U+1D61 (MODIFIER LETTER SMALL CHI). These characters are members of the <xref href=\"System.Globalization.UnicodeCategory.ModifierLetter\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n</li><li>\n<p>Other letters, such as U+05D0 (HEBREW LETTER ALEF) through U+05EA (HEBREW LETTER TAV), U+0621 (ARABIC LETTER HAMZA) through U+063A (ARABIC LETTER GHAIN), or U+4E00 (<CJK Ideograph, First>) through U+9FC3 (<CJK Ideograph, Last>). These characters are members of the <xref href=\"System.Globalization.UnicodeCategory.OtherLetter\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n</li></ul>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsLetter(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsLetter#5"
   syntax:
     content: public static bool IsLetter(string s, int index)
     content.vb: Public Shared Function IsLetter(s As String, index As Integer) As Boolean
@@ -1049,8 +1015,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified Unicode character is categorized as a letter or a decimal digit.</p>\n"
   remarks: "\n<p>Valid letters and decimal digits are members of the following categories in <xref href=\"System.Globalization.UnicodeCategory\" data-throw-if-not-resolved=\"false\"></xref>: <strong>UppercaseLetter</strong>, <strong>LowercaseLetter</strong>, <strong>TitlecaseLetter</strong>, <strong>ModifierLetter</strong>, <strong>OtherLetter</strong>, or <strong>DecimalDigitNumber</strong>.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsLetterOrDigit(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsLetterOrDigit#6"
   syntax:
     content: public static bool IsLetterOrDigit(char c)
     content.vb: Public Shared Function IsLetterOrDigit(c As Char) As Boolean
@@ -1093,8 +1057,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string is categorized as a letter or a decimal digit.</p>\n"
   remarks: "\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>Valid letters and decimal digits are members of the following categories in <xref href=\"System.Globalization.UnicodeCategory\" data-throw-if-not-resolved=\"false\"></xref>: <strong>UppercaseLetter</strong>, <strong>LowercaseLetter</strong>, <strong>TitlecaseLetter</strong>, <strong>ModifierLetter</strong>, <strong>OtherLetter</strong>, or <strong>DecimalDigitNumber</strong>.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsLetterOrDigit(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsLetterOrDigit#6"
   syntax:
     content: public static bool IsLetterOrDigit(string s, int index)
     content.vb: Public Shared Function IsLetterOrDigit(s As String, index As Integer) As Boolean
@@ -1147,8 +1109,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified Unicode character is categorized as a lowercase letter.</p>\n"
   remarks: "\n<p>Valid lowercase letters are members of the following category in <xref href=\"System.Globalization.UnicodeCategory\" data-throw-if-not-resolved=\"false\"></xref>: <strong>LowercaseLetter</strong>.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsLower(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsLower#7"
   syntax:
     content: public static bool IsLower(char c)
     content.vb: Public Shared Function IsLower(c As Char) As Boolean
@@ -1193,8 +1153,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string is categorized as a lowercase letter.</p>\n"
   remarks: "\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>Valid lowercase letters are members of the following category in <xref href=\"System.Globalization.UnicodeCategory\" data-throw-if-not-resolved=\"false\"></xref>: <strong>LowercaseLetter</strong>.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsLower(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsLower#7"
   syntax:
     content: public static bool IsLower(string s, int index)
     content.vb: Public Shared Function IsLower(s As String, index As Integer) As Boolean
@@ -1251,8 +1209,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object is a low surrogate.</p>\n"
   remarks: "\n<p>In addition to representing single characters using a 16-bit code point, UTF-16 encoding allows abstract characters to be represented using two 16-bit code points, which is known as a surrogate pair. The second element in this pair is the low surrogate. Its code point can range from U+DC00 to U+DFFF. An individual surrogate has no interpretation of its own; it is meaningful only when used as part of a surrogate pair. </p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the <xref href=\"System.Char.IsHighSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Char.IsLowSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Char.IsSurrogatePair(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>char.surrogate#1"
   syntax:
     content: public static bool IsLowSurrogate(char c)
     content.vb: Public Shared Function IsLowSurrogate(c As Char) As Boolean
@@ -1292,8 +1248,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object at the specified position in a string is a low surrogate.</p>\n"
   remarks: "\n<p>The <em>index</em> parameter is zero-based.</p>\n<p>In addition to representing single characters using a 16-bit code point, UTF-16 encoding allows abstract characters to be represented using two 16-bit code points, which is known as a surrogate pair. The second element in this pair is the low surrogate. Its code point can range from U+DC00 to U+DFFF. An individual surrogate has no interpretation of its own; it is meaningful only when used as part of a surrogate pair.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the <xref href=\"System.Char.IsHighSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Char.IsLowSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Char.IsSurrogatePair(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>char.surrogate#1"
   syntax:
     content: public static bool IsLowSurrogate(string s, int index)
     content.vb: Public Shared Function IsLowSurrogate(s As String, index As Integer) As Boolean
@@ -1343,8 +1297,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified Unicode character is categorized as a number.</p>\n"
   remarks: "\n<p>This method determines whether a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> is of any numeric Unicode category. In addition to including digits, numbers include characters, fractions, subscripts, superscripts, Roman numerals, currency numerators, and encircled numbers. This method contrasts with the <xref href=\"System.Char.IsDigit(System.Char)\" data-throw-if-not-resolved=\"false\"></xref> method, which determines whether a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> is a radix-10 digit.</p>\n<p>The <xref href=\"System.Char.IsNumber(System.Char)\" data-throw-if-not-resolved=\"false\"></xref> method is not intended to determine whether a string consists of numeric characters (for example, by calling the method for each character in a string). To determine whether a string consists of numeric characters, call one of the overloads of the <strong>TryParse</strong> method (such as <see cref=\"Overload:System.Int32.TryParse\"></see> or <see cref=\"Overload:System.Double.TryParse\"></see> of an integral or floating point type.</p>\n<p>Valid numbers are members of the <xref href=\"System.Globalization.UnicodeCategory.DecimalDigitNumber\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Globalization.UnicodeCategory.LetterNumber\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.Globalization.UnicodeCategory.OtherNumber\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n<p>The <xref href=\"System.Char.IsNumber(System.Char)\" data-throw-if-not-resolved=\"false\"></xref> method assumes that <em>c</em> corresponds to a single linguistic character and checks whether that character represents a number. However, some numbers in the Unicode standard are represented by two <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> objects that form a surrogate pair. For example, the Aegean numbering system consists of code points U+10107 through U+10133. The following example uses the <xref href=\"System.Char.ConvertFromUtf32(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to instantiate a string that represents AEGEAN NUMBER ONE. As the output from the example shows, the <xref href=\"System.Char.IsNumber(System.Char)\" data-throw-if-not-resolved=\"false\"></xref> method returns <strong>false</strong> if it is passed either a high surrogate or a low surrogate of this character.</p>System.Char.IsNumber#1"
-  example:
-  - "\n<p>The following example demonstrates <xref href=\"System.Char.IsNumber(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsNumber#8"
   syntax:
     content: public static bool IsNumber(char c)
     content.vb: Public Shared Function IsNumber(c As Char) As Boolean
@@ -1389,8 +1341,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string is categorized as a number.</p>\n"
   remarks: "\n<p>This method determines whether a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> is of any numeric Unicode category. In addition to including digits, numbers include characters, fractions, subscripts, superscripts, Roman numerals, currency numerators, and encircled numbers. This method contrasts with the <xref href=\"System.Char.IsDigit(System.Char)\" data-throw-if-not-resolved=\"false\"></xref> method, which determines whether a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> is a radix-10 digit.</p>\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>The <xref href=\"System.Char.IsNumber(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method is not intended to determine whether a string consists of numeric characters (for example, by calling the method for each character in a string). To determine whether a string consists of numeric characters, call one of the overloads of the<strong> TryParse</strong> method (such as <see cref=\"Overload:System.Int32.TryParse\"></see> or <see cref=\"Overload:System.Double.TryParse\"></see> of an integral or floating point type.</p>\n<p>Valid numbers are members of the <xref href=\"System.Globalization.UnicodeCategory.DecimalDigitNumber\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Globalization.UnicodeCategory.LetterNumber\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.Globalization.UnicodeCategory.OtherNumber\" data-throw-if-not-resolved=\"false\"></xref> category.</p>\n<p>If the <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object at position <em>index</em> is the first character of a valid surrogate pair, the <xref href=\"System.Char.IsNumber(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method determines whether the surrogate pair forms a numeric digit. For example, the Aegean numbering system consists of code points U+10107 through U+10133. The following example uses the <xref href=\"System.Char.ConvertFromUtf32(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to instantiate a string that represents AEGEAN NUMBER ONE. As the output from the example shows, the <xref href=\"System.Char.IsNumber(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method returns <strong>true</strong> if it is passed the high surrogate of AEGEAN NUMBER ONE. However, if it is passed the low surrogate, it considers only the category of the low surrogate and returns <strong>false</strong>.</p>System.Char.IsNumber#2"
-  example:
-  - "\n<p>The following example demonstrates <xref href=\"System.Char.IsNumber(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsNumber#8"
   syntax:
     content: public static bool IsNumber(string s, int index)
     content.vb: Public Shared Function IsNumber(s As String, index As Integer) As Boolean
@@ -1447,8 +1397,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified Unicode character is categorized as a punctuation mark.</p>\n"
   remarks: "\n<p>Valid punctuation marks are members of the following categories in <xref href=\"System.Globalization.UnicodeCategory\" data-throw-if-not-resolved=\"false\"></xref>: <strong>ConnectorPunctuation</strong>, <strong>DashPunctuation</strong>, <strong>OpenPunctuation</strong>, <strong>ClosePunctuation</strong>, <strong>InititalQuotePunctuation</strong>, <strong>FinalQuotePunctuation</strong>, or <strong>OtherPunctuation</strong>. They include characters with the Unicode code points listed in the following table. </p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsPunctuation(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsPunctuation#9"
   syntax:
     content: public static bool IsPunctuation(char c)
     content.vb: Public Shared Function IsPunctuation(c As Char) As Boolean
@@ -1491,8 +1439,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string is categorized as a punctuation mark.</p>\n"
   remarks: "\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>Valid punctuation marks are members of the following categories in <xref href=\"System.Globalization.UnicodeCategory\" data-throw-if-not-resolved=\"false\"></xref>: <strong>ConnectorPunctuation</strong>, <strong>DashPunctuation</strong>, <strong>OpenPunctuation</strong>, <strong>ClosePunctuation</strong>, <strong>InititalQuotePunctuation</strong>, <strong>FinalQuotePunctuation</strong>, or <strong>OtherPunctuation</strong>. They include characters with the Unicode code points listed in the following table.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsPunctuation(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsPunctuation#9"
   syntax:
     content: public static bool IsPunctuation(string s, int index)
     content.vb: Public Shared Function IsPunctuation(s As String, index As Integer) As Boolean
@@ -1547,8 +1493,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified Unicode character is categorized as a separator character.</p>\n"
   remarks: "\n<p>The Unicode standard recognizes three subcategories of separators: </p>\n<ul><li>\n<p>Space separators (the <xref href=\"System.Globalization.UnicodeCategory.SpaceSeparator\" data-throw-if-not-resolved=\"false\"></xref> category), which includes characters such as \\u0020.</p>\n</li><li>\n<p>Line separators (the <xref href=\"System.Globalization.UnicodeCategory.LineSeparator\" data-throw-if-not-resolved=\"false\"></xref> category), which includes \\u2028.</p>\n</li><li>\n<p>Paragraph separators (the <xref href=\"System.Globalization.UnicodeCategory.ParagraphSeparator\" data-throw-if-not-resolved=\"false\"></xref> category), which includes \\u2029. </p>\n</li></ul>\n<p>The Unicode standard classifies the characters \\u000A (LF), \\u000C (FF), and \\u000D (CR) as control characters (members of the <xref href=\"System.Globalization.UnicodeCategory.Control\" data-throw-if-not-resolved=\"false\"></xref> category), not as separator characters. </p>\n"
-  example:
-  - "\n<p>The following example lists the <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> objects that are classified as separator characters.</p>System.Char.IsSeparator#1"
   syntax:
     content: public static bool IsSeparator(char c)
     content.vb: Public Shared Function IsSeparator(c As Char) As Boolean
@@ -1591,8 +1535,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string is categorized as a separator character.</p>\n"
   remarks: "\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>The Unicode standard recognizes three subcategories of separators: </p>\n<ul><li>\n<p>Space separators (the <xref href=\"System.Globalization.UnicodeCategory.SpaceSeparator\" data-throw-if-not-resolved=\"false\"></xref> category), which includes characters such as \\u0020.</p>\n</li><li>\n<p>Line separators (the <xref href=\"System.Globalization.UnicodeCategory.LineSeparator\" data-throw-if-not-resolved=\"false\"></xref> category), which includes \\u2028.</p>\n</li><li>\n<p>Paragraph separators (the <xref href=\"System.Globalization.UnicodeCategory.ParagraphSeparator\" data-throw-if-not-resolved=\"false\"></xref> category), which includes \\u2029.</p>\n</li></ul>\n<p>The Unicode standard classifies the characters \\u000A (LF), \\u000C (FF), and \\u000D (CR) as control characters (members of the <xref href=\"System.Globalization.UnicodeCategory.Control\" data-throw-if-not-resolved=\"false\"></xref> category), not as separator characters.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates <xref href=\"System.Char.IsSeparator(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsSeparator#10"
   syntax:
     content: public static bool IsSeparator(string s, int index)
     content.vb: Public Shared Function IsSeparator(s As String, index As Integer) As Boolean
@@ -1647,8 +1589,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified character has a surrogate code unit.</p>\n"
   remarks: "\n<p>A surrogate is a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object with a UTF-16 code unit in the range from U+D800 to U+DFFF. Each character with a code unit in this range belongs to the <xref href=\"System.Globalization.UnicodeCategory.Surrogate\" data-throw-if-not-resolved=\"false\"></xref> category. The individual surrogate code unit has no interpretation of its own, but has meaning only when used as part of a surrogate pair. For more information about surrogate pairs, see the Unicode Standard at the <see href=\"http://go.microsoft.com/fwlink/?linkid=37123\">Unicode home page</see>.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates the <xref href=\"System.Char.IsSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.Char.IsSurrogate#11"
   syntax:
     content: public static bool IsSurrogate(char c)
     content.vb: Public Shared Function IsSurrogate(c As Char) As Boolean
@@ -1688,8 +1628,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string has a surrogate code unit.</p>\n"
   remarks: "\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>A surrogate is a <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> object with a UTF-16 code unit in the range from U+D800 to U+DFFF. Each character with a code unit in this range belongs to the <xref href=\"System.Globalization.UnicodeCategory.Surrogate\" data-throw-if-not-resolved=\"false\"></xref> category. The individual surrogate code unit has no interpretation of its own, but has meaning only when used as part of a surrogate pair. For more information about surrogate pairs, see the Unicode Standard at the <see href=\"http://go.microsoft.com/fwlink/?linkid=37123\">Unicode home page</see>.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsSurrogate#11"
   syntax:
     content: public static bool IsSurrogate(string s, int index)
     content.vb: Public Shared Function IsSurrogate(s As String, index As Integer) As Boolean
@@ -1739,8 +1677,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the two specified <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> objects form a surrogate pair.</p>\n"
   remarks: "\n<p>Ordinarily, a single character is represented by a single 16-bit Unicode code unit. UTF-16 encoding also supports surrogate pairs, which allow a single abstract character to be represented by two 16-bit code units. The first code unit, whose value can range from U+D800 to U+DBFF, is the high surrogate. The second code unit, whose value can range from U+DC00 to U+DFFF, is the low surrogate. Individual surrogate code points have no interpretation of their own. For more information about surrogates and the Unicode Standard, see the <see href=\"http://go.microsoft.com/fwlink/?LinkId=37123\">Unicode home page</see>.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the <xref href=\"System.Char.IsHighSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Char.IsLowSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Char.IsSurrogatePair(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>char.surrogate#1"
   syntax:
     content: public static bool IsSurrogatePair(char highSurrogate, char lowSurrogate)
     content.vb: Public Shared Function IsSurrogatePair(highSurrogate As Char, lowSurrogate As Char) As Boolean
@@ -1788,8 +1724,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether two adjacent <xref href=\"System.Char\" data-throw-if-not-resolved=\"false\"></xref> objects at a specified position in a string form a surrogate pair.</p>\n"
   remarks: "\n<p>Ordinarily, a single character is represented by a single 16-bit Unicode code unit. UTF-16 encoding also supports surrogate pairs, which allow a single abstract character to be represented by two 16-bit code units. The first code unit, whose value can range from U+D800 to U+DBFF, is the high surrogate. The second code unit, whose value can range from U+DC00 to U+DFFF, is the low surrogate. Individual surrogate code points have no interpretation of their own. For more information about surrogates and the Unicode Standard, see the <see href=\"http://go.microsoft.com/fwlink/?LinkId=37123\">Unicode home page</see>. </p>\n"
-  example:
-  - "\n<p>The following code example demonstrates the <xref href=\"System.Char.IsHighSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Char.IsLowSurrogate(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Char.IsSurrogatePair(System.String,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>char.surrogate#1"
   syntax:
     content: public static bool IsSurrogatePair(string s, int index)
     content.vb: Public Shared Function IsSurrogatePair(s As String, index As Integer) As Boolean
@@ -1844,8 +1778,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified Unicode character is categorized as a symbol character.</p>\n"
   remarks: "\n<p>Valid symbols are members of the following categories in <xref href=\"System.Globalization.UnicodeCategory\" data-throw-if-not-resolved=\"false\"></xref>: <strong>MathSymbol</strong>, <strong>CurrencySymbol</strong>, <strong>ModifierSymbol</strong>, and <strong>OtherSymbol</strong>.</p>\n<p>Symbols in the Unicode standard are a loosely defined set of characters that include the following:</p>\n<ul><li>\n<p>Currency symbols.</p>\n</li><li>\n<p>Letterlike symbols, which include a set of mathematical alphanumeric symbols as well as symbols such as ℅, №, and ™.</p>\n</li><li>\n<p>Number forms, such as subscripts and superscripts.</p>\n</li><li>\n<p>Mathematical operators and arrows.</p>\n</li><li>\n<p>Geometric symbols.</p>\n</li><li>\n<p>Technical symbols.</p>\n</li><li>\n<p>Braille patterns.</p>\n</li><li>\n<p>Dingbats.</p>\n</li></ul>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsSymbol(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsSymbol#12"
   syntax:
     content: public static bool IsSymbol(char c)
     content.vb: Public Shared Function IsSymbol(c As Char) As Boolean
@@ -1888,8 +1820,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string is categorized as a symbol character.</p>\n"
   remarks: "\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>Valid symbols are members of the following categories in <xref href=\"System.Globalization.UnicodeCategory\" data-throw-if-not-resolved=\"false\"></xref>: <strong>MathSymbol</strong>, <strong>CurrencySymbol</strong>, <strong>ModifierSymbol</strong>, and <strong>OtherSymbol</strong>.</p>\n<p>Symbols in the Unicode standard are a loosely defined set of characters that include the following:</p>\n<ul><li>\n<p>Currency symbols.</p>\n</li><li>\n<p>Letterlike symbols, which include a set of mathematical alphanumeric symbols as well as symbols such as ℅, №, and ™.</p>\n</li><li>\n<p>Number forms, such as subscripts and superscripts.</p>\n</li><li>\n<p>Mathematical operators and arrows.</p>\n</li><li>\n<p>Geometric symbols.</p>\n</li><li>\n<p>Technical symbols.</p>\n</li><li>\n<p>Braille patterns.</p>\n</li><li>\n<p>Dingbats.</p>\n</li></ul>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsSymbol(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsSymbol#12"
   syntax:
     content: public static bool IsSymbol(string s, int index)
     content.vb: Public Shared Function IsSymbol(s As String, index As Integer) As Boolean
@@ -2042,8 +1972,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the specified Unicode character is categorized as white space.</p>\n"
   remarks: "\n<p>White space characters are the following Unicode characters:</p>\n<ul><li>\n<p>Members of the <xref href=\"System.Globalization.UnicodeCategory.SpaceSeparator\" data-throw-if-not-resolved=\"false\"></xref> category, which includes the characters SPACE (U+0020), NO-BREAK SPACE (U+00A0), OGHAM SPACE MARK (U+1680), EN QUAD (U+2000), EM QUAD (U+2001), EN SPACE (U+2002), EM SPACE (U+2003), THREE-PER-EM SPACE (U+2004), FOUR-PER-EM SPACE (U+2005), SIX-PER-EM SPACE (U+2006), FIGURE SPACE (U+2007), PUNCTUATION SPACE (U+2008), THIN SPACE (U+2009), HAIR SPACE (U+200A), NARROW NO-BREAK SPACE (U+202F), MEDIUM MATHEMATICAL SPACE (U+205F), and IDEOGRAPHIC SPACE (U+3000).</p>\n</li><li>\n<p>Members of the <xref href=\"System.Globalization.UnicodeCategory.LineSeparator\" data-throw-if-not-resolved=\"false\"></xref> category, which consists solely of the LINE SEPARATOR character (U+2028).</p>\n</li><li>\n<p>Members of the <xref href=\"System.Globalization.UnicodeCategory.ParagraphSeparator\" data-throw-if-not-resolved=\"false\"></xref> category, which consists solely of the PARAGRAPH SEPARATOR character (U+2029).</p>\n</li><li>\n<p>The characters CHARACTER TABULATION (U+0009), LINE FEED (U+000A), LINE TABULATION (U+000B), FORM FEED (U+000C), CARRIAGE RETURN (U+000D), and NEXT LINE (U+0085). </p>\n</li></ul>\n"
-  example:
-  - "\n<p>The following example demonstrates the <xref href=\"System.Char.IsWhiteSpace(System.Char)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.Char.IsWhiteSpace#14"
   syntax:
     content: public static bool IsWhiteSpace(char c)
     content.vb: Public Shared Function IsWhiteSpace(c As Char) As Boolean
@@ -2088,8 +2016,6 @@ items:
   namespace: System
   summary: "\n<p>Indicates whether the character at the specified position in a specified string is categorized as white space.</p>\n"
   remarks: "\n<p>Character positions in a string are indexed starting from zero.</p>\n<p>White space characters are the following Unicode characters:</p>\n<ul><li>\n<p>Members of the <xref href=\"System.Globalization.UnicodeCategory.SpaceSeparator\" data-throw-if-not-resolved=\"false\"></xref> category, which includes the characters SPACE (U+0020), NO-BREAK SPACE (U+00A0), OGHAM SPACE MARK (U+1680), EN QUAD (U+2000), EM QUAD (U+2001), EN SPACE (U+2002), EM SPACE (U+2003), THREE-PER-EM SPACE (U+2004), FOUR-PER-EM SPACE (U+2005), SIX-PER-EM SPACE (U+2006), FIGURE SPACE (U+2007), PUNCTUATION SPACE (U+2008), THIN SPACE (U+2009), HAIR SPACE (U+200A), NARROW NO-BREAK SPACE (U+202F), MEDIUM MATHEMATICAL SPACE (U+205F), and IDEOGRAPHIC SPACE (U+3000).</p>\n</li><li>\n<p>Members of the <xref href=\"System.Globalization.UnicodeCategory.LineSeparator\" data-throw-if-not-resolved=\"false\"></xref> category, which consists solely of the LINE SEPARATOR character (U+2028).</p>\n</li><li>\n<p>Members of the <xref href=\"System.Globalization.UnicodeCategory.ParagraphSeparator\" data-throw-if-not-resolved=\"false\"></xref> category, which consists solely of the PARAGRAPH SEPARATOR character (U+2029).</p>\n</li><li>\n<p>The characters CHARACTER TABULATION (U+0009), LINE FEED (U+000A), LINE TABULATION (U+000B), FORM FEED (U+000C), CARRIAGE RETURN (U+000D), and NEXT LINE (U+0085). </p>\n</li></ul>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.IsWhiteSpace(System.Char)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.IsWhiteSpace#14"
   syntax:
     content: public static bool IsWhiteSpace(string s, int index)
     content.vb: Public Shared Function IsWhiteSpace(s As String, index As Integer) As Boolean
@@ -2145,8 +2071,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Converts the value of the specified string to its equivalent Unicode character.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.Parse(System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.Parse#15"
   syntax:
     content: public static char Parse(string s)
     content.vb: Public Shared Function Parse(s As String) As Char
@@ -2872,8 +2796,6 @@ items:
   namespace: System
   summary: "\n<p>Converts the value of a Unicode character to its lowercase equivalent.</p>\n"
   remarks: "\n<p>Casing rules are obtained from the current culture. </p>\n<p>Use <xref href=\"System.String.ToLower\" data-throw-if-not-resolved=\"false\"></xref> to convert a string to lowercase.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates <xref href=\"System.Char.ToLower(System.Char,System.Globalization.CultureInfo)\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.ToLower#16"
   syntax:
     content: public static char ToLower(char c)
     content.vb: Public Shared Function ToLower(c As Char) As Char
@@ -2963,8 +2885,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Converts the value of this instance to its equivalent string representation.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.ToString\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.ToString#17"
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
@@ -3005,8 +2925,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Converts the specified Unicode character to its equivalent string representation.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates <xref href=\"System.Char.ToString\" data-throw-if-not-resolved=\"false\"></xref>.</p>System.Char.ToString#17"
   syntax:
     content: public static string ToString(char c)
     content.vb: Public Shared Function ToString(c As Char) As String
@@ -3051,8 +2969,6 @@ items:
   namespace: System
   summary: "\n<p>Converts the value of a Unicode character to its uppercase equivalent.</p>\n"
   remarks: "\n<p>Casing rules are obtained from the current culture.</p>\n<p>Use <xref href=\"System.String.ToUpper\" data-throw-if-not-resolved=\"false\"></xref> to convert a string to uppercase.</p>\n"
-  example:
-  - "\n<p>The following example converts each character in an array to its uppercase equivalent. </p>System.Char.ToUpper#1"
   syntax:
     content: public static char ToUpper(char c)
     content.vb: Public Shared Function ToUpper(c As Char) As Char
@@ -3143,8 +3059,6 @@ items:
   namespace: System
   summary: "\n<p>Converts the value of the specified string to its equivalent Unicode character. A return code indicates whether the conversion succeeded or failed.</p>\n"
   remarks: "\n<p>The <xref href=\"System.Char.TryParse(System.String,System.Char@)\" data-throw-if-not-resolved=\"false\"></xref> method is like the <xref href=\"System.Char.Parse(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method, except the <xref href=\"System.Char.TryParse(System.String,System.Char@)\" data-throw-if-not-resolved=\"false\"></xref> method does not throw an exception if the conversion fails.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates overloads of the <xref href=\"System.Char.TryParse(System.String,System.Char@)\" data-throw-if-not-resolved=\"false\"></xref> method for several base types, and the <see cref=\"Overload:System.DateTime.TryParseExact\"></see> method for the <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> base type.</p>T.TryParse#1"
   syntax:
     content: public static bool TryParse(string s, out char result)
     content.vb: Public Shared Function TryParse(s As String, ByRef result As Char) As Boolean

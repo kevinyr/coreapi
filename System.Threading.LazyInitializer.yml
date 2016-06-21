@@ -27,8 +27,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Provides lazy initialization routines.</p>\n"
   remarks: "\n<p>These routines avoid needing to allocate a dedicated, lazy-initialization instance, instead using references to ensure targets have been initialized as they are accessed.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates how to use EnsureInitialized to lazily initialize a value using a Boolean value to track whether initialization has already happened and an object to use as the mutual exclusion lock.</p>\n<pre><code class=\"vb#\">Dim _data As ExpensiveData = Nothing\nDim _dataInitialized As Boolean = False\nDim _dataLock As Object = Nothing\n'    ...\nDim name = LazyInitializer.EnsureInitialized(_data, _dataInitialized, _dataLock)</code></pre>\n<pre><code class=\"c#\">ExpensiveData _data = null;\n             bool _dataInitialized = false;\n             object _dataLock = new object();\n          //  ...\n\n            ExpensiveData dataToUse = LazyInitializer.EnsureInitialized(ref _data, ref _dataInitialized, ref _dataLock);</code></pre>\n"
   syntax:
     content: >-
       [HostProtection(Synchronization = true, ExternalThreading = true)]
@@ -128,8 +126,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Initializes a target reference or value type with its default constructor if it hasn't already been initialized.</p>\n"
   remarks: "\n<p>If <em>intialized</em> is specified as true, then no further initialization occurs.</p>\n"
-  example:
-  - 
   syntax:
     content: public static T EnsureInitialized<T>(ref T target, ref bool initialized, ref object syncLock)
     content.vb: Public Shared Function EnsureInitialized(Of T)(ByRef target As T, ByRef initialized As Boolean, ByRef syncLock As Object) As T
@@ -187,8 +183,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Initializes a target reference or value type by using a specified function if it hasn't already been initialized.</p>\n"
   remarks: "\n<p>If <em>intialized</em> is specified as true, then no further initialization occurs.</p>\n"
-  example:
-  - 
   syntax:
     content: public static T EnsureInitialized<T>(ref T target, ref bool initialized, ref object syncLock, Func<T> valueFactory)
     content.vb: Public Shared Function EnsureInitialized(Of T)(ByRef target As T, ByRef initialized As Boolean, ByRef syncLock As Object, valueFactory As Func(Of T)) As T
@@ -249,8 +243,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Initializes a target reference type by using a specified function if it hasn't already been initialized.</p>\n"
   remarks: "\n<p>This method may only be used on reference types, and <em>valueFactory</em> may not return a null reference (Nothing in Visual Basic). To ensure initialization of value types or to allow null reference types, see other overloads of EnsureInitialized.</p>\n<p>This method may be used concurrently by multiple threads to initialize <em>target</em>. </p>\n<p>In the event that multiple threads access this method concurrently, multiple instances of<em> T </em>may be created, but only one will be stored into <em>target</em>. In such an occurrence, this method will not dispose of the objects that were not stored. If such objects must be disposed, it is up to the caller to determine if an object was not used and to then dispose of the object appropriately.</p>\n"
-  example:
-  - 
   syntax:
     content: 'public static T EnsureInitialized<T>(ref T target, Func<T> valueFactory)where T : class'
     content.vb: Public Shared Function EnsureInitialized(Of T As Class)(ByRef target As T, valueFactory As Func(Of T)) As T

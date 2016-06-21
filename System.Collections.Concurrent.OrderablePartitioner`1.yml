@@ -31,8 +31,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Represents a particular manner of splitting an orderable data source into multiple partitions.</p>\n"
   remarks: "\n<p>The implementation of the derived class is responsible for ordering the elements into key-value pairs in whatever manner is appropriate. For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
-  example:
-  - "\n<p>The following example shows how to implement an orderable partitioner that returns one element at a time:</p>System.Collections.Concurrent.OrderablePartitioner#1"
   syntax:
     content: 'public abstract class OrderablePartitioner<TSource> : Partitioner<TSource>'
     content.vb: >-
@@ -86,8 +84,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Called from constructors in derived classes to initialize the <xref href=\"System.Collections.Concurrent.OrderablePartitioner`1\" data-throw-if-not-resolved=\"false\"></xref> class with the specified constraints on the index keys.</p>\n"
   remarks: "\n<p>For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
-  example:
-  - 
   syntax:
     content: protected OrderablePartitioner(bool keysOrderedInEachPartition, bool keysOrderedAcrossPartitions, bool keysNormalized)
     content.vb: Protected Sub New(keysOrderedInEachPartition As Boolean, keysOrderedAcrossPartitions As Boolean, keysNormalized As Boolean)
@@ -129,8 +125,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets whether order keys are normalized.</p>\n"
   remarks: "\n<p>If <xref href=\"System.Collections.Concurrent.OrderablePartitioner`1.KeysNormalized\" data-throw-if-not-resolved=\"false\"></xref> returns true, all order keys are distinct integers in the range [0 .. numberOfElements-1]. If the property returns false, order keys must still be distinct, but only their relative order is considered, not their absolute values.</p>\n<p>For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool KeysNormalized { get; }
     content.vb: Public ReadOnly Property KeysNormalized As Boolean
@@ -168,8 +162,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets whether elements in an earlier partition always come before elements in a later partition.</p>\n"
   remarks: "\n<p>If <xref href=\"System.Collections.Concurrent.OrderablePartitioner`1.KeysOrderedAcrossPartitions\" data-throw-if-not-resolved=\"false\"></xref> returns true, each element in partition 0 has a smaller order key than any element in partition 1, each element in partition 1 has a smaller order key than any element in partition 2, and so on.</p>\n<p>For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool KeysOrderedAcrossPartitions { get; }
     content.vb: Public ReadOnly Property KeysOrderedAcrossPartitions As Boolean
@@ -207,8 +199,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets whether elements in each partition are yielded in the order of increasing keys.</p>\n"
   remarks: "\n<p>For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool KeysOrderedInEachPartition { get; }
     content.vb: Public ReadOnly Property KeysOrderedInEachPartition As Boolean
@@ -246,8 +236,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Creates an object that can partition the underlying collection into a variable number of partitions.</p>\n"
   remarks: "\n<p> The returned object implements the <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> interface. Calling <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the object creates another partition over the sequence.</p>\n<p>  The default implementation provides the same behavior as <xref href=\"System.Collections.Concurrent.OrderablePartitioner`1.GetOrderableDynamicPartitions\" data-throw-if-not-resolved=\"false\"></xref> except that the returned set of partitions does not provide the keys for the elements.</p>\n<p>  The <xref href=\"System.Collections.Concurrent.OrderablePartitioner`1.GetDynamicPartitions\" data-throw-if-not-resolved=\"false\"></xref> method is only supported if the <xref href=\"System.Collections.Concurrent.Partitioner`1.SupportsDynamicPartitions\" data-throw-if-not-resolved=\"false\"></xref> property returns true.</p>\n<p>For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
-  example:
-  - 
   syntax:
     content: public override IEnumerable<TSource> GetDynamicPartitions()
     content.vb: Public Overrides Function GetDynamicPartitions As IEnumerable(Of TSource)
@@ -289,8 +277,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Creates an object that can partition the underlying collection into a variable number of partitions.</p>\n"
   remarks: "\n<p> The returned object implements the <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> interface. Calling <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the object creates another partition over the sequence.</p>\n<p>  Each partition is represented as an enumerator over key-value pairs. The value in the pair is the element itself, and the key is an integer which determines the relative ordering of this element against other elements.</p>\n<p>  The <xref href=\"System.Collections.Concurrent.OrderablePartitioner`1.GetOrderableDynamicPartitions\" data-throw-if-not-resolved=\"false\"></xref> method is only supported if the <xref href=\"System.Collections.Concurrent.Partitioner`1.SupportsDynamicPartitions\" data-throw-if-not-resolved=\"false\"></xref> property returns true.</p>\n<p>For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual IEnumerable<KeyValuePair<long, TSource>> GetOrderableDynamicPartitions()
     content.vb: Public Overridable Function GetOrderableDynamicPartitions As IEnumerable(Of KeyValuePair(Of Long, TSource))
@@ -331,8 +317,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Partitions the underlying collection into the specified number of orderable partitions.</p>\n"
   remarks: "\n<p>Each partition is represented as an enumerator over key-value pairs.</p>\n<p> The value of the pair is the element itself, and the key is an integer which determines the relative ordering of this element against other elements in the data source.</p>\n<p>For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
-  example:
-  - 
   syntax:
     content: public abstract IList<IEnumerator<KeyValuePair<long, TSource>>> GetOrderablePartitions(int partitionCount)
     content.vb: Public MustOverride Function GetOrderablePartitions(partitionCount As Integer) As IList(Of IEnumerator(Of KeyValuePair(Of Long, TSource)))
@@ -373,8 +357,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Partitions the underlying collection into the given number of ordered partitions.</p>\n"
   remarks: "\n<p>The default implementation provides the same behavior as <xref href=\"System.Collections.Concurrent.OrderablePartitioner`1.GetOrderablePartitions(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> except that the returned set of partitions does not provide the keys for the elements.</p>\n<p>For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
-  example:
-  - 
   syntax:
     content: public override IList<IEnumerator<TSource>> GetPartitions(int partitionCount)
     content.vb: Public Overrides Function GetPartitions(partitionCount As Integer) As IList(Of IEnumerator(Of TSource))

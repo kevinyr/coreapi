@@ -69,8 +69,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Represents a thread-safe collection of key/value pairs that can be accessed by multiple threads concurrently. </p>\n"
   remarks: "\n<p>For very large <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> objects, you can increase the maximum array size to 2 gigabytes (GB) on a 64-bit system by setting the  configuration element to <strong>true</strong> in the run-time environment.</p>\n<p>\n<xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> implements the <xref href=\"System.Collections.Generic.IReadOnlyCollection`1\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Collections.Generic.IReadOnlyDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> interfaces starting with the .NET Framework 4.6; in previous versions of the .NET Framework, the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class did not implement these interfaces. </p>\n<p>Like the <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class, <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> implements the <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> interface. In addition, <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> provides several methods for adding or updating key/value pairs in the dictionary, as described in the following table. </p>\n<p>To do this</p>\n<p>Use this method</p>\n<p>Usage notes</p>\n<p>All these operations are atomic and are thread-safe with regards to all other operations on the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class. The only exceptions are the methods that accept a delegate, that is, <see cref=\"Overload:System.Collections.Concurrent.ConcurrentDictionary`2.AddOrUpdate\"></see> and <see cref=\"Overload:System.Collections.Concurrent.ConcurrentDictionary`2.GetOrAdd\"></see>. For modifications and write operations to the dictionary, <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> uses fine-grained locking to ensure thread safety. (Read operations on the dictionary are performed in a lock-free manner.) However, delegates for these methods are called outside the locks to avoid the problems that can arise from executing unknown code under a lock. Therefore, the code executed by these delegates is not subject to the atomicity of the operation.</p>\n"
-  example:
-  - "\n<p>The following example shows how to construct a <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> object.</p>System.Collections.Concurrent.ConcurrentDictionary#1"
   syntax:
     content: >-
       [DebuggerTypeProxy(typeof (IDictionaryDebugView<, >))]
@@ -140,8 +138,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the default concurrency level, has the default initial capacity, and uses the default comparer for the key type.</p>\n"
   remarks: "\n<p>The default concurrency level is the default concurrency multiplier (DEFAULT_CONCURRENCY_MULTIPLIER) times the number of CPUs. The higher the default concurrency multiplier is, the more concurrent write operations can take place without interference and blocking. Higher multiplier values also cause operations that require all locks (for example, table resizing, <strong>ToArray</strong> and <strong>Count</strong>) to become more expensive. The default concurrency multiplier is 4. The default capacity (DEFAULT_CAPACITY), which represents the initial number of buckets, is a trade-off between the size of a very small dictionary and the number of resizes when constructing a large dictionary. Also, the capacity should not be divisible by a small prime number. The default capacity is 31.</p>\n"
-  example:
-  - 
   syntax:
     content: public ConcurrentDictionary()
     content.vb: Public Sub New
@@ -172,8 +168,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class that contains elements copied from the specified <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>, has the default concurrency level, has the default initial capacity, and uses the default comparer for the key type.</p>\n"
-  example:
-  - 
   syntax:
     content: public ConcurrentDictionary(IEnumerable<KeyValuePair<TKey, TValue>> collection)
     content.vb: Public Sub New(collection As IEnumerable(Of KeyValuePair(Of TKey, TValue)))
@@ -216,8 +210,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class that contains elements copied from the specified <xref href=\"System.Collections.IEnumerable\" data-throw-if-not-resolved=\"false\"></xref> has the default concurrency level, has the default initial capacity, and uses the specified  <xref href=\"System.Collections.Generic.IEqualityComparer`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public ConcurrentDictionary(IEnumerable<KeyValuePair<TKey, TValue>> collection, IEqualityComparer<TKey> comparer)
     content.vb: Public Sub New(collection As IEnumerable(Of KeyValuePair(Of TKey, TValue)), comparer As IEqualityComparer(Of TKey))
@@ -260,8 +252,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the default concurrency level and capacity, and uses the specified <xref href=\"System.Collections.Generic.IEqualityComparer`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public ConcurrentDictionary(IEqualityComparer<TKey> comparer)
     content.vb: Public Sub New(comparer As IEqualityComparer(Of TKey))
@@ -301,8 +291,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class that contains elements copied from the specified <xref href=\"System.Collections.IEnumerable\" data-throw-if-not-resolved=\"false\"></xref>, and uses the specified <xref href=\"System.Collections.Generic.IEqualityComparer`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public ConcurrentDictionary(int concurrencyLevel, IEnumerable<KeyValuePair<TKey, TValue>> collection, IEqualityComparer<TKey> comparer)
     content.vb: Public Sub New(concurrencyLevel As Integer, collection As IEnumerable(Of KeyValuePair(Of TKey, TValue)), comparer As IEqualityComparer(Of TKey))
@@ -354,8 +342,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the specified concurrency level and capacity, and uses the default comparer for the key type.</p>\n"
-  example:
-  - 
   syntax:
     content: public ConcurrentDictionary(int concurrencyLevel, int capacity)
     content.vb: Public Sub New(concurrencyLevel As Integer, capacity As Integer)
@@ -397,8 +383,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the specified concurrency level, has the specified initial capacity, and uses the specified <xref href=\"System.Collections.Generic.IEqualityComparer`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public ConcurrentDictionary(int concurrencyLevel, int capacity, IEqualityComparer<TKey> comparer)
     content.vb: Public Sub New(concurrencyLevel As Integer, capacity As Integer, comparer As IEqualityComparer(Of TKey))
@@ -448,8 +432,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets the number of key/value pairs contained in the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>This property has snapshot semantics and represents the number of items in the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> at the moment when the property was accessed.</p>\n"
-  example:
-  - 
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
@@ -494,8 +476,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets a value that indicates whether the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> is empty.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool IsEmpty { get; }
     content.vb: Public ReadOnly Property IsEmpty As Boolean
@@ -532,8 +512,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets or sets the value associated with the specified key.</p>\n"
-  example:
-  - 
   syntax:
     content: public TValue this[TKey key] { get; set; }
     content.vb: Public Property Item(key As TKey) As TValue
@@ -584,8 +562,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets a collection containing the keys in the <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public ICollection<TKey> Keys { get; }
     content.vb: Public ReadOnly Property Keys As ICollection(Of TKey)
@@ -747,8 +723,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets a value indicating whether access to the <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> is synchronized with the SyncRoot.</p>\n"
-  example:
-  - 
   syntax:
     content: bool ICollection.IsSynchronized { get; }
     content.vb: ReadOnly WriteOnly Property System.Collections.ICollection.IsSynchronized As Boolean Implements ICollection.IsSynchronized
@@ -787,8 +761,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets an object that can be used to synchronize access to the <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref>. This property is not supported.</p>\n"
-  example:
-  - 
   syntax:
     content: object ICollection.SyncRoot { get; }
     content.vb: ReadOnly WriteOnly Property System.Collections.ICollection.SyncRoot As Object Implements ICollection.SyncRoot
@@ -831,8 +803,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets a value indicating whether the <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> has a fixed size.</p>\n"
-  example:
-  - 
   syntax:
     content: bool IDictionary.IsFixedSize { get; }
     content.vb: ReadOnly WriteOnly Property System.Collections.IDictionary.IsFixedSize As Boolean Implements IDictionary.IsFixedSize
@@ -871,8 +841,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets a value indicating whether the <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> is read-only.</p>\n"
-  example:
-  - 
   syntax:
     content: bool IDictionary.IsReadOnly { get; }
     content.vb: ReadOnly WriteOnly Property System.Collections.IDictionary.IsReadOnly As Boolean Implements IDictionary.IsReadOnly
@@ -911,8 +879,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets or sets the value associated with the specified key.</p>\n"
-  example:
-  - 
   syntax:
     content: object IDictionary.this[object key] { get; set; }
     content.vb: ReadOnly WriteOnly Property System.Collections.IDictionary.Item(key As Object) As Object Implements IDictionary.this
@@ -960,8 +926,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets an <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> that contains the keys of the  <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: ICollection IDictionary.Keys { get; }
     content.vb: ReadOnly WriteOnly Property System.Collections.IDictionary.Keys As ICollection Implements IDictionary.Keys
@@ -1000,8 +964,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets an <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> that contains the values in the <xref href=\"System.Collections.IDictionary\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: ICollection IDictionary.Values { get; }
     content.vb: ReadOnly WriteOnly Property System.Collections.IDictionary.Values As ICollection Implements IDictionary.Values
@@ -1039,8 +1001,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets a collection that contains the values in the <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public ICollection<TValue> Values { get; }
     content.vb: Public ReadOnly Property Values As ICollection(Of TValue)
@@ -1079,8 +1039,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Adds a key/value pair to the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> if the key does not already exist, or updates a key/value pair in the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> by using the specified function if the key already exists.</p>\n"
-  example:
-  - "\n<p>The following code example shows how to initialize an <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> and how to use the AddOrUpdate method to add an additional item to the collection, and update the existing items.</p>System.Collections.ConcurrentColAddUpdate#1"
   syntax:
     content: public TValue AddOrUpdate(TKey key, TValue addValue, Func<TKey, TValue, TValue> updateValueFactory)
     content.vb: Public Function AddOrUpdate(key As TKey, addValue As TValue, updateValueFactory As Func(Of TKey, TValue, TValue)) As TValue
@@ -1133,8 +1091,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Uses the specified functions to add a key/value pair to the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> if the key does not already exist, or to update a key/value pair in the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> if the key already exists.</p>\n"
   remarks: "\n<p>If you call <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2.AddOrUpdate(`0,System.Func{`0,`1},System.Func{`0,`1,`1})\" data-throw-if-not-resolved=\"false\"></xref> simultaneously on different threads, <em>addValueFactory</em> may be called multiple times, but its key/value pair might not be added to the dictionary for every call. </p>\n"
-  example:
-  - 
   syntax:
     content: public TValue AddOrUpdate(TKey key, Func<TKey, TValue> addValueFactory, Func<TKey, TValue, TValue> updateValueFactory)
     content.vb: Public Function AddOrUpdate(key As TKey, addValueFactory As Func(Of TKey, TValue), updateValueFactory As Func(Of TKey, TValue, TValue)) As TValue
@@ -1186,8 +1142,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Removes all keys and values from the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public void Clear()
     content.vb: Public Sub Clear
@@ -1221,8 +1175,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Determines whether the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> contains the specified key.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool ContainsKey(TKey key)
     content.vb: Public Function ContainsKey(key As TKey) As Boolean
@@ -1268,8 +1220,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Returns an enumerator that iterates through the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>The enumerator returned from the dictionary is safe to use concurrently with reads and writes to the dictionary, however it does not represent a moment-in-time snapshot of the dictionary. The contents exposed through the enumerator may contain modifications made to the dictionary after <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> was called.</p>\n"
-  example:
-  - 
   syntax:
     content: public IEnumerator<KeyValuePair<TKey, TValue>> GetEnumerator()
     content.vb: Public Function GetEnumerator As IEnumerator(Of KeyValuePair(Of TKey, TValue))
@@ -1638,8 +1588,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Copies the elements of the <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> to an array, starting at the specified array index.</p>\n"
-  example:
-  - 
   syntax:
     content: void ICollection.CopyTo(Array array, int index)
     content.vb: Sub System.Collections.ICollection.CopyTo(array As Array, index As Integer) Implements ICollection.CopyTo
@@ -1687,8 +1635,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Adds the specified key and value to the dictionary.</p>\n"
-  example:
-  - 
   syntax:
     content: void IDictionary.Add(object key, object value)
     content.vb: Sub System.Collections.IDictionary.Add(key As Object, value As Object) Implements IDictionary.Add
@@ -1736,8 +1682,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets whether the <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> contains an element with the specified key.</p>\n"
-  example:
-  - 
   syntax:
     content: bool IDictionary.Contains(object key)
     content.vb: Function System.Collections.IDictionary.Contains(key As Object) As Boolean Implements IDictionary.Contains
@@ -1779,8 +1723,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Provides a <xref href=\"System.Collections.IDictionaryEnumerator\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: IDictionaryEnumerator IDictionary.GetEnumerator()
     content.vb: Function System.Collections.IDictionary.GetEnumerator As IDictionaryEnumerator Implements IDictionary.GetEnumerator
@@ -1814,8 +1756,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Removes the element with the specified key from the <xref href=\"System.Collections.IDictionary\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: void IDictionary.Remove(object key)
     content.vb: Sub System.Collections.IDictionary.Remove(key As Object) Implements IDictionary.Remove
@@ -1855,8 +1795,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Returns an enumerator that iterates through the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>The enumerator returned from the dictionary is safe to use concurrently with reads and writes to the dictionary, however it does not represent a moment-in-time snapshot of the dictionary. The contents exposed through the enumerator may contain modifications made to the dictionary after <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> was called.</p>\n"
-  example:
-  - 
   syntax:
     content: IEnumerator IEnumerable.GetEnumerator()
     content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
@@ -1889,8 +1827,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Copies the key and value pairs stored in the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> to a new array.</p>\n"
-  example:
-  - 
   syntax:
     content: public KeyValuePair<TKey, TValue>[] ToArray()
     content.vb: Public Function ToArray As KeyValuePair(Of TKey, TValue)()
@@ -1925,8 +1861,6 @@ items:
   namespace: System.Collections.Concurrent
   summary: "\n<p>Attempts to add the specified key and value to the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>This method returns <strong>false</strong> if the key already exists. Use the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2.TryUpdate(`0,`1,`1)\" data-throw-if-not-resolved=\"false\"></xref> or <see cref=\"Overload:System.Collections.Concurrent.ConcurrentDictionary`2.AddOrUpdate\"></see> method to update the value in case a key already exists.</p>\n"
-  example:
-  - "\n<p>The following example shows how to call the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2.TryAdd(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref>method:</p>System.Collections.Concurrent.ConcurrentDictionary#2"
   syntax:
     content: public bool TryAdd(TKey key, TValue value)
     content.vb: Public Function TryAdd(key As TKey, value As TValue) As Boolean
@@ -1974,8 +1908,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Attempts to get the value associated with the specified key from the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool TryGetValue(TKey key, out TValue value)
     content.vb: Public Function TryGetValue(key As TKey, ByRef value As TValue) As Boolean
@@ -2024,8 +1956,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Attempts to remove and return the value that has the specified key from the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example shows how to call the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2.TryRemove(`0,`1@)\" data-throw-if-not-resolved=\"false\"></xref> method:</p>System.Collections.Concurrent.ConcurrentDictionary#2"
   syntax:
     content: public bool TryRemove(TKey key, out TValue value)
     content.vb: Public Function TryRemove(key As TKey, ByRef value As TValue) As Boolean
@@ -2071,8 +2001,6 @@ items:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Compares the existing value for the specified key with a specified value, and if they are equal, updates the key with a third value.</p>\n"
-  example:
-  - "\n<p>The following example shows how to call the <xref href=\"System.Collections.Concurrent.ConcurrentDictionary`2.TryUpdate(`0,`1,`1)\" data-throw-if-not-resolved=\"false\"></xref> method:</p>System.Collections.Concurrent.ConcurrentDictionary#2"
   syntax:
     content: public bool TryUpdate(TKey key, TValue newValue, TValue comparisonValue)
     content.vb: Public Function TryUpdate(key As TKey, newValue As TValue, comparisonValue As TValue) As Boolean

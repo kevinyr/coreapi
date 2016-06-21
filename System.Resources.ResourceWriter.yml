@@ -16,19 +16,17 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Resources.Writer/ref/System.Resources.Writer.cs
+      path: src/System.Resources.Writer/src/System/Resources/ResourceWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ResourceWriter
-    path: src/System.Resources.Writer/ref/System.Resources.Writer.cs
-    startLine: 10
+    path: src/System.Resources.Writer/src/System/Resources/ResourceWriter.cs
+    startLine: 39
   assemblies:
   - System.Resources.Writer
   namespace: System.Resources
   summary: "\n<p>Writes resources in the system-default format to an output file or an output stream. This class cannot be inherited.</p>\n"
   remarks: "\n<p>\n<xref href=\"System.Resources.ResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> provides a default implementation of the <xref href=\"System.Resources.IResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> interface. It enables you to programmatically create a binary resource (.resources) file. </p>\n<p>Resources are specified as name and value pairs using the <xref href=\"System.Resources.ResourceWriter.AddResource(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method. Resource names are case-sensitive when used for lookups, but to more easily support authoring tools and help eliminate bugs, <xref href=\"System.Resources.ResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> will not allow a .resources file to have names that vary only by case. The <xref href=\"System.Resources.ResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> class enables you to create string, object, and binary resources. Binary resources can be written to the resource file as a byte array or a stream. </p>\n<p>This type implements the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface. When you have finished using the type, you should dispose of it either directly or indirectly. To dispose of the type directly, call its <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method in a <strong>try</strong>/<strong>catch</strong> block. To dispose of it indirectly, use a language construct such as <strong>using</strong> (in C#) or <strong>Using</strong> (in Visual Basic). For more information, see the “Using an Object that Implements IDisposable” section in the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface topic.</p>\n<p>To create a resources file, create a <xref href=\"System.Resources.ResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> with a unique file name, call <xref href=\"System.Resources.ResourceWriter.AddResource(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> at least once, call <xref href=\"System.Resources.ResourceWriter.Generate\" data-throw-if-not-resolved=\"false\"></xref> to write the resources file to disk, and then call <xref href=\"System.Resources.ResourceWriter.Close\" data-throw-if-not-resolved=\"false\"></xref> to close the file. Calling <xref href=\"System.Resources.ResourceWriter.Close\" data-throw-if-not-resolved=\"false\"></xref> will implicitly call <xref href=\"System.Resources.ResourceWriter.Generate\" data-throw-if-not-resolved=\"false\"></xref> if you do not explicitly call <xref href=\"System.Resources.ResourceWriter.Generate\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The resources will not necessarily be written in the same order they were added.</p>\n<p>To retrieve resources from a binary .resources file created by the <xref href=\"System.Resources.ResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> class, you can use the <xref href=\"System.Resources.ResourceManager\" data-throw-if-not-resolved=\"false\"></xref> class, which lets you retrieve named resources, or the <xref href=\"System.Resources.ResourceReader\" data-throw-if-not-resolved=\"false\"></xref> class, which lets you enumerate all the resources in the file. </p>\n"
-  example:
-  - "\n<p>The following example writes several strings into the myResources.resources file.</p>Classic ResourceWriter Example#1"
   syntax:
     content: 'public sealed class ResourceWriter : IDisposable'
     content.vb: >-
@@ -71,18 +69,16 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Resources.Writer/ref/System.Resources.Writer.cs
+      path: src/System.Resources.Writer/src/System/Resources/ResourceWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Resources.Writer/ref/System.Resources.Writer.cs
-    startLine: 12
+    path: src/System.Resources.Writer/src/System/Resources/ResourceWriter.cs
+    startLine: 55
   assemblies:
   - System.Resources.Writer
   namespace: System.Resources
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Resources.ResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> class that writes the resources to the provided stream.</p>\n"
-  example:
-  - "\n<p>The following code example defines a new instance of the <xref href=\"System.Resources.ResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> class that writes to a specified stream. The code adds resources to the writer and writes the resources to the stream.</p>System.Resources.ResourceWriter Cstr1 Example#1"
   syntax:
     content: public ResourceWriter(Stream stream)
     content.vb: Public Sub New(stream As Stream)
@@ -113,19 +109,17 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Resources.Writer/ref/System.Resources.Writer.cs
+      path: src/System.Resources.Writer/src/System/Resources/ResourceWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: AddResource
-    path: src/System.Resources.Writer/ref/System.Resources.Writer.cs
-    startLine: 13
+    path: src/System.Resources.Writer/src/System/Resources/ResourceWriter.cs
+    startLine: 70
   assemblies:
   - System.Resources.Writer
   namespace: System.Resources
   summary: "\n<p>Adds a string resource to the list of resources to be written.</p>\n"
   remarks: "\n<p>The resource is not written until <xref href=\"System.Resources.ResourceWriter.Generate\" data-throw-if-not-resolved=\"false\"></xref> is called.</p>\n<p>You can retrieve the resources written by the <xref href=\"System.Resources.ResourceWriter.AddResource(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method by calling the <xref href=\"System.Resources.ResourceManager.GetString(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
-  example:
-  - "\n<p>The following example uses the <xref href=\"System.Resources.ResourceWriter.AddResource(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to add string resources to a <xref href=\"System.Resources.ResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> object.</p>System.Resources.ResourceWriter Cstr1 Example#1"
   syntax:
     content: public void AddResource(string name, string value)
     content.vb: Public Sub AddResource(name As String, value As String)
@@ -162,19 +156,17 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Resources.Writer/ref/System.Resources.Writer.cs
+      path: src/System.Resources.Writer/src/System/Resources/ResourceWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/System.Resources.Writer/ref/System.Resources.Writer.cs
-    startLine: 14
+    path: src/System.Resources.Writer/src/System/Resources/ResourceWriter.cs
+    startLine: 83
   assemblies:
   - System.Resources.Writer
   namespace: System.Resources
   summary: "\n<p>Allows users to close the resource file or stream, explicitly releasing resources.</p>\n"
   remarks: "\n<p>The implementation of this method is the same as <xref href=\"System.Resources.ResourceWriter.Close\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following code example uses the <xref href=\"System.Resources.ResourceWriter.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method to write all resource objects in a <xref href=\"System.Resources.ResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> class to the output stream. The code then shuts down the writer and make the writer's resources available for other processes.</p>System.Resources.ResourceWriter.Dispose Example#1"
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
@@ -206,19 +198,17 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Resources.Writer/ref/System.Resources.Writer.cs
+      path: src/System.Resources.Writer/src/System/Resources/ResourceWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Generate
-    path: src/System.Resources.Writer/ref/System.Resources.Writer.cs
-    startLine: 15
+    path: src/System.Resources.Writer/src/System/Resources/ResourceWriter.cs
+    startLine: 104
   assemblies:
   - System.Resources.Writer
   namespace: System.Resources
   summary: "\n<p>Saves all resources to the output stream in the system default format.</p>\n"
   remarks: "\n<p>The <xref href=\"System.Resources.ResourceWriter.Generate\" data-throw-if-not-resolved=\"false\"></xref> method is called implicitly by the <xref href=\"System.Resources.ResourceWriter.Close\" data-throw-if-not-resolved=\"false\"></xref> method if it is not called by your application code.</p>\n<p>\n<xref href=\"System.Resources.ResourceWriter.Generate\" data-throw-if-not-resolved=\"false\"></xref> can only be called once, after all calls to <xref href=\"System.Resources.ResourceWriter.AddResource(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Resources.ResourceWriter.AddResourceData(System.String,System.String,System.Byte[])\" data-throw-if-not-resolved=\"false\"></xref> have been made. If an exception occurs while writing the resources, the output stream will be closed to prevent writing invalid information.</p>\n<p>\n<xref href=\"System.Resources.ResourceWriter.Generate\" data-throw-if-not-resolved=\"false\"></xref> does not close the output stream in normal cases. Unless you are combining extra data with your .resources file or need access to the stream afterwards, you should call <xref href=\"System.Resources.ResourceWriter.Close\" data-throw-if-not-resolved=\"false\"></xref> after calling <xref href=\"System.Resources.ResourceWriter.Generate\" data-throw-if-not-resolved=\"false\"></xref>, or simply call <xref href=\"System.Resources.ResourceWriter.Close\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following code example uses the <xref href=\"System.Resources.ResourceWriter.Generate\" data-throw-if-not-resolved=\"false\"></xref> method to write all resource objects in a <xref href=\"System.Resources.ResourceWriter\" data-throw-if-not-resolved=\"false\"></xref> class to the output stream</p>System.Resources.ResourceWriter.Generate Example#1"
   syntax:
     content: public void Generate()
     content.vb: Public Sub Generate

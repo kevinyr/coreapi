@@ -43,8 +43,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Represents a lightweight alternative to <xref href=\"System.Threading.Semaphore\" data-throw-if-not-resolved=\"false\"></xref> that limits the number of threads that can access a resource or pool of resources concurrently.</p>\n"
   remarks: "\n<p>Semaphores are of two types: local semaphores and named system semaphores. The former is local to an app. The latter is visible throughout the operating system and is suitable for inter-process synchronization. The <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> is a lightweight alternative to the <xref href=\"System.Threading.Semaphore\" data-throw-if-not-resolved=\"false\"></xref> class that doesn't use Windows kernel semaphores. Unlike the <xref href=\"System.Threading.Semaphore\" data-throw-if-not-resolved=\"false\"></xref> class, the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> class doesn’t support named system semaphores. You can use it as a local semaphore only. The <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> class is the recommended semaphore for synchronization within a single app. </p>\n<p>A lightweight semaphore controls access to a pool of resources that is local to your application. When you instantiate a semaphore, you can specify the maximum number of threads that can enter the semaphore concurrently. You also specify the initial number of threads that can enter the semaphore concurrently. This defines the semaphore's count. </p>\n<p>The count is decremented each time a thread enters the semaphore, and incremented each time a thread releases the semaphore. To enter the semaphore, a thread calls one of the <xref href=\"System.Threading.SemaphoreSlim.Wait\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Threading.SemaphoreSlim.WaitAsync\" data-throw-if-not-resolved=\"false\"></xref> overloads. To release the semaphore, it calls one of the <xref href=\"System.Threading.SemaphoreSlim.Release\" data-throw-if-not-resolved=\"false\"></xref> overloads. When the count reaches zero, subsequent calls to one of the <strong>Wait</strong> methods block until other threads release the semaphore. If multiple threads are blocked, there is no guaranteed order, such as FIFO or LIFO, that controls when threads enter the semaphore. </p>\n<p>The basic structure for code that uses a semaphore to protect resources is:</p>\n<pre><code>' Enter semaphore by calling one of the Wait or WaitAsync methods.\nSemaphoreSlim.Wait()\n' \n' Execute code protected by the semaphore. \n'\nSemaphoreSlim.Release()</code></pre>\n<p>When all threads have released the semaphore, the count is at the maximum value specified when the semaphore was created. The semaphore's count is available from the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property. </p>\n<p>The <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> class doesn’t enforce thread or task identity on calls to the <xref href=\"System.Threading.SemaphoreSlim.Wait\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Threading.SemaphoreSlim.WaitAsync\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Threading.SemaphoreSlim.Release\" data-throw-if-not-resolved=\"false\"></xref> methods. In addition, if the <xref href=\"System.Threading.SemaphoreSlim.#ctor(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor is used to instantiate the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> object, the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property can increase beyond the value set by the constructor. It is the programmer's responsibility to ensure that calls to <xref href=\"System.Threading.SemaphoreSlim.Wait\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Threading.SemaphoreSlim.WaitAsync\" data-throw-if-not-resolved=\"false\"></xref> methods are appropriately paired with calls to <xref href=\"System.Threading.SemaphoreSlim.Release\" data-throw-if-not-resolved=\"false\"></xref> methods. </p>\n"
-  example:
-  - "\n<p>The following example creates a semaphore with a maximum count of three threads and an initial count of zero threads. The example starts five tasks, all of which block waiting for the semaphore. The main thread calls the <xref href=\"System.Threading.SemaphoreSlim.Release(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> overload to increase the semaphore count to its maximum, which allows three tasks to enter the semaphore. Each time the semaphore is released, the previous semaphore count is displayed. Console messages track semaphore use. The simulated work interval is increased slightly for each thread to make the output easier to read. </p>System.Threading.SemaphoreSlim#1"
   syntax:
     content: >-
       [ComVisible(false)]
@@ -104,8 +102,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> class, specifying the initial number of requests that can be granted concurrently.</p>\n"
   remarks: "\n<p>The <em>initialCount</em> parameter defines the number of concurrent requests to enter the semaphore that can be granted. However, it doesn’t define the maximum number of requests that can be granted concurrently. A   <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> object instantiated by calling this constructor doesn’t throw a <xref href=\"System.Threading.SemaphoreFullException\" data-throw-if-not-resolved=\"false\"></xref> exception if a call to the <xref href=\"System.Threading.SemaphoreSlim.Release\" data-throw-if-not-resolved=\"false\"></xref> method increases the value of the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property beyond <em>initialCount</em>. This occurs if there are more calls to <xref href=\"System.Threading.SemaphoreSlim.Release\" data-throw-if-not-resolved=\"false\"></xref> methods than there are to <xref href=\"System.Threading.SemaphoreSlim.Wait\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Threading.SemaphoreSlim.WaitAsync\" data-throw-if-not-resolved=\"false\"></xref> methods. To set the maximum number of concurrent requests to enter the semaphore that can be granted, call the <xref href=\"System.Threading.SemaphoreSlim.#ctor(System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor. </p>\n"
-  example:
-  - 
   syntax:
     content: public SemaphoreSlim(int initialCount)
     content.vb: Public Sub New(initialCount As Integer)
@@ -143,8 +139,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> class, specifying the initial and maximum number of requests that can be granted concurrently.</p>\n"
-  example:
-  - 
   syntax:
     content: public SemaphoreSlim(int initialCount, int maxCount)
     content.vb: Public Sub New(initialCount As Integer, maxCount As Integer)
@@ -186,8 +180,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Returns a <xref href=\"System.Threading.WaitHandle\" data-throw-if-not-resolved=\"false\"></xref> that can be used to wait on the semaphore.</p>\n"
   remarks: "\n<p>Use this property only when you must wait on a SemaphoreSlim together with other kernel-based synchronization objects with the same wait handle. A successful wait on the <xref href=\"System.Threading.SemaphoreSlim.AvailableWaitHandle\" data-throw-if-not-resolved=\"false\"></xref> does not imply a successful wait on the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> itself, nor does it decrement the semaphore's count. After the available wait handle is signaled, you should wait on the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> specifically.</p>\n"
-  example:
-  - 
   syntax:
     content: public WaitHandle AvailableWaitHandle { get; }
     content.vb: Public ReadOnly Property AvailableWaitHandle As WaitHandle
@@ -228,8 +220,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Gets the number of remaining threads that can enter the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n"
   remarks: "\n<p>The initial value of the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property is set by the call to the <see cref=\"Overload:System.Threading.SemaphoreSlim.#ctor\"></see> class constructor. It is decremented by each call to the <xref href=\"System.Threading.SemaphoreSlim.Wait\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Threading.SemaphoreSlim.WaitAsync\" data-throw-if-not-resolved=\"false\"></xref> method, and incremented by each call to the <xref href=\"System.Threading.SemaphoreSlim.Release\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n"
-  example:
-  - 
   syntax:
     content: public int CurrentCount { get; }
     content.vb: Public ReadOnly Property CurrentCount As Integer
@@ -298,8 +288,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Releases the unmanaged resources used by the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref>, and optionally releases the managed resources.</p>\n"
   remarks: "\n<p>Unlike most of the members of <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Threading.SemaphoreSlim.Dispose(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> is not thread-safe and may not be used concurrently with other members of this instance.</p>\n"
-  example:
-  - 
   syntax:
     content: protected virtual void Dispose(bool disposing)
     content.vb: Protected Overridable Sub Dispose(disposing As Boolean)
@@ -336,8 +324,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Releases the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> object once.</p>\n"
   remarks: "\n<p>A call to the <xref href=\"System.Threading.SemaphoreSlim.Release\" data-throw-if-not-resolved=\"false\"></xref> method increments the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property by one. If the value of the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property is zero before this method is called, the method also allows one thread or task blocked by a call to the <xref href=\"System.Threading.SemaphoreSlim.Wait\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Threading.SemaphoreSlim.WaitAsync\" data-throw-if-not-resolved=\"false\"></xref> method to enter the semaphore. </p>\n"
-  example:
-  - 
   syntax:
     content: public int Release()
     content.vb: Public Function Release As Integer
@@ -378,8 +364,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Releases the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref> object a specified number of times.</p>\n"
   remarks: "\n<p>A call to the <xref href=\"System.Threading.SemaphoreSlim.Release(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method increments the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property by <em>releaseCount</em>. If the value of the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property is zero before this method is called, the method also allows <em>releaseCount</em> threads or tasks blocked by a call to the <xref href=\"System.Threading.SemaphoreSlim.Wait\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Threading.SemaphoreSlim.WaitAsync\" data-throw-if-not-resolved=\"false\"></xref> method to enter the semaphore. </p>\n"
-  example:
-  - 
   syntax:
     content: public int Release(int releaseCount)
     content.vb: Public Function Release(releaseCount As Integer) As Integer
@@ -427,8 +411,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Blocks the current thread until it can enter the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>If a thread or task is able to enter the semaphore, it decrements the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property by one. </p>\n"
-  example:
-  - 
   syntax:
     content: public void Wait()
     content.vb: Public Sub Wait
@@ -463,8 +445,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Blocks the current thread until it can enter the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref>, using a 32-bit signed integer that specifies the timeout.</p>\n"
   remarks: "\n<p>If a thread or task is able to enter the semaphore, it decrements the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property by one. </p>\n<p>If a thread or task is blocked when calling <xref href=\"System.Threading.SemaphoreSlim.Wait(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, and the time-out interval specified by <em>millisecondsTimeout</em> expires, the thread or task doesn’t enter the semaphore, and the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property isn’t decremented.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool Wait(int millisecondsTimeout)
     content.vb: Public Function Wait(millisecondsTimeout As Integer) As Boolean
@@ -506,8 +486,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Blocks the current thread until it can enter the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref>, using a 32-bit signed integer that specifies the timeout, while observing a <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>If a thread or task is able to enter the semaphore, it decrements the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property by one. </p>\n<p>If <em>cancellationToken</em> is cancelled, or if a thread or task is blocked when calling <xref href=\"System.Threading.SemaphoreSlim.Wait(System.Int32,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> and the time-out interval specified by <em>millisecondsTimeout</em> expires, the thread or task doesn’t enter the semaphore, and the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property isn’t decremented. If <em>cancellationToken</em> is cancelled, the method throws an   <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception. </p>\n"
-  example:
-  - 
   syntax:
     content: public bool Wait(int millisecondsTimeout, CancellationToken cancellationToken)
     content.vb: Public Function Wait(millisecondsTimeout As Integer, cancellationToken As CancellationToken) As Boolean
@@ -558,8 +536,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Blocks the current thread until it can enter the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref>, while observing a <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>If a thread or task is able to enter the semaphore, it decrements the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property by one. </p>\n<p>If <em>cancellationToken</em> is cancelled, the thread or task doesn’t enter the semaphore, and the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property isn’t decremented. Instead, the method throws an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception. </p>\n"
-  example:
-  - 
   syntax:
     content: public void Wait(CancellationToken cancellationToken)
     content.vb: Public Sub Wait(cancellationToken As CancellationToken)
@@ -601,8 +577,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Blocks the current thread until it can enter the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref>, using a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> to specify the timeout.</p>\n"
   remarks: "\n<p>If a thread or task is able to enter the semaphore, it decrements the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property by one. </p>\n<p>If a thread or task is blocked when calling <xref href=\"System.Threading.SemaphoreSlim.Wait(System.TimeSpan)\" data-throw-if-not-resolved=\"false\"></xref> and the time-out interval specified by <em>timeout</em> expires, the thread or task doesn’t enter the semaphore, and the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property isn’t decremented. </p>\n"
-  example:
-  - 
   syntax:
     content: public bool Wait(TimeSpan timeout)
     content.vb: Public Function Wait(timeout As TimeSpan) As Boolean
@@ -647,8 +621,6 @@ items:
   namespace: System.Threading
   summary: "\n<p>Blocks the current thread until it can enter the <xref href=\"System.Threading.SemaphoreSlim\" data-throw-if-not-resolved=\"false\"></xref>, using a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that specifies the timeout, while observing a <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>If a thread or task is able to enter the semaphore, it decrements the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property by one. </p>\n<p>If <em>cancellationToken</em> is cancelled, or if a thread or task is blocked when calling <xref href=\"System.Threading.SemaphoreSlim.Wait(System.TimeSpan,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> and the timeout interval specified by <em>timeout</em> expires, the thread or task doesn’t enter the semaphore, and the <xref href=\"System.Threading.SemaphoreSlim.CurrentCount\" data-throw-if-not-resolved=\"false\"></xref> property isn’t decremented. If <em>cancellationToken</em> is cancelled, the method throws an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception. </p>\n"
-  example:
-  - 
   syntax:
     content: public bool Wait(TimeSpan timeout, CancellationToken cancellationToken)
     content.vb: Public Function Wait(timeout As TimeSpan, cancellationToken As CancellationToken) As Boolean

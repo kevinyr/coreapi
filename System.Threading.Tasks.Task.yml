@@ -111,39 +111,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Represents an asynchronous operation.</p>\n<p>To browse the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/threading/Tasks/Task.cs#045a746eb48cbaa9\">Reference Source</see>.</p>\n"
   remarks: "\n<p>To view the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/threading/Tasks/Task.cs#045a746eb48cbaa9\">Reference Source</see>. You can browse through the source code online, download the reference for offline viewing, and step through the sources (including patches and updates) during debugging; see <see href=\"http://referencesource.microsoft.com/\">instructions</see>.</p>\n<p>The <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> class represents a single operation that does not return a value and that usually executes asynchronously. <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects are one of the central components of the  task-based asynchronous pattern first introduced in the .NET Framework 4. Because the work performed by a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object typically executes asynchronously on a thread pool thread rather than synchronously on the main application thread, you can use the <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property, as well as the <xref href=\"System.Threading.Tasks.Task.IsCanceled\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Threading.Tasks.Task.IsCompleted\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Threading.Tasks.Task.IsFaulted\" data-throw-if-not-resolved=\"false\"></xref> properties, to determine the   state of a task. Most commonly, a lambda expression is used to specify the work that the task is to perform. </p>\n<p>For operations that return values, you use the <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n<p>In this section:</p>\n<p>Creating and executing a taskSeparating task creation and executionWaiting for one or more tasks to completeTasks and cultureFor debugger developers</p>\n"
-  example:
-  - >-
-    <p>The following example creates and executes four tasks. Three tasks execute an <xref href="System.Action`1" data-throw-if-not-resolved="false"></xref> delegate named <code>action</code>, which accepts an argument of type <xref href="System.Object" data-throw-if-not-resolved="false"></xref>. A fourth task executes a lambda expression (an <xref href="System.Action" data-throw-if-not-resolved="false"></xref> delegate) that is defined inline in the call to the task creation method. Each task is instantiated and run in a different way:</p>
-
-    <ul>
-
-    <li>
-
-    <p>Task <code>t1</code> is instantiated by calling a Task class constructor, but is started by calling its <xref href="System.Threading.Tasks.Task.Start" data-throw-if-not-resolved="false"></xref> method only after task <code>t2</code> has started. </p>
-
-    </li>
-
-    <li>
-
-    <p>Task <code>t2</code> is instantiated and started in a single method call by calling the <xref href="System.Threading.Tasks.TaskFactory.StartNew(System.Action{System.Object},System.Object)" data-throw-if-not-resolved="false"></xref> method. </p>
-
-    </li>
-
-    <li>
-
-    <p>Task <code>t3</code> is instantiated and started in a single method call by calling the <xref href="System.Threading.Tasks.Task.Run(System.Action)" data-throw-if-not-resolved="false"></xref> method.  </p>
-
-    </li>
-
-    <li>
-
-    <p>Task <code>t4</code> is executed synchronously on the main thread by calling the <xref href="System.Threading.Tasks.Task.RunSynchronously" data-throw-if-not-resolved="false"></xref> method.</p>
-
-    </li>
-
-    </ul>
-
-    <p>Because task <code>t4</code> executes synchronously, it executes on the main application thread. The remaining tasks execute asynchronously typically on one or more thread pool threads. </p>System.Threading.Tasks.Task#01
   syntax:
     content: >-
       [HostProtection(Synchronization = true, ExternalThreading = true)]
@@ -206,8 +173,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action.</p>\n"
   remarks: "\n<p>Rather than calling this constructor, the most common way to instantiate a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object and launch a task is by calling the static <xref href=\"System.Threading.Tasks.Task.Run(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method. The only advantage offered by this constructor is that it allows object instantiation to be separated from task invocation. </p>\n"
-  example:
-  - "\n<p>The following example uses the <xref href=\"System.Threading.Tasks.Task.#ctor(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> constructor to create tasks that retrieve the filenames in specified directories. All tasks write the file names to a single <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> object. The example then calls the <xref href=\"System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method to ensure that all tasks have completed, and then displays a count of the total number of file names written to the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> object.  </p>System.Threading.Tasks.Task.Ctor#1<p>The following example is identical, except that it used the <xref href=\"System.Threading.Tasks.Task.Run(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method to instantiate and run the task in a single operation. The method returns the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object that represents the task. </p>System.Threading.Tasks.Task.Run#1"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -255,8 +220,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action and <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>Rather than calling this constructor, the most common way to instantiate a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object and launch a task is by calling the static <xref href=\"System.Threading.Tasks.Task.Run(System.Action,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> methods. The only advantage offered by this constructor is that it allows object instantiation to be separated from task invocation. </p>\n<p>For more information, see Task Parallelism (Task Parallel Library) and Cancellation in Managed Threads.</p>\n"
-  example:
-  - "\n<p>The following example calls the <xref href=\"System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> constructor to create a task that iterates the files in the C:\\Windows\\System32 directory. The lambda expression calls the <xref href=\"System.Threading.Tasks.Parallel.ForEach``1(System.Collections.Concurrent.Partitioner{``0},System.Action{``0})\" data-throw-if-not-resolved=\"false\"></xref> method to add information about each  file to a <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref> object. Each detached nested task invoked by the <xref href=\"System.Threading.Tasks.Parallel.ForEach``1(System.Collections.Concurrent.Partitioner{``0},System.Action{``0})\" data-throw-if-not-resolved=\"false\"></xref> loop checks the state of the cancellation token and, if cancellation is requested, calls the <xref href=\"System.Threading.CancellationToken.ThrowIfCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> method. The <xref href=\"System.Threading.CancellationToken.ThrowIfCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> method throws an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception that is handled in a <strong>catch</strong> block when the calling thread calls the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method.  The <xref href=\"System.Threading.Tasks.Task.Start\" data-throw-if-not-resolved=\"false\"></xref> method is then called to start the task. </p>System.Threading.Tasks.Task.ctor#4"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -307,8 +270,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action and creation options.</p>\n"
   remarks: "\n<p>Rather than calling this constructor, the most common way to instantiate a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object and launch a task is by calling the static <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions,System.Threading.Tasks.TaskScheduler)\" data-throw-if-not-resolved=\"false\"></xref> method. The only advantage offered by this constructor is that it allows object instantiation to be separated from task invocation. </p>\n<p>For more information, see Task Parallelism (Task Parallel Library) and Task Cancellation.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -365,8 +326,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action and creation options.</p>\n"
   remarks: "\n<p>Rather than calling this constructor, the most common way to instantiate a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object and launch a task is by calling the static <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action,System.Threading.Tasks.TaskCreationOptions)\" data-throw-if-not-resolved=\"false\"></xref> method. The only advantage offered by this constructor is that it allows object instantiation to be separated from task invocation. </p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -417,8 +376,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action and state.</p>\n"
   remarks: "\n<p>Rather than calling this constructor, the most common way to instantiate a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object and launch a task is by calling the static <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action{System.Object},System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method. The only advantage offered by this constructor is that it allows object instantiation to be separated from task invocation. </p>\n"
-  example:
-  - "\n<p>The following example defines an array of 6-letter words. Each word is then passed as an argument to the <xref href=\"System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object)\" data-throw-if-not-resolved=\"false\"></xref> constructor, whose <xref href=\"System.Action`1\" data-throw-if-not-resolved=\"false\"></xref> delegate scrambles the characters in the word, then displays the original word and its scrambled version. </p>System.Threading.Tasks.Task.ctor#3"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -471,8 +428,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action, state, and options.</p>\n"
   remarks: "\n<p>Rather than calling this constructor, the most common way to instantiate a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object and launch a task is by calling the static <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action{System.Object},System.Object,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method. The only advantage offered by this constructor is that it allows object instantiation to be separated from task invocation. </p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -528,8 +483,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action, state, and options.</p>\n"
   remarks: "\n<p>Rather than calling this constructor, the most common way to instantiate a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object and launch a task is by calling the static <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action{System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions,System.Threading.Tasks.TaskScheduler)\" data-throw-if-not-resolved=\"false\"></xref> method. The only advantage offered by this constructor is that it allows object instantiation to be separated from task invocation. </p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -591,8 +544,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action, state, and options.</p>\n"
   remarks: "\n<p>Rather than calling this constructor, the most common way to instantiate a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object and launch a task is by calling the static <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action{System.Object},System.Object,System.Threading.Tasks.TaskCreationOptions)\" data-throw-if-not-resolved=\"false\"></xref> method. The only advantage offered by this constructor is that it allows object instantiation to be separated from task invocation.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -648,8 +599,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the state object supplied when the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> was created, or null if none was supplied.</p>\n"
   remarks: "\n<p>Cast the object back to the original type to retrieve its data.</p>\n"
-  example:
-  - 
   syntax:
     content: public object AsyncState { get; }
     content.vb: Public ReadOnly Property AsyncState As Object
@@ -728,8 +677,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the <xref href=\"System.Threading.Tasks.TaskCreationOptions\" data-throw-if-not-resolved=\"false\"></xref> used to create this task.</p>\n"
-  example:
-  - 
   syntax:
     content: public TaskCreationOptions CreationOptions { get; }
     content.vb: Public ReadOnly Property CreationOptions As TaskCreationOptions
@@ -766,8 +713,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Returns the ID of the currently executing <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>\n<xref href=\"System.Threading.Tasks.Task.CurrentId\" data-throw-if-not-resolved=\"false\"></xref> is a <strong>static</strong> (<strong>Shared</strong> in Visual Basic) property that is used to get the identifier of the currently executing task from the code that the task is executing. It differs from the <xref href=\"System.Threading.Tasks.Task.Id\" data-throw-if-not-resolved=\"false\"></xref> property, which returns the identifier of a particular <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instance. If you attempt to retrieve the <xref href=\"System.Threading.Tasks.Task.CurrentId\" data-throw-if-not-resolved=\"false\"></xref> value from outside the code that a task is executing, the property returns <strong>null</strong>. </p>\n<p>Note that although collisions are very rare, task identifiers are not guaranteed to be unique. </p>\n"
-  example:
-  - 
   syntax:
     content: public static int ? CurrentId { get; }
     content.vb: Public Shared ReadOnly Property CurrentId As Integer?
@@ -809,8 +754,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> that caused the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to end prematurely. If the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completed successfully or has not yet thrown any exceptions, this will return <strong>null</strong>.</p>\n"
   remarks: "\n<p>Tasks that throw unhandled exceptions store the resulting exception and propagate it wrapped in a <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> in calls to <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> or in accesses to the <xref href=\"System.Threading.Tasks.Task.Exception\" data-throw-if-not-resolved=\"false\"></xref> property. Any exceptions not observed by the time the task instance is garbage collected will be propagated on the finalizer thread. For more information and an example, see Exception Handling (Task Parallel Library).</p>\n"
-  example:
-  - 
   syntax:
     content: public AggregateException Exception { get; }
     content.vb: Public ReadOnly Property Exception As AggregateException
@@ -847,8 +790,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Provides access to factory methods for creating and configuring <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> instances.</p>\n"
   remarks: "\n<p>This property returns a default instance of the <xref href=\"System.Threading.Tasks.TaskFactory\" data-throw-if-not-resolved=\"false\"></xref> class that is identical to the one created by calling the parameterless <xref href=\"System.Threading.Tasks.TaskFactory.#ctor\" data-throw-if-not-resolved=\"false\"></xref> constructor. It has the following property values: </p>\n<p>Property</p>\n<p>Value</p>\n<table><tbody><tr><td>\n<p>\n<xref href=\"System.Threading.Tasks.TaskFactory.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>\n<xref href=\"System.Threading.CancellationToken.None\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.Threading.Tasks.TaskFactory.ContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>\n<xref href=\"System.Threading.Tasks.TaskContinuationOptions.None\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.Threading.Tasks.TaskFactory.CreationOptions\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>\n<xref href=\"System.Threading.Tasks.TaskCreationOptions.None\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.Threading.Tasks.TaskFactory.Scheduler\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>\n<strong>null</strong>, or <xref href=\"System.Threading.Tasks.TaskScheduler.Current\" data-throw-if-not-resolved=\"false\"></xref></p>\n</td></tr></tbody></table>\n<p>The most common use of this property is to create and start a new task in a single call to the <see cref=\"Overload:System.Threading.Tasks.TaskFactory.StartNew\"></see> method. </p>\n<p>Starting with the .NET Framework 4.5, the <xref href=\"System.Threading.Tasks.Task.Run(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method provides the easiest way to create a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object with default configuration values. </p>\n<p>The following example uses the static <xref href=\"System.Threading.Tasks.Task.Factory\" data-throw-if-not-resolved=\"false\"></xref> property to make two calls to the <see cref=\"Overload:System.Threading.Tasks.TaskFactory.StartNew\"></see> method. The first populates an array with the names of files in the user's MyDocuments directory, while the second populates an array with the names of subdirectories of the user's MyDocuments directory. It then calls the <xref href=\"System.Threading.Tasks.TaskFactory.ContinueWhenAll(System.Threading.Tasks.Task[],System.Action{System.Threading.Tasks.Task[]})\" data-throw-if-not-resolved=\"false\"></xref> method, which displays information about the number of files and directories in the two arrays after the first two tasks have completed execution.</p>System.Threading.Tasks.Task.Factory#1"
-  example:
-  - 
   syntax:
     content: public static TaskFactory Factory { get; }
     content.vb: Public Shared ReadOnly Property Factory As TaskFactory
@@ -890,8 +831,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets an ID for this <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
   remarks: "\n<p>Task IDs are assigned on-demand and do not necessarily represent the order in which task instances are created. Note that although collisions are very rare, task identifiers are not guaranteed to be unique. </p>\n<p>To get the task ID of the currently executing task from within code that that task is executing, use the <xref href=\"System.Threading.Tasks.Task.CurrentId\" data-throw-if-not-resolved=\"false\"></xref> property. </p>\n"
-  example:
-  - 
   syntax:
     content: public int Id { get; }
     content.vb: Public ReadOnly Property Id As Integer
@@ -931,8 +870,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets whether this <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instance has completed execution due to being canceled.</p>\n"
   remarks: "\n<p>A <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> will complete in the <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref> state under any of the following conditions: </p>\n<ul><li>\n<p>Its <xref href=\"System.Threading.Tasks.TaskFactory.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> was marked for cancellation before the task started executing, </p>\n</li><li>\n<p>The task acknowledged the cancellation request on its already signaled <xref href=\"System.Threading.Tasks.TaskFactory.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> by throwing an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> that bears the same <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</li><li>\n<p>The task acknowledged the cancellation request on its already signaled <xref href=\"System.Threading.Tasks.TaskFactory.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> by calling the <xref href=\"System.Threading.CancellationToken.ThrowIfCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> method on the <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</li></ul>\n<p>Retrieving the value of the <xref href=\"System.Threading.Tasks.Task.IsCanceled\" data-throw-if-not-resolved=\"false\"></xref> property does not block the calling thread until the task has completed. </p>\n"
-  example:
-  - 
   syntax:
     content: public bool IsCanceled { get; }
     content.vb: Public ReadOnly Property IsCanceled As Boolean
@@ -969,8 +906,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets whether this <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> has completed.</p>\n"
   remarks: "\n<p>\n<xref href=\"System.Threading.Tasks.Task.IsCompleted\" data-throw-if-not-resolved=\"false\"></xref> will return <strong>true</strong> when the task is in one of the three final states: <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Threading.Tasks.TaskStatus.Faulted\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Retrieving the value of the <xref href=\"System.Threading.Tasks.Task.IsCompleted\" data-throw-if-not-resolved=\"false\"></xref> property does not block the calling thread until the task has completed. </p>\n"
-  example:
-  - 
   syntax:
     content: public bool IsCompleted { get; }
     content.vb: Public ReadOnly Property IsCompleted As Boolean
@@ -1009,8 +944,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets whether the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completed due to an unhandled exception.</p>\n"
   remarks: "\n<p>If <xref href=\"System.Threading.Tasks.Task.IsFaulted\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong>, the task's <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> is equal to <xref href=\"System.Threading.Tasks.TaskStatus.Faulted\" data-throw-if-not-resolved=\"false\"></xref>, and its <xref href=\"System.Threading.Tasks.Task.Exception\" data-throw-if-not-resolved=\"false\"></xref> property will be non-null.</p>\n<p>Retrieving the value of the <xref href=\"System.Threading.Tasks.Task.IsFaulted\" data-throw-if-not-resolved=\"false\"></xref> property does not block the calling thread until the task has completed. </p>\n"
-  example:
-  - 
   syntax:
     content: public bool IsFaulted { get; }
     content.vb: Public ReadOnly Property IsFaulted As Boolean
@@ -1047,8 +980,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the <xref href=\"System.Threading.Tasks.TaskStatus\" data-throw-if-not-resolved=\"false\"></xref> of this task.</p>\n"
   remarks: "\n<p>Retrieving the value of the <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property does not block the calling thread until the task has completed. </p>\n<p>For more information and an example, see Chaining Tasks by Using Continuation Tasks and How to: Cancel a Task and Its Children.</p>\n"
-  example:
-  - "\n<p>The following example creates 20 tasks that will loop until a counter is incremented to a value of 2 million. When the first 10 tasks reach 2 million, the cancellation token is cancelled, and any tasks whose counters have not reached 2 million are cancelled. The example then examines the <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property of each task to indicate whether it completed successfully or was cancelled. For those that completed, it displays the value returned by the task. </p>System.Threading.Tasks.Task.Run#7"
   syntax:
     content: public TaskStatus Status { get; }
     content.vb: Public ReadOnly Property Status As TaskStatus
@@ -1086,8 +1017,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets a <xref href=\"System.Threading.WaitHandle\" data-throw-if-not-resolved=\"false\"></xref> that can be used to wait for the task to complete.</p>\n"
   remarks: "\n<p>Using the wait functionality provided by <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> is preferable to using <xref href=\"System.IAsyncResult.AsyncWaitHandle\" data-throw-if-not-resolved=\"false\"></xref> for similar functionality. For more information, see the \"Waiting on Tasks\" section in Task Parallelism (Task Parallel Library) and Using TPL with Other Asynchronous Patterns.</p>\n"
-  example:
-  - 
   syntax:
     content: WaitHandle IAsyncResult.AsyncWaitHandle { get; }
     content.vb: ReadOnly WriteOnly Property System.IAsyncResult.AsyncWaitHandle As WaitHandle Implements IAsyncResult.AsyncWaitHandle
@@ -1129,8 +1058,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets an indication of whether the operation completed synchronously.</p>\n"
-  example:
-  - 
   syntax:
     content: bool IAsyncResult.CompletedSynchronously { get; }
     content.vb: ReadOnly WriteOnly Property System.IAsyncResult.CompletedSynchronously As Boolean Implements IAsyncResult.CompletedSynchronously
@@ -1500,9 +1427,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completes.</p>\n"
   remarks: "\n<p>The returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> will not be scheduled for execution until the current task has completed, whether it completes due to running to completion successfully, faulting due to an unhandled exception, or exiting out early due to being canceled.</p>\n"
-  example:
-  - "\n<p>The following example defines a task that populates an array with 100 random date and time values. It uses the <xref href=\"System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task})\" data-throw-if-not-resolved=\"false\"></xref> method to select the earliest and the latest date values once the array is fully populated. </p>System.Threading.Tasks.Task.ContinueWith#1<p>Because a console application may terminate before the continuation task executes, the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method is called to ensure that the continuation finishes executing before the example ends. </p>"
-  - "\n<p>For an additional example, see Chaining Tasks by Using Continuation Tasks.</p>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1552,8 +1476,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that receives a cancellation token and executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completes.</p>\n"
   remarks: "\n<p>The returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> will not be scheduled for execution until the current task has completed, whether it completes due to running to completion successfully, faulting due to an unhandled exception, or exiting out early due to being canceled.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1609,8 +1531,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes when the target task competes according to the specified <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>. The continuation receives a cancellation token and uses a specified scheduler. </p>\n"
   remarks: "\n<p>The returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> will not be scheduled for execution until the current task has completed. If the criteria specified through the <em>continuationOptions</em> parameter are not met, the continuation task will be canceled instead of scheduled.</p>\n"
-  example:
-  - "\n<p>The following is an example of using ContinueWith to run work both in the background and on the user interface threads.</p>\n<pre><code class=\"c#\">private void Button1_Click(object sender, EventArgs e)\n{\nvar backgroundScheduler = TaskScheduler.Default;\nvar uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();\nTask.Factory.StartNew(delegate { DoBackgroundComputation(); },\n                 backgroundScheduler).\nContinueWith(delegate { UpdateUI(); }, uiScheduler).\n        ContinueWith(delegate { DoAnotherBackgroundComputation(); },\n                     backgroundScheduler).\n        ContinueWith(delegate { UpdateUIAgain(); }, uiScheduler);\n}</code></pre>\n<pre><code class=\"vb\">Private Sub Button1_Click(ByVal sender As System.Object, \n                  ByVal e As System.EventArgs) Handles Button1.Click\nDim backgroundScheduler = TaskScheduler.Default\nDim uiScheduler = TaskScheduler.FromCurrentSynchronizationContext()\n\nTask.Factory.StartNew(Sub()\n                   DoBackgroundComputation()\n                 End Sub, backgroundScheduler).ContinueWith(Sub(t)\n                    UpdateUI()\n                 End Sub, uiScheduler).ContinueWith(Sub(t)\n                    DoAnotherBackgroundComputation()\n                 End Sub, backgroundScheduler).ContinueWith(Sub(t)\n                    UpdateUIAgain()\n                 End Sub, uiScheduler)\nEnd Sub</code></pre>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1675,8 +1595,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes when the target task completes according to the specified <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>The returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> will not be scheduled for execution until the current task has completed. If the continuation criteria specified through the <em>continuationOptions</em> parameter are not met, the continuation task will be canceled instead of scheduled.</p>\n"
-  example:
-  - "\n<p>The following example demonstrates using <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref> to specify that a continuation task should run synchronously when the antecedent task completes. (If the specified task has already completed by the time <see cref=\"Overload:System.Threading.Tasks.Task.ContinueWith\"></see> is called, the synchronous continuation will run on the thread calling <see cref=\"Overload:System.Threading.Tasks.Task.ContinueWith\"></see>.)</p>\n<pre><code class=\"c#\">public class TaskCounter\n{\nprivate volatile int _count;\n\npublic void Track(Task t)\n{\nif (t == null) throw new ArgumentNullException(\"t\");\nInterlocked.Increment(ref _count);\nt.ContinueWith(ct => Interlocked.Decrement(ref _count), TaskContinuationOptions.ExecuteSynchronously);\n}\n\npublic int NumberOfActiveTasks { get { return _count; } }\n}</code></pre>\n<pre><code class=\"vb\">Public Class TaskCounter\nPrivate _count as Integer\n\nPublic Sub Track(ByVal t as Task)\nIf t is Nothing Then Throw New ArgumentNullException(\"t\")\nInterlocked.Increment(_count)\nt.ContinueWith(Sub(ct)\n                Interlocked.Decrement(_count)\n             End Sub,\n             TaskContinuationOptions.ExecuteSynchronously)\nEnd Sub\n\nPublic ReadOnly Property NumberOfActiveTasks As Integer\nGet\n Return _count\nEnd Get\nEnd Property\nEnd Class</code></pre>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1732,8 +1650,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completes. The continuation uses a specified scheduler. </p>\n"
   remarks: "\n<p>The returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> will not be scheduled for execution until the current task has completed, whether it completes due to running to completion successfully, faulting due to an unhandled exception, or exiting out early due to being canceled.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1789,8 +1705,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> completes and returns a value. </p>\n"
   remarks: "\n<p>The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> will not be scheduled for execution until the current task has completed, whether it completes due to running to completion successfully, faulting due to an unhandled exception, or exiting out early due to being canceled.</p>\n"
-  example:
-  - "\n<p>The following example shows how to use the ContinueWith method:</p>System.Threading.Tasks.Task#03"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1846,8 +1760,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completes and returns a value. The continuation receives a cancellation token. </p>\n"
   remarks: "\n<p>The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> will not be scheduled for execution until the current task has completed, whether it completes due to running to completion successfully, faulting due to an unhandled exception, or exiting out early due to being canceled.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1906,8 +1818,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes according to the specified continuation options and returns a value. The continuation is passed a cancellation token and uses a specified scheduler. </p>\n"
   remarks: "\n<p>The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> will not be scheduled for execution until the current task has completed. If the criteria specified through the <em>continuationOptions</em> parameter are not met, the continuation task will be canceled instead of scheduled.</p>\n"
-  example:
-  - "\n<p>The following example shows how to use the ContinueWith method with continuation options:</p>System.Threading.Tasks.Task#04"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1975,8 +1885,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes according to the specified continuation options and returns a value. </p>\n"
   remarks: "\n<p>The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> will not be scheduled for execution until the current task has completed. If the continuation criteria specified through the <em>continuationOptions</em> parameter are not met, the continuation task will be canceled instead of scheduled.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -2038,8 +1946,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completes and returns a value. The continuation uses a specified scheduler. </p>\n"
   remarks: "\n<p>The returned <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> will not be scheduled for execution until the current task has completed, whether it completes due to running to completion successfully, faulting due to an unhandled exception, or exiting out early due to being canceled.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -2409,8 +2315,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that completes after a time delay. </p>\n"
   remarks: "\n<p>The <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method is typically used to delay the operation of all or part of a task for a specified time interval. Most commonly, the time delay is introduced: </p>\n<ul><li>\n<p>At the beginning of the task, as the following example shows. </p>System.Threading.Tasks.Task.Delay#5</li><li>\n<p>Sometime while the task is executing. In this case, the call to the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method executes as a child task within a task, as the following example shows. Note that since the task that calls the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method executes asynchronously, the parent task must wait for it to complete by using the <strong>await</strong> keyword.  </p>System.Threading.Tasks.Task.Delay#7</li></ul>\n<p>After the specified time delay, the task is completed in the <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state. </p>\n<p>This method depends on the system clock. This means that the time delay will approximately equal the resolution of the system clock if the <em>millisecondsDelay</em> argument is less than the resolution of the system clock, which is approximately 15 milliseconds on Windows systems. </p>\n"
-  example:
-  - "\n<p>The following example shows a simple use of the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.Threading.Tasks.Task.Delay#1"
   syntax:
     content: public static Task Delay(int millisecondsDelay)
     content.vb: Public Shared Function Delay(millisecondsDelay As Integer) As Task
@@ -2454,8 +2358,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a cancellable task that completes after a time delay. </p>\n"
   remarks: "\n<p>If the cancellation token is signaled before the specified time delay, a <xref href=\"System.Threading.Tasks.TaskCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception results, and the task is completed in the <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref> state.  Otherwise, the task is completed in the <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state once the specified time delay has elapsed. </p>\n<p>For usage scenarios and additional examples, see the documentation for the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> overload. </p>\n<p>This method depends on the system clock. This means that the time delay will approximately equal the resolution of the system clock if the <em>millisecondsDelay</em> argument is less than the resolution of the system clock, which is approximately 15 milliseconds on Windows systems. </p>\n"
-  example:
-  - "\n<p>The following example launches a task that includes a call to the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method with a one second delay. Before the delay interval elapses, the token is cancelled. The output from the example shows that, as a result, a <xref href=\"System.Threading.Tasks.TaskCanceledException\" data-throw-if-not-resolved=\"false\"></xref> is thrown, and the tasks' <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property is set to <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref>. </p>System.Threading.Tasks.Task.Delay#3"
   syntax:
     content: public static Task Delay(int millisecondsDelay, CancellationToken cancellationToken)
     content.vb: Public Shared Function Delay(millisecondsDelay As Integer, cancellationToken As CancellationToken) As Task
@@ -2508,8 +2410,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that completes after a specified time interval. </p>\n"
   remarks: "\n<p>After the specified time delay, the task is completed in <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state.</p>\n<p>For usage scenarios and additional examples, see the documentation for the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> overload. </p>\n<p>This method depends on the system clock. This means that the time delay will approximately equal the resolution of the system clock if the <em>delay</em> argument is less than the resolution of the system clock, which is approximately 15 milliseconds on Windows systems. </p>\n"
-  example:
-  - "\n<p>The following example shows a simple use of the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.Threading.Tasks.Task.Delay#2"
   syntax:
     content: public static Task Delay(TimeSpan delay)
     content.vb: Public Shared Function Delay(delay As TimeSpan) As Task
@@ -2553,8 +2453,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a cancellable task that completes after a specified time interval. </p>\n"
   remarks: "\n<p>If the cancellation token is signaled before the specified time delay, a <xref href=\"System.Threading.Tasks.TaskCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception results, and the task is completed in the <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref> state.  Otherwise, the task is completed in the <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state once the specified time delay has elapsed. </p>\n<p>For usage scenarios and additional examples, see the documentation for the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> overload. </p>\n<p>This method depends on the system clock. This means that the time delay will approximately equal the resolution of the system clock if the <em>delay</em> argument is less than the resolution of the system clock, which is approximately 15 milliseconds on Windows systems. </p>\n"
-  example:
-  - "\n<p>The following example launches a task that includes a call to the <xref href=\"System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method with a one-and-a-half second delay. Before the delay interval elapses, the token is cancelled. The output from the example shows that, as a result, a <xref href=\"System.Threading.Tasks.TaskCanceledException\" data-throw-if-not-resolved=\"false\"></xref> is thrown, and the tasks' <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property is set to <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref>. </p>System.Threading.Tasks.Task.Delay#4<p>Note that this example includes a potential race condition: it depends on the task asynchronously executing the delay when the token is cancelled. Although the 1.5 second delay from the call to the <xref href=\"System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method makes that assumption likely, it is nevertheless possible that the call to the <xref href=\"System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method could return before the token is cancelled. In that case, the example produces the following output: </p><pre><code>Task t Status: RanToCompletion, Result: 42</code></pre>"
   syntax:
     content: public static Task Delay(TimeSpan delay, CancellationToken cancellationToken)
     content.vb: Public Shared Function Delay(delay As TimeSpan, cancellationToken As CancellationToken) As Task
@@ -2735,8 +2633,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> that's completed with a specified exception. </p>\n"
   remarks: "\n<p>This method creates a <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object whose <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property is <xref href=\"System.Threading.Tasks.TaskStatus.Faulted\" data-throw-if-not-resolved=\"false\"></xref> and whose <xref href=\"System.Threading.Tasks.Task.Exception\" data-throw-if-not-resolved=\"false\"></xref> property contains <em>exception</em>. The method is commonly used when you immediately know that the work that a task performs will throw an exception before executing a longer code path. The example provides an illustration. </p>\n"
-  example:
-  - "\n<p>The following example is a command-line utility that calculates the number of bytes in the files in each directory whose name is passed as a command-line argument. Rather than executing a longer code path that instantiates a <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> object and retrieves the value of its <xref href=\"System.IO.FileInfo.Length\" data-throw-if-not-resolved=\"false\"></xref> property for each file in the directory, the example simply calls the <xref href=\"System.Threading.Tasks.Task.FromException``1(System.Exception)\" data-throw-if-not-resolved=\"false\"></xref> method to create a faulted task if a particular subdirectory does not exist. </p>System.Threading.Tasks.Task.FromResult#1"
   syntax:
     content: public static Task<TResult> FromException<TResult>(Exception exception)
     content.vb: Public Shared Function FromException(Of TResult)(exception As Exception) As Task(Of TResult)
@@ -2781,8 +2677,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> that's completed successfully with the specified result.</p>\n"
   remarks: "\n<p>This method creates a <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object whose <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property is <em>result</em> and whose <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property is <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref>. The method is commonly used when the return value of a task is immediately known without executing a longer code path. The example provides an illustration. </p>\n<p>To create a Task object that does not return a value, retrieve the Task object from the <xref href=\"System.Threading.Tasks.Task.CompletedTask\" data-throw-if-not-resolved=\"false\"></xref> property. </p>\n"
-  example:
-  - "\n<p>The following example is a command-line utility that calculates the number of bytes in the files in each directory whose name is passed as a command-line argument. Rather than executing a longer code path that instantiates a <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object and retrieves the value of its <xref href=\"System.IO.FileStream.Length\" data-throw-if-not-resolved=\"false\"></xref> property for each file in the directory, the example simply calls the <xref href=\"System.Threading.Tasks.Task.FromResult``1(``0)\" data-throw-if-not-resolved=\"false\"></xref> method to create a task whose <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property is zero (0) if a directory has no files. </p>System.Threading.Tasks.Task.FromResult#1"
   syntax:
     content: public static Task<TResult> FromResult<TResult>(TResult result)
     content.vb: Public Shared Function FromResult(Of TResult)(result As TResult) As Task(Of TResult)
@@ -2863,9 +2757,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Queues the specified work to run on the thread pool and returns a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object that represents that work.</p>\n"
   remarks: "\n<p>The <xref href=\"System.Threading.Tasks.Task.Run(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method allows you to create and execute a task in a single method call and is a simpler alternative to the <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method. It creates a task with the following default values: </p>\n<ul><li>\n<p>Its cancellation token is <xref href=\"System.Threading.CancellationToken.None\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n</li><li>\n<p>Its <xref href=\"System.Threading.Tasks.Task.CreationOptions\" data-throw-if-not-resolved=\"false\"></xref> property value is <xref href=\"System.Threading.Tasks.TaskCreationOptions.DenyChildAttach\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n</li><li>\n<p>It uses the default task scheduler. </p>\n</li></ul>\n<p>For information on handling exceptions thrown by task operations, see Exception Handling (Task Parallel Library).</p>\n"
-  example:
-  - "\n<p>The following example defines a <code>ShowThreadInfo</code> method  that displays the <xref href=\"System.Threading.Thread.ManagedThreadId\" data-throw-if-not-resolved=\"false\"></xref>of the current thread. It is called directly from the application thread, and is called from the <xref href=\"System.Action\" data-throw-if-not-resolved=\"false\"></xref> delegate passed to the <xref href=\"System.Threading.Tasks.Task.Run(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>System.Threading.Tasks.Task.Run#11<p>The following example is similar to the previous one, except that it uses a lambda expression to define the code that the task is to execute.    </p>System.Threading.Tasks.Task.Run#3<p>The examples show that the asynchronous task executes on a different thread than the main application thread. </p><p>The call to the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method ensures that the task completes and displays its output before the application ends. Otherwise, it is possible that the <code>Main</code> method will complete before the task finishes. </p>"
-  - "\n<p>The following example illustrates the <xref href=\"System.Threading.Tasks.Task.Run(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method. It defines an array of directory names and starts a separate task to retrieve the file names in each directory. All tasks write the file names to a single <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> object. The example then calls the <xref href=\"System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method to ensure that all tasks have completed, and then displays a count of the total number of file names written to the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> object.  </p>System.Threading.Tasks.Task.Run#1"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -2915,8 +2806,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Queues the specified work to run on the thread pool and returns a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object that represents that work. A cancellation token allows the work to be cancelled.</p>\n"
   remarks: "\n<p>If cancellation is requested before the task begins execution, the task does not execute. Instead it is set to the <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref> state and throws a <xref href=\"System.Threading.Tasks.TaskCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception.</p>\n<p>The <xref href=\"System.Threading.Tasks.Task.Run(System.Action,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method is a simpler alternative to the <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref>  method. It creates a task with the following default values: </p>\n<ul><li>\n<p>Its <xref href=\"System.Threading.Tasks.Task.CreationOptions\" data-throw-if-not-resolved=\"false\"></xref> property value is <xref href=\"System.Threading.Tasks.TaskCreationOptions.DenyChildAttach\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n</li><li>\n<p>It uses the default task scheduler. </p>\n</li></ul>\n<p>For information on handling exceptions thrown by task operations, see Exception Handling (Task Parallel Library).</p>\n"
-  example:
-  - "\n<p>The following example calls the <xref href=\"System.Threading.Tasks.Task.Run(System.Action,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method to create a task that iterates the files in the C:\\Windows\\System32 directory. The lambda expression calls the <xref href=\"System.Threading.Tasks.Parallel.ForEach``1(System.Collections.Concurrent.Partitioner{``0},System.Action{``0})\" data-throw-if-not-resolved=\"false\"></xref> method to add information about each  file to a <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref> object. Each detached nested task invoked by the <xref href=\"System.Threading.Tasks.Parallel.ForEach``1(System.Collections.Concurrent.Partitioner{``0},System.Action{``0})\" data-throw-if-not-resolved=\"false\"></xref> loop checks the state of the cancellation token and, if cancellation is requested, calls the <xref href=\"System.Threading.CancellationToken.ThrowIfCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> method. The <xref href=\"System.Threading.CancellationToken.ThrowIfCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> method throws an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception that is handled in a <strong>catch</strong> block when the calling thread calls the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method. </p>System.Threading.Tasks.Task.Run#4"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -3074,8 +2963,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Queues the specified work to run on the thread pool and returns a <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object that represents that work. </p>\n"
   remarks: "\n<p>The <xref href=\"System.Threading.Tasks.Task.Run``1(System.Func{``0})\" data-throw-if-not-resolved=\"false\"></xref> method is a simpler alternative to the <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method. It creates a task with the following default values: </p>\n<ul><li>\n<p>Its cancellation token is <xref href=\"System.Threading.CancellationToken.None\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n</li><li>\n<p>Its <xref href=\"System.Threading.Tasks.Task.CreationOptions\" data-throw-if-not-resolved=\"false\"></xref> property value is <xref href=\"System.Threading.Tasks.TaskCreationOptions.DenyChildAttach\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n</li><li>\n<p>It uses the default task scheduler. </p>\n</li></ul>\n<p>For information on handling exceptions thrown by task operations, see Exception Handling (Task Parallel Library).</p>\n"
-  example:
-  - "\n<p>The following example counts the approximate number of words in text files that represent published books. Each task is responsible for opening a file, reading its entire contents asynchronously, and calculating the word count by using a regular expression. The <xref href=\"System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method is called to ensure that all tasks have completed before  displaying the word count of each book to the console. </p>System.Threading.Tasks.Task.Run#2<p>The regular expression <code>\\p{P}*\\s+</code> matches zero, one, or more punctuation characters followed by one or more whitespace characters. It assumes that the total number of matches equals the approximate word count. </p>"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -3130,9 +3017,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Queues the specified work to run on the thread pool and returns a <strong>Task(TResult)</strong> object that represents that work. A cancellation token allows the work to be cancelled.</p>\n"
   remarks: "\n<p>If cancellation is requested before the task begins execution, the task does not execute. Instead it is set to the <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref> state and throws a <xref href=\"System.Threading.Tasks.TaskCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception.</p>\n<p>The <xref href=\"System.Threading.Tasks.Task.Run``1(System.Func{``0},System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method is a simpler alternative to the <xref href=\"System.Threading.Tasks.TaskFactory.StartNew(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method. It creates a task with the following default values: </p>\n<ul><li>\n<p>Its <xref href=\"System.Threading.Tasks.Task.CreationOptions\" data-throw-if-not-resolved=\"false\"></xref> property value is <xref href=\"System.Threading.Tasks.TaskCreationOptions.DenyChildAttach\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n</li><li>\n<p>It uses the default task scheduler. </p>\n</li></ul>\n<p>For information on handling exceptions thrown by task operations, see Exception Handling (Task Parallel Library).</p>\n"
-  example:
-  - "\n<p>The following example creates 20 tasks that will loop until a counter is incremented to a value of 2 million. When the first 10 tasks reach 2 million, the cancellation token is cancelled, and any tasks whose counters have not reached 2 million are cancelled. The example shows possible output.</p>System.Threading.Tasks.Task.Run#7<p>Instead of using the <xref href=\"System.AggregateException.InnerExceptions\" data-throw-if-not-resolved=\"false\"></xref> property to   examine exceptions, the example iterates all tasks to determine which have completed successfully and which have been cancelled. For those that have completed, it displays the value returned by the task.</p>"
-  - "\n<p>Because cancellation is cooperative, each task can decide how to respond to cancellation. The following example is like the first, except that, once the token is cancelled, tasks return the number of iterations they've completed rather than throw an exception. </p>System.Threading.Tasks.Task.Run#28<p>The example still must handle the <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> exception,   since any tasks that have not started when cancellation is requested still throw an exception. </p>"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -3301,8 +3185,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Runs the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> synchronously on the current <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>Ordinarily, tasks are executed asynchronously on a thread pool thread and do not block the calling thread. Tasks executed by calling the <xref href=\"System.Threading.Tasks.Task.RunSynchronously\" data-throw-if-not-resolved=\"false\"></xref> method are associated with the current <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> and are run on the calling thread. If the target scheduler does not support running this task on the calling thread, the task will be scheduled for execution on the scheduler, and the calling thread will block until the task has completed execution. Even though the task runs synchronously, the calling thread should still call <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> to handle any exceptions that the task might throw.  For more information on exception handling, see Exception Handling (Task Parallel Library).</p>\n<p>Tasks executed by calling the <xref href=\"System.Threading.Tasks.Task.RunSynchronously\" data-throw-if-not-resolved=\"false\"></xref> method are instantiated by calling a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> class constructor. The task to be run synchronously must be in the <xref href=\"System.Threading.Tasks.TaskStatus.Created\" data-throw-if-not-resolved=\"false\"></xref> state. A task may be started and run only once. Any attempts to schedule a task a second time results in an exception. </p>\n"
-  example:
-  - "\n<p>The following example compares a task executed by calling the <xref href=\"System.Threading.Tasks.Task.RunSynchronously\" data-throw-if-not-resolved=\"false\"></xref> method with one executed asynchronously. In both cases, the tasks execute identical lambda expressions that display the task ID and the ID of the thread on which the task is running. The task calculates the sum of the integers between 1 and 1,000,000. As the output from the example shows, the task executed by calling the <xref href=\"System.Threading.Tasks.Task.RunSynchronously\" data-throw-if-not-resolved=\"false\"></xref> method runs on the application thread, while the asynchronous task does not.  </p>System.Threading.Tasks.Task.RunSynchronously#1"
   syntax:
     content: public void RunSynchronously()
     content.vb: Public Sub RunSynchronously
@@ -3340,8 +3222,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Runs the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> synchronously on the <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> provided.</p>\n"
   remarks: "\n<p>Tasks executed by calling the <xref href=\"System.Threading.Tasks.Task.RunSynchronously\" data-throw-if-not-resolved=\"false\"></xref> method are instantiated by calling a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> class constructor. The task to be run synchronously must be in the <xref href=\"System.Threading.Tasks.TaskStatus.Created\" data-throw-if-not-resolved=\"false\"></xref> state. A task may be started and run only once. Any attempts to schedule a task a second time results in an exception.</p>\n<p>  If the target scheduler does not support running this task on the current thread, the task will be scheduled for execution on the scheduler, and the current thread will block until the task has completed execution. Because of this, the calling thread does not need to call a method such as <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> to ensure that the task has completed execution. For more information on exception handling for task operations, see Exception Handling (Task Parallel Library).</p>\n<p></p>\n"
-  example:
-  - 
   syntax:
     content: public void RunSynchronously(TaskScheduler scheduler)
     content.vb: Public Sub RunSynchronously(scheduler As TaskScheduler)
@@ -3389,8 +3269,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Starts the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>, scheduling it for execution to the current <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>A task may be started and run only once. Any attempts to schedule a task a second time will result in an exception.</p>\n<p>The <xref href=\"System.Threading.Tasks.Task.Start\" data-throw-if-not-resolved=\"false\"></xref> is used to execute a task that has been created by calling one of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> constructors. Typically, you do this when you need to separate the task's creation from its execution, such as when you conditionally execute tasks that you've created. For the more common case in which you don't need to separate  task instantiation from execution, we recommend that you call an overload of the <see cref=\"Overload:System.Threading.Tasks.Task.Run\"></see> or <see cref=\"Overload:System.Threading.Tasks.TaskFactory.StartNew\"></see> method.</p>\n<p>For information on handling exceptions thrown by task operations, see Exception Handling (Task Parallel Library).</p>\n"
-  example:
-  - "\n<p>The following example calls the <xref href=\"System.Threading.Tasks.Task.#ctor(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> constructor to instantiate a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object that displays its task ID and managed thread ID and then executes a loop. It then calls the <xref href=\"System.Threading.Tasks.Task.Start\" data-throw-if-not-resolved=\"false\"></xref> method to execute the task.  Since this is a console app, the call to the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method is necessary to prevent the app from terminating before the task finishes execution.</p>System.Threading.Tasks.Task.Start#1"
   syntax:
     content: public void Start()
     content.vb: Public Sub Start
@@ -3428,8 +3306,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Starts the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>, scheduling it for execution to the specified <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   remarks: "\n<p>A task may only be started and run only once. Any attempts to schedule a task a second time will result in an exception.</p>\n<p>For information on handling exceptions thrown by task operations, see Exception Handling (Task Parallel Library).</p>\n"
-  example:
-  - 
   syntax:
     content: public void Start(TaskScheduler scheduler)
     content.vb: Public Sub Start(scheduler As TaskScheduler)
@@ -3477,8 +3353,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to complete execution.</p>\n"
   remarks: "\n<p>\n<see cref=\"Overload:System.Threading.Tasks.Task.Wait\"></see> is a synchronization method that causes the calling thread to wait until the current task has completed. If the current task has not started execution, the Wait method attempts to remove the task from the scheduler and execute it inline on the current thread. If it is unable to do that, or if the current task has already started execution, it blocks the calling thread until the task completes. For more information, see <see href=\"http://blogs.msdn.com/b/pfxteam/archive/2009/10/15/9907713.aspx\">Task.Wait and \"Inlining\"</see> in the Parallel Programming with .NET blog. </p>\n<p>For more information and an example, see How to: Wait on One or More Tasks to Complete.</p>\n"
-  example:
-  - "\n<p>The following example starts a task that generates one million random integers between 0 and 100 and computes their mean. The example uses the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method to ensure that the task completes before the application terminates. Otherwise, because this is a console application, the example would terminate before the task can compute and display the mean. </p>System.Threading.Tasks.Task.Wait#1"
   syntax:
     content: public void Wait()
     content.vb: Public Sub Wait
@@ -3516,8 +3390,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to complete execution within a specified number of milliseconds.</p>\n"
   remarks: "\n<p>\n<xref href=\"System.Threading.Tasks.Task.Wait(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> is a synchronization method that causes the calling thread to wait for the current task instance to complete until one of the following occurs: </p>\n<ul><li>\n<p>The task completes successfully. </p>\n</li><li>\n<p>The task itself is canceled or throws an exception. In this case, you handle an <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> exception. The <xref href=\"System.AggregateException.InnerExceptions\" data-throw-if-not-resolved=\"false\"></xref> property contains details about the exception or exceptions. </p>\n</li><li>\n<p>The interval defined by <em>millisecondsTimeout</em> elapses. In this case, the current thread resumes execution and the method returns <strong>false</strong>.   </p>\n</li></ul>\n"
-  example:
-  - "\n<p>The following example starts a task that generates five million random integers between 0 and 100 and computes their mean. The example uses the <xref href=\"System.Threading.Tasks.Task.Wait(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to wait for the application to complete within 150 milliseconds. If the application completes normally, the task displays the sum and mean of the random numbers that it has generated. If the timeout interval has elapsed, the example displays a message before it terminates. </p>System.Threading.Tasks.Task.Wait#5"
   syntax:
     content: public bool Wait(int millisecondsTimeout)
     content.vb: Public Function Wait(millisecondsTimeout As Integer) As Boolean
@@ -3565,8 +3437,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to complete execution. The wait terminates if a timeout interval elapses or a cancellation token is canceled before the task completes. </p>\n"
   remarks: "\n<p>\n<xref href=\"System.Threading.Tasks.Task.Wait(System.Int32,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> is a synchronization method that causes the calling thread to wait for the current task instance to complete until one of the following occurs: </p>\n<ul><li>\n<p>The task completes successfully. </p>\n</li><li>\n<p>The task itself is canceled or throws an exception. In this case, you handle an <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> exception. The <xref href=\"System.AggregateException.InnerExceptions\" data-throw-if-not-resolved=\"false\"></xref> property contains details about the exception or exceptions. </p>\n</li><li>\n<p>The <em>cancellationToken</em> cancellation token is canceled. In this case, the call to the <xref href=\"System.Threading.Tasks.Task.Wait(System.Int32,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method throws an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n</li><li>\n<p>The interval defined by <em>millisecondsTimeout</em> elapses. In this case, the current thread resumes execution and the method returns <strong>false</strong>. </p>\n</li></ul>\n<p>Canceling the <em>cancellationToken</em> cancellation token has no effect on the running task unless it has also been passed the cancellation token and is prepared to handle cancellation. Passing the <em>cancellationToken</em> object to this method simply allows the wait to be canceled based on some condition. </p>\n"
-  example:
-  - "\n<p>The following example calls the <xref href=\"System.Threading.Tasks.Task.Wait(System.Int32,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method to provide both a timeout value and a cancellation token that can end the wait for a task's completion. A new thread is started and executes the <code>CancelToken</code> method, which pauses and then calls the <xref href=\"System.Threading.CancellationTokenSource.Cancel(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method to cancel the cancellation tokens. A task is then launched and delays for 5 seconds. The <xref href=\"System.Threading.Tasks.Task.Wait(System.Int32,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method is then called to wait for the task's completion and is provided both a brief timeout value and a cancellation token. </p>System.Threading.Tasks.Task.Wait#4<p>Note that the precise output from the example depends on whether the wait was canceled because of the cancellation token or because the timeout interval elapsed. </p>"
   syntax:
     content: public bool Wait(int millisecondsTimeout, CancellationToken cancellationToken)
     content.vb: Public Function Wait(millisecondsTimeout As Integer, cancellationToken As CancellationToken) As Boolean
@@ -3620,8 +3490,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to complete execution. The wait terminates if a cancellation token is canceled before the task completes. </p>\n"
   remarks: "\n<p>The <xref href=\"System.Threading.Tasks.Task.Wait(System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method creates a cancelable wait; that is, it causes the current thread to wait until one of the following occurs: </p>\n<ul><li>\n<p>The task completes. </p>\n</li><li>\n<p>The cancellation token is canceled. In this case, the call to the <xref href=\"System.Threading.Tasks.Task.Wait(System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method throws an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n</li></ul>\n<p>Canceling the <em>cancellationToken</em> cancellation token has no effect on the running task unless it has also been passed the cancellation token and is prepared to handle cancellation. Passing the <em>cancellationToken</em> object to this method simply allows the wait to be canceled. </p>\n"
-  example:
-  - "\n<p>The following example illustrates the simple use of a cancellation token to cancel waiting for a task's completion. A task is launched, calls the <xref href=\"System.Threading.CancellationTokenSource.Cancel\" data-throw-if-not-resolved=\"false\"></xref> method to cancel any of the token source's cancellation tokens, and then delays for five seconds. Note that the task itself has not been passed the cancellation token and is not cancelable. The application thread calls the task's <xref href=\"System.Threading.Tasks.Task.Wait(System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method to wait for the task to complete, but the wait is canceled once the cancellation token is cancelled and an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> is thrown. The exception handler reports the exception and then sleeps for six seconds. As the output from the example shows, that delay allows the task to complete in the <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state. </p>System.Threading.Tasks.Task.Wait#3"
   syntax:
     content: public void Wait(CancellationToken cancellationToken)
     content.vb: Public Sub Wait(cancellationToken As CancellationToken)
@@ -3666,8 +3534,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to complete execution within a specified time interval.</p>\n"
   remarks: "\n<p>\n<xref href=\"System.Threading.Tasks.Task.Wait(System.TimeSpan)\" data-throw-if-not-resolved=\"false\"></xref> is a synchronization method that causes the calling thread to wait for the current task instance to complete until one of the following occurs: </p>\n<ul><li>\n<p>The task completes successfully. </p>\n</li><li>\n<p>The task itself is canceled or throws an exception. In this case, you handle an <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> exception. The <xref href=\"System.AggregateException.InnerExceptions\" data-throw-if-not-resolved=\"false\"></xref> property contains details about the exception or exceptions. </p>\n</li><li>\n<p>The interval defined by <em>timeout</em> elapses. In this case, the current thread resumes execution and the method returns <strong>false</strong>.   </p>\n</li></ul>\n"
-  example:
-  - "\n<p>The following example starts a task that generates five million random integers between 0 and 100 and computes their mean. The example uses the <xref href=\"System.Threading.Tasks.Task.Wait(System.TimeSpan)\" data-throw-if-not-resolved=\"false\"></xref> method to wait for the application to complete within 150 milliseconds. If the application completes normally, the task displays the sum and mean of the random numbers that it has generated. If the timeout interval has elapsed, the example displays a message before it terminates. </p>System.Threading.Tasks.Task.Wait#6"
   syntax:
     content: public bool Wait(TimeSpan timeout)
     content.vb: Public Function Wait(timeout As TimeSpan) As Boolean
@@ -3714,8 +3580,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution.</p>\n"
-  example:
-  - "\n<p>The following example starts 10 tasks, each of which is passed an index as a state object. Tasks with an index from two to five throw exceptions. The call to the <xref href=\"System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method wraps all exceptions in an <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> object and propagates it to the calling thread. </p>System.Threading.Tasks.Task#02"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -3772,8 +3636,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of milliseconds.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -3840,8 +3702,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of milliseconds or until the wait is cancelled.</p>\n"
   remarks: "\n<p>The <em>cancellationToken</em> argument is used to cancel the wait operation. Cancellation of the tasks is a distinct operation, and is signaled by the <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> noted above.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -3914,8 +3774,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution unless the wait is cancelled. </p>\n"
   remarks: "\n<p>The <em>cancellationToken</em> argument is used to cancel the wait operation. Cancellation of the tasks is a distinct operation, and is signaled by the <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> as noted above.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -3978,8 +3836,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for all of the provided cancellable <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified time interval.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -4045,8 +3901,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for any of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution.</p>\n"
-  example:
-  - "\n<p>The following example launches five tasks, each of which sleeps for a minimum of 50 milliseconds or a maximum of 1,050 milliseconds. The <xref href=\"System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method then waits for any of the tasks to complete. The example displays the task ID of the task that ended the wait, as well as the current status of all the tasks.</p>System.Threading.Tasks.Task.WaitAny#1"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -4103,8 +3957,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for any of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of milliseconds.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -4167,8 +4019,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for any of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of milliseconds or until a cancellation token is cancelled.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -4237,8 +4087,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for any of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution unless the wait is cancelled.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -4301,8 +4149,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for any of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified time interval.</p>\n"
-  example:
-  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -4366,8 +4212,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects in an enumerable collection have completed.</p>\n"
   remarks: "\n<p>The overloads of the <see cref=\"Overload:System.Threading.Tasks.Task.WhenAll\"></see> method that return a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object are typically called when you are interested in the status of a set of tasks or in the exceptions thrown by a set of tasks. </p>\n<p>The call to <xref href=\"System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})\" data-throw-if-not-resolved=\"false\"></xref> method does not block the calling thread. </p>\n<p>If any of the supplied tasks completes in a faulted state, the returned task will also complete in a <xref href=\"System.Threading.Tasks.TaskStatus.Faulted\" data-throw-if-not-resolved=\"false\"></xref> state,  where its exceptions will contain the aggregation of the set of unwrapped exceptions from each of the supplied tasks. </p>\n<p>If none of the supplied tasks faulted but at least one of them was canceled, the returned task will end in the <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref> state. </p>\n<p>If none of the tasks faulted and none of the tasks were canceled, the resulting task will end in the <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state.</p>\n<p>If the supplied array/enumerable contains no tasks, the returned task will immediately transition to a <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state before it's returned to the caller.  </p>\n"
-  example:
-  - "\n<p>The following example creates a set of tasks that ping the URLs in an array. The tasks are stored in a <strong>List<Task></strong> collection that is passed to the <xref href=\"System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})\" data-throw-if-not-resolved=\"false\"></xref> method. After the call to the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method ensures that all threads have completed, the example examines the <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether any tasks have faulted.</p>System.Threading.Tasks.Task.WhenAll#4"
   syntax:
     content: public static Task WhenAll(IEnumerable<Task> tasks)
     content.vb: Public Shared Function WhenAll(tasks As IEnumerable(Of Task)) As Task
@@ -4416,8 +4260,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects in an array have completed. </p>\n"
   remarks: "\n<p>The overloads of the <see cref=\"Overload:System.Threading.Tasks.Task.WhenAll\"></see> method that return a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object are typically called when you are interested in the status of a set of tasks or in the exceptions thrown by a set of tasks. </p>\n<p>The call to <xref href=\"System.Threading.Tasks.Task.WhenAll(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method does not block the calling thread. </p>\n<p>If any of the supplied tasks completes in a faulted state, the returned task will also complete in a <xref href=\"System.Threading.Tasks.TaskStatus.Faulted\" data-throw-if-not-resolved=\"false\"></xref> state, where its exceptions will contain the aggregation of the set of unwrapped exceptions from each of the supplied tasks. </p>\n<p>If none of the supplied tasks faulted but at least one of them was canceled, the returned task will end in the <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref> state. </p>\n<p>If none of the tasks faulted and none of the tasks were canceled, the resulting task will end in the <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state.</p>\n<p>If the supplied array/enumerable contains no tasks, the returned task will immediately transition to a <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state before it's returned to the caller. </p>\n"
-  example:
-  - "\n<p>The following example creates a set of tasks that ping the URLs in an array. The tasks are stored in a <strong>List<Task></strong> collection that is converted to an array and passed to the <xref href=\"System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})\" data-throw-if-not-resolved=\"false\"></xref> method. After the call to the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method ensures that all threads have completed, the example examines the <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether any tasks have faulted.</p>System.Threading.Tasks.Task.WhenAll#3"
   syntax:
     content: public static Task WhenAll(params Task[] tasks)
     content.vb: Public Shared Function WhenAll(ParamArray tasks As Task()) As Task
@@ -4466,8 +4308,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> objects in an enumerable collection have completed. </p>\n"
   remarks: "\n<p>The call to <xref href=\"System.Threading.Tasks.Task.WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})\" data-throw-if-not-resolved=\"false\"></xref> method does not block the calling thread. However, a call to the returned <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property does block the calling thread.</p>\n<p>If any of the supplied tasks completes in a faulted state, the returned task will also complete in a <xref href=\"System.Threading.Tasks.TaskStatus.Faulted\" data-throw-if-not-resolved=\"false\"></xref> state, where its exceptions will contain the aggregation of the set of unwrapped exceptions from each of the supplied tasks.</p>\n<p>If none of the supplied tasks faulted but at least one of them was canceled, the returned task will end in the <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref> state. </p>\n<p>If none of the tasks faulted and none of the tasks were canceled, the resulting task will end in the <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state.  The <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property of the returned task will be set to an array containing all of the results of the supplied tasks in the same order as they were provided (e.g. if the input tasks array contained t1, t2, t3, the output task's <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property will return an <strong>TResult[]</strong> where <code>arr[0] == t1.Result, arr[1] == t2.Result, and arr[2] == t3.Result)</code>. </p>\n<p>If the <em>tasks</em> argument contains no tasks, the returned task will immediately transition to a <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state before it's returned to the caller. The returned <strong>TResult[]</strong> will be an array of 0 elements. </p>\n"
-  example:
-  - "\n<p>The following example creates ten tasks, each of which instantiates a random number generator that creates 1,000 random numbers between 1 and 1,000 and computes their mean. The <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method is used to delay instantiation of the random number generators so that they are not created with identical seed values. The call to the <xref href=\"System.Threading.Tasks.Task.WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})\" data-throw-if-not-resolved=\"false\"></xref> method then returns an <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref> array that contains the mean computed by each task. These are then used to calculate the overall mean.  </p>System.Threading.Tasks.Task.WhenAll#1<p>In this case, the ten individual tasks are stored in a <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref> object. <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref> implements the <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> interface. </p>"
   syntax:
     content: public static Task<TResult[]> WhenAll<TResult>(IEnumerable<Task<TResult>> tasks)
     content.vb: Public Shared Function WhenAll(Of TResult)(tasks As IEnumerable(Of Task(Of TResult))) As Task(Of TResult())
@@ -4519,8 +4359,6 @@ items:
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> objects in an array have completed. </p>\n"
   remarks: "\n<p>The call to <xref href=\"System.Threading.Tasks.Task.WhenAll``1(System.Threading.Tasks.Task{``0}[])\" data-throw-if-not-resolved=\"false\"></xref> method does not block the calling thread. However, a call to the returned <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property does block the calling thread.</p>\n<p>If any of the supplied tasks completes in a faulted state, the returned task will also complete in a <xref href=\"System.Threading.Tasks.TaskStatus.Faulted\" data-throw-if-not-resolved=\"false\"></xref> state, where its exceptions will contain the aggregation of the set of unwrapped exceptions from each of the supplied tasks. </p>\n<p>If none of the supplied tasks faulted but at least one of them was canceled, the returned task will end in the <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref> state. </p>\n<p>If none of the tasks faulted and none of the tasks were canceled, the resulting task will end in the <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state.  The <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> of the returned task will be set to an array containing all of the results of the supplied tasks in the same order as they were provided (e.g. if the input tasks array contained t1, t2, t3, the output   task's <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> will return an <strong>TResult[]</strong> where <code>arr[0] == t1.Result, arr[1] == t2.Result, and arr[2] == t3.Result)</code>. </p>\n<p>If the supplied array/enumerable contains no tasks, the returned task will immediately transition to a <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state before it's returned to the caller.  The returned <strong>TResult[]</strong> will be an array of 0 elements. </p>\n"
-  example:
-  - "\n<p>The following example creates ten tasks, each of which instantiates a random number generator that creates 1,000 random numbers between 1 and 1,000 and computes their mean. In this case, the ten individual tasks are stored in a <strong>Task<Int64></strong> array.  The <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method is used to delay instantiation of the random number generators so that they are not created with identical seed values. The call to the <xref href=\"System.Threading.Tasks.Task.WhenAll``1(System.Threading.Tasks.Task{``0}[])\" data-throw-if-not-resolved=\"false\"></xref> method then returns an <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref> array that contains the mean computed by each task. These are then used to calculate the overall mean. </p>System.Threading.Tasks.Task.WhenAll#2"
   syntax:
     content: public static Task<TResult[]> WhenAll<TResult>(params Task<TResult>[] tasks)
     content.vb: Public Shared Function WhenAll(Of TResult)(ParamArray tasks As Task(Of TResult)()) As Task(Of TResult())

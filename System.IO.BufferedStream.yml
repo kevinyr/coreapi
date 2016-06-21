@@ -41,9 +41,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Adds a buffering layer to read and write operations on another stream. This class cannot be inherited.</p>\n"
   remarks: "\n<p>A buffer is a block of bytes in memory used to cache data, thereby reducing the number of calls to the operating system. Buffers improve read and write performance. A buffer can be used for either reading or writing, but never both simultaneously. The <xref href=\"System.IO.BufferedStream.Read(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.BufferedStream.Write(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods of <strong>BufferedStream</strong> automatically maintain the buffer.</p>\n<p>This type implements the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface. When you have finished using the type, you should dispose of it either directly or indirectly. To dispose of the type directly, call its <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method in a <strong>try</strong>/<strong>catch</strong> block. To dispose of it indirectly, use a language construct such as <strong>using</strong> (in C#) or <strong>Using</strong> (in Visual Basic). For more information, see the “Using an Object that Implements IDisposable” section in the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface topic.</p>\n<p>\n<strong>BufferedStream</strong> can be composed around certain types of streams. It provides implementations for reading and writing bytes to an underlying data source or repository. Use <xref href=\"System.IO.BinaryReader\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.BinaryWriter\" data-throw-if-not-resolved=\"false\"></xref> for reading and writing other data types. <strong>BufferedStream</strong> is designed to prevent the buffer from slowing down input and output when the buffer is not needed. If you always read and write for sizes greater than the internal buffer size, then <strong>BufferedStream</strong> might not even allocate the internal buffer. <strong>BufferedStream</strong> also buffers reads and writes in a shared buffer. It is assumed that you will almost always be doing a series of reads or writes, but rarely alternate between the two of them.</p>\n"
-  example:
-  - "\n<p>The following code examples show how to use the <strong>BufferedStream</strong> class over the <strong>NetworkStream</strong> class to increase the performance of certain I/O operations. Start the server on a remote computer before starting the client. Specify the remote computer name as a command-line argument when starting the client. Vary the <strong>dataArraySize</strong> and <strong>streamBufferSize</strong> constants to view their effect on performance.</p>\n<p>The first example shows the code that runs on the client, and the second example shows the code that runs on the server.</p>\n<p>Example 1: Code that runs on the client</p>System.IO.BufferedStream1#1"
-  - "\n<p>Example 2: Code that runs on the server</p>System.IO.BufferedStream2#1"
   syntax:
     content: >-
       [ComVisible(true)]
@@ -157,8 +154,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.IO.BufferedStream\" data-throw-if-not-resolved=\"false\"></xref> class with the specified buffer size.</p>\n"
   remarks: "\n<p>A shared read/write buffer is allocated the first time a <strong>BufferedStream</strong> object is initialized with this constructor. The shared buffer is not used if all reads and writes are greater than or equal to <em>bufferSize</em>.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.BufferedStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.IO.BufferedStream1#2"
   syntax:
     content: public BufferedStream(Stream stream, int bufferSize)
     content.vb: Public Sub New(stream As Stream, bufferSize As Integer)
@@ -203,8 +198,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Gets a value indicating whether the current stream supports reading.</p>\n"
   remarks: "\n<p>If a class derived from <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> does not support reading, calls to the <xref href=\"System.IO.BufferedStream.Read(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.BufferedStream.ReadByte\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.Stream.EndRead(System.IAsyncResult)\" data-throw-if-not-resolved=\"false\"></xref>, and the <strong>Peek</strong> methods of <xref href=\"System.IO.StreamReader\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.StringReader\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.IO.TextReader\" data-throw-if-not-resolved=\"false\"></xref> throw a <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the stream is closed, this property returns <strong>false</strong>.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.BufferedStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.IO.BufferedStream1#5"
   syntax:
     content: public override bool CanRead { get; }
     content.vb: Public Overrides ReadOnly Property CanRead As Boolean
@@ -247,8 +240,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Gets a value indicating whether the current stream supports seeking.</p>\n"
   remarks: "\n<p>If a class derived from <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> does not support seeking, calls to <xref href=\"System.IO.BufferedStream.Length\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.BufferedStream.SetLength(System.Int64)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.BufferedStream.Position\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.IO.BufferedStream.Seek(System.Int64,System.IO.SeekOrigin)\" data-throw-if-not-resolved=\"false\"></xref> throw a <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the stream is closed, this property returns <strong>false</strong>.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.BufferedStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.IO.BufferedStream1#3"
   syntax:
     content: public override bool CanSeek { get; }
     content.vb: Public Overrides ReadOnly Property CanSeek As Boolean
@@ -293,8 +284,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Gets a value indicating whether the current stream supports writing.</p>\n"
   remarks: "\n<p>If a class derived from <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> does not support writing, a call to <xref href=\"System.IO.BufferedStream.SetLength(System.Int64)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.BufferedStream.Write(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.IO.BufferedStream.WriteByte(System.Byte)\" data-throw-if-not-resolved=\"false\"></xref> throws a <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the stream is closed, this property returns <strong>false</strong>.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.BufferedStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.IO.BufferedStream1#4"
   syntax:
     content: public override bool CanWrite { get; }
     content.vb: Public Overrides ReadOnly Property CanWrite As Boolean
@@ -476,8 +465,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Clears all buffers for this stream and causes any buffered data to be written to the underlying device.</p>\n"
   remarks: "\n<p>Flushing the stream will not flush its underlying encoder unless you explicitly call <strong>Flush</strong> or <xref href=\"System.IO.Stream.Close\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If you use the <xref href=\"System.IO.BufferedStream.#ctor(System.IO.Stream,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor, thus specifying the buffer size while creating the <strong>BufferedStream</strong> object, the content is flushed when it reaches the buffer size. For example, code such as <code>BufferedStream bs = new BufferedStream(bs, 5)</code> will flush the content when the buffer size reaches 5 bytes.</p>\n<p>All the read and write methods of <strong>BufferedStream</strong> automatically maintain the buffer, so there is no need to invoke <strong>Flush</strong> when switching back and forth between reading and writing.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.BufferedStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.IO.BufferedStream1#6"
   syntax:
     content: public override void Flush()
     content.vb: Public Overrides Sub Flush
@@ -564,8 +551,6 @@ items:
   namespace: System.IO
   summary: "\n<p>Copies bytes from the current buffered stream to an array.</p>\n"
   remarks: "\n<p>The <strong>Read</strong> method will return 0 only if the end of the stream is reached. In all other cases, <strong>Read</strong> always reads at least one byte from the stream before returning. By definition, if no data is available from the stream upon a call to <strong>Read</strong>, the <strong>Read</strong> method returns 0 (the end of the stream is reached automatically). An implementation is free to return fewer bytes than requested even if the end of the stream has not been reached.</p>\n<p>Use <xref href=\"System.IO.BinaryReader\" data-throw-if-not-resolved=\"false\"></xref> for reading primitive data types.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.BufferedStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.IO.BufferedStream1#7"
   syntax:
     content: public override int Read([In, Out] byte[] array, int offset, int count)
     content.vb: Public Overrides Function Read(array As Byte(), offset As Integer, count As Integer) As Integer
@@ -870,8 +855,6 @@ items:
   - System.IO
   namespace: System.IO
   summary: "\n<p>Copies bytes to the buffered stream and advances the current position within the buffered stream by the number of bytes written.</p>\n"
-  example:
-  - "\n<p>This code example is part of a larger example provided for the <xref href=\"System.IO.BufferedStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>System.IO.BufferedStream1#6"
   syntax:
     content: public override void Write(byte[] array, int offset, int count)
     content.vb: Public Overrides Sub Write(array As Byte(), offset As Integer, count As Integer)

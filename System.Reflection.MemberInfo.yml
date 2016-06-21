@@ -29,8 +29,6 @@ items:
   namespace: System.Reflection
   summary: "\n<p>Obtains information about the attributes of a member and provides access to member metadata.</p>\n"
   remarks: "\n<p>The <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> class is the abstract base class for classes used to obtain information about all members of a class (constructors, events, fields, methods, and properties).</p>\n<p>This class introduces the basic functionality that all members provide.</p>\n"
-  example:
-  - "\n<p>This example shows how to use various reflection classes to analyze the metadata contained in an assembly.</p>Reflection#1"
   syntax:
     content: >-
       [Serializable]
@@ -136,8 +134,6 @@ items:
   namespace: System.Reflection
   summary: "\n<p>Gets the class that declares this member.</p>\n"
   remarks: "\n<p>The <xref href=\"System.Reflection.MemberInfo.DeclaringType\" data-throw-if-not-resolved=\"false\"></xref> property retrieves a reference to the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object for the type that declares this member. A member of a type is either declared by the type or inherited from a base type, so the <strong>Type</strong> object returned by the <xref href=\"System.Reflection.MemberInfo.DeclaringType\" data-throw-if-not-resolved=\"false\"></xref> property might not be the same as the <strong>Type</strong> object used to obtain the current <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<ul><li>\n<p>If the <strong>Type</strong> object from which this <strong>MemberInfo</strong> object was obtained did not declare this member, the <xref href=\"System.Reflection.MemberInfo.DeclaringType\" data-throw-if-not-resolved=\"false\"></xref> property will represent one of its base types.</p>\n</li><li>\n<p>If the <strong>MemberInfo</strong> object is a global member (that is, if it was obtained from the <xref href=\"System.Reflection.Module.GetMethods\" data-throw-if-not-resolved=\"false\"></xref> method, which returns global methods on a module), the returned <xref href=\"System.Reflection.MemberInfo.DeclaringType\" data-throw-if-not-resolved=\"false\"></xref> will be <strong>null</strong>.</p>\n</li></ul>\n"
-  example:
-  - "\n<p>The following example defines an interface, <code>IValue</code>, with a single member, <code>GetValue</code>. It also defines four classes: <code>A</code>, a base class that implements the<code> IValue</code> interface; <code>B</code>, which inherits from <code>A</code> and hides its implementation of <code>GetValue</code> from the base class implementation; <code>C</code>, which simply inherits from <code>A</code>; and <code>D</code>, which inherits from <code>A</code> and overrides its <code>GetValue</code> method.  The example then retrieves a <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> object for each member of the type (including members inherited from <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>) and displays the value of its <xref href=\"System.Reflection.MemberInfo.DeclaringType\" data-throw-if-not-resolved=\"false\"></xref> property.  </p>Classic MemberInfo.DeclaringType Example#2<p>Note that the declaring type of <code>A.GetValue</code> is <code>A</code>, that <code>B</code> includes two <code>GetValue</code> methods, one declared by <code>A</code> and one by <code>B</code>, and that the declaring type of <code>D.GetValue</code> is <code>D</code>.</p><p><strong>DeclaringType</strong> returns only the member names and the names of their declaring types. To return the member names with their prototypes, call <strong>MemberInfo.ToString</strong>.</p>"
   syntax:
     content: public abstract Type DeclaringType { get; }
     content.vb: Public MustOverride ReadOnly Property DeclaringType As Type
@@ -176,8 +172,6 @@ items:
   namespace: System.Reflection
   summary: "\n<p>Gets the module in which the type that declares the member represented by the current <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> is defined.</p>\n"
   remarks: "\n<p>This property is provided as a convenience. It is equivalent to using the <xref href=\"System.Reflection.MemberInfo.DeclaringType\" data-throw-if-not-resolved=\"false\"></xref> property to get the type in which the method is declared, and then calling the <xref href=\"System.Type.Module\" data-throw-if-not-resolved=\"false\"></xref> property of the resulting <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  example:
-  - "\n<p>The following code example declares a class that inherits <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> and overrides <xref href=\"System.Object.ToString\" data-throw-if-not-resolved=\"false\"></xref>. The example obtains <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> objects for the class's <strong>ToString</strong> method and for the inherited <xref href=\"System.Object.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> method, and displays the names of the modules in which the two methods are declared.</p>System.Reflection.MemberInfo.Module#1"
   syntax:
     content: public virtual Module Module { get; }
     content.vb: 'Public Overridable ReadOnly Property Module As '
@@ -223,8 +217,6 @@ items:
   namespace: System.Reflection
   summary: "\n<p>Gets the name of the current member.</p>\n"
   remarks: "\n<p>Only the simple name of the member is returned, not the fully qualified name.</p>\n<p>To get the <xref href=\"System.Reflection.MemberInfo.Name\" data-throw-if-not-resolved=\"false\"></xref> property, get the class <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>. From the <strong>Type</strong>, get the <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> array. From a <strong>MemberInfo</strong> element of the array, obtain the <strong>Name</strong> property.</p>\n"
-  example:
-  - "\n<p>This example lists the <strong>Name</strong> and <strong>DeclaringType</strong> property of each member of the specified class.</p>Classic MemberInfo.Name Example#1"
   syntax:
     content: public abstract string Name { get; }
     content.vb: Public MustOverride ReadOnly Property Name As String
