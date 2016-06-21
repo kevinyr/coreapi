@@ -29,12 +29,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Barrier
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 39
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 77
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -43,8 +43,13 @@ items:
   example:
   - "\n<p>The following example shows how to use a barrier:</p>System.Threading.Barrier#01"
   syntax:
-    content: 'public class Barrier : IDisposable'
+    content: >-
+      [DebuggerDisplay("Participant Count={ParticipantCount},Participants Remaining={ParticipantsRemaining}")]
+
+      public class Barrier : IDisposable
     content.vb: >-
+      <DebuggerDisplay("Participant Count={ParticipantCount},Participants Remaining={ParticipantsRemaining}")>
+
       Public Class Barrier
           Implements IDisposable
   inheritance:
@@ -77,12 +82,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 41
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 184
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -95,7 +100,7 @@ items:
     parameters:
     - id: participantCount
       type: System.Int32
-      description: "\n<p>The number of participating threads.</p>\n"
+      description: The number of participating threads.
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -116,12 +121,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 42
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 203
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -135,10 +140,13 @@ items:
     parameters:
     - id: participantCount
       type: System.Int32
-      description: "\n<p>The number of participating threads.</p>\n"
+      description: The number of participating threads.
     - id: postPhaseAction
       type: System.Action{System.Threading.Barrier}
-      description: "\n<p>The <xref href=\"System.Action`1\" data-throw-if-not-resolved=\"false\"></xref> to be executed after each phase. null (Nothing in Visual Basic) may be passed to indicate no action is taken.</p>\n"
+      description: >-
+        The <xref href="System.Action`1" data-throw-if-not-resolved="false"></xref> to be executed after each
+
+        phase.
   exceptions:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
@@ -161,12 +169,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CurrentPhaseNumber
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 43
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 168
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -179,7 +187,6 @@ items:
     parameters: []
     return:
       type: System.Int64
-      description: "\n<p>Returns the number of the barrier's current phase.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -198,12 +205,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ParticipantCount
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 44
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 160
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -216,7 +223,6 @@ items:
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>Returns the total number of participants in the barrier.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -235,12 +241,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ParticipantsRemaining
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 45
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 146
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -254,7 +260,6 @@ items:
     parameters: []
     return:
       type: System.Int32
-      description: "\n<p>Returns the number of participants in the barrier that haven’t yet signaled in the current phase.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -273,12 +278,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: AddParticipant
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 46
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 276
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -291,7 +296,10 @@ items:
     content.vb: Public Function AddParticipant As Long
     return:
       type: System.Int64
-      description: "\n<p>The phase number of the barrier in which the new participants will first participate.</p>\n"
+      description: >-
+        The phase number of the barrier in which the new participants will first
+
+        participate.
   exceptions:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
@@ -315,12 +323,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: AddParticipants
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 47
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 304
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -334,10 +342,16 @@ items:
     parameters:
     - id: participantCount
       type: System.Int32
-      description: "\n<p>The number of additional participants to add to the barrier.</p>\n"
+      description: >-
+        The number of additional participants to add to the
+
+        barrier.
     return:
       type: System.Int64
-      description: "\n<p>The phase number of the barrier in which the new participants will first participate.</p>\n"
+      description: >-
+        The phase number of the barrier in which the new participants will first
+
+        participate.
   exceptions:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
@@ -364,12 +378,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 48
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 893
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -400,12 +414,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 49
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 914
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -419,7 +433,10 @@ items:
     parameters:
     - id: disposing
       type: System.Boolean
-      description: "\n<p>true to release both managed and unmanaged resources; false to release only unmanaged resources.</p>\n"
+      description: >-
+        true to release both managed and unmanaged resources; false to release
+
+        only unmanaged resources.
   modifiers.csharp:
   - protected
   - virtual
@@ -438,12 +455,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: RemoveParticipant
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 50
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 392
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -476,12 +493,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: RemoveParticipants
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 51
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 409
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -495,7 +512,7 @@ items:
     parameters:
     - id: participantCount
       type: System.Int32
-      description: "\n<p>The number of additional participants to remove from the barrier.</p>\n"
+      description: The number of additional participants to remove from the barrier.
   exceptions:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
@@ -525,12 +542,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SignalAndWait
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 52
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 476
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -566,12 +583,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SignalAndWait
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 53
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 579
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -584,10 +601,10 @@ items:
     parameters:
     - id: millisecondsTimeout
       type: System.Int32
-      description: "\n<p>The number of milliseconds to wait, or <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref>(-1) to wait indefinitely.</p>\n"
+      description: The number of milliseconds to wait, or <xref href="System.Threading.Timeout.Infinite" data-throw-if-not-resolved="false"></xref>(-1) to wait indefinitely.
     return:
       type: System.Boolean
-      description: "\n<p>if all participants reached the barrier within the specified time; otherwise false.</p>\n"
+      description: true if all other participants reached the barrier; otherwise, false.
   exceptions:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
@@ -617,12 +634,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SignalAndWait
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 54
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 605
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -636,13 +653,16 @@ items:
     parameters:
     - id: millisecondsTimeout
       type: System.Int32
-      description: "\n<p>The number of milliseconds to wait, or <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref>(-1) to wait indefinitely.</p>\n"
+      description: The number of milliseconds to wait, or <xref href="System.Threading.Timeout.Infinite" data-throw-if-not-resolved="false"></xref>(-1) to wait indefinitely.
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n<p>The <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe.</p>\n"
+      description: >-
+        The <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to
+
+        observe.
     return:
       type: System.Boolean
-      description: "\n<p>if all participants reached the barrier within the specified time; otherwise false</p>\n"
+      description: true if all other participants reached the barrier; otherwise, false.
   exceptions:
   - type: System.OperationCanceledException
     commentId: T:System.OperationCanceledException
@@ -672,12 +692,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SignalAndWait
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 55
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 496
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -690,7 +710,10 @@ items:
     parameters:
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n<p>The <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe.</p>\n"
+      description: >-
+        The <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to
+
+        observe.
   exceptions:
   - type: System.OperationCanceledException
     commentId: T:System.OperationCanceledException
@@ -717,12 +740,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SignalAndWait
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 56
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 525
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -735,10 +758,15 @@ items:
     parameters:
     - id: timeout
       type: System.TimeSpan
-      description: "\n<p>A <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents the number of milliseconds to wait, or a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents -1 milliseconds to wait indefinitely.</p>\n"
+      description: >-
+        A <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> that represents the number of
+
+        milliseconds to wait, or a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> that represents -1 milliseconds to
+
+        wait indefinitely.
     return:
       type: System.Boolean
-      description: "\n<p>true if all other participants reached the barrier; otherwise, false.</p>\n"
+      description: true if all other participants reached the barrier; otherwise, false.
   exceptions:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
@@ -765,12 +793,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Threading/ref/System.Threading.cs
+      path: src/System.Threading/src/System/Threading/Barrier.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SignalAndWait
-    path: src/System.Threading/ref/System.Threading.cs
-    startLine: 57
+    path: src/System.Threading/src/System/Threading/Barrier.cs
+    startLine: 552
   assemblies:
   - System.Threading
   namespace: System.Threading
@@ -783,13 +811,21 @@ items:
     parameters:
     - id: timeout
       type: System.TimeSpan
-      description: "\n<p>A <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents the number of milliseconds to wait, or a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents -1 milliseconds to wait indefinitely.</p>\n"
+      description: >-
+        A <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> that represents the number of
+
+        milliseconds to wait, or a <xref href="System.TimeSpan" data-throw-if-not-resolved="false"></xref> that represents -1 milliseconds to
+
+        wait indefinitely.
     - id: cancellationToken
       type: System.Threading.CancellationToken
-      description: "\n<p>The <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> to observe.</p>\n"
+      description: >-
+        The <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> to
+
+        observe.
     return:
       type: System.Boolean
-      description: "\n<p>true if all other participants reached the barrier; otherwise, false.</p>\n"
+      description: true if all other participants reached the barrier; otherwise, false.
   exceptions:
   - type: System.OperationCanceledException
     commentId: T:System.OperationCanceledException
