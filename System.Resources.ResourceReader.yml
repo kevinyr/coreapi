@@ -15,27 +15,22 @@ items:
   type: Class
   source:
     remote:
-      path: src/mscorlib/src/System/Resources/ResourceReader.cs
+      path: src/System.Resources.Reader/src/System/Resources/ResourceReader.cs
       branch: master
-      repo: https://github.com/dotnet/coreclr.git
+      repo: https://github.com/dotnet/corefx.git
     id: ResourceReader
-    path: src/mscorlib/src/System/Resources/ResourceReader.cs
-    startLine: 74
+    path: src/System.Resources.Reader/src/System/Resources/ResourceReader.cs
+    startLine: 10
   assemblies:
   - System.Resources.Reader
   namespace: System.Resources
   summary: "\n<p>Enumerates the resources in a binary resources (.resources) file by reading sequential resource name/value pairs.</p>\n<p>\n<strong>Security Note</strong>: Calling methods in this class with untrusted data is a security risk. Call the methods in the class only with trusted data. For more information, see <see href=\"http://curah.microsoft.com/57301/security-some-apis-are-not-necessarily-appropriate-for-untrusted-input\">Untrusted Data Security Risks</see>.</p>\n"
   remarks: "\n<p>The <xref href=\"System.Resources.ResourceReader\" data-throw-if-not-resolved=\"false\"></xref> class provides a standard implementation of the <xref href=\"System.Resources.IResourceReader\" data-throw-if-not-resolved=\"false\"></xref> interface. A <xref href=\"System.Resources.ResourceReader\" data-throw-if-not-resolved=\"false\"></xref> instance represents either a standalone .resources file or a .resources file that is embedded in an assembly. It is used to enumerate the resources in a .resources file and retrieve its name/value pairs. It differs from the <xref href=\"System.Resources.ResourceManager\" data-throw-if-not-resolved=\"false\"></xref> class, which is used to retrieve specified named resources from a .resources file that is embedded in an assembly. The <xref href=\"System.Resources.ResourceManager\" data-throw-if-not-resolved=\"false\"></xref> class is used to retrieve resources whose names are known in advance, whereas the <xref href=\"System.Resources.ResourceReader\" data-throw-if-not-resolved=\"false\"></xref> class is useful for retrieving resources whose number or precise names are not known at compile time. For example, an application may use a resources file to store configuration information that is organized into sections and items in a section, where the number of sections or items in a section is not known in advance. Resources can then be named generically (such as <code>Section1</code>, <code>Section1Item1</code>, <code>Section1Item2</code>, and so on) and retrieved by using a <xref href=\"System.Resources.ResourceReader\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This type implements the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface. When you have finished using the type, you should dispose of it either directly or indirectly. To dispose of the type directly, call its <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method in a <strong>try</strong>/<strong>catch</strong> block. To dispose of it indirectly, use a language construct such as <strong>using</strong> (in C#) or <strong>Using</strong> (in Visual Basic). For more information, see the “Using an Object that Implements IDisposable” section in the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface topic.</p>\n<p>For more information about using the <xref href=\"System.Resources.ResourceReader\" data-throw-if-not-resolved=\"false\"></xref> class, see the following sections:</p>\n<ul><li>\n<p>Instantiating a ResourceReader object</p>\n</li><li>\n<p>Enumerating a ResourceReader object's resources</p>\n<ul><li>\n<p>Retrieving resources by using IDictionaryEnumerator properties</p>\n</li><li>\n<p>Retrieving resources by name with GetResourceData</p>\n</li></ul>\n</li></ul>\n"
   syntax:
-    content: >-
-      [ComVisible(true)]
-
-      public sealed class ResourceReader : IResourceReader, IEnumerable, IDisposable
+    content: 'public sealed class ResourceReader : IDisposable'
     content.vb: >-
-      <ComVisible(True)>
-
       Public NotInheritable Class ResourceReader
-          Implements IResourceReader, IEnumerable, IDisposable
+          Implements IDisposable
   inheritance:
   - System.Object
   implements:
@@ -68,26 +63,20 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/mscorlib/src/System/Resources/ResourceReader.cs
+      path: src/System.Resources.Reader/src/System/Resources/ResourceReader.cs
       branch: master
-      repo: https://github.com/dotnet/coreclr.git
+      repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/mscorlib/src/System/Resources/ResourceReader.cs
-    startLine: 174
+    path: src/System.Resources.Reader/src/System/Resources/ResourceReader.cs
+    startLine: 31
   assemblies:
   - System.Resources.Reader
   namespace: System.Resources
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Resources.ResourceReader\" data-throw-if-not-resolved=\"false\"></xref> class for the specified stream.</p>\n"
   remarks: "\n<p>The <xref href=\"System.Resources.ResourceReader.#ctor(System.IO.Stream)\" data-throw-if-not-resolved=\"false\"></xref> constructor instantiates a <xref href=\"System.Resources.ResourceReader\" data-throw-if-not-resolved=\"false\"></xref> object that retrieves resources either from a standalone .resources file or from a .resources file that is embedded in an assembly. To read from a standalone .resources file, instantiate a <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> object and pass it to the <xref href=\"System.Resources.ResourceReader.#ctor(System.IO.Stream)\" data-throw-if-not-resolved=\"false\"></xref> constructor. To read from an embedded .resources file, call the <xref href=\"System.Reflection.Assembly.GetManifestResourceStream(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method with the case-sensitive name of the .resources file, and pass the returned <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> object to the <xref href=\"System.Resources.ResourceReader.#ctor(System.IO.Stream)\" data-throw-if-not-resolved=\"false\"></xref> constructor. </p>\n<p>Using an instance of this object with untrusted data is a security risk. Use this object only with trusted data. For more information, see <see href=\"http://go.microsoft.com/fwlink/?LinkId=330378\">Untrusted Data Security Risks</see>.</p>\n"
   syntax:
-    content: >-
-      [SecurityCritical]
-
-      public ResourceReader(Stream stream)
-    content.vb: >-
-      <SecurityCritical>
-
-      Public Sub New(stream As Stream)
+    content: public ResourceReader(Stream stream)
+    content.vb: Public Sub New(stream As Stream)
     parameters:
     - id: stream
       type: System.IO.Stream
@@ -130,12 +119,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/mscorlib/src/System/Resources/ResourceReader.cs
+      path: src/System.Resources.Reader/src/System/Resources/ResourceReader.cs
       branch: master
-      repo: https://github.com/dotnet/coreclr.git
+      repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/mscorlib/src/System/Resources/ResourceReader.cs
-    startLine: 218
+    path: src/System.Resources.Reader/src/System/Resources/ResourceReader.cs
+    startLine: 45
   assemblies:
   - System.Resources.Reader
   namespace: System.Resources
@@ -162,12 +151,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/mscorlib/src/System/Resources/ResourceReader.cs
+      path: src/System.Resources.Reader/src/System/Resources/ResourceReader.cs
       branch: master
-      repo: https://github.com/dotnet/coreclr.git
+      repo: https://github.com/dotnet/corefx.git
     id: GetEnumerator
-    path: src/mscorlib/src/System/Resources/ResourceReader.cs
-    startLine: 300
+    path: src/System.Resources.Reader/src/System/Resources/ResourceReader.cs
+    startLine: 88
   assemblies:
   - System.Resources.Reader
   namespace: System.Resources
