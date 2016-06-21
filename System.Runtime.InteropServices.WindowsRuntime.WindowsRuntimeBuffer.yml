@@ -14,21 +14,24 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
+      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: WindowsRuntimeBuffer
-    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
-    startLine: 20
+    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+    startLine: 86
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
   syntax:
-    content: 'public sealed class WindowsRuntimeBuffer : IBuffer, IBufferByteAccess, IMarshal, IAgileObject'
+    content: >-
+      [SecurityCritical]
+
+      public sealed class WindowsRuntimeBuffer
     content.vb: >-
+      <SecurityCritical>
+
       Public NotInheritable Class WindowsRuntimeBuffer
-          Inherits IBuffer
-          Implements IBufferByteAccess, IMarshal, IAgileObject
   inheritance:
   - System.Object
   inheritedMembers:
@@ -63,12 +66,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
+      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Create
-    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
-    startLine: 49
+    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+    startLine: 90
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
@@ -76,11 +79,11 @@ items:
     content: >-
       [CLSCompliant(false)]
 
-      public static IBuffer Create(byte[] data, int offset, int length, int capacity)
+      public static Storage.Streams.IBuffer Create(byte[] data, int offset, int length, int capacity)
     content.vb: >-
       <CLSCompliant(False)>
 
-      Public Shared Function Create(data As Byte(), offset As Integer, length As Integer, capacity As Integer) As IBuffer
+      Public Shared Function Create(data As Byte(), offset As Integer, length As Integer, capacity As Integer) As Storage.Streams.IBuffer
     parameters:
     - id: data
       type: System.Byte[]
@@ -91,7 +94,7 @@ items:
     - id: capacity
       type: System.Int32
     return:
-      type: IBuffer
+      type: Windows.Storage.Streams.IBuffer
   attributes:
   - type: System.CLSCompliantAttribute
     ctor: System.CLSCompliantAttribute.#ctor(System.Boolean)
@@ -118,12 +121,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
+      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Create
-    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
-    startLine: 35
+    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+    startLine: 92
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
@@ -131,16 +134,16 @@ items:
     content: >-
       [CLSCompliant(false)]
 
-      public static IBuffer Create(int capacity)
+      public static Storage.Streams.IBuffer Create(int capacity)
     content.vb: >-
       <CLSCompliant(False)>
 
-      Public Shared Function Create(capacity As Integer) As IBuffer
+      Public Shared Function Create(capacity As Integer) As Storage.Streams.IBuffer
     parameters:
     - id: capacity
       type: System.Int32
     return:
-      type: IBuffer
+      type: Windows.Storage.Streams.IBuffer
   attributes:
   - type: System.CLSCompliantAttribute
     ctor: System.CLSCompliantAttribute.#ctor(System.Boolean)

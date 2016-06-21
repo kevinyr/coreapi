@@ -24,22 +24,22 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: XmlNamespaceManager
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 11
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 146
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Resolves, adds, and removes namespaces to a collection and provides scope management for these namespaces. </p>\n"
   remarks: "\n<p>For general information about how namespaces are declared and used in XML documents, see Managing Namespaces in an XML Document. </p>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> stores prefixes and namespaces as strings. Here's a summary of management and lookup tasks you can perform with this class. For more information and examples, follow the links to the reference page for each method or property.</p>\n<p></p>\n<p>To</p>\n<p>Use</p>\n<table><tbody><tr><td>\n<p>Add a namespace</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Remove a namespace</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.RemoveNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Find the URI for the default namespace</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.DefaultNamespace\" data-throw-if-not-resolved=\"false\"></xref> property</p>\n</td></tr><tr><td>\n<p>Find the URI for a namespace prefix</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.LookupNamespace(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Find the prefix for a namespace URI</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.LookupPrefix(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Get a list of namespaces in the current node</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.GetNamespacesInScope(System.Xml.XmlNamespaceScope)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Scope a namespace</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.PushScope\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Xml.XmlNamespaceManager.PopScope\" data-throw-if-not-resolved=\"false\"></xref> methods</p>\n</td></tr><tr><td>\n<p>Check whether a prefix is defined in the current scope</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.HasNamespace(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Get the name table used to look up prefixes and URIs</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.NameTable\" data-throw-if-not-resolved=\"false\"></xref> property</p>\n</td></tr></tbody></table>\n<p></p>\n<p>To add namespaces to the namespace manager, you create a <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> object and then use the <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method. Default prefix and namespace pairs are automatically added to the namespace manager on creation.</p>\n<p>When you create the namespace manager, you can specify a name table from the <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Xml.Xsl.XsltContext\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.Xml.XmlDocument\" data-throw-if-not-resolved=\"false\"></xref> class, and then use the <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to add the namespaces. </p>\n<p>You can supply the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> object as a parameter to the <see cref=\"Overload:System.Xml.XmlNode.SelectNodes\"></see> or <see cref=\"Overload:System.Xml.XmlNode.SelectSingleNode\"></see> method of the <xref href=\"System.Xml.XmlDocument\" data-throw-if-not-resolved=\"false\"></xref> class to execute XPath query expressions that reference namespace-qualified element and attribute names.</p>\n<p>The namespace manager assumes that prefixes and namespaces have already been verified and conform to the <see href=\"http://www.w3.org/TR/REC-xml-names/\">W3C Namespaces</see> specification. The namespace manager does not perform any validation. </p>\n<p>The namespace manager atomizes the strings when they are added by using the <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method and when a lookup is performed by using the <xref href=\"System.Xml.XmlNamespaceManager.LookupNamespace(System.String)\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Xml.XmlNamespaceManager.LookupPrefix(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n<p>The namespace manager implements enumeration support in addition to adding and retrieving namespaces. You can loop through the information saved in the namespace manager by using the <code>foreach</code> construct. For example, if you create a namespace manager with the name <code>nsmanager</code>, you can iterate through the table by using <code>foreach (String prefix in nsmanager)</code>. </p>\n<p>Because the namespace manager provides a string comparison with the prefix and namespaces as objects, there is a performance improvement when using the namespace manager over the direct comparison of a string.</p>\n<p>The following code example shows how to bind the prefix <code>xsd</code> with the namespace URI of <code>http://www.w3.org/2001/XMLSchema</code> and add it to the namespace manager:</p>\n<pre><code class=\"vb#\">nsmgr.AddNamespace(\"xsd\", \"http://www.w3.org/2001/XMLSchema\")</code></pre>\n<pre><code class=\"c#\">nsmgr.AddNamespace(\"xsd\", \"http://www.w3.org/2001/XMLSchema\");</code></pre>\n<p>You can then find the namespace by using the <xref href=\"System.Xml.XmlNamespaceManager.LookupNamespace(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method:</p>\n<pre><code class=\"vb#\">nsmgr.LookupNamespace(\"xsd\")</code></pre>\n<pre><code class=\"c#\">nsmgr.LookupNamespace(\"xsd\");</code></pre>\n<p>The following example creates an <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> by using the name table from an XML reader:</p>\n<pre><code class=\"vb#\">Dim reader As New XmlTextReader(\"myfile.xml\")\nDim nsmanager As New XmlNamespaceManager(reader.NameTable)\nnsmanager.AddNamespace(\"msbooks\", \"www.microsoft.com/books\")\nnsmanager.PushScope()\nnsmanager.AddNamespace(\"msstore\", \"www.microsoft.com/store\")\nWhile reader.Read()\nConsole.WriteLine(\"Reader Prefix:{0}\", reader.Prefix)\nConsole.WriteLine(\"XmlNamespaceManager Prefix:{0}\",\nnsmanager.LookupPrefix(nsmanager.NameTable.Get(reader.NamespaceURI)))\nEnd While</code></pre>\n<pre><code class=\"c#\">XmlTextReader reader = new XmlTextReader(\"myfile.xml\");\nXmlNamespaceManager nsmanager = new XmlNamespaceManager(reader.NameTable);\nnsmanager.AddNamespace(\"msbooks\", \"www.microsoft.com/books\");\nnsmanager.PushScope();\nnsmanager.AddNamespace(\"msstore\", \"www.microsoft.com/store\");\nwhile (reader.Read())\n{\nConsole.WriteLine(\"Reader Prefix:{0}\", reader.Prefix);\nConsole.WriteLine(\"XmlNamespaceManager Prefix:{0}\",\nnsmanager.LookupPrefix(nsmanager.NameTable.Get(reader.NamespaceURI)));\n}</code></pre>\n"
   syntax:
-    content: 'public class XmlNamespaceManager : IXmlNamespaceResolver, IEnumerable'
+    content: 'public class XmlNamespaceManager : IEnumerable, IXmlNamespaceResolver'
     content.vb: >-
       Public Class XmlNamespaceManager
-          Implements IXmlNamespaceResolver, IEnumerable
+          Implements IEnumerable, IXmlNamespaceResolver
   inheritance:
   - System.Object
   implements:
@@ -71,12 +71,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 54
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 148
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -90,6 +90,7 @@ items:
     parameters:
     - id: nameTable
       type: System.Xml.XmlNameTable
+      description: "\n<p>The <xref href=\"System.Xml.XmlNameTable\" data-throw-if-not-resolved=\"false\"></xref> to use. </p>\n"
   exceptions:
   - type: System.NullReferenceException
     commentId: T:System.NullReferenceException
@@ -110,12 +111,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: DefaultNamespace
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 77
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 149
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -129,6 +130,7 @@ items:
     parameters: []
     return:
       type: System.String
+      description: "\n<p>Returns the namespace URI for the default namespace, or String.Empty if there is no default namespace.</p>\n"
   seealso:
   - type: System.Xml.XmlNamespaceManager.LookupNamespace(System.String)
     commentId: M:System.Xml.XmlNamespaceManager.LookupNamespace(System.String)
@@ -152,12 +154,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: NameTable
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 69
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 150
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -169,6 +171,7 @@ items:
     parameters: []
     return:
       type: System.Xml.XmlNameTable
+      description: "\n<p>The <xref href=\"System.Xml.XmlNameTable\" data-throw-if-not-resolved=\"false\"></xref> used by this object.</p>\n"
   seealso:
   - type: System.Xml.XmlReader
     commentId: T:System.Xml.XmlReader
@@ -192,12 +195,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: AddNamespace
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 112
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 151
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -211,8 +214,10 @@ items:
     parameters:
     - id: prefix
       type: System.String
+      description: "\n<p>The prefix to associate with the namespace being added. Use String.Empty to add a default namespace.</p>\n<p>NoteIf the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> will be used for resolving namespaces in an XML Path Language (XPath) expression, a prefix must be specified. If an XPath expression does not include a prefix, it is assumed that the namespace Uniform Resource Identifier (URI) is the empty namespace. For more information about XPath expressions and the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref>, refer to the <xref href=\"System.Xml.XmlNode.SelectNodes(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Xml.XPath.XPathExpression.SetContext(System.Xml.XmlNamespaceManager)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n"
     - id: uri
       type: System.String
+      description: "\n<p>The namespace to add. </p>\n"
   exceptions:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
@@ -241,12 +246,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetEnumerator
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 200
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 152
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -257,6 +262,7 @@ items:
     content.vb: Public Overridable Function GetEnumerator As IEnumerator
     return:
       type: System.Collections.IEnumerator
+      description: "\n<p>An <xref href=\"System.Collections.IEnumerator\" data-throw-if-not-resolved=\"false\"></xref> containing the prefixes stored by the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   implements:
   - System.Collections.IEnumerable.GetEnumerator
   modifiers.csharp:
@@ -277,12 +283,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetNamespacesInScope
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 215
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 153
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -294,8 +300,10 @@ items:
     parameters:
     - id: scope
       type: System.Xml.XmlNamespaceScope
+      description: "\n<p>An enumeration value that specifies the type of namespace nodes to return.</p>\n"
     return:
       type: System.Collections.Generic.IDictionary{System.String,System.String}
+      description: "\n<p>A collection of namespace and prefix pairs currently in scope.</p>\n"
   implements:
   - System.Xml.IXmlNamespaceResolver.GetNamespacesInScope(System.Xml.XmlNamespaceScope)
   modifiers.csharp:
@@ -316,12 +324,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: HasNamespace
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 322
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 154
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -335,8 +343,10 @@ items:
     parameters:
     - id: prefix
       type: System.String
+      description: "\n<p>The prefix of the namespace you want to find. </p>\n"
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if there is a namespace defined; otherwise, <strong>false</strong>.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -355,12 +365,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: LookupNamespace
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 261
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 155
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -373,8 +383,10 @@ items:
     parameters:
     - id: prefix
       type: System.String
+      description: "\n<p>The prefix whose namespace URI you want to resolve. To match the default namespace, pass String.Empty. </p>\n"
     return:
       type: System.String
+      description: "\n<p>Returns the namespace URI for <em>prefix</em> or <strong>null</strong> if there is no mapped namespace. The returned string is atomized.</p>\n<p>For more information on atomized strings, see the <xref href=\"System.Xml.XmlNameTable\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   seealso:
   - type: System.Xml.XmlNamespaceManager.LookupPrefix(System.String)
     commentId: M:System.Xml.XmlNamespaceManager.LookupPrefix(System.String)
@@ -398,12 +410,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: LookupPrefix
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 305
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 156
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -418,8 +430,10 @@ items:
     parameters:
     - id: uri
       type: System.String
+      description: "\n<p>The namespace to resolve for the prefix. </p>\n"
     return:
       type: System.String
+      description: "\n<p>The matching prefix. If there is no mapped prefix, the method returns String.Empty. If a null value is supplied, then <strong>null</strong> is returned.</p>\n"
   seealso:
   - type: System.Xml.XmlNamespaceManager.LookupNamespace(System.String)
     commentId: M:System.Xml.XmlNamespaceManager.LookupNamespace(System.String)
@@ -443,12 +457,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: PopScope
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 91
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 157
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -461,6 +475,7 @@ items:
     content.vb: Public Overridable Function PopScope As Boolean
     return:
       type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if there are namespace scopes left on the stack; <strong>false</strong> if there are no more namespaces to pop.</p>\n"
   seealso:
   - type: System.Xml.XmlNamespaceManager.PushScope
     commentId: M:System.Xml.XmlNamespaceManager.PushScope
@@ -482,12 +497,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: PushScope
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 86
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 158
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -519,12 +534,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
+      path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: RemoveNamespace
-    path: src/System.Xml.ReaderWriter/src/System/Xml/XmlNamespaceManager.cs
-    startLine: 178
+    path: src/System.Xml.ReaderWriter/ref/System.Xml.ReaderWriter.cs
+    startLine: 159
   assemblies:
   - System.Xml.ReaderWriter
   namespace: System.Xml
@@ -535,8 +550,10 @@ items:
     parameters:
     - id: prefix
       type: System.String
+      description: "\n<p>The prefix for the namespace </p>\n"
     - id: uri
       type: System.String
+      description: "\n<p>The namespace to remove for the given prefix. The namespace removed is from the current namespace scope. Namespaces outside the current scope are ignored. </p>\n"
   exceptions:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
