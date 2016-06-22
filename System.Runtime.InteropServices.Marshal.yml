@@ -2738,7 +2738,7 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Converts the specified HRESULT error code to a corresponding <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>Use the <see cref=\"Overload:System.Runtime.InteropServices.Marshal.GetExceptionForHR\"></see> method to get an <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> based on an HRESULT without having to call the <see cref=\"Overload:System.Runtime.InteropServices.Marshal.ThrowExceptionForHR\"></see> method and catch the exception.</p>\n<p>The current IErrorInfo interface is used to construct the exception.</p>\n<p>For the mapping from each HRESULT to its comparable exception class in the .NET Framework, see How to: Map HRESULTs and Exceptions.</p>\n"
+  remarks: "\n<p>Use the <xref href=\"System.Runtime.InteropServices.Marshal.GetExceptionForHR(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to get an <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> based on an HRESULT without having to call the <xref href=\"System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method and catch the exception.</p>\n<p>The current IErrorInfo interface is used to construct the exception.</p>\n<p>For the mapping from each HRESULT to its comparable exception class in the .NET Framework, see How to: Map HRESULTs and Exceptions.</p>\n"
   syntax:
     content: >-
       [SecurityCritical]
@@ -2755,6 +2755,9 @@ items:
     return:
       type: System.Exception
       description: "\n<p>An object that represents the converted HRESULT.</p>\n"
+  seealso:
+  - type: System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Int32)
+    commentId: M:System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Int32)
   see:
   - type: System.Security.SecurityCriticalAttribute
     commentId: T:System.Security.SecurityCriticalAttribute
@@ -2791,7 +2794,7 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Converts the specified HRESULT error code to a corresponding <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> object, with additional error information passed in an IErrorInfo interface for the exception object.</p>\n"
-  remarks: "\n<p>Use the <see cref=\"Overload:System.Runtime.InteropServices.Marshal.GetExceptionForHR\"></see> method to get an <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> based on an HRESULT without having to call the <see cref=\"Overload:System.Runtime.InteropServices.Marshal.ThrowExceptionForHR\"></see> method and catch the exception (thus avoiding the corresponding performance overhead). The <em>errorInfo</em> parameter supplies additional information about the error, such as its textual description and the globally unique identifier (GUID) for the interface that defined the error.</p>\n<p>Use this method overload if you have custom error information that you have to supply in the conversion.</p>\n<p>For the mapping from each HRESULT to its comparable exception class in the .NET Framework, see How to: Map HRESULTs and Exceptions.</p>\n"
+  remarks: "\n<p>Use the <xref href=\"System.Runtime.InteropServices.Marshal.GetExceptionForHR(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to get an <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> based on an HRESULT without having to call the <xref href=\"System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method and catch the exception (thus avoiding the corresponding performance overhead). The <em>errorInfo</em> parameter supplies additional information about the error, such as its textual description and the globally unique identifier (GUID) for the interface that defined the error.</p>\n<p>Use this method overload if you have custom error information that you have to supply in the conversion.</p>\n<p>For the mapping from each HRESULT to its comparable exception class in the .NET Framework, see How to: Map HRESULTs and Exceptions.</p>\n"
   syntax:
     content: >-
       [SecurityCritical]
@@ -2811,6 +2814,9 @@ items:
     return:
       type: System.Exception
       description: "\n<p>An object that represents the converted HRESULT and information obtained from <em>errorInfo</em>.</p>\n"
+  seealso:
+  - type: System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Int32)
+    commentId: M:System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Int32)
   see:
   - type: System.Security.SecurityCriticalAttribute
     commentId: T:System.Security.SecurityCriticalAttribute
@@ -2970,7 +2976,7 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Converts the specified exception to an HRESULT.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Runtime.InteropServices.Marshal.GetHRForException(System.Exception)\" data-throw-if-not-resolved=\"false\"></xref> also sets up an <see href=\"https://msdn.microsoft.com/library/ms221233(v=vs.85).aspx\">IErrorInfo</see> interface for the exception that can be obtained by calling the COM GetErrorInfoNEEDGUID function. You can use this function to return an HRESULT value on a managed class implementation of a COM interface where you apply the <xref href=\"System.Runtime.InteropServices.PreserveSigAttribute\" data-throw-if-not-resolved=\"false\"></xref> attribute. Have the attributed method catch all exceptions and use the <xref href=\"System.Runtime.InteropServices.Marshal.GetHRForException(System.Exception)\" data-throw-if-not-resolved=\"false\"></xref> method to return the appropriate HRESULT value. Allowing an exception to propagate outside the method produces incorrect behavior. (In fact, the common language runtime fails to pass an exception to a COM client that calls such a method through a v-table.)</p>\n<p>Note that the <xref href=\"System.Runtime.InteropServices.Marshal.GetHRForException(System.Exception)\" data-throw-if-not-resolved=\"false\"></xref> method sets the <see href=\"https://msdn.microsoft.com/library/ms221233(v=vs.85).aspx\">IErrorInfo</see> interface of the current thread. This can cause unexpected results for methods like the <see cref=\"Overload:System.Runtime.InteropServices.Marshal.ThrowExceptionForHR\"></see> methods that default to using the <see href=\"https://msdn.microsoft.com/library/ms221233(v=vs.85).aspx\">IErrorInfo</see> of the current thread if it is set.</p>\n"
+  remarks: "\n<p>\n<xref href=\"System.Runtime.InteropServices.Marshal.GetHRForException(System.Exception)\" data-throw-if-not-resolved=\"false\"></xref> also sets up an <see href=\"https://msdn.microsoft.com/library/ms221233(v=vs.85).aspx\">IErrorInfo</see> interface for the exception that can be obtained by calling the COM GetErrorInfoNEEDGUID function. You can use this function to return an HRESULT value on a managed class implementation of a COM interface where you apply the <xref href=\"System.Runtime.InteropServices.PreserveSigAttribute\" data-throw-if-not-resolved=\"false\"></xref> attribute. Have the attributed method catch all exceptions and use the <xref href=\"System.Runtime.InteropServices.Marshal.GetHRForException(System.Exception)\" data-throw-if-not-resolved=\"false\"></xref> method to return the appropriate HRESULT value. Allowing an exception to propagate outside the method produces incorrect behavior. (In fact, the common language runtime fails to pass an exception to a COM client that calls such a method through a v-table.)</p>\n<p>Note that the <xref href=\"System.Runtime.InteropServices.Marshal.GetHRForException(System.Exception)\" data-throw-if-not-resolved=\"false\"></xref> method sets the <see href=\"https://msdn.microsoft.com/library/ms221233(v=vs.85).aspx\">IErrorInfo</see> interface of the current thread. This can cause unexpected results for methods like the <xref href=\"System.Runtime.InteropServices.Marshal.ThrowExceptionForHR(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods that default to using the <see href=\"https://msdn.microsoft.com/library/ms221233(v=vs.85).aspx\">IErrorInfo</see> of the current thread if it is set.</p>\n"
   syntax:
     content: >-
       [SecurityCritical]
@@ -5990,7 +5996,7 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Returns the unmanaged size of an object in bytes.</p>\n"
-  remarks: "\n<p>This method accepts an instance of a structure, which can be a reference type or a boxed value type. The layout must be sequential or explicit.</p>\n<p>The size returned is the size of the unmanaged object. The unmanaged and managed sizes of an object can differ. For character types, the size is affected by the <xref href=\"System.Runtime.InteropServices.CharSet\" data-throw-if-not-resolved=\"false\"></xref> value applied to that class.</p>\n<p>You can use the <xref href=\"System.Runtime.InteropServices.Marshal.SizeOf(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method to determine how much unmanaged memory to allocate using the <see cref=\"Overload:System.Runtime.InteropServices.Marshal.AllocHGlobal\"></see> and <xref href=\"System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n"
+  remarks: "\n<p>This method accepts an instance of a structure, which can be a reference type or a boxed value type. The layout must be sequential or explicit.</p>\n<p>The size returned is the size of the unmanaged object. The unmanaged and managed sizes of an object can differ. For character types, the size is affected by the <xref href=\"System.Runtime.InteropServices.CharSet\" data-throw-if-not-resolved=\"false\"></xref> value applied to that class.</p>\n<p>You can use the <xref href=\"System.Runtime.InteropServices.Marshal.SizeOf(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method to determine how much unmanaged memory to allocate using the <xref href=\"System.Runtime.InteropServices.Marshal.AllocHGlobal(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n"
   syntax:
     content: >-
       [ComVisible(true)]
@@ -6147,7 +6153,7 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>[Supported in the .NET Framework 4.5.1 and later versions] </p>\n<p>Returns the unmanaged size of an object of a specified type in bytes. </p>\n"
-  remarks: "\n<p>This method accepts an instance of a structure, which can be a reference type or a boxed value type. The layout must be sequential or explicit.</p>\n<p>The size returned is the size of the unmanaged object. The unmanaged and managed sizes of an object can differ. For character types, the size is affected by the <xref href=\"System.Runtime.InteropServices.CharSet\" data-throw-if-not-resolved=\"false\"></xref> value applied to that class.</p>\n<p>You can use the <xref href=\"System.Runtime.InteropServices.Marshal.SizeOf``1(``0)\" data-throw-if-not-resolved=\"false\"></xref> method to determine how much unmanaged memory to allocate by using the <see cref=\"Overload:System.Runtime.InteropServices.Marshal.AllocHGlobal\"></see> and <xref href=\"System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods. </p>\n"
+  remarks: "\n<p>This method accepts an instance of a structure, which can be a reference type or a boxed value type. The layout must be sequential or explicit.</p>\n<p>The size returned is the size of the unmanaged object. The unmanaged and managed sizes of an object can differ. For character types, the size is affected by the <xref href=\"System.Runtime.InteropServices.CharSet\" data-throw-if-not-resolved=\"false\"></xref> value applied to that class.</p>\n<p>You can use the <xref href=\"System.Runtime.InteropServices.Marshal.SizeOf``1(``0)\" data-throw-if-not-resolved=\"false\"></xref> method to determine how much unmanaged memory to allocate by using the <xref href=\"System.Runtime.InteropServices.Marshal.AllocHGlobal(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Runtime.InteropServices.Marshal.AllocCoTaskMem(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods. </p>\n"
   syntax:
     content: public static int SizeOf<T>(T structure)
     content.vb: Public Shared Function SizeOf(Of T)(structure As T) As Integer

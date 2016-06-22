@@ -32,7 +32,7 @@ items:
   - System.Xml.XPath
   namespace: System.Xml.XPath
   summary: "\n<p>Provides a typed class that represents a compiled XPath expression.</p>\n"
-  remarks: "\n<p>This class is returned as the result of the <xref href=\"System.Xml.XPath.XPathNavigator.Compile(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the <xref href=\"System.Xml.XPath.XPathNavigator\" data-throw-if-not-resolved=\"false\"></xref> class. It is a parameter to the <see cref=\"Overload:System.Xml.XPath.XPathNavigator.Evaluate\"></see>, <see cref=\"Overload:System.Xml.XPath.XPathNavigator.Matches\"></see>, <see cref=\"Overload:System.Xml.XPath.XPathNavigator.Select\"></see>, and <see cref=\"Overload:System.Xml.XPath.XPathNavigator.SelectSingleNode\"></see> methods of the <xref href=\"System.Xml.XPath.XPathNavigator\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
+  remarks: "\n<p>This class is returned as the result of the <xref href=\"System.Xml.XPath.XPathNavigator.Compile(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the <xref href=\"System.Xml.XPath.XPathNavigator\" data-throw-if-not-resolved=\"false\"></xref> class. It is a parameter to the <xref href=\"System.Xml.XPath.XPathNavigator.Evaluate(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Xml.XPath.XPathNavigator.Matches(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Xml.XPath.XPathNavigator.Select(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Xml.XPath.XPathNavigator.SelectSingleNode(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods of the <xref href=\"System.Xml.XPath.XPathNavigator\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public abstract class XPathExpression
     content.vb: Public MustInherit Class XPathExpression
@@ -225,7 +225,7 @@ items:
       description: "\n<p>An <xref href=\"System.Xml.XPath.XmlCaseOrder\" data-throw-if-not-resolved=\"false\"></xref> value indicating how to sort uppercase and lowercase letters.</p>\n"
     - id: lang
       type: System.String
-      description: "\n<p>The language to use for comparison. Uses the <xref href=\"System.Globalization.CultureInfo\" data-throw-if-not-resolved=\"false\"></xref> class that can be passed to the <see cref=\"Overload:System.String.Compare\"></see> method for the language types, for example, \"us-en\" for U.S. English. If an empty string is specified, the system environment is used to determine the <xref href=\"System.Globalization.CultureInfo\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
+      description: "\n<p>The language to use for comparison. Uses the <xref href=\"System.Globalization.CultureInfo\" data-throw-if-not-resolved=\"false\"></xref> class that can be passed to the <xref href=\"System.String.Compare(System.String,System.Int32,System.String,System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method for the language types, for example, \"us-en\" for U.S. English. If an empty string is specified, the system environment is used to determine the <xref href=\"System.Globalization.CultureInfo\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
     - id: dataType
       type: System.Xml.XPath.XmlDataType
       description: "\n<p>An <xref href=\"System.Xml.XPath.XmlDataType\" data-throw-if-not-resolved=\"false\"></xref> value indicating the sort order for the data type. </p>\n"
@@ -244,6 +244,8 @@ items:
     commentId: T:System.Xml.XmlNamespaceManager
   - type: System.Globalization.CultureInfo
     commentId: T:System.Globalization.CultureInfo
+  - type: System.String.Compare(System.String,System.Int32,System.String,System.Int32,System.Int32)
+    commentId: M:System.String.Compare(System.String,System.Int32,System.String,System.Int32,System.Int32)
   - type: System.Xml.XPath.XPathExpression.SetContext(System.Xml.XmlNamespaceManager)
     commentId: M:System.Xml.XPath.XPathExpression.SetContext(System.Xml.XmlNamespaceManager)
   modifiers.csharp:
@@ -361,7 +363,7 @@ items:
   - System.Xml.XPath
   namespace: System.Xml.XPath
   summary: "\n<p>Compiles the specified XPath expression, with the <xref href=\"System.Xml.IXmlNamespaceResolver\" data-throw-if-not-resolved=\"false\"></xref> object specified for namespace resolution, and returns an <xref href=\"System.Xml.XPath.XPathExpression\" data-throw-if-not-resolved=\"false\"></xref> object that represents the XPath expression.</p>\n"
-  remarks: "\n<p>An XPath expression is evaluated to yield one of the following result types.</p>\n<ul><li>\n<p>\n<xref href=\"System.Xml.XPath.XPathResultType.NodeSet\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.Xml.XPath.XPathResultType.Boolean\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.Xml.XPath.XPathResultType.Number\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.Xml.XPath.XPathResultType.String\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li></ul>\n<p>If a user-defined function with an invalid number of arguments (or an unimplemented user-defined function) is specified in the XPath expression, an exception occurs only at run-time. User-defined functions are not checked at compile time and exceptions resulting from user-defined functions occur only if execution evaluates the expression.</p>\n<p></p>\n<p>It is not possible to compile a <xref href=\"System.Xml.XPath.XPathExpression\" data-throw-if-not-resolved=\"false\"></xref> with a custom context in one step by passing an <xref href=\"System.Xml.Xsl.XsltContext\" data-throw-if-not-resolved=\"false\"></xref>, which implements <xref href=\"System.Xml.IXmlNamespaceResolver\" data-throw-if-not-resolved=\"false\"></xref>, as an argument to this method. To use a <xref href=\"System.Xml.XPath.XPathExpression\" data-throw-if-not-resolved=\"false\"></xref> with a custom context, you must call the <see cref=\"Overload:System.Xml.XPath.XPathExpression.SetContext\"></see> method after compiling the expression.</p>\n"
+  remarks: "\n<p>An XPath expression is evaluated to yield one of the following result types.</p>\n<ul><li>\n<p>\n<xref href=\"System.Xml.XPath.XPathResultType.NodeSet\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.Xml.XPath.XPathResultType.Boolean\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.Xml.XPath.XPathResultType.Number\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.Xml.XPath.XPathResultType.String\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li></ul>\n<p>If a user-defined function with an invalid number of arguments (or an unimplemented user-defined function) is specified in the XPath expression, an exception occurs only at run-time. User-defined functions are not checked at compile time and exceptions resulting from user-defined functions occur only if execution evaluates the expression.</p>\n<p></p>\n<p>It is not possible to compile a <xref href=\"System.Xml.XPath.XPathExpression\" data-throw-if-not-resolved=\"false\"></xref> with a custom context in one step by passing an <xref href=\"System.Xml.Xsl.XsltContext\" data-throw-if-not-resolved=\"false\"></xref>, which implements <xref href=\"System.Xml.IXmlNamespaceResolver\" data-throw-if-not-resolved=\"false\"></xref>, as an argument to this method. To use a <xref href=\"System.Xml.XPath.XPathExpression\" data-throw-if-not-resolved=\"false\"></xref> with a custom context, you must call the <xref href=\"System.Xml.XPath.XPathExpression.SetContext(System.Xml.IXmlNamespaceResolver)\" data-throw-if-not-resolved=\"false\"></xref> method after compiling the expression.</p>\n"
   syntax:
     content: public static XPathExpression Compile(string xpath, IXmlNamespaceResolver nsResolver)
     content.vb: Public Shared Function Compile(xpath As String, nsResolver As IXmlNamespaceResolver) As XPathExpression
@@ -387,6 +389,8 @@ items:
     commentId: T:System.Xml.IXmlNamespaceResolver
   - type: System.Xml.XPath.XPathResultType
     commentId: T:System.Xml.XPath.XPathResultType
+  - type: System.Xml.XPath.XPathExpression.SetContext(System.Xml.IXmlNamespaceResolver)
+    commentId: M:System.Xml.XPath.XPathExpression.SetContext(System.Xml.IXmlNamespaceResolver)
   modifiers.csharp:
   - public
   - static

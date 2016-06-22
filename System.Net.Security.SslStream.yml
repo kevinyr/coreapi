@@ -52,17 +52,17 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SslStream
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 35
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 70
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Provides a stream used for client-server communication that uses the Secure Socket Layer (SSL) security protocol to authenticate the server and optionally the client.</p>\n"
-  remarks: "\n<p>SSL protocols help to provide confidentiality and integrity checking for messages transmitted using an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. An SSL connection, such as that provided by <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>, should be used when communicating sensitive information between a client and a server. Using an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> helps to prevent anyone from reading and tampering with information while it is in transit on the network. </p>\n<p>An <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance transmits data using a stream that you supply when creating the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. When you supply this underlying stream, you have the option to specify whether closing the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> also closes the underlying stream. Typically, the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class is used with the <xref href=\"System.Net.Sockets.TcpClient\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Sockets.TcpListener\" data-throw-if-not-resolved=\"false\"></xref> classes. The <xref href=\"System.Net.Sockets.TcpClient.GetStream\" data-throw-if-not-resolved=\"false\"></xref> method provides a <xref href=\"System.Net.Sockets.NetworkStream\" data-throw-if-not-resolved=\"false\"></xref> suitable for use with the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n<p>After creating an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>, the server and optionally, the client must be authenticated. The server must provide an X509 certificate that establishes proof of its identity and can request that the client also do so. Authentication must be performed before transmitting information using an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. Clients initiate authentication using the synchronous <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsClient\"></see> methods, which block until the authentication completes, or the asynchronous <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsClient\"></see> methods, which do not block waiting for the authentication to complete. Servers initiate authentication using the synchronous <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsServer\"></see> or asynchronous <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsServer\"></see> methods. Both client and server must initiate the authentication. </p>\n<p>The authentication is handled by the Security Support Provider (SSPI) channel provider. The client is given an opportunity to control validation of the server's certificate by specifying a <xref href=\"System.Net.Security.RemoteCertificateValidationCallback\" data-throw-if-not-resolved=\"false\"></xref> delegate when creating an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. The server can also control validation by supplying a <xref href=\"System.Net.Security.RemoteCertificateValidationCallback\" data-throw-if-not-resolved=\"false\"></xref> delegate. The method referenced by the delegate includes the remote party's certificate and any errors SSPI encountered while validating the certificate. Note that if the server specifies a delegate, the delegate's method is invoked regardless of whether the server requested client authentication. If the server did not request client authentication, the server's delegate method receives a null certificate and an empty array of certificate errors. </p>\n<p>If the server requires client authentication, the client must specify one or more certificates for authentication. If the client has more than one certificate, the client can provide a <xref href=\"System.Net.Security.LocalCertificateSelectionCallback\" data-throw-if-not-resolved=\"false\"></xref> delegate to select the correct certificate for the server. The client's certificates must be located in the current user's \"My\" certificate store. Client authentication via certificates is not supported for the <xref href=\"System.Security.Authentication.SslProtocols.Ssl2\" data-throw-if-not-resolved=\"false\"></xref> (SSL version 2) protocol.</p>\n<p>If the authentication fails, you receive a <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref>, and the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> is no longer useable. You should close this object and remove all references to it so that it can be collected by the garbage collector. </p>\n<p>When the authentication process, also known as the SSL handshake, succeeds, the identity of the server (and optionally, the client) is established and the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> can be used by the client and server to exchange messages. Before sending or receiving information, the client and server should check the security services and levels provided by the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> to determine whether the protocol, algorithms, and strengths selected meet their requirements for integrity and confidentiality. If the current settings are not sufficient, the stream should be closed. You can check the security services provided by the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> using the <xref href=\"System.Net.Security.SslStream.IsEncrypted\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Security.SslStream.IsSigned\" data-throw-if-not-resolved=\"false\"></xref> properties. The following table shows the elements that report the cryptographic settings used for authentication, encryption and data signing.</p>\n<p>Element </p>\n<p>Members </p>\n<table><tbody><tr><td>\n<p>The security protocol used to authenticate the server and, optionally, the client. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.SslProtocol\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.SslProtocols\" data-throw-if-not-resolved=\"false\"></xref> enumeration. </p>\n</td></tr><tr><td>\n<p>The key exchange algorithm. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.KeyExchangeAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.ExchangeAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref>  enumeration. </p>\n</td></tr><tr><td>\n<p>The message integrity algorithm. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.HashAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.HashAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref> enumeration. </p>\n</td></tr><tr><td>\n<p>The message confidentiality algorithm. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.CipherAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.CipherAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref>  enumeration. </p>\n</td></tr><tr><td>\n<p>The strengths of the selected algorithms. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.KeyExchangeStrength\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Net.Security.SslStream.HashStrength\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Net.Security.SslStream.CipherStrength\" data-throw-if-not-resolved=\"false\"></xref> properties. </p>\n</td></tr></tbody></table>\n<p>After a successful authentication, you can send data using the synchronous <see cref=\"Overload:System.Net.Security.SslStream.Write\"></see> or asynchronous <xref href=\"System.Net.Security.SslStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods. You can receive data using the synchronous <xref href=\"System.Net.Security.SslStream.Read(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> or asynchronous <xref href=\"System.Net.Security.SslStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods. </p>\n<p>If you specified to the <see cref=\"Overload:System.Net.Security.SslStream.#ctor\"></see> that the underlying stream should be left open, you are responsible for closing that stream when you are done using it.</p>\n<p>If the application that creates the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> object runs with the credentials of a Normal user, the application will not be able to access certificates installed in the local machine store unless permission has been explicitly given to the user to do so.</p>\n<p>\n<xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> assumes that a timeout along with any other <xref href=\"System.IO.IOException\" data-throw-if-not-resolved=\"false\"></xref> when one is thrown from the inner stream will be treated as fatal by its caller. Reusing a <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance after a timeout will return garbage. An application should <xref href=\"System.IO.Stream.Close\" data-throw-if-not-resolved=\"false\"></xref> the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> and throw an exception in these cases.</p>\n<p>The .NET Framework 4.6 includes a new security feature that blocks insecure cipher and hashing algorithms for connections. Applications using TLS/SSL through APIs such as HttpClient, HttpWebRequest, FTPClient, SmtpClient, SslStream, etc. and targeting .NET Framework 4.6 get the more-secure behavior by default.</p>\n<p>Developers may want to opt out of this behavior in order to maintain interoperability with their existing SSL3 services OR TLS w/ RC4 services. <see href=\"https://support.microsoft.com/kb/3069494\">This article</see> explains how to modify your code so that the new behavior is disabled.</p>\n"
+  remarks: "\n<p>SSL protocols help to provide confidentiality and integrity checking for messages transmitted using an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. An SSL connection, such as that provided by <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>, should be used when communicating sensitive information between a client and a server. Using an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> helps to prevent anyone from reading and tampering with information while it is in transit on the network. </p>\n<p>An <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance transmits data using a stream that you supply when creating the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. When you supply this underlying stream, you have the option to specify whether closing the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> also closes the underlying stream. Typically, the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class is used with the <xref href=\"System.Net.Sockets.TcpClient\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Sockets.TcpListener\" data-throw-if-not-resolved=\"false\"></xref> classes. The <xref href=\"System.Net.Sockets.TcpClient.GetStream\" data-throw-if-not-resolved=\"false\"></xref> method provides a <xref href=\"System.Net.Sockets.NetworkStream\" data-throw-if-not-resolved=\"false\"></xref> suitable for use with the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n<p>After creating an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>, the server and optionally, the client must be authenticated. The server must provide an X509 certificate that establishes proof of its identity and can request that the client also do so. Authentication must be performed before transmitting information using an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. Clients initiate authentication using the synchronous <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsClient\"></see> methods, which block until the authentication completes, or the asynchronous <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsClient\"></see> methods, which do not block waiting for the authentication to complete. Servers initiate authentication using the synchronous <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsServer\"></see> or asynchronous <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsServer\"></see> methods. Both client and server must initiate the authentication. </p>\n<p>The authentication is handled by the Security Support Provider (SSPI) channel provider. The client is given an opportunity to control validation of the server's certificate by specifying a <xref href=\"System.Net.Security.RemoteCertificateValidationCallback\" data-throw-if-not-resolved=\"false\"></xref> delegate when creating an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. The server can also control validation by supplying a <xref href=\"System.Net.Security.RemoteCertificateValidationCallback\" data-throw-if-not-resolved=\"false\"></xref> delegate. The method referenced by the delegate includes the remote party's certificate and any errors SSPI encountered while validating the certificate. Note that if the server specifies a delegate, the delegate's method is invoked regardless of whether the server requested client authentication. If the server did not request client authentication, the server's delegate method receives a null certificate and an empty array of certificate errors. </p>\n<p>If the server requires client authentication, the client must specify one or more certificates for authentication. If the client has more than one certificate, the client can provide a <xref href=\"System.Net.Security.LocalCertificateSelectionCallback\" data-throw-if-not-resolved=\"false\"></xref> delegate to select the correct certificate for the server. The client's certificates must be located in the current user's \"My\" certificate store. Client authentication via certificates is not supported for the <xref href=\"System.Security.Authentication.SslProtocols.Ssl2\" data-throw-if-not-resolved=\"false\"></xref> (SSL version 2) protocol.</p>\n<p>If the authentication fails, you receive a <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref>, and the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> is no longer useable. You should close this object and remove all references to it so that it can be collected by the garbage collector. </p>\n<p>When the authentication process, also known as the SSL handshake, succeeds, the identity of the server (and optionally, the client) is established and the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> can be used by the client and server to exchange messages. Before sending or receiving information, the client and server should check the security services and levels provided by the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> to determine whether the protocol, algorithms, and strengths selected meet their requirements for integrity and confidentiality. If the current settings are not sufficient, the stream should be closed. You can check the security services provided by the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> using the <xref href=\"System.Net.Security.SslStream.IsEncrypted\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Security.SslStream.IsSigned\" data-throw-if-not-resolved=\"false\"></xref> properties. The following table shows the elements that report the cryptographic settings used for authentication, encryption and data signing.</p>\n<p>Element </p>\n<p>Members </p>\n<table><tbody><tr><td>\n<p>The security protocol used to authenticate the server and, optionally, the client. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.SslProtocol\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.SslProtocols\" data-throw-if-not-resolved=\"false\"></xref> enumeration. </p>\n</td></tr><tr><td>\n<p>The key exchange algorithm. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.KeyExchangeAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.ExchangeAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref>  enumeration. </p>\n</td></tr><tr><td>\n<p>The message integrity algorithm. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.HashAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.HashAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref> enumeration. </p>\n</td></tr><tr><td>\n<p>The message confidentiality algorithm. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.CipherAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.CipherAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref>  enumeration. </p>\n</td></tr><tr><td>\n<p>The strengths of the selected algorithms. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.KeyExchangeStrength\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Net.Security.SslStream.HashStrength\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Net.Security.SslStream.CipherStrength\" data-throw-if-not-resolved=\"false\"></xref> properties. </p>\n</td></tr></tbody></table>\n<p>After a successful authentication, you can send data using the synchronous <xref href=\"System.Net.Security.SslStream.Write(System.Byte[])\" data-throw-if-not-resolved=\"false\"></xref> or asynchronous <xref href=\"System.Net.Security.SslStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods. You can receive data using the synchronous <xref href=\"System.Net.Security.SslStream.Read(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> or asynchronous <xref href=\"System.Net.Security.SslStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods. </p>\n<p>If you specified to the <xref href=\"System.Net.Security.SslStream.#ctor(System.IO.Stream)\" data-throw-if-not-resolved=\"false\"></xref> that the underlying stream should be left open, you are responsible for closing that stream when you are done using it.</p>\n<p>If the application that creates the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> object runs with the credentials of a Normal user, the application will not be able to access certificates installed in the local machine store unless permission has been explicitly given to the user to do so.</p>\n<p>\n<xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> assumes that a timeout along with any other <xref href=\"System.IO.IOException\" data-throw-if-not-resolved=\"false\"></xref> when one is thrown from the inner stream will be treated as fatal by its caller. Reusing a <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance after a timeout will return garbage. An application should <xref href=\"System.IO.Stream.Close\" data-throw-if-not-resolved=\"false\"></xref> the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> and throw an exception in these cases.</p>\n<p>The .NET Framework 4.6 includes a new security feature that blocks insecure cipher and hashing algorithms for connections. Applications using TLS/SSL through APIs such as HttpClient, HttpWebRequest, FTPClient, SmtpClient, SslStream, etc. and targeting .NET Framework 4.6 get the more-secure behavior by default.</p>\n<p>Developers may want to opt out of this behavior in order to maintain interoperability with their existing SSL3 services OR TLS w/ RC4 services. <see href=\"https://support.microsoft.com/kb/3069494\">This article</see> explains how to modify your code so that the new behavior is disabled.</p>\n"
   syntax:
     content: 'public class SslStream : AuthenticatedStream, IDisposable'
     content.vb: >-
@@ -146,12 +146,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 42
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 72
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -188,12 +188,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 47
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 73
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -233,12 +233,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 52
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 74
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -281,12 +281,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 57
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 75
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -332,12 +332,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 63
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 76
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -386,12 +386,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CanRead
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 334
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 77
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -426,12 +426,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CanSeek
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 326
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 78
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -471,12 +471,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CanTimeout
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 342
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 79
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -511,12 +511,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CanWrite
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 350
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 80
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -551,12 +551,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CheckCertRevocationStatus
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 241
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 81
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -590,12 +590,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CipherAlgorithm
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 275
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 82
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -606,7 +606,7 @@ items:
     content.vb: Public Overridable ReadOnly Property CipherAlgorithm As CipherAlgorithmType
     parameters: []
     return:
-      type: CipherAlgorithmType
+      type: System.Security.Authentication.CipherAlgorithmType
       description: "\n<p>A <xref href=\"System.Security.Authentication.CipherAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref> value.</p>\n"
   exceptions:
   - type: System.InvalidOperationException
@@ -633,12 +633,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CipherStrength
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 283
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 83
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -672,12 +672,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: HashAlgorithm
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 291
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 84
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -688,7 +688,7 @@ items:
     content.vb: Public Overridable ReadOnly Property HashAlgorithm As HashAlgorithmType
     parameters: []
     return:
-      type: HashAlgorithmType
+      type: System.Security.Authentication.HashAlgorithmType
       description: "\n<p>A <xref href=\"System.Security.Authentication.HashAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref> value.</p>\n"
   exceptions:
   - type: System.InvalidOperationException
@@ -715,12 +715,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: HashStrength
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 299
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 85
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -754,12 +754,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IsAuthenticated
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 193
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 86
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -794,12 +794,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IsEncrypted
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 209
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 87
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -834,12 +834,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IsMutuallyAuthenticated
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 201
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 88
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -874,12 +874,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IsServer
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 225
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 89
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -914,12 +914,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IsSigned
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 217
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 90
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -954,12 +954,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: KeyExchangeAlgorithm
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 307
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 91
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -970,7 +970,7 @@ items:
     content.vb: Public Overridable ReadOnly Property KeyExchangeAlgorithm As ExchangeAlgorithmType
     parameters: []
     return:
-      type: ExchangeAlgorithmType
+      type: System.Security.Authentication.ExchangeAlgorithmType
       description: "\n<p>An <xref href=\"System.Security.Authentication.ExchangeAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref> value.</p>\n"
   modifiers.csharp:
   - public
@@ -993,12 +993,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: KeyExchangeStrength
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 315
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 92
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1032,12 +1032,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Length
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 382
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 93
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1076,12 +1076,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: LocalCertificate
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 249
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 94
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1118,12 +1118,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Position
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 390
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 95
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1162,12 +1162,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ReadTimeout
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 358
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 96
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1202,12 +1202,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: RemoteCertificate
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 257
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 97
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1244,12 +1244,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SslProtocol
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 233
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 98
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1260,7 +1260,7 @@ items:
     content.vb: Public Overridable ReadOnly Property SslProtocol As SslProtocols
     parameters: []
     return:
-      type: SslProtocols
+      type: System.Security.Authentication.SslProtocols
       description: "\n<p>The <xref href=\"System.Security.Authentication.SslProtocols\" data-throw-if-not-resolved=\"false\"></xref> value that represents the protocol used for authentication.</p>\n"
   modifiers.csharp:
   - public
@@ -1283,12 +1283,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TransportContext
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 154
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 99
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1298,7 +1298,7 @@ items:
     content.vb: Public ReadOnly Property TransportContext As TransportContext
     parameters: []
     return:
-      type: TransportContext
+      type: System.Net.TransportContext
       description: "\n<p>The <xref href=\"System.Net.TransportContext\" data-throw-if-not-resolved=\"false\"></xref> object that contains the channel binding token (CBT) used for extended protection.</p>\n"
   seealso:
   - type: System.Security.Authentication.ExtendedProtection.ChannelBinding
@@ -1322,12 +1322,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: WriteTimeout
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 370
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 100
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1362,12 +1362,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: AuthenticateAsClientAsync
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 168
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 101
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1464,12 +1464,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: AuthenticateAsServerAsync
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 180
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 103
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1500,7 +1500,7 @@ items:
     description: "\n<p>This object has been closed.</p>\n"
   - type: System.PlatformNotSupportedException
     commentId: T:System.PlatformNotSupportedException
-    description: "\n<p>The <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsServerAsync\"></see> method is not supported on Windows 95, Windows 98, or Windows Millennium.</p>\n"
+    description: "\n<p>The <xref href=\"System.Net.Security.SslStream.AuthenticateAsServerAsync(System.Security.Cryptography.X509Certificates.X509Certificate)\" data-throw-if-not-resolved=\"false\"></xref> method is not supported on Windows 95, Windows 98, or Windows Millennium.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -1569,12 +1569,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Flush
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 412
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 105
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1603,12 +1603,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Read
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 434
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 106
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1672,12 +1672,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Seek
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 407
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 107
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1720,12 +1720,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SetLength
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 402
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 108
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1758,12 +1758,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Write
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 439
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 109
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security
@@ -1812,12 +1812,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
+      path: src/System.Net.Security/ref/System.Net.Security.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Write
-    path: src/System.Net.Security/src/System/Net/SecureProtocols/SslStream.cs
-    startLine: 444
+    path: src/System.Net.Security/ref/System.Net.Security.cs
+    startLine: 110
   assemblies:
   - System.Net.Security
   namespace: System.Net.Security

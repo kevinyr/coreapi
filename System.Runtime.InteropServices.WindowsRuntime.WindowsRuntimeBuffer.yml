@@ -15,21 +15,24 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
+      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: WindowsRuntimeBuffer
-    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
-    startLine: 20
+    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+    startLine: 86
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
   syntax:
-    content: 'public sealed class WindowsRuntimeBuffer : IBuffer, IBufferByteAccess, IMarshal, IAgileObject'
+    content: >-
+      [SecurityCritical]
+
+      public sealed class WindowsRuntimeBuffer
     content.vb: >-
+      <SecurityCritical>
+
       Public NotInheritable Class WindowsRuntimeBuffer
-          Inherits IBuffer
-          Implements IBufferByteAccess, IMarshal, IAgileObject
   inheritance:
   - System.Object
   inheritedMembers:
@@ -65,12 +68,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
+      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Create
-    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
-    startLine: 49
+    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+    startLine: 90
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
@@ -78,11 +81,11 @@ items:
     content: >-
       [CLSCompliant(false)]
 
-      public static IBuffer Create(byte[] data, int offset, int length, int capacity)
+      public static Storage.Streams.IBuffer Create(byte[] data, int offset, int length, int capacity)
     content.vb: >-
       <CLSCompliant(False)>
 
-      Public Shared Function Create(data As Byte(), offset As Integer, length As Integer, capacity As Integer) As IBuffer
+      Public Shared Function Create(data As Byte(), offset As Integer, length As Integer, capacity As Integer) As Storage.Streams.IBuffer
     parameters:
     - id: data
       type: System.Byte[]
@@ -93,7 +96,7 @@ items:
     - id: capacity
       type: System.Int32
     return:
-      type: IBuffer
+      type: Windows.Storage.Streams.IBuffer
   attributes:
   - type: System.CLSCompliantAttribute
     ctor: System.CLSCompliantAttribute.#ctor(System.Boolean)
@@ -122,12 +125,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
+      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Create
-    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/WindowsRuntimeBuffer.cs
-    startLine: 35
+    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+    startLine: 92
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
@@ -135,16 +138,16 @@ items:
     content: >-
       [CLSCompliant(false)]
 
-      public static IBuffer Create(int capacity)
+      public static Storage.Streams.IBuffer Create(int capacity)
     content.vb: >-
       <CLSCompliant(False)>
 
-      Public Shared Function Create(capacity As Integer) As IBuffer
+      Public Shared Function Create(capacity As Integer) As Storage.Streams.IBuffer
     parameters:
     - id: capacity
       type: System.Int32
     return:
-      type: IBuffer
+      type: Windows.Storage.Streams.IBuffer
   attributes:
   - type: System.CLSCompliantAttribute
     ctor: System.CLSCompliantAttribute.#ctor(System.Boolean)
@@ -159,19 +162,20 @@ items:
   - Shared
 references:
 - uid: System.Runtime.InteropServices.WindowsRuntime
+  commentId: N:System.Runtime.InteropServices.WindowsRuntime
   isExternal: false
   name: System.Runtime.InteropServices.WindowsRuntime
   nameWithType: System.Runtime.InteropServices.WindowsRuntime
   fullName: System.Runtime.InteropServices.WindowsRuntime
-  commentId: N:System.Runtime.InteropServices.WindowsRuntime
 - uid: System.Object
+  commentId: T:System.Object
   parent: System
   isExternal: false
   name: Object
   nameWithType: Object
   fullName: System.Object
-  commentId: T:System.Object
 - uid: System.Object.ToString
+  commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
   name: ToString()
@@ -201,8 +205,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  commentId: M:System.Object.ToString
 - uid: System.Object.Equals(System.Object)
+  commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
   name: Equals(Object)
@@ -242,8 +246,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object)
 - uid: System.Object.Equals(System.Object,System.Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
   name: Equals(Object, Object)
@@ -299,8 +303,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object,System.Object)
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
   name: ReferenceEquals(Object, Object)
@@ -356,8 +360,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
 - uid: System.Object.GetHashCode
+  commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
   name: GetHashCode()
@@ -387,8 +391,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  commentId: M:System.Object.GetHashCode
 - uid: System.Object.GetType
+  commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
   name: GetType()
@@ -418,8 +422,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  commentId: M:System.Object.GetType
 - uid: System.Object.MemberwiseClone
+  commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
   name: MemberwiseClone()
@@ -449,13 +453,12 @@ references:
   - name: )
     nameWithType: )
     fullName: )
-  commentId: M:System.Object.MemberwiseClone
 - uid: System
+  commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
-  commentId: N:System
 - uid: System.Byte[]
   name: Byte[]
   nameWithType: Byte[]
@@ -482,12 +485,12 @@ references:
     nameWithType: ()
     fullName: ()
 - uid: System.Int32
+  commentId: T:System.Int32
   parent: System
   isExternal: false
   name: Int32
   nameWithType: Int32
   fullName: System.Int32
-  commentId: T:System.Int32
 - uid: Windows.Storage.Streams.IBuffer
   isExternal: true
   name: Storage.Streams.IBuffer
