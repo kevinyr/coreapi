@@ -30,20 +30,25 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: BufferedStream
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 45
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 58
   assemblies:
   - System.IO
   namespace: System.IO
   summary: "\n<p>Adds a buffering layer to read and write operations on another stream. This class cannot be inherited.</p>\n"
   remarks: "\n<p>A buffer is a block of bytes in memory used to cache data, thereby reducing the number of calls to the operating system. Buffers improve read and write performance. A buffer can be used for either reading or writing, but never both simultaneously. The <xref href=\"System.IO.BufferedStream.Read(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.BufferedStream.Write(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods of <strong>BufferedStream</strong> automatically maintain the buffer.</p>\n<p>This type implements the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface. When you have finished using the type, you should dispose of it either directly or indirectly. To dispose of the type directly, call its <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method in a <strong>try</strong>/<strong>catch</strong> block. To dispose of it indirectly, use a language construct such as <strong>using</strong> (in C#) or <strong>Using</strong> (in Visual Basic). For more information, see the “Using an Object that Implements IDisposable” section in the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface topic.</p>\n<p>\n<strong>BufferedStream</strong> can be composed around certain types of streams. It provides implementations for reading and writing bytes to an underlying data source or repository. Use <xref href=\"System.IO.BinaryReader\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.BinaryWriter\" data-throw-if-not-resolved=\"false\"></xref> for reading and writing other data types. <strong>BufferedStream</strong> is designed to prevent the buffer from slowing down input and output when the buffer is not needed. If you always read and write for sizes greater than the internal buffer size, then <strong>BufferedStream</strong> might not even allocate the internal buffer. <strong>BufferedStream</strong> also buffers reads and writes in a shared buffer. It is assumed that you will almost always be doing a series of reads or writes, but rarely alternate between the two of them.</p>\n"
   syntax:
-    content: 'public sealed class BufferedStream : Stream, IDisposable'
+    content: >-
+      [ComVisible(true)]
+
+      public sealed class BufferedStream : Stream, IDisposable
     content.vb: >-
+      <ComVisible(True)>
+
       Public NotInheritable Class BufferedStream
           Inherits Stream
           Implements IDisposable
@@ -100,12 +105,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 72
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 87
   assemblies:
   - System.IO
   namespace: System.IO
@@ -138,12 +143,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 77
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 93
   assemblies:
   - System.IO
   namespace: System.IO
@@ -182,25 +187,19 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CanRead
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 149
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 203
   assemblies:
   - System.IO
   namespace: System.IO
   summary: "\n<p>Gets a value indicating whether the current stream supports reading.</p>\n"
   remarks: "\n<p>If a class derived from <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> does not support reading, calls to the <xref href=\"System.IO.BufferedStream.Read(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.BufferedStream.ReadByte\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.Stream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.Stream.EndRead(System.IAsyncResult)\" data-throw-if-not-resolved=\"false\"></xref>, and the <strong>Peek</strong> methods of <xref href=\"System.IO.StreamReader\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.StringReader\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.IO.TextReader\" data-throw-if-not-resolved=\"false\"></xref> throw a <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the stream is closed, this property returns <strong>false</strong>.</p>\n"
   syntax:
-    content: >-
-      public override bool CanRead
-
-      {
-          [Pure]
-          get;
-      }
+    content: public override bool CanRead { get; }
     content.vb: Public Overrides ReadOnly Property CanRead As Boolean
     parameters: []
     return:
@@ -230,25 +229,19 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CanSeek
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 167
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 215
   assemblies:
   - System.IO
   namespace: System.IO
   summary: "\n<p>Gets a value indicating whether the current stream supports seeking.</p>\n"
   remarks: "\n<p>If a class derived from <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> does not support seeking, calls to <xref href=\"System.IO.BufferedStream.Length\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.BufferedStream.SetLength(System.Int64)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.BufferedStream.Position\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.IO.BufferedStream.Seek(System.Int64,System.IO.SeekOrigin)\" data-throw-if-not-resolved=\"false\"></xref> throw a <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the stream is closed, this property returns <strong>false</strong>.</p>\n"
   syntax:
-    content: >-
-      public override bool CanSeek
-
-      {
-          [Pure]
-          get;
-      }
+    content: public override bool CanSeek { get; }
     content.vb: Public Overrides ReadOnly Property CanSeek As Boolean
     parameters: []
     return:
@@ -280,25 +273,19 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CanWrite
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 158
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 209
   assemblies:
   - System.IO
   namespace: System.IO
   summary: "\n<p>Gets a value indicating whether the current stream supports writing.</p>\n"
   remarks: "\n<p>If a class derived from <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> does not support writing, a call to <xref href=\"System.IO.BufferedStream.SetLength(System.Int64)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.BufferedStream.Write(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.IO.BufferedStream.WriteByte(System.Byte)\" data-throw-if-not-resolved=\"false\"></xref> throws a <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the stream is closed, this property returns <strong>false</strong>.</p>\n"
   syntax:
-    content: >-
-      public override bool CanWrite
-
-      {
-          [Pure]
-          get;
-      }
+    content: public override bool CanWrite { get; }
     content.vb: Public Overrides ReadOnly Property CanWrite As Boolean
     parameters: []
     return:
@@ -328,12 +315,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Length
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 176
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 221
   assemblies:
   - System.IO
   namespace: System.IO
@@ -376,12 +363,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Position
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 189
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 233
   assemblies:
   - System.IO
   namespace: System.IO
@@ -433,12 +420,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Dispose
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 216
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 259
   assemblies:
   - System.IO
   namespace: System.IO
@@ -467,12 +454,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Flush
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 242
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 280
   assemblies:
   - System.IO
   namespace: System.IO
@@ -510,12 +497,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: FlushAsync
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 282
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 320
   assemblies:
   - System.IO
   namespace: System.IO
@@ -553,12 +540,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Read
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 438
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 485
   assemblies:
   - System.IO
   namespace: System.IO
@@ -634,12 +621,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ReadAsync
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 516
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 649
   assemblies:
   - System.IO
   namespace: System.IO
@@ -704,12 +691,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ReadByte
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 646
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 786
   assemblies:
   - System.IO
   namespace: System.IO
@@ -749,12 +736,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Seek
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 1021
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 1254
   assemblies:
   - System.IO
   namespace: System.IO
@@ -805,12 +792,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetLength
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 1070
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 1304
   assemblies:
   - System.IO
   namespace: System.IO
@@ -858,12 +845,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Write
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 706
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 838
   assemblies:
   - System.IO
   namespace: System.IO
@@ -926,12 +913,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: WriteAsync
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 843
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 1059
   assemblies:
   - System.IO
   namespace: System.IO
@@ -996,12 +983,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO/src/System/IO/BufferedStream.cs
+      path: src/mscorlib/src/System/IO/BufferedStream.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: WriteByte
-    path: src/System.IO/src/System/IO/BufferedStream.cs
-    startLine: 1001
+    path: src/mscorlib/src/System/IO/BufferedStream.cs
+    startLine: 1233
   assemblies:
   - System.IO
   namespace: System.IO
