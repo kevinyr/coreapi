@@ -18,12 +18,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: MemoryMappedViewStream
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 91
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
+    startLine: 10
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -117,12 +117,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: PointerOffset
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 94
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
+    startLine: 34
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -157,18 +157,24 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SafeMemoryMappedViewHandle
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 95
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
+    startLine: 23
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
   summary: "\n<p>Gets a handle to the view of a memory-mapped file.</p>\n"
   syntax:
-    content: public SafeMemoryMappedViewHandle SafeMemoryMappedViewHandle { get; }
+    content: >-
+      public SafeMemoryMappedViewHandle SafeMemoryMappedViewHandle
+
+      {
+          [SecurityCritical]
+          get;
+      }
     content.vb: Public ReadOnly Property SafeMemoryMappedViewHandle As SafeMemoryMappedViewHandle
     parameters: []
     return:
@@ -196,18 +202,24 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 96
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
+    startLine: 39
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
   syntax:
-    content: protected override void Dispose(bool disposing)
-    content.vb: Protected Overrides Sub Dispose(disposing As Boolean)
+    content: >-
+      [SecuritySafeCritical]
+
+      protected override void Dispose(bool disposing)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Protected Overrides Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
@@ -231,20 +243,26 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Flush
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 97
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
+    startLine: 67
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
   summary: "\n<p>Clears all buffers for this stream and causes any buffered data to be written to the underlying file.</p>\n"
   remarks: "\n<p>If you are using views that are adjacent to each other, this method will also clear the following data, provided its size is equal to a multiple of the system page size:</p>\n<ul><li>\n<p>Any data that precedes the view up until the latest file offset.</p>\n</li><li>\n<p>Any data that follows the view up until the earliest file offset.</p>\n</li></ul>\n"
   syntax:
-    content: public override void Flush()
-    content.vb: Public Overrides Sub Flush
+    content: >-
+      [SecurityCritical]
+
+      public override void Flush()
+    content.vb: >-
+      <SecurityCritical>
+
+      Public Overrides Sub Flush
   overridden: System.IO.UnmanagedMemoryStream.Flush
   modifiers.csharp:
   - public
@@ -265,12 +283,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SetLength
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 98
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewStream.cs
+    startLine: 29
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
