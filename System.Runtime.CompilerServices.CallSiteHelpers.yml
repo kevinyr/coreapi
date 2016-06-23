@@ -14,12 +14,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Runtime/CompilerServices/CallSiteHelpers.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: CallSiteHelpers
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 287
+    path: src/System.Dynamic.Runtime/src/System/Runtime/CompilerServices/CallSiteHelpers.cs
+    startLine: 12
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Runtime.CompilerServices
@@ -56,19 +56,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Runtime/CompilerServices/CallSiteHelpers.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IsInternalFrame
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 289
+    path: src/System.Dynamic.Runtime/src/System/Runtime/CompilerServices/CallSiteHelpers.cs
+    startLine: 25
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Runtime.CompilerServices
   summary: "\n<p>Checks if a <xref href=\"System.Reflection.MethodBase\" data-throw-if-not-resolved=\"false\"></xref> is internally used by DLR and should not be displayed on the language code's stack.</p>\n"
   syntax:
-    content: public static bool IsInternalFrame(MethodBase mb)
-    content.vb: Public Shared Function IsInternalFrame(mb As MethodBase) As Boolean
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")]
+
+      public static bool IsInternalFrame(MethodBase mb)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1011:ConsiderPassingBaseTypesAsParameters")>
+
+      Public Shared Function IsInternalFrame(mb As MethodBase) As Boolean
     parameters:
     - id: mb
       type: System.Reflection.MethodBase
