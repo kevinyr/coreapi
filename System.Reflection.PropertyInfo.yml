@@ -8,13 +8,23 @@ items:
   - System.Reflection.PropertyInfo.CanRead
   - System.Reflection.PropertyInfo.CanWrite
   - System.Reflection.PropertyInfo.Equals(System.Object)
+  - System.Reflection.PropertyInfo.GetAccessors
+  - System.Reflection.PropertyInfo.GetAccessors(System.Boolean)
   - System.Reflection.PropertyInfo.GetConstantValue
+  - System.Reflection.PropertyInfo.GetGetMethod
+  - System.Reflection.PropertyInfo.GetGetMethod(System.Boolean)
   - System.Reflection.PropertyInfo.GetHashCode
   - System.Reflection.PropertyInfo.GetIndexParameters
   - System.Reflection.PropertyInfo.GetMethod
+  - System.Reflection.PropertyInfo.GetOptionalCustomModifiers
+  - System.Reflection.PropertyInfo.GetRawConstantValue
+  - System.Reflection.PropertyInfo.GetRequiredCustomModifiers
+  - System.Reflection.PropertyInfo.GetSetMethod
+  - System.Reflection.PropertyInfo.GetSetMethod(System.Boolean)
   - System.Reflection.PropertyInfo.GetValue(System.Object)
   - System.Reflection.PropertyInfo.GetValue(System.Object,System.Object[])
   - System.Reflection.PropertyInfo.IsSpecialName
+  - System.Reflection.PropertyInfo.MemberType
   - System.Reflection.PropertyInfo.PropertyType
   - System.Reflection.PropertyInfo.SetMethod
   - System.Reflection.PropertyInfo.SetValue(System.Object,System.Object)
@@ -72,11 +82,17 @@ items:
   inheritance:
   - System.Object
   - System.Reflection.MemberInfo
+  implements:
+  - System.Reflection.ICustomAttributeProvider
   inheritedMembers:
   - System.Reflection.MemberInfo.CustomAttributes
   - System.Reflection.MemberInfo.DeclaringType
+  - System.Reflection.MemberInfo.MetadataToken
   - System.Reflection.MemberInfo.Module
   - System.Reflection.MemberInfo.Name
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
   - System.Object.ToString
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.ReferenceEquals(System.Object,System.Object)
@@ -802,6 +818,409 @@ items:
   - Overridable
   fullName.vb: System.Reflection.PropertyInfo.SetValue(System.Object, System.Object, System.Object())
   name.vb: SetValue(Object, Object, Object())
+- uid: System.Reflection.PropertyInfo.MemberType
+  commentId: P:System.Reflection.PropertyInfo.MemberType
+  id: MemberType
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: MemberType
+  nameWithType: PropertyInfo.MemberType
+  fullName: System.Reflection.PropertyInfo.MemberType
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: MemberType
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 65
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets a <xref href=\"System.Reflection.MemberTypes\" data-throw-if-not-resolved=\"false\"></xref> value indicating that this member is a property.</p>\n"
+  remarks: "\n<p>This property overrides <xref href=\"System.Reflection.MemberInfo.MemberType\" data-throw-if-not-resolved=\"false\"></xref>. Therefore, when you examine a set of <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> objects — for example, the array returned by <see cref=\"Overload:System.Type.GetMembers\"></see> — the <xref href=\"System.Reflection.MemberInfo.MemberType\" data-throw-if-not-resolved=\"false\"></xref> property returns <xref href=\"System.Reflection.MemberTypes.Property\" data-throw-if-not-resolved=\"false\"></xref> only when a given member is a property.</p>\n<p>\n<strong>MemberType</strong> is a derived class of <strong>MemberInfo</strong> and specifies the type of member this is. Member types are constructors, properties, fields, and methods. Since this is a <strong>PropertyInfo</strong> property, the returned type is a property.</p>\n<p>To get the <strong>MemberType</strong> property, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <strong>PropertyInfo</strong>. From the <strong>PropertyInfo</strong>, get the <strong>MemberType</strong> value.</p>\n"
+  syntax:
+    content: public override MemberTypes MemberType { get; }
+    content.vb: Public Overrides ReadOnly Property MemberType As MemberTypes
+    parameters: []
+    return:
+      type: System.Reflection.MemberTypes
+      description: "\n<p>A <xref href=\"System.Reflection.MemberTypes\" data-throw-if-not-resolved=\"false\"></xref> value indicating that this member is a property.</p>\n"
+  overridden: System.Reflection.MemberInfo.MemberType
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+- uid: System.Reflection.PropertyInfo.GetAccessors
+  commentId: M:System.Reflection.PropertyInfo.GetAccessors
+  id: GetAccessors
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetAccessors()
+  nameWithType: PropertyInfo.GetAccessors()
+  fullName: System.Reflection.PropertyInfo.GetAccessors()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetAccessors
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 133
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns an array whose elements reflect the public <strong>get</strong> and <strong>set</strong> accessors of the property reflected by the current instance. </p>\n"
+  remarks: "\n<p>To call the <xref href=\"System.Reflection.PropertyInfo.GetAccessors(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method: </p>\n<ol><li>\n<p>Get a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object that represents the class. </p>\n</li><li>\n<p>From the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n</li><li>\n<p>From the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object, call the <xref href=\"System.Reflection.PropertyInfo.GetAccessors(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n</li></ol>\n"
+  syntax:
+    content: public MethodInfo[] GetAccessors()
+    content.vb: Public Function GetAccessors As MethodInfo()
+    return:
+      type: System.Reflection.MethodInfo[]
+      description: "\n<p>An array of <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> objects that reflect the public <strong>get</strong> and <strong>set</strong> accessors of the property reflected by the current instance, if found; otherwise, this method returns an array with zero (0) elements.</p>\n"
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: System.Reflection.PropertyInfo.GetAccessors(System.Boolean)
+  commentId: M:System.Reflection.PropertyInfo.GetAccessors(System.Boolean)
+  id: GetAccessors(System.Boolean)
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetAccessors(Boolean)
+  nameWithType: PropertyInfo.GetAccessors(Boolean)
+  fullName: System.Reflection.PropertyInfo.GetAccessors(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetAccessors
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 83
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns an array whose elements reflect the public and, if specified, non-public <strong>get</strong> and <strong>set</strong> accessors of the property reflected by the current instance. </p>\n"
+  remarks: "\n<p>To call the <xref href=\"System.Reflection.PropertyInfo.GetAccessors(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method: </p>\n<ol><li>\n<p>Get a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object that represents the class. </p>\n</li><li>\n<p>From the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n</li><li>\n<p>From the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object, call the <xref href=\"System.Reflection.PropertyInfo.GetAccessors(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n</li></ol>\n"
+  syntax:
+    content: public abstract MethodInfo[] GetAccessors(bool nonPublic)
+    content.vb: Public MustOverride Function GetAccessors(nonPublic As Boolean) As MethodInfo()
+    parameters:
+    - id: nonPublic
+      type: System.Boolean
+      description: "\n<p>Indicates whether non-public methods should be returned in the returned array. <strong>true</strong> if non-public methods are to be included; otherwise, <strong>false</strong>. </p>\n"
+    return:
+      type: System.Reflection.MethodInfo[]
+      description: "\n<p>An array whose elements reflect the <strong>get</strong> and <strong>set</strong> accessors of the property reflected by the current instance. If <em>nonPublic</em> is <strong>true</strong>, this array contains public and non-public <strong>get</strong> and <strong>set </strong>accessors. If <em>nonPublic</em> is <strong>false</strong>, this array contains only public <strong>get</strong> and <strong>set</strong> accessors. If no accessors with the specified visibility are found, this method returns an array with zero (0) elements.</p>\n"
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: System.Reflection.PropertyInfo.GetGetMethod
+  commentId: M:System.Reflection.PropertyInfo.GetGetMethod
+  id: GetGetMethod
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetGetMethod()
+  nameWithType: PropertyInfo.GetGetMethod()
+  fullName: System.Reflection.PropertyInfo.GetGetMethod()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetGetMethod
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 151
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns the public <strong>get</strong> accessor for this property.</p>\n"
+  remarks: "\n<p>This is a convenience method that provides an implementation for the abstract <strong>GetGetMethod</strong> method with the <em>nonPublic</em> parameter set to <strong>false</strong>.</p>\n<p>To use the <strong>GetGetMethod</strong> method, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>. From the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>, use the <strong>GetGetMethod</strong> method.</p>\n"
+  syntax:
+    content: public MethodInfo GetGetMethod()
+    content.vb: Public Function GetGetMethod As MethodInfo
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>A <strong>MethodInfo</strong> object representing the public <strong>get</strong> accessor for this property, or <strong>null</strong> if the <strong>get</strong> accessor is non-public or does not exist.</p>\n"
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: System.Reflection.PropertyInfo.GetGetMethod(System.Boolean)
+  commentId: M:System.Reflection.PropertyInfo.GetGetMethod(System.Boolean)
+  id: GetGetMethod(System.Boolean)
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetGetMethod(Boolean)
+  nameWithType: PropertyInfo.GetGetMethod(Boolean)
+  fullName: System.Reflection.PropertyInfo.GetGetMethod(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetGetMethod
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 85
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>When overridden in a derived class, returns the public or non-public <strong>get</strong> accessor for this property.</p>\n"
+  remarks: "\n<p>This property is the <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> representing the get accessor.</p>\n<p>To use the <strong>GetGetMethod</strong> method, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>. From the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>, use the <strong>GetGetMethod</strong> method.</p>\n"
+  syntax:
+    content: public abstract MethodInfo GetGetMethod(bool nonPublic)
+    content.vb: Public MustOverride Function GetGetMethod(nonPublic As Boolean) As MethodInfo
+    parameters:
+    - id: nonPublic
+      type: System.Boolean
+      description: "\n<p>Indicates whether a non-public <strong>get</strong> accessor should be returned. <strong>true</strong> if a non-public accessor is to be returned; otherwise, <strong>false</strong>. </p>\n"
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>A <strong>MethodInfo</strong> object representing the <strong>get</strong> accessor for this property, if <em>nonPublic</em> is <strong>true</strong>. Returns <strong>null</strong> if <em>nonPublic</em> is <strong>false</strong> and the <strong>get</strong> accessor is non-public, or if <em>nonPublic</em> is <strong>true</strong> but no <strong>get</strong> accessors exist.</p>\n"
+  exceptions:
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\n<p>The requested method is non-public and the caller does not have <xref href=\"System.Security.Permissions.ReflectionPermission\" data-throw-if-not-resolved=\"false\"></xref> to reflect on this non-public method. </p>\n"
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: System.Reflection.PropertyInfo.GetSetMethod
+  commentId: M:System.Reflection.PropertyInfo.GetSetMethod
+  id: GetSetMethod
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetSetMethod()
+  nameWithType: PropertyInfo.GetSetMethod()
+  fullName: System.Reflection.PropertyInfo.GetSetMethod()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetSetMethod
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 153
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns the public <strong>set</strong> accessor for this property.</p>\n"
+  remarks: "\n<p>This is a convenience method that provides an implementation for the abstract <strong>GetSetMethod</strong> method with the <em>nonPublic</em> parameter set to <strong>false</strong>.</p>\n<p>To use the <strong>GetSetMethod</strong> method, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>. From the <strong>PropertyInfo</strong>, use the <strong>GetSetMethod</strong> method.</p>\n"
+  syntax:
+    content: public MethodInfo GetSetMethod()
+    content.vb: Public Function GetSetMethod As MethodInfo
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>The <strong>MethodInfo</strong> object representing the <strong>Set</strong> method for this property if the <strong>set</strong> accessor is public, or <strong>null</strong> if the <strong>set</strong> accessor is not public.</p>\n"
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: System.Reflection.PropertyInfo.GetSetMethod(System.Boolean)
+  commentId: M:System.Reflection.PropertyInfo.GetSetMethod(System.Boolean)
+  id: GetSetMethod(System.Boolean)
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetSetMethod(Boolean)
+  nameWithType: PropertyInfo.GetSetMethod(Boolean)
+  fullName: System.Reflection.PropertyInfo.GetSetMethod(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetSetMethod
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 87
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>When overridden in a derived class, returns the <strong>set</strong> accessor for this property.</p>\n"
+  remarks: "\n<p>To use the <strong>GetSetMethod</strong> method, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>. From the <strong>PropertyInfo</strong>, use the <strong>GetSetMethod</strong> method.</p>\n"
+  syntax:
+    content: public abstract MethodInfo GetSetMethod(bool nonPublic)
+    content.vb: Public MustOverride Function GetSetMethod(nonPublic As Boolean) As MethodInfo
+    parameters:
+    - id: nonPublic
+      type: System.Boolean
+      description: "\n<p>Indicates whether the accessor should be returned if it is non-public. <strong>true</strong> if a non-public accessor is to be returned; otherwise, <strong>false</strong>. </p>\n"
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>This property's <strong>Set</strong> method, or <strong>null</strong>, as shown in the following table.</p>\n<p>Value </p>\n<p>Condition </p>\n<table><tbody><tr><td>\n<p>The <strong>Set</strong> method for this property. </p>\n</td><td>\n<p>The <strong>set</strong> accessor is public.</p>\n<p>-or- </p>\n<p>\n<em>nonPublic</em> is <strong>true</strong> and the <strong>set</strong> accessor is non-public. </p>\n</td></tr><tr><td>\n<p>\n<strong>null</strong>\n</p>\n</td><td>\n<p>\n<em>nonPublic</em> is <strong>true</strong>, but the property is read-only.</p>\n<p>-or- </p>\n<p>\n<em>nonPublic</em> is <strong>false</strong> and the <strong>set</strong> accessor is non-public.</p>\n<p>-or- </p>\n<p>There is no <strong>set</strong> accessor. </p>\n</td></tr></tbody></table>\n"
+  exceptions:
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\n<p>The requested method is non-public and the caller does not have <xref href=\"System.Security.Permissions.ReflectionPermission\" data-throw-if-not-resolved=\"false\"></xref> to reflect on this non-public method. </p>\n"
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: System.Reflection.PropertyInfo.GetOptionalCustomModifiers
+  commentId: M:System.Reflection.PropertyInfo.GetOptionalCustomModifiers
+  id: GetOptionalCustomModifiers
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetOptionalCustomModifiers()
+  nameWithType: PropertyInfo.GetOptionalCustomModifiers()
+  fullName: System.Reflection.PropertyInfo.GetOptionalCustomModifiers()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetOptionalCustomModifiers
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 131
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns an array of types representing the optional custom modifiers of the property.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Reflection.PropertyInfo.GetOptionalCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Reflection.PropertyInfo.GetRequiredCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> methods are provided for designers of managed compilers. For more information on custom modifiers, see <xref href=\"System.Runtime.CompilerServices.IsBoxed\" data-throw-if-not-resolved=\"false\"></xref> and related classes in the <xref href=\"System.Runtime.CompilerServices\" data-throw-if-not-resolved=\"false\"></xref> namespace and the metadata specification in the ECMA Partition II documentation. The documentation is available online; see <see href=\"http://go.microsoft.com/fwlink/?LinkID=99212\">ECMA C# and Common Language Infrastructure Standards</see> on MSDN and <see href=\"http://go.microsoft.com/fwlink/?LinkID=65552\">Standard ECMA-335 - Common Language Infrastructure (CLI)</see> on the Ecma International Web site.</p>\n"
+  syntax:
+    content: public virtual Type[] GetOptionalCustomModifiers()
+    content.vb: Public Overridable Function GetOptionalCustomModifiers As Type()
+    return:
+      type: System.Type[]
+      description: "\n<p>An array of <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> objects that identify the optional custom modifiers of the current property, such as <xref href=\"System.Runtime.CompilerServices.IsConst\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Runtime.CompilerServices.IsImplicitlyDereferenced\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: System.Reflection.PropertyInfo.GetRawConstantValue
+  commentId: M:System.Reflection.PropertyInfo.GetRawConstantValue
+  id: GetRawConstantValue
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRawConstantValue()
+  nameWithType: PropertyInfo.GetRawConstantValue()
+  fullName: System.Reflection.PropertyInfo.GetRawConstantValue()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetRawConstantValue
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 74
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns a literal value associated with the property by a compiler. </p>\n"
+  remarks: "\n<p>This method is provided for designers of managed compilers and code analyzers.</p>\n<p>This method can be used in both the execution context and the reflection-only context.</p>\n<p>In unmanaged metadata, the Constant table is used to store constant values for fields, parameters, and properties. Constant information does not directly influence runtime behavior. Compilers inspect this information, at compile time, when importing metadata. If used, the value of a constant is embedded in the Microsoft intermediate language (MSIL) stream the compiler emits. There are no MSIL instructions that can be used to access the Constant table at run time.</p>\n<p>For more information on constant values and the Constant table, see the ECMA Partition II documentation. The documentation is available online; see <see href=\"http://go.microsoft.com/fwlink/?LinkID=99212\">ECMA C# and Common Language Infrastructure Standards</see> on MSDN and <see href=\"http://go.microsoft.com/fwlink/?LinkID=65552\">Standard ECMA-335 - Common Language Infrastructure (CLI)</see> on the Ecma International Web site.</p>\n"
+  syntax:
+    content: public virtual object GetRawConstantValue()
+    content.vb: Public Overridable Function GetRawConstantValue As Object
+    return:
+      type: System.Object
+      description: "\n<p>An <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that contains the literal value associated with the property. If the literal value is a class type with an element value of zero, the return value is <strong>null</strong>.</p>\n"
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: "\n<p>The Constant table in unmanaged metadata does not contain a constant value for the current property.</p>\n"
+  - type: System.FormatException
+    commentId: T:System.FormatException
+    description: "\n<p>The type of the value is not one of the types permitted by the Common Language Specification (CLS). See the ECMA Partition II specification, Metadata Logical Format: Other Structures, Element Types used in Signatures. </p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: System.Reflection.PropertyInfo.GetRequiredCustomModifiers
+  commentId: M:System.Reflection.PropertyInfo.GetRequiredCustomModifiers
+  id: GetRequiredCustomModifiers
+  parent: System.Reflection.PropertyInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRequiredCustomModifiers()
+  nameWithType: PropertyInfo.GetRequiredCustomModifiers()
+  fullName: System.Reflection.PropertyInfo.GetRequiredCustomModifiers()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetRequiredCustomModifiers
+    path: src/mscorlib/src/System/Reflection/PropertyInfo.cs
+    startLine: 129
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns an array of types representing the required custom modifiers of the property.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Reflection.PropertyInfo.GetOptionalCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Reflection.PropertyInfo.GetRequiredCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> methods are provided for designers of managed compilers. For more information on custom modifiers, see <xref href=\"System.Runtime.CompilerServices.IsBoxed\" data-throw-if-not-resolved=\"false\"></xref> and related classes in the <xref href=\"System.Runtime.CompilerServices\" data-throw-if-not-resolved=\"false\"></xref> namespace and the metadata specification in the ECMA Partition II documentation. The documentation is available online; see <see href=\"http://go.microsoft.com/fwlink/?LinkID=99212\">ECMA C# and Common Language Infrastructure Standards</see> on MSDN and <see href=\"http://go.microsoft.com/fwlink/?LinkID=65552\">Standard ECMA-335 - Common Language Infrastructure (CLI)</see> on the Ecma International Web site.</p>\n"
+  syntax:
+    content: public virtual Type[] GetRequiredCustomModifiers()
+    content.vb: Public Overridable Function GetRequiredCustomModifiers As Type()
+    return:
+      type: System.Type[]
+      description: "\n<p>An array of <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> objects that identify the required custom modifiers of the current property, such as <xref href=\"System.Runtime.CompilerServices.IsConst\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Runtime.CompilerServices.IsImplicitlyDereferenced\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
 references:
 - uid: System.Reflection
   isExternal: false
@@ -823,6 +1242,13 @@ references:
   nameWithType: MemberInfo
   fullName: System.Reflection.MemberInfo
   commentId: T:System.Reflection.MemberInfo
+- uid: System.Reflection.ICustomAttributeProvider
+  parent: System.Reflection
+  isExternal: false
+  name: ICustomAttributeProvider
+  nameWithType: ICustomAttributeProvider
+  fullName: System.Reflection.ICustomAttributeProvider
+  commentId: T:System.Reflection.ICustomAttributeProvider
 - uid: System.Reflection.MemberInfo.CustomAttributes
   parent: System.Reflection.MemberInfo
   isExternal: false
@@ -837,6 +1263,13 @@ references:
   nameWithType: MemberInfo.DeclaringType
   fullName: System.Reflection.MemberInfo.DeclaringType
   commentId: P:System.Reflection.MemberInfo.DeclaringType
+- uid: System.Reflection.MemberInfo.MetadataToken
+  parent: System.Reflection.MemberInfo
+  isExternal: false
+  name: MetadataToken
+  nameWithType: MemberInfo.MetadataToken
+  fullName: System.Reflection.MemberInfo.MetadataToken
+  commentId: P:System.Reflection.MemberInfo.MetadataToken
 - uid: System.Reflection.MemberInfo.Module
   parent: System.Reflection.MemberInfo
   isExternal: false
@@ -851,6 +1284,161 @@ references:
   nameWithType: MemberInfo.Name
   fullName: System.Reflection.MemberInfo.Name
   commentId: P:System.Reflection.MemberInfo.Name
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+    name: ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type, System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+    name: ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.IsDefined(Type, Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined(System.Type, System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+    name: ICustomAttributeProvider.IsDefined
+    nameWithType: MemberInfo.ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.IsDefined
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
@@ -1215,6 +1803,66 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
+- uid: System.Reflection.MemberInfo.MemberType
+  parent: System.Reflection.MemberInfo
+  isExternal: false
+  name: MemberType
+  nameWithType: MemberInfo.MemberType
+  fullName: System.Reflection.MemberInfo.MemberType
+  commentId: P:System.Reflection.MemberInfo.MemberType
+- uid: System.Reflection.MemberTypes
+  parent: System.Reflection
+  isExternal: false
+  name: MemberTypes
+  nameWithType: MemberTypes
+  fullName: System.Reflection.MemberTypes
+  commentId: T:System.Reflection.MemberTypes
+- uid: System.Reflection.MethodInfo[]
+  name: MethodInfo[]
+  nameWithType: MethodInfo[]
+  fullName: System.Reflection.MethodInfo[]
+  nameWithType.vb: MethodInfo()
+  fullname.vb: System.Reflection.MethodInfo()
+  name.vb: MethodInfo()
+  spec.csharp:
+  - uid: System.Reflection.MethodInfo
+    name: MethodInfo
+    nameWithType: MethodInfo
+    fullName: System.Reflection.MethodInfo
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Reflection.MethodInfo
+    name: MethodInfo
+    nameWithType: MethodInfo
+    fullName: System.Reflection.MethodInfo
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Type[]
+  name: Type[]
+  nameWithType: Type[]
+  fullName: System.Type[]
+  nameWithType.vb: Type()
+  fullname.vb: System.Type()
+  name.vb: Type()
+  spec.csharp:
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+  - name: ()
+    nameWithType: ()
+    fullName: ()
 - uid: System.InvalidOperationException
   parent: System
   isExternal: false
@@ -1260,3 +1908,9 @@ references:
   nameWithType: TargetInvocationException
   fullName: System.Reflection.TargetInvocationException
   commentId: T:System.Reflection.TargetInvocationException
+- uid: System.Security.SecurityException
+  isExternal: false
+  name: SecurityException
+  nameWithType: SecurityException
+  fullName: System.Security.SecurityException
+  commentId: T:System.Security.SecurityException

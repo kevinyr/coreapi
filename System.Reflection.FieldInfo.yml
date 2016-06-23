@@ -10,6 +10,9 @@ items:
   - System.Reflection.FieldInfo.GetFieldFromHandle(System.RuntimeFieldHandle)
   - System.Reflection.FieldInfo.GetFieldFromHandle(System.RuntimeFieldHandle,System.RuntimeTypeHandle)
   - System.Reflection.FieldInfo.GetHashCode
+  - System.Reflection.FieldInfo.GetOptionalCustomModifiers
+  - System.Reflection.FieldInfo.GetRawConstantValue
+  - System.Reflection.FieldInfo.GetRequiredCustomModifiers
   - System.Reflection.FieldInfo.GetValue(System.Object)
   - System.Reflection.FieldInfo.IsAssembly
   - System.Reflection.FieldInfo.IsFamily
@@ -21,6 +24,7 @@ items:
   - System.Reflection.FieldInfo.IsPublic
   - System.Reflection.FieldInfo.IsSpecialName
   - System.Reflection.FieldInfo.IsStatic
+  - System.Reflection.FieldInfo.MemberType
   - System.Reflection.FieldInfo.SetValue(System.Object,System.Object)
   langs:
   - csharp
@@ -78,11 +82,17 @@ items:
   inheritance:
   - System.Object
   - System.Reflection.MemberInfo
+  implements:
+  - System.Reflection.ICustomAttributeProvider
   inheritedMembers:
   - System.Reflection.MemberInfo.CustomAttributes
   - System.Reflection.MemberInfo.DeclaringType
+  - System.Reflection.MemberInfo.MetadataToken
   - System.Reflection.MemberInfo.Module
   - System.Reflection.MemberInfo.Name
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
   - System.Object.ToString
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.ReferenceEquals(System.Object,System.Object)
@@ -799,6 +809,124 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+- uid: System.Reflection.FieldInfo.GetOptionalCustomModifiers
+  commentId: M:System.Reflection.FieldInfo.GetOptionalCustomModifiers
+  id: GetOptionalCustomModifiers
+  parent: System.Reflection.FieldInfo
+  langs:
+  - csharp
+  - vb
+  name: GetOptionalCustomModifiers()
+  nameWithType: FieldInfo.GetOptionalCustomModifiers()
+  fullName: System.Reflection.FieldInfo.GetOptionalCustomModifiers()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/FieldInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetOptionalCustomModifiers
+    path: src/mscorlib/src/System/Reflection/FieldInfo.cs
+    startLine: 106
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets an array of types that identify the optional custom modifiers of the field.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Reflection.FieldInfo.GetOptionalCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Reflection.FieldInfo.GetRequiredCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> methods are provided for designers of managed compilers. For more information on custom modifiers, see <xref href=\"System.Runtime.CompilerServices.IsBoxed\" data-throw-if-not-resolved=\"false\"></xref> and related classes in the <xref href=\"System.Runtime.CompilerServices\" data-throw-if-not-resolved=\"false\"></xref> namespace and the metadata specification in the ECMA Partition II documentation. The documentation is available online; see <see href=\"http://go.microsoft.com/fwlink/?LinkID=99212\">ECMA C# and Common Language Infrastructure Standards</see> on MSDN and <see href=\"http://go.microsoft.com/fwlink/?LinkID=65552\">Standard ECMA-335 - Common Language Infrastructure (CLI)</see> on the Ecma International Web site.</p>\n"
+  syntax:
+    content: public virtual Type[] GetOptionalCustomModifiers()
+    content.vb: Public Overridable Function GetOptionalCustomModifiers As Type()
+    return:
+      type: System.Type[]
+      description: "\n<p>An array of <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> objects that identify the optional custom modifiers of the current field, such as <xref href=\"System.Runtime.CompilerServices.IsConst\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: System.Reflection.FieldInfo.GetRawConstantValue
+  commentId: M:System.Reflection.FieldInfo.GetRawConstantValue
+  id: GetRawConstantValue
+  parent: System.Reflection.FieldInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRawConstantValue()
+  nameWithType: FieldInfo.GetRawConstantValue()
+  fullName: System.Reflection.FieldInfo.GetRawConstantValue()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/FieldInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetRawConstantValue
+    path: src/mscorlib/src/System/Reflection/FieldInfo.cs
+    startLine: 129
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns a literal value associated with the field by a compiler. </p>\n"
+  remarks: "\n<p>This method is provided for designers of managed compilers and code analyzers.</p>\n<p>This method can be used in both the execution context and the reflection-only context.</p>\n<p>In unmanaged metadata, the Constant table is used to store constant values for fields, parameters, and properties. Constant information does not directly influence runtime behavior. Compilers inspect this information, at compile time, when importing metadata. If used, the value of a constant is embedded in the Microsoft intermediate language (MSIL) stream the compiler emits. There are no MSIL instructions that can be used to access the Constant table at run time.</p>\n<p>For more information on constant values and the Constant table, see the ECMA Partition II documentation. The documentation is available online; see <see href=\"http://go.microsoft.com/fwlink/?LinkID=99212\">ECMA C# and Common Language Infrastructure Standards</see> on MSDN and <see href=\"http://go.microsoft.com/fwlink/?LinkID=65552\">Standard ECMA-335 - Common Language Infrastructure (CLI)</see> on the Ecma International Web site.</p>\n"
+  syntax:
+    content: public virtual object GetRawConstantValue()
+    content.vb: Public Overridable Function GetRawConstantValue As Object
+    return:
+      type: System.Object
+      description: "\n<p>An <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that contains the literal value associated with the field. If the literal value is a class type with an element value of zero, the return value is <strong>null</strong>.</p>\n"
+  exceptions:
+  - type: System.InvalidOperationException
+    commentId: T:System.InvalidOperationException
+    description: "\n<p>The Constant table in unmanaged metadata does not contain a constant value for the current field.</p>\n"
+  - type: System.FormatException
+    commentId: T:System.FormatException
+    description: "\n<p>The type of the value is not one of the types permitted by the Common Language Specification (CLS). See the ECMA Partition II specification Metadata Logical Format: Other Structures, Element Types used in Signatures. </p>\n"
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<p>The constant value for the field is not set. </p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: System.Reflection.FieldInfo.GetRequiredCustomModifiers
+  commentId: M:System.Reflection.FieldInfo.GetRequiredCustomModifiers
+  id: GetRequiredCustomModifiers
+  parent: System.Reflection.FieldInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRequiredCustomModifiers()
+  nameWithType: FieldInfo.GetRequiredCustomModifiers()
+  fullName: System.Reflection.FieldInfo.GetRequiredCustomModifiers()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/FieldInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetRequiredCustomModifiers
+    path: src/mscorlib/src/System/Reflection/FieldInfo.cs
+    startLine: 101
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets an array of types that identify the required custom modifiers of the property.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Reflection.FieldInfo.GetOptionalCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Reflection.FieldInfo.GetRequiredCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> methods are provided for designers of managed compilers. For more information on custom modifiers, see <xref href=\"System.Runtime.CompilerServices.IsBoxed\" data-throw-if-not-resolved=\"false\"></xref> and related classes in the <xref href=\"System.Runtime.CompilerServices\" data-throw-if-not-resolved=\"false\"></xref> namespace and the metadata specification in the ECMA Partition II documentation. The documentation is available online; see <see href=\"http://go.microsoft.com/fwlink/?LinkID=99212\">ECMA C# and Common Language Infrastructure Standards</see> on MSDN and <see href=\"http://go.microsoft.com/fwlink/?LinkID=65552\">Standard ECMA-335 - Common Language Infrastructure (CLI)</see> on the Ecma International Web site.</p>\n"
+  syntax:
+    content: public virtual Type[] GetRequiredCustomModifiers()
+    content.vb: Public Overridable Function GetRequiredCustomModifiers As Type()
+    return:
+      type: System.Type[]
+      description: "\n<p>An array of <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> objects that identify the required custom modifiers of the current property, such as <xref href=\"System.Runtime.CompilerServices.IsConst\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Runtime.CompilerServices.IsImplicitlyDereferenced\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
 - uid: System.Reflection.FieldInfo.GetValue(System.Object)
   commentId: M:System.Reflection.FieldInfo.GetValue(System.Object)
   id: GetValue(System.Object)
@@ -862,6 +990,51 @@ items:
   modifiers.vb:
   - Public
   - MustOverride
+- uid: System.Reflection.FieldInfo.MemberType
+  commentId: P:System.Reflection.FieldInfo.MemberType
+  id: MemberType
+  parent: System.Reflection.FieldInfo
+  langs:
+  - csharp
+  - vb
+  name: MemberType
+  nameWithType: FieldInfo.MemberType
+  fullName: System.Reflection.FieldInfo.MemberType
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/FieldInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: MemberType
+    path: src/mscorlib/src/System/Reflection/FieldInfo.cs
+    startLine: 96
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets a <xref href=\"System.Reflection.MemberTypes\" data-throw-if-not-resolved=\"false\"></xref> value indicating that this member is a field.</p>\n"
+  remarks: "\n<p>This property overrides <xref href=\"System.Reflection.MemberInfo.MemberType\" data-throw-if-not-resolved=\"false\"></xref>. Therefore, when you examine a set of <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> objects — for example, the array returned by <see cref=\"Overload:System.Type.GetMembers\"></see> — the <xref href=\"System.Reflection.MemberInfo.MemberType\" data-throw-if-not-resolved=\"false\"></xref> property returns <xref href=\"System.Reflection.MemberTypes.Field\" data-throw-if-not-resolved=\"false\"></xref> only when a given member is a field.</p>\n"
+  syntax:
+    content: public override MemberTypes MemberType { get; }
+    content.vb: Public Overrides ReadOnly Property MemberType As MemberTypes
+    parameters: []
+    return:
+      type: System.Reflection.MemberTypes
+      description: "\n<p>A <xref href=\"System.Reflection.MemberTypes\" data-throw-if-not-resolved=\"false\"></xref> value indicating that this member is a field.</p>\n"
+  overridden: System.Reflection.MemberInfo.MemberType
+  seealso:
+  - type: System.Reflection.FieldInfo
+    commentId: T:System.Reflection.FieldInfo
+  - type: System.Type
+    commentId: T:System.Type
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
 - uid: System.Reflection.FieldInfo.SetValue(System.Object,System.Object)
   commentId: M:System.Reflection.FieldInfo.SetValue(System.Object,System.Object)
   id: SetValue(System.Object,System.Object)
@@ -952,6 +1125,13 @@ references:
   nameWithType: MemberInfo
   fullName: System.Reflection.MemberInfo
   commentId: T:System.Reflection.MemberInfo
+- uid: System.Reflection.ICustomAttributeProvider
+  parent: System.Reflection
+  isExternal: false
+  name: ICustomAttributeProvider
+  nameWithType: ICustomAttributeProvider
+  fullName: System.Reflection.ICustomAttributeProvider
+  commentId: T:System.Reflection.ICustomAttributeProvider
 - uid: System.Reflection.MemberInfo.CustomAttributes
   parent: System.Reflection.MemberInfo
   isExternal: false
@@ -966,6 +1146,13 @@ references:
   nameWithType: MemberInfo.DeclaringType
   fullName: System.Reflection.MemberInfo.DeclaringType
   commentId: P:System.Reflection.MemberInfo.DeclaringType
+- uid: System.Reflection.MemberInfo.MetadataToken
+  parent: System.Reflection.MemberInfo
+  isExternal: false
+  name: MetadataToken
+  nameWithType: MemberInfo.MetadataToken
+  fullName: System.Reflection.MemberInfo.MetadataToken
+  commentId: P:System.Reflection.MemberInfo.MetadataToken
 - uid: System.Reflection.MemberInfo.Module
   parent: System.Reflection.MemberInfo
   isExternal: false
@@ -980,6 +1167,161 @@ references:
   nameWithType: MemberInfo.Name
   fullName: System.Reflection.MemberInfo.Name
   commentId: P:System.Reflection.MemberInfo.Name
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+    name: ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type, System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+    name: ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.IsDefined(Type, Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined(System.Type, System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+    name: ICustomAttributeProvider.IsDefined
+    nameWithType: MemberInfo.ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.IsDefined
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
@@ -1310,6 +1652,43 @@ references:
   nameWithType: Int32
   fullName: System.Int32
   commentId: T:System.Int32
+- uid: System.Type[]
+  name: Type[]
+  nameWithType: Type[]
+  fullName: System.Type[]
+  nameWithType.vb: Type()
+  fullname.vb: System.Type()
+  name.vb: Type()
+  spec.csharp:
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Reflection.MemberInfo.MemberType
+  parent: System.Reflection.MemberInfo
+  isExternal: false
+  name: MemberType
+  nameWithType: MemberInfo.MemberType
+  fullName: System.Reflection.MemberInfo.MemberType
+  commentId: P:System.Reflection.MemberInfo.MemberType
+- uid: System.Reflection.MemberTypes
+  parent: System.Reflection
+  isExternal: false
+  name: MemberTypes
+  nameWithType: MemberTypes
+  fullName: System.Reflection.MemberTypes
+  commentId: T:System.Reflection.MemberTypes
 - uid: System.ArgumentException
   parent: System
   isExternal: false
@@ -1317,12 +1696,20 @@ references:
   nameWithType: ArgumentException
   fullName: System.ArgumentException
   commentId: T:System.ArgumentException
-- uid: System.Reflection.TargetException
+- uid: System.InvalidOperationException
+  parent: System
   isExternal: false
-  name: TargetException
-  nameWithType: TargetException
-  fullName: System.Reflection.TargetException
-  commentId: T:System.Reflection.TargetException
+  name: InvalidOperationException
+  nameWithType: InvalidOperationException
+  fullName: System.InvalidOperationException
+  commentId: T:System.InvalidOperationException
+- uid: System.FormatException
+  parent: System
+  isExternal: false
+  name: FormatException
+  nameWithType: FormatException
+  fullName: System.FormatException
+  commentId: T:System.FormatException
 - uid: System.NotSupportedException
   parent: System
   isExternal: false
@@ -1330,6 +1717,12 @@ references:
   nameWithType: NotSupportedException
   fullName: System.NotSupportedException
   commentId: T:System.NotSupportedException
+- uid: System.Reflection.TargetException
+  isExternal: false
+  name: TargetException
+  nameWithType: TargetException
+  fullName: System.Reflection.TargetException
+  commentId: T:System.Reflection.TargetException
 - uid: System.FieldAccessException
   isExternal: false
   name: FieldAccessException

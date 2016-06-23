@@ -7,12 +7,15 @@ items:
   - System.Reflection.MethodInfo.CreateDelegate(System.Type)
   - System.Reflection.MethodInfo.CreateDelegate(System.Type,System.Object)
   - System.Reflection.MethodInfo.Equals(System.Object)
+  - System.Reflection.MethodInfo.GetBaseDefinition
   - System.Reflection.MethodInfo.GetGenericArguments
   - System.Reflection.MethodInfo.GetGenericMethodDefinition
   - System.Reflection.MethodInfo.GetHashCode
   - System.Reflection.MethodInfo.MakeGenericMethod(System.Type[])
+  - System.Reflection.MethodInfo.MemberType
   - System.Reflection.MethodInfo.ReturnParameter
   - System.Reflection.MethodInfo.ReturnType
+  - System.Reflection.MethodInfo.ReturnTypeCustomAttributes
   langs:
   - csharp
   - vb
@@ -70,6 +73,8 @@ items:
   - System.Object
   - System.Reflection.MemberInfo
   - System.Reflection.MethodBase
+  implements:
+  - System.Reflection.ICustomAttributeProvider
   inheritedMembers:
   - System.Reflection.MethodBase.Attributes
   - System.Reflection.MethodBase.CallingConvention
@@ -94,10 +99,15 @@ items:
   - System.Reflection.MethodBase.GetMethodFromHandle(System.RuntimeMethodHandle,System.RuntimeTypeHandle)
   - System.Reflection.MethodBase.GetParameters
   - System.Reflection.MethodBase.Invoke(System.Object,System.Object[])
+  - System.Reflection.MethodBase.GetMethodImplementationFlags
   - System.Reflection.MemberInfo.CustomAttributes
   - System.Reflection.MemberInfo.DeclaringType
+  - System.Reflection.MemberInfo.MetadataToken
   - System.Reflection.MemberInfo.Module
   - System.Reflection.MemberInfo.Name
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
   - System.Object.ToString
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.ReferenceEquals(System.Object,System.Object)
@@ -111,6 +121,42 @@ items:
   - Public
   - MustInherit
   - Class
+- uid: System.Reflection.MethodInfo.GetBaseDefinition
+  commentId: M:System.Reflection.MethodInfo.GetBaseDefinition
+  id: GetBaseDefinition
+  parent: System.Reflection.MethodInfo
+  langs:
+  - csharp
+  - vb
+  name: GetBaseDefinition()
+  nameWithType: MethodInfo.GetBaseDefinition()
+  fullName: System.Reflection.MethodInfo.GetBaseDefinition()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/MethodInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetBaseDefinition
+    path: src/mscorlib/src/System/Reflection/MethodInfo.cs
+    startLine: 82
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>When overridden in a derived class, returns the <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object for the method on the direct or indirect base class in which the method represented by this instance was first declared.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Reflection.MethodInfo.GetBaseDefinition\" data-throw-if-not-resolved=\"false\"></xref> method returns the first definition of the specified method in the class hierarchy. You can determine the type on which the first definition of the method is found by retrieving the value of the <xref href=\"System.Reflection.MemberInfo.DeclaringType\" data-throw-if-not-resolved=\"false\"></xref> property on the returned <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n<p>The <xref href=\"System.Reflection.MethodInfo.GetBaseDefinition\" data-throw-if-not-resolved=\"false\"></xref> method behaves as follows: </p>\n<ul><li>\n<p>If the current <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object represents an interface implementation, the <xref href=\"System.Reflection.MethodInfo.GetBaseDefinition\" data-throw-if-not-resolved=\"false\"></xref> method returns the current <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n</li><li>\n<p>If the current <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object represents a method that overrides a virtual definition in a base class, the <xref href=\"System.Reflection.MethodInfo.GetBaseDefinition\" data-throw-if-not-resolved=\"false\"></xref> method returns a <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents the virtual definition. </p>\n</li><li>\n<p>If the current <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object represents a method that is specified with the <strong>new</strong> keyword in C# or the <strong>Shadows</strong> keyword in Visual Basic (as in <strong>newslot</strong>, as described in Common Type System), the <xref href=\"System.Reflection.MethodInfo.GetBaseDefinition\" data-throw-if-not-resolved=\"false\"></xref> method returns the current <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n</li><li>\n<p>If the current <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object represents an inherited method (that is, the current method does not provide its own implementation), the <xref href=\"System.Reflection.MethodInfo.GetBaseDefinition\" data-throw-if-not-resolved=\"false\"></xref> method returns a <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents the lowest method in the class hierarchy. For example, if <code>Base.ToString</code> overrides <code>Object.ToString</code>, and <code>Derived.ToString</code> overrides <code>Base.ToString</code>, calling the <xref href=\"System.Reflection.MethodInfo.GetBaseDefinition\" data-throw-if-not-resolved=\"false\"></xref> method on a <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents <code>Derived.ToString</code> returns a <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents <code>Object.ToString</code>. </p>\n</li><li>\n<p>If the current <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object represents a method that is not present in any base class, the <xref href=\"System.Reflection.MethodInfo.GetBaseDefinition\" data-throw-if-not-resolved=\"false\"></xref> method returns the current <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n</li></ul>\n<p>You can determine whether the current method overrides a method in a base class by calling the <xref href=\"System.Reflection.MethodInfo.GetBaseDefinition\" data-throw-if-not-resolved=\"false\"></xref> method. The following example implements an <code>IsOverride</code> method that does this.</p>system.reflection.methodinfo.getbasedefinition#2<p>To call the <strong>GetBaseDefinition</strong> method: </p><ol><li><p>Get a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object that represents the type (the class or structure) that contains the property. If you are working with an object (an instance of a type), you can call its <xref href=\"System.Object.GetType\" data-throw-if-not-resolved=\"false\"></xref> method. Otherwise, you can use the C#  operator or the Visual Basic  operator, as the example illustrates. </p></li><li><p>Get a <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents the method in which you're interested. You can do this by getting an array of all methods from the <xref href=\"System.Type.GetMethods\" data-throw-if-not-resolved=\"false\"></xref> method and then iterating the elements in the array, or you can retrieve the <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents the method directly by calling the <xref href=\"System.Type.GetMethod(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method and specifying the method name. </p></li><li><p>Call the <xref href=\"System.Reflection.MethodInfo.GetBaseDefinition\" data-throw-if-not-resolved=\"false\"></xref> method to get the value of the <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents the base method definition. </p></li></ol>"
+  syntax:
+    content: public abstract MethodInfo GetBaseDefinition()
+    content.vb: Public MustOverride Function GetBaseDefinition As MethodInfo
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>A <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object for the first implementation of this method.</p>\n"
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
 - uid: System.Reflection.MethodInfo.ReturnParameter
   commentId: P:System.Reflection.MethodInfo.ReturnParameter
   id: ReturnParameter
@@ -528,6 +574,84 @@ items:
   - Overridable
   fullName.vb: System.Reflection.MethodInfo.MakeGenericMethod(System.Type())
   name.vb: MakeGenericMethod(Type())
+- uid: System.Reflection.MethodInfo.MemberType
+  commentId: P:System.Reflection.MethodInfo.MemberType
+  id: MemberType
+  parent: System.Reflection.MethodInfo
+  langs:
+  - csharp
+  - vb
+  name: MemberType
+  nameWithType: MethodInfo.MemberType
+  fullName: System.Reflection.MethodInfo.MemberType
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/MethodInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: MemberType
+    path: src/mscorlib/src/System/Reflection/MethodInfo.cs
+    startLine: 72
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets a <xref href=\"System.Reflection.MemberTypes\" data-throw-if-not-resolved=\"false\"></xref> value indicating that this member is a method.</p>\n"
+  remarks: "\n<p>This property overrides <xref href=\"System.Reflection.MemberInfo.MemberType\" data-throw-if-not-resolved=\"false\"></xref>. Therefore, when you examine a set of <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> objects — for example, the array returned by <see cref=\"Overload:System.Type.GetMembers\"></see> — the <xref href=\"System.Reflection.MemberInfo.MemberType\" data-throw-if-not-resolved=\"false\"></xref> property returns <xref href=\"System.Reflection.MemberTypes.Method\" data-throw-if-not-resolved=\"false\"></xref> only when a given member is a method.</p>\n<p>To get the <strong>MemberType</strong> property, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <strong>MethodInfo</strong>. From the <strong>MethodInfo</strong>, get the <strong>MemberType</strong>.</p>\n"
+  syntax:
+    content: public override MemberTypes MemberType { get; }
+    content.vb: Public Overrides ReadOnly Property MemberType As MemberTypes
+    parameters: []
+    return:
+      type: System.Reflection.MemberTypes
+      description: "\n<p>A <xref href=\"System.Reflection.MemberTypes\" data-throw-if-not-resolved=\"false\"></xref> value indicating that this member is a method.</p>\n"
+  overridden: System.Reflection.MemberInfo.MemberType
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
+- uid: System.Reflection.MethodInfo.ReturnTypeCustomAttributes
+  commentId: P:System.Reflection.MethodInfo.ReturnTypeCustomAttributes
+  id: ReturnTypeCustomAttributes
+  parent: System.Reflection.MethodInfo
+  langs:
+  - csharp
+  - vb
+  name: ReturnTypeCustomAttributes
+  nameWithType: MethodInfo.ReturnTypeCustomAttributes
+  fullName: System.Reflection.MethodInfo.ReturnTypeCustomAttributes
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/MethodInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: ReturnTypeCustomAttributes
+    path: src/mscorlib/src/System/Reflection/MethodInfo.cs
+    startLine: 80
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets the custom attributes for the return type.</p>\n"
+  syntax:
+    content: public abstract ICustomAttributeProvider ReturnTypeCustomAttributes { get; }
+    content.vb: Public MustOverride ReadOnly Property ReturnTypeCustomAttributes As ICustomAttributeProvider
+    parameters: []
+    return:
+      type: System.Reflection.ICustomAttributeProvider
+      description: "\n<p>An <strong>ICustomAttributeProvider</strong> object representing the custom attributes for the return type.</p>\n"
+  modifiers.csharp:
+  - public
+  - abstract
+  - get
+  modifiers.vb:
+  - Public
+  - MustOverride
+  - ReadOnly
 references:
 - uid: System.Reflection
   isExternal: false
@@ -556,6 +680,13 @@ references:
   nameWithType: MethodBase
   fullName: System.Reflection.MethodBase
   commentId: T:System.Reflection.MethodBase
+- uid: System.Reflection.ICustomAttributeProvider
+  parent: System.Reflection
+  isExternal: false
+  name: ICustomAttributeProvider
+  nameWithType: ICustomAttributeProvider
+  fullName: System.Reflection.ICustomAttributeProvider
+  commentId: T:System.Reflection.ICustomAttributeProvider
 - uid: System.Reflection.MethodBase.Attributes
   parent: System.Reflection.MethodBase
   isExternal: false
@@ -876,6 +1007,35 @@ references:
     nameWithType: )
     fullName: )
   commentId: M:System.Reflection.MethodBase.Invoke(System.Object,System.Object[])
+- uid: System.Reflection.MethodBase.GetMethodImplementationFlags
+  parent: System.Reflection.MethodBase
+  isExternal: false
+  name: GetMethodImplementationFlags()
+  nameWithType: MethodBase.GetMethodImplementationFlags()
+  fullName: System.Reflection.MethodBase.GetMethodImplementationFlags()
+  spec.csharp:
+  - uid: System.Reflection.MethodBase.GetMethodImplementationFlags
+    name: GetMethodImplementationFlags
+    nameWithType: MethodBase.GetMethodImplementationFlags
+    fullName: System.Reflection.MethodBase.GetMethodImplementationFlags
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MethodBase.GetMethodImplementationFlags
+    name: GetMethodImplementationFlags
+    nameWithType: MethodBase.GetMethodImplementationFlags
+    fullName: System.Reflection.MethodBase.GetMethodImplementationFlags
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MethodBase.GetMethodImplementationFlags
 - uid: System.Reflection.MemberInfo.CustomAttributes
   parent: System.Reflection.MemberInfo
   isExternal: false
@@ -890,6 +1050,13 @@ references:
   nameWithType: MemberInfo.DeclaringType
   fullName: System.Reflection.MemberInfo.DeclaringType
   commentId: P:System.Reflection.MemberInfo.DeclaringType
+- uid: System.Reflection.MemberInfo.MetadataToken
+  parent: System.Reflection.MemberInfo
+  isExternal: false
+  name: MetadataToken
+  nameWithType: MemberInfo.MetadataToken
+  fullName: System.Reflection.MemberInfo.MetadataToken
+  commentId: P:System.Reflection.MemberInfo.MetadataToken
 - uid: System.Reflection.MemberInfo.Module
   parent: System.Reflection.MemberInfo
   isExternal: false
@@ -904,6 +1071,161 @@ references:
   nameWithType: MemberInfo.Name
   fullName: System.Reflection.MemberInfo.Name
   commentId: P:System.Reflection.MemberInfo.Name
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+    name: ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type, System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+    name: ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.IsDefined(Type, Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined(System.Type, System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+    name: ICustomAttributeProvider.IsDefined
+    nameWithType: MemberInfo.ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.IsDefined
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
@@ -1117,6 +1439,13 @@ references:
   nameWithType: System
   fullName: System
   commentId: N:System
+- uid: System.Reflection.MethodInfo
+  parent: System.Reflection
+  isExternal: false
+  name: MethodInfo
+  nameWithType: MethodInfo
+  fullName: System.Reflection.MethodInfo
+  commentId: T:System.Reflection.MethodInfo
 - uid: System.Reflection.ParameterInfo
   parent: System.Reflection
   isExternal: false
@@ -1236,13 +1565,6 @@ references:
   - name: ()
     nameWithType: ()
     fullName: ()
-- uid: System.Reflection.MethodInfo
-  parent: System.Reflection
-  isExternal: false
-  name: MethodInfo
-  nameWithType: MethodInfo
-  fullName: System.Reflection.MethodInfo
-  commentId: T:System.Reflection.MethodInfo
 - uid: System.Reflection.MethodBase.GetHashCode
   parent: System.Reflection.MethodBase
   isExternal: false
@@ -1279,6 +1601,20 @@ references:
   nameWithType: Int32
   fullName: System.Int32
   commentId: T:System.Int32
+- uid: System.Reflection.MemberInfo.MemberType
+  parent: System.Reflection.MemberInfo
+  isExternal: false
+  name: MemberType
+  nameWithType: MemberInfo.MemberType
+  fullName: System.Reflection.MemberInfo.MemberType
+  commentId: P:System.Reflection.MemberInfo.MemberType
+- uid: System.Reflection.MemberTypes
+  parent: System.Reflection
+  isExternal: false
+  name: MemberTypes
+  nameWithType: MemberTypes
+  fullName: System.Reflection.MemberTypes
+  commentId: T:System.Reflection.MemberTypes
 - uid: System.NotImplementedException
   isExternal: false
   name: NotImplementedException

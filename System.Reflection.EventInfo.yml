@@ -9,8 +9,16 @@ items:
   - System.Reflection.EventInfo.Attributes
   - System.Reflection.EventInfo.Equals(System.Object)
   - System.Reflection.EventInfo.EventHandlerType
+  - System.Reflection.EventInfo.GetAddMethod
+  - System.Reflection.EventInfo.GetAddMethod(System.Boolean)
   - System.Reflection.EventInfo.GetHashCode
+  - System.Reflection.EventInfo.GetRaiseMethod
+  - System.Reflection.EventInfo.GetRaiseMethod(System.Boolean)
+  - System.Reflection.EventInfo.GetRemoveMethod
+  - System.Reflection.EventInfo.GetRemoveMethod(System.Boolean)
+  - System.Reflection.EventInfo.IsMulticast
   - System.Reflection.EventInfo.IsSpecialName
+  - System.Reflection.EventInfo.MemberType
   - System.Reflection.EventInfo.RaiseMethod
   - System.Reflection.EventInfo.RemoveEventHandler(System.Object,System.Delegate)
   - System.Reflection.EventInfo.RemoveMethod
@@ -67,11 +75,17 @@ items:
   inheritance:
   - System.Object
   - System.Reflection.MemberInfo
+  implements:
+  - System.Reflection.ICustomAttributeProvider
   inheritedMembers:
   - System.Reflection.MemberInfo.CustomAttributes
   - System.Reflection.MemberInfo.DeclaringType
+  - System.Reflection.MemberInfo.MetadataToken
   - System.Reflection.MemberInfo.Module
   - System.Reflection.MemberInfo.Name
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  - System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
   - System.Object.ToString
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.ReferenceEquals(System.Object,System.Object)
@@ -202,6 +216,55 @@ items:
     commentId: T:System.Type
   - type: System.Delegate
     commentId: T:System.Delegate
+  - type: System.EventHandler
+    commentId: T:System.EventHandler
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+- uid: System.Reflection.EventInfo.IsMulticast
+  commentId: P:System.Reflection.EventInfo.IsMulticast
+  id: IsMulticast
+  parent: System.Reflection.EventInfo
+  langs:
+  - csharp
+  - vb
+  name: IsMulticast
+  nameWithType: EventInfo.IsMulticast
+  fullName: System.Reflection.EventInfo.IsMulticast
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/EventInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: IsMulticast
+    path: src/mscorlib/src/System/Reflection/EventInfo.cs
+    startLine: 184
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets a value indicating whether the event is multicast.</p>\n"
+  syntax:
+    content: public virtual bool IsMulticast { get; }
+    content.vb: Public Overridable ReadOnly Property IsMulticast As Boolean
+    parameters: []
+    return:
+      type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if the delegate is an instance of a multicast delegate; otherwise, <strong>false</strong>.</p>\n"
+  exceptions:
+  - type: System.Security.SecurityException
+    commentId: T:System.Security.SecurityException
+    description: "\n<p>The caller does not have the required permission. </p>\n"
+  seealso:
+  - type: System.MulticastDelegate
+    commentId: T:System.MulticastDelegate
+  - type: System.Type
+    commentId: T:System.Type
   - type: System.EventHandler
     commentId: T:System.EventHandler
   modifiers.csharp:
@@ -552,6 +615,317 @@ items:
   modifiers.vb:
   - Public
   - Overridable
+- uid: System.Reflection.EventInfo.GetAddMethod
+  commentId: M:System.Reflection.EventInfo.GetAddMethod
+  id: GetAddMethod
+  parent: System.Reflection.EventInfo
+  langs:
+  - csharp
+  - vb
+  name: GetAddMethod()
+  nameWithType: EventInfo.GetAddMethod()
+  fullName: System.Reflection.EventInfo.GetAddMethod()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/EventInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetAddMethod
+    path: src/mscorlib/src/System/Reflection/EventInfo.cs
+    startLine: 107
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns the method used to add an event handler delegate to the event source.</p>\n"
+  remarks: "\n<p>\n<strong>GetAddMethod</strong> initializes and adds the event subscribe method. The <strong>AddEventHandler</strong> method is used to add an event-handler delegate to the invocation list of an event source.</p>\n"
+  syntax:
+    content: public MethodInfo GetAddMethod()
+    content.vb: Public Function GetAddMethod As MethodInfo
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>A <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object representing the method used to add an event handler delegate to the event source.</p>\n"
+  seealso:
+  - type: System.Reflection.MethodInfo
+    commentId: T:System.Reflection.MethodInfo
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: System.Reflection.EventInfo.GetAddMethod(System.Boolean)
+  commentId: M:System.Reflection.EventInfo.GetAddMethod(System.Boolean)
+  id: GetAddMethod(System.Boolean)
+  parent: System.Reflection.EventInfo
+  langs:
+  - csharp
+  - vb
+  name: GetAddMethod(Boolean)
+  nameWithType: EventInfo.GetAddMethod(Boolean)
+  fullName: System.Reflection.EventInfo.GetAddMethod(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/EventInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetAddMethod
+    path: src/mscorlib/src/System/Reflection/EventInfo.cs
+    startLine: 71
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>When overridden in a derived class, retrieves the <strong>MethodInfo</strong> object for the <xref href=\"System.Reflection.EventInfo.AddEventHandler(System.Object,System.Delegate)\" data-throw-if-not-resolved=\"false\"></xref> method of the event, specifying whether to return non-public methods.</p>\n"
+  remarks: "\n<p>The <strong>GetAddMethod</strong> initializes and adds the event subscribe method as a Boolean value. The <strong>AddEventHandler</strong> method is used to add an event-handler delegate to the invocation list of an event source.</p>\n"
+  syntax:
+    content: public abstract MethodInfo GetAddMethod(bool nonPublic)
+    content.vb: Public MustOverride Function GetAddMethod(nonPublic As Boolean) As MethodInfo
+    parameters:
+    - id: nonPublic
+      type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if non-public methods can be returned; otherwise, <strong>false</strong>. </p>\n"
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>A <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object representing the method used to add an event handler delegate to the event source.</p>\n"
+  exceptions:
+  - type: System.MethodAccessException
+    commentId: T:System.MethodAccessException
+    description: "\n<p>\n<em>nonPublic</em> is <strong>true</strong>, the method used to add an event handler delegate is non-public, and the caller does not have permission to reflect on non-public methods. </p>\n"
+  seealso:
+  - type: System.Reflection.MethodInfo
+    commentId: T:System.Reflection.MethodInfo
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: System.Reflection.EventInfo.GetRaiseMethod
+  commentId: M:System.Reflection.EventInfo.GetRaiseMethod
+  id: GetRaiseMethod
+  parent: System.Reflection.EventInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRaiseMethod()
+  nameWithType: EventInfo.GetRaiseMethod()
+  fullName: System.Reflection.EventInfo.GetRaiseMethod()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/EventInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetRaiseMethod
+    path: src/mscorlib/src/System/Reflection/EventInfo.cs
+    startLine: 111
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns the method that is called when the event is raised.</p>\n"
+  remarks: "\n<p>This method usually returns <strong>null</strong> for events declared with the C# <strong>event</strong> keyword or the Visual Basic <strong>Event</strong> keyword. This is because the C# and Visual Basic compilers do not generate such a method by default.</p>\n"
+  syntax:
+    content: public MethodInfo GetRaiseMethod()
+    content.vb: Public Function GetRaiseMethod As MethodInfo
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>The method that is called when the event is raised.</p>\n"
+  seealso:
+  - type: System.Reflection.MethodInfo
+    commentId: T:System.Reflection.MethodInfo
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: System.Reflection.EventInfo.GetRaiseMethod(System.Boolean)
+  commentId: M:System.Reflection.EventInfo.GetRaiseMethod(System.Boolean)
+  id: GetRaiseMethod(System.Boolean)
+  parent: System.Reflection.EventInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRaiseMethod(Boolean)
+  nameWithType: EventInfo.GetRaiseMethod(Boolean)
+  fullName: System.Reflection.EventInfo.GetRaiseMethod(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/EventInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetRaiseMethod
+    path: src/mscorlib/src/System/Reflection/EventInfo.cs
+    startLine: 75
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>When overridden in a derived class, returns the method that is called when the event is raised, specifying whether to return non-public methods.</p>\n"
+  remarks: "\n<p>This method usually returns <strong>null</strong> for events declared with the C# <strong>event</strong> keyword or the Visual Basic <strong>Event</strong> keyword. This is because the C# and Visual Basic compilers do not generate such a method by default.</p>\n"
+  syntax:
+    content: public abstract MethodInfo GetRaiseMethod(bool nonPublic)
+    content.vb: Public MustOverride Function GetRaiseMethod(nonPublic As Boolean) As MethodInfo
+    parameters:
+    - id: nonPublic
+      type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if non-public methods can be returned; otherwise, <strong>false</strong>. </p>\n"
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>A <strong>MethodInfo</strong> object that was called when the event was raised.</p>\n"
+  exceptions:
+  - type: System.MethodAccessException
+    commentId: T:System.MethodAccessException
+    description: "\n<p>\n<em>nonPublic</em> is <strong>true</strong>, the method used to add an event handler delegate is non-public, and the caller does not have permission to reflect on non-public methods. </p>\n"
+  seealso:
+  - type: System.Reflection.MethodInfo
+    commentId: T:System.Reflection.MethodInfo
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: System.Reflection.EventInfo.GetRemoveMethod
+  commentId: M:System.Reflection.EventInfo.GetRemoveMethod
+  id: GetRemoveMethod
+  parent: System.Reflection.EventInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRemoveMethod()
+  nameWithType: EventInfo.GetRemoveMethod()
+  fullName: System.Reflection.EventInfo.GetRemoveMethod()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/EventInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetRemoveMethod
+    path: src/mscorlib/src/System/Reflection/EventInfo.cs
+    startLine: 109
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Returns the method used to remove an event handler delegate from the event source.</p>\n"
+  syntax:
+    content: public MethodInfo GetRemoveMethod()
+    content.vb: Public Function GetRemoveMethod As MethodInfo
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>A <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object representing the method used to remove an event handler delegate from the event source.</p>\n"
+  seealso:
+  - type: System.Reflection.MethodInfo
+    commentId: T:System.Reflection.MethodInfo
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: System.Reflection.EventInfo.GetRemoveMethod(System.Boolean)
+  commentId: M:System.Reflection.EventInfo.GetRemoveMethod(System.Boolean)
+  id: GetRemoveMethod(System.Boolean)
+  parent: System.Reflection.EventInfo
+  langs:
+  - csharp
+  - vb
+  name: GetRemoveMethod(Boolean)
+  nameWithType: EventInfo.GetRemoveMethod(Boolean)
+  fullName: System.Reflection.EventInfo.GetRemoveMethod(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/EventInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetRemoveMethod
+    path: src/mscorlib/src/System/Reflection/EventInfo.cs
+    startLine: 73
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>When overridden in a derived class, retrieves the <strong>MethodInfo</strong> object for removing a method of the event, specifying whether to return non-public methods.</p>\n"
+  syntax:
+    content: public abstract MethodInfo GetRemoveMethod(bool nonPublic)
+    content.vb: Public MustOverride Function GetRemoveMethod(nonPublic As Boolean) As MethodInfo
+    parameters:
+    - id: nonPublic
+      type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> if non-public methods can be returned; otherwise, <strong>false</strong>. </p>\n"
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>A <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> object representing the method used to remove an event handler delegate from the event source.</p>\n"
+  exceptions:
+  - type: System.MethodAccessException
+    commentId: T:System.MethodAccessException
+    description: "\n<p>\n<em>nonPublic</em> is <strong>true</strong>, the method used to add an event handler delegate is non-public, and the caller does not have permission to reflect on non-public methods. </p>\n"
+  seealso:
+  - type: System.Reflection.MethodInfo
+    commentId: T:System.Reflection.MethodInfo
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  - abstract
+  modifiers.vb:
+  - Public
+  - MustOverride
+- uid: System.Reflection.EventInfo.MemberType
+  commentId: P:System.Reflection.EventInfo.MemberType
+  id: MemberType
+  parent: System.Reflection.EventInfo
+  langs:
+  - csharp
+  - vb
+  name: MemberType
+  nameWithType: EventInfo.MemberType
+  fullName: System.Reflection.EventInfo.MemberType
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/EventInfo.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: MemberType
+    path: src/mscorlib/src/System/Reflection/EventInfo.cs
+    startLine: 62
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets a <xref href=\"System.Reflection.MemberTypes\" data-throw-if-not-resolved=\"false\"></xref> value indicating that this member is an event.</p>\n"
+  remarks: "\n<p>This property overrides <xref href=\"System.Reflection.MemberInfo.MemberType\" data-throw-if-not-resolved=\"false\"></xref>. Therefore, when you examine a set of <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> objects — for example, the array returned by <see cref=\"Overload:System.Type.GetMembers\"></see> — the <xref href=\"System.Reflection.MemberInfo.MemberType\" data-throw-if-not-resolved=\"false\"></xref> property returns <xref href=\"System.Reflection.MemberTypes.Event\" data-throw-if-not-resolved=\"false\"></xref> only when a given member is an event.</p>\n"
+  syntax:
+    content: public override MemberTypes MemberType { get; }
+    content.vb: Public Overrides ReadOnly Property MemberType As MemberTypes
+    parameters: []
+    return:
+      type: System.Reflection.MemberTypes
+      description: "\n<p>A <xref href=\"System.Reflection.MemberTypes\" data-throw-if-not-resolved=\"false\"></xref> value indicating that this member is an event.</p>\n"
+  overridden: System.Reflection.MemberInfo.MemberType
+  seealso:
+  - type: System.Type
+    commentId: T:System.Type
+  modifiers.csharp:
+  - public
+  - override
+  - get
+  modifiers.vb:
+  - Public
+  - Overrides
+  - ReadOnly
 references:
 - uid: System.Reflection
   isExternal: false
@@ -573,6 +947,13 @@ references:
   nameWithType: MemberInfo
   fullName: System.Reflection.MemberInfo
   commentId: T:System.Reflection.MemberInfo
+- uid: System.Reflection.ICustomAttributeProvider
+  parent: System.Reflection
+  isExternal: false
+  name: ICustomAttributeProvider
+  nameWithType: ICustomAttributeProvider
+  fullName: System.Reflection.ICustomAttributeProvider
+  commentId: T:System.Reflection.ICustomAttributeProvider
 - uid: System.Reflection.MemberInfo.CustomAttributes
   parent: System.Reflection.MemberInfo
   isExternal: false
@@ -587,6 +968,13 @@ references:
   nameWithType: MemberInfo.DeclaringType
   fullName: System.Reflection.MemberInfo.DeclaringType
   commentId: P:System.Reflection.MemberInfo.DeclaringType
+- uid: System.Reflection.MemberInfo.MetadataToken
+  parent: System.Reflection.MemberInfo
+  isExternal: false
+  name: MetadataToken
+  nameWithType: MemberInfo.MetadataToken
+  fullName: System.Reflection.MemberInfo.MetadataToken
+  commentId: P:System.Reflection.MemberInfo.MetadataToken
 - uid: System.Reflection.MemberInfo.Module
   parent: System.Reflection.MemberInfo
   isExternal: false
@@ -601,6 +989,161 @@ references:
   nameWithType: MemberInfo.Name
   fullName: System.Reflection.MemberInfo.Name
   commentId: P:System.Reflection.MemberInfo.Name
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+    name: ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type, System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+    name: ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+- uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+  parent: System.Reflection.MemberInfo
+  isExternal: true
+  name: ICustomAttributeProvider.IsDefined(Type, Boolean)
+  nameWithType: MemberInfo.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined(System.Type, System.Boolean)
+  nameWithType.vb: MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  spec.csharp:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+    name: ICustomAttributeProvider.IsDefined
+    nameWithType: MemberInfo.ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+    name: System.Reflection.ICustomAttributeProvider.IsDefined
+    nameWithType: MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.MemberInfo.System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.MemberInfo.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
@@ -924,6 +1467,20 @@ references:
   nameWithType: Int32
   fullName: System.Int32
   commentId: T:System.Int32
+- uid: System.Reflection.MemberInfo.MemberType
+  parent: System.Reflection.MemberInfo
+  isExternal: false
+  name: MemberType
+  nameWithType: MemberInfo.MemberType
+  fullName: System.Reflection.MemberInfo.MemberType
+  commentId: P:System.Reflection.MemberInfo.MemberType
+- uid: System.Reflection.MemberTypes
+  parent: System.Reflection
+  isExternal: false
+  name: MemberTypes
+  nameWithType: MemberTypes
+  fullName: System.Reflection.MemberTypes
+  commentId: T:System.Reflection.MemberTypes
 - uid: System.Security.SecurityException
   isExternal: false
   name: SecurityException

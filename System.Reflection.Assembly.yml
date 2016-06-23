@@ -4,22 +4,37 @@ items:
   id: Assembly
   parent: System.Reflection
   children:
+  - System.Reflection.Assembly.CodeBase
+  - System.Reflection.Assembly.CreateInstance(System.String)
+  - System.Reflection.Assembly.CreateInstance(System.String,System.Boolean)
+  - System.Reflection.Assembly.CreateQualifiedName(System.String,System.String)
   - System.Reflection.Assembly.CustomAttributes
   - System.Reflection.Assembly.DefinedTypes
+  - System.Reflection.Assembly.EntryPoint
   - System.Reflection.Assembly.Equals(System.Object)
   - System.Reflection.Assembly.ExportedTypes
   - System.Reflection.Assembly.FullName
+  - System.Reflection.Assembly.GetEntryAssembly
+  - System.Reflection.Assembly.GetExportedTypes
   - System.Reflection.Assembly.GetHashCode
   - System.Reflection.Assembly.GetManifestResourceInfo(System.String)
   - System.Reflection.Assembly.GetManifestResourceNames
   - System.Reflection.Assembly.GetManifestResourceStream(System.String)
   - System.Reflection.Assembly.GetName
+  - System.Reflection.Assembly.GetReferencedAssemblies
   - System.Reflection.Assembly.GetType(System.String)
+  - System.Reflection.Assembly.GetType(System.String,System.Boolean)
   - System.Reflection.Assembly.GetType(System.String,System.Boolean,System.Boolean)
+  - System.Reflection.Assembly.GetTypes
+  - System.Reflection.Assembly.ImageRuntimeVersion
   - System.Reflection.Assembly.IsDynamic
   - System.Reflection.Assembly.Load(System.Reflection.AssemblyName)
+  - System.Reflection.Assembly.Location
   - System.Reflection.Assembly.ManifestModule
   - System.Reflection.Assembly.Modules
+  - System.Reflection.Assembly.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  - System.Reflection.Assembly.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  - System.Reflection.Assembly.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
   - System.Reflection.Assembly.ToString
   langs:
   - csharp
@@ -77,6 +92,8 @@ items:
     commentId: F:System.Security.Permissions.SecurityAction.InheritanceDemand
   inheritance:
   - System.Object
+  implements:
+  - System.Reflection.ICustomAttributeProvider
   inheritedMembers:
   - System.Object.Equals(System.Object,System.Object)
   - System.Object.ReferenceEquals(System.Object,System.Object)
@@ -200,6 +217,44 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{System.Type}
       description: "\n<p>A collection of the public types defined in this assembly that are visible outside the assembly.</p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+- uid: System.Reflection.Assembly.EntryPoint
+  commentId: P:System.Reflection.Assembly.EntryPoint
+  id: EntryPoint
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: EntryPoint
+  nameWithType: Assembly.EntryPoint
+  fullName: System.Reflection.Assembly.EntryPoint
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: EntryPoint
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 659
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets the entry point of this assembly.</p>\n"
+  syntax:
+    content: public virtual MethodInfo EntryPoint { get; }
+    content.vb: Public Overridable ReadOnly Property EntryPoint As MethodInfo
+    parameters: []
+    return:
+      type: System.Reflection.MethodInfo
+      description: "\n<p>An object that represents the entry point of this assembly. If no entry point is found (for example, the assembly is a DLL), <strong>null</strong> is returned.</p>\n"
   modifiers.csharp:
   - public
   - virtual
@@ -842,6 +897,100 @@ items:
   modifiers.vb:
   - Public
   - Shared
+- uid: System.Reflection.Assembly.GetEntryAssembly
+  commentId: M:System.Reflection.Assembly.GetEntryAssembly
+  id: GetEntryAssembly
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: GetEntryAssembly()
+  nameWithType: Assembly.GetEntryAssembly()
+  fullName: System.Reflection.Assembly.GetEntryAssembly()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetEntryAssembly
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 590
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets the process executable in the default application domain. In other application domains, this is the first executable that was executed by <xref href=\"System.AppDomain.ExecuteAssembly(System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  remarks: "\n<p>The <xref href=\"System.Reflection.Assembly.GetEntryAssembly\" data-throw-if-not-resolved=\"false\"></xref> method can return <strong>null</strong> when a managed assembly has been loaded from an unmanaged application. For example, if an unmanaged application creates an instance of a COM component written in C#, a call to the <xref href=\"System.Reflection.Assembly.GetEntryAssembly\" data-throw-if-not-resolved=\"false\"></xref> method from the C# component returns null, because the entry point for the process was unmanaged code rather than a managed assembly.</p>\n"
+  syntax:
+    content: >-
+      [SecuritySafeCritical]
+
+      public static Assembly GetEntryAssembly()
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Shared Function GetEntryAssembly As Assembly
+    return:
+      type: System.Reflection.Assembly
+      description: "\n<p>The assembly that is the process executable in the default application domain, or the first executable that was executed by <xref href=\"System.AppDomain.ExecuteAssembly(System.String)\" data-throw-if-not-resolved=\"false\"></xref>. Can return <strong>null</strong> when called from unmanaged code.</p>\n"
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: System.Reflection.Assembly.Location
+  commentId: P:System.Reflection.Assembly.Location
+  id: Location
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: Location
+  nameWithType: Assembly.Location
+  fullName: System.Reflection.Assembly.Location
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: Location
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 1015
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets the full path or UNC location of the loaded file that contains the manifest.</p>\n"
+  remarks: "\n<p>To get the location before the file has been shadow-copied, use the <xref href=\"System.Reflection.Assembly.CodeBase\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
+  syntax:
+    content: >-
+      public virtual string Location
+
+      {
+          [SecurityCritical]
+          get;
+      }
+    content.vb: Public Overridable ReadOnly Property Location As String
+    parameters: []
+    return:
+      type: System.String
+      description: "\n<p>The location of the loaded file that contains the manifest. If the loaded file was shadow-copied, the location is that of the file after being shadow-copied. If the assembly is loaded from a byte array, such as when using the <xref href=\"System.Reflection.Assembly.Load(System.Byte[])\" data-throw-if-not-resolved=\"false\"></xref> method overload, the value returned is an empty string (\"\").</p>\n"
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<p>The current assembly is a dynamic assembly, represented by an <xref href=\"System.Reflection.Emit.AssemblyBuilder\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n"
+  see:
+  - type: System.Security.Permissions.FileIOPermission
+    commentId: T:System.Security.Permissions.FileIOPermission
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
 - uid: System.Reflection.Assembly.ToString
   commentId: M:System.Reflection.Assembly.ToString
   id: ToString
@@ -878,6 +1027,552 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+- uid: System.Reflection.Assembly.CodeBase
+  commentId: P:System.Reflection.Assembly.CodeBase
+  id: CodeBase
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: CodeBase
+  nameWithType: Assembly.CodeBase
+  fullName: System.Reflection.Assembly.CodeBase
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: CodeBase
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 615
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets the location of the assembly as specified originally, for example, in an <xref href=\"System.Reflection.AssemblyName\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+  remarks: "\n<p>To get the absolute path to the loaded manifest-containing file, use the <xref href=\"System.Reflection.Assembly.Location\" data-throw-if-not-resolved=\"false\"></xref> property instead.</p>\n<p>If the assembly was loaded as a byte array, using an overload of the <see cref=\"Overload:System.Reflection.Assembly.Load\"></see> method that takes an array of bytes, this property returns the location of the caller of the method, not the location of the loaded assembly.</p>\n"
+  syntax:
+    content: >-
+      public virtual string CodeBase
+
+      {
+          [SecurityCritical]
+          get;
+      }
+    content.vb: Public Overridable ReadOnly Property CodeBase As String
+    parameters: []
+    return:
+      type: System.String
+      description: "\n<p>The location of the assembly as specified originally.</p>\n"
+  see:
+  - type: System.Security.Permissions.FileIOPermission
+    commentId: T:System.Security.Permissions.FileIOPermission
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+- uid: System.Reflection.Assembly.ImageRuntimeVersion
+  commentId: P:System.Reflection.Assembly.ImageRuntimeVersion
+  id: ImageRuntimeVersion
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: ImageRuntimeVersion
+  nameWithType: Assembly.ImageRuntimeVersion
+  fullName: System.Reflection.Assembly.ImageRuntimeVersion
+  type: Property
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: ImageRuntimeVersion
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 1028
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets a string representing the version of the common language runtime (CLR) saved in the file containing the manifest.</p>\n"
+  remarks: "\n<p>For example, the value for the .NET Framework version 1.1 would be v1.1.4322. The binary files for that version would be located in the path %windir%\\Microsoft.NET\\Framework\\v1.1.4322. </p>\n<p>By default, <xref href=\"System.Reflection.Assembly.ImageRuntimeVersion\" data-throw-if-not-resolved=\"false\"></xref> is set to the version of the CLR used to build the assembly. However, it might have been set to another value at compile time.</p>\n"
+  syntax:
+    content: >-
+      [ComVisible(false)]
+
+      public virtual string ImageRuntimeVersion { get; }
+    content.vb: >-
+      <ComVisible(False)>
+
+      Public Overridable ReadOnly Property ImageRuntimeVersion As String
+    parameters: []
+    return:
+      type: System.String
+      description: "\n<p>The CLR version folder name. This is not a full path.</p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  - get
+  modifiers.vb:
+  - Public
+  - Overridable
+  - ReadOnly
+- uid: System.Reflection.Assembly.CreateInstance(System.String)
+  commentId: M:System.Reflection.Assembly.CreateInstance(System.String)
+  id: CreateInstance(System.String)
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: CreateInstance(String)
+  nameWithType: Assembly.CreateInstance(String)
+  fullName: System.Reflection.Assembly.CreateInstance(System.String)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: CreateInstance
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 893
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Locates the specified type from this assembly and creates an instance of it using the system activator, using case-sensitive search.</p>\n"
+  remarks: "\n<p>If the runtime is unable to find <em>typeName</em> in the <xref href=\"System.Reflection.Assembly\" data-throw-if-not-resolved=\"false\"></xref> instance, it returns <strong>null</strong> instead of throwing an exception. This might happen because: </p>\n<ul><li>\n<p>You haven't specified the fully qualified name of the type. </p>\n</li><li>\n<p>You've specified the fully qualified type name, but its case doesn’t match the case of the type's <xref href=\"System.Type.FullName\" data-throw-if-not-resolved=\"false\"></xref> property. For a case-insensitive comparison of <em>typeName</em> with the type's full name, call the <xref href=\"System.Reflection.Assembly.CreateInstance(System.String,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> overload and specify <strong>true</strong> for the <em>ignoreCase</em> argument. </p>\n</li><li>\n<p>The type doesn’t exist in the current <xref href=\"System.Reflection.Assembly\" data-throw-if-not-resolved=\"false\"></xref> instance. </p>\n</li></ul>\n"
+  syntax:
+    content: public object CreateInstance(string typeName)
+    content.vb: Public Function CreateInstance(typeName As String) As Object
+    parameters:
+    - id: typeName
+      type: System.String
+      description: "\n<p>The <xref href=\"System.Type.FullName\" data-throw-if-not-resolved=\"false\"></xref> of the type to locate. </p>\n"
+    return:
+      type: System.Object
+      description: "\n<p>An instance of the specified type created with the default constructor; or <strong>null</strong> if <em>typeName</em> is not found. The type is resolved using the default binder, without specifying culture or activation attributes, and with <xref href=\"System.Reflection.BindingFlags\" data-throw-if-not-resolved=\"false\"></xref> set to <strong>Public</strong> or <strong>Instance</strong>. </p>\n"
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<p>\n<em>typeName</em> is an empty string (\"\") or a string beginning with a null character.</p>\n<p>-or-</p>\n<p>The current assembly was loaded into the reflection-only context.</p>\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<p>\n<em>typeName</em> is <strong>null</strong>. </p>\n"
+  - type: System.MissingMethodException
+    commentId: T:System.MissingMethodException
+    description: "\n<p>No matching constructor was found. </p>\n"
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\n<p>\n<em>typeName</em> requires a dependent assembly that could not be found. </p>\n"
+  - type: System.IO.FileLoadException
+    commentId: T:System.IO.FileLoadException
+    description: "\n<p>\n<em>typeName</em> requires a dependent assembly that was found but could not be loaded.</p>\n<p>-or-</p>\n<p>The current assembly was loaded into the reflection-only context, and <em>typeName</em> requires a dependent assembly that was not preloaded. </p>\n"
+  - type: System.BadImageFormatException
+    commentId: T:System.BadImageFormatException
+    description: "\n<p>\n<em>typeName</em> requires a dependent assembly, but the file is not a valid assembly. </p>\n<p>-or-</p>\n<p>\n<em>typeName</em> requires a dependent assembly that was compiled for a version of the runtime that is later than the currently loaded version.</p>\n"
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: System.Reflection.Assembly.CreateInstance(System.String,System.Boolean)
+  commentId: M:System.Reflection.Assembly.CreateInstance(System.String,System.Boolean)
+  id: CreateInstance(System.String,System.Boolean)
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: CreateInstance(String, Boolean)
+  nameWithType: Assembly.CreateInstance(String, Boolean)
+  fullName: System.Reflection.Assembly.CreateInstance(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: CreateInstance
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 904
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Locates the specified type from this assembly and creates an instance of it using the system activator, with optional case-sensitive search.</p>\n"
+  remarks: "\n<p>If the runtime is unable to find <em>typeName</em> in the <xref href=\"System.Reflection.Assembly\" data-throw-if-not-resolved=\"false\"></xref> instance, it returns <strong>null</strong> instead of throwing an exception. This might happen because: </p>\n<ul><li>\n<p>You haven't specified the fully qualified name of the type. </p>\n</li><li>\n<p>The type doesn’t exist in the current <xref href=\"System.Reflection.Assembly\" data-throw-if-not-resolved=\"false\"></xref> instance. </p>\n</li></ul>\n"
+  syntax:
+    content: public object CreateInstance(string typeName, bool ignoreCase)
+    content.vb: Public Function CreateInstance(typeName As String, ignoreCase As Boolean) As Object
+    parameters:
+    - id: typeName
+      type: System.String
+      description: "\n<p>The <xref href=\"System.Type.FullName\" data-throw-if-not-resolved=\"false\"></xref> of the type to locate. </p>\n"
+    - id: ignoreCase
+      type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> to ignore the case of the type name; otherwise, <strong>false</strong>. </p>\n"
+    return:
+      type: System.Object
+      description: "\n<p>An instance of the specified type created with the default constructor; or <strong>null</strong> if <em>typeName</em> is not found. The type is resolved using the default binder, without specifying culture or activation attributes, and with <xref href=\"System.Reflection.BindingFlags\" data-throw-if-not-resolved=\"false\"></xref> set to <strong>Public</strong> or <strong>Instance</strong>.</p>\n"
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<p>\n<em>typeName</em> is an empty string (\"\") or a string beginning with a null character. </p>\n<p>-or-</p>\n<p>The current assembly was loaded into the reflection-only context.</p>\n"
+  - type: System.MissingMethodException
+    commentId: T:System.MissingMethodException
+    description: "\n<p>No matching constructor was found. </p>\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<p>\n<em>typeName</em> is <strong>null</strong>. </p>\n"
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\n<p>\n<em>typeName</em> requires a dependent assembly that could not be found. </p>\n"
+  - type: System.IO.FileLoadException
+    commentId: T:System.IO.FileLoadException
+    description: "\n<p>\n<em>typeName</em> requires a dependent assembly that was found but could not be loaded.</p>\n<p>-or-</p>\n<p>The current assembly was loaded into the reflection-only context, and <em>typeName</em> requires a dependent assembly that was not preloaded. </p>\n"
+  - type: System.BadImageFormatException
+    commentId: T:System.BadImageFormatException
+    description: "\n<p>\n<em>typeName</em> requires a dependent assembly, but the file is not a valid assembly. </p>\n<p>-or-</p>\n<p>\n<em>typeName</em> requires a dependent assembly that was compiled for a version of the runtime that is later than the currently loaded version.</p>\n"
+  see:
+  - type: System.Security.Permissions.ReflectionPermission
+    commentId: T:System.Security.Permissions.ReflectionPermission
+  modifiers.csharp:
+  - public
+  modifiers.vb:
+  - Public
+- uid: System.Reflection.Assembly.CreateQualifiedName(System.String,System.String)
+  commentId: M:System.Reflection.Assembly.CreateQualifiedName(System.String,System.String)
+  id: CreateQualifiedName(System.String,System.String)
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: CreateQualifiedName(String, String)
+  nameWithType: Assembly.CreateQualifiedName(String, String)
+  fullName: System.Reflection.Assembly.CreateQualifiedName(System.String, System.String)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: CreateQualifiedName
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 64
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Creates the name of a type qualified by the display name of its assembly.</p>\n"
+  remarks: "\n<p>The format of the returned string is: </p>\n<p><FullTypeName>, <AssemblyDisplayName> </p>\n<p>See <xref href=\"System.Reflection.AssemblyName\" data-throw-if-not-resolved=\"false\"></xref> for a description of the format of the display name of an assembly.</p>\n<p>To accommodate changes in versions of the common language runtime, use this method rather than constructing the qualified name yourself.  For information about qualified assembly names, see <xref href=\"System.Type.AssemblyQualifiedName\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  syntax:
+    content: public static string CreateQualifiedName(string assemblyName, string typeName)
+    content.vb: Public Shared Function CreateQualifiedName(assemblyName As String, typeName As String) As String
+    parameters:
+    - id: assemblyName
+      type: System.String
+      description: "\n<p>The display name of an assembly. </p>\n"
+    - id: typeName
+      type: System.String
+      description: "\n<p>The full name of a type. </p>\n"
+    return:
+      type: System.String
+      description: "\n<p>The full name of the type qualified by the display name of the assembly.</p>\n"
+  modifiers.csharp:
+  - public
+  - static
+  modifiers.vb:
+  - Public
+  - Shared
+- uid: System.Reflection.Assembly.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  commentId: M:System.Reflection.Assembly.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  id: System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Boolean)
+  isEii: true
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  nameWithType: Assembly.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  fullName: System.Reflection.Assembly.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/System.Reflection/ref/System.Reflection.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    path: src/System.Reflection/ref/System.Reflection.cs
+    startLine: 44
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  syntax:
+    content: object[] ICustomAttributeProvider.GetCustomAttributes(bool inherit)
+    content.vb: Function System.Reflection.ICustomAttributeProvider.GetCustomAttributes(inherit As Boolean) As Object() Implements ICustomAttributeProvider.GetCustomAttributes
+    parameters:
+    - id: inherit
+      type: System.Boolean
+    return:
+      type: System.Object[]
+  implements:
+  - System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+  nameWithType.vb: Assembly.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Boolean)
+- uid: System.Reflection.Assembly.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  commentId: M:System.Reflection.Assembly.System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  id: System#Reflection#ICustomAttributeProvider#GetCustomAttributes(System.Type,System.Boolean)
+  isEii: true
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  nameWithType: Assembly.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  fullName: System.Reflection.Assembly.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/System.Reflection/ref/System.Reflection.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+    path: src/System.Reflection/ref/System.Reflection.cs
+    startLine: 45
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  syntax:
+    content: object[] ICustomAttributeProvider.GetCustomAttributes(Type attributeType, bool inherit)
+    content.vb: Function System.Reflection.ICustomAttributeProvider.GetCustomAttributes(attributeType As Type, inherit As Boolean) As Object() Implements ICustomAttributeProvider.GetCustomAttributes
+    parameters:
+    - id: attributeType
+      type: System.Type
+    - id: inherit
+      type: System.Boolean
+    return:
+      type: System.Object[]
+  implements:
+  - System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type,System.Boolean)
+  nameWithType.vb: Assembly.System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+- uid: System.Reflection.Assembly.GetExportedTypes
+  commentId: M:System.Reflection.Assembly.GetExportedTypes
+  id: GetExportedTypes
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: GetExportedTypes()
+  nameWithType: Assembly.GetExportedTypes()
+  fullName: System.Reflection.Assembly.GetExportedTypes()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetExportedTypes
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 697
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets the public types defined in this assembly that are visible outside the assembly.</p>\n"
+  remarks: "\n<p>The only types visible outside an assembly are public types and public types nested within other public types.</p>\n"
+  syntax:
+    content: public virtual Type[] GetExportedTypes()
+    content.vb: Public Overridable Function GetExportedTypes As Type()
+    return:
+      type: System.Type[]
+      description: "\n<p>An array that represents the types defined in this assembly that are visible outside the assembly.</p>\n"
+  exceptions:
+  - type: System.NotSupportedException
+    commentId: T:System.NotSupportedException
+    description: "\n<p>The assembly is a dynamic assembly.</p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: System.Reflection.Assembly.GetReferencedAssemblies
+  commentId: M:System.Reflection.Assembly.GetReferencedAssemblies
+  id: GetReferencedAssemblies
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: GetReferencedAssemblies()
+  nameWithType: Assembly.GetReferencedAssemblies()
+  fullName: System.Reflection.Assembly.GetReferencedAssemblies()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetReferencedAssemblies
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 996
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets the <xref href=\"System.Reflection.AssemblyName\" data-throw-if-not-resolved=\"false\"></xref> objects for all the assemblies referenced by this assembly.</p>\n"
+  remarks: "\n<p>Starting with the .NET Framework 4, the <xref href=\"System.Reflection.AssemblyName.HashAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property of an <xref href=\"System.Reflection.AssemblyName\" data-throw-if-not-resolved=\"false\"></xref> object that is returned by this method is <xref href=\"System.Configuration.Assemblies.AssemblyHashAlgorithm.None\" data-throw-if-not-resolved=\"false\"></xref> if there is no hash algorithm for the referenced assembly, or if the hash algorithm of the referenced assembly is not identified by the <xref href=\"System.Configuration.Assemblies.AssemblyHashAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> enumeration. In previous versions of the .NET Framework, the <xref href=\"System.Reflection.AssemblyName.HashAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property returned <xref href=\"System.Configuration.Assemblies.AssemblyHashAlgorithm.SHA1\" data-throw-if-not-resolved=\"false\"></xref> in this situation. </p>\n"
+  syntax:
+    content: public virtual AssemblyName[] GetReferencedAssemblies()
+    content.vb: Public Overridable Function GetReferencedAssemblies As AssemblyName()
+    return:
+      type: System.Reflection.AssemblyName[]
+      description: "\n<p>An array that contains the fully parsed display names of all the assemblies referenced by this assembly.</p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: System.Reflection.Assembly.GetType(System.String,System.Boolean)
+  commentId: M:System.Reflection.Assembly.GetType(System.String,System.Boolean)
+  id: GetType(System.String,System.Boolean)
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: GetType(String, Boolean)
+  nameWithType: Assembly.GetType(String, Boolean)
+  fullName: System.Reflection.Assembly.GetType(System.String, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetType
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 679
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object with the specified name in the assembly instance and optionally throws an exception if the type is not found.</p>\n"
+  remarks: "\n<p>This method only searches the current assembly instance. The <em>name</em> parameter includes the namespace but not the assembly. To search other assemblies for a type, use the <xref href=\"System.Type.GetType(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method overload, which can optionally include an assembly display name as part of the type name.</p>\n<p>If the type has been forwarded to another assembly, it is still returned by this method. For information on type forwarding, see Type Forwarding in the Common Language Runtime.</p>\n<p>The <em>throwOnError</em> parameter only affects what happens when the type is not found. It does not affect any other exceptions that might be thrown. In particular, if the type is found but cannot be loaded, <xref href=\"System.TypeLoadException\" data-throw-if-not-resolved=\"false\"></xref> can be thrown even if <em>throwOnError</em> is <strong>false</strong>.</p>\n"
+  syntax:
+    content: public virtual Type GetType(string name, bool throwOnError)
+    content.vb: Public Overridable Function GetType(name As String, throwOnError As Boolean) As Type
+    parameters:
+    - id: name
+      type: System.String
+      description: "\n<p>The full name of the type. </p>\n"
+    - id: throwOnError
+      type: System.Boolean
+      description: "\n<p>\n<strong>true</strong> to throw an exception if the type is not found; <strong>false</strong> to return <strong>null</strong>. </p>\n"
+    return:
+      type: System.Type
+      description: "\n<p>An object that represents the specified class.</p>\n"
+  exceptions:
+  - type: System.ArgumentException
+    commentId: T:System.ArgumentException
+    description: "\n<p>\n<em>name</em> is invalid.</p>\n<p>-or- </p>\n<p>The length of <em>name</em> exceeds 1024 characters. </p>\n"
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<p>\n<em>name</em> is <strong>null</strong>. </p>\n"
+  - type: System.TypeLoadException
+    commentId: T:System.TypeLoadException
+    description: "\n<p>\n<em>throwOnError</em> is <strong>true</strong>, and the type cannot be found.</p>\n"
+  - type: System.IO.FileNotFoundException
+    commentId: T:System.IO.FileNotFoundException
+    description: "\n<p>\n<em>name</em> requires a dependent assembly that could not be found. </p>\n"
+  - type: System.IO.FileLoadException
+    commentId: T:System.IO.FileLoadException
+    description: "\n<p>\n<em>name</em> requires a dependent assembly that was found but could not be loaded.</p>\n<p>-or-</p>\n<p>The current assembly was loaded into the reflection-only context, and <em>name</em> requires a dependent assembly that was not preloaded. </p>\n"
+  - type: System.BadImageFormatException
+    commentId: T:System.BadImageFormatException
+    description: "\n<p>\n<em>name</em> requires a dependent assembly, but the file is not a valid assembly. </p>\n<p>-or-</p>\n<p>\n<em>name</em> requires a dependent assembly which was compiled for a version of the runtime later than the currently loaded version.</p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: System.Reflection.Assembly.GetTypes
+  commentId: M:System.Reflection.Assembly.GetTypes
+  id: GetTypes
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: GetTypes()
+  nameWithType: Assembly.GetTypes()
+  fullName: System.Reflection.Assembly.GetTypes()
+  type: Method
+  source:
+    remote:
+      path: src/mscorlib/src/System/Reflection/Assembly.cs
+      branch: master
+      repo: https://github.com/dotnet/coreclr.git
+    id: GetTypes
+    path: src/mscorlib/src/System/Reflection/Assembly.cs
+    startLine: 724
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  summary: "\n<p>Gets the types defined in this assembly.</p>\n"
+  remarks: "\n<p>The returned array includes nested types.</p>\n<p>If the <xref href=\"System.Reflection.Assembly.GetTypes\" data-throw-if-not-resolved=\"false\"></xref> method is called on an assembly and a type in that assembly is dependent on a type in an assembly that has not been loaded (for example, if it derives from a type in the second assembly), a <xref href=\"System.Reflection.ReflectionTypeLoadException\" data-throw-if-not-resolved=\"false\"></xref> is thrown. For example, this can happen if the first assembly was loaded with the <xref href=\"System.Reflection.Assembly.ReflectionOnlyLoad(System.String)\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Reflection.Assembly.ReflectionOnlyLoadFrom(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods, and the second assembly was not loaded. It can also happen with assemblies loaded using the <xref href=\"System.Reflection.Assembly.Load(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Reflection.Assembly.LoadFile(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods if the second assembly cannot be located when the <xref href=\"System.Reflection.Assembly.GetTypes\" data-throw-if-not-resolved=\"false\"></xref> method is called. </p>\n<p>If a type has been forwarded to another assembly, it is not included in the returned array. For information on type forwarding, see Type Forwarding in the Common Language Runtime.</p>\n<p>To retrieve a collection of <xref href=\"System.Reflection.TypeInfo\" data-throw-if-not-resolved=\"false\"></xref> objects instead of an array of <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> objects, use the <xref href=\"System.Reflection.Assembly.DefinedTypes\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
+  syntax:
+    content: public virtual Type[] GetTypes()
+    content.vb: Public Overridable Function GetTypes As Type()
+    return:
+      type: System.Type[]
+      description: "\n<p>An array that contains all the types that are defined in this assembly.</p>\n"
+  exceptions:
+  - type: System.Reflection.ReflectionTypeLoadException
+    commentId: T:System.Reflection.ReflectionTypeLoadException
+    description: "\n<p>The assembly contains one or more types that cannot be loaded. The array returned by the <xref href=\"System.Reflection.ReflectionTypeLoadException.Types\" data-throw-if-not-resolved=\"false\"></xref> property of this exception contains a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object for each type that was loaded and <strong>null</strong> for each type that could not be loaded, while the <xref href=\"System.Reflection.ReflectionTypeLoadException.LoaderExceptions\" data-throw-if-not-resolved=\"false\"></xref> property contains an exception for each type that could not be loaded.</p>\n"
+  modifiers.csharp:
+  - public
+  - virtual
+  modifiers.vb:
+  - Public
+  - Overridable
+- uid: System.Reflection.Assembly.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+  commentId: M:System.Reflection.Assembly.System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+  id: System#Reflection#ICustomAttributeProvider#IsDefined(System.Type,System.Boolean)
+  isEii: true
+  parent: System.Reflection.Assembly
+  langs:
+  - csharp
+  - vb
+  name: ICustomAttributeProvider.IsDefined(Type, Boolean)
+  nameWithType: Assembly.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  fullName: System.Reflection.Assembly.System.Reflection.ICustomAttributeProvider.IsDefined(System.Type, System.Boolean)
+  type: Method
+  source:
+    remote:
+      path: src/System.Reflection/ref/System.Reflection.cs
+      branch: master
+      repo: https://github.com/dotnet/corefx.git
+    id: System.Reflection.ICustomAttributeProvider.IsDefined
+    path: src/System.Reflection/ref/System.Reflection.cs
+    startLine: 50
+  assemblies:
+  - System.Reflection
+  namespace: System.Reflection
+  syntax:
+    content: bool ICustomAttributeProvider.IsDefined(Type attributeType, bool inherit)
+    content.vb: Function System.Reflection.ICustomAttributeProvider.IsDefined(attributeType As Type, inherit As Boolean) As Boolean Implements ICustomAttributeProvider.IsDefined
+    parameters:
+    - id: attributeType
+      type: System.Type
+    - id: inherit
+      type: System.Boolean
+    return:
+      type: System.Boolean
+  implements:
+  - System.Reflection.ICustomAttributeProvider.IsDefined(System.Type,System.Boolean)
+  nameWithType.vb: Assembly.System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
+  name.vb: System.Reflection.ICustomAttributeProvider.IsDefined(Type, Boolean)
 references:
 - uid: System.Reflection
   isExternal: false
@@ -892,6 +1587,13 @@ references:
   nameWithType: Object
   fullName: System.Object
   commentId: T:System.Object
+- uid: System.Reflection.ICustomAttributeProvider
+  parent: System.Reflection
+  isExternal: false
+  name: ICustomAttributeProvider
+  nameWithType: ICustomAttributeProvider
+  fullName: System.Reflection.ICustomAttributeProvider
+  commentId: T:System.Reflection.ICustomAttributeProvider
 - uid: System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -1245,6 +1947,13 @@ references:
     nameWithType: )
     fullName: )
   commentId: T:System.Collections.Generic.IEnumerable{System.Type}
+- uid: System.Reflection.MethodInfo
+  parent: System.Reflection
+  isExternal: false
+  name: MethodInfo
+  nameWithType: MethodInfo
+  fullName: System.Reflection.MethodInfo
+  commentId: T:System.Reflection.MethodInfo
 - uid: System.String
   parent: System
   isExternal: false
@@ -1484,6 +2193,226 @@ references:
     nameWithType: )
     fullName: )
   commentId: M:System.Object.ToString
+- uid: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+  parent: System.Reflection.ICustomAttributeProvider
+  isExternal: true
+  name: GetCustomAttributes(Boolean)
+  nameWithType: ICustomAttributeProvider.GetCustomAttributes(Boolean)
+  fullName: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+  spec.csharp:
+  - uid: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Boolean)
+- uid: System.Object[]
+  name: Object[]
+  nameWithType: Object[]
+  fullName: System.Object[]
+  nameWithType.vb: Object()
+  fullname.vb: System.Object()
+  name.vb: Object()
+  spec.csharp:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Object
+    name: Object
+    nameWithType: Object
+    fullName: System.Object
+    isExternal: true
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type,System.Boolean)
+  parent: System.Reflection.ICustomAttributeProvider
+  isExternal: true
+  name: GetCustomAttributes(Type, Boolean)
+  nameWithType: ICustomAttributeProvider.GetCustomAttributes(Type, Boolean)
+  fullName: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type,System.Boolean)
+    name: GetCustomAttributes
+    nameWithType: ICustomAttributeProvider.GetCustomAttributes
+    fullName: System.Reflection.ICustomAttributeProvider.GetCustomAttributes
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type,System.Boolean)
+- uid: System.Type[]
+  name: Type[]
+  nameWithType: Type[]
+  fullName: System.Type[]
+  nameWithType.vb: Type()
+  fullname.vb: System.Type()
+  name.vb: Type()
+  spec.csharp:
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Reflection.AssemblyName[]
+  name: AssemblyName[]
+  nameWithType: AssemblyName[]
+  fullName: System.Reflection.AssemblyName[]
+  nameWithType.vb: AssemblyName()
+  fullname.vb: System.Reflection.AssemblyName()
+  name.vb: AssemblyName()
+  spec.csharp:
+  - uid: System.Reflection.AssemblyName
+    name: AssemblyName
+    nameWithType: AssemblyName
+    fullName: System.Reflection.AssemblyName
+  - name: '[]'
+    nameWithType: '[]'
+    fullName: '[]'
+  spec.vb:
+  - uid: System.Reflection.AssemblyName
+    name: AssemblyName
+    nameWithType: AssemblyName
+    fullName: System.Reflection.AssemblyName
+  - name: ()
+    nameWithType: ()
+    fullName: ()
+- uid: System.Reflection.ICustomAttributeProvider.IsDefined(System.Type,System.Boolean)
+  parent: System.Reflection.ICustomAttributeProvider
+  isExternal: true
+  name: IsDefined(Type, Boolean)
+  nameWithType: ICustomAttributeProvider.IsDefined(Type, Boolean)
+  fullName: System.Reflection.ICustomAttributeProvider.IsDefined(System.Type, System.Boolean)
+  spec.csharp:
+  - uid: System.Reflection.ICustomAttributeProvider.IsDefined(System.Type,System.Boolean)
+    name: IsDefined
+    nameWithType: ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Reflection.ICustomAttributeProvider.IsDefined(System.Type,System.Boolean)
+    name: IsDefined
+    nameWithType: ICustomAttributeProvider.IsDefined
+    fullName: System.Reflection.ICustomAttributeProvider.IsDefined
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Type
+    name: Type
+    nameWithType: Type
+    fullName: System.Type
+    isExternal: true
+  - name: ', '
+    nameWithType: ', '
+    fullName: ', '
+  - uid: System.Boolean
+    name: Boolean
+    nameWithType: Boolean
+    fullName: System.Boolean
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  commentId: M:System.Reflection.ICustomAttributeProvider.IsDefined(System.Type,System.Boolean)
 - uid: System.ArgumentNullException
   isExternal: false
   name: ArgumentNullException
@@ -1528,3 +2457,22 @@ references:
   nameWithType: TypeLoadException
   fullName: System.TypeLoadException
   commentId: T:System.TypeLoadException
+- uid: System.NotSupportedException
+  parent: System
+  isExternal: false
+  name: NotSupportedException
+  nameWithType: NotSupportedException
+  fullName: System.NotSupportedException
+  commentId: T:System.NotSupportedException
+- uid: System.MissingMethodException
+  isExternal: false
+  name: MissingMethodException
+  nameWithType: MissingMethodException
+  fullName: System.MissingMethodException
+  commentId: T:System.MissingMethodException
+- uid: System.Reflection.ReflectionTypeLoadException
+  isExternal: false
+  name: ReflectionTypeLoadException
+  nameWithType: ReflectionTypeLoadException
+  fullName: System.Reflection.ReflectionTypeLoadException
+  commentId: T:System.Reflection.ReflectionTypeLoadException
