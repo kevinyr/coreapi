@@ -35,7 +35,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Resolves, adds, and removes namespaces to a collection and provides scope management for these namespaces. </p>\n"
-  remarks: "\n<p>For general information about how namespaces are declared and used in XML documents, see Managing Namespaces in an XML Document. </p>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> stores prefixes and namespaces as strings. Here's a summary of management and lookup tasks you can perform with this class. For more information and examples, follow the links to the reference page for each method or property.</p>\n<p></p>\n<p>To</p>\n<p>Use</p>\n<table><tbody><tr><td>\n<p>Add a namespace</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Remove a namespace</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.RemoveNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Find the URI for the default namespace</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.DefaultNamespace\" data-throw-if-not-resolved=\"false\"></xref> property</p>\n</td></tr><tr><td>\n<p>Find the URI for a namespace prefix</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.LookupNamespace(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Find the prefix for a namespace URI</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.LookupPrefix(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Get a list of namespaces in the current node</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.GetNamespacesInScope(System.Xml.XmlNamespaceScope)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Scope a namespace</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.PushScope\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Xml.XmlNamespaceManager.PopScope\" data-throw-if-not-resolved=\"false\"></xref> methods</p>\n</td></tr><tr><td>\n<p>Check whether a prefix is defined in the current scope</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.HasNamespace(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method</p>\n</td></tr><tr><td>\n<p>Get the name table used to look up prefixes and URIs</p>\n</td><td>\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager.NameTable\" data-throw-if-not-resolved=\"false\"></xref> property</p>\n</td></tr></tbody></table>\n<p></p>\n<p>To add namespaces to the namespace manager, you create a <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> object and then use the <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method. Default prefix and namespace pairs are automatically added to the namespace manager on creation.</p>\n<p>When you create the namespace manager, you can specify a name table from the <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Xml.Xsl.XsltContext\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.Xml.XmlDocument\" data-throw-if-not-resolved=\"false\"></xref> class, and then use the <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method to add the namespaces. </p>\n<p>You can supply the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> object as a parameter to the <see cref=\"Overload:System.Xml.XmlNode.SelectNodes\"></see> or <see cref=\"Overload:System.Xml.XmlNode.SelectSingleNode\"></see> method of the <xref href=\"System.Xml.XmlDocument\" data-throw-if-not-resolved=\"false\"></xref> class to execute XPath query expressions that reference namespace-qualified element and attribute names.</p>\n<p>The namespace manager assumes that prefixes and namespaces have already been verified and conform to the <see href=\"http://www.w3.org/TR/REC-xml-names/\">W3C Namespaces</see> specification. The namespace manager does not perform any validation. </p>\n<p>The namespace manager atomizes the strings when they are added by using the <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method and when a lookup is performed by using the <xref href=\"System.Xml.XmlNamespaceManager.LookupNamespace(System.String)\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Xml.XmlNamespaceManager.LookupPrefix(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n<p>The namespace manager implements enumeration support in addition to adding and retrieving namespaces. You can loop through the information saved in the namespace manager by using the <code>foreach</code> construct. For example, if you create a namespace manager with the name <code>nsmanager</code>, you can iterate through the table by using <code>foreach (String prefix in nsmanager)</code>. </p>\n<p>Because the namespace manager provides a string comparison with the prefix and namespaces as objects, there is a performance improvement when using the namespace manager over the direct comparison of a string.</p>\n<p>The following code example shows how to bind the prefix <code>xsd</code> with the namespace URI of <code>http://www.w3.org/2001/XMLSchema</code> and add it to the namespace manager:</p>\n<pre><code class=\"vb#\">nsmgr.AddNamespace(\"xsd\", \"http://www.w3.org/2001/XMLSchema\")</code></pre>\n<pre><code class=\"c#\">nsmgr.AddNamespace(\"xsd\", \"http://www.w3.org/2001/XMLSchema\");</code></pre>\n<p>You can then find the namespace by using the <xref href=\"System.Xml.XmlNamespaceManager.LookupNamespace(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method:</p>\n<pre><code class=\"vb#\">nsmgr.LookupNamespace(\"xsd\")</code></pre>\n<pre><code class=\"c#\">nsmgr.LookupNamespace(\"xsd\");</code></pre>\n<p>The following example creates an <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> by using the name table from an XML reader:</p>\n<pre><code class=\"vb#\">Dim reader As New XmlTextReader(\"myfile.xml\")\nDim nsmanager As New XmlNamespaceManager(reader.NameTable)\nnsmanager.AddNamespace(\"msbooks\", \"www.microsoft.com/books\")\nnsmanager.PushScope()\nnsmanager.AddNamespace(\"msstore\", \"www.microsoft.com/store\")\nWhile reader.Read()\nConsole.WriteLine(\"Reader Prefix:{0}\", reader.Prefix)\nConsole.WriteLine(\"XmlNamespaceManager Prefix:{0}\",\nnsmanager.LookupPrefix(nsmanager.NameTable.Get(reader.NamespaceURI)))\nEnd While</code></pre>\n<pre><code class=\"c#\">XmlTextReader reader = new XmlTextReader(\"myfile.xml\");\nXmlNamespaceManager nsmanager = new XmlNamespaceManager(reader.NameTable);\nnsmanager.AddNamespace(\"msbooks\", \"www.microsoft.com/books\");\nnsmanager.PushScope();\nnsmanager.AddNamespace(\"msstore\", \"www.microsoft.com/store\");\nwhile (reader.Read())\n{\nConsole.WriteLine(\"Reader Prefix:{0}\", reader.Prefix);\nConsole.WriteLine(\"XmlNamespaceManager Prefix:{0}\",\nnsmanager.LookupPrefix(nsmanager.NameTable.Get(reader.NamespaceURI)));\n}</code></pre>\n"
   syntax:
     content: 'public class XmlNamespaceManager : IEnumerable, IXmlNamespaceResolver'
     content.vb: >-
@@ -88,7 +87,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> class with the specified <xref href=\"System.Xml.XmlNameTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The name table is used to look up prefixes and namespaces. An existing name table with pre-atomized strings can be specified in the constructor. There are several advantages in doing so. For example, if the name table of an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> object is used, after each read, any namespace and prefix strings pushed into the name table can be re-used by <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n<p>For more information on atomized strings, see <xref href=\"System.Xml.XmlNameTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If you specify an existing name table, any namespaces in the name table are not automatically added to <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref>. You must use <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Xml.XmlNamespaceManager.RemoveNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> to add or remove namespaces.</p>\n"
   syntax:
     content: public XmlNamespaceManager(XmlNameTable nameTable)
     content.vb: Public Sub New(nameTable As XmlNameTable)
@@ -127,7 +125,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Gets the namespace URI for the default namespace.</p>\n"
-  remarks: "\n<p>This method is equivalent to calling LookupNamespace(String.Empty).</p>\n"
   syntax:
     content: public virtual string DefaultNamespace { get; }
     content.vb: Public Overridable ReadOnly Property DefaultNamespace As String
@@ -169,7 +166,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Gets the <xref href=\"System.Xml.XmlNameTable\" data-throw-if-not-resolved=\"false\"></xref> associated with this object.</p>\n"
-  remarks: "\n<p>The name table is used to look up prefixes and namespace URIs.</p>\n"
   syntax:
     content: public virtual XmlNameTable NameTable { get; }
     content.vb: Public Overridable ReadOnly Property NameTable As XmlNameTable
@@ -211,7 +207,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Adds the given namespace to the collection.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> does not check <em>prefix</em> and <em>uri</em> for conformance.</p>\n<p>\n<xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> checks names, including prefixes and namespaces, to ensure they are valid XML names according to the World Wide Web Consortium (W3C) <see href=\"http://www.w3.org/TR/REC-xml-names/\">Namespaces specification</see>. <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> is used internally by <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>, so to avoid a duplication of efforts, <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> assumes all prefixes and namespaces are valid.</p>\n<p>If the prefix and namespace already exist within the current scope, the new prefix and namespace pair will replace the existing prefix/namespace combination. The same prefix and namespace combination can exist across different scopes.</p>\n<p>The following prefix/namespace pairs are added by default to the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref>. They can be determined at any scope.</p>\n<p>Prefix </p>\n<p>Namespace </p>\n<table><tbody><tr><td>\n<p>xmlns </p>\n</td><td>\n<p>http://www.w3.org/2000/xmlns/ (the xmlns prefix namespace) </p>\n</td></tr><tr><td>\n<p>xml </p>\n</td><td>\n<p>http://www.w3.org/XML/1998/namespace (the XML namespace) </p>\n</td></tr><tr><td>\n<p>String.Empty </p>\n</td><td>\n<p>String.Empty (the empty namespace). This value can be reassigned a different prefix. For example, xmlns=\"\" defines the default namespace to be the empty namespace </p>\n</td></tr></tbody></table>\n"
   syntax:
     content: public virtual void AddNamespace(string prefix, string uri)
     content.vb: Public Overridable Sub AddNamespace(prefix As String, uri As String)
@@ -261,7 +256,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Returns an enumerator to use to iterate through the namespaces in the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The following code shows how to use the <xref href=\"System.Collections.IEnumerator\" data-throw-if-not-resolved=\"false\"></xref> to view all the namespace pairs stored in the <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<pre><code>Dim nsEnum As IEnumerator = nsmgr.GetEnumerator()\nDo While nsEnum.MoveNext\nIf nsEnum.Current <> \"\" Then\nMsgBox(\"xmlns:\" + nsEnum.Current + \"=\" + nsmgr.LookupNamespace(nsEnum.Current))\nEnd If\nLoop</code></pre>\n"
   syntax:
     content: public virtual IEnumerator GetEnumerator()
     content.vb: Public Overridable Function GetEnumerator As IEnumerator
@@ -299,7 +293,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Gets a collection of namespace names keyed by prefix which can be used to enumerate the namespaces currently in scope.</p>\n"
-  remarks: "\n<p>The dictionary consists of a collection of namespace names keyed by prefix. It can be used to enumerate the in-scope namespaces. The dictionary is a disconnected copy of the namespace list. It remains unchanged as the current in-scope namespace list changes.</p>\n<p>The following table shows how <xref href=\"System.Xml.XmlNamespaceScope\" data-throw-if-not-resolved=\"false\"></xref> values affect the namespaces returned by the <xref href=\"System.Xml.XmlNamespaceManager.GetNamespacesInScope(System.Xml.XmlNamespaceScope)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>XmlNamespaceScope value</p>\n<p>xmlns:xml</p>\n<p>xmlns:xmlns</p>\n<p>xmlns=\"\"</p>\n"
   syntax:
     content: public virtual IDictionary<string, string> GetNamespacesInScope(XmlNamespaceScope scope)
     content.vb: Public Overridable Function GetNamespacesInScope(scope As XmlNamespaceScope) As IDictionary(Of String, String)
@@ -341,7 +334,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Gets a value indicating whether the supplied prefix has a namespace defined for the current pushed scope.</p>\n"
-  remarks: "\n<p>To determine whether there is a default empty namespace defined, set <em>prefix</em> to String.Empty. A return value of <strong>true</strong> indicates that there is a default namespace defined in the current scope; <strong>false</strong> indicates that no default namespace is defined.</p>\n<p>xmlns:x= \"\" is illegal according to the <see href=\"http://www.w3.org/TR/REC-xml-names/\">W3C Namespaces</see> recommendation.</p>\n"
   syntax:
     content: public virtual bool HasNamespace(string prefix)
     content.vb: Public Overridable Function HasNamespace(prefix As String) As Boolean
@@ -425,7 +417,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Finds the prefix declared for the given namespace URI.</p>\n"
-  remarks: "\n<p>This method finds the mapped prefix by walking the stack (that is, it looks globally). The supplied string must be atomized for the lookup to succeed. In other words, the supplied string object must exist in the namespace manager's name table (<xref href=\"System.Xml.XmlNamespaceManager.NameTable\" data-throw-if-not-resolved=\"false\"></xref>).</p>\n<p>The returned string is also atomized. For more information on atomized strings, see the <xref href=\"System.Xml.XmlNameTable\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public virtual string LookupPrefix(string uri)
     content.vb: Public Overridable Function LookupPrefix(uri As String) As String
@@ -470,7 +461,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Pops a namespace scope off the stack.</p>\n"
-  remarks: "\n<p>When you call this method, all namespaces which were added to <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> (by calling <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref>) since the last call to <xref href=\"System.Xml.XmlNamespaceManager.PopScope\" data-throw-if-not-resolved=\"false\"></xref> are removed.</p>\n"
   syntax:
     content: public virtual bool PopScope()
     content.vb: Public Overridable Function PopScope As Boolean
@@ -509,7 +499,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Pushes a namespace scope onto the stack.</p>\n"
-  remarks: "\n<p>After a call to this method, all namespaces, which are added to <xref href=\"System.Xml.XmlNamespaceManager\" data-throw-if-not-resolved=\"false\"></xref> (by calling <xref href=\"System.Xml.XmlNamespaceManager.AddNamespace(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref>), belong to the pushed namespace scope.</p>\n"
   syntax:
     content: public virtual void PushScope()
     content.vb: Public Overridable Sub PushScope

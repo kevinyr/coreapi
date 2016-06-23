@@ -45,7 +45,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Provides atomic operations for variables that are shared by multiple threads. </p>\n"
-  remarks: "\n<p>The methods of this class help protect against errors that can occur when the scheduler switches contexts while a thread is updating a variable that can be accessed by other threads, or when two threads are executing concurrently on separate processors. The members of this class do not throw exceptions.</p>\n<p>The <xref href=\"System.Threading.Interlocked.Increment(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Threading.Interlocked.Decrement(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref> methods increment or decrement a variable and store the resulting value in a single operation. On most computers, incrementing a variable is not an atomic operation, requiring the following steps: </p>\n<ol><li>\n<p>Load a value from an instance variable into a register.</p>\n</li><li>\n<p>Increment or decrement the value.</p>\n</li><li>\n<p>Store the value in the instance variable.</p>\n</li></ol>\n<p>If you do not use <xref href=\"System.Threading.Interlocked.Increment(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Threading.Interlocked.Decrement(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref>, a thread can be preempted after executing the first two steps. Another thread can then execute all three steps. When the first thread resumes execution, it overwrites the value in the instance variable, and the effect of the increment or decrement performed by the second thread is lost.</p>\n<p>The <xref href=\"System.Threading.Interlocked.Exchange(System.Int32@,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method atomically exchanges the values of the specified variables. The <xref href=\"System.Threading.Interlocked.CompareExchange(System.Int32@,System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method combines two operations: comparing two values and storing a third value in one of the variables, based on the outcome of the comparison. The compare and exchange operations are performed as an atomic operation.</p>\n"
   syntax:
     content: public class Interlocked
     content.vb: Public Class Interlocked
@@ -88,7 +87,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Adds two 32-bit integers and replaces the first integer with the sum, as an atomic operation.</p>\n"
-  remarks: "\n<p>This method handles an overflow condition by wrapping: if the value at <em>location1</em> is <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref> and <em>value</em> is 1, the result is <xref href=\"System.Int32.MinValue\" data-throw-if-not-resolved=\"false\"></xref>; if <em>value</em> is 2, the result is (<xref href=\"System.Int32.MinValue\" data-throw-if-not-resolved=\"false\"></xref> + 1); and so on. No exception is thrown.</p>\n"
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -144,7 +142,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Adds two 64-bit integers and replaces the first integer with the sum, as an atomic operation.</p>\n"
-  remarks: "\n<p>This method handles an overflow condition by wrapping: if the value at <em>location1</em> is <xref href=\"System.Int64.MaxValue\" data-throw-if-not-resolved=\"false\"></xref> and <em>value</em> is 1, the result is <xref href=\"System.Int64.MinValue\" data-throw-if-not-resolved=\"false\"></xref>; if <em>value</em> is 2, the result is (<xref href=\"System.Int64.MinValue\" data-throw-if-not-resolved=\"false\"></xref> + 1); and so on. No exception is thrown.</p>\n<p>The <xref href=\"System.Threading.Interlocked.Read(System.Int64@)\" data-throw-if-not-resolved=\"false\"></xref> method and the 64-bit overloads of the <xref href=\"System.Threading.Interlocked.Increment(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Threading.Interlocked.Decrement(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Threading.Interlocked.Add(System.Int32@,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods are truly atomic only on systems where a <xref href=\"System.IntPtr\" data-throw-if-not-resolved=\"false\"></xref> is 64 bits long. On other systems, these methods are atomic with respect to each other, but not with respect to other means of accessing the data. Thus, to be thread safe on 32-bit systems, any access to a 64-bit value must be made through the members of the <xref href=\"System.Threading.Interlocked\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -202,7 +199,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Compares two double-precision floating point numbers for equality and, if they are equal, replaces the first value.</p>\n"
-  remarks: "\n<p>If <em>comparand</em> and the value in <em>location1</em> are equal, then <em>value</em> is stored in <em>location1</em>. Otherwise, no operation is performed. The compare and exchange operations are performed as an atomic operation. The return value of <xref href=\"System.Threading.Interlocked.CompareExchange(System.Double@,System.Double,System.Double)\" data-throw-if-not-resolved=\"false\"></xref> is the original value in <em>location1</em>, whether or not the exchange takes place.</p>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.InternalCall)]
@@ -260,7 +256,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Compares two 32-bit signed integers for equality and, if they are equal, replaces the first value.</p>\n"
-  remarks: "\n<p>If <em>comparand</em> and the value in <em>location1</em> are equal, then <em>value</em> is stored in <em>location1</em>. Otherwise, no operation is performed. The compare and exchange operations are performed as an atomic operation. The return value of <xref href=\"System.Threading.Interlocked.CompareExchange(System.Double@,System.Double,System.Double)\" data-throw-if-not-resolved=\"false\"></xref> is the original value in <em>location1</em>, whether or not the exchange takes place.</p>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.InternalCall)]
@@ -322,7 +317,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Compares two 64-bit signed integers for equality and, if they are equal, replaces the first value.</p>\n"
-  remarks: "\n<p>If <em>comparand</em> and the value in <em>location1</em> are equal, then <em>value</em> is stored in <em>location1</em>. Otherwise, no operation is performed. The compare and exchange operations are performed as an atomic operation. The return value of <xref href=\"System.Threading.Interlocked.CompareExchange(System.Double@,System.Double,System.Double)\" data-throw-if-not-resolved=\"false\"></xref> is the original value in <em>location1</em>, whether or not the exchange takes place.</p>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.InternalCall)]
@@ -380,7 +374,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Compares two platform-specific handles or pointers for equality and, if they are equal, replaces the first one.</p>\n"
-  remarks: "\n<p>If <em>comparand</em> and the value in <em>location1</em> are equal, then <em>value</em> is stored in <em>location1</em>. Otherwise, no operation is performed. The compare and exchange operations are performed as an atomic operation. The return value of this method is the original value in <em>location1</em>, whether or not the exchange takes place.</p>\n<p>\n<xref href=\"System.IntPtr\" data-throw-if-not-resolved=\"false\"></xref> is a platform-specific type.</p>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.InternalCall)]
@@ -442,7 +435,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Compares two objects for reference equality and, if they are equal, replaces the first object.</p>\n"
-  remarks: "\n<p>If <em>comparand</em> and the object in <em>location1</em> are equal, then <em>value</em> is stored in <em>location1</em>. Otherwise, no operation is performed. The compare and exchange operations are performed as an atomic operation. The return value of <xref href=\"System.Threading.Interlocked.CompareExchange(System.Double@,System.Double,System.Double)\" data-throw-if-not-resolved=\"false\"></xref> is the original value in <em>location1</em>, whether or not the exchange takes place.</p>\n<p>Beginning with .NET Framework version 2.0, the <xref href=\"System.Threading.Interlocked.CompareExchange``1(``0@,``0,``0)\" data-throw-if-not-resolved=\"false\"></xref> method overload provides a type-safe alternative for reference types.</p>\n<p>The objects are compared for reference equality, rather than <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref>. As a result, two boxed instances of the same value type (for example, the integer 3) always appear to be unequal, and no operation is performed. Do not use this overload with value types.</p>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.InternalCall)]
@@ -504,7 +496,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Compares two single-precision floating point numbers for equality and, if they are equal, replaces the first value.</p>\n"
-  remarks: "\n<p>If <em>comparand</em> and the value in <em>location1</em> are equal, then <em>value</em> is stored in <em>location1</em>. Otherwise, no operation is performed. The compare and exchange operations are performed as an atomic operation. The return value of <xref href=\"System.Threading.Interlocked.CompareExchange(System.Double@,System.Double,System.Double)\" data-throw-if-not-resolved=\"false\"></xref> is the original value in <em>location1</em>, whether or not the exchange takes place.</p>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.InternalCall)]
@@ -567,7 +558,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Compares two instances of the specified reference type <em>T</em> for equality and, if they are equal, replaces the first one.</p>\n"
-  remarks: "\n<p>If <em>comparand</em> and the value in <em>location1</em> are equal, then <em>value</em> is stored in <em>location1</em>. Otherwise, no operation is performed. The comparison and the exchange are performed as an atomic operation. The return value of this method is the original value in <em>location1</em>, whether or not the exchange takes place.</p>\n<p>This method only supports reference types. There are overloads of the <xref href=\"System.Threading.Interlocked.CompareExchange(System.Double@,System.Double,System.Double)\" data-throw-if-not-resolved=\"false\"></xref> method for the value types <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IntPtr\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Single\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Double\" data-throw-if-not-resolved=\"false\"></xref>, but there is no support for other value types.</p>\n<p>This method overload is preferable to the <xref href=\"System.Threading.Interlocked.CompareExchange(System.Object@,System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method overload, because the latter requires the destination object to be accessed late-bound.</p>\n"
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -637,7 +627,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Decrements a specified variable and stores the result, as an atomic operation.</p>\n"
-  remarks: "\n<p>This method handles an overflow condition by wrapping: If <em>location</em> = <xref href=\"System.Int32.MinValue\" data-throw-if-not-resolved=\"false\"></xref>, <em>location</em> - 1 = <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>. No exception is thrown.</p>\n"
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -690,7 +679,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Decrements the specified variable and stores the result, as an atomic operation.</p>\n"
-  remarks: "\n<p>This method handles an overflow condition by wrapping: if <em>location</em> = <xref href=\"System.Int64.MinValue\" data-throw-if-not-resolved=\"false\"></xref>, <em>location</em> - 1 = <xref href=\"System.Int64.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>. No exception is thrown.</p>\n<p>The <xref href=\"System.Threading.Interlocked.Read(System.Int64@)\" data-throw-if-not-resolved=\"false\"></xref> method and the 64-bit overloads of the <xref href=\"System.Threading.Interlocked.Increment(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Threading.Interlocked.Decrement(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Threading.Interlocked.Add(System.Int32@,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods are truly atomic only on systems where a <xref href=\"System.IntPtr\" data-throw-if-not-resolved=\"false\"></xref> is 64 bits long. On other systems, these methods are atomic with respect to each other, but not with respect to other means of accessing the data. Thus, to be thread safe on 32-bit systems, any access to a 64-bit value must be made through the members of the <xref href=\"System.Threading.Interlocked\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public static long Decrement(ref long location)
     content.vb: Public Shared Function Decrement(ByRef location As Long) As Long
@@ -963,7 +951,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Sets an object to a specified value and returns a reference to the original object, as an atomic operation.</p>\n"
-  remarks: "\n<p>Beginning with .NET Framework version 2.0, the <xref href=\"System.Threading.Interlocked.Exchange``1(``0@,``0)\" data-throw-if-not-resolved=\"false\"></xref> method overload provides a type-safe alternative for reference types.</p>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.InternalCall)]
@@ -1081,7 +1068,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Sets a variable of the specified type <em>T</em> to a specified value and returns the original value, as an atomic operation.</p>\n"
-  remarks: "\n<p>This method only supports reference types. There are overloads of the <xref href=\"System.Threading.Interlocked.Exchange(System.Double@,System.Double)\" data-throw-if-not-resolved=\"false\"></xref> method for the <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IntPtr\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Single\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Double\" data-throw-if-not-resolved=\"false\"></xref> value types, but there is no support for other value types.</p>\n<p>This method overload is preferable to the <xref href=\"System.Threading.Interlocked.Exchange(System.Object@,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method overload, because the latter requires late-bound access to the destination object .  </p>\n"
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -1148,7 +1134,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Increments a specified variable and stores the result, as an atomic operation.</p>\n"
-  remarks: "\n<p>This method handles an overflow condition by wrapping: if <em>location</em> = <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>, <em>location</em> + 1 = <xref href=\"System.Int32.MinValue\" data-throw-if-not-resolved=\"false\"></xref>. No exception is thrown.</p>\n"
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -1201,7 +1186,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Increments a specified variable and stores the result, as an atomic operation.</p>\n"
-  remarks: "\n<p>This method handles an overflow condition by wrapping: if <em>location</em> = <xref href=\"System.Int64.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>, <em>location</em> + 1 = <xref href=\"System.Int64.MinValue\" data-throw-if-not-resolved=\"false\"></xref>. No exception is thrown.</p>\n<p>The <xref href=\"System.Threading.Interlocked.Read(System.Int64@)\" data-throw-if-not-resolved=\"false\"></xref> method and the 64-bit overloads of the <xref href=\"System.Threading.Interlocked.Increment(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Threading.Interlocked.Decrement(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Threading.Interlocked.Add(System.Int32@,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods are truly atomic only on systems where a <xref href=\"System.IntPtr\" data-throw-if-not-resolved=\"false\"></xref> is 64 bits long. On other systems, these methods are atomic with respect to each other, but not with respect to other means of accessing the data. Thus, to be thread safe on 32-bit systems, any access to a 64-bit value must be made through the members of the <xref href=\"System.Threading.Interlocked\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -1261,7 +1245,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Synchronizes memory access as follows: The processor that executes the current thread cannot reorder instructions in such a way that memory accesses before the call to <xref href=\"System.Threading.Interlocked.MemoryBarrier\" data-throw-if-not-resolved=\"false\"></xref> execute after memory accesses that follow the call to <xref href=\"System.Threading.Interlocked.MemoryBarrier\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>This method was added to the <xref href=\"System.Threading.Interlocked\" data-throw-if-not-resolved=\"false\"></xref> class in the .NET Framework 4.5 as a convenience; it's a wrapper for the <xref href=\"System.Threading.Thread.MemoryBarrier\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n<p>\n<xref href=\"System.Threading.Interlocked.MemoryBarrier\" data-throw-if-not-resolved=\"false\"></xref> is required only on multiprocessor systems that have weak memory ordering (for example, a system that employs multiple Intel Itanium processors).</p>\n<p>For most purposes, the C# <strong>lock</strong> statement, the Visual Basic <strong>SyncLock</strong> statement, or the <xref href=\"System.Threading.Monitor\" data-throw-if-not-resolved=\"false\"></xref> class provide easier ways to synchronize data.</p>\n"
   syntax:
     content: public static void MemoryBarrier()
     content.vb: Public Shared Sub MemoryBarrier
@@ -1294,7 +1277,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Returns a 64-bit value, loaded as an atomic operation.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Threading.Interlocked.Read(System.Int64@)\" data-throw-if-not-resolved=\"false\"></xref> method is unnecessary on 64-bit systems, because 64-bit read operations are already atomic. On 32-bit systems, 64-bit read operations are not atomic unless performed using <xref href=\"System.Threading.Interlocked.Read(System.Int64@)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <xref href=\"System.Threading.Interlocked.Read(System.Int64@)\" data-throw-if-not-resolved=\"false\"></xref> method and the 64-bit overloads of the <xref href=\"System.Threading.Interlocked.Increment(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Threading.Interlocked.Decrement(System.Int32@)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Threading.Interlocked.Add(System.Int32@,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> methods are truly atomic only on systems where a <xref href=\"System.IntPtr\" data-throw-if-not-resolved=\"false\"></xref> is 64 bits long. On other systems, these methods are atomic with respect to each other, but not with respect to other means of accessing the data. Thus, to be thread safe on 32-bit systems, any access to a 64-bit value must be made through the members of the <xref href=\"System.Threading.Interlocked\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n<p>\n<xref href=\"System.IntPtr\" data-throw-if-not-resolved=\"false\"></xref> is a platform-specific type.</p>\n"
   syntax:
     content: public static long Read(ref long location)
     content.vb: Public Shared Function Read(ByRef location As Long) As Long

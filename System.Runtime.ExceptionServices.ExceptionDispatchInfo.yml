@@ -26,7 +26,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.ExceptionServices
   summary: "\n<p>Represents an exception whose state is captured at a certain point in code. </p>\n"
-  remarks: "\n<p>The <xref href=\"System.Runtime.ExceptionServices.ExceptionDispatchInfo\" data-throw-if-not-resolved=\"false\"></xref> object stores the stack trace information and Watson information that the exception contains at the point where it is captured. The exception can be thrown at another time and possibly on another thread by calling the <xref href=\"System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw\" data-throw-if-not-resolved=\"false\"></xref> method. The exception is thrown as if it had flowed from the point where it was captured to the point where the <xref href=\"System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw\" data-throw-if-not-resolved=\"false\"></xref> method is called.</p>\n<p>\n<xref href=\"System.Runtime.ExceptionServices.ExceptionDispatchInfo\" data-throw-if-not-resolved=\"false\"></xref> cannot be serialized and is not intended to cross application domain boundaries. </p>\n"
   syntax:
     content: public sealed class ExceptionDispatchInfo
     content.vb: Public NotInheritable Class ExceptionDispatchInfo
@@ -71,7 +70,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.ExceptionServices
   summary: "\n<p>Gets the exception that is represented by the current instance. </p>\n"
-  remarks: "\n<p>This property is used by the Task Parallel Library, for example, to combine multiple exceptions in an <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> object. It is not intended to be used by application code. Use the <xref href=\"System.Runtime.ExceptionServices.ExceptionDispatchInfo.Throw\" data-throw-if-not-resolved=\"false\"></xref> method to restore the state of the captured exception and throw it. </p>\n"
   syntax:
     content: public Exception SourceException { get; }
     content.vb: Public ReadOnly Property SourceException As Exception
@@ -108,7 +106,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.ExceptionServices
   summary: "\n<p>Creates an <xref href=\"System.Runtime.ExceptionServices.ExceptionDispatchInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents the specified exception at the current point in code. </p>\n"
-  remarks: "\n<p>You can use the <xref href=\"System.Runtime.ExceptionServices.ExceptionDispatchInfo\" data-throw-if-not-resolved=\"false\"></xref> object that is returned by this method at another time and possibly on another thread to rethrow the specified exception, as if the exception had flowed from this point where it was captured to the point where it is rethrown. </p>\n<p>If the exception is active when it is captured, the current stack trace information and Watson information that is contained in the exception is stored.  If it is inactive, that is, if it has not been thrown, it will not have any stack trace information or Watson information. </p>\n"
   syntax:
     content: public static ExceptionDispatchInfo Capture(Exception source)
     content.vb: Public Shared Function Capture(source As Exception) As ExceptionDispatchInfo
@@ -152,7 +149,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.ExceptionServices
   summary: "\n<p>Throws the exception that is represented by the current <xref href=\"System.Runtime.ExceptionServices.ExceptionDispatchInfo\" data-throw-if-not-resolved=\"false\"></xref> object, after restoring the state that was saved when the exception was captured. </p>\n"
-  remarks: "\n<p>When the exception is restored, the following string is inserted in the stack trace to indicate the restore point: \"End of stack trace from the previous location where the exception was thrown\". This is similar to the way inner exceptions or marshaled exceptions are indicated in stack traces.</p>\n"
   syntax:
     content: public void Throw()
     content.vb: Public Sub Throw

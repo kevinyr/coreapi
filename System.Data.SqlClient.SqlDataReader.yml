@@ -87,7 +87,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Provides a way of reading a forward-only stream of rows from a SQL Server database. This class cannot be inherited.</p>\n"
-  remarks: "\n<p>To create a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref>, you must call the <xref href=\"System.Data.SqlClient.SqlCommand.ExecuteReader\" data-throw-if-not-resolved=\"false\"></xref> method of the <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> object, instead of directly using a constructor.</p>\n<p>While the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> is being used, the associated <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> is busy serving the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref>, and no other operations can be performed on the <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> other than closing it. This is the case until the <xref href=\"System.Data.SqlClient.SqlDataReader.Close\" data-throw-if-not-resolved=\"false\"></xref> method of the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> is called. For example, you cannot retrieve output parameters until after you call <xref href=\"System.Data.SqlClient.SqlDataReader.Close\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Changes made to a result set by another process or thread while data is being read may be visible to the user of the <strong>SqlDataReader</strong>. However, the precise behavior is timing dependent.</p>\n<p>\n<xref href=\"System.Data.SqlClient.SqlDataReader.IsClosed\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Data.SqlClient.SqlDataReader.RecordsAffected\" data-throw-if-not-resolved=\"false\"></xref> are the only properties that you can call after the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> is closed. Although the <xref href=\"System.Data.SqlClient.SqlDataReader.RecordsAffected\" data-throw-if-not-resolved=\"false\"></xref> property may be accessed while the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> exists, always call <xref href=\"System.Data.SqlClient.SqlDataReader.Close\" data-throw-if-not-resolved=\"false\"></xref> before returning the value of <xref href=\"System.Data.SqlClient.SqlDataReader.RecordsAffected\" data-throw-if-not-resolved=\"false\"></xref> to guarantee an accurate return value.</p>\n<p>When using sequential access (<xref href=\"System.Data.CommandBehavior.SequentialAccess\" data-throw-if-not-resolved=\"false\"></xref>), an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> will be raised if the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> position is advanced and another read operation is attempted on the previous column.</p>\n<p>For optimal performance, <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> avoids creating unnecessary objects or making unnecessary copies of data. Therefore, multiple calls to methods such as <xref href=\"System.Data.SqlClient.SqlDataReader.GetValue(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> return a reference to the same object. Use caution if you are modifying the underlying value of the objects returned by methods such as <xref href=\"System.Data.SqlClient.SqlDataReader.GetValue(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: 'public class SqlDataReader : DbDataReader, IDbColumnSchemaGenerator'
     content.vb: >-
@@ -163,7 +162,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets a value that indicates the depth of nesting for the current row.</p>\n"
-  remarks: "\n<p>The outermost table has a depth of zero. The .NET Framework Data Provider for SQL Server does not support nesting and always returns zero.</p>\n"
   syntax:
     content: public override int Depth { get; }
     content.vb: Public Overrides ReadOnly Property Depth As Integer
@@ -202,7 +200,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the number of columns in the current row.</p>\n"
-  remarks: "\n<p>Executing a query that, by its nature, does not return rows (such as a DELETE query), sets <xref href=\"System.Data.SqlClient.SqlDataReader.FieldCount\" data-throw-if-not-resolved=\"false\"></xref> to 0. However. this should not be confused with a query that returns 0 rows (such as SELECT * FROM table WHERE 1 = 2) in which case <xref href=\"System.Data.SqlClient.SqlDataReader.FieldCount\" data-throw-if-not-resolved=\"false\"></xref> returns the number of columns in the table, including hidden fields. Use <xref href=\"System.Data.SqlClient.SqlDataReader.VisibleFieldCount\" data-throw-if-not-resolved=\"false\"></xref> to exclude hidden fields.</p>\n"
   syntax:
     content: public override int FieldCount { get; }
     content.vb: Public Overrides ReadOnly Property FieldCount As Integer
@@ -283,7 +280,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Retrieves a Boolean value that indicates whether the specified <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> instance has been closed. </p>\n"
-  remarks: "\n<p>It is not possible to read from a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> instance that is closed.</p>\n"
   syntax:
     content: public override bool IsClosed { get; }
     content.vb: Public Overrides ReadOnly Property IsClosed As Boolean
@@ -370,7 +366,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column in its native format given the column name.</p>\n"
-  remarks: "\n<p>A case-sensitive lookup is performed first. If it fails, a second case-insensitive search is made (a case-insensitive comparison is done using the database collation). Unexpected results can occur when comparisons are affected by culture-specific casing rules. For example, in Turkish, the following example yields the wrong results because the file system in Turkish does not use linguistic casing rules for the letter 'i' in \"file\".</p>\n<p>This method is kana-width insensitive.</p>\n"
   syntax:
     content: public override object this[string name] { get; }
     content.vb: Public Overrides ReadOnly Property Item(name As String) As Object
@@ -419,7 +414,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the number of rows changed, inserted, or deleted by execution of the Transact-SQL statement.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Data.SqlClient.SqlDataReader.RecordsAffected\" data-throw-if-not-resolved=\"false\"></xref> property is not set until all rows are read and you close the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The value of this property is cumulative. For example, if two records are inserted in batch mode, the value of <strong>RecordsAffected</strong> will be two.</p>\n<p>\n<xref href=\"System.Data.SqlClient.SqlDataReader.IsClosed\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Data.SqlClient.SqlDataReader.RecordsAffected\" data-throw-if-not-resolved=\"false\"></xref> are the only properties that you can call after the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> is closed.</p>\n"
   syntax:
     content: public override int RecordsAffected { get; }
     content.vb: Public Overrides ReadOnly Property RecordsAffected As Integer
@@ -458,7 +452,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the number of fields in the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> that are not hidden. </p>\n"
-  remarks: "\n<p>This value is used to determine how many fields in the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> are visible. For example, a SELECT on a partial primary key returns the remaining parts of the key as hidden fields. The hidden fields are always appended behind the visible fields.</p>\n"
   syntax:
     content: public override int VisibleFieldCount { get; }
     content.vb: Public Overrides ReadOnly Property VisibleFieldCount As Integer
@@ -497,7 +490,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a Boolean.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a Boolean, or an exception is generated.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override bool GetBoolean(int i)
     content.vb: Public Overrides Function GetBoolean(i As Integer) As Boolean
@@ -541,7 +533,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a byte.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a byte.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override byte GetByte(int i)
     content.vb: Public Overrides Function GetByte(i As Integer) As Byte
@@ -585,7 +576,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Reads a stream of bytes from the specified column offset into the buffer an array starting at the given buffer offset.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Data.SqlClient.SqlDataReader.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> returns the number of available bytes in the field. Most of the time this is the exact length of the field. However, the number returned may be less than the true length of the field if <strong>GetBytes</strong> has already been used to obtain bytes from the field. This may be the case, for example, if the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> is reading a large data structure into a buffer. For more information, see the <strong>SequentialAccess</strong> setting for <xref href=\"System.Data.CommandBehavior\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If you pass a buffer that is <strong>null</strong>, <xref href=\"System.Data.SqlClient.SqlDataReader.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> returns the length of the entire field in bytes, not the remaining size based on the buffer offset parameter.</p>\n<p>No conversions are performed; therefore, the data retrieved must already be a byte array.</p>\n"
   syntax:
     content: public override long GetBytes(int i, long dataIndex, byte[] buffer, int bufferIndex, int length)
     content.vb: Public Overrides Function GetBytes(i As Integer, dataIndex As Long, buffer As Byte(), bufferIndex As Integer, length As Integer) As Long
@@ -640,7 +630,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a single character.</p>\n"
-  remarks: "\n<p>Not supported for <xref href=\"System.Data.SqlClient\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   syntax:
     content: public override char GetChar(int i)
     content.vb: Public Overrides Function GetChar(i As Integer) As Char
@@ -684,7 +673,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Reads a stream of characters from the specified column offset into the buffer as an array starting at the given buffer offset.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Data.SqlClient.SqlDataReader.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> returns the number of available characters in the field. Frequently this is the exact length of the field. However, the number returned may be less than the true length of the field if <strong>GetChars</strong> has already been used to obtain characters from the field. This may be the case, for example, if the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> is reading a large data structure into a buffer. For more information, see the <strong>SequentialAccess</strong> setting for <xref href=\"System.Data.CommandBehavior\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The actual number of characters read can be less than the requested length, if the end of the field is reached. If you pass a buffer that is <strong>null</strong>, <xref href=\"System.Data.SqlClient.SqlDataReader.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> returns the length of the entire field in characters, not the remaining size based on the buffer offset parameter.</p>\n<p>No conversions are performed; therefore. the data retrieved must already be a character array.</p>\n<p>The <xref href=\"System.Data.SqlClient.SqlDataReader.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method returns 0 when <em>dataIndex</em> is negative.</p>\n"
   syntax:
     content: public override long GetChars(int i, long dataIndex, char[] buffer, int bufferIndex, int length)
     content.vb: Public Overrides Function GetChars(i As Integer, dataIndex As Long, buffer As Char(), bufferIndex As Integer, length As Integer) As Long
@@ -739,7 +727,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets a string representing the data type of the specified column.</p>\n"
-  remarks: "\n<p>Returns the name of the back-end data type.</p>\n<p>\n<strong>numeric</strong> is a synonym in SQL Server for the <strong>decimal</strong> data type. <strong>GetDataTypeName</strong> will return \"decimal\" for a column defined as either decimal or numeric.</p>\n"
   syntax:
     content: public override string GetDataTypeName(int i)
     content.vb: Public Overrides Function GetDataTypeName(i As Integer) As String
@@ -779,7 +766,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override DateTime GetDateTime(int i)
     content.vb: Public Overrides Function GetDateTime(i As Integer) As Date
@@ -823,7 +809,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Retrieves the value of the specified column as a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public virtual DateTimeOffset GetDateTimeOffset(int i)
     content.vb: Public Overridable Function GetDateTimeOffset(i As Integer) As DateTimeOffset
@@ -867,7 +852,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Decimal\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a <xref href=\"System.Decimal\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override decimal GetDecimal(int i)
     content.vb: Public Overrides Function GetDecimal(i As Integer) As Decimal
@@ -911,7 +895,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a double-precision floating point number.</p>\n"
-  remarks: "\n<p>No conversions are performed. Therefore, the data retrieved must already be a double-precision floating point number.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override double GetDouble(int i)
     content.vb: Public Overrides Function GetDouble(i As Integer) As Double
@@ -955,7 +938,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Returns an <xref href=\"System.Collections.IEnumerator\" data-throw-if-not-resolved=\"false\"></xref> that iterates through the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Although you can use this method to retrieve an explicit enumerator, in languages that support a <strong>foreach</strong> construct, it is simpler to use the looping construct directly in order to iterate through the rows in the data reader.</p>\n"
   syntax:
     content: public override IEnumerator GetEnumerator()
     content.vb: Public Overrides Function GetEnumerator As IEnumerator
@@ -1030,7 +1012,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Synchronously gets the value of the specified column as a type. <xref href=\"System.Data.SqlClient.SqlDataReader.GetFieldValueAsync``1(System.Int32,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> is the asynchronous version of this method.</p>\n"
-  remarks: "\n<p>\n<em>T</em> can be one of the following types:</p>\n<p>For more information, see SqlClient Streaming Support.</p>\n"
   syntax:
     content: public override T GetFieldValue<T>(int i)
     content.vb: Public Overrides Function GetFieldValue(Of T)(i As Integer) As T
@@ -1089,7 +1070,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Asynchronously gets the value of the specified column as a type. <xref href=\"System.Data.SqlClient.SqlDataReader.GetFieldValue``1(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> is the synchronous version of this method.</p>\n"
-  remarks: "\n<p>\n<em>T</em> can be one of the following types:</p>\n<p>For more information, see SqlClient Streaming Support.</p>\n"
   syntax:
     content: public override Task<T> GetFieldValueAsync<T>(int i, CancellationToken cancellationToken)
     content.vb: Public Overrides Function GetFieldValueAsync(Of T)(i As Integer, cancellationToken As CancellationToken) As Task(Of T)
@@ -1151,7 +1131,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a single-precision floating point number.</p>\n"
-  remarks: "\n<p>No conversions are performed. Therefore, the data retrieved must already be a single-precision floating point number.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override float GetFloat(int i)
     content.vb: Public Overrides Function GetFloat(i As Integer) As Single
@@ -1195,7 +1174,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a globally unique identifier (GUID).</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a GUID.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override Guid GetGuid(int i)
     content.vb: Public Overrides Function GetGuid(i As Integer) As Guid
@@ -1239,7 +1217,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a 16-bit signed integer.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a 16-bit signed integer.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override short GetInt16(int i)
     content.vb: Public Overrides Function GetInt16(i As Integer) As Short
@@ -1283,7 +1260,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a 32-bit signed integer.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a 32-bit signed integer.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override int GetInt32(int i)
     content.vb: Public Overrides Function GetInt32(i As Integer) As Integer
@@ -1327,7 +1303,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a 64-bit signed integer.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a 64-bit signed integer.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override long GetInt64(int i)
     content.vb: Public Overrides Function GetInt64(i As Integer) As Long
@@ -1410,7 +1385,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the column ordinal, given the name of the column.</p>\n"
-  remarks: "\n<p>\n<strong>GetOrdinal</strong> performs a case-sensitive lookup first. If it fails, a second, case-insensitive search occurs (a case-insensitive comparison is done using the database collation). Unexpected results can occur when comparisons are affected by culture-specific casing rules. For example, in Turkish, the following example yields the wrong results because the file system in Turkish does not use linguistic casing rules for the letter 'i' in \"file\". The method throws an <strong>IndexOutOfRange</strong> exception if the zero-based column ordinal is not found.</p>\n<p>\n<strong>GetOrdinal</strong> is kana-width insensitive.</p>\n<p>Because ordinal-based lookups are more efficient than named lookups, it is inefficient to call <strong>GetOrdinal</strong> within a loop. Save time by calling <strong>GetOrdinal</strong> once and assigning the results to an integer variable for use within the loop.</p>\n"
   syntax:
     content: public override int GetOrdinal(string name)
     content.vb: Public Overrides Function GetOrdinal(name As String) As Integer
@@ -1574,7 +1548,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlBinary\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore the data retrieved must already be a binary structure or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlBinary GetSqlBinary(int i)
     content.vb: Public Overridable Function GetSqlBinary(i As Integer) As SqlBinary
@@ -1614,7 +1587,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlBoolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a Boolean or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlBoolean GetSqlBoolean(int i)
     content.vb: Public Overridable Function GetSqlBoolean(i As Integer) As SqlBoolean
@@ -1654,7 +1626,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlByte\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore the data retrieved must already be a byte, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlByte GetSqlByte(int i)
     content.vb: Public Overridable Function GetSqlByte(i As Integer) As SqlByte
@@ -1772,7 +1743,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlDateTime\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a date/time value, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlDateTime GetSqlDateTime(int i)
     content.vb: Public Overridable Function GetSqlDateTime(i As Integer) As SqlDateTime
@@ -1812,7 +1782,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlDecimal\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a decimal value, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlDecimal GetSqlDecimal(int i)
     content.vb: Public Overridable Function GetSqlDecimal(i As Integer) As SqlDecimal
@@ -1852,7 +1821,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlDouble\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a double-precision floating-point number, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlDouble GetSqlDouble(int i)
     content.vb: Public Overridable Function GetSqlDouble(i As Integer) As SqlDouble
@@ -1892,7 +1860,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlGuid\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a GUID, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlGuid GetSqlGuid(int i)
     content.vb: Public Overridable Function GetSqlGuid(i As Integer) As SqlGuid
@@ -1932,7 +1899,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlInt16\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a 16-bit signed integer, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlInt16 GetSqlInt16(int i)
     content.vb: Public Overridable Function GetSqlInt16(i As Integer) As SqlInt16
@@ -1972,7 +1938,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlInt32\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore the data retrieved must already be a 32-bit signed integer, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlInt32 GetSqlInt32(int i)
     content.vb: Public Overridable Function GetSqlInt32(i As Integer) As SqlInt32
@@ -2012,7 +1977,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlInt64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a 64-bit signed integer, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlInt64 GetSqlInt64(int i)
     content.vb: Public Overridable Function GetSqlInt64(i As Integer) As SqlInt64
@@ -2052,7 +2016,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlMoney\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a decimal value, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlMoney GetSqlMoney(int i)
     content.vb: Public Overridable Function GetSqlMoney(i As Integer) As SqlMoney
@@ -2092,7 +2055,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlSingle\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a single precision floating point number, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlSingle GetSqlSingle(int i)
     content.vb: Public Overridable Function GetSqlSingle(i As Integer) As SqlSingle
@@ -2132,7 +2094,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a <xref href=\"System.Data.SqlTypes.SqlString\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a string, or an exception is generated.</p>\n"
   syntax:
     content: public virtual SqlString GetSqlString(int i)
     content.vb: Public Overridable Function GetSqlString(i As Integer) As SqlString
@@ -2172,7 +2133,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Returns the data value in the specified column as a SQL Server type. </p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Data.SqlClient.SqlDataReader.GetSqlValue(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> returns data using the native SQL Server types. To retrieve data using the .NET Framework types, see <xref href=\"System.Data.SqlClient.SqlDataReader.GetValue(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public virtual object GetSqlValue(int i)
     content.vb: Public Overridable Function GetSqlValue(i As Integer) As Object
@@ -2212,7 +2172,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Fills an array of <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> that contains the values for all the columns in the record, expressed as SQL Server types.</p>\n"
-  remarks: "\n<p>Returns the values for all the columns in the record in a single call, using the SQL type system instead of the CLR type system. The length of the <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> array does not need to match the number of columns in the record. You can pass an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> array that contains fewer than the number of columns contained in the record. Only the amount of data the <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> array holds is copied to the array, starting at the column with ordinal 0. You can also pass an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> array whose length is more than the number of columns contained in the resulting row. Any remaining columns are untouched.</p>\n"
   syntax:
     content: public virtual int GetSqlValues(object[] values)
     content.vb: Public Overridable Function GetSqlValues(values As Object()) As Integer
@@ -2259,7 +2218,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as an XML value.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be an XML value.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public virtual SqlXml GetSqlXml(int i)
     content.vb: Public Overridable Function GetSqlXml(i As Integer) As SqlXml
@@ -2309,7 +2267,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Retrieves binary, image, varbinary, UDT, and variant data types as a <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.IO.Stream.ReadTimeout\" data-throw-if-not-resolved=\"false\"></xref> defaults to the value of <xref href=\"System.Data.SqlClient.SqlCommand.CommandTimeout\" data-throw-if-not-resolved=\"false\"></xref>; but you can modify <xref href=\"System.IO.Stream.ReadTimeout\" data-throw-if-not-resolved=\"false\"></xref> via <xref href=\"System.Data.SqlClient.SqlDataReader.GetStream(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Null values will be returned as an empty (zero bytes) <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Data.SqlClient.SqlDataReader.GetBytes(System.Int32,System.Int64,System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> will raise an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> exception when used on an object returned by <xref href=\"System.Data.SqlClient.SqlDataReader.GetStream(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> when <xref href=\"System.Data.CommandBehavior.SequentialAccess\" data-throw-if-not-resolved=\"false\"></xref> is in effect.</p>\n<p>\n<xref href=\"System.Data.SqlClient.SqlException\" data-throw-if-not-resolved=\"false\"></xref> exceptions raised from <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> are thrown as <xref href=\"System.IO.IOException\" data-throw-if-not-resolved=\"false\"></xref> exceptions; check the inner exception for the <xref href=\"System.Data.SqlClient.SqlException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The following <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> members are not available for objects returned by <xref href=\"System.Data.SqlClient.SqlDataReader.GetStream(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>:</p>\n<ul><li>\n<p>BeginWrite</p>\n</li><li>\n<p>EndWrite</p>\n</li><li>\n<p>Length</p>\n</li><li>\n<p>Position</p>\n</li><li>\n<p>Seek</p>\n</li><li>\n<p>SetLength</p>\n</li><li>\n<p>Write</p>\n</li><li>\n<p>WriteByte</p>\n</li><li>\n<p>WriteTimeout</p>\n</li></ul>\n<p>When the connection property <strong>ContextConnection=true</strong>, <xref href=\"System.Data.SqlClient.SqlDataReader.GetStream(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> only supports synchronous data retrieval for both sequential (<xref href=\"System.Data.CommandBehavior.SequentialAccess\" data-throw-if-not-resolved=\"false\"></xref>) and non-sequential (<xref href=\"System.Data.CommandBehavior.Default\" data-throw-if-not-resolved=\"false\"></xref>) access.</p>\n<p>For more information, see SqlClient Streaming Support.</p>\n"
   syntax:
     content: public override Stream GetStream(int i)
     content.vb: Public Overrides Function GetStream(i As Integer) As Stream
@@ -2359,7 +2316,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column as a string.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a string.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public override string GetString(int i)
     content.vb: Public Overrides Function GetString(i As Integer) As String
@@ -2403,7 +2359,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Retrieves Char, NChar, NText, NVarChar, text, varChar, and Variant data types as a <xref href=\"System.IO.TextReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Data.SqlClient.SqlException\" data-throw-if-not-resolved=\"false\"></xref> exceptions raised from <xref href=\"System.IO.TextReader\" data-throw-if-not-resolved=\"false\"></xref> are thrown as <xref href=\"System.IO.IOException\" data-throw-if-not-resolved=\"false\"></xref> exceptions; check the inner exception for the <xref href=\"System.Data.SqlClient.SqlException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Null values will be returned as an empty (zero bytes) <xref href=\"System.IO.TextReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Data.SqlClient.SqlDataReader.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> will raise an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> exception when used on an object returned by <xref href=\"System.Data.SqlClient.SqlDataReader.GetTextReader(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> when <xref href=\"System.Data.CommandBehavior.SequentialAccess\" data-throw-if-not-resolved=\"false\"></xref> is in effect.</p>\n<p>When the connection property <strong>ContextConnection=true</strong>, <xref href=\"System.Data.SqlClient.SqlDataReader.GetTextReader(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> only supports synchronous data retrieval for both sequential (<xref href=\"System.Data.CommandBehavior.SequentialAccess\" data-throw-if-not-resolved=\"false\"></xref>) and non-sequential (<xref href=\"System.Data.CommandBehavior.Default\" data-throw-if-not-resolved=\"false\"></xref>) access.</p>\n<p>For more information, see SqlClient Streaming Support.</p>\n"
   syntax:
     content: public override TextReader GetTextReader(int i)
     content.vb: Public Overrides Function GetTextReader(i As Integer) As TextReader
@@ -2453,7 +2408,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Retrieves the value of the specified column as a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>No conversions are performed; therefore, the data retrieved must already be a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>Call <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to check for null values before calling this method.</p>\n"
   syntax:
     content: public virtual TimeSpan GetTimeSpan(int i)
     content.vb: Public Overridable Function GetTimeSpan(i As Integer) As TimeSpan
@@ -2497,7 +2451,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the value of the specified column in its native format.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Data.SqlClient.SqlDataReader.GetValue(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> returns data using the .NET Framework types.</p>\n"
   syntax:
     content: public override object GetValue(int i)
     content.vb: Public Overrides Function GetValue(i As Integer) As Object
@@ -2537,7 +2490,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Populates an array of objects with the column values of the current row.</p>\n"
-  remarks: "\n<p>For most applications, this method provides an efficient means for retrieving all columns, instead of retrieving each column individually.</p>\n<p>You can pass an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> array that contains fewer than the number of columns contained in the resulting row. Only the amount of data the <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> array holds is copied to the array. You can also pass an <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> array whose length is more than the number of columns contained in the resulting row.</p>\n<p>This method returns <xref href=\"System.DBNull\" data-throw-if-not-resolved=\"false\"></xref> for null database columns.</p>\n"
   syntax:
     content: public override int GetValues(object[] values)
     content.vb: Public Overrides Function GetValues(values As Object()) As Integer
@@ -2580,7 +2532,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Retrieves data of type XML as an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> object returned by <xref href=\"System.Data.SqlClient.SqlDataReader.GetXmlReader(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> does not support asynchronous operations. If you require asynchronous operations on an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>, cast the XML column to an NVARCHAR(MAX) on the server and use <xref href=\"System.Data.SqlClient.SqlDataReader.GetTextReader(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> with <xref href=\"System.Xml.XmlReader.Create(System.IO.Stream)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Data.SqlClient.SqlException\" data-throw-if-not-resolved=\"false\"></xref> exceptions raised from <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> are thrown as <xref href=\"System.Xml.XmlException\" data-throw-if-not-resolved=\"false\"></xref> exceptions; check the inner exception for the <xref href=\"System.Data.SqlClient.SqlException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Data.SqlClient.SqlDataReader.GetChars(System.Int32,System.Int64,System.Char[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> will raise an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> exception when used on an object returned by <xref href=\"System.Data.SqlClient.SqlDataReader.GetXmlReader(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> when <xref href=\"System.Data.CommandBehavior.SequentialAccess\" data-throw-if-not-resolved=\"false\"></xref> is in effect.</p>\n<p>For more information, see SqlClient Streaming Support.</p>\n"
   syntax:
     content: public virtual XmlReader GetXmlReader(int i)
     content.vb: Public Overridable Function GetXmlReader(i As Integer) As XmlReader
@@ -2630,7 +2581,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets a value that indicates whether the column contains non-existent or missing values.</p>\n"
-  remarks: "\n<p>Call this method to check for null column values before calling the typed get methods (for example, <xref href=\"System.Data.SqlClient.SqlDataReader.GetByte(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Data.SqlClient.SqlDataReader.GetChar(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, and so on) to avoid raising an error.</p>SqlDataReader_IsDbNull#1"
   syntax:
     content: public override bool IsDBNull(int i)
     content.vb: Public Overrides Function IsDBNull(i As Integer) As Boolean
@@ -2670,7 +2620,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>An asynchronous version of <xref href=\"System.Data.SqlClient.SqlDataReader.IsDBNull(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, which gets a value that indicates whether the column contains non-existent or missing values.</p>\n<p>The cancellation token can be used to request that the operation be abandoned before the command timeout elapses. Exceptions will be reported via the returned Task object.</p>\n"
-  remarks: "\n<p>For more information, see SqlClient Streaming Support.</p>\n"
   syntax:
     content: public override Task<bool> IsDBNullAsync(int i, CancellationToken cancellationToken)
     content.vb: Public Overrides Function IsDBNullAsync(i As Integer, cancellationToken As CancellationToken) As Task(Of Boolean)
@@ -2720,7 +2669,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Advances the data reader to the next result, when reading the results of batch Transact-SQL statements.</p>\n"
-  remarks: "\n<p>Used to process multiple results, which can be generated by executing batch Transact-SQL statements.</p>\n<p>By default, the data reader is positioned on the first result.</p>\n"
   syntax:
     content: public override bool NextResult()
     content.vb: Public Overrides Function NextResult As Boolean
@@ -2756,7 +2704,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>An asynchronous version of <xref href=\"System.Data.SqlClient.SqlDataReader.NextResult\" data-throw-if-not-resolved=\"false\"></xref>, which advances the data reader to the next result, when reading the results of batch Transact-SQL statements.</p>\n<p>The cancellation token can be used to request that the operation be abandoned before the command timeout elapses.  Exceptions will be reported via the returned Task object.</p>\n"
-  remarks: "\n<p>For more information about asynchronous programming in the .NET Framework Data Provider for SQL Server, see Asynchronous Programming.</p>\n"
   syntax:
     content: public override Task<bool> NextResultAsync(CancellationToken cancellationToken)
     content.vb: Public Overrides Function NextResultAsync(cancellationToken As CancellationToken) As Task(Of Boolean)
@@ -2803,7 +2750,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Advances the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> to the next record.</p>\n"
-  remarks: "\n<p>The default position of the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> is before the first record. Therefore, you must call <xref href=\"System.Data.SqlClient.SqlDataReader.Read\" data-throw-if-not-resolved=\"false\"></xref> to begin accessing any data.</p>\n<p>Only one <strong>SqlDataReader</strong> per associated <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> may be open at a time, and any attempt to open another will fail until the first one is closed. Similarly, while the <strong>SqlDataReader</strong> is being used, the associated <strong>SqlConnection</strong> is busy serving it until you call <xref href=\"System.Data.SqlClient.SqlDataReader.Close\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public override bool Read()
     content.vb: Public Overrides Function Read As Boolean
@@ -2843,7 +2789,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>An asynchronous version of <xref href=\"System.Data.SqlClient.SqlDataReader.Read\" data-throw-if-not-resolved=\"false\"></xref>, which advances the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> to the next record.</p>\n<p>The cancellation token can be used to request that the operation be abandoned before the command timeout elapses. Exceptions will be reported via the returned Task object.</p>\n"
-  remarks: "\n<p>If the <em>behavior</em> parameter of <xref href=\"System.Data.SqlClient.SqlCommand.ExecuteReaderAsync\" data-throw-if-not-resolved=\"false\"></xref> is set to <strong>Default</strong>, <xref href=\"System.Data.SqlClient.SqlDataReader.ReadAsync(System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> reads the entire row before returning the Task.</p>\n<p>For more information, including code samples, about asynchronous programming in the .NET Framework Data Provider for SQL Server, see Asynchronous Programming.</p>\n"
   syntax:
     content: public override Task<bool> ReadAsync(CancellationToken cancellationToken)
     content.vb: Public Overrides Function ReadAsync(cancellationToken As CancellationToken) As Task(Of Boolean)

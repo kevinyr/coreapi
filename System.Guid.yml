@@ -45,7 +45,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Represents a globally unique identifier (GUID).</p>\n<p>To browse the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/guid.cs#b622ef5f6b76c10a\">Reference Source</see>.</p>\n"
-  remarks: "\n<p>To view the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/guid.cs#b622ef5f6b76c10a\">Reference Source</see>. You can browse through the source code online, download the reference for offline viewing, and step through the sources (including patches and updates) during debugging; see <see href=\"http://referencesource.microsoft.com/\">instructions</see>.</p>\n<p>A GUID is a 128-bit integer (16 bytes) that can be used across all computers and networks wherever a unique identifier is required. Such an identifier has a very low probability of being duplicated.</p>\n"
   syntax:
     content: >-
       [StructLayout(LayoutKind.Sequential)]
@@ -112,7 +111,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>A read-only instance of the <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> structure whose value is all zeros.</p>\n"
-  remarks: "\n<p>You can compare a GUID with the value of the <xref href=\"System.Guid.Empty\" data-throw-if-not-resolved=\"false\"></xref> field to determine whether a GUID is non-zero. The following example uses the <xref href=\"System.Guid.op_Equality(System.Guid,System.Guid)\" data-throw-if-not-resolved=\"false\"></xref> operator to compare two GUID values with <xref href=\"System.Guid.Empty\" data-throw-if-not-resolved=\"false\"></xref> to determine whether they consist exclusively of zeros.</p>System.Guid.Empty#1"
   syntax:
     content: public static readonly Guid Empty
     content.vb: Public Shared ReadOnly Empty As Guid
@@ -193,7 +191,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> structure by using the specified integers and bytes.</p>\n"
-  remarks: "\n<p>Specifying individual bytes in this manner can be used to circumvent byte order restrictions (big-endian or little-endian byte order) on particular types of computers.</p>\n"
   syntax:
     content: public Guid(int a, short b, short c, byte d, byte e, byte f, byte g, byte h, byte i, byte j, byte k)
     content.vb: Public Sub New(a As Integer, b As Short, c As Short, d As Byte, e As Byte, f As Byte, g As Byte, h As Byte, i As Byte, j As Byte, k As Byte)
@@ -311,7 +308,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> structure by using the value represented by the specified string.</p>\n"
-  remarks: "\n<p>The alphabetic hexadecimal digits in the <em>g</em> parameter can be uppercase or lowercase. For example, the following strings represent the same GUID:</p>\n<p>\"ca761232ed4211cebacd00aa0057b223\" </p>\n<p>\"CA761232-ED42-11CE-BACD-00AA0057B223\" </p>\n<p>\"{CA761232-ED42-11CE-BACD-00AA0057B223}\" </p>\n<p>\"(CA761232-ED42-11CE-BACD-00AA0057B223)\" </p>\n<p>\"{0xCA761232, 0xED42, 0x11CE, {0xBA, 0xCD, 0x00, 0xAA, 0x00, 0x57, 0xB2, 0x23}}\" </p>\n"
   syntax:
     content: public Guid(string g)
     content.vb: Public Sub New(g As String)
@@ -356,7 +352,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> structure by using the specified unsigned integers and bytes.</p>\n"
-  remarks: "\n<p>Specifying the bytes in this manner avoids endianness issues.</p>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -433,7 +428,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Compares this instance to a specified <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> object and returns an indication of their relative values.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Guid.CompareTo(System.Guid)\" data-throw-if-not-resolved=\"false\"></xref> method compares the GUIDs as if they were values provided to the <xref href=\"System.Guid.#ctor(System.Int32,System.Int16,System.Int16,System.Byte[])\" data-throw-if-not-resolved=\"false\"></xref> constructor, as follows: </p>\n<ul><li>\n<p>It compares the <xref href=\"System.UInt32\" data-throw-if-not-resolved=\"false\"></xref> values, and returns a result if they are unequal. If they are equal, it performs the next comparison. </p>\n</li><li>\n<p>It compares the first <xref href=\"System.UInt16\" data-throw-if-not-resolved=\"false\"></xref> values, and returns a result if they are unequal. If they are equal, it performs the next comparison. </p>\n</li><li>\n<p>It compares the second <xref href=\"System.UInt16\" data-throw-if-not-resolved=\"false\"></xref> values, and returns a result if they are unequal. If they are equal, it performs the next comparison. </p>\n</li><li>\n<p>If performs a byte-by-byte comparison of the next eight <xref href=\"System.Byte\" data-throw-if-not-resolved=\"false\"></xref> values. When it encounters the first unequal pair, it returns the result. Otherwise, it returns 0 to indicate that the two <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> values are equal. </p>\n</li></ul>\n<p>Note that the final eight bytes appear in the string representation of a <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> in reverse order, from low byte to high byte. For example, in the string representation of the <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> value \"01e75c83-c6f5-4192-b57e-7427cec5560d\", the final eight bytes are \"b57e-7427cec5560d.\" In other words, the final eight bytes are compared on a byte-by-byte basis from left to right starting with 0xb5.</p>\n<p>If two GUIDs have equal values for a component, the method compares the next component. When it finds a component whose values are unequal, it returns the result.</p>\n<p>This method implements the <xref href=\"System.IComparable`1\" data-throw-if-not-resolved=\"false\"></xref> interface and performs slightly better than the <xref href=\"System.Guid.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method because it does not have to convert the <em>value</em> parameter to a <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> value.</p>\n"
   syntax:
     content: public int CompareTo(Guid value)
     content.vb: Public Function CompareTo(value As Guid) As Integer
@@ -473,7 +467,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns a value indicating whether this instance and a specified <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> object represent the same value.</p>\n"
-  remarks: "\n<p>Two <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> objects are equal if they have identical byte values. </p>\n<p>This method performs slightly better than the <xref href=\"System.Guid.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method because it does not have to box the <em>g</em> parameter.</p>\n"
   syntax:
     content: public bool Equals(Guid g)
     content.vb: Public Function Equals(g As Guid) As Boolean
@@ -518,7 +511,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns a value that indicates whether this instance is equal to a specified object.</p>\n"
-  remarks: "\n<p>Two <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> objects are equal if they have identical byte values. </p>\n"
   syntax:
     content: public override bool Equals(object o)
     content.vb: Public Overrides Function Equals(o As Object) As Boolean
@@ -601,7 +593,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> structure.</p>\n"
-  remarks: "\n<p>This is a convenient <strong>static</strong> method that you can call to get a new <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref>. The method wraps a call to the Windows <see href=\"http://msdn.microsoft.com/library/windows/desktop/ms688568.aspx\">CoCreateGuid</see> function. The returned <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> is guaranteed to not equal <xref href=\"System.Guid.Empty\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -727,7 +718,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Converts the string representation of a GUID to the equivalent <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> structure.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Guid.Parse(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method trims any leading or trailing white space from <em>input</em> and converts the string representation of a GUID to a <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> value. This method can convert strings in any of the five formats produced by the <xref href=\"System.Guid.ToString(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Guid.ToString(System.String,System.IFormatProvider)\" data-throw-if-not-resolved=\"false\"></xref> methods, as shown in the following table. </p>\n<p>Specifier </p>\n<p>Description</p>\n<p>Format</p>\n<p>The method throws a <xref href=\"System.FormatException\" data-throw-if-not-resolved=\"false\"></xref> if it is unable to successfully parse the string. Here are some of the reasons why this might occur include: </p>\n<ul><li>\n<p>\n<em>input</em> contains characters that are not part of the hexadecimal character set. </p>\n</li><li>\n<p>\n<em>input</em> has too many or too few numeric characters. </p>\n</li><li>\n<p>\n<em>input</em> has too many or too few of the non-numeric characters appropriate for a particular format. </p>\n</li><li>\n<p>\n<em>input</em> is not in one of the formats recognized by the <xref href=\"System.Guid.ToString\" data-throw-if-not-resolved=\"false\"></xref> method and listed in the previous table. </p>\n</li></ul>\n<p>Use the <xref href=\"System.Guid.TryParse(System.String,System.Guid@)\" data-throw-if-not-resolved=\"false\"></xref> method to catch any unsuccessful parse operations without having to handle an exception. </p>\n"
   syntax:
     content: public static Guid Parse(string input)
     content.vb: Public Shared Function Parse(input As String) As Guid
@@ -779,7 +769,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Converts the string representation of a GUID to the equivalent <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> structure, provided that the string is in the specified format.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Guid.ParseExact(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method requires the string to convert to be exactly in the format specified by the <em>format</em> parameter, after leading and trailing white-space characters are removed. The following table shows the accepted format specifiers for the <em>format</em> parameter. \"0\" represents a digit; hyphens (\"-\"), braces (\"{\", \"}\"), and parentheses (\"(\", \")\") appear as shown.</p>\n<p>Specifier </p>\n<p>Format of the <em>input</em> parameter </p>\n<table><tbody><tr><td>\n<p>N </p>\n</td><td>\n<p>32 digits: </p>\n<p>00000000000000000000000000000000 </p>\n</td></tr><tr><td>\n<p>D </p>\n</td><td>\n<p>32 digits separated by hyphens: </p>\n<p>00000000-0000-0000-0000-000000000000 </p>\n</td></tr><tr><td>\n<p>B </p>\n</td><td>\n<p>32 digits separated by hyphens, enclosed in braces: </p>\n<p>{00000000-0000-0000-0000-000000000000} </p>\n</td></tr><tr><td>\n<p>P </p>\n</td><td>\n<p>32 digits separated by hyphens, enclosed in parentheses: </p>\n<p>(00000000-0000-0000-0000-000000000000) </p>\n</td></tr><tr><td>\n<p>X</p>\n</td><td>\n<p>Four hexadecimal values enclosed in braces, where the fourth value is a subset of eight hexadecimal values that is also enclosed in braces:</p>\n<p>{0x00000000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}</p>\n</td></tr></tbody></table>\n"
   syntax:
     content: public static Guid ParseExact(string input, string format)
     content.vb: Public Shared Function ParseExact(input As String, format As String) As Guid
@@ -904,7 +893,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns a 16-element byte array that contains the value of this instance.</p>\n"
-  remarks: "\n<p>You can use the byte array returned by this method to round-trip a <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> value by calling the <xref href=\"System.Guid.#ctor(System.Byte[])\" data-throw-if-not-resolved=\"false\"></xref> constructor. </p>\n<p>Note that the order of bytes in the returned byte array is different from the string representation of a <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> value. The order of the beginning four-byte group and the next two two-byte groups is reversed, whereas the order of the last two-byte group and the closing six-byte group is the same. The example provides an illustration. </p>\n"
   syntax:
     content: public byte[] ToByteArray()
     content.vb: Public Function ToByteArray As Byte()
@@ -938,7 +926,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns a string representation of the value of this instance in registry format.</p>\n"
-  remarks: "\n<p>This method provides a default GUID format that is sufficient for typical use; however, other versions of this method that take a <em>format</em> parameter provide a few common format variations.</p>\n"
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
@@ -975,7 +962,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns a string representation of the value of this <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> instance, according to the provided format specifier.</p>\n"
-  remarks: "\n<p>The following table shows the accepted format specifiers for the <em>format</em> parameter. \"0\" represents a digit; hyphens (\"-\"), braces (\"{\", \"}\"), and parentheses (\"(\", \")\") appear as shown.</p>\n<p>Specifier </p>\n<p>Format of return value </p>\n<table><tbody><tr><td>\n<p>\n<strong>N</strong>\n</p>\n</td><td>\n<p>32 digits: </p>\n<p>00000000000000000000000000000000 </p>\n</td></tr><tr><td>\n<p>\n<strong>D</strong>\n</p>\n</td><td>\n<p>32 digits separated by hyphens: </p>\n<p>00000000-0000-0000-0000-000000000000 </p>\n</td></tr><tr><td>\n<p>\n<strong>B</strong>\n</p>\n</td><td>\n<p>32 digits separated by hyphens, enclosed in braces: </p>\n<p>{00000000-0000-0000-0000-000000000000} </p>\n</td></tr><tr><td>\n<p>\n<strong>P</strong>\n</p>\n</td><td>\n<p>32 digits separated by hyphens, enclosed in parentheses: </p>\n<p>(00000000-0000-0000-0000-000000000000) </p>\n</td></tr><tr><td>\n<p>\n<strong>X</strong>\n</p>\n</td><td>\n<p>Four hexadecimal values enclosed in braces, where the fourth value is a subset of eight hexadecimal values that is also enclosed in braces:</p>\n<p>{0x00000000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}</p>\n</td></tr></tbody></table>\n<p>The hexadecimal digits a through f are lowercase in the returned string. To convert them to uppercase, call the <xref href=\"System.String.ToUpper\" data-throw-if-not-resolved=\"false\"></xref> method on the returned string. </p>\n"
   syntax:
     content: public string ToString(string format)
     content.vb: Public Function ToString(format As String) As String
@@ -1017,7 +1003,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Converts the string representation of a GUID to the equivalent <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> structure. </p>\n"
-  remarks: "\n<p>This method is like the <xref href=\"System.Guid.Parse(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method, except that instead of returning the parsed GUID, it returns <strong>false</strong> if <em>input</em> is <strong>null</strong> or not in a recognized format, and doesn't throw an exception. It trims any leading or trailing white space from <em>input</em> and converts strings in any of the five formats recognized by the <xref href=\"System.Guid.ToString(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Guid.ToString(System.String,System.IFormatProvider)\" data-throw-if-not-resolved=\"false\"></xref>methods, as shown in the following table. </p>\n<p>Specifier </p>\n<p>Description</p>\n<p>Format</p>\n"
   syntax:
     content: public static bool TryParse(string input, out Guid result)
     content.vb: Public Shared Function TryParse(input As String, ByRef result As Guid) As Boolean
@@ -1066,7 +1051,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Converts the string representation of a GUID to the equivalent <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref> structure, provided that the string is in the specified format.</p>\n"
-  remarks: "\n<p>This method requires the string to convert to be exactly in the format specified by the <em>format</em> parameter, after leading and trailing white-space characters are removed. It returns <strong>false</strong> if <em>input</em> is <strong>null</strong> or is not in the format specified by <em>format</em>, and doesn't throw an exception.</p>\n<p>The following table shows the accepted format specifiers for the <em>format</em> parameter. \"0\" represents a digit; hyphens (\"-\"), braces (\"{\", \"}\"), and parentheses (\"(\", \")\") appear as shown.</p>\n<p>Specifier </p>\n<p>Format of the <em>input</em> parameter </p>\n<table><tbody><tr><td>\n<p>N </p>\n</td><td>\n<p>32 digits: </p>\n<p>00000000000000000000000000000000 </p>\n</td></tr><tr><td>\n<p>D </p>\n</td><td>\n<p>32 digits separated by hyphens: </p>\n<p>00000000-0000-0000-0000-000000000000 </p>\n</td></tr><tr><td>\n<p>B </p>\n</td><td>\n<p>32 digits separated by hyphens, enclosed in braces: </p>\n<p>{00000000-0000-0000-0000-000000000000} </p>\n</td></tr><tr><td>\n<p>P </p>\n</td><td>\n<p>32 digits separated by hyphens, enclosed in parentheses: </p>\n<p>(00000000-0000-0000-0000-000000000000) </p>\n</td></tr><tr><td>\n<p>X</p>\n</td><td>\n<p>Four hexadecimal values enclosed in braces, where the fourth value is a subset of eight hexadecimal values that is also enclosed in braces:</p>\n<p>{0x00000000,0x0000,0x0000,{0x00,0x00,0x00,0x00,0x00,0x00,0x00,0x00}}</p>\n</td></tr></tbody></table>\n"
   syntax:
     content: public static bool TryParseExact(string input, string format, out Guid result)
     content.vb: Public Shared Function TryParseExact(input As String, format As String, ByRef result As Guid) As Boolean

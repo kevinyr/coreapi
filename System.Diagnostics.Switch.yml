@@ -31,7 +31,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Provides an abstract base class to create new debugging and tracing switches.</p>\n"
-  remarks: "\n<p>A switch provides an efficient mechanism for controlling tracing and debugging output at run time using external settings. The <xref href=\"System.Diagnostics.Switch\" data-throw-if-not-resolved=\"false\"></xref> class implements default behavior for switches, allowing you to change the switch level at run time.</p>\n<p>This class is the base class for the <xref href=\"System.Diagnostics.BooleanSwitch\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Diagnostics.SourceSwitch\" data-throw-if-not-resolved=\"false\"></xref> and the <xref href=\"System.Diagnostics.TraceSwitch\" data-throw-if-not-resolved=\"false\"></xref> classes. These switches meet most debugging and tracing needs. For more information about trace switches, see Trace Switches.</p>\n<p>You must enable tracing or debugging to use a switch. The following syntax is compiler specific. If you use compilers other than C# or Visual Basic, refer to the documentation for your compiler.</p>\n<ul><li>\n<p>To enable debugging in C#, add the <strong>/d:DEBUG</strong> flag to the compiler command line when you compile your code, or you can add <strong>#define DEBUG</strong> to the top of your file. In Visual Basic, add the <strong>/d:DEBUG=True</strong> flag to the compiler command line.</p>\n</li><li>\n<p>To enable tracing using in C#, add the <strong>/d:TRACE</strong> flag to the compiler command line when you compile your code, or add <strong>#define TRACE</strong> to the top of your file. In Visual Basic, add the <strong>/d:TRACE=True</strong> flag to the compiler command line.</p>\n</li></ul>\n<p>To set the level of your switch, edit the configuration file that corresponds to the name of your application. Within this file, you can add a switch and set its value, remove a switch, or clear all the switches previously set by the application. The configuration file should be formatted like the following example: </p>\n<pre><code><configuration>\n<system.diagnostics>\n<switches>\n<add name=\"mySwitch\" value=\"true\" />\n</switches>\n</system.diagnostics>\n</configuration></code></pre>\n<p> This example configuration section defines a <xref href=\"System.Diagnostics.BooleanSwitch\" data-throw-if-not-resolved=\"false\"></xref> with the <xref href=\"System.Diagnostics.Switch.DisplayName\" data-throw-if-not-resolved=\"false\"></xref> property set to <code>mySwitch</code> and the <xref href=\"System.Diagnostics.BooleanSwitch.Enabled\" data-throw-if-not-resolved=\"false\"></xref> value set to <strong>true</strong>. Within your application, you can use the configured switch value by creating a <xref href=\"System.Diagnostics.BooleanSwitch\" data-throw-if-not-resolved=\"false\"></xref> with the same name, as shown in the following code example.</p>Classic Switch Example#4"
   syntax:
     content: public abstract class Switch
     content.vb: Public MustInherit Class Switch
@@ -85,7 +84,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Diagnostics.Switch\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  remarks: "\n<p>When you create a new <xref href=\"System.Diagnostics.Switch\" data-throw-if-not-resolved=\"false\"></xref> object, the value of the <em>displayName</em> parameter is used to find initial switch settings. The default value is an empty string (\"\").</p>\n<p>Within the XML configuration file, you can add a switch and set its value, remove a switch, or clear all the switches previously set by the application. Dynamic changes to the configuration file are not detected while the application is executing. You must stop and restart an application before changes to the configuration file take effect. The configuration file should be formatted like the following example: </p>\n<pre><code><configuration>\n<system.diagnostics>\n<switches>\n<add name=\"mySwitch\" value=\"10\" />\n<add name=\"myNewSwitch\" value=\"20\" />\n<remove name=\"mySwitch\" />\n<clear/>\n</switches>\n</system.diagnostics>\n</configuration></code></pre>\n"
   syntax:
     content: protected Switch(string displayName, string description)
     content.vb: Protected Sub New(displayName As String, description As String)
@@ -136,7 +134,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Diagnostics.Switch\" data-throw-if-not-resolved=\"false\"></xref> class, specifying the display name, description, and default value for the switch. </p>\n"
-  remarks: "\n<p>The <em>displayName</em> parameter is used to set the value of the <xref href=\"System.Diagnostics.Switch.DisplayName\" data-throw-if-not-resolved=\"false\"></xref> property, and the <em>description</em> parameter is use to set the value of the <xref href=\"System.Diagnostics.Switch.Description\" data-throw-if-not-resolved=\"false\"></xref> property. The <em>defaultSwitchValue</em> parameter is the value for the switch if the <xref href=\"System.Diagnostics.Switch.Value\" data-throw-if-not-resolved=\"false\"></xref> property is not set by code or by the configuration file attribute. See the <xref href=\"System.Diagnostics.Switch.#ctor(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> overload for additional information.</p>\n"
   syntax:
     content: protected Switch(string displayName, string description, string defaultSwitchValue)
     content.vb: Protected Sub New(displayName As String, description As String, defaultSwitchValue As String)
@@ -177,7 +174,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Gets a description of the switch.</p>\n"
-  remarks: "\n<p>This property should indicate the function of the switch; for example, \"Enables tracing for a directory watcher component.\" The value is set by the <em>descriptor</em> parameter in the <xref href=\"System.Diagnostics.Switch.#ctor(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> constructor.</p>\n"
   syntax:
     content: public string Description { get; }
     content.vb: Public ReadOnly Property Description As String
@@ -225,7 +221,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Gets a name used to identify the switch.</p>\n"
-  remarks: "\n<p>When you create a new <xref href=\"System.Diagnostics.Switch\" data-throw-if-not-resolved=\"false\"></xref> object, the <xref href=\"System.Diagnostics.Switch.DisplayName\" data-throw-if-not-resolved=\"false\"></xref> finds initial switch settings. For more information, see the <xref href=\"System.Diagnostics.Switch.#ctor(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> constructor and How to: Create, Initialize and Configure Trace Switches in the Visual Studio documentation.</p>\n"
   syntax:
     content: public string DisplayName { get; }
     content.vb: Public ReadOnly Property DisplayName As String
@@ -328,7 +323,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Gets or sets the value of the switch.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Diagnostics.Switch.OnValueChanged\" data-throw-if-not-resolved=\"false\"></xref> method is called when the value of the <xref href=\"System.Diagnostics.Switch.Value\" data-throw-if-not-resolved=\"false\"></xref> property is changed. The <xref href=\"System.Diagnostics.Switch.OnValueChanged\" data-throw-if-not-resolved=\"false\"></xref> method parses the value of this property and converts it to an integer value, which is then used to set the <xref href=\"System.Diagnostics.Switch.SwitchSetting\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: protected string Value { get; set; }
     content.vb: Protected Property Value As String
@@ -369,7 +363,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Invoked when the <xref href=\"System.Diagnostics.Switch.SwitchSetting\" data-throw-if-not-resolved=\"false\"></xref> property is changed.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Diagnostics.Switch.OnSwitchSettingChanged\" data-throw-if-not-resolved=\"false\"></xref> is invoked the first time a switch reads the <xref href=\"System.Diagnostics.Switch.SwitchSetting\" data-throw-if-not-resolved=\"false\"></xref> value from the configuration file and is invoked again each time the switch's value is changed.</p>\n"
   syntax:
     content: protected virtual void OnSwitchSettingChanged()
     content.vb: Protected Overridable Sub OnSwitchSettingChanged
@@ -402,7 +395,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Invoked when the <xref href=\"System.Diagnostics.Switch.Value\" data-throw-if-not-resolved=\"false\"></xref> property is changed.</p>\n"
-  remarks: "\n<p>The default implementation parses the new value of the <xref href=\"System.Diagnostics.Switch.Value\" data-throw-if-not-resolved=\"false\"></xref> property to an integer value which it uses to set the <xref href=\"System.Diagnostics.Switch.SwitchSetting\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: protected virtual void OnValueChanged()
     content.vb: Protected Overridable Sub OnValueChanged

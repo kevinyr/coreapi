@@ -48,31 +48,42 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SortedList
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+    path: src/mscorlib/src/System/Collections/SortedList.cs
     startLine: 60
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Represents a collection of key/value pairs that are sorted by the keys and are accessible by key and by index.</p>\n"
-  remarks: "\n<p>For the generic version of this collection, see <xref href=\"System.Collections.Generic.SortedList`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>A <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> element can be accessed by its key, like an element in any <xref href=\"System.Collections.IDictionary\" data-throw-if-not-resolved=\"false\"></xref> implementation, or by its index, like an element in any <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> implementation.</p>\n<p>A <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object internally maintains two arrays to store the elements of the list; that is, one array for the keys and another array for the associated values. Each element is a key/value pair that can be accessed as a <xref href=\"System.Collections.DictionaryEntry\" data-throw-if-not-resolved=\"false\"></xref> object. A key cannot be <strong>null</strong>, but a value can be.</p>\n<p>The capacity of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is the number of elements the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> can hold. As elements are added to a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, the capacity is automatically increased as required through reallocation. The capacity can be decreased by calling <xref href=\"System.Collections.SortedList.TrimToSize\" data-throw-if-not-resolved=\"false\"></xref> or by setting the <xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> property explicitly.</p>\n<p>For very large <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> objects, you can increase the maximum capacity to 2 billion elements on a 64-bit system by setting the <strong>enabled</strong> attribute of the  configuration element to <strong>true</strong> in the run-time environment.</p>\n<p>The elements of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object are sorted by the keys either according to a specific <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> implementation specified when the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> is created or according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation provided by the keys themselves. In either case, a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> does not allow duplicate keys.</p>\n<p>The index sequence is based on the sort sequence. When an element is added, it is inserted into <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> in the correct sort order, and the indexing adjusts accordingly. When an element is removed, the indexing also adjusts accordingly. Therefore, the index of a specific key/value pair might change as elements are added or removed from the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>Operations on a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object tend to be slower than operations on a <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object because of the sorting. However, the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> offers more flexibility by allowing access to the values either through the associated keys or through the indexes.</p>\n<p>Elements in this collection can be accessed using an integer index.  Indexes in this collection are zero-based.</p>\n<p>The <strong>foreach</strong> statement of the C# language (<strong>for each</strong> in Visual Basic) returns an object of the type of the elements in the collection. Since each element of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is a key/value pair, the element type is not the type of the key or the type of the value. Rather, the element type is <xref href=\"System.Collections.DictionaryEntry\" data-throw-if-not-resolved=\"false\"></xref>. For example: </p>Classic SortedList Example#2<p>The <strong>foreach</strong> statement is a wrapper around the enumerator, which allows only reading from, not writing to, the collection.</p>"
   syntax:
     content: >-
       [DebuggerTypeProxy(typeof (SortedList.SortedListDebugView))]
 
       [DebuggerDisplay("Count = {Count}")]
 
-      public class SortedList : IDictionary, ICollection, IEnumerable
+      [ComVisible(true)]
+
+      [Obsolete("Non-generic collections have been deprecated. Please use collections in System.Collections.Generic.")]
+
+      [Serializable]
+
+      public class SortedList : IDictionary, ICollection, IEnumerable, ICloneable
     content.vb: >-
       <DebuggerTypeProxy(GetType(SortedList.SortedListDebugView))>
 
       <DebuggerDisplay("Count = {Count}")>
 
+      <ComVisible(True)>
+
+      <Obsolete("Non-generic collections have been deprecated. Please use collections in System.Collections.Generic.")>
+
+      <Serializable>
+
       Public Class SortedList
-          Implements IDictionary, ICollection, IEnumerable
+          Implements IDictionary, ICollection, IEnumerable, ICloneable
   seealso:
   - type: System.IComparable
     commentId: T:System.IComparable
@@ -122,17 +133,16 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 84
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 89
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the default initial capacity, and is sorted according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> interface implemented by each key added to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>Each key must implement the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> interface to be capable of comparisons with every other key in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object. The elements are sorted according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation of each key added to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The capacity of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is the number of elements that the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> can hold. As elements are added to a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, the capacity is automatically increased as required by reallocating the internal array.</p>\n<p>If the size of the collection can be estimated, specifying the initial capacity eliminates the need to perform a number of resizing operations while adding elements to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This constructor is an O(1) operation.</p>\n"
   syntax:
     content: public SortedList()
     content.vb: Public Sub New
@@ -158,17 +168,16 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 124
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 126
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the default initial capacity, and is sorted according to the specified <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
-  remarks: "\n<p>The elements are sorted according to the specified <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> implementation. If the <em>comparer</em> parameter is <strong>null</strong>, the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation of each key is used; therefore, each key must implement the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> interface to be capable of comparisons with every other key in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>The capacity of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is the number of elements that the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> can hold. As elements are added to a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, the capacity is automatically increased as required by reallocating the internal array.</p>\n<p>If the size of the collection can be estimated, specifying the initial capacity eliminates the need to perform a number of resizing operations while adding elements to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This constructor is an O(1) operation.</p>\n"
   syntax:
     content: public SortedList(IComparer comparer)
     content.vb: Public Sub New(comparer As IComparer)
@@ -200,17 +209,16 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 139
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 140
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the specified initial capacity, and is sorted according to the specified <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
-  remarks: "\n<p>The elements are sorted according to the specified <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> implementation. If the <em>comparer</em> parameter is <strong>null</strong>, the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation of each key is used; therefore, each key must implement the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> interface to be capable of comparisons with every other key in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>The capacity of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is the number of elements that the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> can hold. As elements are added to a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, the capacity is automatically increased as required by reallocating the internal array.</p>\n<p>If the size of the collection can be estimated, specifying the initial capacity eliminates the need to perform a number of resizing operations while adding elements to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This constructor is an O(<em>n</em>) operation, where <em>n</em> is <em>capacity</em>.</p>\n"
   syntax:
     content: public SortedList(IComparer comparer, int capacity)
     content.vb: Public Sub New(comparer As IComparer, capacity As Integer)
@@ -252,17 +260,16 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+    path: src/mscorlib/src/System/Collections/SortedList.cs
     startLine: 151
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> class that contains elements copied from the specified dictionary, has the same initial capacity as the number of elements copied, and is sorted according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> interface implemented by each key.</p>\n"
-  remarks: "\n<p>Each key must implement the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> interface to be capable of comparisons with every other key in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object. The elements are sorted according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation of each key added to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>A <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object is an example of an <xref href=\"System.Collections.IDictionary\" data-throw-if-not-resolved=\"false\"></xref> implementation that can be passed to this constructor. The new <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object contains a copy of the keys and values stored in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The capacity of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is the number of elements that the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> can hold. As elements are added to a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, the capacity is automatically increased as required by reallocating the internal array.</p>\n<p>If the size of the collection can be estimated, specifying the initial capacity eliminates the need to perform a number of resizing operations while adding elements to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This constructor is an O(<em>n</em>) operation, where <em>n</em> is the number of elements in <em>d</em>.</p>\n"
   syntax:
     content: public SortedList(IDictionary d)
     content.vb: Public Sub New(d As IDictionary)
@@ -303,17 +310,16 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 164
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 163
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> class that contains elements copied from the specified dictionary, has the same initial capacity as the number of elements copied, and is sorted according to the specified <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
-  remarks: "\n<p>The elements are sorted according to the specified <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> implementation. If the <em>comparer</em> parameter is <strong>null</strong>, the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation of each key is used; therefore, each key must implement the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> interface to be capable of comparisons with every other key in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>A <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref> object is an example of an <xref href=\"System.Collections.IDictionary\" data-throw-if-not-resolved=\"false\"></xref> implementation that can be passed to this constructor. The new <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object contains a copy of the keys and values stored in the <xref href=\"System.Collections.Hashtable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The capacity of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is the number of elements that the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> can hold. As elements are added to a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, the capacity is automatically increased as required by reallocating the internal array.</p>\n<p>If the size of the collection can be estimated, specifying the initial capacity eliminates the need to perform a number of resizing operations while adding elements to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This constructor is an O(<em>n</em>) operation, where <em>n</em> is the number of elements in <em>d</em>.</p>\n"
   syntax:
     content: public SortedList(IDictionary d, IComparer comparer)
     content.vb: Public Sub New(d As IDictionary, comparer As IComparer)
@@ -359,17 +365,16 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 104
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 107
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> class that is empty, has the specified initial capacity, and is sorted according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> interface implemented by each key added to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>Each key must implement the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> interface to be capable of comparisons with every other key in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object. The elements are sorted according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation of each key added to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The capacity of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is the number of elements that the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> can hold. As elements are added to a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, the capacity is automatically increased as required by reallocating the internal array.</p>\n<p>If the size of the collection can be estimated, specifying the initial capacity eliminates the need to perform a number of resizing operations while adding elements to the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This constructor is an O(<em>n</em>) operation, where <em>n</em> is <em>initialCapacity</em>.</p>\n"
   syntax:
     content: public SortedList(int initialCapacity)
     content.vb: Public Sub New(initialCapacity As Integer)
@@ -406,17 +411,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Capacity
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 202
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 192
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets or sets the capacity of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements that the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object can store. <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements that are actually in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is always greater than or equal to <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>. If <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref> exceeds <xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> while adding elements, the capacity is automatically increased by reallocating the internal array before copying the old elements and adding the new elements.</p>\n<p>The capacity can be decreased by calling <xref href=\"System.Collections.SortedList.TrimToSize\" data-throw-if-not-resolved=\"false\"></xref> or by setting the <xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> property explicitly. When the value of <xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is set explicitly, the internal array is also reallocated to accommodate the specified capacity.</p>\n<p>Retrieving the value of this property is an O(1) operation; setting the property is an O(<em>n</em>) operation, where <em>n</em> is the new capacity.</p>\n"
   syntax:
     content: public virtual int Capacity { get; set; }
     content.vb: Public Overridable Property Capacity As Integer
@@ -455,17 +459,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Count
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 243
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 225
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets the number of elements contained in a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>Each element is a key/value pair that can be accessed as a <xref href=\"System.Collections.DictionaryEntry\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>\n<xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements that the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object can store. <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref> is the number of elements that are actually in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> is always greater than or equal to <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>. If <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref> exceeds <xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> while adding elements, the capacity is automatically increased by reallocating the internal array before copying the old elements and adding the new elements.</p>\n<p>Retrieving the value of this property is an O(1) operation.</p>\n"
   syntax:
     content: public virtual int Count { get; }
     content.vb: Public Overridable ReadOnly Property Count As Integer
@@ -499,17 +502,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IsFixedSize
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 281
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 256
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets a value indicating whether a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object has a fixed size.</p>\n"
-  remarks: "\n<p>A collection with a fixed size does not allow the addition or removal of elements after the collection is created, but does allow the modification of existing elements.</p>\n<p>A collection with a fixed size is simply a collection with a wrapper that prevents adding and removing elements; therefore, if changes are made to the underlying collection, including the addition or removal of elements, the fixed-size collection reflects those changes.</p>\n<p>Retrieving the value of this property is an O(1) operation.</p>\n"
   syntax:
     content: public virtual bool IsFixedSize { get; }
     content.vb: Public Overridable ReadOnly Property IsFixedSize As Boolean
@@ -540,17 +542,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IsReadOnly
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 276
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 252
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets a value indicating whether a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is read-only.</p>\n"
-  remarks: "\n<p>A collection that is read-only does not allow the addition, removal, or modification of elements after the collection is created.</p>\n<p>A collection that is read-only is simply a collection with a wrapper that prevents modifying the collection; therefore, if changes are made to the underlying collection, the read-only collection reflects those changes.</p>\n<p>Retrieving the value of this property is an O(1) operation.</p>\n"
   syntax:
     content: public virtual bool IsReadOnly { get; }
     content.vb: Public Overridable ReadOnly Property IsReadOnly As Boolean
@@ -581,17 +582,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IsSynchronized
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 287
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 261
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets a value indicating whether access to a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is synchronized (thread safe).</p>\n"
-  remarks: "\n<p>To guarantee the thread safety of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object, all operations must be done through the wrapper returned by the <xref href=\"System.Collections.SortedList.Synchronized(System.Collections.SortedList)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>Enumerating through a collection is intrinsically not a thread-safe procedure. Even when a collection is synchronized, other threads can still modify the collection, which causes the enumerator to throw an exception. To guarantee thread safety during enumeration, you can either lock the collection during the entire enumeration or catch the exceptions resulting from changes made by other threads.</p>\n"
   syntax:
     content: public virtual bool IsSynchronized { get; }
     content.vb: Public Overridable ReadOnly Property IsSynchronized As Boolean
@@ -627,17 +627,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: this[]
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 481
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 437
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets and sets the value associated with a specific key in a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>You can use the <xref href=\"System.Collections.SortedList.Item(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> property to access a specific element in a collection by specifying the following syntax: <code>myCollection[key]</code>.</p>\n<p>You can also use this property to add new elements by setting the value of a key that does not exist in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object (for example, <code>myCollection[\"myNonexistentKey\"] = myValue)</code>. However, if the specified key already exists in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, setting the <xref href=\"System.Collections.SortedList.Item(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> property overwrites the old value. In contrast, the <xref href=\"System.Collections.SortedList.Add(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method does not modify existing elements.</p>\n<p>A key cannot be <strong>null</strong>, but a value can be. To distinguish between <strong>null</strong> that is returned because the specified key is not found and <strong>null</strong> that is returned because the value of the specified key is <strong>null</strong>, use the <xref href=\"System.Collections.SortedList.Contains(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method or the <xref href=\"System.Collections.SortedList.ContainsKey(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method to determine if the key exists in the list.</p>\n<p>The elements of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> are sorted by the keys either according to a specific <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> implementation specified when the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> is created or according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation provided by the keys themselves.</p>\n<p>The C# language uses the  keyword to define the indexers instead of implementing the <xref href=\"System.Collections.SortedList.Keys\" data-throw-if-not-resolved=\"false\"></xref>property. Visual Basic implements <xref href=\"System.Collections.SortedList.Item(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> as a default property, which provides the same indexing functionality.</p>\n<p>Retrieving the value of this property is an O(log <em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>. Setting the property is an O(log <em>n</em>) operation if the key is already in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>. If the key is not in the list, setting the property is an O(<em>n</em>) operation for unsorted data, or O(log <em>n</em>) if the new element is added at the end of the list. If insertion causes a resize, the operation is O(<em>n</em>).</p>\n"
   syntax:
     content: public virtual object this[object key] { get; set; }
     content.vb: Public Overridable Property Item(key As Object) As Object
@@ -694,17 +693,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Keys
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 255
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 235
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets the keys in a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> object is a read-only view of the keys of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object. Modifications made to the underlying <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> are immediately reflected in the <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The elements of the <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> are sorted in the same order as the keys of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This property is similar to the <xref href=\"System.Collections.SortedList.GetKeyList\" data-throw-if-not-resolved=\"false\"></xref> method, but returns an <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> object instead of an <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: public virtual ICollection Keys { get; }
     content.vb: Public Overridable ReadOnly Property Keys As ICollection
@@ -742,17 +740,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SyncRoot
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 293
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 266
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets an object that can be used to synchronize access to a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>To create a synchronized version of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object, use the <xref href=\"System.Collections.SortedList.Synchronized(System.Collections.SortedList)\" data-throw-if-not-resolved=\"false\"></xref> method. However, derived classes can provide their own synchronized version of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> using the <xref href=\"System.Collections.SortedList.SyncRoot\" data-throw-if-not-resolved=\"false\"></xref> property. The synchronizing code must perform operations on the <xref href=\"System.Collections.SortedList.SyncRoot\" data-throw-if-not-resolved=\"false\"></xref> of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, not directly on the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>. This ensures proper operation of collections that are derived from other objects. Specifically, it maintains proper synchronization with other threads that might be simultaneously modifying the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>Enumerating through a collection is intrinsically not a thread-safe procedure. Even when a collection is synchronized, other threads can still modify the collection, which causes the enumerator to throw an exception. To guarantee thread safety during enumeration, you can either lock the collection during the entire enumeration or catch the exceptions resulting from changes made by other threads.</p>\n"
   syntax:
     content: public virtual object SyncRoot { get; }
     content.vb: Public Overridable ReadOnly Property SyncRoot As Object
@@ -788,17 +785,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Values
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 267
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 245
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets the values in a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> object is a read-only view of the values of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object. Modifications made to the underlying <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> are immediately reflected in the <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The elements of the <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> are sorted in the same order as the values of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This property is similar to the <xref href=\"System.Collections.SortedList.GetValueList\" data-throw-if-not-resolved=\"false\"></xref> method, but returns an <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> object instead of an <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: public virtual ICollection Values { get; }
     content.vb: Public Overridable ReadOnly Property Values As ICollection
@@ -836,17 +832,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Add
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 186
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 177
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Adds an element with the specified key and value to a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The insertion point is determined based on the comparer selected, either explicitly or by default, when the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object was created.</p>\n<p>If <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref> already equals <xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref>, the capacity of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object is increased by automatically reallocating the internal array, and the existing elements are copied to the new array before the new element is added.</p>\n<p>You can also use the <xref href=\"System.Collections.SortedList.Item(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> property to add new elements by setting the value of a key that does not exist in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object (for example, <code>myCollection[\"myNonexistentKey\"] = myValue</code>). However, if the specified key already exists in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, setting the <xref href=\"System.Collections.SortedList.Item(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> property overwrites the old value. In contrast, the <xref href=\"System.Collections.SortedList.Add(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method does not modify existing elements.</p>\n<p>The elements of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object are sorted by the keys either according to a specific <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> implementation specified when the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> is created or according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation provided by the keys themselves.</p>\n<p>A key cannot be <strong>null</strong>, but a value can be.</p>\n<p>This method is an O(<em>n</em>) operation for unsorted data, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>. It is an O(log <em>n</em>) operation if the new element is added at the end of the list. If insertion causes a resize, the operation is O(<em>n</em>).</p>\n"
   syntax:
     content: public virtual void Add(object key, object value)
     content.vb: Public Overridable Sub Add(key As Object, value As Object)
@@ -903,17 +898,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Clear
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 306
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 276
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Removes all elements from a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref> is set to zero and references to other objects from elements of the collection are also released.</p>\n<p>\n<xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> remains unchanged. To reset the capacity of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object, call <xref href=\"System.Collections.SortedList.TrimToSize\" data-throw-if-not-resolved=\"false\"></xref> or set the <xref href=\"System.Collections.SortedList.Capacity\" data-throw-if-not-resolved=\"false\"></xref> property directly. Trimming an empty <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> sets the capacity of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> to the default capacity.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public virtual void Clear()
     content.vb: Public Overridable Sub Clear
@@ -949,17 +943,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Clone
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 318
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 288
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Creates a shallow copy of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>A shallow copy of a collection copies only the elements of the collection, whether they are reference types or value types, but does not copy the objects that the references refer to. The references in the new collection point to the same objects that the references in the original collection point to.</p>\n<p>In contrast, a deep copy of a collection copies the elements and everything directly or indirectly referenced by the elements.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public virtual object Clone()
     content.vb: Public Overridable Function Clone As Object
@@ -988,17 +981,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Contains
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 333
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 303
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Determines whether a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object contains a specific key.</p>\n"
-  remarks: "\n<p>The elements of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object are sorted by the keys either according to a specific <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> implementation specified when the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> is created or according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation provided by the keys themselves.</p>\n<p>\n<xref href=\"System.Collections.SortedList.Contains(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> implements <xref href=\"System.Collections.IDictionary.Contains(System.Object)\" data-throw-if-not-resolved=\"false\"></xref>. It behaves exactly as <xref href=\"System.Collections.SortedList.ContainsKey(System.Object)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method uses a binary search algorithm; therefore, this method is an O(log <em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Starting with the .NET Framework 2.0, this method uses the collection’s objects’ <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IComparable.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods on <em>item</em> to determine whether item exists. In the earlier versions of the .NET Framework, this determination was made by using the <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IComparable.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods of the <em>item</em> parameter on the objects in the collection.</p>\n"
   syntax:
     content: public virtual bool Contains(object key)
     content.vb: Public Overridable Function Contains(key As Object) As Boolean
@@ -1042,17 +1034,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ContainsKey
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 340
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 309
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Determines whether a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object contains a specific key.</p>\n"
-  remarks: "\n<p>The elements of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object are sorted by the keys either according to a specific <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> implementation specified when the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> is created or according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation provided by the keys themselves.</p>\n<p>This method behaves exactly as the <xref href=\"System.Collections.SortedList.Contains(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>This method uses a binary search algorithm; therefore, this method is an O(log <em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Starting with the .NET Framework 2.0, this method uses the collection’s objects’ <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IComparable.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods on <em>item</em> to determine whether item exists. In the earlier versions of the .NET Framework, this determination was made by using the <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IComparable.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods of the <em>item</em> parameter on the objects in the collection.</p>\n"
   syntax:
     content: public virtual bool ContainsKey(object key)
     content.vb: Public Overridable Function ContainsKey(key As Object) As Boolean
@@ -1096,17 +1087,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ContainsValue
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 352
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 320
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Determines whether a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object contains a specific value.</p>\n"
-  remarks: "\n<p>The values of the elements of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object are compared to the specified value using the <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>This method performs a linear search; therefore, the average execution time is proportional to <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>. That is, this method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Starting with the .NET Framework 2.0, this method uses the collection’s objects’ <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IComparable.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods on <em>item</em> to determine whether item exists. In the earlier versions of the .NET Framework, this determination was made by using the <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IComparable.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods of the <em>item</em> parameter on the objects in the collection.</p>\n"
   syntax:
     content: public virtual bool ContainsValue(object value)
     content.vb: Public Overridable Function ContainsValue(value As Object) As Boolean
@@ -1141,17 +1131,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CopyTo
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 358
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 325
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Copies <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> elements to a one-dimensional <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> object, starting at the specified index in the array.</p>\n"
-  remarks: "\n<p>The key/value pairs are copied to the <xref href=\"System.Array\" data-throw-if-not-resolved=\"false\"></xref> object in the same order in which the enumerator iterates through the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>To copy only the keys in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, use <code>SortedList.Keys.CopyTo</code>.</p>\n<p>To copy only the values in the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>, use <code>SortedList.Values.CopyTo</code>.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public virtual void CopyTo(Array array, int arrayIndex)
     content.vb: Public Overridable Sub CopyTo(array As Array, arrayIndex As Integer)
@@ -1203,17 +1192,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetByIndex
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 406
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 368
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets the value at the specified index of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The index sequence is based on the sort sequence. When an element is added, it is inserted into <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> in the correct sort order, and the indexing adjusts accordingly. When an element is removed, the indexing also adjusts accordingly. Therefore, the index of a specific key/value pair might change as elements are added or removed from the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: public virtual object GetByIndex(int index)
     content.vb: Public Overridable Function GetByIndex(index As Integer) As Object
@@ -1252,17 +1240,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetEnumerator
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 429
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 389
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Returns an <xref href=\"System.Collections.IDictionaryEnumerator\" data-throw-if-not-resolved=\"false\"></xref> object that iterates through a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The <strong>foreach</strong> statement of the C# language (<strong>for each</strong> in Visual Basic) hides the complexity of the enumerators.  Therefore, using <strong>foreach</strong> is recommended, instead of directly manipulating the enumerator.</p>\n<p>Enumerators can be used to read the data in the collection, but they cannot be used to modify the underlying collection.</p>\n<p>Initially, the enumerator is positioned before the first element in the collection. <xref href=\"System.Collections.IEnumerator.Reset\" data-throw-if-not-resolved=\"false\"></xref> also brings the enumerator back to this position.  At this position, <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> is undefined. Therefore, you must call <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> to advance the enumerator to the first element of the collection before reading the value of <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> returns the same object until either <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Collections.IEnumerator.Reset\" data-throw-if-not-resolved=\"false\"></xref> is called. <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> sets <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> to the next element.</p>\n<p>If <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> passes the end of the collection, the enumerator is positioned after the last element in the collection and <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> returns <strong>false</strong>. When the enumerator is at this position, subsequent calls to <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> also return <strong>false</strong>. If the last call to <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> returned <strong>false</strong>, <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> is undefined. To set <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> to the first element of the collection again, you can call <xref href=\"System.Collections.IEnumerator.Reset\" data-throw-if-not-resolved=\"false\"></xref> followed by <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>An enumerator remains valid as long as the collection remains unchanged. If changes are made to the collection, such as adding, modifying, or deleting elements, the enumerator is irrecoverably invalidated and its behavior is undefined.</p>\n<p>The enumerator does not have exclusive access to the collection; therefore, enumerating through a collection is intrinsically not a thread-safe procedure.  To guarantee thread safety during enumeration, you can lock the collection during the entire enumeration.  To allow the collection to be accessed by multiple threads for reading and writing, you must implement your own synchronization.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: public virtual IDictionaryEnumerator GetEnumerator()
     content.vb: Public Overridable Function GetEnumerator As IDictionaryEnumerator
@@ -1295,17 +1282,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetKey
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 436
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 395
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets the key at the specified index of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The index sequence is based on the sort sequence. When an element is added, it is inserted into <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> in the correct sort order, and the indexing adjusts accordingly. When an element is removed, the indexing also adjusts accordingly. Therefore, the index of a specific key/value pair might change as elements are added or removed from the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: public virtual object GetKey(int index)
     content.vb: Public Overridable Function GetKey(index As Integer) As Object
@@ -1339,17 +1325,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetKeyList
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 455
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 413
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets the keys in a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The returned <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> object is a read-only view of the keys of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object. Modifications made to the underlying <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> are immediately reflected in the <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The elements of the returned <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> are sorted in the same order as the keys of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method is similar to the <xref href=\"System.Collections.SortedList.Keys\" data-throw-if-not-resolved=\"false\"></xref> property, but returns an <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> object instead of an <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: public virtual IList GetKeyList()
     content.vb: Public Overridable Function GetKeyList As IList
@@ -1382,17 +1367,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetValueList
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 472
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 429
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Gets the values in a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The returned <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> object is a read-only view of the values of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object. Modifications made to the underlying <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> are immediately reflected in the <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The elements of the returned <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> are sorted in the same order as the values of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method is similar to the <xref href=\"System.Collections.SortedList.Values\" data-throw-if-not-resolved=\"false\"></xref> property, but returns an <xref href=\"System.Collections.IList\" data-throw-if-not-resolved=\"false\"></xref> object instead of an <xref href=\"System.Collections.ICollection\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: public virtual IList GetValueList()
     content.vb: Public Overridable Function GetValueList As IList
@@ -1425,17 +1409,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IndexOfKey
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 511
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 463
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Returns the zero-based index of the specified key in a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The elements of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object are sorted by the keys either according to a specific <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> implementation specified when the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> is created, or according to the <xref href=\"System.IComparable\" data-throw-if-not-resolved=\"false\"></xref> implementation provided by the keys themselves.</p>\n<p>The index sequence is based on the sort sequence. When an element is added, it is inserted into <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> in the correct sort order, and the indexing adjusts accordingly. When an element is removed, the indexing also adjusts accordingly. Therefore, the index of a specific key/value pair might change as elements are added or removed from the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method uses a binary search algorithm; therefore, this method is an O(log <em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Starting with the .NET Framework 2.0, this method uses the collection’s objects’ <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IComparable.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods on <em>item</em> to determine whether item exists. In the earlier versions of the .NET Framework, this determination was made by using the <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IComparable.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods of the <em>item</em> parameter on the objects in the collection.</p>\n"
   syntax:
     content: public virtual int IndexOfKey(object key)
     content.vb: Public Overridable Function IndexOfKey(key As Object) As Integer
@@ -1477,17 +1460,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IndexOfValue
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 526
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 477
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Returns the zero-based index of the first occurrence of the specified value in a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The index sequence is based on the sort sequence. When an element is added, it is inserted into <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> in the correct sort order, and the indexing adjusts accordingly. When an element is removed, the indexing also adjusts accordingly. Therefore, the index of a specific key/value pair might change as elements are added or removed from the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>The values of the elements of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> are compared to the specified value using the <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>This method uses a linear search; therefore, this method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Starting with the .NET Framework 2.0, this method uses the collection’s objects’ <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IComparable.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods on <em>item</em> to determine whether item exists. In the earlier versions of the .NET Framework, this determination was made by using the <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IComparable.CompareTo(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods of the <em>item</em> parameter on the objects in the collection.</p>\n"
   syntax:
     content: public virtual int IndexOfValue(object value)
     content.vb: Public Overridable Function IndexOfValue(value As Object) As Integer
@@ -1522,17 +1504,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Remove
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 568
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 514
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Removes the element with the specified key from a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>If the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object does not contain an element with the specified key, the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> remains unchanged. No exception is thrown.</p>\n<p>In collections of contiguous elements, such as lists, the elements that follow the removed element move up to occupy the vacated spot. If the collection is indexed, the indexes of the elements that are moved are also updated. This behavior does not apply to collections where elements are conceptually grouped into buckets, such as a hash table.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public virtual void Remove(object key)
     content.vb: Public Overridable Sub Remove(key As Object)
@@ -1571,17 +1552,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: RemoveAt
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 549
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 497
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Removes the element at the specified index of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The index sequence is based on the sort sequence. When an element is added, it is inserted into <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> in the correct sort order, and the indexing adjusts accordingly. When an element is removed, the indexing also adjusts accordingly. Therefore, the index of a specific key/value pair might change as elements are added or removed from the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>In collections of contiguous elements, such as lists, the elements that follow the removed element move up to occupy the vacated spot. If the collection is indexed, the indexes of the elements that are moved are also updated. This behavior does not apply to collections where elements are conceptually grouped into buckets, such as a hash table.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public virtual void RemoveAt(int index)
     content.vb: Public Overridable Sub RemoveAt(index As Integer)
@@ -1618,17 +1598,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetByIndex
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 578
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 523
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Replaces the value at a specific index in a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>The index sequence is based on the sort sequence. When an element is added, it is inserted into <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> in the correct sort order, and the indexing adjusts accordingly. When an element is removed, the indexing also adjusts accordingly. Therefore, the index of a specific key/value pair might change as elements are added or removed from the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: public virtual void SetByIndex(int index, object value)
     content.vb: Public Overridable Sub SetByIndex(index As Integer, value As Object)
@@ -1667,20 +1646,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Synchronized
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 588
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 532
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Returns a synchronized (thread-safe) wrapper for a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>To guarantee the thread safety of a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object, all operations must be done through this wrapper only.</p>\n<p>Enumerating through a collection is intrinsically not a thread-safe procedure. Even when a collection is synchronized, other threads can still modify the collection, which causes the enumerator to throw an exception. To guarantee thread safety during enumeration, you can either lock the collection during the entire enumeration or catch the exceptions resulting from changes made by other threads.</p>\n"
   syntax:
-    content: public static SortedList Synchronized(SortedList list)
-    content.vb: Public Shared Function Synchronized(list As SortedList) As SortedList
+    content: >-
+      [HostProtection(Synchronization = true)]
+
+      public static SortedList Synchronized(SortedList list)
+    content.vb: >-
+      <HostProtection(Synchronization:=True)>
+
+      Public Shared Function Synchronized(list As SortedList) As SortedList
     parameters:
     - id: list
       type: System.Collections.SortedList
@@ -1717,17 +1701,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: System.Collections.IEnumerable.GetEnumerator
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 419
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 380
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Returns an <xref href=\"System.Collections.IEnumerator\" data-throw-if-not-resolved=\"false\"></xref> that iterates through the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>[Visual Basic, C#]</p>\n<p>The <strong>foreach</strong> statement of the C# language (<strong>for each</strong> in Visual Basic) hides the complexity of the enumerators.  Therefore, using <strong>foreach</strong> is recommended, instead of directly manipulating the enumerator.</p>\n<p>Enumerators can be used to read the data in the collection, but they cannot be used to modify the underlying collection.</p>\n<p>Initially, the enumerator is positioned before the first element in the collection. <xref href=\"System.Collections.IEnumerator.Reset\" data-throw-if-not-resolved=\"false\"></xref> also brings the enumerator back to this position. At this position, calling <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> throws an exception. Therefore, you must call <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> to advance the enumerator to the first element of the collection before reading the value of <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> returns the same object until either <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Collections.IEnumerator.Reset\" data-throw-if-not-resolved=\"false\"></xref> is called. <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> sets <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> to the next element.</p>\n<p>If <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> passes the end of the collection, the enumerator is positioned after the last element in the collection and <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> returns <strong>false</strong>. When the enumerator is at this position, subsequent calls to <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> also return <strong>false</strong>. If the last call to <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> returned <strong>false</strong>, calling <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> throws an exception. To set <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> to the first element of the collection again, you can call <xref href=\"System.Collections.IEnumerator.Reset\" data-throw-if-not-resolved=\"false\"></xref> followed by <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>An enumerator remains valid as long as the collection remains unchanged. If changes are made to the collection, such as adding, modifying, or deleting elements, the enumerator is irrecoverably invalidated and the next call to <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Collections.IEnumerator.Reset\" data-throw-if-not-resolved=\"false\"></xref> throws an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref>. If the collection is modified between <xref href=\"System.Collections.IEnumerator.MoveNext\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Collections.IEnumerator.Current\" data-throw-if-not-resolved=\"false\"></xref> returns the element that it is set to, even if the enumerator is already invalidated.</p>\n<p>The enumerator does not have exclusive access to the collection; therefore, enumerating through a collection is intrinsically not a thread-safe procedure. Even when a collection is synchronized, other threads can still modify the collection, which causes the enumerator to throw an exception. To guarantee thread safety during enumeration, you can either lock the collection during the entire enumeration or catch the exceptions resulting from changes made by other threads.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: IEnumerator IEnumerable.GetEnumerator()
     content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
@@ -1756,17 +1739,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
+      path: src/mscorlib/src/System/Collections/SortedList.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: TrimToSize
-    path: src/System.Collections.NonGeneric/src/System/Collections/SortedList.cs
-    startLine: 605
+    path: src/mscorlib/src/System/Collections/SortedList.cs
+    startLine: 549
   assemblies:
   - System.Collections.NonGeneric
   namespace: System.Collections
   summary: "\n<p>Sets the capacity to the actual number of elements in a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>This method can be used to minimize a collection's memory overhead if no new elements will be added to the collection.</p>\n<p>To reset a <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> object to its initial state, call the <xref href=\"System.Collections.SortedList.Clear\" data-throw-if-not-resolved=\"false\"></xref> method before calling <xref href=\"System.Collections.SortedList.TrimToSize\" data-throw-if-not-resolved=\"false\"></xref>. Trimming an empty <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> sets the capacity of the <xref href=\"System.Collections.SortedList\" data-throw-if-not-resolved=\"false\"></xref> to the default capacity.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.SortedList.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public virtual void TrimToSize()
     content.vb: Public Overridable Sub TrimToSize

@@ -25,7 +25,6 @@ items:
   - System.Security.Cryptography.ProtectedData
   namespace: System.Security.Cryptography
   summary: "\n<p>Provides methods for encrypting and decrypting data. This class cannot be inherited.</p>\n"
-  remarks: "\n<p>This class provides access to the Data Protection API (DPAPI) available in Microsoft Windows 2000 and later operating systems. This is a service that is provided by the operating system and does not require additional libraries. It provides protection using the user or machine credentials to encrypt or decrypt data.</p>\n<p>The class consists of two wrappers for the unmanaged DPAPI, <xref href=\"System.Security.Cryptography.ProtectedData.Protect(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Security.Cryptography.ProtectedData.Unprotect(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)\" data-throw-if-not-resolved=\"false\"></xref>. These two methods can be used to encrypt and decrypt data such as passwords, keys, and connection strings.</p>\n<p>If you use these methods during impersonation, you may receive the following error: \"Key not valid for use in specified state.\" This occurs because the DPAPI stores the key data in user profiles. If the profile is not loaded, DPAPI won’t be able to perform the decryption. To prevent this error, load the profile of the user you want to impersonate before calling either method. Using DPAPI with impersonation can incur significant complication and requires careful design choices.</p>\n"
   syntax:
     content: public class ProtectedData
     content.vb: Public Class ProtectedData
@@ -68,7 +67,6 @@ items:
   - System.Security.Cryptography.ProtectedData
   namespace: System.Security.Cryptography
   summary: "\n<p>Encrypts the data in a specified byte array and returns a byte array that contains the encrypted data.</p>\n"
-  remarks: "\n<p>This method can be used to encrypt data such as passwords, keys, or connection strings. The <em>optionalEntropy</em> parameter enables you to add data to increase the complexity of the encryption; specify <strong>null</strong> for no additional complexity. If provided, this information must also be used when decrypting the data using the <xref href=\"System.Security.Cryptography.ProtectedData.Unprotect(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>If you use this method during impersonation, you may receive the following error: \"Key not valid for use in specified state.\" To prevent this error, load the profile of the user you want to impersonate before calling the method.</p>\n"
   syntax:
     content: public static byte[] Protect(byte[] userData, byte[] optionalEntropy, DataProtectionScope scope)
     content.vb: Public Shared Function Protect(userData As Byte(), optionalEntropy As Byte(), scope As DataProtectionScope) As Byte()
@@ -133,7 +131,6 @@ items:
   - System.Security.Cryptography.ProtectedData
   namespace: System.Security.Cryptography
   summary: "\n<p>Decrypts the data in a specified byte array and returns a byte array that contains the decrypted data.</p>\n"
-  remarks: "\n<p>This method can be used to unprotect data that was encrypted using the <xref href=\"System.Security.Cryptography.ProtectedData.Protect(System.Byte[],System.Byte[],System.Security.Cryptography.DataProtectionScope)\" data-throw-if-not-resolved=\"false\"></xref> method. If the <em>optionalEntropy</em> parameter was used during encryption, it must be supplied to unencrypt the data.</p>\n<p>If you use this method during impersonation, you may receive the following error: \"Key not valid for use in specified state.\" To prevent this error, load the profile of the user you want to impersonate before calling the method.</p>\n"
   syntax:
     content: public static byte[] Unprotect(byte[] encryptedData, byte[] optionalEntropy, DataProtectionScope scope)
     content.vb: Public Shared Function Unprotect(encryptedData As Byte(), optionalEntropy As Byte(), scope As DataProtectionScope) As Byte()

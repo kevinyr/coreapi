@@ -35,7 +35,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Represents an object that handles the low-level work of queuing tasks onto threads.</p>\n"
-  remarks: "\n<p>An instance of the <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> class represents a task scheduler. A task scheduler ensures that the work of a task is eventually executed. </p>\n<p> The default task scheduler is based on the .NET Framework 4 thread pool, which provides work-stealing for load-balancing, thread injection/retirement for maximum throughput, and overall good performance. It should be sufficient for most scenarios. </p>\n<p>The <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> class also serves as the extension point for all customizable scheduling logic.  This includes mechanisms such as how to schedule a task for execution, and how scheduled tasks should be exposed to debuggers. If you require special functionality, you can create a custom scheduler and enable it for specific tasks or queries.</p>\n<p>In this topic:The default task scheduler and the thread pool            The global queue vs. local queues      Work stealing      Long-running tasks      Task inliningSpecifying a synchronization context</p>\n"
   syntax:
     content: >-
       [DebuggerDisplay("Id={Id}")]
@@ -128,7 +127,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> associated with the currently executing task.</p>\n"
-  remarks: "\n<p>When not called from within a task, <xref href=\"System.Threading.Tasks.TaskScheduler.Current\" data-throw-if-not-resolved=\"false\"></xref> will return the <xref href=\"System.Threading.Tasks.TaskScheduler.Default\" data-throw-if-not-resolved=\"false\"></xref> scheduler.</p>\n<p>For more information, see Task Schedulers.</p>\n"
   syntax:
     content: public static TaskScheduler Current { get; }
     content.vb: Public Shared ReadOnly Property Current As TaskScheduler
@@ -167,7 +165,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the default <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> instance that is provided by the .NET Framework.</p>\n"
-  remarks: "\n<p>For more information, see Task Schedulers.</p>\n"
   syntax:
     content: public static TaskScheduler Default { get; }
     content.vb: Public Shared ReadOnly Property Default As TaskScheduler
@@ -206,7 +203,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the unique ID for this <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>For more information, see Task Schedulers.</p>\n"
   syntax:
     content: public int Id { get; }
     content.vb: Public ReadOnly Property Id As Integer
@@ -243,7 +239,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Indicates the maximum concurrency level this <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> is able to support.</p>\n"
-  remarks: "\n<p>For more information, see Task Schedulers.</p>\n"
   syntax:
     content: public virtual int MaximumConcurrencyLevel { get; }
     content.vb: Public Overridable ReadOnly Property MaximumConcurrencyLevel As Integer
@@ -282,7 +277,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Occurs when a faulted task's unobserved exception is about to trigger exception escalation policy, which, by default, would terminate the process.</p>\n"
-  remarks: "\n<p>This application domain-wide event provides a mechanism to prevent exception escalation policy (which, by default, terminates the process) from triggering. </p>\n<p>To make it easier for developers to write asynchronous code based on tasks, the .NET Framework 4.5 changes the default exception behavior for unobserved exceptions. Although unobserved exceptions still raise the <xref href=\"System.Threading.Tasks.TaskScheduler.UnobservedTaskException\" data-throw-if-not-resolved=\"false\"></xref> exception, the process does not terminate by default. Instead, the exception is handled by the runtime after the event is raised, regardless of whether an event handler observes the exception. This behavior can be configured. Starting with the .NET Framework 4.5, you can use the  configuration element to revert to the behavior of the .NET Framework 4 and terminate the process:</p>\n<pre><code class=\"xml\"><configuration> \n<runtime> \n<ThrowUnobservedTaskExceptions enabled=\"true\"/> \n</runtime> \n</configuration></code></pre>\n"
   syntax:
     content: public static event EventHandler<UnobservedTaskExceptionEventArgs> UnobservedTaskException
     content.vb: Public Shared Event UnobservedTaskException As EventHandler(Of UnobservedTaskExceptionEventArgs)
@@ -317,7 +311,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> associated with the current <xref href=\"System.Threading.SynchronizationContext\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>All <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances queued to the returned scheduler will be executed through a call to the <xref href=\"System.Threading.SynchronizationContext.Post(System.Threading.SendOrPostCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method on that context.</p>\n<p>For more information, see Task Schedulers.</p>\n"
   syntax:
     content: public static TaskScheduler FromCurrentSynchronizationContext()
     content.vb: Public Shared Function FromCurrentSynchronizationContext As TaskScheduler
@@ -357,7 +350,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>For debugger support only, generates an enumerable of <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances currently queued to the scheduler waiting to be executed.</p>\n"
-  remarks: "\n<p>A class derived from <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> implements this method in order to support integration with debuggers. This method will only be invoked by the .NET Framework when the debugger requests access to the data. The enumerable returned will be traversed by debugging utilities to access the tasks currently queued to this scheduler, enabling the debugger to provide a representation of this information in the user interface.</p>\n<p>It is important to note that, when this method is called, all other threads in the process will be frozen. Therefore, it's important to avoid synchronization with other threads that may lead to blocking. If synchronization is necessary, and you are unable to acquire the lock in this method, then you should throw an exception so that the debugger does not hang. The following example shows one possible approach in C#:</p>\n<pre><code>protected override IEnumerable<Task> GetScheduledTasks()\n{\nbool lockTaken = false;\ntry\n{\nMonitor.TryEnter(_syncObj, ref lockTaken);\nif (lockTaken)\n{\n    return _tasks.ToArray();\n}\nelse throw new NotSupportedException();\n}\nfinally\n{\nif (lockTaken) Monitor.Exit(_syncObj);\n}}</code></pre>\n<p>Additionally, this method and the enumerable returned must not modify any globally visible state.</p>\n<p>The returned enumerable should never be null. If there are currently no queued tasks, an empty enumerable should be returned instead.</p>\n<p>Developers who are implementing custom debuggers shouldn't call this method directly, but should use the internal wrapper method <strong>GetScheduledTasksForDebugger</strong> instead: <code>internal Task[] GetScheduledTasksForDebugger()</code>. This wrapper method returns an array of tasks instead of an enumerable. To retrieve a list of active schedulers, use the internal method <code>internal static TaskScheduler[] GetTaskSchedulersForDebugger()</code>. This static method returns an array of all active <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> instances. You can then use <code>GetScheduledTasksForDebugger</code> on each scheduler instance to retrieve its list of scheduled tasks.</p>\n"
   syntax:
     content: >-
       [SecurityCritical]
@@ -407,7 +399,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Queues a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to the scheduler. </p>\n"
-  remarks: "\n<p> A class derived from <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> implements this method to accept tasks being scheduled on the scheduler.</p>\n<p> A typical implementation would store the task in an internal data structure, which would be serviced by threads that would execute those tasks at some time in the future.</p>\n<p>  This method is only meant to be called by the .NET Framework and should not be called directly by the derived class. This is necessary for maintaining the consistency of the system.</p>\n<p></p>\n"
   syntax:
     content: >-
       [SecurityCritical]
@@ -458,7 +449,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Attempts to dequeue a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> that was previously queued to this scheduler.</p>\n"
-  remarks: "\n<p>For more information, see Task Schedulers.</p>\n<p>This method may execute in a finally block; therefore it should return as quickly as possible so that any resources such as <xref href=\"System.Threading.CancellationTokenRegistration\" data-throw-if-not-resolved=\"false\"></xref> objects can be disposed of in a timely manner.</p>\n"
   syntax:
     content: >-
       [SecurityCritical]
@@ -512,7 +502,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Attempts to execute the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> on this scheduler.</p>\n"
-  remarks: "\n<p> Scheduler implementations are provided with <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances to be executed through either the <xref href=\"System.Threading.Tasks.TaskScheduler.QueueTask(System.Threading.Tasks.Task)\" data-throw-if-not-resolved=\"false\"></xref> method or the <xref href=\"System.Threading.Tasks.TaskScheduler.TryExecuteTaskInline(System.Threading.Tasks.Task,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method. When the scheduler deems it appropriate to run the provided task, <xref href=\"System.Threading.Tasks.TaskScheduler.TryExecuteTask(System.Threading.Tasks.Task)\" data-throw-if-not-resolved=\"false\"></xref> should be used to do so. TryExecuteTask handles all aspects of executing a task, including action invocation, exception handling, state management, and lifecycle control.</p>\n<p>\n<xref href=\"System.Threading.Tasks.TaskScheduler.TryExecuteTask(System.Threading.Tasks.Task)\" data-throw-if-not-resolved=\"false\"></xref> must only be used for tasks provided to this scheduler by the .NET Framework infrastructure. It should not be used to execute arbitrary tasks obtained through custom mechanisms.</p>\n<p></p>\n"
   syntax:
     content: >-
       [SecurityCritical]
@@ -564,7 +553,6 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Determines whether the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> can be executed synchronously in this call, and if it can, executes it.</p>\n"
-  remarks: "\n<p>A class derived from <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> implements this function to support inline execution of a task on a thread that initiates a wait on that task object. Inline execution is optional, and the request may be rejected by returning false. However, the more tasks that can be inlined, the better the scheduler will scale. In fact, a scheduler that inlines too little may be prone to deadlocks. A proper implementation should ensure that a request executing under the policies guaranteed by the scheduler can successfully inline. For example, if a scheduler uses a dedicated thread to execute tasks, any inlining requests from that thread should succeed.</p>\n<p>If a scheduler decides to perform the inline execution, it should do so by calling to the base TaskScheduler's <xref href=\"System.Threading.Tasks.TaskScheduler.TryExecuteTask(System.Threading.Tasks.Task)\" data-throw-if-not-resolved=\"false\"></xref> method with the provided task object, propagating the return value. It may also be appropriate for the scheduler to remove an inlined task from its internal data structures if it decides to honor the inlining request. Note, however, that under some circumstances a scheduler may be asked to inline a task that was not previously provided to it with the <xref href=\"System.Threading.Tasks.TaskScheduler.QueueTask(System.Threading.Tasks.Task)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The derived scheduler is responsible for making sure that the calling thread is suitable for executing the given task as far as its own scheduling and execution policies are concerned.</p>\n<p>For more information, see Task Schedulers.</p>\n"
   syntax:
     content: >-
       [SecurityCritical]

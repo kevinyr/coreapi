@@ -62,7 +62,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Provides a stream used for client-server communication that uses the Secure Socket Layer (SSL) security protocol to authenticate the server and optionally the client.</p>\n"
-  remarks: "\n<p>SSL protocols help to provide confidentiality and integrity checking for messages transmitted using an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. An SSL connection, such as that provided by <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>, should be used when communicating sensitive information between a client and a server. Using an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> helps to prevent anyone from reading and tampering with information while it is in transit on the network. </p>\n<p>An <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance transmits data using a stream that you supply when creating the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. When you supply this underlying stream, you have the option to specify whether closing the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> also closes the underlying stream. Typically, the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class is used with the <xref href=\"System.Net.Sockets.TcpClient\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Sockets.TcpListener\" data-throw-if-not-resolved=\"false\"></xref> classes. The <xref href=\"System.Net.Sockets.TcpClient.GetStream\" data-throw-if-not-resolved=\"false\"></xref> method provides a <xref href=\"System.Net.Sockets.NetworkStream\" data-throw-if-not-resolved=\"false\"></xref> suitable for use with the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n<p>After creating an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>, the server and optionally, the client must be authenticated. The server must provide an X509 certificate that establishes proof of its identity and can request that the client also do so. Authentication must be performed before transmitting information using an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. Clients initiate authentication using the synchronous <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsClient\"></see> methods, which block until the authentication completes, or the asynchronous <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsClient\"></see> methods, which do not block waiting for the authentication to complete. Servers initiate authentication using the synchronous <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsServer\"></see> or asynchronous <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsServer\"></see> methods. Both client and server must initiate the authentication. </p>\n<p>The authentication is handled by the Security Support Provider (SSPI) channel provider. The client is given an opportunity to control validation of the server's certificate by specifying a <xref href=\"System.Net.Security.RemoteCertificateValidationCallback\" data-throw-if-not-resolved=\"false\"></xref> delegate when creating an <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. The server can also control validation by supplying a <xref href=\"System.Net.Security.RemoteCertificateValidationCallback\" data-throw-if-not-resolved=\"false\"></xref> delegate. The method referenced by the delegate includes the remote party's certificate and any errors SSPI encountered while validating the certificate. Note that if the server specifies a delegate, the delegate's method is invoked regardless of whether the server requested client authentication. If the server did not request client authentication, the server's delegate method receives a null certificate and an empty array of certificate errors. </p>\n<p>If the server requires client authentication, the client must specify one or more certificates for authentication. If the client has more than one certificate, the client can provide a <xref href=\"System.Net.Security.LocalCertificateSelectionCallback\" data-throw-if-not-resolved=\"false\"></xref> delegate to select the correct certificate for the server. The client's certificates must be located in the current user's \"My\" certificate store. Client authentication via certificates is not supported for the <xref href=\"System.Security.Authentication.SslProtocols.Ssl2\" data-throw-if-not-resolved=\"false\"></xref> (SSL version 2) protocol.</p>\n<p>If the authentication fails, you receive a <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref>, and the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> is no longer useable. You should close this object and remove all references to it so that it can be collected by the garbage collector. </p>\n<p>When the authentication process, also known as the SSL handshake, succeeds, the identity of the server (and optionally, the client) is established and the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> can be used by the client and server to exchange messages. Before sending or receiving information, the client and server should check the security services and levels provided by the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> to determine whether the protocol, algorithms, and strengths selected meet their requirements for integrity and confidentiality. If the current settings are not sufficient, the stream should be closed. You can check the security services provided by the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> using the <xref href=\"System.Net.Security.SslStream.IsEncrypted\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Security.SslStream.IsSigned\" data-throw-if-not-resolved=\"false\"></xref> properties. The following table shows the elements that report the cryptographic settings used for authentication, encryption and data signing.</p>\n<p>Element </p>\n<p>Members </p>\n<table><tbody><tr><td>\n<p>The security protocol used to authenticate the server and, optionally, the client. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.SslProtocol\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.SslProtocols\" data-throw-if-not-resolved=\"false\"></xref> enumeration. </p>\n</td></tr><tr><td>\n<p>The key exchange algorithm. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.KeyExchangeAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.ExchangeAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref>  enumeration. </p>\n</td></tr><tr><td>\n<p>The message integrity algorithm. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.HashAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.HashAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref> enumeration. </p>\n</td></tr><tr><td>\n<p>The message confidentiality algorithm. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.CipherAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property and the associated <xref href=\"System.Security.Authentication.CipherAlgorithmType\" data-throw-if-not-resolved=\"false\"></xref>  enumeration. </p>\n</td></tr><tr><td>\n<p>The strengths of the selected algorithms. </p>\n</td><td>\n<p>The <xref href=\"System.Net.Security.SslStream.KeyExchangeStrength\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Net.Security.SslStream.HashStrength\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Net.Security.SslStream.CipherStrength\" data-throw-if-not-resolved=\"false\"></xref> properties. </p>\n</td></tr></tbody></table>\n<p>After a successful authentication, you can send data using the synchronous <xref href=\"System.Net.Security.SslStream.Write(System.Byte[])\" data-throw-if-not-resolved=\"false\"></xref> or asynchronous <xref href=\"System.Net.Security.SslStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods. You can receive data using the synchronous <xref href=\"System.Net.Security.SslStream.Read(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> or asynchronous <xref href=\"System.Net.Security.SslStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods. </p>\n<p>If you specified to the <xref href=\"System.Net.Security.SslStream.#ctor(System.IO.Stream)\" data-throw-if-not-resolved=\"false\"></xref> that the underlying stream should be left open, you are responsible for closing that stream when you are done using it.</p>\n<p>If the application that creates the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> object runs with the credentials of a Normal user, the application will not be able to access certificates installed in the local machine store unless permission has been explicitly given to the user to do so.</p>\n<p>\n<xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> assumes that a timeout along with any other <xref href=\"System.IO.IOException\" data-throw-if-not-resolved=\"false\"></xref> when one is thrown from the inner stream will be treated as fatal by its caller. Reusing a <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance after a timeout will return garbage. An application should <xref href=\"System.IO.Stream.Close\" data-throw-if-not-resolved=\"false\"></xref> the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> and throw an exception in these cases.</p>\n<p>The .NET Framework 4.6 includes a new security feature that blocks insecure cipher and hashing algorithms for connections. Applications using TLS/SSL through APIs such as HttpClient, HttpWebRequest, FTPClient, SmtpClient, SslStream, etc. and targeting .NET Framework 4.6 get the more-secure behavior by default.</p>\n<p>Developers may want to opt out of this behavior in order to maintain interoperability with their existing SSL3 services OR TLS w/ RC4 services. <see href=\"https://support.microsoft.com/kb/3069494\">This article</see> explains how to modify your code so that the new behavior is disabled.</p>\n"
   syntax:
     content: 'public class SslStream : AuthenticatedStream, IDisposable'
     content.vb: >-
@@ -156,7 +155,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class using the specified <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>If a value is not specified in the configuration file for encryptionpolicy, the <xref href=\"System.Net.Security.EncryptionPolicy\" data-throw-if-not-resolved=\"false\"></xref> defaults to <xref href=\"System.Net.Security.EncryptionPolicy.RequireEncryption\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance that is constructed.</p>\n<p>The use of the Null cipher is required when the encryption policy is set to <xref href=\"System.Net.Security.EncryptionPolicy.NoEncryption\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public SslStream(Stream innerStream)
     content.vb: Public Sub New(innerStream As Stream)
@@ -198,7 +196,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class using the specified <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> and stream closure behavior.</p>\n"
-  remarks: "\n<p>When you specify <strong>true</strong> for the <em>leaveStreamOpen</em> parameter, closing the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> has no effect on the <em>innerStream</em> stream; you must explicitly close <em>innerStream</em> when you no longer need it.</p>\n<p>If a value is not specified in the configuration file for encryptionpolicy, the <xref href=\"System.Net.Security.EncryptionPolicy\" data-throw-if-not-resolved=\"false\"></xref> defaults to <xref href=\"System.Net.Security.EncryptionPolicy.RequireEncryption\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance that is constructed.</p>\n<p>The use of the Null cipher is required when the encryption policy is set to <xref href=\"System.Net.Security.EncryptionPolicy.NoEncryption\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public SslStream(Stream innerStream, bool leaveInnerStreamOpen)
     content.vb: Public Sub New(innerStream As Stream, leaveInnerStreamOpen As Boolean)
@@ -243,7 +240,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class using the specified <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref>, stream closure behavior and certificate validation delegate.</p>\n"
-  remarks: "\n<p>When you specify <strong>true</strong> for the <em>leaveStreamOpen</em> parameter, closing the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> has no effect on the <em>innerStream</em> stream; you must explicitly close <em>innerStream</em> when you no longer need it.</p>\n<p>The <em>userCertificateValidationCallback</em> delegate's <em>certificateErrors</em> argument contains any Windows error codes returned by the channel Security Support Provider Interface (SSPI). The return value of the method invoked by the <em>userCertificateValidationCallback</em> delegate determines whether authentication succeeds.</p>\n<p>The security protocol and cryptographic algorithms are already selected when the <em>userCertificateValidationCallback</em> delegate's method is invoked. You can use the method to determine whether the selected cryptographic algorithms and strengths are sufficient for your application. If not, the method should return <strong>false</strong> to prevent the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> from being created.</p>\n<p>If a value is not specified in the configuration file for encryptionpolicy, the <xref href=\"System.Net.Security.EncryptionPolicy\" data-throw-if-not-resolved=\"false\"></xref> defaults to <xref href=\"System.Net.Security.EncryptionPolicy.RequireEncryption\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance that is constructed.</p>\n<p>The use of the Null cipher is required when the encryption policy is set to <xref href=\"System.Net.Security.EncryptionPolicy.NoEncryption\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The Framework caches SSL sessions as they are created and attempts to reuse a cached session for a new request, if possible. When attempting to reuse an SSL session, the Framework uses the first element of <xref href=\"System.Net.HttpWebRequest.ClientCertificates\" data-throw-if-not-resolved=\"false\"></xref> (if there is one), or tries to reuse an anonymous sessions if <xref href=\"System.Net.HttpWebRequest.ClientCertificates\" data-throw-if-not-resolved=\"false\"></xref> is empty.</p>\n<p>Client certificates are not supported in the SSL version 2 protocol.</p>\n"
   syntax:
     content: public SslStream(Stream innerStream, bool leaveInnerStreamOpen, RemoteCertificateValidationCallback userCertificateValidationCallback)
     content.vb: Public Sub New(innerStream As Stream, leaveInnerStreamOpen As Boolean, userCertificateValidationCallback As RemoteCertificateValidationCallback)
@@ -291,7 +287,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class using the specified <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref>, stream closure behavior, certificate validation delegate and certificate selection delegate.</p>\n"
-  remarks: "\n<p>When you specify <strong>true</strong> for the <em>leaveStreamOpen</em> parameter, closing the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> has no effect on the <em>innerStream</em> stream; you must explicitly close <em>innerStream</em> when you no longer need it.</p>\n<p>The <em>userCertificateValidationCallback</em> delegate's <em>certificateErrors</em> argument contains any Windows error codes returned by the channel Security Support Provider Interface (SSPI). The return value of the method invoked by the <em>userCertificateValidationCallback</em> delegate determines whether authentication succeeds.</p>\n<p>The security protocol and cryptographic algorithms are already selected when the <em>userCertificateValidationCallback</em> delegate's method is invoked. You can use the method to determine whether the selected cryptographic algorithms and strengths are sufficient for your application. If not, the method should return <strong>false</strong> to prevent the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> from being created.</p>\n<p>The <em>userCertificateSelectionCallback</em> delegate is useful when your application has multiple certificates and must dynamically choose a certificate. Certificates in the \"MY\" store are passed to the method invoked by the delegate. </p>\n<p>If a value is not specified in the configuration file for encryptionpolicy, the <xref href=\"System.Net.Security.EncryptionPolicy\" data-throw-if-not-resolved=\"false\"></xref> defaults to <xref href=\"System.Net.Security.EncryptionPolicy.RequireEncryption\" data-throw-if-not-resolved=\"false\"></xref> for the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance that is constructed.</p>\n<p>The use of the Null cipher is required when the encryption policy is set to <xref href=\"System.Net.Security.EncryptionPolicy.NoEncryption\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The Framework caches SSL sessions as they are created and attempts to reuse a cached session for a new request, if possible. When attempting to reuse an SSL session, the Framework uses the first element of P:System.Net.HttpWebRequest.ClientCertificates (if there is one), or tries to reuse an anonymous sessions if P:System.Net.HttpWebRequest.ClientCertificates is empty.</p>\n"
   syntax:
     content: public SslStream(Stream innerStream, bool leaveInnerStreamOpen, RemoteCertificateValidationCallback userCertificateValidationCallback, LocalCertificateSelectionCallback userCertificateSelectionCallback)
     content.vb: Public Sub New(innerStream As Stream, leaveInnerStreamOpen As Boolean, userCertificateValidationCallback As RemoteCertificateValidationCallback, userCertificateSelectionCallback As LocalCertificateSelectionCallback)
@@ -342,7 +337,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class using the specified <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref></p>\n"
-  remarks: "\n<p>The use of the Null cipher is required when the <em>encryptionPolicy</em> parameter is set to <xref href=\"System.Net.Security.EncryptionPolicy.NoEncryption\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public SslStream(Stream innerStream, bool leaveInnerStreamOpen, RemoteCertificateValidationCallback userCertificateValidationCallback, LocalCertificateSelectionCallback userCertificateSelectionCallback, EncryptionPolicy encryptionPolicy)
     content.vb: Public Sub New(innerStream As Stream, leaveInnerStreamOpen As Boolean, userCertificateValidationCallback As RemoteCertificateValidationCallback, userCertificateSelectionCallback As LocalCertificateSelectionCallback, encryptionPolicy As EncryptionPolicy)
@@ -396,7 +390,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the underlying stream is readable.</p>\n"
-  remarks: "\n<p>If successful authentication has occurred, this property returns the value returned by invoking <xref href=\"System.IO.Stream.CanRead\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream.</p>\n<p>The underlying stream is specified when you create an instance of the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public override bool CanRead { get; }
     content.vb: Public Overrides ReadOnly Property CanRead As Boolean
@@ -436,7 +429,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the underlying stream is seekable.</p>\n"
-  remarks: "\n<p>Do not attempt to set the position of the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> object or its underlying stream.</p>\n<p>The underlying stream is specified when you create an instance of the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public override bool CanSeek { get; }
     content.vb: Public Overrides ReadOnly Property CanSeek As Boolean
@@ -481,7 +473,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the underlying stream supports time-outs.</p>\n"
-  remarks: "\n<p>This property returns the value returned by invoking <xref href=\"System.IO.Stream.CanTimeout\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream.</p>\n<p>The underlying stream is specified when you create an instance of the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public override bool CanTimeout { get; }
     content.vb: Public Overrides ReadOnly Property CanTimeout As Boolean
@@ -521,7 +512,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the underlying stream is writable.</p>\n"
-  remarks: "\n<p>If successful authentication has occurred, this property returns the value returned by invoking <xref href=\"System.IO.Stream.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream.</p>\n<p>The underlying stream is specified when you create an instance of the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public override bool CanWrite { get; }
     content.vb: Public Overrides ReadOnly Property CanWrite As Boolean
@@ -561,7 +551,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the certificate revocation list is checked during the certificate validation process.</p>\n"
-  remarks: "\n<p>The certificate revocation list contains certificates that have been revoked by the issuer. Checking the list negatively impacts performance but improves application security.</p>\n"
   syntax:
     content: public virtual bool CheckCertRevocationStatus { get; }
     content.vb: Public Overridable ReadOnly Property CheckCertRevocationStatus As Boolean
@@ -600,7 +589,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a value that identifies the bulk encryption algorithm used by this <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>A value of <xref href=\"System.Security.Authentication.CipherAlgorithmType.Null\" data-throw-if-not-resolved=\"false\"></xref> is required for the <xref href=\"System.Net.Security.SslStream.CipherAlgorithm\" data-throw-if-not-resolved=\"false\"></xref> property when the <xref href=\"System.Net.Security.EncryptionPolicy.NoEncryption\" data-throw-if-not-resolved=\"false\"></xref> enumeration value is used to construct a <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance. </p>\n<p>Windows Server 2003 and Windows XP do not support the <xref href=\"System.Security.Authentication.CipherAlgorithmType.Null\" data-throw-if-not-resolved=\"false\"></xref> value. So even if the <xref href=\"System.Security.Authentication.CipherAlgorithmType.Null\" data-throw-if-not-resolved=\"false\"></xref> value is used to construct the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> instance, the <xref href=\"System.Net.Security.EncryptionPolicy\" data-throw-if-not-resolved=\"false\"></xref> property will be <xref href=\"System.Security.Authentication.CipherAlgorithmType.None\" data-throw-if-not-resolved=\"false\"></xref>. The <xref href=\"System.Security.Authentication.CipherAlgorithmType.Null\" data-throw-if-not-resolved=\"false\"></xref> value is only returned on Windows Vista and later.</p>\n"
   syntax:
     content: public virtual CipherAlgorithmType CipherAlgorithm { get; }
     content.vb: Public Overridable ReadOnly Property CipherAlgorithm As CipherAlgorithmType
@@ -643,7 +631,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a value that identifies the strength of the cipher algorithm used by this <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The value of this property is zero until the authentication occurs.</p>\n<p>This property returns one of the following values: </p>\n<ul><li>\n<p>0 </p>\n</li><li>\n<p>40 </p>\n</li><li>\n<p>56 </p>\n</li><li>\n<p>80 </p>\n</li><li>\n<p>128 </p>\n</li><li>\n<p>168 </p>\n</li><li>\n<p>192 </p>\n</li><li>\n<p>256 </p>\n</li></ul>\n"
   syntax:
     content: public virtual int CipherStrength { get; }
     content.vb: Public Overridable ReadOnly Property CipherStrength As Integer
@@ -682,7 +669,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets the algorithm used for generating message authentication codes (MACs).</p>\n"
-  remarks: "\n<p>Message authentication algorithms generate message hashes and signatures used to detect tampering and forgery.</p>\n"
   syntax:
     content: public virtual HashAlgorithmType HashAlgorithm { get; }
     content.vb: Public Overridable ReadOnly Property HashAlgorithm As HashAlgorithmType
@@ -725,7 +711,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a value that identifies the strength of the hash algorithm used by this instance.</p>\n"
-  remarks: "\n<p>The value of this property is zero until the authentication occurs.</p>\n"
   syntax:
     content: public virtual int HashStrength { get; }
     content.vb: Public Overridable ReadOnly Property HashStrength As Integer
@@ -764,7 +749,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether authentication was successful.</p>\n"
-  remarks: "\n<p>Clients authenticate by calling the <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsClient\"></see> or <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsClient\"></see> methods. Servers authenticate by calling the <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsServer\"></see> or <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsServer\"></see> methods.</p>\n"
   syntax:
     content: public override bool IsAuthenticated { get; }
     content.vb: Public Overrides ReadOnly Property IsAuthenticated As Boolean
@@ -804,7 +788,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether this <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> uses data encryption.</p>\n"
-  remarks: "\n<p>Encryption helps to protect the privacy of the data, namely it helps to ensure that while data is in transit, it cannot be deciphered by third parties. </p>\n"
   syntax:
     content: public override bool IsEncrypted { get; }
     content.vb: Public Overrides ReadOnly Property IsEncrypted As Boolean
@@ -844,7 +827,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether both server and client have been authenticated.</p>\n"
-  remarks: "\n<p>Mutual authentication is specified by the server when the server wants the client to provide a certificate for authentication. </p>\n"
   syntax:
     content: public override bool IsMutuallyAuthenticated { get; }
     content.vb: Public Overrides ReadOnly Property IsMutuallyAuthenticated As Boolean
@@ -884,7 +866,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the local side of the connection used by this <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> was authenticated as the server.</p>\n"
-  remarks: "\n<p>If authentication failed or did not occur, this property returns <strong>false</strong>.</p>\n<p>To authenticate as the server, call the <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsServer\"></see> or <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsServer\"></see> methods.</p>\n"
   syntax:
     content: public override bool IsServer { get; }
     content.vb: Public Overrides ReadOnly Property IsServer As Boolean
@@ -924,7 +905,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the data sent using this stream is signed.</p>\n"
-  remarks: "\n<p>Data signing helps to protect the integrity of the data, namely it helps the recipient determine whether the data has been tampered with while in transit. </p>\n"
   syntax:
     content: public override bool IsSigned { get; }
     content.vb: Public Overrides ReadOnly Property IsSigned As Boolean
@@ -964,7 +944,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets the key exchange algorithm used by this <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The value of this property is <xref href=\"System.Security.Authentication.ExchangeAlgorithmType.None\" data-throw-if-not-resolved=\"false\"></xref> until the authentication occurs.</p>\n<p>The key exchange algorithm protects information used to generate shared keys.</p>\n"
   syntax:
     content: public virtual ExchangeAlgorithmType KeyExchangeAlgorithm { get; }
     content.vb: Public Overridable ReadOnly Property KeyExchangeAlgorithm As ExchangeAlgorithmType
@@ -1003,7 +982,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a value that identifies the strength of the key exchange algorithm used by this instance.</p>\n"
-  remarks: "\n<p>The value of this property is zero until the authentication occurs.</p>\n<p>In common scenarios, the value of this property is one of the following: </p>\n<ul><li>\n<p>512 </p>\n</li><li>\n<p>768 </p>\n</li><li>\n<p>1024 </p>\n</li><li>\n<p>2048 </p>\n</li></ul>\n"
   syntax:
     content: public virtual int KeyExchangeStrength { get; }
     content.vb: Public Overridable ReadOnly Property KeyExchangeStrength As Integer
@@ -1042,7 +1020,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets the length of the underlying stream.</p>\n"
-  remarks: "\n<p>This property returns the value returned by invoking <xref href=\"System.IO.Stream.Length\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream. If the underlying stream is not seekable, this method typically throws an exception. The run-time type of the underlying stream determines the run-time type of the exception that is thrown.</p>\n"
   syntax:
     content: public override long Length { get; }
     content.vb: Public Overrides ReadOnly Property Length As Long
@@ -1128,7 +1105,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets or sets the current position in the underlying stream.</p>\n"
-  remarks: "\n<p>This property returns the value returned by invoking <xref href=\"System.IO.Stream.Position\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream. If the underlying stream is not seekable, this method typically throws an exception. The run-time type of the underlying stream determines the run-time type of the exception that is thrown.</p>\n"
   syntax:
     content: public override long Position { get; set; }
     content.vb: Public Overrides Property Position As Long
@@ -1172,7 +1148,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets or sets the amount of time a read operation blocks waiting for data.</p>\n"
-  remarks: "\n<p>This property returns the value returned by invoking <xref href=\"System.IO.Stream.ReadTimeout\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream. When you set this property, the <xref href=\"System.IO.Stream.ReadTimeout\" data-throw-if-not-resolved=\"false\"></xref> value on the underlying stream is set to the specified value.</p>\n<p>If the underlying stream is a <xref href=\"System.Net.Sockets.NetworkStream\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Net.Security.SslStream.ReadTimeout\" data-throw-if-not-resolved=\"false\"></xref> is in milliseconds and is set to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> by default so that read operations do not timeout.</p>\n"
   syntax:
     content: public override int ReadTimeout { get; set; }
     content.vb: Public Overrides Property ReadTimeout As Integer
@@ -1254,7 +1229,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a value that indicates the security protocol used to authenticate this connection.</p>\n"
-  remarks: "\n<p>The supported security protocols are specified when the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> is created. If no security protocol was passed to the constructor, the instance is created using <xref href=\"System.Security.Authentication.SslProtocols.Default\" data-throw-if-not-resolved=\"false\"></xref>. The actual protocol used for authentication is selected based on the protocols supported by the client and server.</p>\n"
   syntax:
     content: public virtual SslProtocols SslProtocol { get; }
     content.vb: Public Overridable ReadOnly Property SslProtocol As SslProtocols
@@ -1332,7 +1306,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets or sets the amount of time a write operation blocks waiting for data.</p>\n"
-  remarks: "\n<p>This property returns the value returned by invoking <xref href=\"System.IO.Stream.WriteTimeout\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream. For set operations, the specified value sets the <xref href=\"System.IO.Stream.WriteTimeout\" data-throw-if-not-resolved=\"false\"></xref> value on the underlying stream.</p>\n<p>If the underlying stream is a <xref href=\"System.Net.Sockets.NetworkStream\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Net.Security.SslStream.WriteTimeout\" data-throw-if-not-resolved=\"false\"></xref> is in milliseconds and is set to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> by default so that write operations do not timeout.</p>\n"
   syntax:
     content: public override int WriteTimeout { get; set; }
     content.vb: Public Overrides Property WriteTimeout As Integer
@@ -1372,7 +1345,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Called by clients to authenticate the server and optionally the client in a client-server connection as an asynchronous operation.</p>\n"
-  remarks: "\n<p>This method authenticates using <xref href=\"System.Security.Authentication.SslProtocols.Default\" data-throw-if-not-resolved=\"false\"></xref>. No client certificates are used in the authentication. The certificate revocation list is not checked during authentication. The value specified for <em>targetHost</em> must match the name on the server's certificate. </p>\n<p>When authentication succeeds, you must check the <xref href=\"System.Net.Security.SslStream.IsEncrypted\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Security.SslStream.IsSigned\" data-throw-if-not-resolved=\"false\"></xref> properties to determine what security services are used by the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. Check the <xref href=\"System.Net.Security.SslStream.IsMutuallyAuthenticated\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether mutual authentication occurred.</p>\n<p>If the authentication fails, you receive a <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref>, and this <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> is no longer useable. You should close this object and remove all references to it so that it can be collected by the garbage collector. </p>\n"
   syntax:
     content: public virtual Task AuthenticateAsClientAsync(string targetHost)
     content.vb: Public Overridable Function AuthenticateAsClientAsync(targetHost As String) As Task
@@ -1425,7 +1397,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Called by clients to authenticate the server and optionally the client in a client-server connection as an asynchronous operation. The authentication process uses the specified certificate collection and SSL protocol.</p>\n"
-  remarks: "\n<p>When authentication succeeds, you must check the <xref href=\"System.Net.Security.SslStream.IsEncrypted\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Security.SslStream.IsSigned\" data-throw-if-not-resolved=\"false\"></xref> properties to determine what security services are used by the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref>. Check the <xref href=\"System.Net.Security.SslStream.IsMutuallyAuthenticated\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether mutual authentication occurred.</p>\n<p>If the authentication fails, you receive a <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref>, and this <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> is no longer useable. You should close this object and remove all references to it so that it can be collected by the garbage collector.</p>\n<p>Client certificates are not supported in the SSL version 2 protocol.</p>\n"
   syntax:
     content: public virtual Task AuthenticateAsClientAsync(string targetHost, X509CertificateCollection clientCertificates, SslProtocols enabledSslProtocols, bool checkCertificateRevocation)
     content.vb: Public Overridable Function AuthenticateAsClientAsync(targetHost As String, clientCertificates As X509CertificateCollection, enabledSslProtocols As SslProtocols, checkCertificateRevocation As Boolean) As Task
@@ -1474,7 +1445,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Called by servers to authenticate the server and optionally the client in a client-server connection using the specified certificate as an asynchronous operation.</p>\n"
-  remarks: "\n<p>This method authenticates using <xref href=\"System.Security.Authentication.SslProtocols.Default\" data-throw-if-not-resolved=\"false\"></xref>. The certificate revocation list is not checked during authentication. The client is not required to provide a certificate for authentication.</p>\n<p>If the authentication fails, you receive a <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref>, and this <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> is no longer useable. You should close this object and remove all references to it so that it can be collected by the garbage collector. </p>\n"
   syntax:
     content: public virtual Task AuthenticateAsServerAsync(X509Certificate serverCertificate)
     content.vb: Public Overridable Function AuthenticateAsServerAsync(serverCertificate As X509Certificate) As Task
@@ -1530,7 +1500,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Called by servers to authenticate the server and optionally the client in a client-server connection using the specified certificates, requirements and security protocol as an asynchronous operation.</p>\n"
-  remarks: "\n<p>If the authentication fails, you receive a <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref>, and this <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> is no longer useable. You should close this object and remove all references to it so that it can be collected by the garbage collector. </p>\n"
   syntax:
     content: public virtual Task AuthenticateAsServerAsync(X509Certificate serverCertificate, bool clientCertificateRequired, SslProtocols enabledSslProtocols, bool checkCertificateRevocation)
     content.vb: Public Overridable Function AuthenticateAsServerAsync(serverCertificate As X509Certificate, clientCertificateRequired As Boolean, enabledSslProtocols As SslProtocols, checkCertificateRevocation As Boolean) As Task
@@ -1579,7 +1548,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Causes any buffered data to be written to the underlying device.</p>\n"
-  remarks: "\n<p>This method invokes <xref href=\"System.IO.Stream.Flush\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream.</p>\n"
   syntax:
     content: public override void Flush()
     content.vb: Public Overrides Sub Flush
@@ -1613,7 +1581,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Reads data from this stream and stores it in the specified array.</p>\n"
-  remarks: "\n<p>The method reads a maximum of <em>count</em> bytes from the stream and stores them in <em>buffer</em> beginning at <em>offset</em>. You cannot perform multiple simultaneous read operations.</p>\n<p>You cannot call this method until you have successfully authenticated. To authenticate call one of the <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsClient\"></see>, or <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsClient\"></see>, <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsServer\"></see>, <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsServer\"></see> methods.</p>\n<p>To perform this operation asynchronously, use the <xref href=\"System.Net.Security.SslStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n"
   syntax:
     content: public override int Read(byte[] buffer, int offset, int count)
     content.vb: Public Overrides Function Read(buffer As Byte(), offset As Integer, count As Integer) As Integer
@@ -1682,7 +1649,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Throws a <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Do not call this method. It is inherited, but is not supported by the <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public override long Seek(long offset, SeekOrigin origin)
     content.vb: Public Overrides Function Seek(offset As Long, origin As SeekOrigin) As Long
@@ -1730,7 +1696,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Sets the length of the underlying stream.</p>\n"
-  remarks: "\n<p>This method invokes <xref href=\"System.IO.Stream.SetLength(System.Int64)\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream specified when this <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> was created.</p>\n"
   syntax:
     content: public override void SetLength(long value)
     content.vb: Public Overrides Sub SetLength(value As Long)
@@ -1768,7 +1733,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Writes the specified data to this stream.</p>\n"
-  remarks: "\n<p>This method blocks while the operation completes. To prevent blocking while the operation completes, use the <xref href=\"System.Net.Security.SslStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>You cannot call this method until you have successfully authenticated. To authenticate call one of the <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsClient\"></see>, or <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsClient\"></see>, <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsServer\"></see>, <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsServer\"></see> methods.</p>\n<p>The <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class does not support multiple simultaneous write operations.</p>\n"
   syntax:
     content: public void Write(byte[] buffer)
     content.vb: Public Sub Write(buffer As Byte())
@@ -1822,7 +1786,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Write the specified number of <xref href=\"System.Byte\" data-throw-if-not-resolved=\"false\"></xref>s to the underlying stream using the specified buffer and offset.</p>\n"
-  remarks: "\n<p>This method blocks while the operation completes. To prevent blocking while the operation completes the operation completes, use the <xref href=\"System.Net.Security.SslStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>You cannot call this method until you have successfully authenticated. To authenticate call one of the <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsClient\"></see>, or <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsClient\"></see>, <see cref=\"Overload:System.Net.Security.SslStream.AuthenticateAsServer\"></see>, <see cref=\"Overload:System.Net.Security.SslStream.BeginAuthenticateAsServer\"></see> methods.</p>\n<p>The <xref href=\"System.Net.Security.SslStream\" data-throw-if-not-resolved=\"false\"></xref> class does not support multiple simultaneous write operations.</p>\n"
   syntax:
     content: public override void Write(byte[] buffer, int offset, int count)
     content.vb: Public Overrides Sub Write(buffer As Byte(), offset As Integer, count As Integer)

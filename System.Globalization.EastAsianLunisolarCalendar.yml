@@ -43,7 +43,6 @@ items:
   - System.Globalization.Calendars
   namespace: System.Globalization
   summary: "\n<p>Represents a calendar that divides time into months, days, years, and eras, and has dates that are based on cycles of the sun and the moon.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Globalization.EastAsianLunisolarCalendar\" data-throw-if-not-resolved=\"false\"></xref> class supports the sexagenary cycle of years (which repeats every 60 years) in addition to solar years and lunar months. Each solar year in the calendar is associated with a Sexagenary Year (see <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetSexagenaryYear(System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref>), a Celestial Stem (see <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetCelestialStem(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>), and a Terrestrial Branch (see <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetTerrestrialBranch(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>). </p>\n<p>For information about using the <xref href=\"System.Globalization.HebrewCalendar\" data-throw-if-not-resolved=\"false\"></xref> class and the other calendar classes in the .NET Framework, see Working with Calendars.</p>\n<p>A year can have a leap month after any month of the year, and a month can have a leap day. For example, the <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetMonth(System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref> method returns a positive integer that indicates the month associated with a specified date. If there is a leap month between the eighth and ninth months of the year, the <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetMonth(System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref> method returns 8 for the eighth month, 9 for the leap eighth month, and 10 for the ninth month.</p>\n<p>Each <xref href=\"System.Globalization.CultureInfo\" data-throw-if-not-resolved=\"false\"></xref> supports a set of calendars. Currently, none of the lunisolar calendar classes that derive from <xref href=\"System.Globalization.EastAsianLunisolarCalendar\" data-throw-if-not-resolved=\"false\"></xref> is used by any of the cultures supported by the <xref href=\"System.Globalization.CultureInfo\" data-throw-if-not-resolved=\"false\"></xref> class. Therefore, this class and those that derive from it can be used only to calculate dates in the East Asian lunisolar calendars. This class supports several \"get\" methods to describe a <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> in the terms used by lunisolar calendars, and the <xref href=\"System.Globalization.EastAsianLunisolarCalendar.ToDateTime(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to convert from lunisolar calendar data to a <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: >-
       [Serializable]
@@ -132,7 +131,6 @@ items:
   - System.Globalization.Calendars
   namespace: System.Globalization
   summary: "\n<p>Gets or sets the last year of a 100-year range that can be represented by a 2-digit year.</p>\n"
-  remarks: "\n<p>This property allows a 2-digit year to be properly translated to a 4-digit year. For example, in the Gregorian calendar, if this property is set to 2029, the 100-year range is from 1930 to 2029. Therefore, a 2-digit value of 30 is interpreted as 1930, while a 2-digit value of 29 is interpreted as 2029.</p>\n<p>The initial value of this property is derived from the settings in the regional and language options portion of Control Panel. However, that information can change during the life of the <xref href=\"System.AppDomain\" data-throw-if-not-resolved=\"false\"></xref>. The <xref href=\"System.Globalization.EastAsianLunisolarCalendar\" data-throw-if-not-resolved=\"false\"></xref> class does not detect changes in the system settings automatically.</p>\n"
   syntax:
     content: public override int TwoDigitYearMax { get; set; }
     content.vb: Public Overrides Property TwoDigitYearMax As Integer
@@ -179,7 +177,6 @@ items:
   - System.Globalization.Calendars
   namespace: System.Globalization
   summary: "\n<p>Calculates the date that is the specified number of months away from the specified date.</p>\n"
-  remarks: "\n<p>The day part of the resulting <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> is affected if the resulting day is not a valid day in the resulting month of the resulting year. In this case, the day part is changed to the last valid day in the resulting month of the resulting year. The year part of the resulting <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> is affected if the resulting month is outside the year of the specified <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>. This implementation supports only the current era. Therefore, <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref> is thrown if the resulting year is outside the era of the specified <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>. The time-of-day part of the resulting <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> remains the same as the specified <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For example, if the specified month is October, which has 31 days, the specified day is the thirty-first day of that month, and the value of the <em>months</em> parameter is 6, the resulting year is one more than the specified year, the resulting month is April, and the resulting day is the thirtieth day, which is the last day in April.</p>\n<p>If the value of the <em>months</em> parameter is negative, the resulting <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> is earlier than the specified <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The<xref href=\"System.DateTime.Kind\" data-throw-if-not-resolved=\"false\"></xref> property of the returned <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> value always equals <xref href=\"System.DateTimeKind.Unspecified\" data-throw-if-not-resolved=\"false\"></xref>. You can preserve the <xref href=\"System.DateTime.Kind\" data-throw-if-not-resolved=\"false\"></xref> property of the <em>time</em> parameter by calling the <xref href=\"System.DateTime.SpecifyKind(System.DateTime,System.DateTimeKind)\" data-throw-if-not-resolved=\"false\"></xref> method, as the following example shows.</p>System.Globalization.Calendar.AddMethods#5"
   syntax:
     content: public override DateTime AddMonths(DateTime time, int months)
     content.vb: Public Overrides Function AddMonths(time As Date, months As Integer) As Date
@@ -230,7 +227,6 @@ items:
   - System.Globalization.Calendars
   namespace: System.Globalization
   summary: "\n<p>Calculates the date that is the specified number of years away from the specified date.</p>\n"
-  remarks: "\n<p>The day part of the resulting <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> is affected if the resulting day is not a valid day in the resulting month of the resulting year. In this case, the day part is changed to the last valid day in the resulting month of the resulting year. The month part of the resulting <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> remains the same as the specified <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>. This implementation supports only the current era. Therefore, <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref> is thrown if the resulting year is outside the era of the specified <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>. The time-of-day part of the resulting <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> remains the same as the specified <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>For example, February has 28 days, except during leap years when it has 29 days. If the specified date is the twenty-ninth day of February in a leap year and the value of the <em>years</em> parameter is 1, the resulting date will be the twenty-eighth day of February in the following year.</p>\n<p>If <em>years</em> is negative, the resulting <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> is earlier than the specified <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The<xref href=\"System.DateTime.Kind\" data-throw-if-not-resolved=\"false\"></xref> property of the returned <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> value always equals <xref href=\"System.DateTimeKind.Unspecified\" data-throw-if-not-resolved=\"false\"></xref>. You can preserve the <xref href=\"System.DateTime.Kind\" data-throw-if-not-resolved=\"false\"></xref> property of the <em>time</em> parameter by calling the <xref href=\"System.DateTime.SpecifyKind(System.DateTime,System.DateTimeKind)\" data-throw-if-not-resolved=\"false\"></xref> method, as the following example shows.</p>System.Globalization.Calendar.AddMethods#8"
   syntax:
     content: public override DateTime AddYears(DateTime time, int years)
     content.vb: Public Overrides Function AddYears(time As Date, years As Integer) As Date
@@ -406,7 +402,6 @@ items:
   - System.Globalization.Calendars
   namespace: System.Globalization
   summary: "\n<p>Calculates the day of the year in the specified date.</p>\n"
-  remarks: "\n<p>The day of the year is defined as the number of days from the first day of the year. For example, <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetDayOfYear(System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref> for the first day of the first month returns 1, and <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetDayOfYear(System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref> for the last day of the last month returns the total number of days in that year, which is the same value returned by <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetDaysInYear(System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public override int GetDayOfYear(DateTime time)
     content.vb: Public Overrides Function GetDayOfYear(time As Date) As Integer
@@ -447,7 +442,6 @@ items:
   - System.Globalization.Calendars
   namespace: System.Globalization
   summary: "\n<p>Calculates the number of days in the specified month of the specified year and era.</p>\n"
-  remarks: "\n<p>Ifthe <em>month</em> parameter is the second month, the <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetDaysInMonth(System.Int32,System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method returns 28 or 29, depending on whether the <em>year</em> parameter is a leap year.</p>\n"
   syntax:
     content: public override int GetDaysInMonth(int year, int month, int era)
     content.vb: Public Overrides Function GetDaysInMonth(year As Integer, month As Integer, era As Integer) As Integer
@@ -498,7 +492,6 @@ items:
   - System.Globalization.Calendars
   namespace: System.Globalization
   summary: "\n<p>Calculates the number of days in the specified year and era.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetDaysInYear(System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method returns 365 or 366, depending on whether the <em>year</em> parameter is a leap year.</p>\n"
   syntax:
     content: public override int GetDaysInYear(int year, int era)
     content.vb: Public Overrides Function GetDaysInYear(year As Integer, era As Integer) As Integer
@@ -546,7 +539,6 @@ items:
   - System.Globalization.Calendars
   namespace: System.Globalization
   summary: "\n<p>Calculates the leap month for the specified year and era.</p>\n"
-  remarks: "\n<p>In a calendar that supports a leap month, the leap month can occur either after a particular month or after any month in a year. For example, the <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetMonth(System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref> method returns a number from 1 through 13 that indicates the month associated with a specified date. If there is a leap month between the eighth and ninth months of the year, the <xref href=\"System.Globalization.EastAsianLunisolarCalendar.GetMonth(System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref> method returns 8 for the eighth month, 9 for the leap eighth month, and 10 for the ninth month.</p>\n"
   syntax:
     content: public override int GetLeapMonth(int year, int era)
     content.vb: Public Overrides Function GetLeapMonth(year As Integer, era As Integer) As Integer
@@ -947,7 +939,6 @@ items:
   - System.Globalization.Calendars
   namespace: System.Globalization
   summary: "\n<p>Returns a <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> that is set to the specified date, time, and era.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Globalization.EastAsianLunisolarCalendar.ToDateTime(System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method can convert any date in the current calendar to a Gregorian calendar date. The Gregorian date can subsequently be used, for example, to compare dates in different calendars or create an equivalent date in a particular calendar.</p>\n"
   syntax:
     content: public override DateTime ToDateTime(int year, int month, int day, int hour, int minute, int second, int millisecond, int era)
     content.vb: Public Overrides Function ToDateTime(year As Integer, month As Integer, day As Integer, hour As Integer, minute As Integer, second As Integer, millisecond As Integer, era As Integer) As Date
@@ -1013,7 +1004,6 @@ items:
   - System.Globalization.Calendars
   namespace: System.Globalization
   summary: "\n<p>Converts the specified year to a four-digit year.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Globalization.EastAsianLunisolarCalendar.ToFourDigitYear(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method uses the <xref href=\"System.Globalization.EastAsianLunisolarCalendar.TwoDigitYearMax\" data-throw-if-not-resolved=\"false\"></xref> property to determine the appropriate century.</p>\n<p>\n<xref href=\"System.Globalization.EastAsianLunisolarCalendar.ToFourDigitYear(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> supports either a two-digit year or a four-digit year. Passing a two-digit year value (less than 100) causes the method to convert the value to a four-digit value according to the <xref href=\"System.Globalization.EastAsianLunisolarCalendar.TwoDigitYearMax\" data-throw-if-not-resolved=\"false\"></xref> value representing the appropriate century. If the application supplies a four-digit year value that is within the supported calendar range to <xref href=\"System.Globalization.EastAsianLunisolarCalendar.ToFourDigitYear(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref>, the method returns the actual input value. If the application supplies a four-digit value that is outside the supported calendar range, or if it supplies a negative value, the method throws an exception.</p>\n"
   syntax:
     content: public override int ToFourDigitYear(int year)
     content.vb: Public Overrides Function ToFourDigitYear(year As Integer) As Integer

@@ -54,7 +54,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Provides a stream that uses the Negotiate security protocol to authenticate the client, and optionally the server, in client-server communication.</p>\n"
-  remarks: "\n<p>Use the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> class for authentication and to help secure information transmitted between a client and a server. Using <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref>, you can do the following.</p>\n<ul><li>\n<p>Send the client's credentials to the server for Impersonation or Delegation. </p>\n</li><li>\n<p>Request server authentication.</p>\n</li><li>\n<p>Encrypt and/or sign data before transmitting it. </p>\n</li></ul>\n<p>Authentication must be performed before transmitting information. Clients request authentication using the synchronous <see cref=\"Overload:System.Net.Security.NegotiateStream.AuthenticateAsClient\"></see> methods, which block until the authentication completes, or the asynchronous <see cref=\"Overload:System.Net.Security.NegotiateStream.BeginAuthenticateAsClient\"></see> methods, which do not block while waiting for the authentication to complete. Servers request authentication using the synchronous <see cref=\"Overload:System.Net.Security.NegotiateStream.AuthenticateAsServer\"></see> or asynchronous <see cref=\"Overload:System.Net.Security.NegotiateStream.BeginAuthenticateAsServer\"></see> methods. The client, and optionally the server, is authenticated using the Negotiate security protocol. On Windows 95/98 systems, Windows NT LAN Manager (NTLM) is the protocol used for authentication. On other platforms the Kerberos protocol is used for authentication if both client and server support it; otherwise NTLM is used. For detailed descriptions of these protocols, see the Platform SDK documentation on MSDN, at msdn.microsoft.com/library/. The <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> class performs the authentication using the Security Support Provider Interface (SSPI). </p>\n<p>When authentication succeeds, you must check the <xref href=\"System.Net.Security.NegotiateStream.IsEncrypted\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Security.NegotiateStream.IsSigned\" data-throw-if-not-resolved=\"false\"></xref> properties to determine what security services will be used by the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> to help secure your data during transmission. Check the <xref href=\"System.Net.Security.NegotiateStream.IsMutuallyAuthenticated\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether mutual authentication occurred. You can get information about the remote client or server using the <xref href=\"System.Net.Security.NegotiateStream.RemoteIdentity\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>If the authentication fails, you will receive an <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref> or a <xref href=\"System.Security.Authentication.InvalidCredentialException\" data-throw-if-not-resolved=\"false\"></xref>. In this case, you can retry the authentication with a different credential.</p>\n<p>You send data using the synchronous <xref href=\"System.Net.Security.NegotiateStream.Write(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> or asynchronous <xref href=\"System.Net.Security.NegotiateStream.BeginWrite(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods. You receive data using the synchronous <xref href=\"System.Net.Security.NegotiateStream.Read(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> or asynchronous <xref href=\"System.Net.Security.NegotiateStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> methods. If security services such as encryption or signing are enabled, these are automatically applied to your data by the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> transmits data using a stream that you supply when creating the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref>. When you supply this underlying stream, you have the option to specify whether closing the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> also closes the underlying stream.</p>\n"
   syntax:
     content: 'public class NegotiateStream : AuthenticatedStream, IDisposable'
     content.vb: >-
@@ -173,7 +172,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> class using the specified <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> and stream closure behavior.</p>\n"
-  remarks: "\n<p>When you specify <strong>true</strong> for the <em>leaveStreamOpen</em> parameter, closing the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> has no effect on the <em>innerStream</em> stream; you must explicitly close <em>innerStream</em> when you no longer need it.</p>\n"
   syntax:
     content: public NegotiateStream(Stream innerStream, bool leaveInnerStreamOpen)
     content.vb: Public Sub New(innerStream As Stream, leaveInnerStreamOpen As Boolean)
@@ -215,7 +213,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the underlying stream is readable.</p>\n"
-  remarks: "\n<p>If successful authentication has occurred, this property returns the value returned by invoking the <xref href=\"System.IO.Stream.CanRead\" data-throw-if-not-resolved=\"false\"></xref> property on the underlying stream. The underlying stream is specified when you create an instance of the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public override bool CanRead { get; }
     content.vb: Public Overrides ReadOnly Property CanRead As Boolean
@@ -255,7 +252,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the underlying stream is seekable.</p>\n"
-  remarks: "\n<p>You should not attempt to set the position of the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> object or its underlying stream. The underlying stream is specified when you create an instance of the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public override bool CanSeek { get; }
     content.vb: Public Overrides ReadOnly Property CanSeek As Boolean
@@ -298,7 +294,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the underlying stream supports time-outs.</p>\n"
-  remarks: "\n<p>This property returns the value returned by invoking the <xref href=\"System.IO.Stream.CanTimeout\" data-throw-if-not-resolved=\"false\"></xref> property on the underlying stream. The underlying stream is specified when you create an instance of the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public override bool CanTimeout { get; }
     content.vb: Public Overrides ReadOnly Property CanTimeout As Boolean
@@ -338,7 +333,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the underlying stream is writable.</p>\n"
-  remarks: "\n<p>If successful authentication has occurred, this property returns the value returned by invoking the <xref href=\"System.IO.Stream.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> property on the underlying stream. The underlying stream is specified when you create an instance of the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public override bool CanWrite { get; }
     content.vb: Public Overrides ReadOnly Property CanWrite As Boolean
@@ -378,7 +372,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a value that indicates how the server can use the client's credentials.</p>\n"
-  remarks: "\n<p>You must successfully authenticate before calling this method. Clients specify the impersonation level when they request authentication by calling one of the <see cref=\"Overload:System.Net.Security.NegotiateStream.AuthenticateAsClient\"></see> or <see cref=\"Overload:System.Net.Security.NegotiateStream.BeginAuthenticateAsClient\"></see> methods. If you authenticate without specifying a <xref href=\"System.Security.Principal.TokenImpersonationLevel\" data-throw-if-not-resolved=\"false\"></xref> , <xref href=\"System.Security.Principal.TokenImpersonationLevel.Identification\" data-throw-if-not-resolved=\"false\"></xref> is used.</p>\n"
   syntax:
     content: public virtual TokenImpersonationLevel ImpersonationLevel { get; }
     content.vb: Public Overridable ReadOnly Property ImpersonationLevel As TokenImpersonationLevel
@@ -421,7 +414,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether authentication was successful.</p>\n"
-  remarks: "\n<p>Clients authenticate by calling the <see cref=\"Overload:System.Net.Security.NegotiateStream.AuthenticateAsClient\"></see> or <see cref=\"Overload:System.Net.Security.NegotiateStream.BeginAuthenticateAsClient\"></see> methods. Servers authenticate by calling the <see cref=\"Overload:System.Net.Security.NegotiateStream.AuthenticateAsServer\"></see> or <see cref=\"Overload:System.Net.Security.NegotiateStream.BeginAuthenticateAsServer\"></see> methods.</p>\n"
   syntax:
     content: public override bool IsAuthenticated { get; }
     content.vb: Public Overrides ReadOnly Property IsAuthenticated As Boolean
@@ -461,7 +453,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether this <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> uses data encryption.</p>\n"
-  remarks: "\n<p>Encryption helps to protect the privacy of the data; namely, it helps to ensure that while data is in transit it cannot be deciphered by third parties. </p>\n"
   syntax:
     content: public override bool IsEncrypted { get; }
     content.vb: Public Overrides ReadOnly Property IsEncrypted As Boolean
@@ -504,7 +495,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether both the server and the client have been authenticated.</p>\n"
-  remarks: "\n<p>Mutual authentication is specified by the client when the client wants the server to provide credentials for authentication. By default, clients request mutual authentication.</p>\n<p>The Negotiate protocol selects either NTLM or Kerberos depending on the security protocols supported by the client and server. NTLM does not support mutual authentication.</p>\n"
   syntax:
     content: public override bool IsMutuallyAuthenticated { get; }
     content.vb: Public Overrides ReadOnly Property IsMutuallyAuthenticated As Boolean
@@ -544,7 +534,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the local side of the connection used by this <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> was authenticated as the server.</p>\n"
-  remarks: "\n<p>If authentication failed or did not occur, this property returns <strong>false</strong>.</p>\n<p>To authenticate as the server, call the <see cref=\"Overload:System.Net.Security.NegotiateStream.AuthenticateAsServer\"></see> or <see cref=\"Overload:System.Net.Security.NegotiateStream.BeginAuthenticateAsServer\"></see> methods.</p>\n"
   syntax:
     content: public override bool IsServer { get; }
     content.vb: Public Overrides ReadOnly Property IsServer As Boolean
@@ -584,7 +573,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value that indicates whether the data sent using this stream is signed.</p>\n"
-  remarks: "\n<p>Data signing helps to protect the integrity of the data; namely, it helps the recipient determine whether the data has been tampered with while in transit. </p>\n"
   syntax:
     content: public override bool IsSigned { get; }
     content.vb: Public Overrides ReadOnly Property IsSigned As Boolean
@@ -624,7 +612,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets the length of the underlying stream.</p>\n"
-  remarks: "\n<p>This property returns the value returned by invoking the <xref href=\"System.IO.Stream.Length\" data-throw-if-not-resolved=\"false\"></xref> property on the underlying stream. If the underlying stream is not seekable, this property will typically throw an exception. The run-time type of the underlying stream determines the run-time type of the exception that is thrown.</p>\n"
   syntax:
     content: public override long Length { get; }
     content.vb: Public Overrides ReadOnly Property Length As Long
@@ -668,7 +655,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets or sets the current position in the underlying stream.</p>\n"
-  remarks: "\n<p>This property returns the value returned by invoking the <xref href=\"System.IO.Stream.Position\" data-throw-if-not-resolved=\"false\"></xref> property on the underlying stream. If the underlying stream is not seekable, this property will typically throw an exception. The run-time type of the underlying stream determines the run-time type of the exception that is thrown.</p>\n"
   syntax:
     content: public override long Position { get; set; }
     content.vb: Public Overrides Property Position As Long
@@ -712,7 +698,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets or sets the amount of time a read operation blocks waiting for data.</p>\n"
-  remarks: "\n<p>This property returns the value returned by invoking the <xref href=\"System.IO.Stream.ReadTimeout\" data-throw-if-not-resolved=\"false\"></xref> property on the underlying stream. When you set this property, the <xref href=\"System.IO.Stream.ReadTimeout\" data-throw-if-not-resolved=\"false\"></xref> value on the underlying stream is set to the specified value.</p>\n<p>If the underlying stream is a <xref href=\"System.Net.Sockets.NetworkStream\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Net.Security.NegotiateStream.ReadTimeout\" data-throw-if-not-resolved=\"false\"></xref> is in milliseconds and is set to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> by default so that read operations do not time out.</p>\n"
   syntax:
     content: public override int ReadTimeout { get; set; }
     content.vb: Public Overrides Property ReadTimeout As Integer
@@ -752,7 +737,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets information about the identity of the remote party sharing this authenticated stream.</p>\n"
-  remarks: "\n<p>When accessed by the client, this property returns a <xref href=\"System.Security.Principal.GenericIdentity\" data-throw-if-not-resolved=\"false\"></xref> containing the Service Principal Name (SPN) of the server and the authentication protocol used. When accessed by the server, this property returns a <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> that describes the client. If the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> is not available, client information is returned to the server in a <xref href=\"System.Security.Principal.GenericIdentity\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public virtual IIdentity RemoteIdentity { get; }
     content.vb: Public Overridable ReadOnly Property RemoteIdentity As IIdentity
@@ -795,7 +779,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Gets or sets the amount of time a write operation blocks waiting for data.</p>\n"
-  remarks: "\n<p>This property returns the value returned by invoking the <xref href=\"System.IO.Stream.WriteTimeout\" data-throw-if-not-resolved=\"false\"></xref> property on the underlying stream. For set operations, the specified value sets the <xref href=\"System.IO.Stream.WriteTimeout\" data-throw-if-not-resolved=\"false\"></xref> value on the underlying stream.</p>\n<p>If the underlying stream is a <xref href=\"System.Net.Sockets.NetworkStream\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Net.Security.NegotiateStream.WriteTimeout\" data-throw-if-not-resolved=\"false\"></xref> is in milliseconds and is set to <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> by default so that write operations do not time out.</p>\n"
   syntax:
     content: public override int WriteTimeout { get; set; }
     content.vb: Public Overrides Property WriteTimeout As Integer
@@ -835,7 +818,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Called by clients to authenticate the client, and optionally the server, in a client-server connection as an asynchronous operation.</p>\n"
-  remarks: "\n<p>The authentication uses the client's <xref href=\"System.Net.CredentialCache.DefaultCredentials\" data-throw-if-not-resolved=\"false\"></xref>. No Service Principal Name (SPN) is specified for the server. The impersonation level is <xref href=\"System.Security.Principal.TokenImpersonationLevel.Identification\" data-throw-if-not-resolved=\"false\"></xref>, the security level is <xref href=\"System.Net.Security.ProtectionLevel.EncryptAndSign\" data-throw-if-not-resolved=\"false\"></xref>, and mutual authentication is requested. The <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> class will construct the SPN used for mutual authentication. </p>\n<p>When authentication succeeds, you must check the <xref href=\"System.Net.Security.NegotiateStream.IsEncrypted\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Security.NegotiateStream.IsSigned\" data-throw-if-not-resolved=\"false\"></xref> properties to determine what security services are used by the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref>. Check the <xref href=\"System.Net.Security.NegotiateStream.IsMutuallyAuthenticated\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether mutual authentication occurred.</p>\n<p>If the authentication fails, you receive an <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref> or an <xref href=\"System.Security.Authentication.InvalidCredentialException\" data-throw-if-not-resolved=\"false\"></xref>. In this case, you can retry the authentication with a different credential.</p>\n"
   syntax:
     content: public virtual Task AuthenticateAsClientAsync()
     content.vb: Public Overridable Function AuthenticateAsClientAsync As Task
@@ -1051,7 +1033,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Called by servers to authenticate the client, and optionally the server, in a client-server connection as an asynchronous operation.</p>\n"
-  remarks: "\n<p>The authentication uses the server's <xref href=\"System.Net.CredentialCache.DefaultCredentials\" data-throw-if-not-resolved=\"false\"></xref>. No Service Principal Name (SPN) is specified for the server. The impersonation level is <xref href=\"System.Security.Principal.TokenImpersonationLevel.Identification\" data-throw-if-not-resolved=\"false\"></xref>, and the security level is <xref href=\"System.Net.Security.ProtectionLevel.EncryptAndSign\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>When authentication succeeds, you must check the <xref href=\"System.Net.Security.NegotiateStream.IsEncrypted\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Security.NegotiateStream.IsSigned\" data-throw-if-not-resolved=\"false\"></xref> properties to determine what security services are used by the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref>. Check the <xref href=\"System.Net.Security.NegotiateStream.IsMutuallyAuthenticated\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether mutual authentication occurred.</p>\n<p>If the authentication fails, you receive an <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref> or an <xref href=\"System.Security.Authentication.InvalidCredentialException\" data-throw-if-not-resolved=\"false\"></xref>. In this case, you can retry the authentication with a different credential. </p>\n"
   syntax:
     content: public virtual Task AuthenticateAsServerAsync()
     content.vb: Public Overridable Function AuthenticateAsServerAsync As Task
@@ -1103,7 +1084,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Called by servers to authenticate the client, and optionally the server, in a client-server connection as an asynchronous operation. The authentication process uses the specified extended protection policy.</p>\n"
-  remarks: "\n<p>The authentication uses the server's <xref href=\"System.Net.CredentialCache.DefaultCredentials\" data-throw-if-not-resolved=\"false\"></xref>. No Service Principal Name (SPN) is specified for the server. The impersonation level is <xref href=\"System.Security.Principal.TokenImpersonationLevel.Identification\" data-throw-if-not-resolved=\"false\"></xref>, and the security level is <xref href=\"System.Net.Security.ProtectionLevel.EncryptAndSign\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the <em>policy</em> parameter is <strong>null</strong>, then an extended protection policy is used that has <xref href=\"System.Security.Authentication.ExtendedProtection.ExtendedProtectionPolicy.PolicyEnforcement\" data-throw-if-not-resolved=\"false\"></xref> set to <xref href=\"System.Security.Authentication.ExtendedProtection.PolicyEnforcement.Never\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>When authentication succeeds, you must check the <xref href=\"System.Net.Security.NegotiateStream.IsEncrypted\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Net.Security.NegotiateStream.IsSigned\" data-throw-if-not-resolved=\"false\"></xref> properties to determine what security services are used by the <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref>. Check the <xref href=\"System.Net.Security.NegotiateStream.IsMutuallyAuthenticated\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether mutual authentication occurred.</p>\n<p>If the authentication fails, you receive an <xref href=\"System.Security.Authentication.AuthenticationException\" data-throw-if-not-resolved=\"false\"></xref> or an <xref href=\"System.Security.Authentication.InvalidCredentialException\" data-throw-if-not-resolved=\"false\"></xref>. In this case, you can retry the authentication with a different credential.</p>\n"
   syntax:
     content: public virtual Task AuthenticateAsServerAsync(ExtendedProtectionPolicy policy)
     content.vb: Public Overridable Function AuthenticateAsServerAsync(policy As ExtendedProtectionPolicy) As Task
@@ -1247,7 +1227,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Causes any buffered data to be written to the underlying device.</p>\n"
-  remarks: "\n<p>This method invokes <xref href=\"System.IO.Stream.Flush\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream.</p>\n"
   syntax:
     content: public override void Flush()
     content.vb: Public Overrides Sub Flush
@@ -1281,7 +1260,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Reads data from this stream and stores it in the specified array.</p>\n"
-  remarks: "\n<p>The method reads a maximum of <em>count</em> bytes from the current stream and stores them in <em>buffer</em> beginning at <em>offset</em>.</p>\n<p>You cannot call this method until you have successfully authenticated. To authenticate, call one of the <see cref=\"Overload:System.Net.Security.NegotiateStream.AuthenticateAsClient\"></see>, <see cref=\"Overload:System.Net.Security.NegotiateStream.BeginAuthenticateAsClient\"></see>, <see cref=\"Overload:System.Net.Security.NegotiateStream.AuthenticateAsServer\"></see>, or <see cref=\"Overload:System.Net.Security.NegotiateStream.BeginAuthenticateAsServer\"></see> methods.</p>\n<p>To perform this operation asynchronously, use the <xref href=\"System.Net.Security.NegotiateStream.BeginRead(System.Byte[],System.Int32,System.Int32,System.AsyncCallback,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n"
   syntax:
     content: public override int Read(byte[] buffer, int offset, int count)
     content.vb: Public Overrides Function Read(buffer As Byte(), offset As Integer, count As Integer) As Integer
@@ -1341,7 +1319,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Do not call this method. It is inherited, but is not supported by <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public override long Seek(long offset, SeekOrigin origin)
     content.vb: Public Overrides Function Seek(offset As Long, origin As SeekOrigin) As Long
@@ -1426,7 +1403,6 @@ items:
   - System.Net.Security
   namespace: System.Net.Security
   summary: "\n<p>Write the specified number of <xref href=\"System.Byte\" data-throw-if-not-resolved=\"false\"></xref>s to the underlying stream using the specified buffer and offset.</p>\n"
-  remarks: "\n<p>If encryption, signing, or encryption and signing are enabled, this method reads the data from buffer, encrypts, signs, or encrypts and signs it, and transmits it using the underlying stream. If no security services such as data encryption or signing are in use, this method invokes <xref href=\"System.IO.Stream.Write(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> on the underlying stream.</p>\n<p>This method blocks while the write operation completes. To prevent blocking while the operation completes, use the <xref href=\"System.Net.Security.NegotiateStream.Write(System.Byte[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>You cannot call this method until you have successfully authenticated. To authenticate, call one of the <see cref=\"Overload:System.Net.Security.NegotiateStream.AuthenticateAsClient\"></see>, <see cref=\"Overload:System.Net.Security.NegotiateStream.BeginAuthenticateAsClient\"></see>, <see cref=\"Overload:System.Net.Security.NegotiateStream.AuthenticateAsServer\"></see>, or <see cref=\"Overload:System.Net.Security.NegotiateStream.BeginAuthenticateAsServer\"></see> methods.</p>\n<p>The <xref href=\"System.Net.Security.NegotiateStream\" data-throw-if-not-resolved=\"false\"></xref> class does not support multiple simultaneous write operations. If you attempt to start a write operation while another write operation is already executing on the same stream, a <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> exception will be thrown.</p>\n"
   syntax:
     content: public override void Write(byte[] buffer, int offset, int count)
     content.vb: Public Overrides Sub Write(buffer As Byte(), offset As Integer, count As Integer)

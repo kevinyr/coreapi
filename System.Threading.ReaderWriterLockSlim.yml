@@ -49,7 +49,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Represents a lock that is used to manage access to a resource, allowing multiple threads for reading or exclusive access for writing.</p>\n"
-  remarks: "\n<p>Use <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> to protect a resource that is read by multiple threads and written to by one thread at a time. <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> allows multiple threads to be in read mode, allows one thread to be in write mode with exclusive ownership of the lock, and allows one thread that has read access to be in upgradeable read mode, from which the thread can upgrade to write mode without having to relinquish its read access to the resource.</p>\n<p>\n<xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> is similar to <xref href=\"System.Threading.ReaderWriterLock\" data-throw-if-not-resolved=\"false\"></xref>, but it has simplified rules for recursion and for upgrading and downgrading lock state. <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref>avoids many cases of potential deadlock. In addition, the performance of <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> is significantly better than <xref href=\"System.Threading.ReaderWriterLock\" data-throw-if-not-resolved=\"false\"></xref>. <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> is recommended for all new development.</p>\n<p>By default, new instances of <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> are created with the <xref href=\"System.Threading.LockRecursionPolicy.NoRecursion\" data-throw-if-not-resolved=\"false\"></xref> flag and do not allow recursion. This default policy is recommended for all new development, because recursion introduces unnecessary complications and makes your code more prone to deadlocks. To simplify migration from existing projects that use <xref href=\"System.Threading.Monitor\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Threading.ReaderWriterLock\" data-throw-if-not-resolved=\"false\"></xref>, you can use the <xref href=\"System.Threading.LockRecursionPolicy.SupportsRecursion\" data-throw-if-not-resolved=\"false\"></xref> flag to create instances of <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> that allow recursion.</p>\n<p>A thread can enter the lock in three modes: read mode, write mode, and upgradeable read mode. (In the rest of this topic, \"upgradeable read mode\" is referred to as \"upgradeable mode\", and the phrase \"enter <em>x</em> mode\" is used in preference to the longer phrase \"enter the lock in <em>x</em> mode\".)</p>\n<p>Regardless of recursion policy, only one thread can be in write mode at any time. When a thread is in write mode, no other thread can enter the lock in any mode. Only one thread can be in upgradeable mode at any time. Any number of threads can be in read mode, and there can be one thread in upgradeable mode while other threads are in read mode. </p>\n<p>This type implements the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface. When you have finished using the type, you should dispose of it either directly or indirectly. To dispose of the type directly, call its <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method in a <strong>try</strong>/<strong>catch</strong> block. To dispose of it indirectly, use a language construct such as <strong>using</strong> (in C#) or <strong>Using</strong> (in Visual Basic). For more information, see the “Using an Object that Implements IDisposable” section in the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface topic. </p>\n<p>\n<xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> has managed thread affinity; that is, each <xref href=\"System.Threading.Thread\" data-throw-if-not-resolved=\"false\"></xref> object must make its own method calls to enter and exit lock modes. No thread can change the mode of another thread. </p>\n<p>If a <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> does not allow recursion, a thread that tries to enter the lock can block for several reasons:</p>\n<ul><li>\n<p>A thread that tries to enter read mode blocks if there are threads waiting to enter write mode or if there is a single thread in write mode.</p>\n<p>Blocking new readers when writers are queued is a lock fairness policy that favors writers. The current fairness policy balances fairness to readers and writers, to promote throughput in the most common scenarios. Future versions of the .NET Framework may introduce new fairness policies. </p>\n</li><li>\n<p>A thread that tries to enter upgradeable mode blocks if there is already a thread in upgradeable mode, if there are threads waiting to enter write mode, or if there is a single thread in write mode. </p>\n</li><li>\n<p>A thread that tries to enter write mode blocks if there is a thread in any of the three modes. </p>\n</li></ul>\n"
   syntax:
     content: 'public class ReaderWriterLockSlim : IDisposable'
     content.vb: >-
@@ -96,7 +95,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> class with default property values.</p>\n"
-  remarks: "\n<p>A <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> that is initialized with this constructor does not allow recursion. That is, the <xref href=\"System.Threading.ReaderWriterLockSlim.RecursionPolicy\" data-throw-if-not-resolved=\"false\"></xref> property returns <xref href=\"System.Threading.LockRecursionPolicy.NoRecursion\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n<p>For more information about recursion policy and its effects, see the <xref href=\"System.Threading.LockRecursionPolicy\" data-throw-if-not-resolved=\"false\"></xref> enumeration and the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public ReaderWriterLockSlim()
     content.vb: Public Sub New
@@ -130,7 +128,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> class, specifying the lock recursion policy.</p>\n"
-  remarks: "\n<p>Recursion policy determines the restrictions on threads that enter the lock more than once. For example, if a lock was created with <xref href=\"System.Threading.LockRecursionPolicy.NoRecursion\" data-throw-if-not-resolved=\"false\"></xref> and a thread has entered the lock in read mode, <xref href=\"System.Threading.LockRecursionException\" data-throw-if-not-resolved=\"false\"></xref> is thrown if the thread tries to reenter the lock in read mode. Similarly, if a thread has entered the lock in write mode, <xref href=\"System.Threading.LockRecursionException\" data-throw-if-not-resolved=\"false\"></xref> is thrown if the thread tries to reenter the lock in any mode. </p>\n<p>A thread in upgradeable mode can upgrade to write mode or downgrade to read mode regardless of the lock recursion policy setting. </p>\n<p>Regardless of recursion policy, a thread that initially entered read mode is not allowed to upgrade to upgradeable mode or write mode, because that pattern creates a strong probability of deadlocks. </p>\n<p>For more information about recursion policy and its effects, see the <xref href=\"System.Threading.LockRecursionPolicy\" data-throw-if-not-resolved=\"false\"></xref> enumeration and the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public ReaderWriterLockSlim(LockRecursionPolicy recursionPolicy)
     content.vb: Public Sub New(recursionPolicy As LockRecursionPolicy)
@@ -170,7 +167,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets the total number of unique threads that have entered the lock in read mode.</p>\n"
-  remarks: "\n<p>A thread is counted only once, even if the lock allows recursion and the thread has entered read mode multiple times.</p>\n<p>Use this property only for debugging, profiling, and logging purposes, and not to control the behavior of an algorithm. The results can change as soon as they have been calculated. Therefore, it is not safe to make decisions based on this property.</p>\n"
   syntax:
     content: public int CurrentReadCount { get; }
     content.vb: Public ReadOnly Property CurrentReadCount As Integer
@@ -207,7 +203,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets a value that indicates whether the current thread has entered the lock in read mode.</p>\n"
-  remarks: "\n<p>This property is intended for use in asserts or for other debugging purposes. Do not use it to control the flow of program execution.</p>\n"
   syntax:
     content: public bool IsReadLockHeld { get; }
     content.vb: Public ReadOnly Property IsReadLockHeld As Boolean
@@ -244,7 +239,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets a value that indicates whether the current thread has entered the lock in upgradeable mode. </p>\n"
-  remarks: "\n<p>This property is intended for use in asserts or for other debugging purposes. Do not use it to control the flow of program execution.</p>\n"
   syntax:
     content: public bool IsUpgradeableReadLockHeld { get; }
     content.vb: Public ReadOnly Property IsUpgradeableReadLockHeld As Boolean
@@ -281,7 +275,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets a value that indicates whether the current thread has entered the lock in write mode.</p>\n"
-  remarks: "\n<p>This property is intended for use in asserts or for other debugging purposes. Do not use it to control the flow of program execution.</p>\n"
   syntax:
     content: public bool IsWriteLockHeld { get; }
     content.vb: Public ReadOnly Property IsWriteLockHeld As Boolean
@@ -318,7 +311,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets a value that indicates the recursion policy for the current <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>Recursion policy determines the restrictions on threads that enter the lock more than once. For example, if a lock was created with <xref href=\"System.Threading.LockRecursionPolicy.NoRecursion\" data-throw-if-not-resolved=\"false\"></xref> and a thread has entered the lock in read mode, <xref href=\"System.Threading.LockRecursionException\" data-throw-if-not-resolved=\"false\"></xref> is thrown if the thread tries to reenter the lock in read mode. </p>\n<p>A thread in upgradeable mode can upgrade to write mode or downgrade to read mode regardless of the lock recursion policy setting. </p>\n<p>Regardless of recursion policy, a thread that initially entered read mode is not allowed to upgrade to upgradeable mode or write mode, because that pattern creates a strong probability of deadlocks. </p>\n<p>For more information about recursion policy and its effects, see the <xref href=\"System.Threading.LockRecursionPolicy\" data-throw-if-not-resolved=\"false\"></xref> enumeration and the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
   syntax:
     content: public LockRecursionPolicy RecursionPolicy { get; }
     content.vb: Public ReadOnly Property RecursionPolicy As LockRecursionPolicy
@@ -358,7 +350,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets the number of times the current thread has entered the lock in read mode, as an indication of recursion.</p>\n"
-  remarks: "\n<p>Use this property only for debugging, profiling, and logging purposes, and not to control the behavior of an algorithm. The results can change as soon as they have been calculated. Therefore, it is not safe to make decisions based on this property.</p>\n"
   syntax:
     content: public int RecursiveReadCount { get; }
     content.vb: Public ReadOnly Property RecursiveReadCount As Integer
@@ -395,7 +386,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets the number of times the current thread has entered the lock in upgradeable mode, as an indication of recursion.</p>\n"
-  remarks: "\n<p>Use this property only for debugging, profiling, and logging purposes, and not to control the behavior of an algorithm. The results can change as soon as they have been calculated. Therefore, it is not safe to make decisions based on this property.</p>\n"
   syntax:
     content: public int RecursiveUpgradeCount { get; }
     content.vb: Public ReadOnly Property RecursiveUpgradeCount As Integer
@@ -432,7 +422,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets the number of times the current thread has entered the lock in write mode, as an indication of recursion.</p>\n"
-  remarks: "\n<p>Use this property only for debugging, profiling, and logging purposes, and not to control the behavior of an algorithm. The results can change as soon as they have been calculated. Therefore, it is not safe to make decisions based on this property.</p>\n"
   syntax:
     content: public int RecursiveWriteCount { get; }
     content.vb: Public ReadOnly Property RecursiveWriteCount As Integer
@@ -469,7 +458,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets the total number of threads that are waiting to enter the lock in read mode.</p>\n"
-  remarks: "\n<p>Use this property only for debugging, profiling, and logging purposes, and not to control the behavior of an algorithm. The results can change as soon as they have been calculated. Therefore, it is not safe to make decisions based on this property.</p>\n"
   syntax:
     content: public int WaitingReadCount { get; }
     content.vb: Public ReadOnly Property WaitingReadCount As Integer
@@ -506,7 +494,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets the total number of threads that are waiting to enter the lock in upgradeable mode.</p>\n"
-  remarks: "\n<p>Use this property only for debugging, profiling, and logging purposes, and not to control the behavior of an algorithm. The results can change as soon as they have been calculated. Therefore, it is not safe to make decisions based on this property.</p>\n"
   syntax:
     content: public int WaitingUpgradeCount { get; }
     content.vb: Public ReadOnly Property WaitingUpgradeCount As Integer
@@ -543,7 +530,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets the total number of threads that are waiting to enter the lock in write mode.</p>\n"
-  remarks: "\n<p>Use this property only for debugging, profiling, and logging purposes, and not to control the behavior of an algorithm. The results can change as soon as they have been calculated. Therefore, it is not safe to make decisions based on this property.</p>\n"
   syntax:
     content: public int WaitingWriteCount { get; }
     content.vb: Public ReadOnly Property WaitingWriteCount As Integer
@@ -580,7 +566,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Releases all resources used by the current instance of the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  remarks: "\n<p>Call <xref href=\"System.Threading.ReaderWriterLockSlim.Dispose\" data-throw-if-not-resolved=\"false\"></xref> when you are finished using the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref>. The <xref href=\"System.Threading.ReaderWriterLockSlim.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method leaves the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> in an unusable state. After calling <xref href=\"System.Threading.ReaderWriterLockSlim.Dispose\" data-throw-if-not-resolved=\"false\"></xref>, you must release all references to the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> so the garbage collector can reclaim the memory that the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> was occupying. For more information, see Cleaning Up Unmanaged Resources and Implementing a Dispose Method.</p>\n<p>Always call <xref href=\"System.Threading.ReaderWriterLockSlim.Dispose\" data-throw-if-not-resolved=\"false\"></xref> before you release your last reference to the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> object.  </p>\n"
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
@@ -617,7 +602,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Tries to enter the lock in read mode.</p>\n"
-  remarks: "\n<p>This method blocks until the calling thread enters the lock, and therefore might never return. Use the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterReadLock(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to block for a specified interval, and then return if the calling thread has not entered read mode during that interval. </p>\n<p>Multiple threads can enter read mode at the same time.</p>\n<p>If one or more threads are waiting to enter write mode, a thread that calls the <xref href=\"System.Threading.ReaderWriterLockSlim.EnterReadLock\" data-throw-if-not-resolved=\"false\"></xref> method blocks until those threads have either timed out or entered write mode and then exited from it.</p>\n<p>If a lock allows recursion, a thread that has entered the lock in read mode can enter read mode recursively, even if other threads are waiting to enter write mode. </p>\n<p>At most one thread can be in upgradeable mode while other threads are in read mode. If additional threads are waiting to enter upgradeable mode, and there are no threads waiting to enter write mode, threads that call the <xref href=\"System.Threading.ReaderWriterLockSlim.EnterReadLock\" data-throw-if-not-resolved=\"false\"></xref> method enter read mode immediately and do not block.</p>\n"
   syntax:
     content: public void EnterReadLock()
     content.vb: Public Sub EnterReadLock
@@ -655,7 +639,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Tries to enter the lock in upgradeable mode.</p>\n"
-  remarks: "\n<p>This method blocks until the calling thread enters the lock, and therefore might never return. Use the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterUpgradeableReadLock(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to block for a specified interval, and then return if the calling thread has not entered upgradeable mode during that interval.</p>\n<p>Use upgradeable mode when a thread usually accesses the resource that is protected by the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> in read mode, but may need to enter write mode if certain conditions are met. A thread in upgradeable mode can downgrade to read mode or upgrade to write mode.</p>\n<p>Only one thread can enter upgradeable mode at any given time. If a thread is in upgradeable mode, and there are no threads waiting to enter write mode, any number of other threads can enter read mode, even if there are threads waiting to enter upgradeable mode.</p>\n<p>If one or more threads are waiting to enter write mode, a thread that calls the <xref href=\"System.Threading.ReaderWriterLockSlim.EnterUpgradeableReadLock\" data-throw-if-not-resolved=\"false\"></xref> method blocks until those threads have either timed out or entered write mode and then exited from it.</p>\n<p>If a lock allows recursion, a thread that has entered the lock in upgradeable mode can enter upgradeable mode recursively, even if other threads are waiting to enter write mode. </p>\n"
   syntax:
     content: public void EnterUpgradeableReadLock()
     content.vb: Public Sub EnterUpgradeableReadLock
@@ -693,7 +676,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Tries to enter the lock in write mode.</p>\n"
-  remarks: "\n<p>This method blocks until the calling thread enters the lock, and therefore might never return. Use the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterWriteLock(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to block for a specified interval, and then return if the calling thread has not entered write mode during that interval.</p>\n<p>If other threads have entered the lock in read mode, a thread that calls the <xref href=\"System.Threading.ReaderWriterLockSlim.EnterWriteLock\" data-throw-if-not-resolved=\"false\"></xref> method blocks until those threads have exited read mode. When there are threads waiting to enter write mode, additional threads that try to enter read mode or upgradeable mode block until all the threads waiting to enter write mode have either timed out or entered write mode and then exited from it.</p>\n<p>If a lock allows recursion, a thread that has entered the lock in write mode can enter write mode recursively, even if other threads are waiting to enter write mode. </p>\n"
   syntax:
     content: public void EnterWriteLock()
     content.vb: Public Sub EnterWriteLock
@@ -731,7 +713,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Reduces the recursion count for read mode, and exits read mode if the resulting count is 0 (zero).</p>\n"
-  remarks: "\n<p>This method is not sensitive to recursion order. For example, if a thread enters a lock in upgradeable mode and then enters the lock in read mode, the order in which the thread exits the two modes does not matter. If a lock allows recursion, a thread can enter the lock in write mode and then enter it recursively in read mode; the order in which the thread exits read mode and write mode does not matter. </p>\n<p>Exiting the lock might signal other waiting threads.</p>\n"
   syntax:
     content: public void ExitReadLock()
     content.vb: Public Sub ExitReadLock
@@ -766,7 +747,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Reduces the recursion count for upgradeable mode, and exits upgradeable mode if the resulting count is 0 (zero).</p>\n"
-  remarks: "\n<p>This method is not sensitive to recursion order. For example, if a thread enters a lock in upgradeable mode and then enters the lock in write mode, the order in which the thread exits the two modes does not matter. If a lock allows recursion, a thread can enter the lock in write mode and then enter it recursively in upgradeable mode; the order in which the thread exits upgradeable mode and write mode does not matter. </p>\n<p>Exiting the lock might signal other waiting threads.</p>\n"
   syntax:
     content: public void ExitUpgradeableReadLock()
     content.vb: Public Sub ExitUpgradeableReadLock
@@ -801,7 +781,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Reduces the recursion count for write mode, and exits write mode if the resulting count is 0 (zero).</p>\n"
-  remarks: "\n<p>This method is not sensitive to recursion order. For example, if a thread enters a lock in upgradeable mode and then enters the lock in write mode, the order in which the thread exits the two modes does not matter. If a lock allows recursion, a thread can enter the lock in write mode and then enter it recursively in read mode; the order in which the thread exits read mode and write mode does not matter. </p>\n<p>Exiting the lock might signal other waiting threads.</p>\n"
   syntax:
     content: public void ExitWriteLock()
     content.vb: Public Sub ExitWriteLock
@@ -836,7 +815,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Tries to enter the lock in read mode, with an optional integer time-out.</p>\n"
-  remarks: "\n<p>If <em>millisecondsTimeout</em> is 0 (zero), this method checks the lock state and returns <strong>false</strong> immediately if the desired state is unavailable.</p>\n<p>Multiple threads can enter read mode at the same time.</p>\n<p>If one or more threads are waiting to enter write mode, a thread that calls the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterReadLock(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method blocks until those threads have either timed out or entered write mode and then exited from it, or until the calling thread's own time-out interval expires.</p>\n<p>If a lock allows recursion, a thread that has entered the lock in read mode can enter read mode recursively, even if other threads are waiting to enter write mode. </p>\n<p>One thread can be in upgradeable mode while other threads are in read mode. If additional threads are waiting to enter upgradeable mode, and there are no threads waiting to enter write mode, threads that call the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterReadLock(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method enter read mode immediately and do not block.</p>\n"
   syntax:
     content: public bool TryEnterReadLock(int millisecondsTimeout)
     content.vb: Public Function TryEnterReadLock(millisecondsTimeout As Integer) As Boolean
@@ -884,7 +862,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Tries to enter the lock in read mode, with an optional time-out.</p>\n"
-  remarks: "\n<p>If <em>timeout</em> is 0 (zero), this method checks the lock state and returns <strong>false</strong> immediately if the desired state is unavailable.</p>\n<p>Multiple threads can enter the lock in read mode at the same time.</p>\n<p>If one or more threads are queued to enter write mode, a thread that calls the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterReadLock(System.TimeSpan)\" data-throw-if-not-resolved=\"false\"></xref> method blocks until those threads have either timed out or entered write mode and then exited from it, or until the calling thread's own time-out interval expires.</p>\n<p>If a lock allows recursion, a thread that has entered the lock in read mode can enter read mode recursively, even if other threads are waiting to enter write mode. </p>\n<p>One thread can be in upgradeable mode while other threads are in read mode. If additional threads are waiting to enter upgradeable mode, and there are no threads waiting to enter write mode, threads that call the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterReadLock(System.TimeSpan)\" data-throw-if-not-resolved=\"false\"></xref> method enter read mode immediately and do not block.</p>\n"
   syntax:
     content: public bool TryEnterReadLock(TimeSpan timeout)
     content.vb: Public Function TryEnterReadLock(timeout As TimeSpan) As Boolean
@@ -932,7 +909,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Tries to enter the lock in upgradeable mode, with an optional time-out.</p>\n"
-  remarks: "\n<p>If <em>millisecondsTimeout</em> is 0 (zero), this method checks the lock state and returns <strong>false</strong> immediately if the desired state is unavailable.</p>\n<p>Use upgradeable mode when a thread usually accesses the resource that is protected by the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> in read mode, but may need to enter write mode if certain conditions are met. A thread in upgradeable mode can upgrade to write mode or downgrade to read mode. </p>\n<p>Only one thread can enter a lock in upgradeable mode at any given time. If a thread is in upgradeable mode, and there are no threads waiting to enter write mode, any number of other threads can enter read mode, even if there are threads waiting to enter upgradeable mode.</p>\n<p>If one or more threads are waiting to enter write mode, a thread that calls the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterUpgradeableReadLock(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method blocks until those threads have either timed out or entered write mode and then exited from it, or until the calling thread's own time-out interval expires.</p>\n<p>If a lock allows recursion, a thread that has entered the lock in upgradeable mode can enter upgradeable mode recursively, even if other threads are waiting to enter write mode. </p>\n"
   syntax:
     content: public bool TryEnterUpgradeableReadLock(int millisecondsTimeout)
     content.vb: Public Function TryEnterUpgradeableReadLock(millisecondsTimeout As Integer) As Boolean
@@ -980,7 +956,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Tries to enter the lock in upgradeable mode, with an optional time-out.</p>\n"
-  remarks: "\n<p>If <em>timeout</em> is 0 (zero), this method checks the lock state and returns <strong>false</strong> immediately if the desired state is unavailable.</p>\n<p>Use upgradeable mode when a thread usually accesses the resource protected by the <xref href=\"System.Threading.ReaderWriterLockSlim\" data-throw-if-not-resolved=\"false\"></xref> in read mode, but may need to enter write mode if certain conditions are met. A thread in upgradeable mode can upgrade to write mode or downgrade to read mode. </p>\n<p>Only one thread can enter a lock in upgradeable mode at any given time. If a thread is in upgradeable mode, and there are no threads waiting to enter write mode, any number of other threads can enter read mode, even if there are threads waiting to enter upgradeable mode.</p>\n<p>If one or more threads are waiting to enter write mode, a thread that calls the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterUpgradeableReadLock(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method blocks until those threads have either timed out or entered write mode and then exited from it, or until the calling thread's own time-out interval expires.</p>\n<p>If a lock allows recursion, a thread that has entered the lock in upgradeable mode can enter upgradeable mode recursively, even if other threads are waiting to enter write mode. </p>\n"
   syntax:
     content: public bool TryEnterUpgradeableReadLock(TimeSpan timeout)
     content.vb: Public Function TryEnterUpgradeableReadLock(timeout As TimeSpan) As Boolean
@@ -1028,7 +1003,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Tries to enter the lock in write mode, with an optional time-out.</p>\n"
-  remarks: "\n<p>If <em>millisecondsTimeout</em> is 0 (zero), this method checks the lock state and returns <strong>false</strong> immediately if the desired state is unavailable.</p>\n<p>If other threads have entered the lock in read mode, a thread that calls the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterWriteLock(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method blocks until those threads have exited read mode or until the time-out interval has elapsed. While threads are blocked waiting to enter write mode, additional threads that try to enter read mode or upgradeable mode block until all the threads waiting to enter write mode have either timed out or entered write mode and then exited from it.</p>\n<p>If a lock allows recursion, a thread that has entered the lock in write mode can enter write mode recursively, even if other threads are waiting to enter write mode. </p>\n"
   syntax:
     content: public bool TryEnterWriteLock(int millisecondsTimeout)
     content.vb: Public Function TryEnterWriteLock(millisecondsTimeout As Integer) As Boolean
@@ -1076,7 +1050,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Tries to enter the lock in write mode, with an optional time-out.</p>\n"
-  remarks: "\n<p>If <em>timeout</em> is 0 (zero), this method checks the lock state and returns <strong>false</strong> immediately if the desired state is unavailable.</p>\n<p>If other threads have entered the lock in read mode, a thread that calls the <xref href=\"System.Threading.ReaderWriterLockSlim.TryEnterWriteLock(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method blocks until those threads have exited read mode or until the time-out interval has elapsed. While threads are blocked waiting to enter write mode, additional threads that try to enter read mode or upgradeable mode block until all the threads waiting to enter write mode have either timed out or entered write mode and then exited from it.</p>\n<p>If a lock allows recursion, a thread that has entered the lock in write mode can enter write mode recursively, even if other threads are waiting to enter write mode. </p>\n"
   syntax:
     content: public bool TryEnterWriteLock(TimeSpan timeout)
     content.vb: Public Function TryEnterWriteLock(timeout As TimeSpan) As Boolean

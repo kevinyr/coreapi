@@ -35,7 +35,6 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Provides a controlled memory buffer that can be used for reading and writing. Attempts to access memory outside the controlled buffer (underruns and overruns) raise exceptions.</p>\n"
-  remarks: "\n<p>You must call the <xref href=\"System.Runtime.InteropServices.SafeBuffer.Initialize(System.UInt32,System.UInt32)\" data-throw-if-not-resolved=\"false\"></xref> method before you use any instance of <xref href=\"System.Runtime.InteropServices.SafeBuffer\" data-throw-if-not-resolved=\"false\"></xref>. To avoid races when you store an instance of a <xref href=\"System.Runtime.InteropServices.SafeBuffer\" data-throw-if-not-resolved=\"false\"></xref> object in a static variable, you should use one of the following approaches:</p>\n<ul><li>\n<p>Create a lock when publishing the <xref href=\"System.Runtime.InteropServices.SafeBuffer\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</li><li>\n<p>Create a local variable, initialize the <xref href=\"System.Runtime.InteropServices.SafeBuffer\" data-throw-if-not-resolved=\"false\"></xref>, and then assign the <xref href=\"System.Runtime.InteropServices.SafeBuffer\" data-throw-if-not-resolved=\"false\"></xref> to the static variable, for example, by using the <xref href=\"System.Threading.Interlocked.CompareExchange``1(``0@,``0,``0)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n</li></ul>\n<p>Assignments in a static class constructor are implicitly locked.</p>\n"
   syntax:
     content: >-
       [SecurityCritical]
@@ -241,7 +240,6 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Obtains a pointer from a <xref href=\"System.Runtime.InteropServices.SafeBuffer\" data-throw-if-not-resolved=\"false\"></xref> object for a block of memory.</p>\n"
-  remarks: "\n<p>When <xref href=\"System.Runtime.InteropServices.SafeBuffer.AcquirePointer(System.Byte*@)\" data-throw-if-not-resolved=\"false\"></xref> returns, you should perform bounds checking by verifying that the <em>pointer</em> parameter is <strong>null</strong>. If it is not <strong>null</strong>, you must call the <xref href=\"System.Runtime.InteropServices.SafeBuffer.ReleasePointer\" data-throw-if-not-resolved=\"false\"></xref> method in a constrained execution region (CER).</p>\n<p>\n<xref href=\"System.Runtime.InteropServices.SafeBuffer.AcquirePointer(System.Byte*@)\" data-throw-if-not-resolved=\"false\"></xref> calls the <xref href=\"System.Runtime.InteropServices.SafeHandle.DangerousAddRef(System.Boolean@)\" data-throw-if-not-resolved=\"false\"></xref> method and exposes the pointer. Unlike the <xref href=\"System.Runtime.InteropServices.SafeBuffer.Read``1(System.UInt64)\" data-throw-if-not-resolved=\"false\"></xref> method, it does not change the current position of the pointer.</p>\n<p>The following exampledemonstrates how to use the <xref href=\"System.Runtime.InteropServices.SafeBuffer.AcquirePointer(System.Byte*@)\" data-throw-if-not-resolved=\"false\"></xref> method:</p>\n<pre><code>byte* pointer = null;\nRuntimeHelpers.PrepareConstrainedRegions();\ntry {\nMySafeBuffer.AcquirePointer(ref pointer);\n// Use pointer here, with your own bounds checking.\n}\nfinally {\nif (pointer != null)\nMySafeBuffer.ReleasePointer();\n}</code></pre>\n<p>If you cast <em>pointer</em> (which is a pointer to a byte) as a pointer to a different type (T*), you may have pointer alignment issues. </p>\n<p>You must take responsibility for all bounds checking with this pointer.</p>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -299,7 +297,6 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Specifies the allocation size of the memory buffer by using the specified number of elements and element size. You must call this method before you use the <xref href=\"System.Runtime.InteropServices.SafeBuffer\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
-  remarks: "\n<p>This method defines the required size of the memory region as the number of elements in an array multiplied by the size of each element.</p>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -606,7 +603,6 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Releases a pointer that was obtained by the <xref href=\"System.Runtime.InteropServices.SafeBuffer.AcquirePointer(System.Byte*@)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
-  remarks: "\n<p>After this method returns, the pointer cannot be used.</p>\n"
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -647,7 +643,6 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Writes a value type to memory at the given location.</p>\n"
-  remarks: "\n<p>This method is equivalent to the following code:</p>\n<pre><code>*(T*)(bytePtr + byteOffset) = value;</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -714,7 +709,6 @@ items:
   - System.Runtime.InteropServices
   namespace: System.Runtime.InteropServices
   summary: "\n<p>Writes the specified number of value types to a memory location by reading bytes starting from the specified location in the input array.</p>\n"
-  remarks: "\n<p>Each element in the input array consists of the generic value type of the class. </p>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]

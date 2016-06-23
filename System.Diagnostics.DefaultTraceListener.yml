@@ -28,7 +28,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Provides the default output methods and behavior for tracing.</p>\n"
-  remarks: "\n<p>An instance of this class is automatically added to the <xref href=\"System.Diagnostics.Debug.Listeners\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collections. Explicitly adding a second <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> causes duplicate messages in the debugger output window and duplicate message boxes for asserts.</p>\n<p>By default, the <xref href=\"System.Diagnostics.DefaultTraceListener.Write(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Diagnostics.DefaultTraceListener.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods emit the message to the Win32 <strong>OutputDebugString</strong> function and to the <xref href=\"System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method. For information about the <strong>OutputDebugString</strong> function, see the Platform SDK or MSDN.</p>\n<p>The <xref href=\"System.Diagnostics.DefaultTraceListener.Fail(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method, by default, displays a message box when the application is running in a user interface mode; it also emits the message using <xref href=\"System.Diagnostics.DefaultTraceListener.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The display of the message box for <xref href=\"System.Diagnostics.Debug.Assert(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Diagnostics.Debug.Fail(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method calls depends on the presence of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>. If the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> is not in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection, the message box is not displayed. The <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> can be removed by the <clear> element, by the <remove> element, or by calling the <xref href=\"System.Diagnostics.TraceListenerCollection.Clear\" data-throw-if-not-resolved=\"false\"></xref> method on the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> property (<code>System.Diagnostics.Trace.Listeners.Clear()</code>).</p>\n<p>You must enable tracing or debugging to use a trace listener. The following syntax is compiler specific. If you use compilers other than C# or Visual Basic, refer to the documentation for your compiler.</p>\n<ul><li>\n<p>To enable debugging in C#, add the <strong>/d:DEBUG</strong> flag to the compiler command line when you compile your code, or add <strong>#define DEBUG</strong> to the top of your file. In Visual Basic, add the <strong>/d:DEBUG=True</strong> flag to the compiler command line.</p>\n</li><li>\n<p>To enable tracing in C#, add the <strong>/d:TRACE</strong> flag to the compiler command line when you compile your code, or add <strong>#define TRACE</strong> to the top of your file. In Visual Basic, add the <strong>/d:TRACE=True</strong> flag to the compiler command line.</p>\n</li></ul>\n<p>To add a trace listener, edit the configuration file that corresponds to the name of your application. Within this file, you can add a listener, set its type and set its parameters, remove a listener, or clear all the listeners previously set by the application. The configuration file should be formatted similar to the following example: </p>\n<pre><code><configuration>\n<system.diagnostics>\n<trace autoflush=\"false\" indentsize=\"4\">\n<listeners>\n<remove name=\"Default\" />\n<add name=\"myListener\"  type=\"System.Diagnostics.TextWriterTraceListener\"    initializeData=\"c:\\myListener.log\" />\n</listeners>\n</trace>\n</system.diagnostics>\n</configuration></code></pre>\n"
   syntax:
     content: 'public class DefaultTraceListener : TraceListener, IDisposable'
     content.vb: >-
@@ -153,7 +152,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Emits or displays a message and a stack trace for an assertion that always fails.</p>\n"
-  remarks: "\n<p>By default, this method sends the <em>message</em> parameter and a stack trace to a message box (when the application runs in user-interface mode) and to the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
   syntax:
     content: public override void Fail(string message)
     content.vb: Public Overrides Sub Fail(message As String)
@@ -204,7 +202,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Emits or displays detailed messages and a stack trace for an assertion that always fails.</p>\n"
-  remarks: "\n<p>By default, this method sends the <em>message</em> parameter, the <em>detailMessage</em> parameter, and a stack trace to a message box (when the application runs in user-interface mode) and to the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
   syntax:
     content: public override void Fail(string message, string detailMessage)
     content.vb: Public Overrides Sub Fail(message As String, detailMessage As String)
@@ -258,7 +255,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes the output to the <strong>OutputDebugString</strong> function and to the <xref href=\"System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
-  remarks: "\n<p>For information about the Win32 <strong>OutputDebugString</strong> debugging function, see \"OutputDebugString\" in the Platform SDK or MSDN.</p>\n"
   syntax:
     content: public override void Write(string message)
     content.vb: Public Overrides Sub Write(message As String)
@@ -309,7 +305,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes the output to the <strong>OutputDebugString</strong> function and to the <xref href=\"System.Diagnostics.Debugger.Log(System.Int32,System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method, followed by a carriage return and line feed (\\r\\n).</p>\n"
-  remarks: "\n<p>The default line terminator is a carriage return followed by a line feed (\\r\\n).</p>\n<p>For information about the Win32 <strong>OutputDebugString</strong> debugging function, see the Platform SDK or MSDN.</p>\n<p>This method sets the <xref href=\"System.Diagnostics.TraceListener.NeedIndent\" data-throw-if-not-resolved=\"false\"></xref> property to <strong>true</strong>.</p>\n"
   syntax:
     content: public override void WriteLine(string message)
     content.vb: Public Overrides Sub WriteLine(message As String)

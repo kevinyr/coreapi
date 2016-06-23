@@ -31,7 +31,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Provides access to custom attribute data for assemblies, modules, types, members and parameters that are loaded into the reflection-only context.</p>\n"
-  remarks: "\n<p>Code that is being examined in the reflection-only context cannot be executed, so it is not always possible to examine custom attributes by creating instances of them and then examining their properties, using methods like <see cref=\"Overload:System.Attribute.GetCustomAttributes\"></see>, <see cref=\"Overload:System.Reflection.MemberInfo.GetCustomAttributes\"></see>, and so on. If the code for the attribute type itself is loaded into the reflection-only context, it cannot be executed. </p>\n<p>The <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> class allows examination of custom attributes in the reflection-only context by providing an abstraction for attributes. The members of this class can be used to obtain the positional arguments and named arguments of the attribute. Use the <xref href=\"System.Reflection.CustomAttributeData.ConstructorArguments\" data-throw-if-not-resolved=\"false\"></xref> property to get a list of <xref href=\"System.Reflection.CustomAttributeTypedArgument\" data-throw-if-not-resolved=\"false\"></xref> structures that represent the positional arguments, and use the <xref href=\"System.Reflection.CustomAttributeData.NamedArguments\" data-throw-if-not-resolved=\"false\"></xref> property to get a list of <xref href=\"System.Reflection.CustomAttributeNamedArgument\" data-throw-if-not-resolved=\"false\"></xref> structures that represent the named arguments. </p>\n<p>The <xref href=\"System.Reflection.CustomAttributeNamedArgument\" data-throw-if-not-resolved=\"false\"></xref> structure only provides information about the attribute property used to get and set the argument value. To obtain the type and value of the argument, use the <xref href=\"System.Reflection.CustomAttributeNamedArgument.TypedValue\" data-throw-if-not-resolved=\"false\"></xref> property to obtain a <xref href=\"System.Reflection.CustomAttributeTypedArgument\" data-throw-if-not-resolved=\"false\"></xref> structure.</p>\n<p>When you have a <xref href=\"System.Reflection.CustomAttributeTypedArgument\" data-throw-if-not-resolved=\"false\"></xref> structure for an argument, whether named or positional, use the <xref href=\"System.Reflection.CustomAttributeTypedArgument.ArgumentType\" data-throw-if-not-resolved=\"false\"></xref> property to get the type and the <xref href=\"System.Reflection.CustomAttributeTypedArgument.Value\" data-throw-if-not-resolved=\"false\"></xref> property to get the value. </p>\n<p>For an array argument, the <xref href=\"System.Reflection.CustomAttributeTypedArgument.Value\" data-throw-if-not-resolved=\"false\"></xref> property returns a generic <xref href=\"System.Collections.ObjectModel.ReadOnlyCollection`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Reflection.CustomAttributeTypedArgument\" data-throw-if-not-resolved=\"false\"></xref> objects. Each <xref href=\"System.Reflection.CustomAttributeTypedArgument\" data-throw-if-not-resolved=\"false\"></xref> object in the collection represents the corresponding element of the array. </p>\n<p>\n<xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> can be used in the execution context as well as in the reflection-only context. For example, you might want to avoid loading the assembly that contains the code for a custom attribute. Using the <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> class is different from using methods like <see cref=\"Overload:System.Attribute.GetCustomAttributes\"></see>:</p>\n<ul><li>\n<p>The properties and methods of <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> only provide you with the values that were specified for the attribute instance, not the semantics of the constructor. For example, a string argument of an attribute might be converted internally to some other representation, and returned in a canonical form; or a property might have side effects when the actual attribute code is executed.</p>\n</li><li>\n<p>The properties and methods of <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> do not allow you to retrieve the custom attributes inherited from base classes. </p>\n</li></ul>\n<p>To create instances of the <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> class, use the <strong>static</strong> (<strong>Shared</strong> in Visual Basic) <see cref=\"Overload:System.Reflection.CustomAttributeData.GetCustomAttributes\"></see> factory methods.</p>\n"
   syntax:
     content: >-
       [Serializable]
@@ -125,7 +124,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Gets the list of positional arguments specified for the attribute instance represented by the <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>This method gets the positional arguments that were specified for the custom attribute instance without executing any of the custom attribute code. Thus, it can be used in the reflection-only context.</p>\n<p>Use the <xref href=\"System.Reflection.CustomAttributeData.NamedArguments\" data-throw-if-not-resolved=\"false\"></xref> method to get the named arguments specified for the attribute instance.</p>\n"
   syntax:
     content: >-
       [ComVisible(true)]
@@ -175,7 +173,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Gets the list of named arguments specified for the attribute instance represented by the <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
-  remarks: "\n<p>This method gets the named arguments that were specified for the custom attribute instance without executing any of the custom attribute code. Thus, it can be used in the Reflection-only context. </p>\n<p>The list that is returned contains only the named arguments that were specified for the attribute instance.</p>\n<p>Use the <xref href=\"System.Reflection.CustomAttributeData.ConstructorArguments\" data-throw-if-not-resolved=\"false\"></xref> method to get the positional arguments that were specified for the attribute instance. </p>\n"
   syntax:
     content: public virtual IList<CustomAttributeNamedArgument> NamedArguments { get; }
     content.vb: Public Overridable ReadOnly Property NamedArguments As IList(Of CustomAttributeNamedArgument)
@@ -219,7 +216,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Gets a <xref href=\"System.Reflection.ConstructorInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents the constructor that would have initialized the custom attribute.</p>\n"
-  remarks: "\n<p>If an attribute type has multiple constructors, this property returns only the particular constructor that would have initialized the attribute instance represented by the current <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   syntax:
     content: >-
       [ComVisible(true)]
@@ -267,7 +263,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns a list of <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> objects representing data about the attributes that have been applied to the target assembly.</p>\n"
-  remarks: "\n<p>This method provides an alternative to the <see cref=\"Overload:System.Reflection.Assembly.GetCustomAttributes\"></see> method that can always be used in the Reflection-only context.</p>\n"
   syntax:
     content: public static IList<CustomAttributeData> GetCustomAttributes(Assembly target)
     content.vb: Public Shared Function GetCustomAttributes(target As Assembly) As IList(Of CustomAttributeData)
@@ -314,7 +309,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns a list of <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> objects representing data about the attributes that have been applied to the target member.</p>\n"
-  remarks: "\n<p>This method overload gets custom attribute data for types, nested types, and type members, because the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> class and the classes in the <xref href=\"System.Reflection\" data-throw-if-not-resolved=\"false\"></xref> namespace that represent type members all derive from <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
   syntax:
     content: public static IList<CustomAttributeData> GetCustomAttributes(MemberInfo target)
     content.vb: Public Shared Function GetCustomAttributes(target As MemberInfo) As IList(Of CustomAttributeData)
@@ -404,7 +398,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns a list of <xref href=\"System.Reflection.CustomAttributeData\" data-throw-if-not-resolved=\"false\"></xref> objects representing data about the attributes that have been applied to the target parameter.</p>\n"
-  remarks: "\n<p>This method provides an alternative to the <see cref=\"Overload:System.Reflection.ParameterInfo.GetCustomAttributes\"></see> method that can always be used in the Reflection-only context.</p>\n"
   syntax:
     content: public static IList<CustomAttributeData> GetCustomAttributes(ParameterInfo target)
     content.vb: Public Shared Function GetCustomAttributes(target As ParameterInfo) As IList(Of CustomAttributeData)

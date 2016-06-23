@@ -60,7 +60,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Provides a set of methods and properties that help you trace the execution of your code. This class cannot be inherited.</p>\n"
-  remarks: "\n<p>You can use the properties and methods in the <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> class to instrument release builds. Instrumentation allows you to monitor the health of your application running in real-life settings. Tracing helps you isolate problems and fix them without disturbing a running system.</p>\n<p>This class provides methods to display an <xref href=\"System.Diagnostics.Trace.Assert(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> dialog box, and to emit an assertion that will always <xref href=\"System.Diagnostics.Trace.Fail(System.String)\" data-throw-if-not-resolved=\"false\"></xref>. This class provides write methods in the following variations: <xref href=\"System.Diagnostics.Trace.Write(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Diagnostics.Trace.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Diagnostics.Trace.WriteIf(System.Boolean,System.String)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Diagnostics.Trace.WriteLineIf(System.Boolean,System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <xref href=\"System.Diagnostics.BooleanSwitch\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Diagnostics.TraceSwitch\" data-throw-if-not-resolved=\"false\"></xref> classes provide means to dynamically control the tracing output. You can modify the values of these switches without recompiling your application. For information on using the configuration file to set a switch, see the <xref href=\"System.Diagnostics.Switch\" data-throw-if-not-resolved=\"false\"></xref> class and the How to: Create, Initialize and Configure Trace Switches topic.</p>\n<p>You can customize the tracing output's target by adding <xref href=\"System.Diagnostics.TraceListener\" data-throw-if-not-resolved=\"false\"></xref> instances to or removing instances from the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection. The <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection is shared by both the <xref href=\"System.Diagnostics.Debug\" data-throw-if-not-resolved=\"false\"></xref> and the <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> classes; adding a trace listener to either class adds the listener to both. By default, trace output is emitted using the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n<p>Adding a trace listener to the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection can cause an exception to be thrown while tracing, if a resource used by the trace listener is not available. The conditions and the exception thrown depend on the trace listener and cannot be enumerated in this topic. It may be useful to place calls to the <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> methods in <strong>try</strong>/<strong>catch</strong> blocks to detect and handle any exceptions from trace listeners.</p>\n<p>If you add trace listeners to partially trusted code, you will get a <xref href=\"System.Security.SecurityException\" data-throw-if-not-resolved=\"false\"></xref> exception, because adding trace listeners requires <xref href=\"System.Security.Permissions.SecurityPermissionFlag.UnmanagedCode\" data-throw-if-not-resolved=\"false\"></xref> permission. To trace partially trusted code that is running in a sandbox in Visual Studio, do not add trace listeners. Instead, view the <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Diagnostics.Debug\" data-throw-if-not-resolved=\"false\"></xref> messages in the Output window.</p>\n<p>The <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> class provides properties to get or set the level of <xref href=\"System.Diagnostics.Trace.Indent\" data-throw-if-not-resolved=\"false\"></xref>, the <xref href=\"System.Diagnostics.Trace.IndentSize\" data-throw-if-not-resolved=\"false\"></xref>, and whether to <xref href=\"System.Diagnostics.Trace.AutoFlush\" data-throw-if-not-resolved=\"false\"></xref> after each write.</p>\n<p>To set the <xref href=\"System.Diagnostics.Trace.AutoFlush\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Diagnostics.Trace.IndentSize\" data-throw-if-not-resolved=\"false\"></xref> for <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref>, you can edit the configuration file that corresponds to the name of your application. The configuration file should be formatted like the following example: </p>\n<pre><code><configuration>\n<system.diagnostics>\n<trace autoflush=\"false\" indentsize=\"3\" />\n</system.diagnostics>\n</configuration></code></pre>\n<p>The <xref href=\"System.Diagnostics.ConditionalAttribute\" data-throw-if-not-resolved=\"false\"></xref> attribute is applied to the methods of <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref>. Compilers that support <xref href=\"System.Diagnostics.ConditionalAttribute\" data-throw-if-not-resolved=\"false\"></xref> ignore calls to these methods unless \"TRACE\" is defined as a conditional compilation symbol. Refer to a compiler's documentation to determine whether <xref href=\"System.Diagnostics.ConditionalAttribute\" data-throw-if-not-resolved=\"false\"></xref> is supported and the syntax for defining a conditional compilation symbol.</p>\n<p>In Visual Studio projects, by default, the \"DEBUG\" conditional compilation symbol is defined for debug builds, and the \"TRACE\" symbol is defined for both debug and release builds. For information about how to disable this behavior, see the Visual Studio documentation.</p>\n<p>To define the \"TRACE\" conditional compilation symbol in C#, add the <strong>/d:TRACE</strong> option to the compiler command line when you compile your code using a command line, or add <strong>#define TRACE</strong> to the top of your file. In Visual Basic, add the <strong>/d:TRACE=True</strong> option to the compiler command line or add <strong>#Const TRACE=True</strong> to the file. </p>\n<p>\n<xref href=\"System.Diagnostics.ConditionalAttribute\" data-throw-if-not-resolved=\"false\"></xref> is not supported by the C++ compiler. To provide equivalent functionality, you must enclose calls to the methods of <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> in an <strong>#if defined(TRACE) ... #endif</strong> block, and add the <strong>/DTRACE</strong> option to the compiler command line or add <strong>#define TRACE</strong> to the file.</p>\n"
   syntax:
     content: public sealed class Trace
     content.vb: Public NotInheritable Class Trace
@@ -127,7 +126,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Gets or sets whether <xref href=\"System.Diagnostics.Trace.Flush\" data-throw-if-not-resolved=\"false\"></xref> should be called on the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> after every write.</p>\n"
-  remarks: "\n<p>The default is <strong>false</strong>.</p>\n<p>Flushing the stream will not flush its underlying encoder unless you explicitly call <xref href=\"System.Diagnostics.Trace.Flush\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Diagnostics.Trace.Close\" data-throw-if-not-resolved=\"false\"></xref>. Setting <xref href=\"System.Diagnostics.Trace.AutoFlush\" data-throw-if-not-resolved=\"false\"></xref> to <strong>true</strong> means that data will be flushed from the buffer to the stream, but the encoder state will not be flushed. This allows the encoder to keep its state (partial characters) so that it can encode the next block of characters correctly. This scenario affects UTF8 and UTF7 where certain characters can only be encoded after the encoder receives the adjacent character or characters.</p>\n<p>To set the <xref href=\"System.Diagnostics.Trace.AutoFlush\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Diagnostics.Trace.IndentSize\" data-throw-if-not-resolved=\"false\"></xref> for <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref>, you can also edit the configuration file that corresponds to the name of your application. The configuration file should be formatted like the following example: </p>\n<pre><code><configuration>\n<system.diagnostics>\n<trace autoflush=\"false\" indentsize=\"3\" />\n</system.diagnostics>\n</configuration></code></pre>\n"
   syntax:
     content: public static bool AutoFlush { get; set; }
     content.vb: Public Shared Property AutoFlush As Boolean
@@ -184,7 +182,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Gets or sets the indent level.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Diagnostics.Trace.IndentLevel\" data-throw-if-not-resolved=\"false\"></xref> property represents the number of times the indent of size <xref href=\"System.Diagnostics.Trace.IndentSize\" data-throw-if-not-resolved=\"false\"></xref> is applied. This property is stored on per-thread/per-request basis.</p>\n"
   syntax:
     content: public static int IndentLevel { get; set; }
     content.vb: Public Shared Property IndentLevel As Integer
@@ -240,7 +237,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Gets or sets the number of spaces in an indent.</p>\n"
-  remarks: "\n<p>A <xref href=\"System.Diagnostics.TextWriterTraceListener\" data-throw-if-not-resolved=\"false\"></xref> interprets this number as spaces. An <xref href=\"System.Diagnostics.EventLogTraceListener\" data-throw-if-not-resolved=\"false\"></xref> ignores this value.</p>\n<p>This property is stored on per-thread/per-request basis.</p>\n<p>To set the <xref href=\"System.Diagnostics.Trace.AutoFlush\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Diagnostics.Trace.IndentSize\" data-throw-if-not-resolved=\"false\"></xref> for <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref>, you can also edit the configuration file that corresponds to the name of your application. The configuration file should be formatted like the following example: </p>\n<pre><code><configuration>\n<system.diagnostics>\n<trace autoflush=\"false\" indentsize=\"3\" />\n</system.diagnostics>\n</configuration></code></pre>\n"
   syntax:
     content: public static int IndentSize { get; set; }
     content.vb: Public Shared Property IndentSize As Integer
@@ -296,7 +292,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Gets the collection of listeners that is monitoring the trace output.</p>\n"
-  remarks: "\n<p>The listeners produce formatted output from the trace output. By default, the collection contains an instance of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> class. If you want to remove the default listener, call the <xref href=\"System.Diagnostics.TraceListenerCollection.Remove(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method, and pass it the instance of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>. To redirect output to the console window, add an instance of the <xref href=\"System.Diagnostics.ConsoleTraceListener\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n<p>The <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection is shared by both the <xref href=\"System.Diagnostics.Debug\" data-throw-if-not-resolved=\"false\"></xref> and the <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> classes; adding a trace listener to either class adds the listener to both.</p>\n"
   syntax:
     content: public static TraceListenerCollection Listeners { get; }
     content.vb: Public Shared ReadOnly Property Listeners As TraceListenerCollection
@@ -353,7 +348,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Gets or sets a value indicating whether the global lock should be used.  </p>\n"
-  remarks: "\n<p>The global lock is always used if the trace listener is not thread safe, regardless of the value of <xref href=\"System.Diagnostics.Trace.UseGlobalLock\" data-throw-if-not-resolved=\"false\"></xref>. The <xref href=\"System.Diagnostics.TraceListener.IsThreadSafe\" data-throw-if-not-resolved=\"false\"></xref> property is used to determine if the listener is thread safe. The global lock is not used only if the value of <xref href=\"System.Diagnostics.Trace.UseGlobalLock\" data-throw-if-not-resolved=\"false\"></xref> is <strong>false</strong> and the value of <xref href=\"System.Diagnostics.TraceListener.IsThreadSafe\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong>. The default behavior is to use the global lock.</p>\n<p>To set the <xref href=\"System.Diagnostics.Trace.UseGlobalLock\" data-throw-if-not-resolved=\"false\"></xref> for <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref>, you can also edit the configuration file that corresponds to the name of your application. The configuration file should be formatted like the following example: </p>\n<pre><code><configuration>\n<system.diagnostics>\n<trace useGlobalLock=\"false\" />\n</system.diagnostics>\n</configuration></code></pre>\n"
   syntax:
     content: public static bool UseGlobalLock { get; set; }
     content.vb: Public Shared Property UseGlobalLock As Boolean
@@ -395,7 +389,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Checks for a condition; if the condition is <strong>false</strong>, displays a message box that shows the call stack.</p>\n"
-  remarks: "\n<p>Use the <xref href=\"System.Diagnostics.Trace.Assert(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method if you want to do assertions in release builds. The <xref href=\"System.Diagnostics.Debug.Assert(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method works only in debug builds. For more information, see Assertions in Managed Code.</p>\n<p>Typically, the <xref href=\"System.Diagnostics.Trace.Assert(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method is used to identify logic errors during program development. <xref href=\"System.Diagnostics.Trace.Assert(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> evaluates the condition. If the result is <strong>false</strong>, it sends a failure message to the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection. You can customize this behavior by adding a <xref href=\"System.Diagnostics.TraceListener\" data-throw-if-not-resolved=\"false\"></xref> to, or removing one from, the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection. </p>\n<p>When the application runs in user-interface mode, it displays a message box that shows the call stack with file and line numbers. The message box contains three buttons: Abort, Retry, and Ignore. Clicking the Abort button terminates the application. Clicking Retry sends you to the code in the debugger if your application is running in a debugger, or offers to open a debugger if it is not. Clicking Ignore continues with the next instruction in the code. </p>\n<p>The display of the message box depends on the presence of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>. If the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> is not in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection, the message box is not displayed. The <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> can be removed by the <clear> Element for <listeners> for <trace>, the <remove> Element for <listeners> for <trace>, or by calling the <xref href=\"System.Diagnostics.TraceListenerCollection.Clear\" data-throw-if-not-resolved=\"false\"></xref> method on the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> property (<code>System.Diagnostics.Trace.Listeners.Clear()</code>).</p>\n<p>You can change the behavior of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> in the configuration file that corresponds to the name of your application. In this file, you can enable and disable the assert message box or set the <xref href=\"System.Diagnostics.DefaultTraceListener.LogFileName\" data-throw-if-not-resolved=\"false\"></xref> property. The configuration file should be formatted as follows:</p>\n<pre><code><configuration>\n<system.diagnostics>\n<switches>\n<add name=\"mySwitch\" value=\"4\"/>\n</switches>\n<trace autoflush=\"false\" indentsize=\"4\"/>\n<assert assertuienabled=\"true\" logfilename=\".\\TraceLog.txt\"/>\n</system.diagnostics>\n</configuration></code></pre>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -465,7 +458,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Checks for a condition; if the condition is <strong>false</strong>, outputs a specified message and displays a message box that shows the call stack.</p>\n"
-  remarks: "\n<p>Use the <xref href=\"System.Diagnostics.Trace.Assert(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method if you want to do assertions in release builds. The <xref href=\"System.Diagnostics.Debug.Assert(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method works only in debug builds. For more information, see Assertions in Managed Code.</p>\n<p>Typically, the <xref href=\"System.Diagnostics.Trace.Assert(System.Boolean,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method is used to identify logic errors during program development. <xref href=\"System.Diagnostics.Trace.Assert(System.Boolean,System.String)\" data-throw-if-not-resolved=\"false\"></xref> evaluates the condition. If the result is <strong>false</strong>, it sends the specified diagnostic message to the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection. You can customize this behavior by adding a <xref href=\"System.Diagnostics.TraceListener\" data-throw-if-not-resolved=\"false\"></xref> to, or removing one from, the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection. </p>\n<p>When the application runs in user-interface mode, it displays a message box that shows the call stack with file and line numbers. The message box contains three buttons: Abort, Retry, and Ignore. Clicking the Abort button terminates the application. Clicking Retry sends you to the code in the debugger if your application is running in a debugger, or offers to open a debugger if it is not. Clicking Ignore continues with the next instruction in the code.</p>\n<p>The display of the message box depends on the presence of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>. If the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> is not in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection, the message box is not displayed. The <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> can be removed by the <clear> Element for <listeners> for <trace>, the <remove> Element for <listeners> for <trace>, or by calling the <xref href=\"System.Diagnostics.TraceListenerCollection.Clear\" data-throw-if-not-resolved=\"false\"></xref> method on the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> property (<code>System.Diagnostics.Trace.Listeners.Clear()</code>).</p>\n<p>You can change the behavior of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> in the configuration file that corresponds to the name of your application. In this file, you can enable and disable the assert message box or set the <xref href=\"System.Diagnostics.DefaultTraceListener.LogFileName\" data-throw-if-not-resolved=\"false\"></xref> property. The configuration file should be formatted as follows:</p>\n<pre><code><configuration>\n<system.diagnostics>\n<switches>\n<add name=\"mySwitch\" value=\"4\"/>\n</switches>\n<trace autoflush=\"false\" indentsize=\"4\"/>\n<assert assertuienabled=\"true\" logfilename=\".\\TraceLog.txt\"/>\n</system.diagnostics>\n</configuration></code></pre>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -532,7 +524,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Checks for a condition; if the condition is <strong>false</strong>, outputs two specified messages and displays a message box that shows the call stack.</p>\n"
-  remarks: "\n<p>Use the <xref href=\"System.Diagnostics.Trace.Assert(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method if you want to do assertions in release builds. The <xref href=\"System.Diagnostics.Debug.Assert(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method works only in debug builds. For more information, see Assertions in Managed Code.</p>\n<p>Typically, the <xref href=\"System.Diagnostics.Trace.Assert(System.Boolean,System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method is used to identify logic errors during program development. <xref href=\"System.Diagnostics.Trace.Assert(System.Boolean,System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> evaluates the condition. If the result is <strong>false</strong>, it sends the specified diagnostic message and detailed message to the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection. You can customize this behavior by adding a <xref href=\"System.Diagnostics.TraceListener\" data-throw-if-not-resolved=\"false\"></xref> to, or removing one from, the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection. </p>\n<p>When the application runs in user-interface mode, it displays a message box that shows the call stack with file and line numbers. The message box contains three buttons: Abort, Retry, and Ignore. Clicking the Abort button terminates the application. Clicking Retry sends you to the code in the debugger if your application is running in a debugger, or offers to open a debugger if it is not. Clicking Ignore continues with the next instruction in the code.</p>\n<p>The display of the message box depends on the presence of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>. If the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> is not in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection, the message box is not displayed. The <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> can be removed by the <clear> Element for <listeners> for <trace>, the <remove> Element for <listeners> for <trace>, or by calling the <xref href=\"System.Diagnostics.TraceListenerCollection.Clear\" data-throw-if-not-resolved=\"false\"></xref> method on the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> property (<code>System.Diagnostics.Trace.Listeners.Clear()</code>).</p>\n<p>You can change the behavior of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> in the configuration file that corresponds to the name of your application. In this file, you can enable and disable the assert message box or set the <xref href=\"System.Diagnostics.DefaultTraceListener.LogFileName\" data-throw-if-not-resolved=\"false\"></xref> property. The configuration file should be formatted as follows:</p>\n<pre><code><configuration>\n<system.diagnostics>\n<switches>\n<add name=\"mySwitch\" value=\"4\"/>\n</switches>\n<trace autoflush=\"false\" indentsize=\"4\"/>\n<assert assertuienabled=\"true\" logfilename=\".\\TraceLog.txt\"/>\n</system.diagnostics>\n</configuration></code></pre>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -602,7 +593,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Flushes the output buffer, and then closes the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Use this method when the output is going to a file, such as to the <xref href=\"System.Diagnostics.TextWriterTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Flushing the stream will not flush its underlying encoder unless you explicitly call <xref href=\"System.Diagnostics.Trace.Flush\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Diagnostics.Trace.Close\" data-throw-if-not-resolved=\"false\"></xref>. Setting <xref href=\"System.Diagnostics.Trace.AutoFlush\" data-throw-if-not-resolved=\"false\"></xref> to <strong>true</strong> means that data will be flushed from the buffer to the stream, but the encoder state will not be flushed. This allows the encoder to keep its state (partial characters) so that it can encode the next block of characters correctly. This scenario affects UTF8 and UTF7 where certain characters can only be encoded after the encoder receives the adjacent character or characters.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -665,7 +655,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Emits the specified error message.</p>\n"
-  remarks: "\n<p>The default behavior for the default trace listener is to output the <em>message</em> parameter to a message box when the application runs in user-interface mode, and to the <xref href=\"System.Diagnostics.TraceListener\" data-throw-if-not-resolved=\"false\"></xref> instances in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection. </p>\n<p>The display of the message box is dependent on the presence of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>. If the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> is not in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection, the message box is not displayed. The <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> can be removed by the <clear> Element for <listeners> for <trace>, the <remove> Element for <listeners> for <trace>, or by calling the <xref href=\"System.Diagnostics.TraceListenerCollection.Clear\" data-throw-if-not-resolved=\"false\"></xref> method on the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> property (<code>System.Diagnostics.Trace.Listeners.Clear()</code>).</p>\n<p>You can customize this behavior by adding a <xref href=\"System.Diagnostics.TraceListener\" data-throw-if-not-resolved=\"false\"></xref> to, or by removing one from, the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -729,7 +718,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Emits an error message, and a detailed error message.</p>\n"
-  remarks: "\n<p>The default behavior is for the default trace listener to output the <em>message</em> parameter and the <em>detailedMessage</em> parameter to a message box when the application runs in user-interface mode, and to the <xref href=\"System.Diagnostics.TraceListener\" data-throw-if-not-resolved=\"false\"></xref> instances in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection. </p>\n<p>The display of the message box is dependent on the presence of the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>. If the <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> is not in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection, the message box is not displayed. The <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref> can be removed by the <clear> Element for <listeners> for <trace>, the <remove> Element for <listeners> for <trace>, or by calling the <xref href=\"System.Diagnostics.TraceListenerCollection.Clear\" data-throw-if-not-resolved=\"false\"></xref> method on the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> property (<code>System.Diagnostics.Trace.Listeners.Clear()</code>).</p>\n<p>You can customize this behavior by adding a <xref href=\"System.Diagnostics.TraceListener\" data-throw-if-not-resolved=\"false\"></xref> to, or by removing one from, the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -796,7 +784,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Flushes the output buffer, and causes buffered data to be written to the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Flushing the stream will not flush its underlying encoder unless you explicitly call <xref href=\"System.Diagnostics.Trace.Flush\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.Diagnostics.Trace.Close\" data-throw-if-not-resolved=\"false\"></xref>. Setting <xref href=\"System.Diagnostics.Trace.AutoFlush\" data-throw-if-not-resolved=\"false\"></xref> to <strong>true</strong> means that data will be flushed from the buffer to the stream, but the encoder state will not be flushed. This allows the encoder to keep its state (partial characters) so that it can encode the next block of characters correctly. This scenario affects UTF8 and UTF7 where certain characters can only be encoded after the encoder receives the adjacent character or characters.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -907,7 +894,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Refreshes the trace configuration data.</p>\n"
-  remarks: "\n<p>Trace configuration data is captured when the application is started. If the configuration data is changed after the application is started, call the <xref href=\"System.Diagnostics.Trace.Refresh\" data-throw-if-not-resolved=\"false\"></xref> method to update the trace configuration data.</p>\n"
   syntax:
     content: public static void Refresh()
     content.vb: Public Shared Sub Refresh
@@ -940,7 +926,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes an error message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection using the specified message.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Diagnostics.Trace.TraceError(System.String)\" data-throw-if-not-resolved=\"false\"></xref> calls the <strong>TraceEvent</strong> method for each trace listener, with the trace event type <xref href=\"System.Diagnostics.TraceEventType.Error\" data-throw-if-not-resolved=\"false\"></xref>, passing the informative message as the message string.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1004,7 +989,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes an error message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection using the specified array of objects and formatting information.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Diagnostics.Trace.TraceError(System.String,System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> calls the <strong>TraceEvent</strong> methods in the trace listeners with the trace event type <xref href=\"System.Diagnostics.TraceEventType.Error\" data-throw-if-not-resolved=\"false\"></xref>, passing the message content as an object array with formatting information. See the <xref href=\"System.String.Format(System.String,System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> method for more information about the <em>format</em> and <em>args</em> parameters.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1074,7 +1058,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes an informational message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection using the specified message.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Diagnostics.Trace.TraceInformation(System.String)\" data-throw-if-not-resolved=\"false\"></xref> calls the <strong>TraceEvent</strong> method for each trace listener, with the trace event type <xref href=\"System.Diagnostics.TraceEventType.Information\" data-throw-if-not-resolved=\"false\"></xref>, passing the informative message as the message string.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1138,7 +1121,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes an informational message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection using the specified array of objects and formatting information.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Diagnostics.Trace.TraceInformation(System.String,System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> calls the <strong>TraceEvent</strong> methods in the trace listeners with the trace event type <xref href=\"System.Diagnostics.TraceEventType.Information\" data-throw-if-not-resolved=\"false\"></xref>, passing the message content as an object array with formatting information. See the <xref href=\"System.String.Format(System.String,System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> method for more information about the <em>format</em> and <em>args</em> parameters.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1208,7 +1190,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a warning message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection using the specified message.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Diagnostics.Trace.TraceWarning(System.String)\" data-throw-if-not-resolved=\"false\"></xref> calls the <strong>TraceEvent</strong> method for each trace listener with the trace event type <xref href=\"System.Diagnostics.TraceEventType.Warning\" data-throw-if-not-resolved=\"false\"></xref>, passing the informative message as the message string.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1272,7 +1253,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a warning message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection using the specified array of objects and formatting information.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Diagnostics.Trace.TraceWarning(System.String,System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> calls the <strong>TraceEvent</strong> methods in the trace listeners with the trace event type <xref href=\"System.Diagnostics.TraceEventType.Warning\" data-throw-if-not-resolved=\"false\"></xref>, passing the message content as an object array with formatting information. See the <xref href=\"System.String.Format(System.String,System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> method for more information about the <em>format</em> and <em>args</em> parameters.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1393,7 +1373,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes the value of the object's <xref href=\"System.Object.ToString\" data-throw-if-not-resolved=\"false\"></xref> method to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.Write(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n<p> ASP.NET supplies tracing functionality tailored for Web pages. To write trace messages in ASP.NET pages, use the <xref href=\"System.Web.UI.Page.Trace\" data-throw-if-not-resolved=\"false\"></xref> property. </p>\n<p>By default, in code associated with an ASP.NET Web page, the statement <code>Trace.Write(\"...\")</code> is a call to the <see cref=\"Overload:System.Web.TraceContext.Write\"></see> method of the <xref href=\"System.Web.UI.Page.Trace\" data-throw-if-not-resolved=\"false\"></xref> property. To use the <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> class in Web pages, you must include the namespace, for example, <code>System.Diagnostics.Trace.Write(\"...\")</code>.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1457,7 +1436,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a category name and the value of the object's <xref href=\"System.Object.ToString\" data-throw-if-not-resolved=\"false\"></xref> method to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>category</em> parameter can be used to group output messages.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.Write(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n<p> ASP.NET supplies tracing functionality tailored for Web pages. To write trace messages in ASP.NET pages, use the <xref href=\"System.Web.UI.Page.Trace\" data-throw-if-not-resolved=\"false\"></xref> property. </p>\n<p>By default, in code associated with an ASP.NET Web page, the statement <code>Trace.Write(\"...\")</code> is a call to the <see cref=\"Overload:System.Web.TraceContext.Write\"></see> method of the <xref href=\"System.Web.UI.Page.Trace\" data-throw-if-not-resolved=\"false\"></xref> property. To use the <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> class in Web pages, you must include the namespace, for example, <code>System.Diagnostics.Trace.Write(\"...\")</code>.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1524,7 +1502,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.Write(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n<p> ASP.NET supplies tracing functionality tailored for Web pages. To write trace messages in ASP.NET pages, use the <xref href=\"System.Web.UI.Page.Trace\" data-throw-if-not-resolved=\"false\"></xref> property. </p>\n<p>By default, in code associated with an ASP.NET Web page, the statement <code>Trace.Write(\"...\")</code> is a call to the <see cref=\"Overload:System.Web.TraceContext.Write\"></see> method of the <xref href=\"System.Web.UI.Page.Trace\" data-throw-if-not-resolved=\"false\"></xref> property. To use the <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> class in Web pages, you must include the namespace, for example, <code>System.Diagnostics.Trace.Write(\"...\")</code>.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1588,7 +1565,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a category name and a message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>category</em> parameter can be used to group output messages.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.Write(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n<p> ASP.NET supplies tracing functionality tailored for Web pages. To write trace messages in ASP.NET pages, use the <xref href=\"System.Web.UI.Page.Trace\" data-throw-if-not-resolved=\"false\"></xref> property. </p>\n<p>By default, in code associated with an ASP.NET Web page, the statement <code>Trace.Write(\"...\")</code> is a call to the <see cref=\"Overload:System.Web.TraceContext.Write\"></see> method of the <xref href=\"System.Web.UI.Page.Trace\" data-throw-if-not-resolved=\"false\"></xref> property. To use the <xref href=\"System.Diagnostics.Trace\" data-throw-if-not-resolved=\"false\"></xref> class in Web pages, you must include the namespace, for example, <code>System.Diagnostics.Trace.Write(\"...\")</code>.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1655,7 +1631,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes the value of the object's <xref href=\"System.Object.ToString\" data-throw-if-not-resolved=\"false\"></xref> method to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection if a condition is <strong>true</strong>.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.Write(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1722,7 +1697,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a category name and the value of the object's <xref href=\"System.Object.ToString\" data-throw-if-not-resolved=\"false\"></xref> method to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection if a condition is <strong>true</strong>.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>category</em> parameter can be used to group output messages.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.Write(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1792,7 +1766,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection if a condition is <strong>true</strong>.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.Write(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1859,7 +1832,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a category name and message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection if a condition is <strong>true</strong>.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>category</em> parameter can be used to group output messages.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.Write(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1929,7 +1901,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes the value of the object's <xref href=\"System.Object.ToString\" data-throw-if-not-resolved=\"false\"></xref> method to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -1993,7 +1964,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a category name and the value of the object's <xref href=\"System.Object.ToString\" data-throw-if-not-resolved=\"false\"></xref> method to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>category</em> parameter can be used to group output messages.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -2060,7 +2030,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -2124,7 +2093,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a category name and message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>category</em> parameter can be used to group output messages.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -2191,7 +2159,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes the value of the object's <xref href=\"System.Object.ToString\" data-throw-if-not-resolved=\"false\"></xref> method to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection if a condition is <strong>true</strong>.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -2258,7 +2225,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a category name and the value of the object's <xref href=\"System.Object.ToString\" data-throw-if-not-resolved=\"false\"></xref> method to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection if a condition is <strong>true</strong>.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>category</em> parameter can be used to group output messages.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -2328,7 +2294,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection if a condition is <strong>true</strong>.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]
@@ -2395,7 +2360,6 @@ items:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Writes a category name and message to the trace listeners in the <xref href=\"System.Diagnostics.Trace.Listeners\" data-throw-if-not-resolved=\"false\"></xref> collection if a condition is <strong>true</strong>.</p>\n"
-  remarks: "\n<p>By default, the output is written to an instance of <xref href=\"System.Diagnostics.DefaultTraceListener\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>category</em> parameter can be used to group output messages.</p>\n<p>This method calls the <xref href=\"System.Diagnostics.TraceListener.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method of the trace listener.</p>\n"
   syntax:
     content: >-
       [Conditional("TRACE")]

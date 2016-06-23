@@ -30,7 +30,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
   summary: "\n<p>Enables compilers to dynamically attach object fields to managed objects.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> class enables language compilers to attach arbitrary properties to managed objects at run time. A <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> object is a dictionary that binds a managed object, which is represented by a key, to its attached property, which is represented by a value. The object's keys are the individual instances of the <em>TKey</em> class to which the property is attached, and its values are the property values that are assigned to the corresponding objects. </p>\n<p>Keys must be unique; in other words, the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> class supports one attached value per managed object. Two keys are equal if passing them to the <xref href=\"System.Object.ReferenceEquals(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method returns <strong>true</strong>. </p>\n<p>You cannot control equality comparisons by overriding <xref href=\"System.Object.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> to explicitly set the hash code for a key. The <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> class does not use the <xref href=\"System.Object.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> method to compute hash codes, and therefore does not invoke <xref href=\"System.Object.GetHashCode\" data-throw-if-not-resolved=\"false\"></xref> overrides.</p>\n<p>Although the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> class holds a collection of key/value pairs, it is best thought of as a table rather than a dictionary object. The <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> class differs from a dictionary in several ways:</p>\n<ul><li>\n<p>It does not persist keys. That is, a key is not kept alive only because it is a member of the collection.</p>\n</li><li>\n<p>It does not include all the methods (such as<strong> GetEnumerator</strong> or <strong>Contains</strong>) that a dictionary typically has.</p>\n</li><li>\n<p>It does not implement the <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n</li></ul>\n<p>The <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> class differs from other collection objects in its management of the object lifetime of keys stored in the collection. Ordinarily, when an object is stored in a collection, its lifetime lasts until it is removed (and there are no additional references to the object) or until the collection object itself is destroyed. However, in the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> class, adding a key/value pair to the table does not ensure that the key will persist, even if it can be reached directly from a value stored in the table (for example, if the table contains one key, A, with a value V1, and a second key, B, with a value P2 that contains a reference to A). Instead, <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> automatically removes the key/value entry as soon as no other references to a key exist outside the table. The example provides an illustration.</p>\n"
   syntax:
     content: >-
       [ComVisible(false)]
@@ -90,7 +89,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2.#ctor\" data-throw-if-not-resolved=\"false\"></xref> constructor instantiates an empty <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> table; that is, the table contains no key/value pairs. You can add key/value pairs by calling the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2.Add(`0,`1)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2.GetValue(`0,System.Runtime.CompilerServices.ConditionalWeakTable{`0,`1}.CreateValueCallback)\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2.GetOrCreateValue(`0)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>Every key in a <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> object must be unique. Keys are not unique if they refer to the same object (that is, if passing them as arguments to the <xref href=\"System.Object.ReferenceEquals(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method returns <strong>true</strong>).</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -129,7 +127,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
   summary: "\n<p>Adds a key to the table.</p>\n"
-  remarks: "\n<p>Every key in a <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> object must be unique. Keys are not unique if they refer to the same object (that is, if passing them as arguments to the <xref href=\"System.Object.ReferenceEquals(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method returns <strong>true</strong>).</p>\n<p>If the key is garbage-collected during the addition operation, the existing key/value pair is removed and the new key/value pair is added without an exception being thrown.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -188,7 +185,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
   summary: "\n<p>Ensures that resources are freed and other cleanup operations are performed when the garbage collector reclaims the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n"
-  remarks: "\n<p>The garbage collector calls <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2.Finalize\" data-throw-if-not-resolved=\"false\"></xref> when the current object is ready to be finalized. </p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -230,7 +226,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
   summary: "\n<p>Atomically searches for a specified key in the table and returns the corresponding value. If the key does not exist in the table, the method invokes the default constructor of the class that represents the table's value to create a value that is bound to the specified key. </p>\n"
-  remarks: "\n<p>If <em>key</em> does not exist in the table, the method adds it, along with the object that is instantiated by calling the default constructor of the class defined by the <em>TValue</em> generic type parameter. If the <em>TValue</em> class has no default constructor, a <xref href=\"System.MissingMethodException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n<p>This is the recommended method of retrieving an existing value or adding a new value to the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2\" data-throw-if-not-resolved=\"false\"></xref> table if the class of the table's value defines a default constructor. If it does not define a default constructor, you can instead call the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2.GetValue(`0,System.Runtime.CompilerServices.ConditionalWeakTable{`0,`1}.CreateValueCallback)\" data-throw-if-not-resolved=\"false\"></xref> method, which relies on a callback-provided method to instantiate the object representing the table's value  </p>\n<p>To retrieve the value of an existing key without adding the key/value pair if the key is not found in the table, call the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2.TryGetValue(`0,`1@)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n"
   syntax:
     content: public TValue GetOrCreateValue(TKey key)
     content.vb: Public Function GetOrCreateValue(key As TKey) As TValue
@@ -282,7 +277,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
   summary: "\n<p>Atomically searches for a specified key in the table and returns the corresponding value. If the key does not exist in the table, the method invokes a callback method to create a value that is bound to the specified key.</p>\n"
-  remarks: "\n<p>If <em>key</em> does not exist in the table, <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2.GetValue(`0,System.Runtime.CompilerServices.ConditionalWeakTable{`0,`1}.CreateValueCallback)\" data-throw-if-not-resolved=\"false\"></xref> invokes the method that is defined by the <em>createValueCallback</em> parameter and passes it the key. A new value is bound to the key in the table and returned as a result.</p>\n<p>Use this method only when the class that represents the table's value does not define a default constructor. If it does define a default constructor, use the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2.GetOrCreateValue(`0)\" data-throw-if-not-resolved=\"false\"></xref> method instead. To retrieve the value of an existing key without adding the key/value pair if the key is not found in the table, call the <xref href=\"System.Runtime.CompilerServices.ConditionalWeakTable`2.TryGetValue(`0,`1@)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>If multiple threads try to create the same key, <em>createValueCallback</em> may be invoked multiple times with the same key. Only one of these calls will succeed, and its returned value will be added to the table. Which thread succeeds in creating the value is indeterminate. This rule permits the table to invoke <em>createValueCallback</em> outside the internal table lock to prevent deadlocks.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -346,7 +340,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
   summary: "\n<p>Removes a key and its value from the table.</p>\n"
-  remarks: "\n<p>If the key is garbage-collected during this operation, the method does not raise an exception and the return value is undefined.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -399,7 +392,6 @@ items:
   - System.Runtime
   namespace: System.Runtime.CompilerServices
   summary: "\n<p>Gets the value of the specified key.</p>\n"
-  remarks: "\n<p>If the key is garbage-collected during this operation, the method may return <strong>false</strong> and set <em>value</em> to the default value (as if the key were not present).</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]

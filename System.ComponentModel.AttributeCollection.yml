@@ -40,7 +40,6 @@ items:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
   summary: "\n<p>Represents a collection of attributes.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.ComponentModel.AttributeCollection\" data-throw-if-not-resolved=\"false\"></xref> class is read-only; it does not implement methods to add or remove attributes. You must inherit from this class to implement these methods.</p>\n<p>Use the <xref href=\"System.ComponentModel.AttributeCollection.Count\" data-throw-if-not-resolved=\"false\"></xref> property to find the number of attributes that exist in the collection.</p>\n<p>You can also use the methods of this class to query the collection about its contents. Call the <xref href=\"System.ComponentModel.AttributeCollection.Contains(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> method to verify that a specified attribute or attribute array exists in the collection. Call the <xref href=\"System.ComponentModel.AttributeCollection.Matches(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> method to verify that a specified attribute or array of attributes exists in the collection, and that the values of the specified attributes are the same as the values in the collection.</p>\n<p>While most attributes have default values, default values are not required. If an attribute has no default value, <strong>null</strong> is returned from the indexed property that takes a type. When defining your own attributes, you can declare a default value by either providing a constructor that takes no arguments, or defining a public static field of your attribute type named \"Default\".</p>\n"
   syntax:
     content: 'public class AttributeCollection : ICollection, IEnumerable'
     content.vb: >-
@@ -260,7 +259,6 @@ items:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
   summary: "\n<p>Determines whether this collection of attributes has the specified attribute.</p>\n"
-  remarks: "\n<p>This collection has the specified attribute if the specified type of attribute exists in the collection, and if the value of the specified attribute is the same as the value of the instance of the attribute in the collection.</p>\n<p>The difference between the <xref href=\"System.ComponentModel.AttributeCollection.Matches(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.ComponentModel.AttributeCollection.Contains(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> methods is that <xref href=\"System.ComponentModel.AttributeCollection.Matches(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> calls the <xref href=\"System.Attribute.Match(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method on an attribute, and <xref href=\"System.ComponentModel.AttributeCollection.Contains(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> calls the <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>For most attributes, these methods do the same thing. For attributes that may have multiple flags, however, <xref href=\"System.Attribute.Match(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> is typically implemented so that it returns <strong>true</strong> if any of the flags are satisfied. For example, consider a data binding attribute with the Boolean flags \"SupportsSql\", \"SupportsOleDb\", and \"SupportsXml\". This attribute may be present on a property that supports all three data-binding approaches. It will often be the case that a programmer needs to know only if a particular approach is available, not all three. Therefore, a programmer could use <xref href=\"System.Attribute.Match(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> with an instance of the attribute containing only the flags the programmer needs.</p>\n"
   syntax:
     content: public bool Contains(Attribute attribute)
     content.vb: Public Function Contains(attribute As Attribute) As Boolean
@@ -301,7 +299,6 @@ items:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
   summary: "\n<p>Determines whether this attribute collection contains all the specified attributes in the attribute array.</p>\n"
-  remarks: "\n<p>This collection has the specified array of attributes if all the specified attribute types exist in the collection and if each attribute in the specified array is the same as an attribute in the collection.</p>\n"
   syntax:
     content: public bool Contains(Attribute[] attributes)
     content.vb: Public Function Contains(attributes As Attribute()) As Boolean
@@ -387,7 +384,6 @@ items:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
   summary: "\n<p>Gets the number of attributes.</p>\n"
-  remarks: "\n<p>You can use the <xref href=\"System.ComponentModel.AttributeCollection.Count\" data-throw-if-not-resolved=\"false\"></xref> property to set the limits of a loop that iterates through a collection of objects. If the collection is zero-based, be sure to use <code>Count - 1</code> as the upper boundary of the loop.</p>\n"
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
@@ -429,7 +425,6 @@ items:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
   summary: "\n<p>Creates a new <xref href=\"System.ComponentModel.AttributeCollection\" data-throw-if-not-resolved=\"false\"></xref> from an existing <xref href=\"System.ComponentModel.AttributeCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>If the <em>newAttributes</em> parameter is provided, its <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> entries are merged with those of the <em>existing</em> parameter.</p>\n"
   syntax:
     content: public static AttributeCollection FromExisting(AttributeCollection existing, params Attribute[] newAttributes)
     content.vb: Public Shared Function FromExisting(existing As AttributeCollection, ParamArray newAttributes As Attribute()) As AttributeCollection
@@ -595,7 +590,6 @@ items:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
   summary: "\n<p>Determines whether a specified attribute is the same as an attribute in the collection.</p>\n"
-  remarks: "\n<p>An attribute can provide support for matching.</p>\n<p>The difference between the <xref href=\"System.ComponentModel.AttributeCollection.Matches(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.ComponentModel.AttributeCollection.Contains(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> methods is that <xref href=\"System.ComponentModel.AttributeCollection.Matches(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> calls the <xref href=\"System.Attribute.Match(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method on an attribute, and <xref href=\"System.ComponentModel.AttributeCollection.Contains(System.Attribute)\" data-throw-if-not-resolved=\"false\"></xref> calls the <xref href=\"System.Object.Equals(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>For most attributes, these methods do the same thing. For attributes that may have multiple flags, however, <xref href=\"System.Attribute.Match(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> is typically implemented so that it returns <strong>true</strong> if any of the flags are satisfied. For example, consider a data binding attribute with the Boolean flags \"SupportsSql\", \"SupportsOleDb\", and \"SupportsXml\". This attribute may be present on a property that supports all three data binding approaches. It will often be the case that a programmer needs to know only if a particular approach is available, not all three. Therefore, a programmer could use <xref href=\"System.Attribute.Match(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> with an instance of the attribute containing only the flags the programmer needs.</p>\n"
   syntax:
     content: public bool Matches(Attribute attribute)
     content.vb: Public Function Matches(attribute As Attribute) As Boolean
@@ -638,7 +632,6 @@ items:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
   summary: "\n<p>Determines whether the attributes in the specified array are the same as the attributes in the collection.</p>\n"
-  remarks: "\n<p>An attribute can provide support for matching.</p>\n"
   syntax:
     content: public bool Matches(Attribute[] attributes)
     content.vb: Public Function Matches(attributes As Attribute()) As Boolean
@@ -721,7 +714,6 @@ items:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
   summary: "\n<p>Gets the attribute with the specified index number.</p>\n"
-  remarks: "\n<p>The index number is zero-based. Therefore, you must subtract 1 from the numerical position of a particular <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> to access that <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref>. For example, to get the third <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref>, you need to specify <code>myColl[2]</code>.</p>\n"
   syntax:
     content: public virtual Attribute this[int index] { get; }
     content.vb: Public Overridable ReadOnly Property Item(index As Integer) As Attribute
@@ -769,7 +761,6 @@ items:
   - System.ComponentModel.TypeConverter
   namespace: System.ComponentModel
   summary: "\n<p>Gets the attribute with the specified type.</p>\n"
-  remarks: "\n<p>If the attribute does not exist in the collection, this property returns the default value for the attribute type.</p>\n"
   syntax:
     content: public virtual Attribute this[Type attributeType] { get; }
     content.vb: Public Overridable ReadOnly Property Item(attributeType As Type) As Attribute

@@ -70,7 +70,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Encodes and decodes XML names, and provides methods for converting between common language runtime types and XML Schema definition language (XSD) types. When converting data types, the values returned are locale-independent.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Xml.XmlConvert\" data-throw-if-not-resolved=\"false\"></xref> class is functionally equivalent to the <xref href=\"System.Convert\" data-throw-if-not-resolved=\"false\"></xref> class, but it supports XML standards. The type system is based on the XML Schema definition language (XSD) schema type, and the values returned are always locale-independent.</p>\n"
   syntax:
     content: public class XmlConvert
     content.vb: Public Class XmlConvert
@@ -113,7 +112,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Decodes a name. This method does the reverse of the <xref href=\"System.Xml.XmlConvert.EncodeName(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Xml.XmlConvert.EncodeLocalName(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n"
-  remarks: "\n<p>The names are decoded using the following rules: </p>\n<ul><li>\n<p>Names are decoded from left to right.</p>\n</li><li>\n<p>Any sequence _x <em>HHHH_</em> (where HHHH stands for a valid, four digit hexadecimal UCS-2 code) that has not been decoded is transformed into the corresponding Unicode 2.1 (Unicode 3.0 if supported by the application) character.</p>\n</li><li>\n<p>No shortforms are recognized. They are passed on without translation. For example, _x20_ or __ are not decoded.</p>\n</li></ul>\n<p>The actual encoding of the character is application-specific. For example, Order_x0020_Details becomes Order Details. Even escaped characters that are invalid in XML names will be recognized and decoded.</p>\n"
   syntax:
     content: public static string DecodeName(string name)
     content.vb: Public Shared Function DecodeName(name As String) As String
@@ -153,7 +151,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Converts the name to a valid XML local name.</p>\n"
-  remarks: "\n<p>This method is similar to the <xref href=\"System.Xml.XmlConvert.EncodeName(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method except that it encodes the colon character, which guarantees that the name can be used as the local name part of a namespace qualified name.</p>\n<p>For example, if you passed this method the invalid name a:b, it returns a_x003a_b, which is a valid local name.</p>\n<p>If <em>name</em> is <strong>null</strong> or <code>String.Empty</code> then you get the same value returned.</p>\n"
   syntax:
     content: public static string EncodeLocalName(string name)
     content.vb: Public Shared Function EncodeLocalName(name As String) As String
@@ -198,7 +195,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Converts the name to a valid XML name.</p>\n"
-  remarks: "\n<p>This method translates invalid characters, such as spaces or half-width Katakana, that need to be mapped to XML names without the support or presence of schemas. The invalid characters are translated into escaped numeric entity encodings.</p>\n<p>The escape character is \"_\". Any XML name character that does not conform to the <see href=\"http://www.w3.org/TR/2006/REC-xml-20060816/\">XML 1.0 spec (fourth edition) recommendation</see> is escaped as _xHHHH_. The HHHH string stands for the four-digit hexadecimal UCS-2 code for the character in most significant bit first order. For example, the name Order Details is encoded as Order_x0020_Details.</p>\n<p>The underscore character does not need to be escaped unless it is followed by a character sequence that together with the underscore can be misinterpreted as an escape sequence when decoding the name. For example, Order_Details is not encoded, but Order_x0020_ is encoded as Order_x005f_x0020_. No shortforms are allowed. For example, the forms _x20_ and __ are not generated.</p>\n<p>This method guarantees the name is valid according to the XML specification. It allows colons in any position, which means the name may still be invalid according to the <see href=\"http://www.w3.org/TR/REC-xml-names\">W3C Namespace Specification</see>. To guarantee it is a valid namespace qualified name use <xref href=\"System.Xml.XmlConvert.EncodeLocalName(System.String)\" data-throw-if-not-resolved=\"false\"></xref> for the prefix and local name parts and join the result with a colon.</p>\n"
   syntax:
     content: public static string EncodeName(string name)
     content.vb: Public Shared Function EncodeName(name As String) As String
@@ -243,7 +239,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Verifies the name is valid according to the XML specification.</p>\n"
-  remarks: "\n<p>This method guarantees that the name is valid according to the XML specification. For example, if you passed this method the invalid name 70+, it returns 70_x002b_ which is a valid XML name.</p>\n<p>If <em>name</em> is <strong>null</strong> or String.Empty then you get the same value returned.</p>\n"
   syntax:
     content: public static string EncodeNmToken(string name)
     content.vb: Public Shared Function EncodeNmToken(name As String) As String
@@ -283,7 +278,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Converts the <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> equivalent.</p>\n"
-  remarks: "\n<p>Valid strings are \"1\" or \"true\" for <strong>true</strong> and \"0\" or \"false\" for <strong>false</strong>.</p>\n"
   syntax:
     content: public static bool ToBoolean(string s)
     content.vb: Public Shared Function ToBoolean(s As String) As Boolean
@@ -477,7 +471,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Converts the supplied <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> equivalent.</p>\n"
-  remarks: "\n<p>When more than seven digits are specified for fractional seconds, the value is rounded. For example, 00000004 becomes 0000000 and 00000005 becomes 0000001.</p>\n"
   syntax:
     content: public static DateTimeOffset ToDateTimeOffset(string s)
     content.vb: Public Shared Function ToDateTimeOffset(s As String) As DateTimeOffset
@@ -527,7 +520,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Converts the supplied <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> equivalent.</p>\n"
-  remarks: "\n<p>If the offset specified within the input string will cause an overflow in the deserialized representation of the DateTimeOffset, a FormatException is thrown.</p>\n<p>When more than seven digits are specified for fractional seconds, the value is rounded. For example, 00000004 becomes 0000000 and 00000005 becomes 0000001.</p>\n"
   syntax:
     content: public static DateTimeOffset ToDateTimeOffset(string s, string format)
     content.vb: Public Shared Function ToDateTimeOffset(s As String, format As String) As DateTimeOffset
@@ -577,7 +569,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Converts the supplied <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> equivalent.</p>\n"
-  remarks: "\n<p>If the offset specified within the input string will cause an overflow in the deserialized representation of the DateTimeOffset, a FormatException is thrown.</p>\n<p>When more than seven digits are specified for fractional seconds, the value is rounded. For example, 00000004 becomes 0000000 and 00000005 becomes 0000001.</p>\n"
   syntax:
     content: public static DateTimeOffset ToDateTimeOffset(string s, string[] formats)
     content.vb: Public Shared Function ToDateTimeOffset(s As String, formats As String()) As DateTimeOffset
@@ -672,7 +663,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Converts the <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Double\" data-throw-if-not-resolved=\"false\"></xref> equivalent.</p>\n"
-  remarks: "\n<p>If <em>s</em> is INF or -INF, this method returns Double.PositiveInfinity or Double.NegativeInfinity respectively.</p>\n"
   syntax:
     content: public static double ToDouble(string s)
     content.vb: Public Shared Function ToDouble(s As String) As Double
@@ -974,7 +964,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Converts the <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Single\" data-throw-if-not-resolved=\"false\"></xref> equivalent.</p>\n"
-  remarks: "\n<p>If <em>s</em> is INF or -INF, this method returns Single.PositiveInfinity or Single.NegativeInfinity respectively.</p>\n"
   syntax:
     content: public static float ToSingle(string s)
     content.vb: Public Shared Function ToSingle(s As String) As Single
@@ -1315,7 +1304,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Converts the <xref href=\"System.Double\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>If <em>value</em> is Double.PositiveInfinity or Double.NegativeInfinity, this method returns the string INF or -INF respectively.</p>\n"
   syntax:
     content: public static string ToString(double value)
     content.vb: Public Shared Function ToString(value As Double) As String
@@ -1567,7 +1555,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Converts the <xref href=\"System.Single\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>If <em>value</em> is Single.PositiveInfinity or Single.NegativeInfinity, this method returns the string INF or -INF respectively.</p>\n"
   syntax:
     content: public static string ToString(float value)
     content.vb: Public Shared Function ToString(value As Single) As String
@@ -2030,7 +2017,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Verifies that the name is a valid name according to the W3C Extended Markup Language recommendation.</p>\n"
-  remarks: "\n<p>This method can be used with the <xref href=\"System.Xml.XmlWriter\" data-throw-if-not-resolved=\"false\"></xref> class in the following manner.</p>\n<pre><code> try{\nwriter.WriteStartElement(XmlConvert.VerifyName(\"item\"),\"bar\");\n}\ncatch(Exception e)\n{\nConsole.WriteLine(\"error\");\n}</code></pre>\n"
   syntax:
     content: public static string VerifyName(string name)
     content.vb: Public Shared Function VerifyName(name As String) As String
@@ -2126,7 +2112,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Verifies that the string is a valid NMTOKEN according to the W3C XML Schema Part2: Datatypes recommendation</p>\n"
-  remarks: "\n<p>This method ensures that the name token follows the proper syntax for a valid NMTOKEN. It can be used in the following manner:</p>\n<pre><code>try {\nwriter.WriteStartElement(XmlConvert.VerifyNMTOKEN(\"abc\"),\"book\");\n}\ncatch(Exception e) {\nConsole.WriteLine(\"error\");\n}</code></pre>\n<p>For more information on the NMTOKEN data type, see http://www.w3.org/TR/2001/REC-xmlschema-2-20010502/#NMTOKEN.</p>\n"
   syntax:
     content: public static string VerifyNMTOKEN(string name)
     content.vb: Public Shared Function VerifyNMTOKEN(name As String) As String
@@ -2173,7 +2158,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Returns the passed in string instance if all the characters in the string argument are valid public id characters.</p>\n"
-  remarks: "\n<p>No other values than the passed in argument should be returned. The characters valid for public id do not vary between XML editions, so no <strong>XmlVersion</strong> overload is required. </p>\n<p>See <see href=\"http://go.microsoft.com/fwlink/?LinkID=147985\">XML 1.0 spec (fourth edition)</see> production [13] <strong>PublidChar</strong> for details on the allowed characters</p>\n<p>If the parameter is null, an <strong>ArgumentNullException</strong> will be thrown. If any of the characters are not valid public id characters, an <strong>XmlException</strong> is thrown with information about the first invalid character encountered.</p>\n"
   syntax:
     content: public static string VerifyPublicId(string publicId)
     content.vb: Public Shared Function VerifyPublicId(publicId As String) As String
@@ -2213,7 +2197,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Returns the passed-in string instance if all the characters in the string argument are valid whitespace characters. </p>\n"
-  remarks: "\n<p>No other values than the passed in argument should be returned. The characters that are valid for whitespace do not vary between XML editions, so no xml version overload is required.</p>\n<p>See <see href=\"http://go.microsoft.com/fwlink/?LinkID=147985\">XML 1.0 spec (fourth edition)</see> production [3] S for details on the allowed characters.</p>\n<p>If the parameter is null, an <strong>ArgumentNullException</strong> will be thrown. </p>\n<p>If any of the characters are not valid whitespace characters, an <strong>XmlException</strong> is thrown with information about the first invalid character encountered.</p>\n"
   syntax:
     content: public static string VerifyWhitespace(string content)
     content.vb: Public Shared Function VerifyWhitespace(content As String) As String
@@ -2253,7 +2236,6 @@ items:
   - System.Xml.ReaderWriter
   namespace: System.Xml
   summary: "\n<p>Returns the passed-in string if all the characters and surrogate pair characters in the string argument are valid XML characters, otherwise an <strong>XmlException</strong> is thrown with information on the first invalid character encountered. </p>\n"
-  remarks: "\n<p>No other values than the passed in argument should be returned. See <see href=\"http://go.microsoft.com/fwlink/?LinkID=147985\">XML 1.0 spec (fourth edition)</see> production [2] <strong>Char</strong> for details on the allowed characters.</p>\n<p>If the parameter is null, an <strong>ArgumentNullException</strong> will be thrown. If any of the characters are not valid xml characters, an <strong>XmlException</strong> is thrown with information on the first invalid character encountered.</p>\n"
   syntax:
     content: public static string VerifyXmlChars(string content)
     content.vb: Public Shared Function VerifyXmlChars(content As String) As String

@@ -48,7 +48,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Discovers the attributes of a property and provides access to property metadata.</p>\n"
-  remarks: "\n<p>Properties are logically the same as fields. A property is a named aspect of an object's state whose value is typically accessible through <strong>get</strong> and <strong>set</strong> accessors. Properties may be read-only, in which case a set routine is not supported.</p>\n<p>To determine whether a property is <strong>static</strong>, you must obtain the <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> for the <strong>get</strong> or <strong>set</strong> accessor, by calling the <see cref=\"Overload:System.Reflection.PropertyInfo.GetGetMethod\"></see> or the <see cref=\"Overload:System.Reflection.PropertyInfo.GetSetMethod\"></see> method, and examine its <xref href=\"System.Reflection.MethodBase.IsStatic\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>Several methods in this class assume that the <strong>get</strong> accessor and <strong>set</strong> accessor methods of a property have certain formats. The signatures of the <strong>get</strong> and <strong>set</strong> methods must match the following convention: </p>\n<ul><li>\n<p>The return type of the <strong>get</strong> method and the last argument of the <strong>set</strong> method must be identical. This is the type of the property.</p>\n</li><li>\n<p>The <strong>get</strong> and <strong>set</strong> methods must have the same number, type, and order of indices.</p>\n</li></ul>\n<p>If this format is not followed, the behavior of the <strong>GetValue</strong> and <strong>SetValue</strong> methods is undefined.</p>\n<p>Calling <xref href=\"System.Reflection.ICustomAttributeProvider.GetCustomAttributes(System.Type,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> on <strong>PropertyInfo</strong> when the <em>inherit</em> parameter of <strong>GetCustomAttributes</strong> is <strong>true</strong> does not walk the type hierarchy. Use <xref href=\"System.Attribute\" data-throw-if-not-resolved=\"false\"></xref> to inherit custom attributes.</p>\n"
   syntax:
     content: >-
       [Serializable]
@@ -129,7 +128,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Gets the attributes for this property.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Reflection.PropertyInfo.Attributes\" data-throw-if-not-resolved=\"false\"></xref> property returns the attributes associated with the property represented by this <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object.  The attributes are primarily modifiers applied by a compiler when creating a property; they indicate whether a property is the default property, a <strong>SpecialName</strong> property, and so on. Note that, for almost all properties found in types in the .NET Framework class library, the value of the <xref href=\"System.Reflection.PropertyInfo.Attributes\" data-throw-if-not-resolved=\"false\"></xref> property is <xref href=\"System.Reflection.PropertyAttributes.None\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>In most cases, you probably want to retrieve the custom attributes associated with a property. To do this, retrieve the value of the <xref href=\"System.Reflection.MemberInfo.CustomAttributes\" data-throw-if-not-resolved=\"false\"></xref> property, or call one of the overloads of the <xref href=\"System.Reflection.MemberInfo.GetCustomAttributes(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n<p>To get the <xref href=\"System.Reflection.PropertyInfo.Attributes\" data-throw-if-not-resolved=\"false\"></xref> property: </p>\n<ol><li>\n<p>Get a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object that represents the type to which the property belongs.</p>\n</li><li>\n<p>Get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object by calling an overload of the <xref href=\"System.Type.GetProperty(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n</li><li>\n<p>Retrieve the property's attributes from the <xref href=\"System.Reflection.PropertyInfo.Attributes\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n</li></ol>\n<p>You can define the attributes of a property for a type created dynamically using reflection emit by calling an overload of the <xref href=\"System.Reflection.Emit.TypeBuilder.DefineProperty(System.String,System.Reflection.PropertyAttributes,System.Type,System.Type[])\" data-throw-if-not-resolved=\"false\"></xref> method and supplying a value for the <em>attributes</em> argument.  </p>\n"
   syntax:
     content: public abstract PropertyAttributes Attributes { get; }
     content.vb: Public MustOverride ReadOnly Property Attributes As PropertyAttributes
@@ -173,7 +171,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Gets a value indicating whether the property can be read.</p>\n"
-  remarks: "\n<p>If the property does not have a <strong>get</strong> accessor, it cannot be read.</p>\n<p>To get the <strong>CanRead</strong> property, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <strong>PropertyInfo</strong>. From the <strong>PropertyInfo</strong>, get the <strong>CanRead</strong> value.</p>\n"
   syntax:
     content: public abstract bool CanRead { get; }
     content.vb: Public MustOverride ReadOnly Property CanRead As Boolean
@@ -212,7 +209,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Gets a value indicating whether the property can be written to.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Reflection.PropertyInfo.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> returns <strong>true</strong> if the property has a <strong>set</strong> accessor, even if the accessor is <strong>private</strong>, <strong>internal</strong> (or <strong>Friend</strong> in Visual Basic), or <strong>protected</strong>.   If the property does not have a <strong>set</strong> accessor, the method returns <strong>false</strong>. </p>\n<p>To get the value of the <xref href=\"System.Reflection.PropertyInfo.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> property: </p>\n<ol><li>\n<p>Get the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object of the type that includes the property.</p>\n</li><li>\n<p>Call the <xref href=\"System.Type.GetProperty(System.String)\" data-throw-if-not-resolved=\"false\"></xref> to get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents the property.</p>\n</li><li>\n<p>Retrieve the value of the <xref href=\"System.Reflection.PropertyInfo.CanWrite\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n</li></ol>\n"
   syntax:
     content: public abstract bool CanWrite { get; }
     content.vb: Public MustOverride ReadOnly Property CanWrite As Boolean
@@ -289,7 +285,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Gets a value indicating whether the property is the special name.</p>\n"
-  remarks: "\n<p>The <strong>SpecialName</strong> bit is set to flag members that are treated in a special way by some compilers (such as property accessors and operator overloading methods).</p>\n<p>To get the <strong>IsSpecialName</strong> property, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <strong>PropertyInfo</strong>. From the <strong>PropertyInfo</strong>, get the <strong>IsSpecialName</strong> value.</p>\n"
   syntax:
     content: public bool IsSpecialName { get; }
     content.vb: Public ReadOnly Property IsSpecialName As Boolean
@@ -326,7 +321,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Gets the type of this property.</p>\n"
-  remarks: "\n<p>To determine the type of a particular property, do the following: </p>\n<ol><li>\n<p>Get a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object that represents the type (the class or structure) that contains the property. If you are working with an object (an instance of a type), you can call its <xref href=\"System.Object.GetType\" data-throw-if-not-resolved=\"false\"></xref> method. Otherwise, you can use the C#  operator or the Visual Basic  operator, as the example illustrates. </p>\n</li><li>\n<p>Get a <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents the property in which you're interested. You can do this by getting an array of all properties from the <xref href=\"System.Type.GetProperties\" data-throw-if-not-resolved=\"false\"></xref> method and then iterating the elements in the array, or you can retrieve the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object that represents the property directly by calling the <xref href=\"System.Type.GetProperty(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method and specifying the property name. </p>\n</li><li>\n<p>Retrieve the value of the <xref href=\"System.Reflection.PropertyInfo.PropertyType\" data-throw-if-not-resolved=\"false\"></xref> property from the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n</li></ol>\n"
   syntax:
     content: public abstract Type PropertyType { get; }
     content.vb: Public MustOverride ReadOnly Property PropertyType As Type
@@ -365,7 +359,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Gets the <strong>set</strong> accessor for this property.</p>\n"
-  remarks: "\n<p>Retrieving the value of the <xref href=\"System.Reflection.PropertyInfo.SetMethod\" data-throw-if-not-resolved=\"false\"></xref> property is equivalent to calling the <xref href=\"System.Reflection.PropertyInfo.GetSetMethod(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method with a value of <strong>true</strong> for the <em>nonPublic</em> argument. </p>\n"
   syntax:
     content: public virtual MethodInfo SetMethod { get; }
     content.vb: Public Overridable ReadOnly Property SetMethod As MethodInfo
@@ -449,7 +442,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns a literal value associated with the property by a compiler. </p>\n"
-  remarks: "\n<p>This method is provided for designers of managed compilers and code analyzers.</p>\n<p>Do not use this method in the reflection-only context, because it might cause code to execute. Use the <xref href=\"System.Reflection.PropertyInfo.GetRawConstantValue\" data-throw-if-not-resolved=\"false\"></xref> method instead.</p>\n<p>In unmanaged metadata, the Constant table is used to store constant values for fields, parameters, and properties. Constant information does not directly influence runtime behavior. Compilers inspect this information, at compile time, when importing metadata. If used, the value of a constant is embedded in the Microsoft intermediate language (MSIL) stream the compiler emits. There are no MSIL instructions that can be used to access the Constant table at run time.</p>\n<p>For more information on constant values and the Constant table, see the ECMA Partition II documentation. The documentation is available online; see <see href=\"http://go.microsoft.com/fwlink/?LinkID=99212\">ECMA C# and Common Language Infrastructure Standards</see> on MSDN and <see href=\"http://go.microsoft.com/fwlink/?LinkID=65552\">Standard ECMA-335 - Common Language Infrastructure (CLI)</see> on the Ecma International Web site.</p>\n"
   syntax:
     content: public virtual object GetConstantValue()
     content.vb: Public Overridable Function GetConstantValue As Object
@@ -528,7 +520,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>When overridden in a derived class, returns an array of all the index parameters for the property.</p>\n"
-  remarks: "\n<p>Extract any required parameter information from the returned array.</p>\n<p>To use the <strong>GetIndexParameters</strong> method, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <strong>PropertyInfo</strong>. From the <strong>PropertyInfo</strong>, use the <strong>GetIndexParameters</strong> method.</p>\n"
   syntax:
     content: public abstract ParameterInfo[] GetIndexParameters()
     content.vb: Public MustOverride Function GetIndexParameters As ParameterInfo()
@@ -567,7 +558,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns the property value of a specified object.</p>\n"
-  remarks: "\n<p>You call the <xref href=\"System.Reflection.PropertyInfo.GetValue(System.Object)\" data-throw-if-not-resolved=\"false\"></xref> overload to retrieve the value of a non-indexed property; if you try to retrieve the value of an indexed property, the method throws a <xref href=\"System.Reflection.TargetParameterCountException\" data-throw-if-not-resolved=\"false\"></xref> exception. You can determine whether a property is indexed or not by calling the <xref href=\"System.Reflection.PropertyInfo.GetIndexParameters\" data-throw-if-not-resolved=\"false\"></xref> method. If the length of the returned <xref href=\"System.Reflection.ParameterInfo\" data-throw-if-not-resolved=\"false\"></xref> array is zero, the property is not indexed. </p>\n<p>This is a convenience method that provides an implementation for the abstract <xref href=\"System.Reflection.PropertyInfo.GetValue(System.Object,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object[],System.Globalization.CultureInfo)\" data-throw-if-not-resolved=\"false\"></xref> method with the <xref href=\"System.Reflection.BindingFlags\" data-throw-if-not-resolved=\"false\"></xref> parameter set to <xref href=\"System.Reflection.BindingFlags.Default\" data-throw-if-not-resolved=\"false\"></xref>, the <xref href=\"System.Reflection.Binder\" data-throw-if-not-resolved=\"false\"></xref> set to <strong>null</strong>, the object array of index values set to <strong>null</strong>, and the <xref href=\"System.Globalization.CultureInfo\" data-throw-if-not-resolved=\"false\"></xref> set to <strong>null</strong>.</p>\n"
   syntax:
     content: >-
       [DebuggerStepThrough]
@@ -615,7 +605,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns the property value of a specified object with optional index values for indexed properties.</p>\n"
-  remarks: "\n<p>To determine whether a property is indexed, use the <xref href=\"System.Reflection.PropertyInfo.GetIndexParameters\" data-throw-if-not-resolved=\"false\"></xref> method. If the resulting array has 0 (zero) elements, the property is not indexed.</p>\n<p>This is a convenience method that provides an implementation for the abstract <strong>GetValue</strong> method with a <strong>BindingFlags</strong> parameter of <strong>Default</strong>, the <strong>Binder</strong> set to <strong>null</strong>, and the <strong>CultureInfo</strong> set to <strong>null</strong>.</p>\n<p>Because static properties belong to the type, not individual objects, get static properties by passing <strong>null</strong> as the object argument. For example, use the following code to get the static <strong>CurrentCulture</strong> property of <strong>CultureInfo</strong> : </p>\n<pre><code>PropertyInfo CurCultProp = \n(typeof(CultureInfo)).GetProperty(\"CurrentCulture\"); \nConsole.WriteLine(\"CurrCult: \" +\nCurCultProp.GetValue(null,null));</code></pre>\n<p>To use the <strong>GetValue</strong> method, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <strong>PropertyInfo</strong>. From the <strong>PropertyInfo</strong>, use the <strong>GetValue</strong> method.</p>\n<p>Starting with the .NET Framework 2.0 Service Pack 1, this method can be used to access non-public members if the caller has been granted <xref href=\"System.Security.Permissions.ReflectionPermission\" data-throw-if-not-resolved=\"false\"></xref> with the <xref href=\"System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess\" data-throw-if-not-resolved=\"false\"></xref> flag and if the grant set of the non-public members is restricted to the caller’s grant set, or a subset thereof. (See Security Considerations for Reflection.) </p>\n<p>To use this functionality, your application should target the .NET Framework 3.5 or later.</p>\n"
   syntax:
     content: >-
       [DebuggerStepThrough]
@@ -694,7 +683,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Sets the property value of a specified object.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Reflection.PropertyInfo.SetValue(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> overload sets the value of a non-indexed property. To determine whether a property is indexed, call the <xref href=\"System.Reflection.PropertyInfo.GetIndexParameters\" data-throw-if-not-resolved=\"false\"></xref> method. If the resulting array has 0 (zero) elements, the property is not indexed. To set the value of an indexed property, call the <xref href=\"System.Reflection.PropertyInfo.SetValue(System.Object,System.Object,System.Object[])\" data-throw-if-not-resolved=\"false\"></xref> overload.  </p>\n<p>If the property type of this <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object is a value type and <em>value</em> is <strong>null</strong>, the property will be set to the default value for that type. </p>\n<p>This is a convenience method that calls the runtime implementation of the abstract <xref href=\"System.Reflection.PropertyInfo.SetValue(System.Object,System.Object,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object[],System.Globalization.CultureInfo)\" data-throw-if-not-resolved=\"false\"></xref> method, specifying <xref href=\"System.Reflection.BindingFlags.Default\" data-throw-if-not-resolved=\"false\"></xref> for the <em>BindingFlags</em> parameter, <strong>null</strong> for <em>Binder</em>, <strong>null</strong> for <em>Object[]</em>, and <strong>null</strong> for <em>CultureInfo</em>.</p>\n<p>To use the <xref href=\"System.Reflection.PropertyInfo.SetValue(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method, first get a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object that represents the class. From the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object. From the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object, call the <xref href=\"System.Reflection.PropertyInfo.SetValue(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>Starting with the .NET Framework 2.0 Service Pack 1, this method can be used to access non-public members if the caller has been granted <xref href=\"System.Security.Permissions.ReflectionPermission\" data-throw-if-not-resolved=\"false\"></xref> with the <xref href=\"System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess\" data-throw-if-not-resolved=\"false\"></xref> flag and if the grant set of the non-public members is restricted to the caller’s grant set, or a subset thereof. (See Security Considerations for Reflection.) </p>\n<p>To use this functionality, your application should target the .NET Framework 3.5 or later.</p>\n"
   syntax:
     content: >-
       [DebuggerStepThrough]
@@ -762,7 +750,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Sets the property value of a specified object with optional index values for index properties.</p>\n"
-  remarks: "\n<p>If this <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object is a value type and <em>value</em> is <strong>null</strong>, then the property will be set to the default value for that type.</p>\n<p>To determine whether a property is indexed, use the <xref href=\"System.Reflection.PropertyInfo.GetIndexParameters\" data-throw-if-not-resolved=\"false\"></xref> method. If the resulting array has 0 (zero) elements, the property is not indexed.</p>\n<p>This is a convenience method that calls the runtime implementation of the abstract <xref href=\"System.Reflection.PropertyInfo.SetValue(System.Object,System.Object,System.Reflection.BindingFlags,System.Reflection.Binder,System.Object[],System.Globalization.CultureInfo)\" data-throw-if-not-resolved=\"false\"></xref> method, specifying <xref href=\"System.Reflection.BindingFlags.Default\" data-throw-if-not-resolved=\"false\"></xref> for the <em>BindingFlags</em> parameter, <strong>null</strong> for <em>Binder</em>, and <strong>null</strong> for <em>CultureInfo</em>.</p>\n<p>To use the <xref href=\"System.Reflection.PropertyInfo.SetValue(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method, first get a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object that represents the class. From the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref>, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>. From the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>, use the <xref href=\"System.Reflection.PropertyInfo.SetValue(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>Starting with the .NET Framework 2.0 Service Pack 1, this method can be used to access non-public members if the caller has been granted <xref href=\"System.Security.Permissions.ReflectionPermission\" data-throw-if-not-resolved=\"false\"></xref> with the <xref href=\"System.Security.Permissions.ReflectionPermissionFlag.RestrictedMemberAccess\" data-throw-if-not-resolved=\"false\"></xref> flag and if the grant set of the non-public members is restricted to the caller’s grant set, or a subset thereof. (See Security Considerations for Reflection.) </p>\n<p>To use this functionality, your application should target the .NET Framework 3.5 or later.</p>\n"
   syntax:
     content: >-
       [DebuggerStepThrough]
@@ -841,7 +828,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Gets a <xref href=\"System.Reflection.MemberTypes\" data-throw-if-not-resolved=\"false\"></xref> value indicating that this member is a property.</p>\n"
-  remarks: "\n<p>This property overrides <xref href=\"System.Reflection.MemberInfo.MemberType\" data-throw-if-not-resolved=\"false\"></xref>. Therefore, when you examine a set of <xref href=\"System.Reflection.MemberInfo\" data-throw-if-not-resolved=\"false\"></xref> objects — for example, the array returned by <see cref=\"Overload:System.Type.GetMembers\"></see> — the <xref href=\"System.Reflection.MemberInfo.MemberType\" data-throw-if-not-resolved=\"false\"></xref> property returns <xref href=\"System.Reflection.MemberTypes.Property\" data-throw-if-not-resolved=\"false\"></xref> only when a given member is a property.</p>\n<p>\n<strong>MemberType</strong> is a derived class of <strong>MemberInfo</strong> and specifies the type of member this is. Member types are constructors, properties, fields, and methods. Since this is a <strong>PropertyInfo</strong> property, the returned type is a property.</p>\n<p>To get the <strong>MemberType</strong> property, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <strong>PropertyInfo</strong>. From the <strong>PropertyInfo</strong>, get the <strong>MemberType</strong> value.</p>\n"
   syntax:
     content: public override MemberTypes MemberType { get; }
     content.vb: Public Overrides ReadOnly Property MemberType As MemberTypes
@@ -881,7 +867,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns an array whose elements reflect the public <strong>get</strong> and <strong>set</strong> accessors of the property reflected by the current instance. </p>\n"
-  remarks: "\n<p>To call the <xref href=\"System.Reflection.PropertyInfo.GetAccessors(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method: </p>\n<ol><li>\n<p>Get a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object that represents the class. </p>\n</li><li>\n<p>From the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n</li><li>\n<p>From the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object, call the <xref href=\"System.Reflection.PropertyInfo.GetAccessors(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n</li></ol>\n"
   syntax:
     content: public MethodInfo[] GetAccessors()
     content.vb: Public Function GetAccessors As MethodInfo()
@@ -918,7 +903,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns an array whose elements reflect the public and, if specified, non-public <strong>get</strong> and <strong>set</strong> accessors of the property reflected by the current instance. </p>\n"
-  remarks: "\n<p>To call the <xref href=\"System.Reflection.PropertyInfo.GetAccessors(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method: </p>\n<ol><li>\n<p>Get a <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object that represents the class. </p>\n</li><li>\n<p>From the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> object, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n</li><li>\n<p>From the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref> object, call the <xref href=\"System.Reflection.PropertyInfo.GetAccessors(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n</li></ol>\n"
   syntax:
     content: public abstract MethodInfo[] GetAccessors(bool nonPublic)
     content.vb: Public MustOverride Function GetAccessors(nonPublic As Boolean) As MethodInfo()
@@ -961,7 +945,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns the public <strong>get</strong> accessor for this property.</p>\n"
-  remarks: "\n<p>This is a convenience method that provides an implementation for the abstract <strong>GetGetMethod</strong> method with the <em>nonPublic</em> parameter set to <strong>false</strong>.</p>\n<p>To use the <strong>GetGetMethod</strong> method, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>. From the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>, use the <strong>GetGetMethod</strong> method.</p>\n"
   syntax:
     content: public MethodInfo GetGetMethod()
     content.vb: Public Function GetGetMethod As MethodInfo
@@ -998,7 +981,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>When overridden in a derived class, returns the public or non-public <strong>get</strong> accessor for this property.</p>\n"
-  remarks: "\n<p>This property is the <xref href=\"System.Reflection.MethodInfo\" data-throw-if-not-resolved=\"false\"></xref> representing the get accessor.</p>\n<p>To use the <strong>GetGetMethod</strong> method, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>. From the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>, use the <strong>GetGetMethod</strong> method.</p>\n"
   syntax:
     content: public abstract MethodInfo GetGetMethod(bool nonPublic)
     content.vb: Public MustOverride Function GetGetMethod(nonPublic As Boolean) As MethodInfo
@@ -1045,7 +1027,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns the public <strong>set</strong> accessor for this property.</p>\n"
-  remarks: "\n<p>This is a convenience method that provides an implementation for the abstract <strong>GetSetMethod</strong> method with the <em>nonPublic</em> parameter set to <strong>false</strong>.</p>\n<p>To use the <strong>GetSetMethod</strong> method, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>. From the <strong>PropertyInfo</strong>, use the <strong>GetSetMethod</strong> method.</p>\n"
   syntax:
     content: public MethodInfo GetSetMethod()
     content.vb: Public Function GetSetMethod As MethodInfo
@@ -1082,7 +1063,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>When overridden in a derived class, returns the <strong>set</strong> accessor for this property.</p>\n"
-  remarks: "\n<p>To use the <strong>GetSetMethod</strong> method, first get the class <strong>Type</strong>. From the <strong>Type</strong>, get the <xref href=\"System.Reflection.PropertyInfo\" data-throw-if-not-resolved=\"false\"></xref>. From the <strong>PropertyInfo</strong>, use the <strong>GetSetMethod</strong> method.</p>\n"
   syntax:
     content: public abstract MethodInfo GetSetMethod(bool nonPublic)
     content.vb: Public MustOverride Function GetSetMethod(nonPublic As Boolean) As MethodInfo
@@ -1129,7 +1109,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns an array of types representing the optional custom modifiers of the property.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Reflection.PropertyInfo.GetOptionalCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Reflection.PropertyInfo.GetRequiredCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> methods are provided for designers of managed compilers. For more information on custom modifiers, see <xref href=\"System.Runtime.CompilerServices.IsBoxed\" data-throw-if-not-resolved=\"false\"></xref> and related classes in the <xref href=\"System.Runtime.CompilerServices\" data-throw-if-not-resolved=\"false\"></xref> namespace and the metadata specification in the ECMA Partition II documentation. The documentation is available online; see <see href=\"http://go.microsoft.com/fwlink/?LinkID=99212\">ECMA C# and Common Language Infrastructure Standards</see> on MSDN and <see href=\"http://go.microsoft.com/fwlink/?LinkID=65552\">Standard ECMA-335 - Common Language Infrastructure (CLI)</see> on the Ecma International Web site.</p>\n"
   syntax:
     content: public virtual Type[] GetOptionalCustomModifiers()
     content.vb: Public Overridable Function GetOptionalCustomModifiers As Type()
@@ -1165,7 +1144,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns a literal value associated with the property by a compiler. </p>\n"
-  remarks: "\n<p>This method is provided for designers of managed compilers and code analyzers.</p>\n<p>This method can be used in both the execution context and the reflection-only context.</p>\n<p>In unmanaged metadata, the Constant table is used to store constant values for fields, parameters, and properties. Constant information does not directly influence runtime behavior. Compilers inspect this information, at compile time, when importing metadata. If used, the value of a constant is embedded in the Microsoft intermediate language (MSIL) stream the compiler emits. There are no MSIL instructions that can be used to access the Constant table at run time.</p>\n<p>For more information on constant values and the Constant table, see the ECMA Partition II documentation. The documentation is available online; see <see href=\"http://go.microsoft.com/fwlink/?LinkID=99212\">ECMA C# and Common Language Infrastructure Standards</see> on MSDN and <see href=\"http://go.microsoft.com/fwlink/?LinkID=65552\">Standard ECMA-335 - Common Language Infrastructure (CLI)</see> on the Ecma International Web site.</p>\n"
   syntax:
     content: public virtual object GetRawConstantValue()
     content.vb: Public Overridable Function GetRawConstantValue As Object
@@ -1208,7 +1186,6 @@ items:
   - System.Reflection
   namespace: System.Reflection
   summary: "\n<p>Returns an array of types representing the required custom modifiers of the property.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Reflection.PropertyInfo.GetOptionalCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Reflection.PropertyInfo.GetRequiredCustomModifiers\" data-throw-if-not-resolved=\"false\"></xref> methods are provided for designers of managed compilers. For more information on custom modifiers, see <xref href=\"System.Runtime.CompilerServices.IsBoxed\" data-throw-if-not-resolved=\"false\"></xref> and related classes in the <xref href=\"System.Runtime.CompilerServices\" data-throw-if-not-resolved=\"false\"></xref> namespace and the metadata specification in the ECMA Partition II documentation. The documentation is available online; see <see href=\"http://go.microsoft.com/fwlink/?LinkID=99212\">ECMA C# and Common Language Infrastructure Standards</see> on MSDN and <see href=\"http://go.microsoft.com/fwlink/?LinkID=65552\">Standard ECMA-335 - Common Language Infrastructure (CLI)</see> on the Ecma International Web site.</p>\n"
   syntax:
     content: public virtual Type[] GetRequiredCustomModifiers()
     content.vb: Public Overridable Function GetRequiredCustomModifiers As Type()

@@ -39,7 +39,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Lets you efficiently bulk load a SQL Server table with data from another source.</p>\n"
-  remarks: "\n<p>Microsoft SQL Server includes a popular command-prompt utility named <strong>bcp</strong> for moving data from one table to another, whether on a single server or between servers. The <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class lets you write managed code solutions that provide similar functionality. There are other ways to load data into a SQL Server table (INSERT statements, for example), but <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> offers a significant performance advantage over them.</p>\n<p>The <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class can be used to write data only to SQL Server tables. However, the data source is not limited to SQL Server; any data source can be used, as long as the data can be loaded to a <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref> instance or read with a <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n<p>\n<xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> will fail when bulk loading a <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref> column of type <xref href=\"System.Data.SqlTypes.SqlDateTime\" data-throw-if-not-resolved=\"false\"></xref> into a SQL Server column whose type is one of the date/time types added in SQL Server 2008.</p>\n"
   syntax:
     content: 'public sealed class SqlBulkCopy : IDisposable'
     content.vb: >-
@@ -88,7 +87,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class using the specified open instance of <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  remarks: "\n<p>Because the connection is already open when the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance is initialized, the connection remains open after the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance is closed.</p>\n<p>If the <em>connection</em> argument is null, an <xref href=\"System.ArgumentNullException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n"
   syntax:
     content: public SqlBulkCopy(SqlConnection connection)
     content.vb: Public Sub New(connection As SqlConnection)
@@ -123,7 +121,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class using the supplied existing open instance of <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref>. The <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance behaves according to options supplied in the <em>copyOptions</em> parameter. If a non-null <xref href=\"System.Data.SqlClient.SqlTransaction\" data-throw-if-not-resolved=\"false\"></xref> is supplied, the copy operations will be performed within that transaction.</p>\n"
-  remarks: "\n<p>If options include <strong>UseInternalTransaction</strong> and the <em>externalTransaction</em> argument is not null, an <strong>InvalidArgumentException</strong> is thrown.</p>\n<p>For examples demonstrating how to use <strong>SqlBulkCopy</strong> in a transaction, see Transaction and Bulk Copy Operations.</p>\n"
   syntax:
     content: public SqlBulkCopy(SqlConnection connection, SqlBulkCopyOptions copyOptions, SqlTransaction externalTransaction)
     content.vb: Public Sub New(connection As SqlConnection, copyOptions As SqlBulkCopyOptions, externalTransaction As SqlTransaction)
@@ -164,7 +161,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Initializes and opens a new instance of <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> based on the supplied <em>connectionString</em>. The constructor uses the <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> to initialize a new instance of the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  remarks: "\n<p>The connection is automatically closed at the end of the bulk copy operation.</p>\n<p>If <em>connectionString</em> is null, an <xref href=\"System.ArgumentNullException\" data-throw-if-not-resolved=\"false\"></xref> is thrown. If <em>connectionString</em> is an empty string, an <xref href=\"System.ArgumentException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n"
   syntax:
     content: public SqlBulkCopy(string connectionString)
     content.vb: Public Sub New(connectionString As String)
@@ -199,7 +195,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Initializes and opens a new instance of <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> based on the supplied <em>connectionString</em>. The constructor uses that <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> to initialize a new instance of the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class. The <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> instance behaves according to options supplied in the <em>copyOptions</em> parameter.</p>\n"
-  remarks: "\n<p>You can obtain detailed information about all the bulk copy options in the <xref href=\"System.Data.SqlClient.SqlBulkCopyOptions\" data-throw-if-not-resolved=\"false\"></xref> topic.</p>\n"
   syntax:
     content: public SqlBulkCopy(string connectionString, SqlBulkCopyOptions copyOptions)
     content.vb: Public Sub New(connectionString As String, copyOptions As SqlBulkCopyOptions)
@@ -237,7 +232,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Number of rows in each batch. At the end of each batch, the rows in the batch are sent to the server.</p>\n"
-  remarks: "\n<p>A batch is complete when <xref href=\"System.Data.SqlClient.SqlBulkCopy.BatchSize\" data-throw-if-not-resolved=\"false\"></xref> rows have been processed or there are no more rows to send to the destination data source.</p>\n<p>Zero (the default) indicates that each <xref href=\"System.Data.SqlClient.SqlBulkCopy.WriteToServer(System.Data.Common.DbDataReader)\" data-throw-if-not-resolved=\"false\"></xref> operation is a single batch.</p>\n<p>If the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance has been declared without the <xref href=\"System.Data.SqlClient.SqlBulkCopyOptions.UseInternalTransaction\" data-throw-if-not-resolved=\"false\"></xref> option in effect, rows are sent to the server <xref href=\"System.Data.SqlClient.SqlBulkCopy.BatchSize\" data-throw-if-not-resolved=\"false\"></xref> rows at a time, but no transaction-related action is taken. If <xref href=\"System.Data.SqlClient.SqlBulkCopyOptions.UseInternalTransaction\" data-throw-if-not-resolved=\"false\"></xref> is in effect, each batch of rows is inserted as a separate transaction.</p>\n<p>The <xref href=\"System.Data.SqlClient.SqlBulkCopy.BatchSize\" data-throw-if-not-resolved=\"false\"></xref> property can be set at any time. If a bulk copy is already in progress, the current batch is sized according to the previous batch size. Subsequent batches use the new size. If the <xref href=\"System.Data.SqlClient.SqlBulkCopy.BatchSize\" data-throw-if-not-resolved=\"false\"></xref> is initially zero and changed while a <xref href=\"System.Data.SqlClient.SqlBulkCopy.WriteToServer(System.Data.Common.DbDataReader)\" data-throw-if-not-resolved=\"false\"></xref> operation is already in progress, that operation loads the data as a single batch. Any subsequent <xref href=\"System.Data.SqlClient.SqlBulkCopy.WriteToServer(System.Data.Common.DbDataReader)\" data-throw-if-not-resolved=\"false\"></xref> operations on the same <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance use the new <xref href=\"System.Data.SqlClient.SqlBulkCopy.BatchSize\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public int BatchSize { get; set; }
     content.vb: Public Property BatchSize As Integer
@@ -274,7 +268,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Number of seconds for the operation to complete before it times out.</p>\n"
-  remarks: "\n<p>If the operation does time out, the transaction is not committed and all copied rows are removed from the destination table.</p>\n"
   syntax:
     content: public int BulkCopyTimeout { get; set; }
     content.vb: Public Property BulkCopyTimeout As Integer
@@ -311,7 +304,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Returns a collection of <xref href=\"System.Data.SqlClient.SqlBulkCopyColumnMapping\" data-throw-if-not-resolved=\"false\"></xref> items. Column mappings define the relationships between columns in the data source and columns in the destination.</p>\n"
-  remarks: "\n<p>If the data source and the destination table have the same number of columns, and the ordinal position of each source column within the data source matches the ordinal position of the corresponding destination column, the <xref href=\"System.Data.SqlClient.SqlBulkCopy.ColumnMappings\" data-throw-if-not-resolved=\"false\"></xref> collection is unnecessary. However, if the column counts differ, or the ordinal positions are not consistent, you must use <xref href=\"System.Data.SqlClient.SqlBulkCopy.ColumnMappings\" data-throw-if-not-resolved=\"false\"></xref> to make sure that data is copied into the correct columns.</p>\n<p>During the execution of a bulk copy operation, this collection can be accessed, but it cannot be changed. Any attempt to change it will throw an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public SqlBulkCopyColumnMappingCollection ColumnMappings { get; }
     content.vb: Public ReadOnly Property ColumnMappings As SqlBulkCopyColumnMappingCollection
@@ -351,7 +343,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Name of the destination table on the server. </p>\n"
-  remarks: "\n<p>If <xref href=\"System.Data.SqlClient.SqlBulkCopy.DestinationTableName\" data-throw-if-not-resolved=\"false\"></xref> has not been set when <xref href=\"System.Data.SqlClient.SqlBulkCopy.WriteToServer(System.Data.Common.DbDataReader)\" data-throw-if-not-resolved=\"false\"></xref> is called, an <xref href=\"System.ArgumentNullException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n<p>If <xref href=\"System.Data.SqlClient.SqlBulkCopy.DestinationTableName\" data-throw-if-not-resolved=\"false\"></xref> is modified while a <xref href=\"System.Data.SqlClient.SqlBulkCopy.WriteToServer(System.Data.Common.DbDataReader)\" data-throw-if-not-resolved=\"false\"></xref> operation is running, the change does not affect the current operation. The new <xref href=\"System.Data.SqlClient.SqlBulkCopy.DestinationTableName\" data-throw-if-not-resolved=\"false\"></xref> value is used the next time a <xref href=\"System.Data.SqlClient.SqlBulkCopy.WriteToServer(System.Data.Common.DbDataReader)\" data-throw-if-not-resolved=\"false\"></xref> method is called.</p>\n<p>\n<xref href=\"System.Data.SqlClient.SqlBulkCopy.DestinationTableName\" data-throw-if-not-resolved=\"false\"></xref> is a three-part name (<code><database>.<owningschema>.<name></code>). You can qualify the table name with its database and owning schema if you choose. However, if the table name uses an underscore (\"_\") or any other special characters, you must escape the name using surrounding brackets as in (<code>[<database>.<owningschema>.<name_01>]</code>). For more information, see \"Identifiers\" in SQL Server Books Online.</p>\n<p>You can bulk-copy data to a temporary table by using a value such as <code>tempdb..#table</code> or<code> tempdb.<owner>.#table</code> for the <xref href=\"System.Data.SqlClient.SqlBulkCopy.DestinationTableName\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: public string DestinationTableName { get; set; }
     content.vb: Public Property DestinationTableName As String
@@ -388,7 +379,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Enables or disables a <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> object to stream data from an <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> object</p>\n"
-  remarks: "\n<p>When <xref href=\"System.Data.SqlClient.SqlBulkCopy.EnableStreaming\" data-throw-if-not-resolved=\"false\"></xref> is <strong>true</strong>, <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> reads from an <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> object using <xref href=\"System.Data.CommandBehavior.SequentialAccess\" data-throw-if-not-resolved=\"false\"></xref>, optimizing memory usage by using the <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> streaming capabilities. When it’s set to false, the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class loads all the data returned by the <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> object into memory before sending it to SQL Server or SQL Azure.</p>\n"
   syntax:
     content: public bool EnableStreaming { get; set; }
     content.vb: Public Property EnableStreaming As Boolean
@@ -425,7 +415,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Defines the number of rows to be processed before generating a notification event.</p>\n"
-  remarks: "\n<p>This property is designed for user interface components that illustrate the progress of a bulk copy operation. It indicates the number of rows to be processed before generating a notification event. The <xref href=\"System.Data.SqlClient.SqlBulkCopy.NotifyAfter\" data-throw-if-not-resolved=\"false\"></xref> property can be set at any time, even while a bulk copy operation is underway. Changes made during a bulk copy operation take effect after the next notification. The new setting applies to all subsequent operations on the same instance.</p>\n<p>If <xref href=\"System.Data.SqlClient.SqlBulkCopy.NotifyAfter\" data-throw-if-not-resolved=\"false\"></xref> is set to a number less than zero, an <xref href=\"System.ArgumentOutOfRangeException\" data-throw-if-not-resolved=\"false\"></xref> is thrown.</p>\n"
   syntax:
     content: public int NotifyAfter { get; set; }
     content.vb: Public Property NotifyAfter As Integer
@@ -462,7 +451,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Occurs every time that the number of rows specified by the <xref href=\"System.Data.SqlClient.SqlBulkCopy.NotifyAfter\" data-throw-if-not-resolved=\"false\"></xref> property have been processed.</p>\n"
-  remarks: "\n<p>Note that the settings of <xref href=\"System.Data.SqlClient.SqlBulkCopy.NotifyAfter\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Data.SqlClient.SqlBulkCopy.BatchSize\" data-throw-if-not-resolved=\"false\"></xref> are independent. Receipt of a <xref href=\"System.Data.SqlClient.SqlBulkCopy.SqlRowsCopied\" data-throw-if-not-resolved=\"false\"></xref> event does not imply that any rows have been sent to the server or committed.</p>\n<p>You cannot call SqlBulkCopy.Close (<xref href=\"System.Data.SqlClient.SqlBulkCopy.Close\" data-throw-if-not-resolved=\"false\"></xref>) or SqlConnection.Close (<xref href=\"System.Data.SqlClient.SqlConnection.Close\" data-throw-if-not-resolved=\"false\"></xref>) from this event. Doing this will cause an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> being thrown, and the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> object state will not change. If the user wants to cancel the operation from the event, the <xref href=\"System.Data.SqlClient.SqlRowsCopiedEventArgs.Abort\" data-throw-if-not-resolved=\"false\"></xref> property of the <xref href=\"System.Data.SqlClient.SqlRowsCopiedEventArgs\" data-throw-if-not-resolved=\"false\"></xref> can be used. (See Transaction and Bulk Copy Operations for examples that use the <xref href=\"System.Data.SqlClient.SqlRowsCopiedEventArgs.Abort\" data-throw-if-not-resolved=\"false\"></xref> property.)</p>\n<p>No action, such as transaction activity, is supported in the connection during the execution of the bulk copy operation, and it is recommended that you not use the same connection used during the <xref href=\"System.Data.SqlClient.SqlBulkCopy.SqlRowsCopied\" data-throw-if-not-resolved=\"false\"></xref> event. However, you can open a different connection.</p>\n"
   syntax:
     content: public event SqlRowsCopiedEventHandler SqlRowsCopied
     content.vb: Public Event SqlRowsCopied As SqlRowsCopiedEventHandler
@@ -495,7 +483,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Closes the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
-  remarks: "\n<p>After you call a <xref href=\"System.Data.SqlClient.SqlBulkCopy.Close\" data-throw-if-not-resolved=\"false\"></xref> on the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> object, no other operation will succeed. Calls to the <xref href=\"System.Data.SqlClient.SqlBulkCopy.WriteToServer(System.Data.Common.DbDataReader)\" data-throw-if-not-resolved=\"false\"></xref> method will throw an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Calling the <xref href=\"System.Data.SqlClient.SqlBulkCopy.Close\" data-throw-if-not-resolved=\"false\"></xref> method from the <xref href=\"System.Data.SqlClient.SqlBulkCopy.SqlRowsCopied\" data-throw-if-not-resolved=\"false\"></xref> event causes an <xref href=\"System.InvalidOperationException\" data-throw-if-not-resolved=\"false\"></xref> to be thrown.</p>\n<p>Note that open <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instances are closed implicitly at the end of a <strong>using</strong> block.</p>\n"
   syntax:
     content: public void Close()
     content.vb: Public Sub Close
@@ -527,7 +514,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Releases all resources used by the current instance of the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  remarks: "\n<p>Call <strong>Dispose</strong> when you are finished using the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref>. The <strong>Dispose</strong> method leaves the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> in an unusable state. After calling <strong>Dispose</strong>, you must release all references to the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> so the garbage collector can reclaim the memory that the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> was occupying.</p>\n<p>For more information, see Cleaning Up Unmanaged Resources and Implementing a Dispose Method.</p>\n<p>Always call <strong>Dispose</strong> before you release your last reference to the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the resources it is using will not be freed until the garbage collector calls the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> object's <strong>Finalize</strong> method.</p>\n"
   syntax:
     content: void IDisposable.Dispose()
     content.vb: Sub System.IDisposable.Dispose Implements IDisposable.Dispose

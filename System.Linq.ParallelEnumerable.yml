@@ -404,7 +404,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Applies in parallel an accumulator function over a sequence. This overload is not available in the sequential implementation.</p>\n"
-  remarks: "\n<p>This overload is specific to processing a parallelized query. A parallelized query may partition the data source sequence into several sub-sequences (partitions). The <em>updateAccumulatorFunc</em> is invoked on each element within partitions. Each partition then yields a single accumulated result. The <em>combineAccumulatorsFunc</em> is then invoked on the results of each partition to yield a single element. This element is then transformed by the <em>resultSelector</em> function.</p>\n"
   syntax:
     content: public static TResult Aggregate<TSource, TAccumulate, TResult>(this ParallelQuery<TSource> source, TAccumulate seed, Func<TAccumulate, TSource, TAccumulate> updateAccumulatorFunc, Func<TAccumulate, TAccumulate, TAccumulate> combineAccumulatorsFunc, Func<TAccumulate, TResult> resultSelector)
     content.vb: >-
@@ -558,7 +557,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Applies in parallel an accumulator function over a sequence. This overload is not available in the sequential implementation.</p>\n"
-  remarks: "\n<p>This overload is specific to parallelized queries. A parallelized query may partition the data source sequence into several sub-sequences (partitions). The <em>updateAccumulatorFunc</em> is invoked on each element within partitions. Each partition then yields a single accumulated result. The <em>combineAccumulatorsFunc</em> is then invoked on the results of each partition to yield a single element. This element is then transformed by the <em>resultSelector</em> function.</p>\n"
   syntax:
     content: public static TResult Aggregate<TSource, TAccumulate, TResult>(this ParallelQuery<TSource> source, Func<TAccumulate> seedFactory, Func<TAccumulate, TSource, TAccumulate> updateAccumulatorFunc, Func<TAccumulate, TAccumulate, TAccumulate> combineAccumulatorsFunc, Func<TAccumulate, TResult> resultSelector)
     content.vb: >-
@@ -699,7 +697,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Determines whether a parallel sequence contains any elements.</p>\n"
-  remarks: "\n<p>This overload of the Any method causes a fully-buffered merge to be performed before the result is returned. The merge behavior can impact performance or cause an out of memory exception in large enumerables. To avoid the merge behavior, use the overload of Any that takes a Func parameter, or else use an alternative method such as FirstOrDefault.</p>\n"
   syntax:
     content: public static bool Any<TSource>(this ParallelQuery<TSource> source)
     content.vb: >-
@@ -874,7 +871,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Enables treatment of a data source as if it were ordered, overriding the default of unordered. AsOrdered may only be invoked on non-generic sequences returned by AsParallel, ParallelEnumerable.Range, and ParallelEnumerable.Repeat.</p>\n"
-  remarks: "\n<p>A natural tension exists between performance and preserving order in parallel processing. By default, a parallelized query behaves as if the ordering of the results is arbitrary unless AsOrdered is applied or there is an explicit OrderBy operator in the query. For more information, see Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static ParallelQuery AsOrdered(this ParallelQuery source)
     content.vb: >-
@@ -925,7 +921,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Enables treatment of a data source as if it were ordered, overriding the default of unordered. AsOrdered may only be invoked on generic sequences returned by AsParallel, ParallelEnumerable.Range, and ParallelEnumerable.Repeat.</p>\n"
-  remarks: "\n<p>A natural tension exists between performance and preserving order in parallel processing. By default, a parallelized query behaves as if the ordering of the results is arbitrary unless AsOrdered is applied or there is an explicit OrderBy operator in the query. For more information, see Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static ParallelQuery<TSource> AsOrdered<TSource>(this ParallelQuery<TSource> source)
     content.vb: >-
@@ -982,7 +977,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Enables parallelization of a query.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Linq.ParallelEnumerable.Cast``1(System.Linq.ParallelQuery)\" data-throw-if-not-resolved=\"false\"></xref> operator can be used to convert a ParallelQuery to a ParallelQuery(T).</p>\n"
   syntax:
     content: public static ParallelQuery AsParallel(this IEnumerable source)
     content.vb: >-
@@ -1030,7 +1024,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Enables parallelization of a query, as sourced by a custom partitioner that is responsible for splitting the input sequence into partitions.</p>\n"
-  remarks: "\n<p>The source partitioner's GetOrderedPartitions method is used when ordering is enabled, whereas the partitioner's GetPartitions is used if ordering is not enabled (the default). The source partitioner's GetDynamicPartitions and GetDynamicOrderedPartitions are not used. For more information and examples, see Custom Partitioners for PLINQ and TPL.</p>\n"
   syntax:
     content: public static ParallelQuery<TSource> AsParallel<TSource>(this Partitioner<TSource> source)
     content.vb: >-
@@ -1137,7 +1130,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Converts a <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> into an <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> to force sequential evaluation of the query.</p>\n"
-  remarks: "\n<p>For more information, see Order Preservation in PLINQ and How to: Control Ordering in a PLINQ Query.</p>\n"
   syntax:
     content: public static IEnumerable<TSource> AsSequential<TSource>(this ParallelQuery<TSource> source)
     content.vb: >-
@@ -1191,7 +1183,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Allows an intermediate query to be treated as if no ordering is implied among the elements.</p>\n"
-  remarks: "\n<p>AsUnordered may provide performance benefits when ordering is not required in a portion of a query. By default, PLINQ treats an input sequence as unordered unless OrderBy or AsOrdered is specified. However, if ordering was turned on and is no longer needed, then AsUnordered can be used to turn it off in mid-query, and this may result in performance benefits.The AsUnordered operator itself does not shuffle the source sequence; it simply removes the ordering requirement for subsequent operators. If the source is ordered, subsequent operators might keep that ordering if it is more efficient to do so. AsUnordered can be called anywhere in the query; it does not need to be called immediately after AsParallel. For more information, see Understanding Speedup in PLINQ and Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static ParallelQuery<TSource> AsUnordered<TSource>(this ParallelQuery<TSource> source)
     content.vb: >-
@@ -2571,7 +2562,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This Concat overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of Concat with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the Concat operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -3350,7 +3340,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This Except overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of Except with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the Except operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -3418,7 +3407,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This Except overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of Except with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the Except operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -3616,7 +3604,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Returns the first element of a parallel sequence.</p>\n"
-  remarks: "\n<p>If the query is not ordered, then the first element is non-deterministic. For more information, see Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static TSource First<TSource>(this ParallelQuery<TSource> source)
     content.vb: >-
@@ -3679,7 +3666,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Returns the first element in a parallel sequence that satisfies a specified condition.</p>\n"
-  remarks: "\n<p>If the query is not ordered, then the first element is non-deterministic. For more information, see Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static TSource First<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate)
     content.vb: >-
@@ -3745,7 +3731,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Returns the first element of a parallel sequence, or a default value if the sequence contains no elements.</p>\n"
-  remarks: "\n<p>If the query is not ordered, then the first element is non-deterministic. For more information, see Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static TSource FirstOrDefault<TSource>(this ParallelQuery<TSource> source)
     content.vb: >-
@@ -3805,7 +3790,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Returns the first element of the parallel sequence that satisfies a condition or a default value if no such element is found.</p>\n"
-  remarks: "\n<p>If the query is not ordered, then the first element is non-deterministic. For more information, see Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static TSource FirstOrDefault<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate)
     content.vb: >-
@@ -3868,7 +3852,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Invokes in parallel the specified action for each element in the <em>source</em>.</p>\n"
-  remarks: "\n<p>This is an efficient way to process the output from a parallelized query because it does not require a merge step at the end. For more information, see Merge Options in PLINQ or Order Preservation in PLINQ. Because this method produces a side-effect, it can be used to observe the actual order of execution in a parallel query.</p>\n"
   syntax:
     content: public static void ForAll<TSource>(this ParallelQuery<TSource> source, Action<TSource> action)
     content.vb: >-
@@ -4492,7 +4475,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This GroupJoin overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of GroupJoin with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the GroupJoin operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -4581,7 +4563,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This GroupJoin overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of GroupJoin with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the GroupJoin operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -4824,7 +4805,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This Intersect overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of Intersect with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the Intersect operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -4892,7 +4872,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This Intersect overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of Intersect with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the Intersect operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -5090,7 +5069,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This Join overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when invoked.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage Join with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the Join operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -5179,7 +5157,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This Join overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when invoked.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of Join with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the Join operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -5422,7 +5399,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Returns the last element of a parallel sequence.</p>\n"
-  remarks: "\n<p>If the query is not ordered, then the last element is non-deterministic. For more information, see Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static TSource Last<TSource>(this ParallelQuery<TSource> source)
     content.vb: >-
@@ -5485,7 +5461,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Returns the last element of a parallel sequence that satisfies a specified condition.</p>\n"
-  remarks: "\n<p>If the query is not ordered, then the last element is non-deterministic. For more information, see Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static TSource Last<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate)
     content.vb: >-
@@ -5551,7 +5526,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Returns the last element of a parallel sequence, or a default value if the sequence contains no elements.</p>\n"
-  remarks: "\n<p>If the query is not ordered, then the last element is non-deterministic. For more information, see Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static TSource LastOrDefault<TSource>(this ParallelQuery<TSource> source)
     content.vb: >-
@@ -5611,7 +5585,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Returns the last element of a parallel sequence that satisfies a condition, or a default value if no such element is found.</p>\n"
-  remarks: "\n<p>If the query is not ordered, then the last element is non-deterministic. For more information, see Order Preservation in PLINQ.</p>\n"
   syntax:
     content: public static TSource LastOrDefault<TSource>(this ParallelQuery<TSource> source, Func<TSource, bool> predicate)
     content.vb: >-
@@ -8598,7 +8571,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Sorts in parallel the elements of a sequence in ascending order according to a key.</p>\n"
-  remarks: "\n<p>In contrast to the sequential implementation, this is not a stable sort. To achieve a stable sort, change a query of the form: var ordered = source.Select((e,i) => new { E=e, I=i }).OrderBy((v) => v.e).ThenBy(v => v.i).Select((v) => v.e); </p>\n"
   syntax:
     content: public static OrderedParallelQuery<TSource> OrderBy<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector)
     content.vb: >-
@@ -8663,7 +8635,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Sorts in parallel the elements of a sequence in ascending order by using a specified comparer.</p>\n"
-  remarks: "\n<p>In contrast to the sequential implementation, this is not a stable sort. See the remarks for <xref href=\"System.Linq.ParallelEnumerable.OrderBy``2(System.Linq.ParallelQuery{``0},System.Func{``0,``1})\" data-throw-if-not-resolved=\"false\"></xref> for an approach to implementing a stable sort.</p>\n"
   syntax:
     content: public static OrderedParallelQuery<TSource> OrderBy<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer)
     content.vb: >-
@@ -8731,7 +8702,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Sorts in parallel the elements of a sequence in descending order according to a key.</p>\n"
-  remarks: "\n<p>In contrast to the sequential implementation, this is not a stable sort. See the remarks for <xref href=\"System.Linq.ParallelEnumerable.OrderBy``2(System.Linq.ParallelQuery{``0},System.Func{``0,``1})\" data-throw-if-not-resolved=\"false\"></xref> for an approach to implementing a stable sort.</p>\n"
   syntax:
     content: public static OrderedParallelQuery<TSource> OrderByDescending<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector)
     content.vb: >-
@@ -8796,7 +8766,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Sorts the elements of a sequence in descending order by using a specified comparer.</p>\n"
-  remarks: "\n<p>In contrast to the sequential implementation, this is not a stable sort. See the remarks for <xref href=\"System.Linq.ParallelEnumerable.OrderBy``2(System.Linq.ParallelQuery{``0},System.Func{``0,``1})\" data-throw-if-not-resolved=\"false\"></xref> for an approach to implementing a stable sort.</p>\n"
   syntax:
     content: public static OrderedParallelQuery<TSource> OrderByDescending<TSource, TKey>(this ParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer)
     content.vb: >-
@@ -9427,7 +9396,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This SequenceEqual overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of SequenceEqual with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the SequenceEqual operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -9495,7 +9463,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This SequenceEqual overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of SequenceEqual with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the SequenceEqual operator would appear to be binding to the parallel implementation, but would in reality bind to sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -9944,7 +9911,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Bypasses a specified number of elements in a parallel sequence and then returns the remaining elements.</p>\n"
-  remarks: "\n<p>If count > source.Count(), no elements are returned.</p>\n"
   syntax:
     content: public static ParallelQuery<TSource> Skip<TSource>(this ParallelQuery<TSource> source, int count)
     content.vb: >-
@@ -11506,7 +11472,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Performs in parallel a subsequent ordering of the elements in a sequence in ascending order according to a key.</p>\n"
-  remarks: "\n<p>In contrast to the sequential implementation, this is not a stable sort. See the remarks for <xref href=\"System.Linq.ParallelEnumerable.OrderBy``2(System.Linq.ParallelQuery{``0},System.Func{``0,``1})\" data-throw-if-not-resolved=\"false\"></xref> for an approach to implementing a stable sort.</p>\n"
   syntax:
     content: public static OrderedParallelQuery<TSource> ThenBy<TSource, TKey>(this OrderedParallelQuery<TSource> source, Func<TSource, TKey> keySelector)
     content.vb: >-
@@ -11571,7 +11536,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Performs in parallel a subsequent ordering of the elements in a sequence in ascending order by using a specified comparer.</p>\n"
-  remarks: "\n<p>In contrast to the sequential implementation, this is not a stable sort. See the remarks for <xref href=\"System.Linq.ParallelEnumerable.OrderBy``2(System.Linq.ParallelQuery{``0},System.Func{``0,``1})\" data-throw-if-not-resolved=\"false\"></xref> for an approach to implementing a stable sort.</p>\n"
   syntax:
     content: public static OrderedParallelQuery<TSource> ThenBy<TSource, TKey>(this OrderedParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer)
     content.vb: >-
@@ -11639,7 +11603,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Performs in parallel a subsequent ordering of the elements in a sequence in descending order, according to a key.</p>\n"
-  remarks: "\n<p>In contrast to the sequential implementation, this is not a stable sort. See the remarks for <xref href=\"System.Linq.ParallelEnumerable.OrderBy``2(System.Linq.ParallelQuery{``0},System.Func{``0,``1})\" data-throw-if-not-resolved=\"false\"></xref> for an approach to implementing a stable sort.</p>\n"
   syntax:
     content: public static OrderedParallelQuery<TSource> ThenByDescending<TSource, TKey>(this OrderedParallelQuery<TSource> source, Func<TSource, TKey> keySelector)
     content.vb: >-
@@ -11704,7 +11667,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Performs in parallel a subsequent ordering of the elements in a sequence in descending order by using a specified comparer.</p>\n"
-  remarks: "\n<p>In contrast to the sequential implementation, this is not a stable sort. See the remarks for <xref href=\"System.Linq.ParallelEnumerable.OrderBy``2(System.Linq.ParallelQuery{``0},System.Func{``0,``1})\" data-throw-if-not-resolved=\"false\"></xref> for an approach to implementing a stable sort.</p>\n"
   syntax:
     content: public static OrderedParallelQuery<TSource> ThenByDescending<TSource, TKey>(this OrderedParallelQuery<TSource> source, Func<TSource, TKey> keySelector, IComparer<TKey> comparer)
     content.vb: >-
@@ -12434,7 +12396,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This Union overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of Union with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the Union operator would appear to be binding to the parallel implementation, but would in reality bind to sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -12508,7 +12469,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This Union overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when called.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of Union with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the Union operator would appear to be binding to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]
@@ -12963,7 +12923,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>Sets the execution mode of the query.</p>\n"
-  remarks: "\n<p>The execution mode specifies whether PLINQ will attempt to fall back to sequential execution if it detects certain query shapes. For more information and examples, see How to: Specify the Execution Mode in PLINQ.</p>\n"
   syntax:
     content: public static ParallelQuery<TSource> WithExecutionMode<TSource>(this ParallelQuery<TSource> source, ParallelExecutionMode executionMode)
     content.vb: >-
@@ -13088,7 +13047,6 @@ items:
   - System.Linq.Parallel
   namespace: System.Linq
   summary: "\n<p>This Zip overload should never be called. This method is marked as obsolete and always throws <xref href=\"System.NotSupportedException\" data-throw-if-not-resolved=\"false\"></xref> when invoked.</p>\n"
-  remarks: "\n<p>This overload exists to disallow usage of Zip with a left data source of type <xref href=\"System.Linq.ParallelQuery`1\" data-throw-if-not-resolved=\"false\"></xref> and a right data source of type <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the Zip operator would appear to be bind to the parallel implementation, but would in reality bind to the sequential implementation.</p>\n"
   syntax:
     content: >-
       [Obsolete("The second data source of a binary operator must be of type System.Linq.ParallelQuery<T> rather than System.Collections.Generic.IEnumerable<T>. To fix this problem, use the AsParallel() extension method to convert the right data source to System.Linq.ParallelQuery<T>.")]

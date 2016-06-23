@@ -48,7 +48,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Represents a Windows user.</p>\n"
-  remarks: "\n<p>Call the <xref href=\"System.Security.Principal.WindowsIdentity.GetCurrent\" data-throw-if-not-resolved=\"false\"></xref> method to create a <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> object that represents the current user.</p>\n<p>This type implements the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface. When you have finished using the type, you should dispose of it either directly or indirectly. To dispose of the type directly, call its <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method in a <strong>try</strong>/<strong>catch</strong> block. To dispose of it indirectly, use a language construct such as <strong>using</strong> (in C#) or <strong>Using</strong> (in Visual Basic). For more information, see the “Using an Object that Implements IDisposable” section in the <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> interface topic. </p>\n"
   syntax:
     content: 'public class WindowsIdentity : ClaimsIdentity, IIdentity, IDisposable'
     content.vb: >-
@@ -154,7 +153,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> class for the user represented by the specified Windows account token.</p>\n"
-  remarks: "\n<p>The following table shows initial property values for an instance of <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Property </p>\n<p>Initial value </p>\n<table><tbody><tr><td>\n<p>\n<xref href=\"System.Security.Principal.WindowsIdentity.AuthenticationType\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>\n<strong>Negotiate</strong>\n</p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.Security.Principal.WindowsAccountType\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>\n<strong>Normal</strong>\n</p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.Security.Principal.WindowsIdentity.IsAuthenticated\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>\n<strong>false</strong>\n</p>\n</td></tr></tbody></table>\n<p>You can retrieve the token represented by <em>userToken</em> by calling unmanaged code such as the Win32 API LogonUser function. Always release <em>userToken</em> by calling the Win32 API CloseHandle function. For more information on calling unmanaged code, see Consuming Unmanaged DLL Functions.</p>\n"
   syntax:
     content: public WindowsIdentity(IntPtr userToken)
     content.vb: Public Sub New(userToken As IntPtr)
@@ -201,7 +199,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> class for the user represented by the specified Windows account token and the specified authentication type.</p>\n"
-  remarks: "\n<p>The following table shows initial property values for an instance of <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Property </p>\n<p>Initial value </p>\n<table><tbody><tr><td>\n<p>\n<xref href=\"System.Security.Principal.WindowsAccountType\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>\n<strong>Normal</strong>\n</p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.Security.Principal.WindowsIdentity.IsAuthenticated\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>\n<strong>false</strong>\n</p>\n</td></tr></tbody></table>\n<p>The value of the <em>type</em> parameter is used to set the <xref href=\"System.Security.Principal.WindowsIdentity.AuthenticationType\" data-throw-if-not-resolved=\"false\"></xref> parameter. If <em>type</em> is <strong>null</strong>, the security system sets <xref href=\"System.Security.Principal.WindowsIdentity.AuthenticationType\" data-throw-if-not-resolved=\"false\"></xref> to <strong>Negotiate</strong> on Windows Vista and later versions of the Windows operating system, and to <strong>Kerberos</strong> on earlier versions of the Windows operating system. The security system does not use this value; it is for informational use only.</p>\n<p>You can retrieve the token represented by <em>userToken</em> by calling unmanaged code such as the Win32 API LogonUser function. Always release <em>userToken</em> by calling the Win32 API CloseHandle function. For more information on calling unmanaged code, see Consuming Unmanaged DLL Functions.</p>\n"
   syntax:
     content: public WindowsIdentity(IntPtr userToken, string type)
     content.vb: Public Sub New(userToken As IntPtr, type As String)
@@ -251,7 +248,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> class for the user represented by the specified User Principal Name (UPN).</p>\n"
-  remarks: "\n<p>A UPN has the format username@domainname.com, in other words, an email address. The UPN identified in <em>sUserPrincipalName</em> is used to retrieve a token for that user through the Win32 API LsaLogonUser function. In turn that token is used to identify the user. An exception might be returned due to the inability to log on using the supplied UPN.</p>\n<p>This constructor is intended for use only on computers joined to Windows Server 2003 or later domains. An exception is thrown for earlier domain types. This restriction is due to the fact that this constructor uses the <see href=\"http://go.microsoft.com/fwlink/?LinkId=143533\">KERB_S4U_LOGON structure</see>, which was first introduced in Windows Server 2003. </p>\n"
   syntax:
     content: public WindowsIdentity(string sUserPrincipalName)
     content.vb: Public Sub New(sUserPrincipalName As String)
@@ -343,7 +339,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Gets the type of authentication used to identify the user.</p>\n"
-  remarks: "\n<p>This property is informational; it is not used by the security system. On Windows Vista and later versions of the Windows operating system, the default value for this property is <strong>Negotiate</strong>, which chooses the best security support provider (SSP) based on customer-configured security policy. The default property value for earlier versions of the Windows operating system is <strong>Kerberos</strong>.</p>\n"
   syntax:
     content: public override sealed string AuthenticationType { get; }
     content.vb: Public NotOverridable Overrides ReadOnly Property AuthenticationType As String
@@ -470,7 +465,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Gets the impersonation level for the user.</p>\n"
-  remarks: "\n<p>Describes the impersonation level to be used to connect to WMI.</p>\n"
   syntax:
     content: public TokenImpersonationLevel ImpersonationLevel { get; }
     content.vb: Public ReadOnly Property ImpersonationLevel As TokenImpersonationLevel
@@ -507,7 +501,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Gets a value that indicates whether the user account is identified as an anonymous account by the system.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Security.Principal.WindowsIdentity.IsAnonymous\" data-throw-if-not-resolved=\"false\"></xref> property detects both the Windows anonymous identity and the anonymous identity that is returned by the <xref href=\"System.Security.Principal.WindowsIdentity.GetAnonymous\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n<p>Anonymous accounts are typically only encountered only from within ASP.NET-based applications when anonymous access is allowed by Internet Information Services (IIS).</p>\n"
   syntax:
     content: public virtual bool IsAnonymous { get; }
     content.vb: Public Overridable ReadOnly Property IsAnonymous As Boolean
@@ -661,7 +654,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Gets the user's Windows logon name.</p>\n"
-  remarks: "\n<p>The logon name is in the form DOMAIN\\USERNAME.</p>\n"
   syntax:
     content: public override string Name { get; }
     content.vb: Public Overrides ReadOnly Property Name As String
@@ -701,7 +693,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Gets the security identifier (SID) for the token owner.</p>\n"
-  remarks: "\n<p>The SID uniquely identifies a user or group on all Windows NT implementations.  The returned SID identifies the default owner SID that will be applied to newly created objects.</p>\n"
   syntax:
     content: public SecurityIdentifier Owner { get; }
     content.vb: Public ReadOnly Property Owner As SecurityIdentifier
@@ -738,7 +729,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Gets the security identifier (SID) for the user.</p>\n"
-  remarks: "\n<p>The SID uniquely identifies a user or group on all Windows NT implementations.  </p>\n<p>The <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> object returned by the <xref href=\"System.Security.Principal.WindowsIdentity.GetAnonymous\" data-throw-if-not-resolved=\"false\"></xref> method is not the same as the Windows anonymous user. This property gets <strong>null</strong> for an anonymous user represented by the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> object returned by the <xref href=\"System.Security.Principal.WindowsIdentity.GetAnonymous\" data-throw-if-not-resolved=\"false\"></xref> method; it does not get the SID representing an anonymous Windows user.</p>\n"
   syntax:
     content: public SecurityIdentifier User { get; }
     content.vb: Public ReadOnly Property User As SecurityIdentifier
@@ -811,7 +801,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Releases all resources used by the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  remarks: "\n<p>Call <xref href=\"System.Security.Principal.WindowsIdentity.Dispose\" data-throw-if-not-resolved=\"false\"></xref> when you are finished using the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref>. The <xref href=\"System.Security.Principal.WindowsIdentity.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method leaves the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> in an unusable state. After calling <xref href=\"System.Security.Principal.WindowsIdentity.Dispose\" data-throw-if-not-resolved=\"false\"></xref>, you must release all references to the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> so the garbage collector can reclaim the memory that the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> was occupying. For more information, see Cleaning Up Unmanaged Resources and Implementing a Dispose Method. </p>\n<p>Always call <xref href=\"System.Security.Principal.WindowsIdentity.Dispose\" data-throw-if-not-resolved=\"false\"></xref> before you release your last reference to the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref>. Otherwise, the resources it is using will not be freed until the garbage collector calls the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> object's <strong>Finalize</strong> method.</p>\n"
   syntax:
     content: public void Dispose()
     content.vb: Public Sub Dispose
@@ -844,7 +833,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Releases the unmanaged resources used by the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> and optionally releases the managed resources. </p>\n"
-  remarks: "\n<p>This method is called by the public <strong>Dispose()</strong><strong></strong>method and the <xref href=\"System.Object.Finalize\" data-throw-if-not-resolved=\"false\"></xref> method. <strong>Dispose()</strong> invokes the protected <strong>Dispose(Boolean)</strong> method with the <em>disposing</em> parameter set to <strong>true</strong>. <xref href=\"System.Object.Finalize\" data-throw-if-not-resolved=\"false\"></xref> invokes <strong>Dispose</strong> with <em>disposing</em> set to <strong>false</strong>.</p>\n<p>When the <em>disposing</em> parameter is <strong>true</strong>, this method releases all resources held by any managed objects that this <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> references. This method invokes the <strong>Dispose()</strong> method of each referenced object.</p>\n"
   syntax:
     content: protected virtual void Dispose(bool disposing)
     content.vb: Protected Overridable Sub Dispose(disposing As Boolean)
@@ -881,7 +869,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Returns a <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> object that you can use as a sentinel value in your code to represent an anonymous user. The property value does not represent the built-in anonymous identity used by the Windows operating system.</p>\n"
-  remarks: "\n<p>This property returns an empty <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> object that enables you to treat operations as anonymous. The property value does not correspond to a Windows anonymous user and cannot be used for impersonation. Also, note that the identity returned by this property is not static; each call to <xref href=\"System.Security.Principal.WindowsIdentity.GetAnonymous\" data-throw-if-not-resolved=\"false\"></xref> returns a different anonymous identity.</p>\n<p>You can use the <xref href=\"System.Security.Principal.WindowsIdentity.IsAnonymous\" data-throw-if-not-resolved=\"false\"></xref> property to detect the return value from <xref href=\"System.Security.Principal.WindowsIdentity.GetAnonymous\" data-throw-if-not-resolved=\"false\"></xref>. However, <xref href=\"System.Security.Principal.WindowsIdentity.IsAnonymous\" data-throw-if-not-resolved=\"false\"></xref> detects both the Windows anonymous identity and the anonymous identity returned by this method. To use the latter identity, cache the <xref href=\"System.Security.Principal.WindowsIdentity.GetAnonymous\" data-throw-if-not-resolved=\"false\"></xref> return value instead of relying on the <xref href=\"System.Security.Principal.WindowsIdentity.IsAnonymous\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: public static WindowsIdentity GetAnonymous()
     content.vb: Public Shared Function GetAnonymous As WindowsIdentity
@@ -959,7 +946,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Returns a <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> object that represents the Windows identity for either the thread or the process, depending on the value of the <em>ifImpersonating</em> parameter.</p>\n"
-  remarks: "\n<p>If <em>ifImpersonating</em> is <strong>true</strong> and the thread is not impersonating, the returned <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> object has no value.  If <em>ifImpersonating</em> is <strong>false</strong> and the thread is impersonating, the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> for the thread is returned.  If <em>ifImpersonating</em> is <strong>false</strong> and the thread is not impersonating, the <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> for the process is returned.  </p>\n"
   syntax:
     content: public static WindowsIdentity GetCurrent(bool ifImpersonating)
     content.vb: Public Shared Function GetCurrent(ifImpersonating As Boolean) As WindowsIdentity
@@ -1002,7 +988,6 @@ items:
   - System.Security.Principal.Windows
   namespace: System.Security.Principal
   summary: "\n<p>Returns a <xref href=\"System.Security.Principal.WindowsIdentity\" data-throw-if-not-resolved=\"false\"></xref> object that represents the current Windows user, using the specified desired token access level.</p>\n"
-  remarks: "\n<p>The <em>desiredAccess</em> parameter specifies an access mask that identifies the requested types of access to the access token. These requested access types are compared with the token's discretionary access control list (DACL) to determine which types of access are granted or denied. </p>\n"
   syntax:
     content: public static WindowsIdentity GetCurrent(TokenAccessLevels desiredAccess)
     content.vb: Public Shared Function GetCurrent(desiredAccess As TokenAccessLevels) As WindowsIdentity

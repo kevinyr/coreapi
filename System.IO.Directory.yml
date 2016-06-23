@@ -52,20 +52,25 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Directory
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 19
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 36
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Exposes static methods for creating, moving, and enumerating through directories and subdirectories. This class cannot be inherited.</p>\n<p>To browse the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/io/directory.cs#b3ad5f0ba800bb28\">Reference Source</see>.</p>\n"
-  remarks: "\n<p>To view the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/io/directory.cs#b3ad5f0ba800bb28\">Reference Source</see>. You can browse through the source code online, download the reference for offline viewing, and step through the sources (including patches and updates) during debugging; see <see href=\"http://referencesource.microsoft.com/\">instructions</see>.</p>\n<p>Use the <xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> class for typical operations such as copying, moving, renaming, creating, and deleting directories. </p>\n<ul><li>\n<p>To create a directory, use one of the <xref href=\"System.IO.Directory.CreateDirectory(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n</li><li>\n<p>To delete a directory, use one of the <xref href=\"System.IO.Directory.Delete(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n</li><li>\n<p>To get or set the current directory for an app, use the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Directory.SetCurrentDirectory(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n</li><li>\n<p>To manipulate <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> information related to the creation, access, and writing of a directory, use methods such as <xref href=\"System.IO.Directory.SetLastAccessTime(System.String,System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.SetCreationTime(System.String,System.DateTime)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n</li></ul>\n<p>The static methods of the <xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> class perform security checks on all methods. If you are going to reuse an object several times, consider using the corresponding instance method of <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> instead, because the security check will not always be necessary.</p>\n<p>If you are performing only one directory-related action, it might be more efficient to use a static <xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> method rather than a corresponding <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> instance method. Most <xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> methods require the path to the directory that you are manipulating. </p>\n<p>In members that accept a string <em>path</em> parameter, that path must be well-formed or an exception is raised. For example, if a path is fully qualified but begins with a space (\" c:\\temp\"), the path string isn't trimmed, so the path is considered malformed and an exception is raised. In addition, a path or a combination of paths cannot be fully qualified twice. For example, \"c:\\temp c:\\windows\" also raises an exception. Ensure that your paths are well-formed when using methods that accept a path string. For more information see <xref href=\"System.IO.Path\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>In members that accept a path, the path can refer to a file or a directory. You can use a full path, a relative path, or a Universal Naming Convention (UNC) path for a server and share name. For example, all the following are acceptable paths: </p>\n<ul><li>\n<p>\"c:\\\\MyDir\" in C#, or \"c:\\MyDir\" in Visual Basic.</p>\n</li><li>\n<p>\"MyDir\\\\MySubdir\" in C#, or \"MyDir\\MySubDir\" in Visual Basic.</p>\n</li><li>\n<p>\"\\\\\\\\MyServer\\\\MyShare\" in C#, or \"\\\\MyServer\\MyShare\" in Visual Basic.</p>\n</li></ul>\n<p>By default, full read/write access to new directories is granted to all users. However, the app must have the correct security to access existing directories. </p>\n<p>To demand permissions for a directory and all its subdirectories, end the path string with the directory separator character. (For example, \"C:\\Temp\\\" grants access to C:\\Temp\\ and all its subdirectories.) To demand permissions only for a specific directory, end the path string with a period. (For example, \"C:\\Temp\\.\" grants access only to C:\\Temp\\, not to its subdirectories.)</p>\n<p>In members that accept a <em>searchPattern</em> parameter, the search string can be any combination of literal characters and two wildcard characters; * and ?. This parameter does not recognize regular expressions. For more information, see the <xref href=\"System.IO.Directory.EnumerateDirectories(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> method or any other method that uses the <em>searchPattern</em> parameter.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n<p>\n<xref href=\"System.IO.Directory\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> are not supported for use in Windows Store apps. For information about how to access files and folders in Windows Store apps, see <see href=\"http://msdn.microsoft.com/library/windows/apps/hh758319.aspx\">Accessing data and files (Windows Store apps)</see>.</p>\n"
   syntax:
-    content: public class Directory
-    content.vb: Public Class Directory
+    content: >-
+      [ComVisible(true)]
+
+      public class Directory
+    content.vb: >-
+      <ComVisible(True)>
+
+      Public Class Directory
   seealso:
   - type: System.IO.DriveInfo
     commentId: T:System.IO.DriveInfo
@@ -106,17 +111,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CreateDirectory
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 38
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 55
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Creates all directories and subdirectories in the specified path unless they already exist.</p>\n"
-  remarks: "\n<p>Any and all directories specified in <em>path</em> are created, unless they already exist or unless some part of <em>path</em> is invalid. If the directory already exists, this method does not create a new directory, but it returns a <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> object for the existing directory. </p>\n<p>The <em>path</em> parameter specifies a directory path, not a file path.</p>\n<p>Trailing spaces are removed from the end of the <em>path</em> parameter before creating the directory.</p>\n<p>You can create a directory on a remote computer, on a share that you have write access to. UNC paths are supported; for example, you can specify the following for <em>path</em>: <code>\\\\2009\\Archives\\December</code> in Visual Basic, and <code>\\\\\\\\2009\\\\Archives\\\\December</code> in C#. </p>\n<p>Creating a directory with only the colon character (:) is not supported, and will cause a <strong>NotSupportedException</strong> to be thrown.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -180,17 +184,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Delete
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 568
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 1146
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Deletes an empty directory from a specified path.</p>\n"
-  remarks: "\n<p>This method behaves identically to <xref href=\"System.IO.Directory.Delete(System.String,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> with <strong>false</strong> specified for the second parameter.</p>\n<p>The <em>path</em> parameter may specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Trailing spaces are removed from the end of the <em>path</em> parameter before deleting the directory.</p>\n<p>This method throws an <xref href=\"System.IO.IOException\" data-throw-if-not-resolved=\"false\"></xref> if the directory specified in the <em>path</em> parameter contains files or subdirectories.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>In some cases, if you have the specified directory open in File Explorer, the <xref href=\"System.IO.Directory.Delete(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method may not be able to delete it.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -245,17 +248,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Delete
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 575
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 1153
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Deletes the specified directory and, if indicated, any subdirectories and files in the directory. </p>\n"
-  remarks: "\n<p>The <em>path</em> parameter may specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Trailing spaces are removed from the end of the <em>path</em> parameter before deleting the directory.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>If the <em>recursive</em> parameter is <strong>true</strong>, the user must have write permission for the current directory as well as for all subdirectories.</p>\n<p>The behavior of this method differs slightly when deleting a directory that contains a reparse point, such as a symbolic link or a mount point. If the reparse point is a directory, such as a mount point, it is unmounted and the mount point is deleted. This method does not recurse through the reparse point. If the reparse point is a symbolic link to a file, the reparse point is deleted and not the target of the symbolic link.</p>\n<p>In some cases, if you have the specified directory open in File Explorer, the <xref href=\"System.IO.Directory.Delete(System.String,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method may not be able to delete it.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -313,17 +315,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 335
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 733
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an enumerable collection of directory names in a specified path.</p>\n"
-  remarks: "\n<p>You can specify relative or absolute path information in the <em>path</em> parameter. Relative path information is interpreted as relative to the current working directory, which you can determine by using the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method. The returned directory names are prefixed with the value you provided in the <em>path</em> parameter. For example, if you provide a relative path in the <em>path</em> parameter, the returned directory names will contain a relative path.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient. </p>\n<p>The returned collection is not cached; each call to the <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the collection will start a new enumeration.</p>\n"
   syntax:
     content: public static IEnumerable<string> EnumerateDirectories(string path)
     content.vb: Public Shared Function EnumerateDirectories(path As String) As IEnumerable(Of String)
@@ -375,17 +376,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 344
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 742
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an enumerable collection of directory names that match a search pattern in a specified path.</p>\n"
-  remarks: "\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>You can specify relative or absolute path information in the <em>path</em> parameter. Relative path information is interpreted as relative to the current working directory, which you can determine by using the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method. The returned directory names are prefixed with the value you provided in the <em>path</em> parameter. For example, if you provide a relative path in the <em>path</em> parameter, the returned directory names will contain a relative path.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The returned collection is not cached; each call to the <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the collection will start a new enumeration.</p>\n"
   syntax:
     content: public static IEnumerable<string> EnumerateDirectories(string path, string searchPattern)
     content.vb: Public Shared Function EnumerateDirectories(path As String, searchPattern As String) As IEnumerable(Of String)
@@ -440,17 +440,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 355
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 753
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an enumerable collection of directory names that match a search pattern in a specified path, and optionally searches subdirectories.</p>\n"
-  remarks: "\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Exactly one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>You can specify relative or absolute path information in the <em>path</em> parameter. Relative path information is interpreted as relative to the current working directory, which you can determine by using the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method. The returned directory names are prefixed with the value you provided in the <em>path</em> parameter. For example, if you provide a relative path in the <em>path</em> parameter, the returned directory names will contain a relative path.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The returned collection is not cached; each call to the <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the collection will start a new enumeration.</p>\n"
   syntax:
     content: public static IEnumerable<string> EnumerateDirectories(string path, string searchPattern, SearchOption searchOption)
     content.vb: Public Shared Function EnumerateDirectories(path As String, searchPattern As String, searchOption As SearchOption) As IEnumerable(Of String)
@@ -511,17 +510,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 377
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 775
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an enumerable collection of file names in a specified path.</p>\n"
-  remarks: "\n<p>You can specify relative path information with the <em>path</em> parameter. Relative path information is interpreted as relative to the current working directory, which you can determine by using the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n<p>The <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The returned collection is not cached; each call to the <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the collection will start a new enumeration.</p>\n"
   syntax:
     content: public static IEnumerable<string> EnumerateFiles(string path)
     content.vb: Public Shared Function EnumerateFiles(path As String) As IEnumerable(Of String)
@@ -573,17 +571,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 387
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 785
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an enumerable collection of file names that match a search pattern in a specified path.</p>\n"
-  remarks: "\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>When you use the asterisk wildcard character in a <em>searchPattern</em> such as \"*.txt\", the number of characters in the specified extension affects the search as follows: </p>\n<ul><li>\n<p>If the specified extension is exactly three characters long, the method returns files with extensions that begin with the specified extension. For example, \"*.xls\" returns both \"book.xls\" and \"book.xlsx\".</p>\n</li><li>\n<p>In all other cases, the method returns files that exactly match the specified extension. For example, \"*.ai\" returns \"file.ai\" but not \"file.aif\".</p>\n</li></ul>\n<p>When you use the question mark wildcard character, this method returns only files that match the specified file extension. For example, given two files, \"file1.txt\" and \"file1.txtother\", in a directory, a search pattern of \"file?.txt\" returns just the first file, whereas a search pattern of \"file*.txt\" returns both files.</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>You can specify relative path information with the <em>path</em> parameter. Relative path information is interpreted as relative to the current working directory, which you can determine by using the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The returned collection is not cached; each call to the <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the collection will start a new enumeration.</p>\n"
   syntax:
     content: public static IEnumerable<string> EnumerateFiles(string path, string searchPattern)
     content.vb: Public Shared Function EnumerateFiles(path As String, searchPattern As String) As IEnumerable(Of String)
@@ -638,17 +635,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 399
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 797
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an enumerable collection of file names that match a search pattern in a specified path, and optionally searches subdirectories.</p>\n"
-  remarks: "\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>When you use the asterisk wildcard character in a <em>searchPattern</em> such as \"*.txt\", the number of characters in the specified extension affects the search as follows: </p>\n<ul><li>\n<p>If the specified extension is exactly three characters long, the method returns files with extensions that begin with the specified extension. For example, \"*.xls\" returns both \"book.xls\" and \"book.xlsx\".</p>\n</li><li>\n<p>In all other cases, the method returns files that exactly match the specified extension. For example, \"*.ai\" returns \"file.ai\" but not \"file.aif\".</p>\n</li></ul>\n<p>When you use the question mark wildcard character, this method returns only files that match the specified file extension. For example, given two files, \"file1.txt\" and \"file1.txtother\", in a directory, a search pattern of \"file?.txt\" returns just the first file, whereas a search pattern of \"file*.txt\" returns both files.</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>You can specify relative path information with the <em>path</em> parameter. Relative path information is interpreted as relative to the current working directory, which you can determine by using the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The returned collection is not cached; each call to the <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the collection will start a new enumeration.</p>\n"
   syntax:
     content: public static IEnumerable<string> EnumerateFiles(string path, string searchPattern, SearchOption searchOption)
     content.vb: Public Shared Function EnumerateFiles(path As String, searchPattern As String, searchOption As SearchOption) As IEnumerable(Of String)
@@ -709,17 +705,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 423
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 821
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an enumerable collection of file names and directory names in a specified path. </p>\n"
-  remarks: "\n<p>You can specify relative path information with the <em>path</em> parameter. Relative path information is interpreted as relative to the current working directory, which you can determine by using the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of entries before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of entries to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The returned collection is not cached; each call to the <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the collection will start a new enumeration.</p>\n"
   syntax:
     content: public static IEnumerable<string> EnumerateFileSystemEntries(string path)
     content.vb: Public Shared Function EnumerateFileSystemEntries(path As String) As IEnumerable(Of String)
@@ -771,17 +766,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 433
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 831
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an enumerable collection of file names and directory names that  match a search pattern in a specified path.</p>\n"
-  remarks: "\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>..</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>When you use the asterisk wildcard character in a <em>searchPattern</em> such as \"*.txt\", the number of characters in the specified extension affects the search as follows: </p>\n<ul><li>\n<p>If the specified extension is exactly three characters long, the method returns files with extensions that begin with the specified extension. For example, \"*.xls\" returns both \"book.xls\" and \"book.xlsx\".</p>\n</li><li>\n<p>In all other cases, the method returns files that exactly match the specified extension. For example, \"*.ai\" returns \"file.ai\" but not \"file.aif\".</p>\n</li></ul>\n<p>When you use the question mark wildcard character, this method returns only files that match the specified file extension. For example, given two files, \"file1.txt\" and \"file1.txtother\", in a directory, a search pattern of \"file?.txt\" returns just the first file, whereas a search pattern of \"file*.txt\" returns both files.</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>You can specify relative path information with the <em>path</em> parameter. Relative path information is interpreted as relative to the current working directory, which you can determine by using the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of entries before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of entries to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The returned collection is not cached; each call to the <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the collection will start a new enumeration.</p>\n"
   syntax:
     content: public static IEnumerable<string> EnumerateFileSystemEntries(string path, string searchPattern)
     content.vb: Public Shared Function EnumerateFileSystemEntries(path As String, searchPattern As String) As IEnumerable(Of String)
@@ -836,17 +830,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: EnumerateFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 445
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 843
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an enumerable collection of file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.</p>\n"
-  remarks: "\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>When you use the asterisk wildcard character in a <em>searchPattern</em> such as \"*.txt\", the number of characters in the specified extension affects the search as follows: </p>\n<ul><li>\n<p>If the specified extension is exactly three characters long, the method returns files with extensions that begin with the specified extension. For example, \"*.xls\" returns both \"book.xls\" and \"book.xlsx\".</p>\n</li><li>\n<p>In all other cases, the method returns files that exactly match the specified extension. For example, \"*.ai\" returns \"file.ai\" but not \"file.aif\".</p>\n</li></ul>\n<p>When you use the question mark wildcard character, this method returns only files that match the specified file extension. For example, given two files, \"file1.txt\" and \"file1.txtother\", in a directory, a search pattern of \"file?.txt\" returns just the first file, whereas a search pattern of \"file*.txt\" returns both files.</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>You can specify relative path information with the <em>path</em> parameter. Relative path information is interpreted as relative to the current working directory, which you can determine by using the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of entries before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of entries to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The returned collection is not cached; each call to the <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the collection will start a new enumeration.</p>\n"
   syntax:
     content: public static IEnumerable<string> EnumerateFileSystemEntries(string path, string searchPattern, SearchOption searchOption)
     content.vb: Public Shared Function EnumerateFileSystemEntries(path As String, searchPattern As String, searchOption As SearchOption) As IEnumerable(Of String)
@@ -907,17 +900,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Exists
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 74
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 337
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Determines whether the given path refers to an existing directory on disk.</p>\n"
-  remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory.</p>\n<p>Trailing spaces are removed from the end of the <em>path</em> parameter before checking whether the directory exists.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>If you do not have at a minimum read-only permission to the directory, the <xref href=\"System.IO.Directory.Exists(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method will return <strong>false</strong>.  </p>\n<p>The <xref href=\"System.IO.Directory.Exists(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method returns <strong>false</strong> if any error occurs while trying to determine if the specified file exists. This can occur in situations that raise exceptions such as passing a file name with invalid characters or too many characters, a failing or missing disk, or if the caller does not have permission to read the file.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -959,17 +951,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetCreationTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 109
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 425
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Gets the creation date and time of a directory.</p>\n"
-  remarks: "\n<p>This method may return an inaccurate value, because it uses native functions whose values may not be continuously updated by the operating system.</p>\n<p>This method is equivalent to <xref href=\"System.IO.File.GetCreationTime(System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the directory described in the <em>path</em> parameter does not exist, this method returns 12:00 midnight, January 1, 1601 A.D. (C.E.) Coordinated Universal Time (UTC), adjusted to local time.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static DateTime GetCreationTime(string path)
     content.vb: Public Shared Function GetCreationTime(path As String) As Date
@@ -1018,17 +1009,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetCreationTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 114
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 430
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Gets the creation date and time, in Coordinated Universal Time (UTC) format, of a directory.</p>\n"
-  remarks: "\n<p>This method may return an inaccurate value, because it uses native functions whose values may not be continuously updated by the operating system.</p>\n<p>If the directory described in the <em>path</em> parameter does not exist, this method returns 12:00 midnight, January 1, 1601 A.D. (C.E.) Coordinated Universal Time (UTC).</p>\n<p>Use this method to get the creation time for a directory based on Coordinated Universal Time (UTC).</p>\n"
   syntax:
     content: public static DateTime GetCreationTimeUtc(string path)
     content.vb: Public Shared Function GetCreationTimeUtc(path As String) As Date
@@ -1077,17 +1067,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetCurrentDirectory
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 507
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 948
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Gets the current working directory of the application.</p>\n"
-  remarks: "\n<p>The current directory is distinct from the original directory, which is the one from which the process was started.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1129,17 +1118,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 216
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 579
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the names of subdirectories (including their paths) in the specified directory.</p>\n"
-  remarks: "\n<p>This method is identical to <xref href=\"System.IO.Directory.GetDirectories(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref>  with the asterisk (*) specified as the search pattern, so it returns all subdirectories.If you need to search subdirectories, use the <xref href=\"System.IO.Directory.GetDirectories(System.String,System.String,System.IO.SearchOption)\" data-throw-if-not-resolved=\"false\"></xref> method, which enables you to specify a search of subdirectories with the <em>searchOption</em> parameter. </p>\n<p>The <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The <em>path</em> parameter can specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The names returned by this method are prefixed with the directory information provided in <em>path</em>.</p>\n<p>The <em>path</em> parameter is not case-sensitive. </p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static string[] GetDirectories(string path)
     content.vb: Public Shared Function GetDirectories(path As String) As String()
@@ -1194,17 +1182,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 228
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 591
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the names of subdirectories (including their paths) that match the specified search pattern in the specified directory.</p>\n"
-  remarks: "\n<p>This method returns all subdirectories directly under the specified directory that match the specified search pattern. If the specified directory has no subdirectories, or no subdirectories match the <em>searchPattern</em> parameter, this method returns an empty array. Only the top directory is searched. If you want to search the subdirectories as well, use the <xref href=\"System.IO.Directory.GetDirectories(System.String,System.String,System.IO.SearchOption)\" data-throw-if-not-resolved=\"false\"></xref> method and specify <xref href=\"System.IO.SearchOption.AllDirectories\" data-throw-if-not-resolved=\"false\"></xref> in the <em>searchOption</em> parameter. </p>\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The <em>path</em> parameter can specify relative or absolute path information, and is not case-sensitive.  Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient. </p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static string[] GetDirectories(string path, string searchPattern)
     content.vb: Public Shared Function GetDirectories(path As String, searchPattern As String) As String()
@@ -1262,17 +1249,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDirectories
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 242
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 605
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the names of the subdirectories (including their paths) that match the specified search pattern in the specified directory, and optionally searches subdirectories.</p>\n"
-  remarks: "\n<p>The <em>path</em> parameter can specify relative or absolute path information, and is not case-sensitive. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateDirectories(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient. </p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static string[] GetDirectories(string path, string searchPattern, SearchOption searchOption)
     content.vb: Public Shared Function GetDirectories(path As String, searchPattern As String, searchOption As SearchOption) As String()
@@ -1336,17 +1322,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDirectoryRoot
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 481
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 916
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the volume information, root information, or both for the specified path.</p>\n"
-  remarks: "\n<p>This method obtains the fully qualified path name of <em>path</em>, as returned by <xref href=\"System.IO.Path.GetFullPath(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, and returns root directory information. The specified path is not required to exist.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1398,17 +1383,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 164
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 517
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the names of files (including their paths) in the specified directory.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The returned file names are appended to the supplied <em>path</em> parameter.</p>\n<p>This method is identical to <xref href=\"System.IO.Directory.GetFiles(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref> with the asterisk (*) specified as the search pattern.</p>\n<p>The <em>path</em> parameter can specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The order of the returned file names is not guaranteed; use the <xref href=\"System.Array.Sort(System.Array)\" data-throw-if-not-resolved=\"false\"></xref> method if a specific sort order is required. </p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static string[] GetFiles(string path)
     content.vb: Public Shared Function GetFiles(path As String) As String()
@@ -1460,17 +1444,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 176
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 529
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the names of files (including their paths) that match the specified search pattern in the specified directory.</p>\n"
-  remarks: "\n<p>The returned file names are appended to the supplied <em>path</em> parameter and the order of the returned file names is not guaranteed; use the <xref href=\"System.Array.Sort(System.Array)\" data-throw-if-not-resolved=\"false\"></xref> method if a specific sort order is required. </p>\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>When you use the asterisk wildcard character in a <em>searchPattern</em> such as \"*.txt\", the number of characters in the specified extension affects the search as follows: </p>\n<ul><li>\n<p>If the specified extension is exactly three characters long, the method returns files with extensions that begin with the specified extension. For example, \"*.xls\" returns both \"book.xls\" and \"book.xlsx\".</p>\n</li><li>\n<p>In all other cases, the method returns files that exactly match the specified extension. For example, \"*.ai\" returns \"file.ai\" but not \"file.aif\".</p>\n</li></ul>\n<p>When you use the question mark wildcard character, this method returns only files that match the specified file extension. For example, given two files, \"file1.txt\" and \"file1.txtother\", in a directory, a search pattern of \"file?.txt\" returns just the first file, whereas a search pattern of \"file*.txt\" returns both files.</p>\n<p>Because this method checks against file names with both the 8.3 file name format and the long file name format, a search pattern similar to \"*1*.txt\" may return unexpected file names. For example, using a search pattern of \"*1*.txt\" returns \"longfilename.txt\" because the equivalent 8.3 file name format is \"LONGFI~1.TXT\".</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The <em>path</em> parameter can specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static string[] GetFiles(string path, string searchPattern)
     content.vb: Public Shared Function GetFiles(path As String, searchPattern As String) As String()
@@ -1525,17 +1508,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFiles
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 190
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 543
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the names of files (including their paths) that match the specified search pattern in the specified directory, using a value to determine whether to search subdirectories.</p>\n"
-  remarks: "\n<p>The returned file names are appended to the supplied  parameter <em>path</em> and the order of the returned file names is not guaranteed; use the <xref href=\"System.Array.Sort(System.Array)\" data-throw-if-not-resolved=\"false\"></xref> method if a specific sort order is required. </p>\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>When you use the asterisk wildcard character in a <em>searchPattern</em> such as \"*.txt\", the number of characters in the specified extension affects the search as follows: </p>\n<ul><li>\n<p>If the specified extension is exactly three characters long, the method returns files with extensions that begin with the specified extension. For example, \"*.xls\" returns both \"book.xls\" and \"book.xlsx\".</p>\n</li><li>\n<p>In all other cases, the method returns files that exactly match the specified extension. For example, \"*.ai\" returns \"file.ai\" but not \"file.aif\".</p>\n</li></ul>\n<p>When you use the question mark wildcard character, this method returns only files that match the specified file extension. For example, given two files, \"file1.txt\" and \"file1.txtother\", in a directory, a search pattern of \"file?.txt\" returns just the first file, whereas a search pattern of \"file*.txt\" returns both files.</p>\n<p>Because this method checks against file names with both the 8.3 file name format and the long file name format, a search pattern similar to \"*1*.txt\" may return unexpected file names. For example, using a search pattern of \"*1*.txt\" returns \"longfilename.txt\" because the equivalent 8.3 file name format is \"LONGFI~1.TXT\".</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of names before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of names to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>The file names include the full path.</p>\n<p>The <em>path</em> parameter can specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static string[] GetFiles(string path, string searchPattern, SearchOption searchOption)
     content.vb: Public Shared Function GetFiles(path As String, searchPattern As String, searchOption As SearchOption) As String()
@@ -1596,17 +1578,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 269
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 643
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the names of all files and subdirectories in a specified path.</p>\n"
-  remarks: "\n<p>The order of the returned file and directory names is not guaranteed; use the <xref href=\"System.Array.Sort(System.Array)\" data-throw-if-not-resolved=\"false\"></xref> method if a specific sort order is required.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of entries before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of entries to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>This method is identical to <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String,System.String)\" data-throw-if-not-resolved=\"false\"></xref>  with the asterisk (*) specified as the search pattern.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static string[] GetFileSystemEntries(string path)
     content.vb: Public Shared Function GetFileSystemEntries(path As String) As String()
@@ -1663,17 +1644,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 281
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 655
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an array of file names and directory names that that match a search pattern in a specified path.</p>\n"
-  remarks: "\n<p>The order of the returned file and directory names is not guaranteed; use the <xref href=\"System.Array.Sort(System.Array)\" data-throw-if-not-resolved=\"false\"></xref> method if a specific sort order is required.</p>\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>When you use the asterisk wildcard character in a <em>searchPattern</em> such as \"*.txt\", the number of characters in the specified extension affects the search as follows: </p>\n<ul><li>\n<p>If the specified extension is exactly three characters long, the method returns files with extensions that begin with the specified extension. For example, \"*.xls\" returns both \"book.xls\" and \"book.xlsx\".</p>\n</li><li>\n<p>In all other cases, the method returns files that exactly match the specified extension. For example, \"*.ai\" returns \"file.ai\" but not \"file.aif\".</p>\n</li></ul>\n<p>When you use the question mark wildcard character, this method returns only files that match the specified file extension. For example, given two files, \"file1.txt\" and \"file1.txtother\", in a directory, a search pattern of \"file?.txt\" returns just the first file, whereas a search pattern of \"file*.txt\" returns both files.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static string[] GetFileSystemEntries(string path, string searchPattern)
     content.vb: Public Shared Function GetFileSystemEntries(path As String, searchPattern As String) As String()
@@ -1733,17 +1713,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetFileSystemEntries
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 295
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 669
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns an array of all the file names and directory names that match a search pattern in a specified path, and optionally searches subdirectories.</p>\n"
-  remarks: "\n<p>The order of the returned file and directory names is not guaranteed; use the <xref href=\"System.Array.Sort(System.Array)\" data-throw-if-not-resolved=\"false\"></xref> method if a specific sort order is required.</p>\n<p>\n<em>searchPattern</em> can be a combination of literal and wildcard characters, but doesn't support regular expressions. The following wildcard specifiers are permitted in <em>searchPattern</em>.</p>\n<p>Wildcard specifier </p>\n<p>Matches </p>\n<table><tbody><tr><td>\n<p>* (asterisk)</p>\n</td><td>\n<p>Zero or more characters in that position. </p>\n</td></tr><tr><td>\n<p>? (question mark)</p>\n</td><td>\n<p>Zero or one character in that position. </p>\n</td></tr></tbody></table>\n<p>Characters other than the wildcard are literal characters. For example, the <em>searchPattern</em> string \"*t\" searches for all names in <em>path</em> ending with the letter \"t\". The <em>searchPattern</em> string \"s*\" searches for all names in <em>path</em> beginning with the letter \"s\".</p>\n<p>\n<em>searchPattern</em> cannot end in two periods (\"..\") or contain two periods (\"..\") followed by <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>, nor can it contain any invalid characters. You can query for invalid characters by using the <xref href=\"System.IO.Path.GetInvalidPathChars\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>When you use the asterisk wildcard character in a <em>searchPattern</em> such as \"*.txt\", the number of characters in the specified extension affects the search as follows: </p>\n<ul><li>\n<p>If the specified extension is exactly three characters long, the method returns files with extensions that begin with the specified extension. For example, \"*.xls\" returns both \"book.xls\" and \"book.xlsx\".</p>\n</li><li>\n<p>In all other cases, the method returns files that exactly match the specified extension. For example, \"*.ai\" returns \"file.ai\" but not \"file.aif\".</p>\n</li></ul>\n<p>When you use the question mark wildcard character, this method returns only files that match the specified file extension. For example, given two files, \"file1.txt\" and \"file1.txtother\", in a directory, a search pattern of \"file?.txt\" returns just the first file, whereas a search pattern of \"file*.txt\" returns both files.</p>\n<p>The <xref href=\"System.IO.Directory.EnumerateFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref> methods differ as follows: When you use <xref href=\"System.IO.Directory.EnumerateFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you can start enumerating the collection of entries before the whole collection is returned; when you use <xref href=\"System.IO.Directory.GetFileSystemEntries(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, you must wait for the whole array of entries to be returned before you can access the array. Therefore, when you are working with many files and directories, <xref href=\"System.IO.Directory.EnumerateFiles(System.String)\" data-throw-if-not-resolved=\"false\"></xref> can be more efficient.</p>\n<p>You can specify relative path information with the <em>path</em> parameter. Relative path information is interpreted as relative to the current working directory, which you can determine by using the <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   syntax:
     content: public static string[] GetFileSystemEntries(string path, string searchPattern, SearchOption searchOption)
     content.vb: Public Shared Function GetFileSystemEntries(path As String, searchPattern As String, searchOption As SearchOption) As String()
@@ -1807,17 +1786,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetLastAccessTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 153
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 483
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the date and time the specified file or directory was last accessed.</p>\n"
-  remarks: "\n<p>This method may return an inaccurate value, because it uses native functions whose values may not be continuously updated by the operating system.</p>\n<p>This method is identical to <xref href=\"System.IO.File.GetLastAccessTime(System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the directory described in the <em>path</em> parameter does not exist, this method returns 12:00 midnight, January 1, 1601 A.D. (C.E.) Coordinated Universal Time (UTC), adjusted to local time.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static DateTime GetLastAccessTime(string path)
     content.vb: Public Shared Function GetLastAccessTime(path As String) As Date
@@ -1869,17 +1847,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetLastAccessTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 158
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 488
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the date and time, in Coordinated Universal Time (UTC) format, that the specified file or directory was last accessed.</p>\n"
-  remarks: "\n<p>This method may return an inaccurate value, because it uses native functions whose values may not be continuously updated by the operating system.</p>\n<p>If the directory described in the <em>path</em> parameter does not exist, this method returns 12:00 midnight, January 1, 1601 A.D. (C.E.) Coordinated Universal Time (UTC).</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static DateTime GetLastAccessTimeUtc(string path)
     content.vb: Public Shared Function GetLastAccessTimeUtc(path As String) As Date
@@ -1931,17 +1908,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetLastWriteTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 131
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 454
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the date and time the specified file or directory was last written to.</p>\n"
-  remarks: "\n<p>This method may return an inaccurate value, because it uses native functions whose values may not be continuously updated by the operating system.</p>\n<p>If the directory described in the <em>path</em> parameter does not exist, this method returns 12:00 midnight, January 1, 1601 A.D. (C.E.) Coordinated Universal Time (UTC), adjusted to local time.</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static DateTime GetLastWriteTime(string path)
     content.vb: Public Shared Function GetLastWriteTime(path As String) As Date
@@ -1990,17 +1966,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetLastWriteTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 136
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 459
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the date and time, in Coordinated Universal Time (UTC) format, that the specified file or directory was last written to.</p>\n"
-  remarks: "\n<p>This method may return an inaccurate value, because it uses native functions whose values may not be continuously updated by the operating system.</p>\n<p>If the directory described in the <em>path</em> parameter does not exist, this method returns 12:00 midnight, January 1, 1601 A.D. (C.E.) Coordinated Universal Time (UTC).</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static DateTime GetLastWriteTimeUtc(string path)
     content.vb: Public Shared Function GetLastWriteTimeUtc(path As String) As Date
@@ -2049,17 +2024,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetParent
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 21
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 38
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Retrieves the parent directory of the specified path, including both absolute and relative paths.</p>\n"
-  remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Trailing spaces are removed from the end of the <em>path</em> parameter before getting the directory.</p>\n<p>The string returned by this method consists of all characters in the path up to, but not including, the last <xref href=\"System.IO.Path.DirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref> or <xref href=\"System.IO.Path.AltDirectorySeparatorChar\" data-throw-if-not-resolved=\"false\"></xref>. For example, passing the path \"C:\\Directory\\SubDirectory\\test.txt\" to <xref href=\"System.IO.Directory.GetParent(System.String)\" data-throw-if-not-resolved=\"false\"></xref> returns \"C:\\Directory\\SubDirectory\". Passing \"C:\\Directory\\SubDirectory\" returns \"C:\\Directory\". However, passing \"C:\\Directory\\SubDirectory\\\" returns \"C:\\Directory\\SubDirectory\", because the ending directory separator is after \"SubDirectory\".</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static DirectoryInfo GetParent(string path)
     content.vb: Public Shared Function GetParent(path As String) As DirectoryInfo
@@ -2114,17 +2088,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Move
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 530
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 1076
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Moves a file or a directory and its contents to a new location.</p>\n"
-  remarks: "\n<p>This method creates a new directory with the name specified by <em>destDirName</em> and moves the contents of <em>sourceDirName</em> to the newly created destination directory. If you try to move a directory to a directory that already exists, an <xref href=\"System.IO.IOException\" data-throw-if-not-resolved=\"false\"></xref> will occur. For example, an exception will occur if you try to move c:\\mydir to c:\\public, and c:\\public already exists. Alternatively, you could specify \"c:\\\\public\\\\mydir\" as the <em>destDirName</em> parameter, provided that \"mydir\" does not exist under \"c:\\\\public\", or specify a new directory name such as \"c:\\\\newdir\".</p>\n<p>The <em>sourceDirName</em> and <em>destDirName</em> arguments are permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Trailing spaces are removed from the end of the path parameters before moving the directory.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -2182,17 +2155,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetCreationTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 97
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 406
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the creation date and time for the specified file or directory.</p>\n"
-  remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n"
   syntax:
     content: public static void SetCreationTime(string path, DateTime creationTime)
     content.vb: Public Shared Sub SetCreationTime(path As String, creationTime As Date)
@@ -2250,20 +2222,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetCreationTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 103
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 411
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the creation date and time, in Coordinated Universal Time (UTC) format, for the specified file or directory.</p>\n"
-  remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
-    content: public static void SetCreationTimeUtc(string path, DateTime creationTimeUtc)
-    content.vb: Public Shared Sub SetCreationTimeUtc(path As String, creationTimeUtc As Date)
+    content: >-
+      [SecuritySafeCritical]
+
+      public static void SetCreationTimeUtc(string path, DateTime creationTimeUtc)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Shared Sub SetCreationTimeUtc(path As String, creationTimeUtc As Date)
     parameters:
     - id: path
       type: System.String
@@ -2318,17 +2295,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetCurrentDirectory
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 514
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 1043
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the application's current working directory to the specified directory.</p>\n"
-  remarks: "\n<p>When the application terminates, the working directory is restored to its original location (the directory where the process was started).</p>\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Trailing spaces are removed from the end of the <em>path</em> parameter before setting the directory.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>If you are setting the directory to a drive with removable media (for example, to \"A:\" for a floppy disk drive or \"E:\" for a CD-ROM drive), you can determine whether the drive is ready by using the <xref href=\"System.IO.DriveInfo.IsReady\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: >-
       [SecurityCritical]
@@ -2391,17 +2367,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetLastAccessTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 141
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 464
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the date and time the specified file or directory was last accessed.</p>\n"
-  remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static void SetLastAccessTime(string path, DateTime lastAccessTime)
     content.vb: Public Shared Sub SetLastAccessTime(path As String, lastAccessTime As Date)
@@ -2459,20 +2434,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetLastAccessTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 147
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 469
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the date and time, in Coordinated Universal Time (UTC) format, that the specified file or directory was last accessed.</p>\n"
-  remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
-    content: public static void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtc)
-    content.vb: Public Shared Sub SetLastAccessTimeUtc(path As String, lastAccessTimeUtc As Date)
+    content: >-
+      [SecuritySafeCritical]
+
+      public static void SetLastAccessTimeUtc(string path, DateTime lastAccessTimeUtc)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Shared Sub SetLastAccessTimeUtc(path As String, lastAccessTimeUtc As Date)
     parameters:
     - id: path
       type: System.String
@@ -2527,17 +2507,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetLastWriteTime
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 119
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 435
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the date and time a directory was last written to.</p>\n"
-  remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
     content: public static void SetLastWriteTime(string path, DateTime lastWriteTime)
     content.vb: Public Shared Sub SetLastWriteTime(path As String, lastWriteTime As Date)
@@ -2595,20 +2574,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/Directory.cs
+      path: src/mscorlib/src/System/IO/Directory.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SetLastWriteTimeUtc
-    path: src/System.IO.FileSystem/src/System/IO/Directory.cs
-    startLine: 125
+    path: src/mscorlib/src/System/IO/Directory.cs
+    startLine: 440
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Sets the date and time, in Coordinated Universal Time (UTC) format, that a directory was last written to.</p>\n"
-  remarks: "\n<p>The <em>path</em> parameter is permitted to specify relative or absolute path information. Relative path information is interpreted as relative to the current working directory. To obtain the current working directory, see <xref href=\"System.IO.Directory.GetCurrentDirectory\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <em>path</em> parameter is not case-sensitive.</p>\n<p>For a list of common I/O tasks, see Common I/O Tasks.</p>\n"
   syntax:
-    content: public static void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtc)
-    content.vb: Public Shared Sub SetLastWriteTimeUtc(path As String, lastWriteTimeUtc As Date)
+    content: >-
+      [SecuritySafeCritical]
+
+      public static void SetLastWriteTimeUtc(string path, DateTime lastWriteTimeUtc)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Public Shared Sub SetLastWriteTimeUtc(path As String, lastWriteTimeUtc As Date)
     parameters:
     - id: path
       type: System.String

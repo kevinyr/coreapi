@@ -17,20 +17,25 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
+      path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Partitioner
-    path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
-    startLine: 45
+    path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
+    startLine: 46
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Represents a particular manner of splitting a data source into multiple partitions.</p>\n"
-  remarks: "\n<p>For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
   syntax:
-    content: public abstract class Partitioner<TSource>
-    content.vb: Public MustInherit Class Partitioner(Of TSource)
+    content: >-
+      [HostProtection(Synchronization = true, ExternalThreading = true)]
+
+      public abstract class Partitioner<TSource>
+    content.vb: >-
+      <HostProtection(Synchronization:=True, ExternalThreading:=True)>
+
+      Public MustInherit Class Partitioner(Of TSource)
     typeParameters:
     - id: TSource
       description: "\n<p>Type of the elements in the collection.</p>\n"
@@ -110,17 +115,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
+      path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: SupportsDynamicPartitions
-    path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
-    startLine: 69
+    path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
+    startLine: 71
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Gets whether additional partitions can be created dynamically.</p>\n"
-  remarks: "\n<p> If a derived class does not override and implement <xref href=\"System.Collections.Concurrent.Partitioner`1.GetDynamicPartitions\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Collections.Concurrent.Partitioner`1.SupportsDynamicPartitions\" data-throw-if-not-resolved=\"false\"></xref> should return false. The value of <xref href=\"System.Collections.Concurrent.Partitioner`1.SupportsDynamicPartitions\" data-throw-if-not-resolved=\"false\"></xref> should not vary over the lifetime of this instance. For more information, see Custom Partitioners for PLINQ and TPL.</p>\n<p></p>\n"
   syntax:
     content: public virtual bool SupportsDynamicPartitions { get; }
     content.vb: Public Overridable ReadOnly Property SupportsDynamicPartitions As Boolean
@@ -156,17 +160,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
+      path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetDynamicPartitions
-    path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
-    startLine: 94
+    path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
+    startLine: 96
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Creates an object that can partition the underlying collection into a variable number of partitions.</p>\n"
-  remarks: "\n<p> The returned object implements the <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref>interface. Calling <xref href=\"System.Collections.Generic.IEnumerable`1.GetEnumerator\" data-throw-if-not-resolved=\"false\"></xref> on the object creates another partition over the sequence.</p>\n<p>  The <xref href=\"System.Collections.Concurrent.Partitioner`1.GetDynamicPartitions\" data-throw-if-not-resolved=\"false\"></xref> method is only supported if the <xref href=\"System.Collections.Concurrent.Partitioner`1.SupportsDynamicPartitions\" data-throw-if-not-resolved=\"false\"></xref> property returns true. For more information, see Custom Partitioners for PLINQ and TPL. </p>\n"
   syntax:
     content: public virtual IEnumerable<TSource> GetDynamicPartitions()
     content.vb: Public Overridable Function GetDynamicPartitions As IEnumerable(Of TSource)
@@ -203,17 +206,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
+      path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetPartitions
-    path: src/System.Collections.Concurrent/src/System/Collections/Concurrent/Partitioner.cs
-    startLine: 52
+    path: src/mscorlib/src/System/Collections/Concurrent/Partitioner.cs
+    startLine: 54
   assemblies:
   - System.Collections.Concurrent
   namespace: System.Collections.Concurrent
   summary: "\n<p>Partitions the underlying collection into the given number of partitions.</p>\n"
-  remarks: "\n<p>A class that implements this method is expected to return exactly the number of partitions that are specified in <em>partitionCount</em>. If a partition contains no elements, then return an empty enumerator rather than null (Nothing in Visual Basic). For more information, see Custom Partitioners for PLINQ and TPL.</p>\n"
   syntax:
     content: public abstract IList<IEnumerator<TSource>> GetPartitions(int partitionCount)
     content.vb: Public MustOverride Function GetPartitions(partitionCount As Integer) As IList(Of IEnumerator(Of TSource))

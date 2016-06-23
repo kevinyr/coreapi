@@ -36,7 +36,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Represents a node or an attribute in an XML tree. </p>\n"
-  remarks: "\n<p>This class is the abstract common base class for <xref href=\"System.Xml.Linq.XNode\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref>. It provides some basic functionality that is common to both classes, such as annotations, and raising events when nodes have changed.</p>\n<p>Note that annotations are not part of the XML infoset; they are not serialized or deserialized.</p>\n"
   syntax:
     content: 'public abstract class XObject : IXmlLineInfo'
     content.vb: >-
@@ -75,7 +74,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the base URI for this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Using LINQ to XML, you can deserialize XML in a number of fashions. You can parse it from a string, load it from a file, or read it from a <xref href=\"System.IO.TextReader\" data-throw-if-not-resolved=\"false\"></xref> or an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>. In all of these cases, LINQ to XML uses one or another of the concrete subclasses of <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Sometimes the <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> has the base URI, and sometimes it does not. For instance, when loading from a file, the <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> knows the base URI, but when reading from an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> that was created because of calling the <xref href=\"System.Xml.Linq.XElement.Parse(System.String)\" data-throw-if-not-resolved=\"false\"></xref> method, there is no possibility of the <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> reporting a base URI; the XML was in a string.</p>\n<p>If, when parsing or loading the XML, you specify <xref href=\"System.Xml.Linq.LoadOptions.SetBaseUri\" data-throw-if-not-resolved=\"false\"></xref>, LINQ to XML will request the base URI for each node as the <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> returns the node. If the reader has the base URI, LINQ to XML will save the information with the LINQ to XML node. This property returns that information. If the underlying <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> does not have the base URI, then this property will return an empty string.</p>\n<p>Setting <xref href=\"System.Xml.Linq.LoadOptions.SetBaseUri\" data-throw-if-not-resolved=\"false\"></xref> when loading an XML tree will result in slower parsing.</p>\n<p>When setting the base URI for an XML tree, LINQ to XML puts an annotation on the root of the tree. This property is a computed property, and navigates up the tree to find the base URI. </p>\n"
   syntax:
     content: public string BaseUri { get; }
     content.vb: Public ReadOnly Property BaseUri As String
@@ -148,7 +146,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the node type for this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Because all classes that derive from <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref> contain a <xref href=\"System.Xml.Linq.XObject.NodeType\" data-throw-if-not-resolved=\"false\"></xref> property, you can write code that operates on collections of concrete subclass of <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>. Your code can then test for the node type of each node in the collection.</p>\n"
   syntax:
     content: public abstract XmlNodeType NodeType { get; }
     content.vb: Public MustOverride ReadOnly Property NodeType As XmlNodeType
@@ -187,7 +184,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the parent <xref href=\"System.Xml.Linq.XElement\" data-throw-if-not-resolved=\"false\"></xref> of this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>If this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref> has no parent element, this property returns <strong>null</strong>.</p>\n<p>This property returns the parent element, and as children nodes of an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> have no parent element, this property returns <strong>null</strong> for them.</p>\n"
   syntax:
     content: public XElement Parent { get; }
     content.vb: Public ReadOnly Property Parent As XElement
@@ -224,7 +220,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Raised when this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref> or any of its descendants have changed.</p>\n"
-  remarks: "\n<p>Events are raised only when an XML tree is modified, not when it is constructed. This is because you have to add an event handler to an event before you can receive events, and you cannot add an event handler before you have a reference to an <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>. You cannot get a reference to an <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref> before the XML tree is constructed. This means that during functional construction of an XML tree, you will not receive events.</p>\n<p>You should be careful when modifying an XML tree within one of these events, because doing this might lead to unexpected results. For example, if you receive a <xref href=\"System.Xml.Linq.XObject.Changing\" data-throw-if-not-resolved=\"false\"></xref> event, and while the event is being processed you remove the node from the tree, you might not receive the <xref href=\"System.Xml.Linq.XObject.Changed\" data-throw-if-not-resolved=\"false\"></xref> event. When an event is being processed, it is valid to modify an XML tree other than the one that contains the node that is receiving the event; it is even valid to modify the same tree provided the modifications do not affect the specific nodes on which the event was raised. However, if you modify the area of the tree that contains the node receiving the event, the events that you receive and the impact to the tree are undefined.</p>\n"
   syntax:
     content: public event EventHandler<XObjectChangeEventArgs> Changed
     content.vb: Public Event Changed As EventHandler(Of XObjectChangeEventArgs)
@@ -257,7 +252,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Raised when this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref> or any of its descendants are about to change.</p>\n"
-  remarks: "\n<p>Events are raised only from modification of an XML tree, not from construction of an XML tree. You have to add an event handler to an event before you can receive events, and you can't add an event handler before you have a reference to an <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>. You can't get a reference to an <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref> before the XML tree is constructed. This means that during functional construction of an XML tree, you will not receive events.</p>\n<p>You should be careful when modifying an XML tree within one of these events, because doing this might lead to unexpected results. For example, if you receive a <xref href=\"System.Xml.Linq.XObject.Changing\" data-throw-if-not-resolved=\"false\"></xref> event, and while the event is being processed you remove the node from the tree, you might not receive the <xref href=\"System.Xml.Linq.XObject.Changed\" data-throw-if-not-resolved=\"false\"></xref> event. When an event is being processed, it is valid to modify an XML tree other than the one that contains the node that is receiving the event; it is even valid to modify the same tree provided the modifications do not affect the specific nodes on which the event was raised. However, if you modify the area of the tree that contains the node receiving the event, the events that you receive and the impact to the tree are undefined.</p>\n"
   syntax:
     content: public event EventHandler<XObjectChangeEventArgs> Changing
     content.vb: Public Event Changing As EventHandler(Of XObjectChangeEventArgs)
@@ -290,7 +284,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Adds an object to the annotation list of this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>Note that annotations are not part of the infoset; they are not persisted, or displayed by <xref href=\"System.Xml.Linq.XNode.ToString\" data-throw-if-not-resolved=\"false\"></xref>. Also, if you import an XML Namespace into your VB project and call AddAnnotation with the SaveOptions.OmitDuplicateNamespaces enumeration value, then only one element will contain the XML Namespace attribute instead of every element. For more information, see <see href=\"http://blogs.msdn.com/b/vbteam/archive/2010/06/09/removing-duplicate-namespaces-in-xml-literals-shyam-namboodiripad.aspx\">Removing duplicate namespaces in XML Literals</see>.</p>\n"
   syntax:
     content: public void AddAnnotation(object annotation)
     content.vb: Public Sub AddAnnotation(annotation As Object)

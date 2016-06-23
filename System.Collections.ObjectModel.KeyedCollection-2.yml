@@ -37,7 +37,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Provides the abstract base class for a collection whose keys are embedded in the values.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> class provides both O(1) indexed retrieval and keyed retrieval that approaches O(1). It is an abstract type, or more accurately an infinite set of abstract types, because each of its constructed generic types is an abstract base class. To use <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>, derive your collection type from the appropriate constructed type.</p>\n<p>The <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> class is a hybrid between a collection based on the <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> generic interface and a collection based on the <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> generic interface. Like collections based on the <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> generic interface, <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> is an indexed list of items. Like collections based on the <xref href=\"System.Collections.Generic.IDictionary`2\" data-throw-if-not-resolved=\"false\"></xref> generic interface, <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> has a key associated with each element.  </p>\n<p>Unlike dictionaries, an element of <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> is not a key/value pair; instead, the entire element is the value and the key is embedded within the value.  For example, an element of a collection derived from <code>KeyedCollection<String,String></code> (<code>KeyedCollection(Of String, String)</code> in Visual Basic) might be \"John Doe Jr.\" where the value is \"John Doe Jr.\" and the key is \"Doe\"; or a collection of employee records containing integer keys could be derived from <code>KeyedCollection<int,Employee></code>. The abstract <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.GetKeyForItem(`1)\" data-throw-if-not-resolved=\"false\"></xref> method extracts the key from the element.</p>\n<p>By default, the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> includes a lookup dictionary that you can obtain with the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.Dictionary\" data-throw-if-not-resolved=\"false\"></xref> property.  When an item is added to the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>, the item's key is extracted once and saved in the lookup dictionary for faster searches. This behavior is overridden by specifying a dictionary creation threshold when you create the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>. The lookup dictionary is created the first time the number of elements exceeds that threshold.  If you specify –1 as the threshold, the lookup dictionary is never created. </p>\n<p>When the internal lookup dictionary is used, it contains references to all the items in the collection if <em>TItem</em> is a reference type, or copies of all the items in the collection if <em>TItem</em> is a value type. Thus, using the lookup dictionary may not be appropriate if <em>TItem</em> is a value type.</p>\n<p>You can access an item by its index or key by using the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref>property. You can add items without a key, but these items can subsequently be accessed only by index.</p>\n"
   syntax:
     content: >-
       [Serializable]
@@ -285,7 +284,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> class that uses the default equality comparer.</p>\n"
-  remarks: "\n<p>A <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> created with this constructor uses the default generic equality comparer for the type of the key, obtained from <xref href=\"System.Collections.Generic.EqualityComparer`1.Default\" data-throw-if-not-resolved=\"false\"></xref>. To specify a different generic equality comparer, use the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.#ctor(System.Collections.Generic.IEqualityComparer{`0})\" data-throw-if-not-resolved=\"false\"></xref> constructor or the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor.</p>\n<p>By default, the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> includes a lookup dictionary that is created when the first item is added. When an item is added to the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>, the item's key is extracted once and saved in the lookup dictionary for faster searches. This behavior can be overridden by using the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor and specifying a dictionary creation threshold. </p>\n<p>Because the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> class is abstract (<strong>MustInherit</strong> in Visual Basic), you must derive from it in order to use it. In the constructor for your derived type, call the appropriate <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> constructor. It is not necessary to expose functionality like the equality comparer or the dictionary creation threshold in your constructors.</p>\n<p>This constructor is an O(1) operation.</p>\n"
   syntax:
     content: protected KeyedCollection()
     content.vb: Protected Sub New
@@ -321,7 +319,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> class that uses the specified equality comparer.</p>\n"
-  remarks: "\n<p>By default, the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> includes a lookup dictionary that is created when the first item is added. When an item is added to the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>, the item's key is extracted once and saved in the lookup dictionary for faster searches. This behavior can be overridden by using the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor and specifying a dictionary creation threshold. </p>\n<p>Because the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> class is abstract (<strong>MustInherit</strong> in Visual Basic), you must derive from it in order to use it. In the constructor for your derived type, call the appropriate <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> constructor. It is not necessary to expose functionality like the equality comparer or the dictionary creation threshold in your constructors.</p>\n<p>This constructor is an O(1) operation.</p>\n"
   syntax:
     content: protected KeyedCollection(IEqualityComparer<TKey> comparer)
     content.vb: Protected Sub New(comparer As IEqualityComparer(Of TKey))
@@ -362,7 +359,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> class that uses the specified equality comparer and creates a lookup dictionary when the specified threshold is exceeded.</p>\n"
-  remarks: "\n<p>By default, the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> includes a lookup dictionary that is created when the first item is added. When an item is added to the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>, the item's key is extracted once and saved in the lookup dictionary for faster searches. This constructor allows you to override that behavior. Specify 0 to create the dictionary when the first element is added, 1 to create the dictionary when the second element is added, and so on. If you specify –1 as the threshold, the lookup dictionary is never created.</p>\n<p>For very small collections the improvement in retrieval speed provided by the lookup dictionary might not be worth the extra memory required by the dictionary. Setting a threshold allows you to decide when to make that tradeoff.</p>\n<p>Because the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> class is abstract (<strong>MustInherit</strong> in Visual Basic), you must derive from it in order to use it. In the constructor for your derived type, call the appropriate <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> constructor. It is not necessary to expose functionality like the equality comparer or the dictionary creation threshold in your constructors.</p>\n<p>This constructor is an O(1) operation.</p>\n"
   syntax:
     content: protected KeyedCollection(IEqualityComparer<TKey> comparer, int dictionaryCreationThreshold)
     content.vb: Protected Sub New(comparer As IEqualityComparer(Of TKey), dictionaryCreationThreshold As Integer)
@@ -410,7 +406,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Gets the generic equality comparer that is used to determine equality of keys in the collection.</p>\n"
-  remarks: "\n<p>Retrieving the value of this property is an O(1) operation.</p>\n"
   syntax:
     content: public IEqualityComparer<TKey> Comparer { get; }
     content.vb: Public ReadOnly Property Comparer As IEqualityComparer(Of TKey)
@@ -449,7 +444,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Gets the lookup dictionary of the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>By default, the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> includes a lookup dictionary that is created when the first item is added. When an item is added to the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>, the item's key is extracted once and saved in the lookup dictionary for faster searches. This behavior can be overridden by using the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.#ctor(System.Collections.Generic.IEqualityComparer{`0},System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor and specifying a dictionary creation threshold. </p>\n<p>Retrieving the value of this property is an O(1) operation.</p>\n"
   syntax:
     content: protected IDictionary<TKey, TItem> Dictionary { get; }
     content.vb: Protected ReadOnly Property Dictionary As IDictionary(Of TKey, TItem)
@@ -491,7 +485,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Gets the element with the specified key. </p>\n"
-  remarks: "\n<p>This property provides the ability to access a specific element in the collection by using the following syntax: <code>myCollection[key]</code> (<code>myCollection(key)</code> in Visual Basic).</p>\n<p>This property is distinct from the inherited <xref href=\"System.Collections.ObjectModel.Collection`1.Item(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> property, which gets and sets elements by numeric index. However, if <em>TKey</em> is of type <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>, this property masks the inherited property. In that case, you can access the inherited property by casting the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> to its base type. For example, <code>KeyedCollection<int, MyType></code> (<code>KeyedCollection(Of Integer, MyType)</code> in Visual Basic, <code>KeyedCollection<int, MyType^></code> in C++) can be cast to <code>Collection<MyType></code> (<code>Collection(Of MyType)</code> in Visual Basic, <code>Collection<MyType^></code> in C++).</p>\n<p>If the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> has a lookup dictionary, <em>key</em> is used to retrieve the element from the dictionary.  If there is no lookup dictionary, the key of each element is extracted using the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.GetKeyForItem(`1)\" data-throw-if-not-resolved=\"false\"></xref> method and compared with the specified key.</p>\n<p>The C# language uses the  keyword to define the indexers instead of implementing the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> property. Visual Basic implements <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.Item(`0)\" data-throw-if-not-resolved=\"false\"></xref> as a default property, which provides the same indexing functionality.</p>\n<p>Retrieving the value of this property is an O(1) operation if the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> has a lookup dictionary; otherwise it is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.ObjectModel.Collection`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public TItem this[TKey key] { get; }
     content.vb: Public ReadOnly Property Item(key As TKey) As TItem
@@ -544,7 +537,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Changes the key associated with the specified element in the lookup dictionary.</p>\n"
-  remarks: "\n<p>This method does not modify the key embedded in <em>item</em>; it simply replaces the key saved in the lookup dictionary.  Therefore, if <em>newKey</em> is different from the key that is embedded in <em>item</em>, you cannot access <em>item</em> by using the key returned by <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.GetKeyForItem(`1)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method does nothing if the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> does not have a lookup dictionary.</p>\n<p>Every key in a <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> must be unique. A key cannot be <strong>null</strong>.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: protected void ChangeItemKey(TItem item, TKey newKey)
     content.vb: Protected Sub ChangeItemKey(item As TItem, newKey As TKey)
@@ -596,7 +588,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Removes all elements from the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>If there is a lookup dictionary, this method clears it but does not delete it.</p>\n<p>If the number of elements has exceeded the dictionary creation threshold and the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> is using a lookup dictionary, it will continue to use a lookup dictionary even though the number of elements is again under the threshold.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.ObjectModel.Collection`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: protected override void ClearItems()
     content.vb: Protected Overrides Sub ClearItems
@@ -637,7 +628,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Determines whether the collection contains an element with the specified key.</p>\n"
-  remarks: "\n<p>If the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> has a lookup dictionary, <em>key</em> is used to search the dictionary. If there is no lookup dictionary, the key of each element is extracted using the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.GetKeyForItem(`1)\" data-throw-if-not-resolved=\"false\"></xref> method and compared with the specified key.  </p>\n<p>This method is an O(1) operation if the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> has a lookup dictionary; otherwise it is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.ObjectModel.Collection`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public bool Contains(TKey key)
     content.vb: Public Function Contains(key As TKey) As Boolean
@@ -684,7 +674,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>When implemented in a derived class, extracts the key from the specified element.</p>\n"
-  remarks: "\n<p>If the key in the lookup dictionary is different from the key that is embedded in <em>item</em>, you cannot access <em>item</em> by using the key returned by <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.GetKeyForItem(`1)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>You can implement this method to return <strong>null</strong> for a collection that contains items without keys, in which case the items can be accessed only by their index. This method is an O(1) operation.</p>\n"
   syntax:
     content: protected abstract TKey GetKeyForItem(TItem item)
     content.vb: Protected MustOverride Function GetKeyForItem(item As TItem) As TKey
@@ -731,7 +720,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Inserts an element into the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> at the specified index.</p>\n"
-  remarks: "\n<p>If <em>index</em> is equal to <xref href=\"System.Collections.ObjectModel.Collection`1.Count\" data-throw-if-not-resolved=\"false\"></xref>, <em>item</em> is added to the end of the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.ObjectModel.Collection`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<xref href=\"System.Collections.ObjectModel.KeyedCollection`2.InsertItem(System.Int32,`1)\" data-throw-if-not-resolved=\"false\"></xref> is called by the <xref href=\"System.Collections.ObjectModel.Collection`1.Add(`0)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Collections.ObjectModel.Collection`1.Insert(System.Int32,`0)\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n"
   syntax:
     content: protected override void InsertItem(int index, TItem item)
     content.vb: Protected Overrides Sub InsertItem(index As Integer, item As TItem)
@@ -781,7 +769,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Removes the element with the specified key from the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The key of the element is also removed from the lookup dictionary.</p>\n<p>If the number of elements has exceeded the dictionary creation threshold and the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> is using a lookup dictionary, it will continue to use a lookup dictionary even though the number of elements is again under the threshold.</p>\n<p>To customize the behavior of this method, override the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2.RemoveItem(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.ObjectModel.Collection`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public bool Remove(TKey key)
     content.vb: Public Function Remove(key As TKey) As Boolean
@@ -830,7 +817,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Removes the element at the specified index of the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The key of the element is also removed from the lookup dictionary.</p>\n<p>If the number of elements has exceeded the dictionary creation threshold and the <xref href=\"System.Collections.ObjectModel.KeyedCollection`2\" data-throw-if-not-resolved=\"false\"></xref> is using a lookup dictionary, it will continue to use a lookup dictionary even though the number of elements is again under the threshold.</p>\n<p>This method is an O(<em>n</em>) operation, where <em>n</em> is <xref href=\"System.Collections.ObjectModel.Collection`1.Count\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: protected override void RemoveItem(int index)
     content.vb: Protected Overrides Sub RemoveItem(index As Integer)
@@ -875,7 +861,6 @@ items:
   - System.ObjectModel
   namespace: System.Collections.ObjectModel
   summary: "\n<p>Replaces the item at the specified index with the specified item.</p>\n"
-  remarks: "\n<p>The lookup dictionary is updated accordingly. That is, the key of the item that is being replaced is removed from the lookup dictionary, and the key of the new item is added.</p>\n<p>This method is an O(1) operation.</p>\n"
   syntax:
     content: protected override void SetItem(int index, TItem item)
     content.vb: Protected Overrides Sub SetItem(index As Integer, item As TItem)

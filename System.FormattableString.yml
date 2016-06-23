@@ -32,7 +32,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Represents a composite format string, along with the arguments to be formatted. </p>\n"
-  remarks: "\n<p>A composite format string consists of fixed text intermixed with indexed placeholders, called format items, that correspond to the objects in the list. The formatting operation yields a result string that consists of the original fixed text intermixed with the string representation of the objects in the list. Composite formatting is supported by methods such as <xref href=\"System.String.Format(System.String,System.Object[])\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Console.WriteLine(System.String)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Text.StringBuilder.AppendFormat(System.String,System.Object)\" data-throw-if-not-resolved=\"false\"></xref>.  For more information on composite formatting, see Composite Formatting. </p>\n<p>A <xref href=\"System.FormattableString\" data-throw-if-not-resolved=\"false\"></xref> instance may result from the an interpolated string in C# or Visual Basic. </p>\n"
   syntax:
     content: 'public abstract class FormattableString : IFormattable'
     content.vb: >-
@@ -110,7 +109,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Gets the number of arguments to be formatted. </p>\n"
-  remarks: "\n<p>The arguments can be retrieved from the object array returned by the <xref href=\"System.FormattableString.GetArguments\" data-throw-if-not-resolved=\"false\"></xref> method, or they can be retrieved individually by index number from the <xref href=\"System.FormattableString.GetArgument(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method. The indexes of individual arguments range from zero to <xref href=\"System.FormattableString.ArgumentCount\" data-throw-if-not-resolved=\"false\"></xref> – 1. </p>\n"
   syntax:
     content: public abstract int ArgumentCount { get; }
     content.vb: Public MustOverride ReadOnly Property ArgumentCount As Integer
@@ -149,7 +147,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns the composite format string. </p>\n"
-  remarks: "\n<p>A composite format string consists of zero or more runs of fixed text intermixed with one or more format items, which are indicated by an index number delimited with brackets (for example, <code>{0}</code>). The index of each format item corresponds to an argument in an object list that follows the composite format string. For example, in the following statement: </p>Formatting.Composite#9<p>the composite format string is <code>\"Name = {0}, hours = {1:hh}\"</code>. </p>"
   syntax:
     content: public abstract string Format { get; }
     content.vb: Public MustOverride ReadOnly Property Format As String
@@ -227,7 +224,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns an object array that contains one or more objects to format. </p>\n"
-  remarks: "\n<p>Clients should not modify the contents of the array. </p>\n"
   syntax:
     content: public abstract object[] GetArguments()
     content.vb: Public MustOverride Function GetArguments As Object()
@@ -263,7 +259,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns a result string in which arguments are formatted by using the conventions of the invariant culture. </p>\n"
-  remarks: "\n<p>This static method can be imported in C# by the following statement: </p>\n<pre><code class=\"c#\">using static System.FormattableString;</code></pre>\n<p>Within the scope that <strong>import</strong> directive, an interpolated string may be formatted using the conventions of the invariant culture by code such as the following: </p>\n<pre><code class=\"c#\">Invariant($\"{{ lat = {latitude}; lon = {longitude} }}\") </code></pre>\n"
   syntax:
     content: public static string Invariant(FormattableString formattable)
     content.vb: Public Shared Function Invariant(formattable As FormattableString) As String
@@ -308,7 +303,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns the string that results from formatting the format string along with its arguments by using the formatting conventions of a specified culture. </p>\n"
-  remarks: "\n<p>This implementation calls the derived class' <xref href=\"System.FormattableString.ToString(System.IFormatProvider)\" data-throw-if-not-resolved=\"false\"></xref> implementation. </p>\n<p>This member is an explicit interface implementation. It can be used only when the <xref href=\"System.FormattableString\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.IFormattable\" data-throw-if-not-resolved=\"false\"></xref> interface. </p>\n"
   syntax:
     content: string IFormattable.ToString(string ignored, IFormatProvider formatProvider)
     content.vb: Function System.IFormattable.ToString(ignored As String, formatProvider As IFormatProvider) As String Implements IFormattable.ToString

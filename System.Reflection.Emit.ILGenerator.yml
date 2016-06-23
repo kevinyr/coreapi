@@ -60,7 +60,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Generates Microsoft intermediate language (MSIL) instructions.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.Reflection.Emit.ILGenerator\" data-throw-if-not-resolved=\"false\"></xref> is used to generate method bodies for methods and constructors in dynamic assemblies (represented by the <xref href=\"System.Reflection.Emit.MethodBuilder\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Reflection.Emit.ConstructorBuilder\" data-throw-if-not-resolved=\"false\"></xref> classes) and for standalone dynamic methods (represented by the <xref href=\"System.Reflection.Emit.DynamicMethod\" data-throw-if-not-resolved=\"false\"></xref> class). To obtain an <xref href=\"System.Reflection.Emit.ILGenerator\" data-throw-if-not-resolved=\"false\"></xref>, use the <xref href=\"System.Reflection.Emit.ConstructorBuilder.GetILGenerator\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Reflection.Emit.DynamicMethod.GetILGenerator\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Reflection.Emit.MethodBuilder.GetILGenerator\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n<p>MSIL is used as input to a just-in-time (JIT) compiler.</p>\n"
   syntax:
     content: >-
       [ClassInterface(ClassInterfaceType.None)]
@@ -118,7 +117,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Gets the current offset, in bytes, in the Microsoft intermediate language (MSIL) stream that is being emitted by the <xref href=\"System.Reflection.Emit.ILGenerator\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>This method is transparent, and can be called from partially trusted code.</p>\n<p>If the <xref href=\"System.Reflection.Emit.ILGenerator.ILOffset\" data-throw-if-not-resolved=\"false\"></xref> property is accessed before any MSIL instructions have been emitted, it returns 0 (zero).</p>\n<p>When MSIL is generated for dynamic languages, this property can be used to map offsets in the MSIL stream to source code line numbers. The resulting information can be used to provide stack traces when exceptions are thrown. </p>\n"
   syntax:
     content: public virtual int ILOffset { get; }
     content.vb: Public Overridable ReadOnly Property ILOffset As Integer
@@ -157,7 +155,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Begins a catch block.</p>\n"
-  remarks: "\n<p>Emits a branch instruction to the end of the current exception block.</p>\n<p>If the filter exception block returns the <strong>constant exception_execute_handler</strong> (see the documentation for the Common Language Infrastructure Instruction Set), the argument to the <strong>BeginCatchBlock</strong> is not checked.</p>\n"
   syntax:
     content: public virtual void BeginCatchBlock(Type exceptionType)
     content.vb: Public Overridable Sub BeginCatchBlock(exceptionType As Type)
@@ -204,7 +201,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Begins an exception block for a filtered exception.</p>\n"
-  remarks: "\n<p>Emits a branch instruction to the end of the current exception block.</p>\n<p>If the current <xref href=\"System.Reflection.Emit.ILGenerator\" data-throw-if-not-resolved=\"false\"></xref> is associated with a <xref href=\"System.Reflection.Emit.DynamicMethod\" data-throw-if-not-resolved=\"false\"></xref> object, emitting filtered exception blocks is not supported. <xref href=\"System.Reflection.Emit.DynamicILInfo\" data-throw-if-not-resolved=\"false\"></xref> can be used to construct a dynamic method that uses filtered exception blocks.</p>\n"
   syntax:
     content: public virtual void BeginExceptFilterBlock()
     content.vb: Public Overridable Sub BeginExceptFilterBlock
@@ -241,7 +237,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Begins an exception block for a non-filtered exception.</p>\n"
-  remarks: "\n<p>Creating an exception block records some information, but does not actually emit any Microsoft intermediate language (MSIL) onto the stream.</p>\n"
   syntax:
     content: public virtual Label BeginExceptionBlock()
     content.vb: Public Overridable Function BeginExceptionBlock As Label
@@ -277,7 +272,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Begins an exception fault block in the Microsoft intermediate language (MSIL) stream.</p>\n"
-  remarks: "\n<p>If the current <xref href=\"System.Reflection.Emit.ILGenerator\" data-throw-if-not-resolved=\"false\"></xref> is associated with a <xref href=\"System.Reflection.Emit.DynamicMethod\" data-throw-if-not-resolved=\"false\"></xref> object, emitting exception fault blocks is not supported. <xref href=\"System.Reflection.Emit.DynamicILInfo\" data-throw-if-not-resolved=\"false\"></xref> can be used to construct a dynamic method that uses exception fault blocks.</p>\n"
   syntax:
     content: public virtual void BeginFaultBlock()
     content.vb: Public Overridable Sub BeginFaultBlock
@@ -350,7 +344,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Begins a lexical scope.</p>\n"
-  remarks: "\n<p>This method is used to emit symbolic information. Local variables declared after <xref href=\"System.Reflection.Emit.ILGenerator.BeginScope\" data-throw-if-not-resolved=\"false\"></xref> are scoped until the corresponding <xref href=\"System.Reflection.Emit.ILGenerator.EndScope\" data-throw-if-not-resolved=\"false\"></xref> is called.</p>\n<p>If the current <xref href=\"System.Reflection.Emit.ILGenerator\" data-throw-if-not-resolved=\"false\"></xref> is associated with a <xref href=\"System.Reflection.Emit.DynamicMethod\" data-throw-if-not-resolved=\"false\"></xref> object, it does not support symbolic information.</p>\n"
   syntax:
     content: public virtual void BeginScope()
     content.vb: Public Overridable Sub BeginScope
@@ -387,7 +380,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Declares a local variable of the specified type.</p>\n"
-  remarks: "\n<p>The local variable is created in the current lexical scope; for example, if code is being emitted in a <strong>for</strong> loop (<strong>For</strong> loop in Visual Basic), the scope of the variable is the loop.</p>\n<p>A local variable created with this overload is not pinned. To create a pinned variable for use with unmanaged pointers, use the <xref href=\"System.Reflection.Emit.ILGenerator.DeclareLocal(System.Type,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method overload.</p>\n"
   syntax:
     content: public virtual LocalBuilder DeclareLocal(Type localType)
     content.vb: Public Overridable Function DeclareLocal(localType As Type) As LocalBuilder
@@ -434,7 +426,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Declares a local variable of the specified type, optionally pinning the object referred to by the variable.</p>\n"
-  remarks: "\n<p>The local variable is created in the current lexical scope; for example, if code is being emitted in a <strong>for</strong> loop (<strong>For</strong> loop in Visual Basic), the scope of the variable is the loop.</p>\n<p>In unsafe code, an object must be pinned before it can be referred to by an unmanaged pointer. While the referenced object is pinned, it cannot be moved by garbage collection.</p>\n"
   syntax:
     content: public virtual LocalBuilder DeclareLocal(Type localType, bool pinned)
     content.vb: Public Overridable Function DeclareLocal(localType As Type, pinned As Boolean) As LocalBuilder
@@ -487,7 +478,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Declares a new label.</p>\n"
-  remarks: "\n<p>To set the position of the label within the stream, you must call <xref href=\"System.Reflection.Emit.ILGenerator.MarkLabel(System.Reflection.Emit.Label)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This is just a token and does not yet represent any particular location within the stream.</p>\n"
   syntax:
     content: public virtual Label DefineLabel()
     content.vb: Public Overridable Function DefineLabel As Label
@@ -523,7 +513,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction onto the stream of instructions.</p>\n"
-  remarks: "\n<p>If the <em>opcode</em> parameter requires an argument, the caller must ensure that the argument length matches the length of the declared parameter. Otherwise, results will be unpredictable. For example, if the Emit instruction requires a 2-byte operand and the caller supplies a 4-byte operand, the runtime will emit two additional bytes to the instruction stream. These extra bytes will be <xref href=\"System.Reflection.Emit.OpCodes.Nop\" data-throw-if-not-resolved=\"false\"></xref> instructions.</p>\n<p>The instruction values are defined in <xref href=\"System.Reflection.Emit.OpCodes\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode)
     content.vb: Public Overridable Sub Emit(opcode As OpCode)
@@ -560,7 +549,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction and character argument onto the Microsoft intermediate language (MSIL) stream of instructions.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode, byte arg)
     content.vb: Public Overridable Sub Emit(opcode As OpCode, arg As Byte)
@@ -600,7 +588,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -650,7 +637,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode, short arg)
     content.vb: Public Overridable Sub Emit(opcode As OpCode, arg As Short)
@@ -690,7 +676,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode, int arg)
     content.vb: Public Overridable Sub Emit(opcode As OpCode, arg As Integer)
@@ -730,7 +715,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode, long arg)
     content.vb: Public Overridable Sub Emit(opcode As OpCode, arg As Long)
@@ -770,7 +754,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction and metadata token for the specified constructor onto the Microsoft intermediate language (MSIL) stream of instructions.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n<p>The location of <em>con</em> is recorded so that the instruction stream can be patched if necessary when persisting the module to a portable executable (PE) file.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -828,7 +811,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream and leaves space to include a label when fixes are done.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n<p>Labels are created using <xref href=\"System.Reflection.Emit.ILGenerator.DefineLabel\" data-throw-if-not-resolved=\"false\"></xref>, and their location within the stream is fixed by using <xref href=\"System.Reflection.Emit.ILGenerator.MarkLabel(System.Reflection.Emit.Label)\" data-throw-if-not-resolved=\"false\"></xref>. If a single-byte instruction is used, the label can represent a jump of at most 127 bytes along the stream. <em>opcode</em> must represent a branch instruction. Because branches are relative instructions, <em>label</em> will be replaced with the correct offset to branch during the fixup process.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode, Label label)
     content.vb: Public Overridable Sub Emit(opcode As OpCode, label As Label)
@@ -868,7 +850,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream and leaves space to include a label when fixes are done.</p>\n"
-  remarks: "\n<p>Emits a switch table.</p>\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n<p>Labels are created using <xref href=\"System.Reflection.Emit.ILGenerator.DefineLabel\" data-throw-if-not-resolved=\"false\"></xref> and their location within the stream is fixed by using <xref href=\"System.Reflection.Emit.ILGenerator.MarkLabel(System.Reflection.Emit.Label)\" data-throw-if-not-resolved=\"false\"></xref>. If a single-byte instruction is used, the label can represent a jump of at most 127 bytes along the stream. <em>opcode</em> must represent a branch instruction. Because branches are relative instructions, <em>label</em> will be replaced with the correct offset to branch during the fixup process.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode, Label[] labels)
     content.vb: Public Overridable Sub Emit(opcode As OpCode, labels As Label())
@@ -915,7 +896,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the index of the given local variable.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode, LocalBuilder local)
     content.vb: Public Overridable Sub Emit(opcode As OpCode, local As LocalBuilder)
@@ -965,7 +945,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction and a signature token onto the Microsoft intermediate language (MSIL) stream of instructions.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode, SignatureHelper signature)
     content.vb: Public Overridable Sub Emit(opcode As OpCode, signature As SignatureHelper)
@@ -1009,7 +988,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction and metadata token for the specified field onto the Microsoft intermediate language (MSIL) stream of instructions.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration. The location of <em>field</em> is recorded so that the instruction stream can be patched if necessary when persisting the module to a portable executable (PE) file.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode, FieldInfo field)
     content.vb: Public Overridable Sub Emit(opcode As OpCode, field As FieldInfo)
@@ -1049,7 +1027,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given method.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n<p>The location of <em>meth</em> is recorded so that the instruction stream can be patched if necessary when persisting the module to a portable executable (PE) file.</p>\n<p>If <em>meth</em> represents a generic method, it must be a generic method definition. That is, its <xref href=\"System.Reflection.MethodInfo.IsGenericMethodDefinition\" data-throw-if-not-resolved=\"false\"></xref> property must be <strong>true</strong>.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1106,7 +1083,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction and character argument onto the Microsoft intermediate language (MSIL) stream of instructions.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1156,7 +1132,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction and numerical argument onto the Microsoft intermediate language (MSIL) stream of instructions.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1206,7 +1181,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given string.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration. The location of <em>str</em> is recorded for future fixups if the module is persisted to a portable executable (PE) file.</p>\n"
   syntax:
     content: public virtual void Emit(OpCode opcode, string str)
     content.vb: Public Overridable Sub Emit(opcode As OpCode, str As String)
@@ -1246,7 +1220,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts the specified instruction onto the Microsoft intermediate language (MSIL) stream followed by the metadata token for the given type.</p>\n"
-  remarks: "\n<p>The instruction values are defined in the <strong>OpCodes</strong> enumeration. The location of <em>cls</em> is recorded so that the token can be patched if necessary when persisting the module to a portable executable (PE) file.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1300,7 +1273,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts a <strong>call</strong> or <strong>callvirt</strong> instruction onto the Microsoft intermediate language (MSIL) stream to call a <strong>varargs</strong> method.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Reflection.Emit.ILGenerator.EmitCall(System.Reflection.Emit.OpCode,System.Reflection.MethodInfo,System.Type[])\" data-throw-if-not-resolved=\"false\"></xref> method is used to emit calls to <strong>varargs</strong> methods because there is no overload of the <xref href=\"System.Reflection.Emit.ILGenerator.Emit(System.Reflection.Emit.OpCode)\" data-throw-if-not-resolved=\"false\"></xref> method that specifies the parameter types of the variable arguments.</p>\n<p>To emit calls to methods that do not use the <xref href=\"System.Reflection.CallingConventions.VarArgs\" data-throw-if-not-resolved=\"false\"></xref> calling convention, use the <xref href=\"System.Reflection.Emit.ILGenerator.Emit(System.Reflection.Emit.OpCode,System.Reflection.MethodInfo)\" data-throw-if-not-resolved=\"false\"></xref> method overload. </p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1366,7 +1338,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Puts a <xref href=\"System.Reflection.Emit.OpCodes.Calli\" data-throw-if-not-resolved=\"false\"></xref> instruction onto the Microsoft intermediate language (MSIL) stream, specifying a managed calling convention for the indirect call.</p>\n"
-  remarks: "\n<p>Use <xref href=\"System.Reflection.Emit.ILGenerator.EmitCalli(System.Reflection.Emit.OpCode,System.Reflection.CallingConventions,System.Type,System.Type[],System.Type[])\" data-throw-if-not-resolved=\"false\"></xref> to put a <xref href=\"System.Reflection.Emit.OpCodes.Calli\" data-throw-if-not-resolved=\"false\"></xref> instruction onto the stream. Do not use <xref href=\"System.Reflection.Emit.ILGenerator.Emit(System.Reflection.Emit.OpCode)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If <em>optionalParameterTypes</em> specifies optional arguments, <em>callingConvention</em> must include the <xref href=\"System.Reflection.CallingConventions.VarArgs\" data-throw-if-not-resolved=\"false\"></xref> flag.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1432,7 +1403,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Emits the Microsoft intermediate language (MSIL) necessary to call <xref href=\"System.Console.WriteLine\" data-throw-if-not-resolved=\"false\"></xref> with the given local variable.</p>\n"
-  remarks: "\n<p>The type of <em>localBuilder</em> must match the parameter type of an overload of the <xref href=\"System.Console.WriteLine\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   syntax:
     content: public virtual void EmitWriteLine(LocalBuilder localBuilder)
     content.vb: Public Overridable Sub EmitWriteLine(localBuilder As LocalBuilder)
@@ -1476,7 +1446,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Emits the Microsoft intermediate language (MSIL) necessary to call <xref href=\"System.Console.WriteLine\" data-throw-if-not-resolved=\"false\"></xref> with the given field.</p>\n"
-  remarks: "\n<p>The type of <em>fld</em> must match the parameter type of an overload of the <xref href=\"System.Console.WriteLine\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   syntax:
     content: public virtual void EmitWriteLine(FieldInfo fld)
     content.vb: Public Overridable Sub EmitWriteLine(fld As FieldInfo)
@@ -1523,7 +1492,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Emits the Microsoft intermediate language (MSIL) to call <xref href=\"System.Console.WriteLine\" data-throw-if-not-resolved=\"false\"></xref> with a string.</p>\n"
-  remarks: "\n<p>The string must have already been defined.</p>\n"
   syntax:
     content: public virtual void EmitWriteLine(string value)
     content.vb: Public Overridable Sub EmitWriteLine(value As String)
@@ -1599,7 +1567,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Ends a lexical scope.</p>\n"
-  remarks: "\n<p>This method is used to emit symbolic information. It is used with <xref href=\"System.Reflection.Emit.ILGenerator.BeginScope\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>If the current <xref href=\"System.Reflection.Emit.ILGenerator\" data-throw-if-not-resolved=\"false\"></xref> is associated with a <xref href=\"System.Reflection.Emit.DynamicMethod\" data-throw-if-not-resolved=\"false\"></xref> object, it does not support symbolic information.</p>\n"
   syntax:
     content: public virtual void EndScope()
     content.vb: Public Overridable Sub
@@ -1636,7 +1603,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Marks the Microsoft intermediate language (MSIL) stream's current position with the given label.</p>\n"
-  remarks: "\n<p>A label cannot be defined more than once.</p>\n"
   syntax:
     content: public virtual void MarkLabel(Label loc)
     content.vb: Public Overridable Sub MarkLabel(loc As Label)
@@ -1720,7 +1686,6 @@ items:
   - System.Reflection.Emit.ILGeneration
   namespace: System.Reflection.Emit
   summary: "\n<p>Specifies the namespace to be used in evaluating locals and watches for the current active lexical scope.</p>\n"
-  remarks: "\n<p>If the current <xref href=\"System.Reflection.Emit.ILGenerator\" data-throw-if-not-resolved=\"false\"></xref> is associated with a <xref href=\"System.Reflection.Emit.DynamicMethod\" data-throw-if-not-resolved=\"false\"></xref> object, this method is not supported.</p>\n"
   syntax:
     content: public virtual void UsingNamespace(string usingNamespace)
     content.vb: Public Overridable Sub UsingNamespace(usingNamespace As String)

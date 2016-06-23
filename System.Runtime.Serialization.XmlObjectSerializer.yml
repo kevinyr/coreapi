@@ -40,7 +40,6 @@ items:
   - System.Runtime.Serialization.Xml
   namespace: System.Runtime.Serialization
   summary: "\n<p>Provides the base class used to serialize objects as XML streams or documents. This class is abstract.</p>\n"
-  remarks: "\n<p>Extend the <xref href=\"System.Runtime.Serialization.XmlObjectSerializer\" data-throw-if-not-resolved=\"false\"></xref> to create your own serializer to serialize and deserialize objects. Both the <xref href=\"System.Runtime.Serialization.DataContractSerializer\" data-throw-if-not-resolved=\"false\"></xref> class and the <xref href=\"System.Runtime.Serialization.NetDataContractSerializer\" data-throw-if-not-resolved=\"false\"></xref> class inherit from the <xref href=\"System.Runtime.Serialization.XmlObjectSerializer\" data-throw-if-not-resolved=\"false\"></xref> and are used to serialize and deserialize objects that conform to data contract rules (objects created using the <xref href=\"System.Runtime.Serialization.DataContractAttribute\" data-throw-if-not-resolved=\"false\"></xref> and the <xref href=\"System.Runtime.Serialization.DataMemberAttribute\" data-throw-if-not-resolved=\"false\"></xref>).</p>\n"
   syntax:
     content: public abstract class XmlObjectSerializer
     content.vb: Public MustInherit Class XmlObjectSerializer
@@ -97,7 +96,6 @@ items:
   - System.Runtime.Serialization.Xml
   namespace: System.Runtime.Serialization
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Runtime.Serialization.XmlObjectSerializer\" data-throw-if-not-resolved=\"false\"></xref> class.  </p>\n"
-  remarks: "\n<p>This constructor is marked protected to allow derived classes to chain constructors.</p>\n"
   syntax:
     content: protected XmlObjectSerializer()
     content.vb: Protected Sub New
@@ -128,7 +126,6 @@ items:
   - System.Runtime.Serialization.Xml
   namespace: System.Runtime.Serialization
   summary: "\n<p>Gets a value that specifies whether the <xref href=\"System.Xml.XmlDictionaryReader\" data-throw-if-not-resolved=\"false\"></xref> is positioned over an XML element that can be read.</p>\n"
-  remarks: "\n<p>This method checks if the reader is positioned on an element to read, and returns <strong>true</strong> if the element is the top-level element for the object found in the XML stream or document. The <xref href=\"System.Runtime.Serialization.XmlObjectSerializer\" data-throw-if-not-resolved=\"false\"></xref> implementation determines when to return <strong>true</strong>. Implementations may check that they are positioned on an element or look for an expected element name. One implementation of the <xref href=\"System.Runtime.Serialization.XmlObjectSerializer\" data-throw-if-not-resolved=\"false\"></xref>, the <xref href=\"System.Runtime.Serialization.DataContractSerializer\" data-throw-if-not-resolved=\"false\"></xref>, checks that it is positioned on an element and also checks that the element name is the top level expected name for the type currently being deserialized. </p>\n<p>If needed, additional attributes in the XML stream can be read while positioned on the top level element before reading XML contents using the <xref href=\"System.Runtime.Serialization.XmlObjectSerializer.ReadObject(System.IO.Stream)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   syntax:
     content: public abstract bool IsStartObject(XmlDictionaryReader reader)
     content.vb: Public MustOverride Function IsStartObject(reader As XmlDictionaryReader) As Boolean
@@ -168,7 +165,6 @@ items:
   - System.Runtime.Serialization.Xml
   namespace: System.Runtime.Serialization
   summary: "\n<p>Gets a value that specifies whether the <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> is positioned over an XML element that can be read. </p>\n"
-  remarks: "\n<p>This method checks whether the reader is positioned on an element to read, and returns <strong>true</strong> if the element is the top-level element for the object found in the XML stream or document. To return <strong>true</strong>, the found element must have an expected name. The actual expected element name depends on the implementation of the serializer. </p>\n<p>With the <xref href=\"System.Runtime.Serialization.DataContractSerializer\" data-throw-if-not-resolved=\"false\"></xref>, the starting element is specified in the constructor of the extension class.  For an example, see the constructors for the <xref href=\"System.Runtime.Serialization.DataContractSerializer\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
   syntax:
     content: public virtual bool IsStartObject(XmlReader reader)
     content.vb: Public Overridable Function IsStartObject(reader As XmlReader) As Boolean
@@ -208,7 +204,6 @@ items:
   - System.Runtime.Serialization.Xml
   namespace: System.Runtime.Serialization
   summary: "\n<p>Reads the XML stream or document with a <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref> and returns the deserialized object.</p>\n"
-  remarks: "\n<p>This method is a virtual method, and has a default implementation that creates a dictionary reader to read the underlying stream and deserialize it. The default implementation assumes the stream is text or XML. </p>\n"
   syntax:
     content: public virtual object ReadObject(Stream stream)
     content.vb: Public Overridable Function ReadObject(stream As Stream) As Object
@@ -248,7 +243,6 @@ items:
   - System.Runtime.Serialization.Xml
   namespace: System.Runtime.Serialization
   summary: "\n<p>Reads the XML document or stream with an <xref href=\"System.Xml.XmlDictionaryReader\" data-throw-if-not-resolved=\"false\"></xref> and returns the deserialized object.</p>\n"
-  remarks: "\n<p>This method is a virtual method, and has a default implementation that creates a dictionary reader to read the underlying stream and deserialize it. The default implementation assumes the stream is text or XML. </p>\n"
   syntax:
     content: public virtual object ReadObject(XmlDictionaryReader reader)
     content.vb: Public Overridable Function ReadObject(reader As XmlDictionaryReader) As Object
@@ -288,7 +282,6 @@ items:
   - System.Runtime.Serialization.Xml
   namespace: System.Runtime.Serialization
   summary: "\n<p>Reads the XML stream or document with an <xref href=\"System.Xml.XmlDictionaryReader\" data-throw-if-not-resolved=\"false\"></xref> and returns the deserialized object; it also enables you to specify whether the serializer can read the data before attempting to read it.</p>\n"
-  remarks: "\n<p>The <em>verifyObjectName</em> parameter uses the same code as the <xref href=\"System.Runtime.Serialization.XmlObjectSerializer.IsStartObject(System.Xml.XmlDictionaryReader)\" data-throw-if-not-resolved=\"false\"></xref> method to determine whether the element is the start of the object.</p>\n"
   syntax:
     content: public abstract object ReadObject(XmlDictionaryReader reader, bool verifyObjectName)
     content.vb: Public MustOverride Function ReadObject(reader As XmlDictionaryReader, verifyObjectName As Boolean) As Object
@@ -370,7 +363,6 @@ items:
   - System.Runtime.Serialization.Xml
   namespace: System.Runtime.Serialization
   summary: "\n<p>Reads the XML document or stream with an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> and returns the deserialized object; it also enables you to specify whether the serializer can read the data before attempting to read it.</p>\n"
-  remarks: "\n<p>The <em>verifyObjectName</em> parameter uses the same code as the <xref href=\"System.Runtime.Serialization.XmlObjectSerializer.IsStartObject(System.Xml.XmlDictionaryReader)\" data-throw-if-not-resolved=\"false\"></xref> method to determine whether the element is the start of the object.</p>\n"
   syntax:
     content: public virtual object ReadObject(XmlReader reader, bool verifyObjectName)
     content.vb: Public Overridable Function ReadObject(reader As XmlReader, verifyObjectName As Boolean) As Object
@@ -554,7 +546,6 @@ items:
   - System.Runtime.Serialization.Xml
   namespace: System.Runtime.Serialization
   summary: "\n<p>Writes the complete content (start, content, and end) of the object to the XML document or stream with the specified <xref href=\"System.Xml.XmlDictionaryWriter\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>This is a virtual method and has a default implementation that calls the <xref href=\"System.Runtime.Serialization.XmlObjectSerializer.WriteStartObject(System.Xml.XmlDictionaryWriter,System.Object)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Runtime.Serialization.XmlObjectSerializer.WriteObjectContent(System.Xml.XmlDictionaryWriter,System.Object)\" data-throw-if-not-resolved=\"false\"></xref>, and <xref href=\"System.Runtime.Serialization.XmlObjectSerializer.WriteEndObject(System.Xml.XmlDictionaryWriter)\" data-throw-if-not-resolved=\"false\"></xref> methods. Because of this, this method is intended to be the most commonly used method on a serializer. </p>\n"
   syntax:
     content: public virtual void WriteObject(XmlDictionaryWriter writer, object graph)
     content.vb: Public Overridable Sub WriteObject(writer As XmlDictionaryWriter, graph As Object)
@@ -604,7 +595,6 @@ items:
   - System.Runtime.Serialization.Xml
   namespace: System.Runtime.Serialization
   summary: "\n<p>Writes the complete content (start, content, and end) of the object to the XML document or stream with the specified <xref href=\"System.Xml.XmlWriter\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>This is a virtual method, and has a default implementation that delegates writing to the <xref href=\"System.Runtime.Serialization.XmlObjectSerializer.WriteObject(System.Xml.XmlDictionaryWriter,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> overload.</p>\n"
   syntax:
     content: public virtual void WriteObject(XmlWriter writer, object graph)
     content.vb: Public Overridable Sub WriteObject(writer As XmlWriter, graph As Object)

@@ -126,7 +126,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Gets or sets the string used to open the connection.</p>\n"
-  remarks: "\n<p>The exact contents of the connection string depend on the specific data source for this connection. To determine which settings are valid, see the documentation for the specific type of connection that you are using.</p>\n"
   syntax:
     content: public abstract string ConnectionString { get; set; }
     content.vb: Public MustOverride Property ConnectionString As String
@@ -207,7 +206,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Gets the name of the current database after a connection is opened, or the database name specified in the connection string before the connection is opened.</p>\n"
-  remarks: "\n<p>A connection typically updates this property dynamically when the current database changes.</p>\n"
   syntax:
     content: public abstract string Database { get; }
     content.vb: Public MustOverride ReadOnly Property Database As String
@@ -248,7 +246,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Gets the name of the database server to which to connect.</p>\n"
-  remarks: "\n<p>If the connection to the database is closed, the <xref href=\"System.Data.Common.DbConnection.DataSource\" data-throw-if-not-resolved=\"false\"></xref> returns whatever is contained in the <xref href=\"System.Data.Common.DbConnection.ConnectionString\" data-throw-if-not-resolved=\"false\"></xref> for the <strong>DataSource</strong> keyword. If the connection is open and the <xref href=\"System.Data.Common.DbConnection.ConnectionString\" data-throw-if-not-resolved=\"false\"></xref> data source keyword's value starts with \"|<strong>datadirectory</strong>|\", the property returns whatever is contained in the <xref href=\"System.Data.Common.DbConnection.ConnectionString\" data-throw-if-not-resolved=\"false\"></xref> for the <strong>DataSource</strong> keyword only. If the connection to the database is open, the property returns what the native provider returns for the <strong>DBPROP_INIT_DATASOURCE</strong>, and if that is empty, the native provider's <strong>DBPROP_DATASOURCENAME</strong> is returned. </p>\n"
   syntax:
     content: public abstract string DataSource { get; }
     content.vb: Public MustOverride ReadOnly Property DataSource As String
@@ -369,7 +366,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Occurs when the state of the event changes.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Data.Common.DbConnection.StateChange\" data-throw-if-not-resolved=\"false\"></xref> event occurs when the state of the event changes from closed to opened, or opened to closed.</p>\n"
   syntax:
     content: public virtual event StateChangeEventHandler StateChange
     content.vb: Public Overridable Event StateChange As StateChangeEventHandler
@@ -404,7 +400,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Starts a database transaction.</p>\n"
-  remarks: "\n<p>If you are creating your own connection type, override this method to implement the code necessary to begin a transaction.</p>\n"
   syntax:
     content: protected abstract DbTransaction BeginDbTransaction(IsolationLevel isolationLevel)
     content.vb: Protected MustOverride Function BeginDbTransaction(isolationLevel As IsolationLevel) As DbTransaction
@@ -444,7 +439,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Starts a database transaction.</p>\n"
-  remarks: "\n<p>If you do not specify an isolation level, the default isolation level for the specific type of connection is used.</p>\n"
   syntax:
     content: public DbTransaction BeginTransaction()
     content.vb: Public Function BeginTransaction As DbTransaction
@@ -515,7 +509,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Changes the current database for an open connection.</p>\n"
-  remarks: "\n<p>The value supplied in the <em>databaseName</em> parameter must be a valid database name for the current instance. </p>\n"
   syntax:
     content: public abstract void ChangeDatabase(string databaseName)
     content.vb: Public MustOverride Sub ChangeDatabase(databaseName As String)
@@ -554,7 +547,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Closes the connection to the database. This is the preferred method of closing any open connection.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.Data.Common.DbConnection.Close\" data-throw-if-not-resolved=\"false\"></xref> method rolls back any pending transactions. It then releases the connection to the connection pool, or closes the connection if connection pooling is disabled.</p>\n<p>An application can call <xref href=\"System.Data.Common.DbConnection.Close\" data-throw-if-not-resolved=\"false\"></xref> more than one time. No exception is generated.</p>\n<p>If the <xref href=\"System.Data.Common.DbConnection\" data-throw-if-not-resolved=\"false\"></xref> goes out of scope, it is not closed. Therefore, you must explicitly close the connection by calling <strong>Close</strong> or <strong>Dispose</strong>, which are functionally equivalent. If the connection pooling value <strong>Pooling</strong> is set to <strong>true</strong> or <strong>yes</strong>, this also releases the physical connection.</p>\n<p>Do not call <strong>Close</strong> or <strong>Dispose</strong> on a <strong>Connection</strong>, a <strong>DataReader</strong>, or any other managed object in the <strong>Finalize</strong> method of your class. In a finalizer, you should only release unmanaged resources that your class owns directly. If your class does not own any unmanaged resources, do not include a <strong>Finalize</strong> method in your class definition. For more information, see Garbage Collection.</p>\n"
   syntax:
     content: public abstract void Close()
     content.vb: Public MustOverride Sub Close
@@ -629,7 +621,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Creates and returns a <xref href=\"System.Data.Common.DbCommand\" data-throw-if-not-resolved=\"false\"></xref> object associated with the current connection.</p>\n"
-  remarks: "\n<p>If you are implementing your own connection, override this method to implement the code necessary to create and return a <xref href=\"System.Data.Common.DbCommand\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
   syntax:
     content: protected abstract DbCommand CreateDbCommand()
     content.vb: Protected MustOverride Function CreateDbCommand As DbCommand
@@ -665,7 +656,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Raises the <xref href=\"System.Data.Common.DbConnection.StateChange\" data-throw-if-not-resolved=\"false\"></xref> event.</p>\n"
-  remarks: "\n<p>Raising an event invokes the event handler through a delegate. For an overview, see NIB: Raising an Event. </p>\n"
   syntax:
     content: protected virtual void OnStateChange(StateChangeEventArgs stateChange)
     content.vb: Protected Overridable Sub OnStateChange(stateChange As StateChangeEventArgs)
@@ -702,7 +692,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Opens a database connection with the settings specified by the <xref href=\"System.Data.Common.DbConnection.ConnectionString\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>This method must be overridden with user-defined behavior. <xref href=\"System.Data.SqlClient.SqlConnection.Open\" data-throw-if-not-resolved=\"false\"></xref> will throw an exception if called again without first being closed.</p>\n"
   syntax:
     content: public abstract void Open()
     content.vb: Public MustOverride Sub Open
@@ -737,7 +726,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>An asynchronous version of <xref href=\"System.Data.Common.DbConnection.Open\" data-throw-if-not-resolved=\"false\"></xref>, which opens a database connection with the settings specified by the <xref href=\"System.Data.Common.DbConnection.ConnectionString\" data-throw-if-not-resolved=\"false\"></xref>. This method invokes the virtual method <xref href=\"System.Data.Common.DbConnection.OpenAsync(System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> with CancellationToken.None.</p>\n"
-  remarks: "\n<p>After calling <xref href=\"System.Data.Common.DbConnection.OpenAsync\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Data.Common.DbConnection.State\" data-throw-if-not-resolved=\"false\"></xref> must return <xref href=\"System.Data.ConnectionState.Connecting\" data-throw-if-not-resolved=\"false\"></xref> until the returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> is completed. Then, if the connection was successful, <xref href=\"System.Data.Common.DbConnection.State\" data-throw-if-not-resolved=\"false\"></xref> must return <xref href=\"System.Data.ConnectionState.Open\" data-throw-if-not-resolved=\"false\"></xref>. If the connection fails, <xref href=\"System.Data.Common.DbConnection.State\" data-throw-if-not-resolved=\"false\"></xref> must return <xref href=\"System.Data.ConnectionState.Closed\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>A call to <xref href=\"System.Data.Common.DbConnection.Close\" data-throw-if-not-resolved=\"false\"></xref> will attempt to cancel or close the corresponding <xref href=\"System.Data.Common.DbConnection.OpenAsync\" data-throw-if-not-resolved=\"false\"></xref> call.</p>\n<p>For more information about asynchronous programming in the .NET Framework Data Provider for SQL Server, see Asynchronous Programming.</p>\n"
   syntax:
     content: public Task OpenAsync()
     content.vb: Public Function OpenAsync As Task
@@ -771,7 +759,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>This is the asynchronous version of <xref href=\"System.Data.Common.DbConnection.Open\" data-throw-if-not-resolved=\"false\"></xref>. Providers should override with an appropriate implementation. The cancellation token can optionally be honored.</p>\n<p>The default implementation invokes the synchronous <xref href=\"System.Data.Common.DbConnection.Open\" data-throw-if-not-resolved=\"false\"></xref> call and returns a completed task. The default implementation will return a cancelled task if passed an already cancelled cancellationToken. Exceptions thrown by Open will be communicated via the returned Task Exception property.</p>\n<p>Do not invoke other methods and properties of the <strong>DbConnection</strong> object until the returned Task is complete.</p>\n"
-  remarks: "\n<p>After calling <xref href=\"System.Data.Common.DbConnection.OpenAsync\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.Data.Common.DbConnection.State\" data-throw-if-not-resolved=\"false\"></xref> must return <xref href=\"System.Data.ConnectionState.Connecting\" data-throw-if-not-resolved=\"false\"></xref> until the returned <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> is completed. Then, if the connection was successful, <xref href=\"System.Data.Common.DbConnection.State\" data-throw-if-not-resolved=\"false\"></xref> must return <xref href=\"System.Data.ConnectionState.Open\" data-throw-if-not-resolved=\"false\"></xref>. If the connection fails, <xref href=\"System.Data.Common.DbConnection.State\" data-throw-if-not-resolved=\"false\"></xref> must return <xref href=\"System.Data.ConnectionState.Closed\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>A call to <xref href=\"System.Data.Common.DbConnection.Close\" data-throw-if-not-resolved=\"false\"></xref> will attempt to cancel or close the corresponding <xref href=\"System.Data.Common.DbConnection.OpenAsync\" data-throw-if-not-resolved=\"false\"></xref> call.</p>\n<p>For more information about asynchronous programming in the .NET Framework Data Provider for SQL Server, see Asynchronous Programming.</p>\n"
   syntax:
     content: public virtual Task OpenAsync(CancellationToken cancellationToken)
     content.vb: Public Overridable Function OpenAsync(cancellationToken As CancellationToken) As Task
@@ -812,7 +799,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Begins a database transaction.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.Data.Common.DbConnection\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Data.IDbConnection\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n<p>For more information, see <xref href=\"System.Data.IDbConnection.BeginTransaction\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: IDbTransaction IDbConnection.BeginTransaction()
     content.vb: Function System.Data.IDbConnection.BeginTransaction As IDbTransaction Implements IDbConnection.BeginTransaction
@@ -847,7 +833,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Begins a database transaction with the specified <xref href=\"System.Data.IsolationLevel\" data-throw-if-not-resolved=\"false\"></xref> value.</p>\n"
-  remarks: "\n<p>For more information, see <xref href=\"System.Data.IDbConnection.BeginTransaction(System.Data.IsolationLevel)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: IDbTransaction IDbConnection.BeginTransaction(IsolationLevel isolationLevel)
     content.vb: Function System.Data.IDbConnection.BeginTransaction(isolationLevel As IsolationLevel) As IDbTransaction Implements IDbConnection.BeginTransaction
@@ -886,7 +871,6 @@ items:
   - System.Data.Common
   namespace: System.Data.Common
   summary: "\n<p>Creates and returns a <xref href=\"System.Data.Common.DbCommand\" data-throw-if-not-resolved=\"false\"></xref> object that is associated with the current connection.</p>\n"
-  remarks: "\n<p>For more information, see Commands and Parameters and <xref href=\"System.Data.IDbConnection.CreateCommand\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: IDbCommand IDbConnection.CreateCommand()
     content.vb: Function System.Data.IDbConnection.CreateCommand As IDbCommand Implements IDbConnection.CreateCommand

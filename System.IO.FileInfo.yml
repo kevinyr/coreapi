@@ -34,22 +34,31 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: FileInfo
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 16
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 33
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Provides properties and instance methods for the creation, copying, deletion, moving, and opening of files, and aids in the creation of <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> objects. This class cannot be inherited.</p>\n<p>To browse the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/io/fileinfo.cs#4ee673c1a4ecad41\">Reference Source</see>.</p>\n"
-  remarks: "\n<p>To view the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/io/fileinfo.cs#4ee673c1a4ecad41\">Reference Source</see>. You can browse through the source code online, download the reference for offline viewing, and step through the sources (including patches and updates) during debugging; see <see href=\"http://referencesource.microsoft.com/\">instructions</see>.</p>\n<p>Use the <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> class for typical operations such as copying, moving, renaming, creating, opening, deleting, and appending to files.</p>\n<p>If you are performing multiple operations on the same file, it can be more efficient to use <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> instance methods instead of the corresponding static methods of the <xref href=\"System.IO.File\" data-throw-if-not-resolved=\"false\"></xref> class, because a security check will not always be necessary.</p>\n<p>Many of the <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> methods return other I/O types when you create or open files. You can use these other types to further manipulate a file. For more information, see specific <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> members such as <xref href=\"System.IO.FileInfo.Open(System.IO.FileMode)\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.FileInfo.OpenRead\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.FileInfo.OpenText\" data-throw-if-not-resolved=\"false\"></xref>, <xref href=\"System.IO.FileInfo.CreateText\" data-throw-if-not-resolved=\"false\"></xref>, or <xref href=\"System.IO.FileInfo.Create\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>By default, full read/write access to new files is granted to all users.</p>\n<p>The following table describes the enumerations that are used to customize the behavior of various <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> methods.</p>\n<p>Enumeration </p>\n<p>Description </p>\n<table><tbody><tr><td>\n<p>\n<xref href=\"System.IO.FileAccess\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>Specifies read and write access to a file. </p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.IO.FileShare\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>Specifies the level of access permitted for a file that is already in use. </p>\n</td></tr><tr><td>\n<p>\n<xref href=\"System.IO.FileMode\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</td><td>\n<p>Specifies whether the contents of an existing file are preserved or overwritten, and whether requests to create an existing file cause an exception. </p>\n</td></tr></tbody></table>\n<p>In members that accept a path as an input string, that path must be well-formed or an exception is raised. For example, if a path is fully qualified but begins with a space, the path is not trimmed in methods of the class. Therefore, the path is malformed and an exception is raised. Similarly, a path or a combination of paths cannot be fully qualified twice. For example, \"c:\\temp c:\\windows\" also raises an exception in most cases. Ensure that your paths are well-formed when using methods that accept a path string.</p>\n<p>In members that accept a path, the path can refer to a file or just a directory. The specified path can also refer to a relative path or a Universal Naming Convention (UNC) path for a server and share name. For example, all the following are acceptable paths: </p>\n<ul><li>\n<p>\"c:\\\\MyDir\\\\MyFile.txt\" in C#, or \"c:\\MyDir\\MyFile.txt\" in Visual Basic.</p>\n</li><li>\n<p>\"c:\\\\MyDir\" in C#, or \"c:\\MyDir\" in Visual Basic.</p>\n</li><li>\n<p>\"MyDir\\\\MySubdir\" in C#, or \"MyDir\\MySubDir\" in Visual Basic.</p>\n</li><li>\n<p>\"\\\\\\\\MyServer\\\\MyShare\" in C#, or \"\\\\MyServer\\MyShare\" in Visual Basic.</p>\n</li></ul>\n<p>The <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> class provides the following properties that enable you to retrieve information about a file. For an example of how to use each property, see the property pages. </p>\n<ul><li>\n<p>The <xref href=\"System.IO.FileInfo.Directory\" data-throw-if-not-resolved=\"false\"></xref> property retrieves an object that represents the parent directory of a file.</p>\n</li><li>\n<p>The <xref href=\"System.IO.FileInfo.DirectoryName\" data-throw-if-not-resolved=\"false\"></xref> property retrieves the full path of the parent directory of a file.</p>\n</li><li>\n<p>The <xref href=\"System.IO.FileInfo.Exists\" data-throw-if-not-resolved=\"false\"></xref> property checks for the presence of a file before operating on it.</p>\n</li><li>\n<p>The <xref href=\"System.IO.FileInfo.IsReadOnly\" data-throw-if-not-resolved=\"false\"></xref> property retrieves or sets a value that specifies whether a file can be modified.</p>\n</li><li>\n<p>The <xref href=\"System.IO.FileInfo.Length\" data-throw-if-not-resolved=\"false\"></xref> retrieves the size of a file.</p>\n</li><li>\n<p>The <xref href=\"System.IO.FileInfo.Name\" data-throw-if-not-resolved=\"false\"></xref> retrieves the name of a file.</p>\n</li></ul>\n"
   syntax:
-    content: 'public sealed class FileInfo : FileSystemInfo'
+    content: >-
+      [Serializable]
+
+      [ComVisible(true)]
+
+      public sealed class FileInfo : FileSystemInfo, ISerializable
     content.vb: >-
+      <Serializable>
+
+      <ComVisible(True)>
+
       Public NotInheritable Class FileInfo
           Inherits FileSystemInfo
+          Implements ISerializable
   seealso:
   - type: System.IO.FileSystemWatcher
     commentId: T:System.IO.FileSystemWatcher
@@ -98,17 +107,16 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: .ctor
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 23
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 61
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> class, which acts as a wrapper for a file path.</p>\n"
-  remarks: "\n<p>You can specify either the fully qualified or the relative file name, but the security check gets the fully qualified name.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -161,17 +169,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Directory
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 90
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 166
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Gets an instance of the parent directory.</p>\n"
-  remarks: "\n<p>To get the parent directory as a string, use the <xref href=\"System.IO.FileInfo.DirectoryName\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n"
   syntax:
     content: public DirectoryInfo Directory { get; }
     content.vb: Public ReadOnly Property Directory As DirectoryInfo
@@ -208,17 +215,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: DirectoryName
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 80
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 146
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Gets a string representing the directory's full path.</p>\n"
-  remarks: "\n<p>To get the parent directory as a <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref> object, use the <xref href=\"System.IO.FileInfo.Directory\" data-throw-if-not-resolved=\"false\"></xref> property.</p>\n<p>When first called, <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> calls <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> and caches information about the file. On subsequent calls, you must call <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> to get the latest copy of the information.</p>\n"
   syntax:
     content: >-
       public string DirectoryName
@@ -264,17 +270,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Exists
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 205
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 316
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Gets a value indicating whether a file exists.</p>\n"
-  remarks: "\n<p>When first called, <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> calls <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> and caches information about the file. On subsequent calls, you must call <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> to get the latest copy of the information.</p>\n<p>The <xref href=\"System.IO.FileInfo.Exists\" data-throw-if-not-resolved=\"false\"></xref> property returns <strong>false</strong> if any error occurs while trying to determine if the specified file exists. This can occur in situations that raise exceptions such as passing a file name with invalid characters or too many characters, a failing or missing disk, or if the caller does not have permission to read the file.</p>\n"
   syntax:
     content: >-
       public override bool Exists
@@ -310,17 +315,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: IsReadOnly
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 101
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 177
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Gets or sets a value that determines if the current file is read only.</p>\n"
-  remarks: "\n<p>Use the <xref href=\"System.IO.FileInfo.IsReadOnly\" data-throw-if-not-resolved=\"false\"></xref> property to quickly determine or change whether the current file is read only.</p>\n<p>When first called, <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> calls <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> and caches information about the file. On subsequent calls, you must call <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> to get the latest copy of the information.</p>\n"
   syntax:
     content: public bool IsReadOnly { get; set; }
     content.vb: Public Property IsReadOnly As Boolean
@@ -363,17 +367,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Length
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 66
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 129
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Gets the size, in bytes, of the current file.</p>\n"
-  remarks: "\n<p>The value of the <xref href=\"System.IO.FileInfo.Length\" data-throw-if-not-resolved=\"false\"></xref> property is pre-cached if the current instance of the <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> object was returned from any of the following <xref href=\"System.IO.DirectoryInfo\" data-throw-if-not-resolved=\"false\"></xref>methods: </p>\n<ul><li>\n<p>\n<xref href=\"System.IO.DirectoryInfo.GetDirectories\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.IO.DirectoryInfo.GetFiles\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.IO.DirectoryInfo.GetFileSystemInfos\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.IO.DirectoryInfo.EnumerateDirectories\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.IO.DirectoryInfo.EnumerateFiles\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li><li>\n<p>\n<xref href=\"System.IO.DirectoryInfo.EnumerateFileSystemInfos\" data-throw-if-not-resolved=\"false\"></xref>\n</p>\n</li></ul>\n<p>To get the latest value, call the <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> method.</p>\n"
   syntax:
     content: >-
       public long Length
@@ -413,17 +416,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Name
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 60
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 124
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Gets the name of the file.</p>\n"
-  remarks: "\n<p>When first called, <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> calls <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> and caches information about the file. On subsequent calls, you must call <xref href=\"System.IO.FileSystemInfo.Refresh\" data-throw-if-not-resolved=\"false\"></xref> to get the latest copy of the information.</p>\n<p>The name of the file includes the file extension.</p>\n"
   syntax:
     content: public override string Name { get; }
     content.vb: Public Overrides ReadOnly Property Name As String
@@ -453,12 +455,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: AppendText
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 129
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 217
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -492,17 +494,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CopyTo
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 145
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 232
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Copies an existing file to a new file, disallowing the overwriting of an existing file.</p>\n"
-  remarks: "\n<p>Use the <xref href=\"System.IO.FileInfo.CopyTo(System.String,System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method to allow overwriting of an existing file.</p>\n<p>Whenever possible, avoid using short file names (such as XXXXXX~1.XXX) with this method. If two files have equivalent short file names then this method may fail and raise an exception and/or result in undesirable behavior</p>\n"
   syntax:
     content: public FileInfo CopyTo(string destFileName)
     content.vb: Public Function CopyTo(destFileName As String) As FileInfo
@@ -558,17 +559,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CopyTo
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 167
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 253
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Copies an existing file to a new file, allowing the overwriting of an existing file.</p>\n"
-  remarks: "\n<p>Use this method to allow or prevent overwriting of an existing file. Use the <xref href=\"System.IO.FileInfo.CopyTo(System.String)\" data-throw-if-not-resolved=\"false\"></xref>  method to prevent overwriting of an existing file by default.</p>\n<p>Whenever possible, avoid using short file names (such as XXXXXX~1.XXX) with this method. If two files have equivalent short file names then this method may fail and raise an exception and/or result in undesirable behavior</p>\n"
   syntax:
     content: public FileInfo CopyTo(string destFileName, bool overwrite)
     content.vb: Public Function CopyTo(destFileName As String, overwrite As Boolean) As FileInfo
@@ -627,17 +627,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Create
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 179
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 264
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Creates a file.</p>\n"
-  remarks: "\n<p>By default, full read/write access to new files is granted to all users.</p>\n<p>This method is a wrapper for the functionality provided by <xref href=\"System.IO.File.Create(System.String)\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: public FileStream Create()
     content.vb: Public Function Create As FileStream
@@ -664,17 +663,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: CreateText
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 123
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 212
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Creates a <xref href=\"System.IO.StreamWriter\" data-throw-if-not-resolved=\"false\"></xref> that writes a new text file.</p>\n"
-  remarks: "\n<p>By default, full read/write access to new files is granted to all users.</p>\n"
   syntax:
     content: public StreamWriter CreateText()
     content.vb: Public Function CreateText As StreamWriter
@@ -714,17 +712,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Delete
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 194
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 278
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Permanently deletes a file.</p>\n"
-  remarks: "\n<p>If the file does not exist, this method does nothing.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -767,17 +764,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: MoveTo
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 260
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 382
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Moves a specified file to a new location, providing the option to specify a new file name.</p>\n"
-  remarks: "\n<p>This method works across disk volumes. For example, the file c:\\MyFile.txt can be moved to d:\\public and renamed NewFile.txt.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -839,12 +835,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Open
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 222
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 341
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -892,12 +888,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Open
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 227
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 345
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -951,12 +947,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: Open
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 232
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 349
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1013,17 +1009,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: OpenRead
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 238
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 355
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Creates a read-only <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>This method returns a read-only <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object with the <xref href=\"System.IO.FileShare\" data-throw-if-not-resolved=\"false\"></xref> mode set to <xref href=\"System.IO.FileShare.Read\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -1066,12 +1061,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: OpenText
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 116
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 206
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
@@ -1126,17 +1121,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: OpenWrite
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 246
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 364
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Creates a write-only <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.IO.FileInfo.OpenWrite\" data-throw-if-not-resolved=\"false\"></xref> method opens a file if one already exists for the file path, or creates a new file if one does not exist. For an existing file, it does not append the new text to the existing text. Instead, it overwrites the existing characters with the new characters. If you overwrite a longer string (such as \"This is a test of the OpenWrite method\") with a shorter string (like \"Second run\"), the file will contain a mix of the strings (\"Second runtest of the OpenWrite method\").</p>\n"
   syntax:
     content: public FileStream OpenWrite()
     content.vb: Public Function OpenWrite As FileStream
@@ -1170,17 +1164,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
+      path: src/mscorlib/src/System/IO/FileInfo.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: ToString
-    path: src/System.IO.FileSystem/src/System/IO/FileInfo.cs
-    startLine: 294
+    path: src/mscorlib/src/System/IO/FileInfo.cs
+    startLine: 425
   assemblies:
   - System.IO.FileSystem
   namespace: System.IO
   summary: "\n<p>Returns the path as a string.</p>\n"
-  remarks: "\n<p>The string returned by the <xref href=\"System.IO.FileInfo.ToString\" data-throw-if-not-resolved=\"false\"></xref> method represents path that was passed to the constructor.  When you create a <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> object using the constructors, the <xref href=\"System.IO.FileInfo.ToString\" data-throw-if-not-resolved=\"false\"></xref> method returns the fully qualified path.  However, there are cases where the string returned by the <xref href=\"System.IO.FileInfo.ToString\" data-throw-if-not-resolved=\"false\"></xref> method does not represent the fully qualified path.  For example, when you create a <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> object using the <xref href=\"System.IO.DirectoryInfo.GetFiles\" data-throw-if-not-resolved=\"false\"></xref> method, the <xref href=\"System.IO.FileInfo.ToString\" data-throw-if-not-resolved=\"false\"></xref> method does not represent the fully qualified path.      </p>\n"
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String

@@ -46,7 +46,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Delimits a section of a one-dimensional array.</p>\n"
-  remarks: "\n<p>\n<xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> is a wrapper around an array that delimits a range of elements in that array. Multiple <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instances can refer to the same original array and can overlap. The original array must be one-dimensional and must have zero-based indexing. </p>\n<p>\n<xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> implements the <xref href=\"System.Collections.Generic.IReadOnlyCollection`1\" data-throw-if-not-resolved=\"false\"></xref> interface starting with the .NET Framework 4.6; in previous versions of the .NET Framework, the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure did not implement this interface. </p>\n<p>The <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure is useful whenever the elements of an array will be manipulated in distinct segments. For example: </p>\n<ul><li>\n<p>You can pass an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> object that represents only a portion of an array as an argument to a method, rather than call a relatively expensive method like <xref href=\"System.Array.Copy(System.Array,System.Int32,System.Array,System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> to pass a copy of a portion of an array.  </p>\n</li><li>\n<p>In a multithreaded app, you can use the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure to have each thread operate on only a portion of the array. </p>\n</li><li>\n<p>For task-based asynchronous operations, you can use an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> object to ensure that each task operates on a distinct segment of the array. The following example divides an array into individual segments with up to ten elements. Each element in the segment is multiplied by its segment number. The result shows that using the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> class to manipulate elements in this way changes the values of its underlying array. </p>System.ArraySegment#2</li></ul>\n<p>Note, however, that although the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure can be used to divide an array into distinct segments, the segments are not completely independent of one another. The <xref href=\"System.ArraySegment`1.Array\" data-throw-if-not-resolved=\"false\"></xref> property returns the entire original array, not a copy of the array; therefore, changes made to the array returned by the <xref href=\"System.ArraySegment`1.Array\" data-throw-if-not-resolved=\"false\"></xref> property are made to the original array. If this is undesirable, you should perform operations on a copy of the array, rather than an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> object that represents a portion of the array. </p>\n<p>The<xref href=\"System.ArraySegment`1.Equals(System.ArraySegment{`0})\" data-throw-if-not-resolved=\"false\"></xref> method and the equality and inequality operators test for reference equality when they compare two <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> objects. For two <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> objects to be considered equal, they must meet all of the following conditions: </p>\n<ul><li>\n<p>Reference the same array. </p>\n</li><li>\n<p>Begin at the same index in the array. </p>\n</li><li>\n<p>Have the same number of elements. </p>\n</li></ul>\n<p>If you want to retrieve an element by its index in the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> object, you must cast it to an <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> object and retrieve it or modify it by using the <xref href=\"System.Collections.Generic.IList`1.Item(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> property. The following example retrieves the element in an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> object that delimits a section of a string array. </p>System.ArraySegment.Class#1"
   syntax:
     content: >-
       [Serializable]
@@ -113,7 +112,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure that delimits all the elements in the specified array.</p>\n"
-  remarks: "\n<p>This constructor creates an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> that delimits all the elements of <em>array</em>. That is, the <xref href=\"System.ArraySegment`1.Offset\" data-throw-if-not-resolved=\"false\"></xref> property of the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> is 0 and its <xref href=\"System.ArraySegment`1.Count\" data-throw-if-not-resolved=\"false\"></xref> property is the length of <em>array</em>. To create an <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> that delimits only part of an array, use the <xref href=\"System.ArraySegment`1.#ctor(`0[],System.Int32,System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> constructor.</p>\n<p>The original array must be one-dimensional and must have zero-based indexing.</p>\n<p>Multiple <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instances can refer to the same original array and can overlap.</p>\n"
   syntax:
     content: public ArraySegment(T[] array)
     content.vb: Public Sub New(array As T())
@@ -158,7 +156,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure that delimits the specified range of the elements in the specified array.</p>\n"
-  remarks: "\n<p>The original array must be one-dimensional and must have zero-based indexing.</p>\n<p>Multiple <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instances can refer to the same original array and can overlap.</p>\n"
   syntax:
     content: public ArraySegment(T[] array, int offset, int count)
     content.vb: Public Sub New(array As T(), offset As Integer, count As Integer)
@@ -215,7 +212,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Gets the original array containing the range of elements that the array segment delimits.</p>\n"
-  remarks: "\n<p>The <xref href=\"System.ArraySegment`1.Array\" data-throw-if-not-resolved=\"false\"></xref> property returns the original array, not a copy of the array; therefore, changes made through the property are made directly to the original array. </p>\n"
   syntax:
     content: public T[] Array { get; }
     content.vb: Public ReadOnly Property Array As T()
@@ -347,7 +343,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Gets a value that indicates whether the array segment  is read-only.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.ICollection`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: bool ICollection<T>.IsReadOnly { get; }
     content.vb: ReadOnly WriteOnly Property System.Collections.Generic.ICollection<T>.IsReadOnly As Boolean Implements ICollection(Of T).IsReadOnly
@@ -388,7 +383,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Gets or sets the element at the specified index.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> interface, as the following example shows.</p>System.ArraySegment.Class#1"
   syntax:
     content: T IList<T>.this[int index] { get; set; }
     content.vb: ReadOnly WriteOnly Property System.Collections.Generic.IList<T>.Item(index As Integer) As T Implements IList(Of T).this
@@ -438,7 +432,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Gets the element at the specified index of the array segment.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.IReadOnlyList`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: T IReadOnlyList<T>.this[int index] { get; }
     content.vb: ReadOnly WriteOnly Property System.Collections.Generic.IReadOnlyList<T>.Item(index As Integer) As T Implements IReadOnlyList(Of T).this
@@ -488,7 +481,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Determines whether the specified <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structure is equal to the current instance.</p>\n"
-  remarks: "\n<p>Two <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> objects are considered to be equal if all the following conditions are met: </p>\n<ul><li>\n<p>They reference the same array. </p>\n</li><li>\n<p>They begin at the same index in the array. </p>\n</li><li>\n<p>They have the same number of elements. </p>\n</li></ul>\n"
   syntax:
     content: public bool Equals(ArraySegment<T> obj)
     content.vb: Public Function Equals(obj As ArraySegment(Of T)) As Boolean
@@ -529,7 +521,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Determines whether the specified object is equal to the current instance.</p>\n"
-  remarks: "\n<p>Two <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> objects are considered to be equal if all the following conditions are met: </p>\n<ul><li>\n<p>They reference the same array. </p>\n</li><li>\n<p>They begin at the same index in the array. </p>\n</li><li>\n<p>They have the same number of elements. </p>\n</li></ul>\n"
   syntax:
     content: public override bool Equals(object obj)
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
@@ -610,7 +601,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Indicates whether two <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structures are equal.</p>\n"
-  remarks: "\n<p>Two <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> objects are considered to be equal if all the following conditions are met: </p>\n<ul><li>\n<p>They reference the same array. </p>\n</li><li>\n<p>They begin at the same index. </p>\n</li><li>\n<p>They have the same number of elements. </p>\n</li></ul>\n"
   syntax:
     content: public static bool operator ==(ArraySegment<T> a, ArraySegment<T> b)
     content.vb: Public Shared Operator =(a As ArraySegment(Of T), b As ArraySegment(Of T)) As Boolean
@@ -656,7 +646,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Indicates whether two <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> structures are unequal.</p>\n"
-  remarks: "\n<p>Two <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> objects are considered to be unequal if they are of the same closed generic type but any of the following conditions is true: </p>\n<ul><li>\n<p>They do not reference the same array. </p>\n</li><li>\n<p>They have different starting indexes. </p>\n</li><li>\n<p>They have a different number of elements. </p>\n</li></ul>\n"
   syntax:
     content: public static bool operator !=(ArraySegment<T> a, ArraySegment<T> b)
     content.vb: Public Shared Operator <>(a As ArraySegment(Of T), b As ArraySegment(Of T)) As Boolean
@@ -703,7 +692,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Adds an item to the array segment.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.ICollection`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: void ICollection<T>.Add(T item)
     content.vb: Sub System.Collections.Generic.ICollection<T>.Add(item As T) Implements ICollection(Of T).Add
@@ -744,7 +732,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Removes all items from the array segment.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.ICollection`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: void ICollection<T>.Clear()
     content.vb: Sub System.Collections.Generic.ICollection<T>.Clear Implements ICollection(Of T).Clear
@@ -781,7 +768,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Determines whether the array segment contains a specific value.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.ICollection`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: bool ICollection<T>.Contains(T item)
     content.vb: Function System.Collections.Generic.ICollection<T>.Contains(item As T) As Boolean Implements ICollection(Of T).Contains
@@ -821,7 +807,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Copies the elements of the array segment to an array, starting at the specified array index.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.ICollection`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: void ICollection<T>.CopyTo(T[] array, int arrayIndex)
     content.vb: Sub System.Collections.Generic.ICollection<T>.CopyTo(array As T(), arrayIndex As Integer) Implements ICollection(Of T).CopyTo
@@ -871,7 +856,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Removes the first occurrence of a specific object from the array segment.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.ICollection`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: bool ICollection<T>.Remove(T item)
     content.vb: Function System.Collections.Generic.ICollection<T>.Remove(item As T) As Boolean Implements ICollection(Of T).Remove
@@ -915,7 +899,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns an enumerator that iterates through the array segment.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: IEnumerator<T> IEnumerable<T>.GetEnumerator()
     content.vb: Function System.Collections.Generic.IEnumerable<T>.GetEnumerator As IEnumerator(Of T) Implements IEnumerable(Of T).GetEnumerator
@@ -951,7 +934,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Determines the index of a specific item in the array segment.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: int IList<T>.IndexOf(T item)
     content.vb: Function System.Collections.Generic.IList<T>.IndexOf(item As T) As Integer Implements IList(Of T).IndexOf
@@ -991,7 +973,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Inserts an item into the array segment at the specified index.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: void IList<T>.Insert(int index, T item)
     content.vb: Sub System.Collections.Generic.IList<T>.Insert(index As Integer, item As T) Implements IList(Of T).Insert
@@ -1038,7 +1019,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Removes the array segment item at the specified index.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.Generic.IList`1\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: void IList<T>.RemoveAt(int index)
     content.vb: Sub System.Collections.Generic.IList<T>.RemoveAt(index As Integer) Implements IList(Of T).RemoveAt
@@ -1082,7 +1062,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Returns an enumerator that iterates through an array segment.</p>\n"
-  remarks: "\n<p>This member is an explicit interface member implementation. It can be used only when the <xref href=\"System.ArraySegment`1\" data-throw-if-not-resolved=\"false\"></xref> instance is cast to an <xref href=\"System.Collections.IEnumerable\" data-throw-if-not-resolved=\"false\"></xref> interface.</p>\n"
   syntax:
     content: IEnumerator IEnumerable.GetEnumerator()
     content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
