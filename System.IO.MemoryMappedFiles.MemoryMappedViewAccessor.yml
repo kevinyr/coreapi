@@ -16,12 +16,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewAccessor.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: MemoryMappedViewAccessor
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 83
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewAccessor.cs
+    startLine: 10
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -104,12 +104,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewAccessor.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: PointerOffset
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 86
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewAccessor.cs
+    startLine: 29
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -144,12 +144,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewAccessor.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SafeMemoryMappedViewHandle
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 87
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewAccessor.cs
+    startLine: 23
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -157,7 +157,13 @@ items:
   example:
   - 
   syntax:
-    content: public SafeMemoryMappedViewHandle SafeMemoryMappedViewHandle { get; }
+    content: >-
+      public SafeMemoryMappedViewHandle SafeMemoryMappedViewHandle
+
+      {
+          [SecurityCritical]
+          get;
+      }
     content.vb: Public ReadOnly Property SafeMemoryMappedViewHandle As SafeMemoryMappedViewHandle
     parameters: []
     return:
@@ -185,18 +191,24 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewAccessor.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 88
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewAccessor.cs
+    startLine: 34
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
   syntax:
-    content: protected override void Dispose(bool disposing)
-    content.vb: Protected Overrides Sub Dispose(disposing As Boolean)
+    content: >-
+      [SecuritySafeCritical]
+
+      protected override void Dispose(bool disposing)
+    content.vb: >-
+      <SecuritySafeCritical>
+
+      Protected Overrides Sub Dispose(disposing As Boolean)
     parameters:
     - id: disposing
       type: System.Boolean
@@ -220,12 +232,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
+      path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewAccessor.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Flush
-    path: src/System.IO.MemoryMappedFiles/ref/System.IO.MemoryMappedFiles.cs
-    startLine: 89
+    path: src/System.IO.MemoryMappedFiles/src/System/IO/MemoryMappedFiles/MemoryMappedViewAccessor.cs
+    startLine: 64
   assemblies:
   - System.IO.MemoryMappedFiles
   namespace: System.IO.MemoryMappedFiles
@@ -233,8 +245,14 @@ items:
   example:
   - 
   syntax:
-    content: public void Flush()
-    content.vb: Public Sub Flush
+    content: >-
+      [SecurityCritical]
+
+      public void Flush()
+    content.vb: >-
+      <SecurityCritical>
+
+      Public Sub Flush
   exceptions:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
@@ -249,29 +267,29 @@ references:
   isExternal: false
   name: System.IO.MemoryMappedFiles
   fullName: System.IO.MemoryMappedFiles
-  commentId: N:System.IO.MemoryMappedFiles
   nameWithType: System.IO.MemoryMappedFiles
+  commentId: N:System.IO.MemoryMappedFiles
 - uid: System.Object
   parent: System
   isExternal: false
   name: Object
   fullName: System.Object
-  commentId: T:System.Object
   nameWithType: Object
+  commentId: T:System.Object
 - uid: System.IO.UnmanagedMemoryAccessor
   parent: System.IO
   isExternal: false
   name: UnmanagedMemoryAccessor
   fullName: System.IO.UnmanagedMemoryAccessor
-  commentId: T:System.IO.UnmanagedMemoryAccessor
   nameWithType: UnmanagedMemoryAccessor
+  commentId: T:System.IO.UnmanagedMemoryAccessor
 - uid: System.IDisposable
   parent: System
   isExternal: false
   name: IDisposable
   fullName: System.IDisposable
-  commentId: T:System.IDisposable
   nameWithType: IDisposable
+  commentId: T:System.IDisposable
 - uid: System.IO.UnmanagedMemoryAccessor.Initialize(System.Runtime.InteropServices.SafeBuffer,System.Int64,System.Int64,System.IO.FileAccess)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -339,8 +357,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Initialize(System.Runtime.InteropServices.SafeBuffer,System.Int64,System.Int64,System.IO.FileAccess)
   nameWithType: UnmanagedMemoryAccessor.Initialize(SafeBuffer, Int64, Int64, FileAccess)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Initialize(System.Runtime.InteropServices.SafeBuffer,System.Int64,System.Int64,System.IO.FileAccess)
 - uid: System.IO.UnmanagedMemoryAccessor.Dispose
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -364,8 +382,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Dispose
   nameWithType: UnmanagedMemoryAccessor.Dispose()
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Dispose
 - uid: System.IO.UnmanagedMemoryAccessor.ReadBoolean(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -397,8 +415,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadBoolean(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadBoolean(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadBoolean(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadByte(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -430,8 +448,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadByte(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadByte(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadByte(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadChar(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -463,8 +481,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadChar(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadChar(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadChar(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadInt16(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -496,8 +514,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadInt16(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadInt16(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadInt16(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadInt32(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -529,8 +547,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadInt32(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadInt32(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadInt32(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadInt64(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -562,8 +580,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadInt64(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadInt64(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadInt64(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadDecimal(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -595,8 +613,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadDecimal(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadDecimal(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadDecimal(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadSingle(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -628,8 +646,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadSingle(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadSingle(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadSingle(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadDouble(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -661,8 +679,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadDouble(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadDouble(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadDouble(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadSByte(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -694,8 +712,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadSByte(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadSByte(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadSByte(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadUInt16(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -727,8 +745,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadUInt16(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadUInt16(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadUInt16(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadUInt32(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -760,8 +778,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadUInt32(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadUInt32(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadUInt32(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadUInt64(System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -793,8 +811,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadUInt64(System.Int64)
   nameWithType: UnmanagedMemoryAccessor.ReadUInt64(Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadUInt64(System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.Read``1(System.Int64,{T}@)
   parent: System.IO.UnmanagedMemoryAccessor
   definition: System.IO.UnmanagedMemoryAccessor.Read``1(System.Int64,``0@)
@@ -836,9 +854,9 @@ references:
     fullName: T
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Read``1(System.Int64,``0@)
   nameWithType: UnmanagedMemoryAccessor.Read<T>(Int64, T)
   nameWithType.vb: UnmanagedMemoryAccessor.Read(Of T)(Int64, T)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Read``1(System.Int64,``0@)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadArray``1(System.Int64,{T}[],System.Int32,System.Int32)
   parent: System.IO.UnmanagedMemoryAccessor
   definition: System.IO.UnmanagedMemoryAccessor.ReadArray``1(System.Int64,``0[],System.Int32,System.Int32)
@@ -908,9 +926,9 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadArray``1(System.Int64,``0[],System.Int32,System.Int32)
   nameWithType: UnmanagedMemoryAccessor.ReadArray<T>(Int64, T[], Int32, Int32)
   nameWithType.vb: UnmanagedMemoryAccessor.ReadArray(Of T)(Int64, T(), Int32, Int32)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadArray``1(System.Int64,``0[],System.Int32,System.Int32)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Boolean)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -954,8 +972,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Boolean)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, Boolean)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Boolean)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Byte)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -999,8 +1017,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Byte)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, Byte)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Byte)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Char)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1044,8 +1062,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Char)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, Char)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Char)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int16)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1089,8 +1107,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int16)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, Int16)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int16)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int32)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1134,8 +1152,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int32)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, Int32)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int32)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1179,8 +1197,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int64)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, Int64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Int64)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Decimal)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1224,8 +1242,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Decimal)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, Decimal)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Decimal)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Single)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1269,8 +1287,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Single)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, Single)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Single)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Double)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1314,8 +1332,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Double)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, Double)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.Double)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.SByte)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1359,8 +1377,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.SByte)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, SByte)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.SByte)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt16)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1404,8 +1422,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt16)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, UInt16)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt16)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt32)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1449,8 +1467,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt32)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, UInt32)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt32)
 - uid: System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt64)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -1494,8 +1512,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt64)
   nameWithType: UnmanagedMemoryAccessor.Write(Int64, UInt64)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write(System.Int64,System.UInt64)
 - uid: System.IO.UnmanagedMemoryAccessor.Write``1(System.Int64,{T}@)
   parent: System.IO.UnmanagedMemoryAccessor
   definition: System.IO.UnmanagedMemoryAccessor.Write``1(System.Int64,``0@)
@@ -1537,9 +1555,9 @@ references:
     fullName: T
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write``1(System.Int64,``0@)
   nameWithType: UnmanagedMemoryAccessor.Write<T>(Int64, T)
   nameWithType.vb: UnmanagedMemoryAccessor.Write(Of T)(Int64, T)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write``1(System.Int64,``0@)
 - uid: System.IO.UnmanagedMemoryAccessor.WriteArray``1(System.Int64,{T}[],System.Int32,System.Int32)
   parent: System.IO.UnmanagedMemoryAccessor
   definition: System.IO.UnmanagedMemoryAccessor.WriteArray``1(System.Int64,``0[],System.Int32,System.Int32)
@@ -1609,37 +1627,37 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.WriteArray``1(System.Int64,``0[],System.Int32,System.Int32)
   nameWithType: UnmanagedMemoryAccessor.WriteArray<T>(Int64, T[], Int32, Int32)
   nameWithType.vb: UnmanagedMemoryAccessor.WriteArray(Of T)(Int64, T(), Int32, Int32)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.WriteArray``1(System.Int64,``0[],System.Int32,System.Int32)
 - uid: System.IO.UnmanagedMemoryAccessor.Capacity
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
   name: Capacity
   fullName: System.IO.UnmanagedMemoryAccessor.Capacity
-  commentId: P:System.IO.UnmanagedMemoryAccessor.Capacity
   nameWithType: UnmanagedMemoryAccessor.Capacity
+  commentId: P:System.IO.UnmanagedMemoryAccessor.Capacity
 - uid: System.IO.UnmanagedMemoryAccessor.CanRead
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
   name: CanRead
   fullName: System.IO.UnmanagedMemoryAccessor.CanRead
-  commentId: P:System.IO.UnmanagedMemoryAccessor.CanRead
   nameWithType: UnmanagedMemoryAccessor.CanRead
+  commentId: P:System.IO.UnmanagedMemoryAccessor.CanRead
 - uid: System.IO.UnmanagedMemoryAccessor.CanWrite
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
   name: CanWrite
   fullName: System.IO.UnmanagedMemoryAccessor.CanWrite
-  commentId: P:System.IO.UnmanagedMemoryAccessor.CanWrite
   nameWithType: UnmanagedMemoryAccessor.CanWrite
+  commentId: P:System.IO.UnmanagedMemoryAccessor.CanWrite
 - uid: System.IO.UnmanagedMemoryAccessor.IsOpen
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
   name: IsOpen
   fullName: System.IO.UnmanagedMemoryAccessor.IsOpen
-  commentId: P:System.IO.UnmanagedMemoryAccessor.IsOpen
   nameWithType: UnmanagedMemoryAccessor.IsOpen
+  commentId: P:System.IO.UnmanagedMemoryAccessor.IsOpen
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
@@ -1663,8 +1681,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.ToString
   nameWithType: Object.ToString()
+  commentId: M:System.Object.ToString
 - uid: System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
@@ -1696,8 +1714,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object)
   nameWithType: Object.Equals(Object)
+  commentId: M:System.Object.Equals(System.Object)
 - uid: System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -1741,8 +1759,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object,System.Object)
   nameWithType: Object.Equals(Object, Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -1786,8 +1804,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   nameWithType: Object.ReferenceEquals(Object, Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
 - uid: System.Object.GetHashCode
   parent: System.Object
   isExternal: true
@@ -1811,8 +1829,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.GetHashCode
   nameWithType: Object.GetHashCode()
+  commentId: M:System.Object.GetHashCode
 - uid: System.Object.GetType
   parent: System.Object
   isExternal: true
@@ -1836,8 +1854,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.GetType
   nameWithType: Object.GetType()
+  commentId: M:System.Object.GetType
 - uid: System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
@@ -1861,20 +1879,20 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.MemberwiseClone
   nameWithType: Object.MemberwiseClone()
+  commentId: M:System.Object.MemberwiseClone
 - uid: System
   isExternal: false
   name: System
   fullName: System
-  commentId: N:System
   nameWithType: System
+  commentId: N:System
 - uid: System.IO
   isExternal: false
   name: System.IO
   fullName: System.IO
-  commentId: N:System.IO
   nameWithType: System.IO
+  commentId: N:System.IO
 - uid: System.IO.UnmanagedMemoryAccessor.Read``1(System.Int64,``0@)
   isExternal: true
   name: Read<T>(Int64, T)
@@ -1915,9 +1933,9 @@ references:
     fullName: T
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Read``1(System.Int64,``0@)
   nameWithType: UnmanagedMemoryAccessor.Read<T>(Int64, T)
   nameWithType.vb: UnmanagedMemoryAccessor.Read(Of T)(Int64, T)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Read``1(System.Int64,``0@)
 - uid: System.IO.UnmanagedMemoryAccessor.ReadArray``1(System.Int64,``0[],System.Int32,System.Int32)
   isExternal: true
   name: ReadArray<T>(Int64, T[], Int32, Int32)
@@ -1986,9 +2004,9 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadArray``1(System.Int64,``0[],System.Int32,System.Int32)
   nameWithType: UnmanagedMemoryAccessor.ReadArray<T>(Int64, T[], Int32, Int32)
   nameWithType.vb: UnmanagedMemoryAccessor.ReadArray(Of T)(Int64, T(), Int32, Int32)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.ReadArray``1(System.Int64,``0[],System.Int32,System.Int32)
 - uid: System.IO.UnmanagedMemoryAccessor.Write``1(System.Int64,``0@)
   isExternal: true
   name: Write<T>(Int64, T)
@@ -2029,9 +2047,9 @@ references:
     fullName: T
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Write``1(System.Int64,``0@)
   nameWithType: UnmanagedMemoryAccessor.Write<T>(Int64, T)
   nameWithType.vb: UnmanagedMemoryAccessor.Write(Of T)(Int64, T)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Write``1(System.Int64,``0@)
 - uid: System.IO.UnmanagedMemoryAccessor.WriteArray``1(System.Int64,``0[],System.Int32,System.Int32)
   isExternal: true
   name: WriteArray<T>(Int64, T[], Int32, Int32)
@@ -2100,29 +2118,29 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.WriteArray``1(System.Int64,``0[],System.Int32,System.Int32)
   nameWithType: UnmanagedMemoryAccessor.WriteArray<T>(Int64, T[], Int32, Int32)
   nameWithType.vb: UnmanagedMemoryAccessor.WriteArray(Of T)(Int64, T(), Int32, Int32)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.WriteArray``1(System.Int64,``0[],System.Int32,System.Int32)
 - uid: System.Int64
   parent: System
   isExternal: false
   name: Int64
   fullName: System.Int64
-  commentId: T:System.Int64
   nameWithType: Int64
+  commentId: T:System.Int64
 - uid: Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle
   parent: Microsoft.Win32.SafeHandles
   isExternal: false
   name: SafeMemoryMappedViewHandle
   fullName: Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle
-  commentId: T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle
   nameWithType: SafeMemoryMappedViewHandle
+  commentId: T:Microsoft.Win32.SafeHandles.SafeMemoryMappedViewHandle
 - uid: Microsoft.Win32.SafeHandles
   isExternal: false
   name: Microsoft.Win32.SafeHandles
   fullName: Microsoft.Win32.SafeHandles
-  commentId: N:Microsoft.Win32.SafeHandles
   nameWithType: Microsoft.Win32.SafeHandles
+  commentId: N:Microsoft.Win32.SafeHandles
 - uid: System.IO.UnmanagedMemoryAccessor.Dispose(System.Boolean)
   parent: System.IO.UnmanagedMemoryAccessor
   isExternal: true
@@ -2154,15 +2172,15 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.IO.UnmanagedMemoryAccessor.Dispose(System.Boolean)
   nameWithType: UnmanagedMemoryAccessor.Dispose(Boolean)
+  commentId: M:System.IO.UnmanagedMemoryAccessor.Dispose(System.Boolean)
 - uid: System.Boolean
   parent: System
   isExternal: false
   name: Boolean
   fullName: System.Boolean
-  commentId: T:System.Boolean
   nameWithType: Boolean
+  commentId: T:System.Boolean
 - uid: System.InvalidOperationException
   parent: System
   isExternal: false
