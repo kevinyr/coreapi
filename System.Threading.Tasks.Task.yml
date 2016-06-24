@@ -96,7 +96,6 @@ items:
   - csharp
   - vb
   name: Task
-  nameWithType: Task
   fullName: System.Threading.Tasks.Task
   type: Class
   source:
@@ -111,6 +110,39 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Represents an asynchronous operation.</p>\n<p>To browse the .NET Framework source code for this type, see the <see href=\"http://referencesource.microsoft.com/#mscorlib/system/threading/Tasks/Task.cs#045a746eb48cbaa9\">Reference Source</see>.</p>\n"
+  example:
+  - >-
+    <p>The following example creates and executes four tasks. Three tasks execute an <xref href="System.Action`1" data-throw-if-not-resolved="false"></xref> delegate named <code>action</code>, which accepts an argument of type <xref href="System.Object" data-throw-if-not-resolved="false"></xref>. A fourth task executes a lambda expression (an <xref href="System.Action" data-throw-if-not-resolved="false"></xref> delegate) that is defined inline in the call to the task creation method. Each task is instantiated and run in a different way:</p>
+
+    <ul>
+
+    <li>
+
+    <p>Task <code>t1</code> is instantiated by calling a Task class constructor, but is started by calling its <xref href="System.Threading.Tasks.Task.Start" data-throw-if-not-resolved="false"></xref> method only after task <code>t2</code> has started. </p>
+
+    </li>
+
+    <li>
+
+    <p>Task <code>t2</code> is instantiated and started in a single method call by calling the <xref href="System.Threading.Tasks.TaskFactory.StartNew(System.Action{System.Object},System.Object)" data-throw-if-not-resolved="false"></xref> method. </p>
+
+    </li>
+
+    <li>
+
+    <p>Task <code>t3</code> is instantiated and started in a single method call by calling the <xref href="System.Threading.Tasks.Task.Run(System.Action)" data-throw-if-not-resolved="false"></xref> method.  </p>
+
+    </li>
+
+    <li>
+
+    <p>Task <code>t4</code> is executed synchronously on the main thread by calling the <xref href="System.Threading.Tasks.Task.RunSynchronously" data-throw-if-not-resolved="false"></xref> method.</p>
+
+    </li>
+
+    </ul>
+
+    <p>Because task <code>t4</code> executes synchronously, it executes on the main application thread. The remaining tasks execute asynchronously typically on one or more thread pool threads. </p>System.Threading.Tasks.Task#01
   syntax:
     content: >-
       [HostProtection(Synchronization = true, ExternalThreading = true)]
@@ -150,6 +182,7 @@ items:
   modifiers.vb:
   - Public
   - Class
+  nameWithType: Task
 - uid: System.Threading.Tasks.Task.#ctor(System.Action)
   commentId: M:System.Threading.Tasks.Task.#ctor(System.Action)
   id: '#ctor(System.Action)'
@@ -158,7 +191,6 @@ items:
   - csharp
   - vb
   name: Task(Action)
-  nameWithType: Task.Task(Action)
   fullName: System.Threading.Tasks.Task.Task(System.Action)
   type: Constructor
   source:
@@ -173,6 +205,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action.</p>\n"
+  example:
+  - "\n<p>The following example uses the <xref href=\"System.Threading.Tasks.Task.#ctor(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> constructor to create tasks that retrieve the filenames in specified directories. All tasks write the file names to a single <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> object. The example then calls the <xref href=\"System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method to ensure that all tasks have completed, and then displays a count of the total number of file names written to the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> object.  </p>System.Threading.Tasks.Task.Ctor#1<p>The following example is identical, except that it used the <xref href=\"System.Threading.Tasks.Task.Run(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method to instantiate and run the task in a single operation. The method returns the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object that represents the task. </p>System.Threading.Tasks.Task.Run#1"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -197,6 +231,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Task(Action)
 - uid: System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.CancellationToken)
   id: '#ctor(System.Action,System.Threading.CancellationToken)'
@@ -205,7 +240,6 @@ items:
   - csharp
   - vb
   name: Task(Action, CancellationToken)
-  nameWithType: Task.Task(Action, CancellationToken)
   fullName: System.Threading.Tasks.Task.Task(System.Action, System.Threading.CancellationToken)
   type: Constructor
   source:
@@ -220,6 +254,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action and <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example calls the <xref href=\"System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> constructor to create a task that iterates the files in the C:\\Windows\\System32 directory. The lambda expression calls the <xref href=\"System.Threading.Tasks.Parallel.ForEach``1(System.Collections.Concurrent.Partitioner{``0},System.Action{``0})\" data-throw-if-not-resolved=\"false\"></xref> method to add information about each  file to a <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref> object. Each detached nested task invoked by the <xref href=\"System.Threading.Tasks.Parallel.ForEach``1(System.Collections.Concurrent.Partitioner{``0},System.Action{``0})\" data-throw-if-not-resolved=\"false\"></xref> loop checks the state of the cancellation token and, if cancellation is requested, calls the <xref href=\"System.Threading.CancellationToken.ThrowIfCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> method. The <xref href=\"System.Threading.CancellationToken.ThrowIfCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> method throws an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception that is handled in a <strong>catch</strong> block when the calling thread calls the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method.  The <xref href=\"System.Threading.Tasks.Task.Start\" data-throw-if-not-resolved=\"false\"></xref> method is then called to start the task. </p>System.Threading.Tasks.Task.ctor#4"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -247,6 +283,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Task(Action, CancellationToken)
 - uid: System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)
   commentId: M:System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Action,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)'
@@ -255,7 +292,6 @@ items:
   - csharp
   - vb
   name: Task(Action, CancellationToken, TaskCreationOptions)
-  nameWithType: Task.Task(Action, CancellationToken, TaskCreationOptions)
   fullName: System.Threading.Tasks.Task.Task(System.Action, System.Threading.CancellationToken, System.Threading.Tasks.TaskCreationOptions)
   type: Constructor
   source:
@@ -270,6 +306,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action and creation options.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -303,6 +341,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Task(Action, CancellationToken, TaskCreationOptions)
 - uid: System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.Tasks.TaskCreationOptions)
   commentId: M:System.Threading.Tasks.Task.#ctor(System.Action,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Action,System.Threading.Tasks.TaskCreationOptions)'
@@ -311,7 +350,6 @@ items:
   - csharp
   - vb
   name: Task(Action, TaskCreationOptions)
-  nameWithType: Task.Task(Action, TaskCreationOptions)
   fullName: System.Threading.Tasks.Task.Task(System.Action, System.Threading.Tasks.TaskCreationOptions)
   type: Constructor
   source:
@@ -326,6 +364,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action and creation options.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -353,6 +393,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Task(Action, TaskCreationOptions)
 - uid: System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object)
   commentId: M:System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object)
   id: '#ctor(System.Action{System.Object},System.Object)'
@@ -361,7 +402,6 @@ items:
   - csharp
   - vb
   name: Task(Action<Object>, Object)
-  nameWithType: Task.Task(Action<Object>, Object)
   fullName: System.Threading.Tasks.Task.Task(System.Action<System.Object>, System.Object)
   type: Constructor
   source:
@@ -376,6 +416,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action and state.</p>\n"
+  example:
+  - "\n<p>The following example defines an array of 6-letter words. Each word is then passed as an argument to the <xref href=\"System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object)\" data-throw-if-not-resolved=\"false\"></xref> constructor, whose <xref href=\"System.Action`1\" data-throw-if-not-resolved=\"false\"></xref> delegate scrambles the characters in the word, then displays the original word and its scrambled version. </p>System.Threading.Tasks.Task.ctor#3"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -399,13 +441,14 @@ items:
   seealso:
   - type: System.Threading.Tasks.TaskFactory.StartNew(System.Action{System.Object},System.Object)
     commentId: M:System.Threading.Tasks.TaskFactory.StartNew(System.Action{System.Object},System.Object)
-  nameWithType.vb: Task.Task(Action(Of Object), Object)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.Task(System.Action(Of System.Object), System.Object)
   name.vb: Task(Action(Of Object), Object)
+  nameWithType: Task.Task(Action<Object>, Object)
+  nameWithType.vb: Task.Task(Action(Of Object), Object)
 - uid: System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object,System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object,System.Threading.CancellationToken)
   id: '#ctor(System.Action{System.Object},System.Object,System.Threading.CancellationToken)'
@@ -414,7 +457,6 @@ items:
   - csharp
   - vb
   name: Task(Action<Object>, Object, CancellationToken)
-  nameWithType: Task.Task(Action<Object>, Object, CancellationToken)
   fullName: System.Threading.Tasks.Task.Task(System.Action<System.Object>, System.Object, System.Threading.CancellationToken)
   type: Constructor
   source:
@@ -429,6 +471,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action, state, and options.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -455,13 +499,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>action</em> argument is null.</p>\n"
-  nameWithType.vb: Task.Task(Action(Of Object), Object, CancellationToken)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.Task(System.Action(Of System.Object), System.Object, System.Threading.CancellationToken)
   name.vb: Task(Action(Of Object), Object, CancellationToken)
+  nameWithType: Task.Task(Action<Object>, Object, CancellationToken)
+  nameWithType.vb: Task.Task(Action(Of Object), Object, CancellationToken)
 - uid: System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)
   commentId: M:System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Action{System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskCreationOptions)'
@@ -470,7 +515,6 @@ items:
   - csharp
   - vb
   name: Task(Action<Object>, Object, CancellationToken, TaskCreationOptions)
-  nameWithType: Task.Task(Action<Object>, Object, CancellationToken, TaskCreationOptions)
   fullName: System.Threading.Tasks.Task.Task(System.Action<System.Object>, System.Object, System.Threading.CancellationToken, System.Threading.Tasks.TaskCreationOptions)
   type: Constructor
   source:
@@ -485,6 +529,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action, state, and options.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -517,13 +563,14 @@ items:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
     description: "\n<p>The <em>creationOptions</em> argument specifies an invalid value for <xref href=\"System.Threading.Tasks.TaskCreationOptions\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  nameWithType.vb: Task.Task(Action(Of Object), Object, CancellationToken, TaskCreationOptions)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.Task(System.Action(Of System.Object), System.Object, System.Threading.CancellationToken, System.Threading.Tasks.TaskCreationOptions)
   name.vb: Task(Action(Of Object), Object, CancellationToken, TaskCreationOptions)
+  nameWithType: Task.Task(Action<Object>, Object, CancellationToken, TaskCreationOptions)
+  nameWithType.vb: Task.Task(Action(Of Object), Object, CancellationToken, TaskCreationOptions)
 - uid: System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object,System.Threading.Tasks.TaskCreationOptions)
   commentId: M:System.Threading.Tasks.Task.#ctor(System.Action{System.Object},System.Object,System.Threading.Tasks.TaskCreationOptions)
   id: '#ctor(System.Action{System.Object},System.Object,System.Threading.Tasks.TaskCreationOptions)'
@@ -532,7 +579,6 @@ items:
   - csharp
   - vb
   name: Task(Action<Object>, Object, TaskCreationOptions)
-  nameWithType: Task.Task(Action<Object>, Object, TaskCreationOptions)
   fullName: System.Threading.Tasks.Task.Task(System.Action<System.Object>, System.Object, System.Threading.Tasks.TaskCreationOptions)
   type: Constructor
   source:
@@ -547,6 +593,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Initializes a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> with the specified action, state, and options.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -573,13 +621,14 @@ items:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
     description: "\n<p>The <em>creationOptions</em> argument specifies an invalid value for <xref href=\"System.Threading.Tasks.TaskCreationOptions\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  nameWithType.vb: Task.Task(Action(Of Object), Object, TaskCreationOptions)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.Task(System.Action(Of System.Object), System.Object, System.Threading.Tasks.TaskCreationOptions)
   name.vb: Task(Action(Of Object), Object, TaskCreationOptions)
+  nameWithType: Task.Task(Action<Object>, Object, TaskCreationOptions)
+  nameWithType.vb: Task.Task(Action(Of Object), Object, TaskCreationOptions)
 - uid: System.Threading.Tasks.Task.AsyncState
   commentId: P:System.Threading.Tasks.Task.AsyncState
   id: AsyncState
@@ -588,7 +637,6 @@ items:
   - csharp
   - vb
   name: AsyncState
-  nameWithType: Task.AsyncState
   fullName: System.Threading.Tasks.Task.AsyncState
   type: Property
   source:
@@ -603,6 +651,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the state object supplied when the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> was created, or null if none was supplied.</p>\n"
+  example:
+  - 
   syntax:
     content: public object AsyncState { get; }
     content.vb: Public ReadOnly Property AsyncState As Object
@@ -618,6 +668,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: Task.AsyncState
 - uid: System.Threading.Tasks.Task.CompletedTask
   commentId: P:System.Threading.Tasks.Task.CompletedTask
   id: CompletedTask
@@ -626,7 +677,6 @@ items:
   - csharp
   - vb
   name: CompletedTask
-  nameWithType: Task.CompletedTask
   fullName: System.Threading.Tasks.Task.CompletedTask
   type: Property
   source:
@@ -659,6 +709,7 @@ items:
   - Public
   - Shared
   - ReadOnly
+  nameWithType: Task.CompletedTask
 - uid: System.Threading.Tasks.Task.CreationOptions
   commentId: P:System.Threading.Tasks.Task.CreationOptions
   id: CreationOptions
@@ -667,7 +718,6 @@ items:
   - csharp
   - vb
   name: CreationOptions
-  nameWithType: Task.CreationOptions
   fullName: System.Threading.Tasks.Task.CreationOptions
   type: Property
   source:
@@ -682,6 +732,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the <xref href=\"System.Threading.Tasks.TaskCreationOptions\" data-throw-if-not-resolved=\"false\"></xref> used to create this task.</p>\n"
+  example:
+  - 
   syntax:
     content: public TaskCreationOptions CreationOptions { get; }
     content.vb: Public ReadOnly Property CreationOptions As TaskCreationOptions
@@ -695,6 +747,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: Task.CreationOptions
 - uid: System.Threading.Tasks.Task.CurrentId
   commentId: P:System.Threading.Tasks.Task.CurrentId
   id: CurrentId
@@ -703,7 +756,6 @@ items:
   - csharp
   - vb
   name: CurrentId
-  nameWithType: Task.CurrentId
   fullName: System.Threading.Tasks.Task.CurrentId
   type: Property
   source:
@@ -718,6 +770,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Returns the ID of the currently executing <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - 
   syntax:
     content: public static int ? CurrentId { get; }
     content.vb: Public Shared ReadOnly Property CurrentId As Integer?
@@ -736,6 +790,7 @@ items:
   - Public
   - Shared
   - ReadOnly
+  nameWithType: Task.CurrentId
 - uid: System.Threading.Tasks.Task.Exception
   commentId: P:System.Threading.Tasks.Task.Exception
   id: Exception
@@ -744,7 +799,6 @@ items:
   - csharp
   - vb
   name: Exception
-  nameWithType: Task.Exception
   fullName: System.Threading.Tasks.Task.Exception
   type: Property
   source:
@@ -759,6 +813,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> that caused the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to end prematurely. If the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completed successfully or has not yet thrown any exceptions, this will return <strong>null</strong>.</p>\n"
+  example:
+  - 
   syntax:
     content: public AggregateException Exception { get; }
     content.vb: Public ReadOnly Property Exception As AggregateException
@@ -772,6 +828,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: Task.Exception
 - uid: System.Threading.Tasks.Task.Factory
   commentId: P:System.Threading.Tasks.Task.Factory
   id: Factory
@@ -780,7 +837,6 @@ items:
   - csharp
   - vb
   name: Factory
-  nameWithType: Task.Factory
   fullName: System.Threading.Tasks.Task.Factory
   type: Property
   source:
@@ -795,6 +851,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Provides access to factory methods for creating and configuring <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> instances.</p>\n"
+  example:
+  - 
   syntax:
     content: public static TaskFactory Factory { get; }
     content.vb: Public Shared ReadOnly Property Factory As TaskFactory
@@ -813,6 +871,7 @@ items:
   - Public
   - Shared
   - ReadOnly
+  nameWithType: Task.Factory
 - uid: System.Threading.Tasks.Task.Id
   commentId: P:System.Threading.Tasks.Task.Id
   id: Id
@@ -821,7 +880,6 @@ items:
   - csharp
   - vb
   name: Id
-  nameWithType: Task.Id
   fullName: System.Threading.Tasks.Task.Id
   type: Property
   source:
@@ -836,6 +894,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets an ID for this <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
+  example:
+  - 
   syntax:
     content: public int Id { get; }
     content.vb: Public ReadOnly Property Id As Integer
@@ -852,6 +912,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: Task.Id
 - uid: System.Threading.Tasks.Task.IsCanceled
   commentId: P:System.Threading.Tasks.Task.IsCanceled
   id: IsCanceled
@@ -860,7 +921,6 @@ items:
   - csharp
   - vb
   name: IsCanceled
-  nameWithType: Task.IsCanceled
   fullName: System.Threading.Tasks.Task.IsCanceled
   type: Property
   source:
@@ -875,6 +935,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets whether this <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instance has completed execution due to being canceled.</p>\n"
+  example:
+  - 
   syntax:
     content: public bool IsCanceled { get; }
     content.vb: Public ReadOnly Property IsCanceled As Boolean
@@ -888,6 +950,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: Task.IsCanceled
 - uid: System.Threading.Tasks.Task.IsCompleted
   commentId: P:System.Threading.Tasks.Task.IsCompleted
   id: IsCompleted
@@ -896,7 +959,6 @@ items:
   - csharp
   - vb
   name: IsCompleted
-  nameWithType: Task.IsCompleted
   fullName: System.Threading.Tasks.Task.IsCompleted
   type: Property
   source:
@@ -911,6 +973,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets whether this <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> has completed.</p>\n"
+  example:
+  - 
   syntax:
     content: public bool IsCompleted { get; }
     content.vb: Public ReadOnly Property IsCompleted As Boolean
@@ -926,6 +990,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: Task.IsCompleted
 - uid: System.Threading.Tasks.Task.IsFaulted
   commentId: P:System.Threading.Tasks.Task.IsFaulted
   id: IsFaulted
@@ -934,7 +999,6 @@ items:
   - csharp
   - vb
   name: IsFaulted
-  nameWithType: Task.IsFaulted
   fullName: System.Threading.Tasks.Task.IsFaulted
   type: Property
   source:
@@ -949,6 +1013,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets whether the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completed due to an unhandled exception.</p>\n"
+  example:
+  - 
   syntax:
     content: public bool IsFaulted { get; }
     content.vb: Public ReadOnly Property IsFaulted As Boolean
@@ -962,6 +1028,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: Task.IsFaulted
 - uid: System.Threading.Tasks.Task.Status
   commentId: P:System.Threading.Tasks.Task.Status
   id: Status
@@ -970,7 +1037,6 @@ items:
   - csharp
   - vb
   name: Status
-  nameWithType: Task.Status
   fullName: System.Threading.Tasks.Task.Status
   type: Property
   source:
@@ -985,6 +1051,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the <xref href=\"System.Threading.Tasks.TaskStatus\" data-throw-if-not-resolved=\"false\"></xref> of this task.</p>\n"
+  example:
+  - "\n<p>The following example creates 20 tasks that will loop until a counter is incremented to a value of 2 million. When the first 10 tasks reach 2 million, the cancellation token is cancelled, and any tasks whose counters have not reached 2 million are cancelled. The example then examines the <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property of each task to indicate whether it completed successfully or was cancelled. For those that completed, it displays the value returned by the task. </p>System.Threading.Tasks.Task.Run#7"
   syntax:
     content: public TaskStatus Status { get; }
     content.vb: Public ReadOnly Property Status As TaskStatus
@@ -998,6 +1066,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: Task.Status
 - uid: System.Threading.Tasks.Task.System#IAsyncResult#AsyncWaitHandle
   commentId: P:System.Threading.Tasks.Task.System#IAsyncResult#AsyncWaitHandle
   id: System#IAsyncResult#AsyncWaitHandle
@@ -1007,7 +1076,6 @@ items:
   - csharp
   - vb
   name: IAsyncResult.AsyncWaitHandle
-  nameWithType: Task.IAsyncResult.AsyncWaitHandle
   fullName: System.Threading.Tasks.Task.System.IAsyncResult.AsyncWaitHandle
   type: Property
   source:
@@ -1022,6 +1090,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets a <xref href=\"System.Threading.WaitHandle\" data-throw-if-not-resolved=\"false\"></xref> that can be used to wait for the task to complete.</p>\n"
+  example:
+  - 
   syntax:
     content: WaitHandle IAsyncResult.AsyncWaitHandle { get; }
     content.vb: ReadOnly WriteOnly Property System.IAsyncResult.AsyncWaitHandle As WaitHandle Implements IAsyncResult.AsyncWaitHandle
@@ -1035,12 +1105,13 @@ items:
     description: "\n<p>The <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> has been disposed.</p>\n"
   implements:
   - System.IAsyncResult.AsyncWaitHandle
-  nameWithType.vb: Task.System.IAsyncResult.AsyncWaitHandle
   modifiers.csharp:
   - get
   modifiers.vb:
   - ReadOnly
   name.vb: System.IAsyncResult.AsyncWaitHandle
+  nameWithType: Task.IAsyncResult.AsyncWaitHandle
+  nameWithType.vb: Task.System.IAsyncResult.AsyncWaitHandle
 - uid: System.Threading.Tasks.Task.System#IAsyncResult#CompletedSynchronously
   commentId: P:System.Threading.Tasks.Task.System#IAsyncResult#CompletedSynchronously
   id: System#IAsyncResult#CompletedSynchronously
@@ -1050,7 +1121,6 @@ items:
   - csharp
   - vb
   name: IAsyncResult.CompletedSynchronously
-  nameWithType: Task.IAsyncResult.CompletedSynchronously
   fullName: System.Threading.Tasks.Task.System.IAsyncResult.CompletedSynchronously
   type: Property
   source:
@@ -1065,6 +1135,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets an indication of whether the operation completed synchronously.</p>\n"
+  example:
+  - 
   syntax:
     content: bool IAsyncResult.CompletedSynchronously { get; }
     content.vb: ReadOnly WriteOnly Property System.IAsyncResult.CompletedSynchronously As Boolean Implements IAsyncResult.CompletedSynchronously
@@ -1074,12 +1146,13 @@ items:
       description: "\n<p>\n<strong>true</strong> if the operation completed synchronously; otherwise, <strong>false</strong>.</p>\n"
   implements:
   - System.IAsyncResult.CompletedSynchronously
-  nameWithType.vb: Task.System.IAsyncResult.CompletedSynchronously
   modifiers.csharp:
   - get
   modifiers.vb:
   - ReadOnly
   name.vb: System.IAsyncResult.CompletedSynchronously
+  nameWithType: Task.IAsyncResult.CompletedSynchronously
+  nameWithType.vb: Task.System.IAsyncResult.CompletedSynchronously
 - uid: System.Threading.Tasks.Task.ConfigureAwait(System.Boolean)
   commentId: M:System.Threading.Tasks.Task.ConfigureAwait(System.Boolean)
   id: ConfigureAwait(System.Boolean)
@@ -1088,7 +1161,6 @@ items:
   - csharp
   - vb
   name: ConfigureAwait(Boolean)
-  nameWithType: Task.ConfigureAwait(Boolean)
   fullName: System.Threading.Tasks.Task.ConfigureAwait(System.Boolean)
   type: Method
   source:
@@ -1117,6 +1189,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.ConfigureAwait(Boolean)
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object)
   commentId: M:System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object)
@@ -1125,7 +1198,6 @@ items:
   - csharp
   - vb
   name: ContinueWith(Action<Task, Object>, Object)
-  nameWithType: Task.ContinueWith(Action<Task, Object>, Object)
   fullName: System.Threading.Tasks.Task.ContinueWith(System.Action<System.Threading.Tasks.Task, System.Object>, System.Object)
   type: Method
   source:
@@ -1163,13 +1235,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>continuationAction</em> argument is <strong>null</strong>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Action(Of Task, Object), Object)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(System.Action(Of System.Threading.Tasks.Task, System.Object), System.Object)
   name.vb: ContinueWith(Action(Of Task, Object), Object)
+  nameWithType: Task.ContinueWith(Action<Task, Object>, Object)
+  nameWithType.vb: Task.ContinueWith(Action(Of Task, Object), Object)
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.CancellationToken)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.CancellationToken)
@@ -1178,7 +1251,6 @@ items:
   - csharp
   - vb
   name: ContinueWith(Action<Task, Object>, Object, CancellationToken)
-  nameWithType: Task.ContinueWith(Action<Task, Object>, Object, CancellationToken)
   fullName: System.Threading.Tasks.Task.ContinueWith(System.Action<System.Threading.Tasks.Task, System.Object>, System.Object, System.Threading.CancellationToken)
   type: Method
   source:
@@ -1222,13 +1294,14 @@ items:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
     description: "\n<p>The provided <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> has already been disposed.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Action(Of Task, Object), Object, CancellationToken)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(System.Action(Of System.Threading.Tasks.Task, System.Object), System.Object, System.Threading.CancellationToken)
   name.vb: ContinueWith(Action(Of Task, Object), Object, CancellationToken)
+  nameWithType: Task.ContinueWith(Action<Task, Object>, Object, CancellationToken)
+  nameWithType.vb: Task.ContinueWith(Action(Of Task, Object), Object, CancellationToken)
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   commentId: M:System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
@@ -1237,7 +1310,6 @@ items:
   - csharp
   - vb
   name: ContinueWith(Action<Task, Object>, Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
-  nameWithType: Task.ContinueWith(Action<Task, Object>, Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
   fullName: System.Threading.Tasks.Task.ContinueWith(System.Action<System.Threading.Tasks.Task, System.Object>, System.Object, System.Threading.CancellationToken, System.Threading.Tasks.TaskContinuationOptions, System.Threading.Tasks.TaskScheduler)
   type: Method
   source:
@@ -1293,13 +1365,14 @@ items:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
     description: "\n<p>The provided <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> has already been disposed.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Action(Of Task, Object), Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(System.Action(Of System.Threading.Tasks.Task, System.Object), System.Object, System.Threading.CancellationToken, System.Threading.Tasks.TaskContinuationOptions, System.Threading.Tasks.TaskScheduler)
   name.vb: ContinueWith(Action(Of Task, Object), Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
+  nameWithType: Task.ContinueWith(Action<Task, Object>, Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
+  nameWithType.vb: Task.ContinueWith(Action(Of Task, Object), Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   commentId: M:System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.Tasks.TaskContinuationOptions)
@@ -1308,7 +1381,6 @@ items:
   - csharp
   - vb
   name: ContinueWith(Action<Task, Object>, Object, TaskContinuationOptions)
-  nameWithType: Task.ContinueWith(Action<Task, Object>, Object, TaskContinuationOptions)
   fullName: System.Threading.Tasks.Task.ContinueWith(System.Action<System.Threading.Tasks.Task, System.Object>, System.Object, System.Threading.Tasks.TaskContinuationOptions)
   type: Method
   source:
@@ -1352,13 +1424,14 @@ items:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
     description: "\n<p>The <em>continuationOptions</em> argument specifies an invalid value for <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Action(Of Task, Object), Object, TaskContinuationOptions)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(System.Action(Of System.Threading.Tasks.Task, System.Object), System.Object, System.Threading.Tasks.TaskContinuationOptions)
   name.vb: ContinueWith(Action(Of Task, Object), Object, TaskContinuationOptions)
+  nameWithType: Task.ContinueWith(Action<Task, Object>, Object, TaskContinuationOptions)
+  nameWithType.vb: Task.ContinueWith(Action(Of Task, Object), Object, TaskContinuationOptions)
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.Tasks.TaskScheduler)
   commentId: M:System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object,System.Threading.Tasks.TaskScheduler)
@@ -1367,7 +1440,6 @@ items:
   - csharp
   - vb
   name: ContinueWith(Action<Task, Object>, Object, TaskScheduler)
-  nameWithType: Task.ContinueWith(Action<Task, Object>, Object, TaskScheduler)
   fullName: System.Threading.Tasks.Task.ContinueWith(System.Action<System.Threading.Tasks.Task, System.Object>, System.Object, System.Threading.Tasks.TaskScheduler)
   type: Method
   source:
@@ -1411,13 +1483,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>scheduler</em> argument is <strong>null</strong>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Action(Of Task, Object), Object, TaskScheduler)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(System.Action(Of System.Threading.Tasks.Task, System.Object), System.Object, System.Threading.Tasks.TaskScheduler)
   name.vb: ContinueWith(Action(Of Task, Object), Object, TaskScheduler)
+  nameWithType: Task.ContinueWith(Action<Task, Object>, Object, TaskScheduler)
+  nameWithType.vb: Task.ContinueWith(Action(Of Task, Object), Object, TaskScheduler)
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task})
   commentId: M:System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task})
   id: ContinueWith(System.Action{System.Threading.Tasks.Task})
@@ -1426,7 +1499,6 @@ items:
   - csharp
   - vb
   name: ContinueWith(Action<Task>)
-  nameWithType: Task.ContinueWith(Action<Task>)
   fullName: System.Threading.Tasks.Task.ContinueWith(System.Action<System.Threading.Tasks.Task>)
   type: Method
   source:
@@ -1441,6 +1513,9 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completes.</p>\n"
+  example:
+  - "\n<p>The following example defines a task that populates an array with 100 random date and time values. It uses the <xref href=\"System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task})\" data-throw-if-not-resolved=\"false\"></xref> method to select the earliest and the latest date values once the array is fully populated. </p>System.Threading.Tasks.Task.ContinueWith#1<p>Because a console application may terminate before the continuation task executes, the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method is called to ensure that the continuation finishes executing before the example ends. </p>"
+  - "\n<p>For an additional example, see Chaining Tasks by Using Continuation Tasks.</p>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1461,13 +1536,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>continuationAction</em> argument is <strong>null</strong>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Action(Of Task))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(System.Action(Of System.Threading.Tasks.Task))
   name.vb: ContinueWith(Action(Of Task))
+  nameWithType: Task.ContinueWith(Action<Task>)
+  nameWithType.vb: Task.ContinueWith(Action(Of Task))
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.CancellationToken)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.CancellationToken)
@@ -1476,7 +1552,6 @@ items:
   - csharp
   - vb
   name: ContinueWith(Action<Task>, CancellationToken)
-  nameWithType: Task.ContinueWith(Action<Task>, CancellationToken)
   fullName: System.Threading.Tasks.Task.ContinueWith(System.Action<System.Threading.Tasks.Task>, System.Threading.CancellationToken)
   type: Method
   source:
@@ -1491,6 +1566,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that receives a cancellation token and executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completes.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1517,13 +1594,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>continuationAction</em> argument is null.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Action(Of Task), CancellationToken)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(System.Action(Of System.Threading.Tasks.Task), System.Threading.CancellationToken)
   name.vb: ContinueWith(Action(Of Task), CancellationToken)
+  nameWithType: Task.ContinueWith(Action<Task>, CancellationToken)
+  nameWithType.vb: Task.ContinueWith(Action(Of Task), CancellationToken)
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   commentId: M:System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
@@ -1532,7 +1610,6 @@ items:
   - csharp
   - vb
   name: ContinueWith(Action<Task>, CancellationToken, TaskContinuationOptions, TaskScheduler)
-  nameWithType: Task.ContinueWith(Action<Task>, CancellationToken, TaskContinuationOptions, TaskScheduler)
   fullName: System.Threading.Tasks.Task.ContinueWith(System.Action<System.Threading.Tasks.Task>, System.Threading.CancellationToken, System.Threading.Tasks.TaskContinuationOptions, System.Threading.Tasks.TaskScheduler)
   type: Method
   source:
@@ -1547,6 +1624,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes when the target task competes according to the specified <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>. The continuation receives a cancellation token and uses a specified scheduler. </p>\n"
+  example:
+  - "\n<p>The following is an example of using ContinueWith to run work both in the background and on the user interface threads.</p>\n<pre><code class=\"c#\">private void Button1_Click(object sender, EventArgs e)\n{\nvar backgroundScheduler = TaskScheduler.Default;\nvar uiScheduler = TaskScheduler.FromCurrentSynchronizationContext();\nTask.Factory.StartNew(delegate { DoBackgroundComputation(); },\n                 backgroundScheduler).\nContinueWith(delegate { UpdateUI(); }, uiScheduler).\n        ContinueWith(delegate { DoAnotherBackgroundComputation(); },\n                     backgroundScheduler).\n        ContinueWith(delegate { UpdateUIAgain(); }, uiScheduler);\n}</code></pre>\n<pre><code class=\"vb\">Private Sub Button1_Click(ByVal sender As System.Object, \n                  ByVal e As System.EventArgs) Handles Button1.Click\nDim backgroundScheduler = TaskScheduler.Default\nDim uiScheduler = TaskScheduler.FromCurrentSynchronizationContext()\n\nTask.Factory.StartNew(Sub()\n                   DoBackgroundComputation()\n                 End Sub, backgroundScheduler).ContinueWith(Sub(t)\n                    UpdateUI()\n                 End Sub, uiScheduler).ContinueWith(Sub(t)\n                    DoAnotherBackgroundComputation()\n                 End Sub, backgroundScheduler).ContinueWith(Sub(t)\n                    UpdateUIAgain()\n                 End Sub, uiScheduler)\nEnd Sub</code></pre>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1582,13 +1661,14 @@ items:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
     description: "\n<p>The <em>continuationOptions</em> argument specifies an invalid value for <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Action(Of Task), CancellationToken, TaskContinuationOptions, TaskScheduler)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(System.Action(Of System.Threading.Tasks.Task), System.Threading.CancellationToken, System.Threading.Tasks.TaskContinuationOptions, System.Threading.Tasks.TaskScheduler)
   name.vb: ContinueWith(Action(Of Task), CancellationToken, TaskContinuationOptions, TaskScheduler)
+  nameWithType: Task.ContinueWith(Action<Task>, CancellationToken, TaskContinuationOptions, TaskScheduler)
+  nameWithType.vb: Task.ContinueWith(Action(Of Task), CancellationToken, TaskContinuationOptions, TaskScheduler)
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.Tasks.TaskContinuationOptions)
   commentId: M:System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.Tasks.TaskContinuationOptions)
@@ -1597,7 +1677,6 @@ items:
   - csharp
   - vb
   name: ContinueWith(Action<Task>, TaskContinuationOptions)
-  nameWithType: Task.ContinueWith(Action<Task>, TaskContinuationOptions)
   fullName: System.Threading.Tasks.Task.ContinueWith(System.Action<System.Threading.Tasks.Task>, System.Threading.Tasks.TaskContinuationOptions)
   type: Method
   source:
@@ -1612,6 +1691,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes when the target task completes according to the specified <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates using <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref> to specify that a continuation task should run synchronously when the antecedent task completes. (If the specified task has already completed by the time <xref href=\"System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object)\" data-throw-if-not-resolved=\"false\"></xref> is called, the synchronous continuation will run on the thread calling <xref href=\"System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task,System.Object},System.Object)\" data-throw-if-not-resolved=\"false\"></xref>.)</p>\n<pre><code class=\"c#\">public class TaskCounter\n{\nprivate volatile int _count;\n\npublic void Track(Task t)\n{\nif (t == null) throw new ArgumentNullException(\"t\");\nInterlocked.Increment(ref _count);\nt.ContinueWith(ct => Interlocked.Decrement(ref _count), TaskContinuationOptions.ExecuteSynchronously);\n}\n\npublic int NumberOfActiveTasks { get { return _count; } }\n}</code></pre>\n<pre><code class=\"vb\">Public Class TaskCounter\nPrivate _count as Integer\n\nPublic Sub Track(ByVal t as Task)\nIf t is Nothing Then Throw New ArgumentNullException(\"t\")\nInterlocked.Increment(_count)\nt.ContinueWith(Sub(ct)\n                Interlocked.Decrement(_count)\n             End Sub,\n             TaskContinuationOptions.ExecuteSynchronously)\nEnd Sub\n\nPublic ReadOnly Property NumberOfActiveTasks As Integer\nGet\n Return _count\nEnd Get\nEnd Property\nEnd Class</code></pre>\n"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1638,13 +1719,14 @@ items:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
     description: "\n<p>The <em>continuationOptions</em> argument specifies an invalid value for <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Action(Of Task), TaskContinuationOptions)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(System.Action(Of System.Threading.Tasks.Task), System.Threading.Tasks.TaskContinuationOptions)
   name.vb: ContinueWith(Action(Of Task), TaskContinuationOptions)
+  nameWithType: Task.ContinueWith(Action<Task>, TaskContinuationOptions)
+  nameWithType.vb: Task.ContinueWith(Action(Of Task), TaskContinuationOptions)
 - uid: System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.Tasks.TaskScheduler)
   commentId: M:System.Threading.Tasks.Task.ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.Tasks.TaskScheduler)
   id: ContinueWith(System.Action{System.Threading.Tasks.Task},System.Threading.Tasks.TaskScheduler)
@@ -1653,7 +1735,6 @@ items:
   - csharp
   - vb
   name: ContinueWith(Action<Task>, TaskScheduler)
-  nameWithType: Task.ContinueWith(Action<Task>, TaskScheduler)
   fullName: System.Threading.Tasks.Task.ContinueWith(System.Action<System.Threading.Tasks.Task>, System.Threading.Tasks.TaskScheduler)
   type: Method
   source:
@@ -1668,6 +1749,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completes. The continuation uses a specified scheduler. </p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1694,13 +1777,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>continuationAction</em> argument is <strong>null</strong>. </p>\n<p>-or-</p>\n<p>The <em>scheduler</em> argument is null.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Action(Of Task), TaskScheduler)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(System.Action(Of System.Threading.Tasks.Task), System.Threading.Tasks.TaskScheduler)
   name.vb: ContinueWith(Action(Of Task), TaskScheduler)
+  nameWithType: Task.ContinueWith(Action<Task>, TaskScheduler)
+  nameWithType.vb: Task.ContinueWith(Action(Of Task), TaskScheduler)
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0})
   commentId: M:System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0})
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0})
@@ -1709,7 +1793,6 @@ items:
   - csharp
   - vb
   name: ContinueWith<TResult>(Func<Task, TResult>)
-  nameWithType: Task.ContinueWith<TResult>(Func<Task, TResult>)
   fullName: System.Threading.Tasks.Task.ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult>)
   type: Method
   source:
@@ -1724,6 +1807,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> completes and returns a value. </p>\n"
+  example:
+  - "\n<p>The following example shows how to use the ContinueWith method:</p>System.Threading.Tasks.Task#03"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1750,13 +1835,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>continuationFunction</em> argument is null.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, TResult))
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(Of TResult)(System.Func(Of System.Threading.Tasks.Task, TResult))
   name.vb: ContinueWith(Of TResult)(Func(Of Task, TResult))
+  nameWithType: Task.ContinueWith<TResult>(Func<Task, TResult>)
+  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, TResult))
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken)
@@ -1765,7 +1851,6 @@ items:
   - csharp
   - vb
   name: ContinueWith<TResult>(Func<Task, TResult>, CancellationToken)
-  nameWithType: Task.ContinueWith<TResult>(Func<Task, TResult>, CancellationToken)
   fullName: System.Threading.Tasks.Task.ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult>, System.Threading.CancellationToken)
   type: Method
   source:
@@ -1780,6 +1865,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completes and returns a value. The continuation receives a cancellation token. </p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1809,13 +1896,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>continuationFunction</em> argument is null.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, TResult), CancellationToken)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(Of TResult)(System.Func(Of System.Threading.Tasks.Task, TResult), System.Threading.CancellationToken)
   name.vb: ContinueWith(Of TResult)(Func(Of Task, TResult), CancellationToken)
+  nameWithType: Task.ContinueWith<TResult>(Func<Task, TResult>, CancellationToken)
+  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, TResult), CancellationToken)
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   commentId: M:System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
@@ -1824,7 +1912,6 @@ items:
   - csharp
   - vb
   name: ContinueWith<TResult>(Func<Task, TResult>, CancellationToken, TaskContinuationOptions, TaskScheduler)
-  nameWithType: Task.ContinueWith<TResult>(Func<Task, TResult>, CancellationToken, TaskContinuationOptions, TaskScheduler)
   fullName: System.Threading.Tasks.Task.ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult>, System.Threading.CancellationToken, System.Threading.Tasks.TaskContinuationOptions, System.Threading.Tasks.TaskScheduler)
   type: Method
   source:
@@ -1839,6 +1926,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes according to the specified continuation options and returns a value. The continuation is passed a cancellation token and uses a specified scheduler. </p>\n"
+  example:
+  - "\n<p>The following example shows how to use the ContinueWith method with continuation options:</p>System.Threading.Tasks.Task#04"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1877,13 +1966,14 @@ items:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
     description: "\n<p>The <em>continuationOptions</em> argument specifies an invalid value for <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, TResult), CancellationToken, TaskContinuationOptions, TaskScheduler)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(Of TResult)(System.Func(Of System.Threading.Tasks.Task, TResult), System.Threading.CancellationToken, System.Threading.Tasks.TaskContinuationOptions, System.Threading.Tasks.TaskScheduler)
   name.vb: ContinueWith(Of TResult)(Func(Of Task, TResult), CancellationToken, TaskContinuationOptions, TaskScheduler)
+  nameWithType: Task.ContinueWith<TResult>(Func<Task, TResult>, CancellationToken, TaskContinuationOptions, TaskScheduler)
+  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, TResult), CancellationToken, TaskContinuationOptions, TaskScheduler)
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.Tasks.TaskContinuationOptions)
   commentId: M:System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.Tasks.TaskContinuationOptions)
@@ -1892,7 +1982,6 @@ items:
   - csharp
   - vb
   name: ContinueWith<TResult>(Func<Task, TResult>, TaskContinuationOptions)
-  nameWithType: Task.ContinueWith<TResult>(Func<Task, TResult>, TaskContinuationOptions)
   fullName: System.Threading.Tasks.Task.ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult>, System.Threading.Tasks.TaskContinuationOptions)
   type: Method
   source:
@@ -1907,6 +1996,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes according to the specified continuation options and returns a value. </p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1939,13 +2030,14 @@ items:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
     description: "\n<p>The <em>continuationOptions</em> argument specifies an invalid value for <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, TResult), TaskContinuationOptions)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(Of TResult)(System.Func(Of System.Threading.Tasks.Task, TResult), System.Threading.Tasks.TaskContinuationOptions)
   name.vb: ContinueWith(Of TResult)(Func(Of Task, TResult), TaskContinuationOptions)
+  nameWithType: Task.ContinueWith<TResult>(Func<Task, TResult>, TaskContinuationOptions)
+  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, TResult), TaskContinuationOptions)
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.Tasks.TaskScheduler)
   commentId: M:System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,``0},System.Threading.Tasks.TaskScheduler)
@@ -1954,7 +2046,6 @@ items:
   - csharp
   - vb
   name: ContinueWith<TResult>(Func<Task, TResult>, TaskScheduler)
-  nameWithType: Task.ContinueWith<TResult>(Func<Task, TResult>, TaskScheduler)
   fullName: System.Threading.Tasks.Task.ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, TResult>, System.Threading.Tasks.TaskScheduler)
   type: Method
   source:
@@ -1969,6 +2060,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a continuation that executes asynchronously when the target <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> completes and returns a value. The continuation uses a specified scheduler. </p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -1998,13 +2091,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>continuationFunction</em> argument is null.</p>\n<p>-or-</p>\n<p>The <em>scheduler</em> argument is null.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, TResult), TaskScheduler)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(Of TResult)(System.Func(Of System.Threading.Tasks.Task, TResult), System.Threading.Tasks.TaskScheduler)
   name.vb: ContinueWith(Of TResult)(Func(Of Task, TResult), TaskScheduler)
+  nameWithType: Task.ContinueWith<TResult>(Func<Task, TResult>, TaskScheduler)
+  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, TResult), TaskScheduler)
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object)
   commentId: M:System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object)
@@ -2013,7 +2107,6 @@ items:
   - csharp
   - vb
   name: ContinueWith<TResult>(Func<Task, Object, TResult>, Object)
-  nameWithType: Task.ContinueWith<TResult>(Func<Task, Object, TResult>, Object)
   fullName: System.Threading.Tasks.Task.ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, System.Object, TResult>, System.Object)
   type: Method
   source:
@@ -2054,13 +2147,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>continuationFunction</em> argument is <strong>null</strong>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(Of TResult)(System.Func(Of System.Threading.Tasks.Task, System.Object, TResult), System.Object)
   name.vb: ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object)
+  nameWithType: Task.ContinueWith<TResult>(Func<Task, Object, TResult>, Object)
+  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object)
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.CancellationToken)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.CancellationToken)
@@ -2069,7 +2163,6 @@ items:
   - csharp
   - vb
   name: ContinueWith<TResult>(Func<Task, Object, TResult>, Object, CancellationToken)
-  nameWithType: Task.ContinueWith<TResult>(Func<Task, Object, TResult>, Object, CancellationToken)
   fullName: System.Threading.Tasks.Task.ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, System.Object, TResult>, System.Object, System.Threading.CancellationToken)
   type: Method
   source:
@@ -2116,13 +2209,14 @@ items:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
     description: "\n<p>The provided <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> has already been disposed.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, CancellationToken)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(Of TResult)(System.Func(Of System.Threading.Tasks.Task, System.Object, TResult), System.Object, System.Threading.CancellationToken)
   name.vb: ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, CancellationToken)
+  nameWithType: Task.ContinueWith<TResult>(Func<Task, Object, TResult>, Object, CancellationToken)
+  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, CancellationToken)
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   commentId: M:System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.CancellationToken,System.Threading.Tasks.TaskContinuationOptions,System.Threading.Tasks.TaskScheduler)
@@ -2131,7 +2225,6 @@ items:
   - csharp
   - vb
   name: ContinueWith<TResult>(Func<Task, Object, TResult>, Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
-  nameWithType: Task.ContinueWith<TResult>(Func<Task, Object, TResult>, Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
   fullName: System.Threading.Tasks.Task.ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, System.Object, TResult>, System.Object, System.Threading.CancellationToken, System.Threading.Tasks.TaskContinuationOptions, System.Threading.Tasks.TaskScheduler)
   type: Method
   source:
@@ -2190,13 +2283,14 @@ items:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
     description: "\n<p>The provided <xref href=\"System.Threading.CancellationToken\" data-throw-if-not-resolved=\"false\"></xref> has already been disposed.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(Of TResult)(System.Func(Of System.Threading.Tasks.Task, System.Object, TResult), System.Object, System.Threading.CancellationToken, System.Threading.Tasks.TaskContinuationOptions, System.Threading.Tasks.TaskScheduler)
   name.vb: ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
+  nameWithType: Task.ContinueWith<TResult>(Func<Task, Object, TResult>, Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
+  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, CancellationToken, TaskContinuationOptions, TaskScheduler)
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   commentId: M:System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.Tasks.TaskContinuationOptions)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.Tasks.TaskContinuationOptions)
@@ -2205,7 +2299,6 @@ items:
   - csharp
   - vb
   name: ContinueWith<TResult>(Func<Task, Object, TResult>, Object, TaskContinuationOptions)
-  nameWithType: Task.ContinueWith<TResult>(Func<Task, Object, TResult>, Object, TaskContinuationOptions)
   fullName: System.Threading.Tasks.Task.ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, System.Object, TResult>, System.Object, System.Threading.Tasks.TaskContinuationOptions)
   type: Method
   source:
@@ -2252,13 +2345,14 @@ items:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
     description: "\n<p>The <em>continuationOptions</em> argument specifies an invalid value for <xref href=\"System.Threading.Tasks.TaskContinuationOptions\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, TaskContinuationOptions)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(Of TResult)(System.Func(Of System.Threading.Tasks.Task, System.Object, TResult), System.Object, System.Threading.Tasks.TaskContinuationOptions)
   name.vb: ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, TaskContinuationOptions)
+  nameWithType: Task.ContinueWith<TResult>(Func<Task, Object, TResult>, Object, TaskContinuationOptions)
+  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, TaskContinuationOptions)
 - uid: System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.Tasks.TaskScheduler)
   commentId: M:System.Threading.Tasks.Task.ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.Tasks.TaskScheduler)
   id: ContinueWith``1(System.Func{System.Threading.Tasks.Task,System.Object,``0},System.Object,System.Threading.Tasks.TaskScheduler)
@@ -2267,7 +2361,6 @@ items:
   - csharp
   - vb
   name: ContinueWith<TResult>(Func<Task, Object, TResult>, Object, TaskScheduler)
-  nameWithType: Task.ContinueWith<TResult>(Func<Task, Object, TResult>, Object, TaskScheduler)
   fullName: System.Threading.Tasks.Task.ContinueWith<TResult>(System.Func<System.Threading.Tasks.Task, System.Object, TResult>, System.Object, System.Threading.Tasks.TaskScheduler)
   type: Method
   source:
@@ -2314,13 +2407,14 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>scheduler</em> argument is <strong>null</strong>.</p>\n"
-  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, TaskScheduler)
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Threading.Tasks.Task.ContinueWith(Of TResult)(System.Func(Of System.Threading.Tasks.Task, System.Object, TResult), System.Object, System.Threading.Tasks.TaskScheduler)
   name.vb: ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, TaskScheduler)
+  nameWithType: Task.ContinueWith<TResult>(Func<Task, Object, TResult>, Object, TaskScheduler)
+  nameWithType.vb: Task.ContinueWith(Of TResult)(Func(Of Task, Object, TResult), Object, TaskScheduler)
 - uid: System.Threading.Tasks.Task.Delay(System.Int32)
   commentId: M:System.Threading.Tasks.Task.Delay(System.Int32)
   id: Delay(System.Int32)
@@ -2329,7 +2423,6 @@ items:
   - csharp
   - vb
   name: Delay(Int32)
-  nameWithType: Task.Delay(Int32)
   fullName: System.Threading.Tasks.Task.Delay(System.Int32)
   type: Method
   source:
@@ -2344,6 +2437,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that completes after a time delay. </p>\n"
+  example:
+  - "\n<p>The following example shows a simple use of the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.Threading.Tasks.Task.Delay#1"
   syntax:
     content: public static Task Delay(int millisecondsDelay)
     content.vb: Public Shared Function Delay(millisecondsDelay As Integer) As Task
@@ -2364,6 +2459,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: Task.Delay(Int32)
 - uid: System.Threading.Tasks.Task.Delay(System.Int32,System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.Delay(System.Int32,System.Threading.CancellationToken)
   id: Delay(System.Int32,System.Threading.CancellationToken)
@@ -2372,7 +2468,6 @@ items:
   - csharp
   - vb
   name: Delay(Int32, CancellationToken)
-  nameWithType: Task.Delay(Int32, CancellationToken)
   fullName: System.Threading.Tasks.Task.Delay(System.Int32, System.Threading.CancellationToken)
   type: Method
   source:
@@ -2387,6 +2482,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a cancellable task that completes after a time delay. </p>\n"
+  example:
+  - "\n<p>The following example launches a task that includes a call to the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method with a one second delay. Before the delay interval elapses, the token is cancelled. The output from the example shows that, as a result, a <xref href=\"System.Threading.Tasks.TaskCanceledException\" data-throw-if-not-resolved=\"false\"></xref> is thrown, and the tasks' <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property is set to <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref>. </p>System.Threading.Tasks.Task.Delay#3"
   syntax:
     content: public static Task Delay(int millisecondsDelay, CancellationToken cancellationToken)
     content.vb: Public Shared Function Delay(millisecondsDelay As Integer, cancellationToken As CancellationToken) As Task
@@ -2416,6 +2513,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: Task.Delay(Int32, CancellationToken)
 - uid: System.Threading.Tasks.Task.Delay(System.TimeSpan)
   commentId: M:System.Threading.Tasks.Task.Delay(System.TimeSpan)
   id: Delay(System.TimeSpan)
@@ -2424,7 +2522,6 @@ items:
   - csharp
   - vb
   name: Delay(TimeSpan)
-  nameWithType: Task.Delay(TimeSpan)
   fullName: System.Threading.Tasks.Task.Delay(System.TimeSpan)
   type: Method
   source:
@@ -2439,6 +2536,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that completes after a specified time interval. </p>\n"
+  example:
+  - "\n<p>The following example shows a simple use of the <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.Threading.Tasks.Task.Delay#2"
   syntax:
     content: public static Task Delay(TimeSpan delay)
     content.vb: Public Shared Function Delay(delay As TimeSpan) As Task
@@ -2459,6 +2558,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: Task.Delay(TimeSpan)
 - uid: System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)
   id: Delay(System.TimeSpan,System.Threading.CancellationToken)
@@ -2467,7 +2567,6 @@ items:
   - csharp
   - vb
   name: Delay(TimeSpan, CancellationToken)
-  nameWithType: Task.Delay(TimeSpan, CancellationToken)
   fullName: System.Threading.Tasks.Task.Delay(System.TimeSpan, System.Threading.CancellationToken)
   type: Method
   source:
@@ -2482,6 +2581,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a cancellable task that completes after a specified time interval. </p>\n"
+  example:
+  - "\n<p>The following example launches a task that includes a call to the <xref href=\"System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method with a one-and-a-half second delay. Before the delay interval elapses, the token is cancelled. The output from the example shows that, as a result, a <xref href=\"System.Threading.Tasks.TaskCanceledException\" data-throw-if-not-resolved=\"false\"></xref> is thrown, and the tasks' <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property is set to <xref href=\"System.Threading.Tasks.TaskStatus.Canceled\" data-throw-if-not-resolved=\"false\"></xref>. </p>System.Threading.Tasks.Task.Delay#4<p>Note that this example includes a potential race condition: it depends on the task asynchronously executing the delay when the token is cancelled. Although the 1.5 second delay from the call to the <xref href=\"System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method makes that assumption likely, it is nevertheless possible that the call to the <xref href=\"System.Threading.Tasks.Task.Delay(System.TimeSpan,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method could return before the token is cancelled. In that case, the example produces the following output: </p><pre><code>Task t Status: RanToCompletion, Result: 42</code></pre>"
   syntax:
     content: public static Task Delay(TimeSpan delay, CancellationToken cancellationToken)
     content.vb: Public Shared Function Delay(delay As TimeSpan, cancellationToken As CancellationToken) As Task
@@ -2511,6 +2612,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: Task.Delay(TimeSpan, CancellationToken)
 - uid: System.Threading.Tasks.Task.FromCanceled(System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.FromCanceled(System.Threading.CancellationToken)
   id: FromCanceled(System.Threading.CancellationToken)
@@ -2519,7 +2621,6 @@ items:
   - csharp
   - vb
   name: FromCanceled(CancellationToken)
-  nameWithType: Task.FromCanceled(CancellationToken)
   fullName: System.Threading.Tasks.Task.FromCanceled(System.Threading.CancellationToken)
   type: Method
   source:
@@ -2554,6 +2655,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: Task.FromCanceled(CancellationToken)
 - uid: System.Threading.Tasks.Task.FromCanceled``1(System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.FromCanceled``1(System.Threading.CancellationToken)
   id: FromCanceled``1(System.Threading.CancellationToken)
@@ -2562,7 +2664,6 @@ items:
   - csharp
   - vb
   name: FromCanceled<TResult>(CancellationToken)
-  nameWithType: Task.FromCanceled<TResult>(CancellationToken)
   fullName: System.Threading.Tasks.Task.FromCanceled<TResult>(System.Threading.CancellationToken)
   type: Method
   source:
@@ -2594,7 +2695,6 @@ items:
   - type: System.ArgumentOutOfRangeException
     commentId: T:System.ArgumentOutOfRangeException
     description: "\n<p>Cancellation has not been requested for <em>cancellationToken</em>; its <xref href=\"System.Threading.CancellationToken.IsCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> property is <strong>false</strong>. </p>\n"
-  nameWithType.vb: Task.FromCanceled(Of TResult)(CancellationToken)
   modifiers.csharp:
   - public
   - static
@@ -2603,6 +2703,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.FromCanceled(Of TResult)(System.Threading.CancellationToken)
   name.vb: FromCanceled(Of TResult)(CancellationToken)
+  nameWithType: Task.FromCanceled<TResult>(CancellationToken)
+  nameWithType.vb: Task.FromCanceled(Of TResult)(CancellationToken)
 - uid: System.Threading.Tasks.Task.FromException(System.Exception)
   commentId: M:System.Threading.Tasks.Task.FromException(System.Exception)
   id: FromException(System.Exception)
@@ -2611,7 +2713,6 @@ items:
   - csharp
   - vb
   name: FromException(Exception)
-  nameWithType: Task.FromException(Exception)
   fullName: System.Threading.Tasks.Task.FromException(System.Exception)
   type: Method
   source:
@@ -2642,6 +2743,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: Task.FromException(Exception)
 - uid: System.Threading.Tasks.Task.FromException``1(System.Exception)
   commentId: M:System.Threading.Tasks.Task.FromException``1(System.Exception)
   id: FromException``1(System.Exception)
@@ -2650,7 +2752,6 @@ items:
   - csharp
   - vb
   name: FromException<TResult>(Exception)
-  nameWithType: Task.FromException<TResult>(Exception)
   fullName: System.Threading.Tasks.Task.FromException<TResult>(System.Exception)
   type: Method
   source:
@@ -2665,6 +2766,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> that's completed with a specified exception. </p>\n"
+  example:
+  - "\n<p>The following example is a command-line utility that calculates the number of bytes in the files in each directory whose name is passed as a command-line argument. Rather than executing a longer code path that instantiates a <xref href=\"System.IO.FileInfo\" data-throw-if-not-resolved=\"false\"></xref> object and retrieves the value of its <xref href=\"System.IO.FileInfo.Length\" data-throw-if-not-resolved=\"false\"></xref> property for each file in the directory, the example simply calls the <xref href=\"System.Threading.Tasks.Task.FromException``1(System.Exception)\" data-throw-if-not-resolved=\"false\"></xref> method to create a faulted task if a particular subdirectory does not exist. </p>System.Threading.Tasks.Task.FromResult#1"
   syntax:
     content: public static Task<TResult> FromException<TResult>(Exception exception)
     content.vb: Public Shared Function FromException(Of TResult)(exception As Exception) As Task(Of TResult)
@@ -2678,7 +2781,6 @@ items:
     return:
       type: System.Threading.Tasks.Task{{TResult}}
       description: "\n<p>The faulted task. </p>\n"
-  nameWithType.vb: Task.FromException(Of TResult)(Exception)
   modifiers.csharp:
   - public
   - static
@@ -2687,6 +2789,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.FromException(Of TResult)(System.Exception)
   name.vb: FromException(Of TResult)(Exception)
+  nameWithType: Task.FromException<TResult>(Exception)
+  nameWithType.vb: Task.FromException(Of TResult)(Exception)
 - uid: System.Threading.Tasks.Task.FromResult``1(``0)
   commentId: M:System.Threading.Tasks.Task.FromResult``1(``0)
   id: FromResult``1(``0)
@@ -2695,7 +2799,6 @@ items:
   - csharp
   - vb
   name: FromResult<TResult>(TResult)
-  nameWithType: Task.FromResult<TResult>(TResult)
   fullName: System.Threading.Tasks.Task.FromResult<TResult>(TResult)
   type: Method
   source:
@@ -2710,6 +2813,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> that's completed successfully with the specified result.</p>\n"
+  example:
+  - "\n<p>The following example is a command-line utility that calculates the number of bytes in the files in each directory whose name is passed as a command-line argument. Rather than executing a longer code path that instantiates a <xref href=\"System.IO.FileStream\" data-throw-if-not-resolved=\"false\"></xref> object and retrieves the value of its <xref href=\"System.IO.FileStream.Length\" data-throw-if-not-resolved=\"false\"></xref> property for each file in the directory, the example simply calls the <xref href=\"System.Threading.Tasks.Task.FromResult``1(``0)\" data-throw-if-not-resolved=\"false\"></xref> method to create a task whose <xref href=\"System.Threading.Tasks.Task`1.Result\" data-throw-if-not-resolved=\"false\"></xref> property is zero (0) if a directory has no files. </p>System.Threading.Tasks.Task.FromResult#1"
   syntax:
     content: public static Task<TResult> FromResult<TResult>(TResult result)
     content.vb: Public Shared Function FromResult(Of TResult)(result As TResult) As Task(Of TResult)
@@ -2726,7 +2831,6 @@ items:
   seealso:
   - type: System.Threading.Tasks.Task.CompletedTask
     commentId: P:System.Threading.Tasks.Task.CompletedTask
-  nameWithType.vb: Task.FromResult(Of TResult)(TResult)
   modifiers.csharp:
   - public
   - static
@@ -2735,6 +2839,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.FromResult(Of TResult)(TResult)
   name.vb: FromResult(Of TResult)(TResult)
+  nameWithType: Task.FromResult<TResult>(TResult)
+  nameWithType.vb: Task.FromResult(Of TResult)(TResult)
 - uid: System.Threading.Tasks.Task.GetAwaiter
   commentId: M:System.Threading.Tasks.Task.GetAwaiter
   id: GetAwaiter
@@ -2743,7 +2849,6 @@ items:
   - csharp
   - vb
   name: GetAwaiter()
-  nameWithType: Task.GetAwaiter()
   fullName: System.Threading.Tasks.Task.GetAwaiter()
   type: Method
   source:
@@ -2768,6 +2873,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.GetAwaiter()
 - uid: System.Threading.Tasks.Task.Run(System.Action)
   commentId: M:System.Threading.Tasks.Task.Run(System.Action)
   id: Run(System.Action)
@@ -2776,7 +2882,6 @@ items:
   - csharp
   - vb
   name: Run(Action)
-  nameWithType: Task.Run(Action)
   fullName: System.Threading.Tasks.Task.Run(System.Action)
   type: Method
   source:
@@ -2791,6 +2896,9 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Queues the specified work to run on the thread pool and returns a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object that represents that work.</p>\n"
+  example:
+  - "\n<p>The following example defines a <code>ShowThreadInfo</code> method  that displays the <xref href=\"System.Threading.Thread.ManagedThreadId\" data-throw-if-not-resolved=\"false\"></xref>of the current thread. It is called directly from the application thread, and is called from the <xref href=\"System.Action\" data-throw-if-not-resolved=\"false\"></xref> delegate passed to the <xref href=\"System.Threading.Tasks.Task.Run(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method. </p>System.Threading.Tasks.Task.Run#11<p>The following example is similar to the previous one, except that it uses a lambda expression to define the code that the task is to execute.    </p>System.Threading.Tasks.Task.Run#3<p>The examples show that the asynchronous task executes on a different thread than the main application thread. </p><p>The call to the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method ensures that the task completes and displays its output before the application ends. Otherwise, it is possible that the <code>Main</code> method will complete before the task finishes. </p>"
+  - "\n<p>The following example illustrates the <xref href=\"System.Threading.Tasks.Task.Run(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> method. It defines an array of directory names and starts a separate task to retrieve the file names in each directory. All tasks write the file names to a single <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> object. The example then calls the <xref href=\"System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method to ensure that all tasks have completed, and then displays a count of the total number of file names written to the <xref href=\"System.Collections.Concurrent.ConcurrentBag`1\" data-throw-if-not-resolved=\"false\"></xref> object.  </p>System.Threading.Tasks.Task.Run#1"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -2817,6 +2925,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: Task.Run(Action)
 - uid: System.Threading.Tasks.Task.Run(System.Action,System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.Run(System.Action,System.Threading.CancellationToken)
   id: Run(System.Action,System.Threading.CancellationToken)
@@ -2825,7 +2934,6 @@ items:
   - csharp
   - vb
   name: Run(Action, CancellationToken)
-  nameWithType: Task.Run(Action, CancellationToken)
   fullName: System.Threading.Tasks.Task.Run(System.Action, System.Threading.CancellationToken)
   type: Method
   source:
@@ -2840,6 +2948,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Queues the specified work to run on the thread pool and returns a <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object that represents that work. A cancellation token allows the work to be cancelled.</p>\n"
+  example:
+  - "\n<p>The following example calls the <xref href=\"System.Threading.Tasks.Task.Run(System.Action,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method to create a task that iterates the files in the C:\\Windows\\System32 directory. The lambda expression calls the <xref href=\"System.Threading.Tasks.Parallel.ForEach``1(System.Collections.Concurrent.Partitioner{``0},System.Action{``0})\" data-throw-if-not-resolved=\"false\"></xref> method to add information about each  file to a <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref> object. Each detached nested task invoked by the <xref href=\"System.Threading.Tasks.Parallel.ForEach``1(System.Collections.Concurrent.Partitioner{``0},System.Action{``0})\" data-throw-if-not-resolved=\"false\"></xref> loop checks the state of the cancellation token and, if cancellation is requested, calls the <xref href=\"System.Threading.CancellationToken.ThrowIfCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> method. The <xref href=\"System.Threading.CancellationToken.ThrowIfCancellationRequested\" data-throw-if-not-resolved=\"false\"></xref> method throws an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception that is handled in a <strong>catch</strong> block when the calling thread calls the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method. </p>System.Threading.Tasks.Task.Run#4"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -2875,6 +2985,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: Task.Run(Action, CancellationToken)
 - uid: System.Threading.Tasks.Task.Run(System.Func{System.Threading.Tasks.Task})
   commentId: M:System.Threading.Tasks.Task.Run(System.Func{System.Threading.Tasks.Task})
   id: Run(System.Func{System.Threading.Tasks.Task})
@@ -2883,7 +2994,6 @@ items:
   - csharp
   - vb
   name: Run(Func<Task>)
-  nameWithType: Task.Run(Func<Task>)
   fullName: System.Threading.Tasks.Task.Run(System.Func<System.Threading.Tasks.Task>)
   type: Method
   source:
@@ -2912,7 +3022,6 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>function</em> parameter was <strong>null</strong>.</p>\n"
-  nameWithType.vb: Task.Run(Func(Of Task))
   modifiers.csharp:
   - public
   - static
@@ -2921,6 +3030,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.Run(System.Func(Of System.Threading.Tasks.Task))
   name.vb: Run(Func(Of Task))
+  nameWithType: Task.Run(Func<Task>)
+  nameWithType.vb: Task.Run(Func(Of Task))
 - uid: System.Threading.Tasks.Task.Run(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.Run(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)
   id: Run(System.Func{System.Threading.Tasks.Task},System.Threading.CancellationToken)
@@ -2929,7 +3040,6 @@ items:
   - csharp
   - vb
   name: Run(Func<Task>, CancellationToken)
-  nameWithType: Task.Run(Func<Task>, CancellationToken)
   fullName: System.Threading.Tasks.Task.Run(System.Func<System.Threading.Tasks.Task>, System.Threading.CancellationToken)
   type: Method
   source:
@@ -2967,7 +3077,6 @@ items:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
     description: "\n<p>The <xref href=\"System.Threading.CancellationTokenSource\" data-throw-if-not-resolved=\"false\"></xref> associated with <em>cancellationToken</em> was disposed.</p>\n"
-  nameWithType.vb: Task.Run(Func(Of Task), CancellationToken)
   modifiers.csharp:
   - public
   - static
@@ -2976,6 +3085,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.Run(System.Func(Of System.Threading.Tasks.Task), System.Threading.CancellationToken)
   name.vb: Run(Func(Of Task), CancellationToken)
+  nameWithType: Task.Run(Func<Task>, CancellationToken)
+  nameWithType.vb: Task.Run(Func(Of Task), CancellationToken)
 - uid: System.Threading.Tasks.Task.Run``1(System.Func{``0})
   commentId: M:System.Threading.Tasks.Task.Run``1(System.Func{``0})
   id: Run``1(System.Func{``0})
@@ -2984,7 +3095,6 @@ items:
   - csharp
   - vb
   name: Run<TResult>(Func<TResult>)
-  nameWithType: Task.Run<TResult>(Func<TResult>)
   fullName: System.Threading.Tasks.Task.Run<TResult>(System.Func<TResult>)
   type: Method
   source:
@@ -2999,6 +3109,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Queues the specified work to run on the thread pool and returns a <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> object that represents that work. </p>\n"
+  example:
+  - "\n<p>The following example counts the approximate number of words in text files that represent published books. Each task is responsible for opening a file, reading its entire contents asynchronously, and calculating the word count by using a regular expression. The <xref href=\"System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method is called to ensure that all tasks have completed before  displaying the word count of each book to the console. </p>System.Threading.Tasks.Task.Run#2<p>The regular expression <code>\\p{P}*\\s+</code> matches zero, one, or more punctuation characters followed by one or more whitespace characters. It assumes that the total number of matches equals the approximate word count. </p>"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -3022,7 +3134,6 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>function</em> parameter is <strong>null</strong>. </p>\n"
-  nameWithType.vb: Task.Run(Of TResult)(Func(Of TResult))
   modifiers.csharp:
   - public
   - static
@@ -3031,6 +3142,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.Run(Of TResult)(System.Func(Of TResult))
   name.vb: Run(Of TResult)(Func(Of TResult))
+  nameWithType: Task.Run<TResult>(Func<TResult>)
+  nameWithType.vb: Task.Run(Of TResult)(Func(Of TResult))
 - uid: System.Threading.Tasks.Task.Run``1(System.Func{``0},System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.Run``1(System.Func{``0},System.Threading.CancellationToken)
   id: Run``1(System.Func{``0},System.Threading.CancellationToken)
@@ -3039,7 +3152,6 @@ items:
   - csharp
   - vb
   name: Run<TResult>(Func<TResult>, CancellationToken)
-  nameWithType: Task.Run<TResult>(Func<TResult>, CancellationToken)
   fullName: System.Threading.Tasks.Task.Run<TResult>(System.Func<TResult>, System.Threading.CancellationToken)
   type: Method
   source:
@@ -3054,6 +3166,9 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Queues the specified work to run on the thread pool and returns a <strong>Task(TResult)</strong> object that represents that work. A cancellation token allows the work to be cancelled.</p>\n"
+  example:
+  - "\n<p>The following example creates 20 tasks that will loop until a counter is incremented to a value of 2 million. When the first 10 tasks reach 2 million, the cancellation token is cancelled, and any tasks whose counters have not reached 2 million are cancelled. The example shows possible output.</p>System.Threading.Tasks.Task.Run#7<p>Instead of using the <xref href=\"System.AggregateException.InnerExceptions\" data-throw-if-not-resolved=\"false\"></xref> property to   examine exceptions, the example iterates all tasks to determine which have completed successfully and which have been cancelled. For those that have completed, it displays the value returned by the task.</p>"
+  - "\n<p>Because cancellation is cooperative, each task can decide how to respond to cancellation. The following example is like the first, except that, once the token is cancelled, tasks return the number of iterations they've completed rather than throw an exception. </p>System.Threading.Tasks.Task.Run#28<p>The example still must handle the <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> exception,   since any tasks that have not started when cancellation is requested still throw an exception. </p>"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoInlining)]
@@ -3086,7 +3201,6 @@ items:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
     description: "\n<p>The <xref href=\"System.Threading.CancellationTokenSource\" data-throw-if-not-resolved=\"false\"></xref> associated with <em>cancellationToken</em> was disposed.</p>\n"
-  nameWithType.vb: Task.Run(Of TResult)(Func(Of TResult), CancellationToken)
   modifiers.csharp:
   - public
   - static
@@ -3095,6 +3209,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.Run(Of TResult)(System.Func(Of TResult), System.Threading.CancellationToken)
   name.vb: Run(Of TResult)(Func(Of TResult), CancellationToken)
+  nameWithType: Task.Run<TResult>(Func<TResult>, CancellationToken)
+  nameWithType.vb: Task.Run(Of TResult)(Func(Of TResult), CancellationToken)
 - uid: System.Threading.Tasks.Task.Run``1(System.Func{System.Threading.Tasks.Task{``0}})
   commentId: M:System.Threading.Tasks.Task.Run``1(System.Func{System.Threading.Tasks.Task{``0}})
   id: Run``1(System.Func{System.Threading.Tasks.Task{``0}})
@@ -3103,7 +3219,6 @@ items:
   - csharp
   - vb
   name: Run<TResult>(Func<Task<TResult>>)
-  nameWithType: Task.Run<TResult>(Func<Task<TResult>>)
   fullName: System.Threading.Tasks.Task.Run<TResult>(System.Func<System.Threading.Tasks.Task<TResult>>)
   type: Method
   source:
@@ -3135,7 +3250,6 @@ items:
   - type: System.ArgumentNullException
     commentId: T:System.ArgumentNullException
     description: "\n<p>The <em>function</em> parameter was <strong>null</strong>.</p>\n"
-  nameWithType.vb: Task.Run(Of TResult)(Func(Of Task(Of TResult)))
   modifiers.csharp:
   - public
   - static
@@ -3144,6 +3258,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.Run(Of TResult)(System.Func(Of System.Threading.Tasks.Task(Of TResult)))
   name.vb: Run(Of TResult)(Func(Of Task(Of TResult)))
+  nameWithType: Task.Run<TResult>(Func<Task<TResult>>)
+  nameWithType.vb: Task.Run(Of TResult)(Func(Of Task(Of TResult)))
 - uid: System.Threading.Tasks.Task.Run``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.Run``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)
   id: Run``1(System.Func{System.Threading.Tasks.Task{``0}},System.Threading.CancellationToken)
@@ -3152,7 +3268,6 @@ items:
   - csharp
   - vb
   name: Run<TResult>(Func<Task<TResult>>, CancellationToken)
-  nameWithType: Task.Run<TResult>(Func<Task<TResult>>, CancellationToken)
   fullName: System.Threading.Tasks.Task.Run<TResult>(System.Func<System.Threading.Tasks.Task<TResult>>, System.Threading.CancellationToken)
   type: Method
   source:
@@ -3193,7 +3308,6 @@ items:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
     description: "\n<p>The <xref href=\"System.Threading.CancellationTokenSource\" data-throw-if-not-resolved=\"false\"></xref> associated with <em>cancellationToken</em> was disposed.</p>\n"
-  nameWithType.vb: Task.Run(Of TResult)(Func(Of Task(Of TResult)), CancellationToken)
   modifiers.csharp:
   - public
   - static
@@ -3202,6 +3316,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.Run(Of TResult)(System.Func(Of System.Threading.Tasks.Task(Of TResult)), System.Threading.CancellationToken)
   name.vb: Run(Of TResult)(Func(Of Task(Of TResult)), CancellationToken)
+  nameWithType: Task.Run<TResult>(Func<Task<TResult>>, CancellationToken)
+  nameWithType.vb: Task.Run(Of TResult)(Func(Of Task(Of TResult)), CancellationToken)
 - uid: System.Threading.Tasks.Task.RunSynchronously
   commentId: M:System.Threading.Tasks.Task.RunSynchronously
   id: RunSynchronously
@@ -3210,7 +3326,6 @@ items:
   - csharp
   - vb
   name: RunSynchronously()
-  nameWithType: Task.RunSynchronously()
   fullName: System.Threading.Tasks.Task.RunSynchronously()
   type: Method
   source:
@@ -3225,6 +3340,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Runs the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> synchronously on the current <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example compares a task executed by calling the <xref href=\"System.Threading.Tasks.Task.RunSynchronously\" data-throw-if-not-resolved=\"false\"></xref> method with one executed asynchronously. In both cases, the tasks execute identical lambda expressions that display the task ID and the ID of the thread on which the task is running. The task calculates the sum of the integers between 1 and 1,000,000. As the output from the example shows, the task executed by calling the <xref href=\"System.Threading.Tasks.Task.RunSynchronously\" data-throw-if-not-resolved=\"false\"></xref> method runs on the application thread, while the asynchronous task does not.  </p>System.Threading.Tasks.Task.RunSynchronously#1"
   syntax:
     content: public void RunSynchronously()
     content.vb: Public Sub RunSynchronously
@@ -3239,6 +3356,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.RunSynchronously()
 - uid: System.Threading.Tasks.Task.RunSynchronously(System.Threading.Tasks.TaskScheduler)
   commentId: M:System.Threading.Tasks.Task.RunSynchronously(System.Threading.Tasks.TaskScheduler)
   id: RunSynchronously(System.Threading.Tasks.TaskScheduler)
@@ -3247,7 +3365,6 @@ items:
   - csharp
   - vb
   name: RunSynchronously(TaskScheduler)
-  nameWithType: Task.RunSynchronously(TaskScheduler)
   fullName: System.Threading.Tasks.Task.RunSynchronously(System.Threading.Tasks.TaskScheduler)
   type: Method
   source:
@@ -3262,6 +3379,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Runs the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> synchronously on the <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref> provided.</p>\n"
+  example:
+  - 
   syntax:
     content: public void RunSynchronously(TaskScheduler scheduler)
     content.vb: Public Sub RunSynchronously(scheduler As TaskScheduler)
@@ -3286,6 +3405,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.RunSynchronously(TaskScheduler)
 - uid: System.Threading.Tasks.Task.Start
   commentId: M:System.Threading.Tasks.Task.Start
   id: Start
@@ -3294,7 +3414,6 @@ items:
   - csharp
   - vb
   name: Start()
-  nameWithType: Task.Start()
   fullName: System.Threading.Tasks.Task.Start()
   type: Method
   source:
@@ -3309,6 +3428,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Starts the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>, scheduling it for execution to the current <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example calls the <xref href=\"System.Threading.Tasks.Task.#ctor(System.Action)\" data-throw-if-not-resolved=\"false\"></xref> constructor to instantiate a new <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> object that displays its task ID and managed thread ID and then executes a loop. It then calls the <xref href=\"System.Threading.Tasks.Task.Start\" data-throw-if-not-resolved=\"false\"></xref> method to execute the task.  Since this is a console app, the call to the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method is necessary to prevent the app from terminating before the task finishes execution.</p>System.Threading.Tasks.Task.Start#1"
   syntax:
     content: public void Start()
     content.vb: Public Sub Start
@@ -3323,6 +3444,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Start()
 - uid: System.Threading.Tasks.Task.Start(System.Threading.Tasks.TaskScheduler)
   commentId: M:System.Threading.Tasks.Task.Start(System.Threading.Tasks.TaskScheduler)
   id: Start(System.Threading.Tasks.TaskScheduler)
@@ -3331,7 +3453,6 @@ items:
   - csharp
   - vb
   name: Start(TaskScheduler)
-  nameWithType: Task.Start(TaskScheduler)
   fullName: System.Threading.Tasks.Task.Start(System.Threading.Tasks.TaskScheduler)
   type: Method
   source:
@@ -3346,6 +3467,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Starts the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>, scheduling it for execution to the specified <xref href=\"System.Threading.Tasks.TaskScheduler\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - 
   syntax:
     content: public void Start(TaskScheduler scheduler)
     content.vb: Public Sub Start(scheduler As TaskScheduler)
@@ -3370,6 +3493,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Start(TaskScheduler)
 - uid: System.Threading.Tasks.Task.Wait
   commentId: M:System.Threading.Tasks.Task.Wait
   id: Wait
@@ -3378,7 +3502,6 @@ items:
   - csharp
   - vb
   name: Wait()
-  nameWithType: Task.Wait()
   fullName: System.Threading.Tasks.Task.Wait()
   type: Method
   source:
@@ -3393,6 +3516,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to complete execution.</p>\n"
+  example:
+  - "\n<p>The following example starts a task that generates one million random integers between 0 and 100 and computes their mean. The example uses the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method to ensure that the task completes before the application terminates. Otherwise, because this is a console application, the example would terminate before the task can compute and display the mean. </p>System.Threading.Tasks.Task.Wait#1"
   syntax:
     content: public void Wait()
     content.vb: Public Sub Wait
@@ -3407,6 +3532,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Wait()
 - uid: System.Threading.Tasks.Task.Wait(System.Int32)
   commentId: M:System.Threading.Tasks.Task.Wait(System.Int32)
   id: Wait(System.Int32)
@@ -3415,7 +3541,6 @@ items:
   - csharp
   - vb
   name: Wait(Int32)
-  nameWithType: Task.Wait(Int32)
   fullName: System.Threading.Tasks.Task.Wait(System.Int32)
   type: Method
   source:
@@ -3430,6 +3555,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to complete execution within a specified number of milliseconds.</p>\n"
+  example:
+  - "\n<p>The following example starts a task that generates five million random integers between 0 and 100 and computes their mean. The example uses the <xref href=\"System.Threading.Tasks.Task.Wait(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method to wait for the application to complete within 150 milliseconds. If the application completes normally, the task displays the sum and mean of the random numbers that it has generated. If the timeout interval has elapsed, the example displays a message before it terminates. </p>System.Threading.Tasks.Task.Wait#5"
   syntax:
     content: public bool Wait(int millisecondsTimeout)
     content.vb: Public Function Wait(millisecondsTimeout As Integer) As Boolean
@@ -3454,6 +3581,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Wait(Int32)
 - uid: System.Threading.Tasks.Task.Wait(System.Int32,System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.Wait(System.Int32,System.Threading.CancellationToken)
   id: Wait(System.Int32,System.Threading.CancellationToken)
@@ -3462,7 +3590,6 @@ items:
   - csharp
   - vb
   name: Wait(Int32, CancellationToken)
-  nameWithType: Task.Wait(Int32, CancellationToken)
   fullName: System.Threading.Tasks.Task.Wait(System.Int32, System.Threading.CancellationToken)
   type: Method
   source:
@@ -3477,6 +3604,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to complete execution. The wait terminates if a timeout interval elapses or a cancellation token is canceled before the task completes. </p>\n"
+  example:
+  - "\n<p>The following example calls the <xref href=\"System.Threading.Tasks.Task.Wait(System.Int32,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method to provide both a timeout value and a cancellation token that can end the wait for a task's completion. A new thread is started and executes the <code>CancelToken</code> method, which pauses and then calls the <xref href=\"System.Threading.CancellationTokenSource.Cancel(System.Boolean)\" data-throw-if-not-resolved=\"false\"></xref> method to cancel the cancellation tokens. A task is then launched and delays for 5 seconds. The <xref href=\"System.Threading.Tasks.Task.Wait(System.Int32,System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method is then called to wait for the task's completion and is provided both a brief timeout value and a cancellation token. </p>System.Threading.Tasks.Task.Wait#4<p>Note that the precise output from the example depends on whether the wait was canceled because of the cancellation token or because the timeout interval elapsed. </p>"
   syntax:
     content: public bool Wait(int millisecondsTimeout, CancellationToken cancellationToken)
     content.vb: Public Function Wait(millisecondsTimeout As Integer, cancellationToken As CancellationToken) As Boolean
@@ -3507,6 +3636,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Wait(Int32, CancellationToken)
 - uid: System.Threading.Tasks.Task.Wait(System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.Wait(System.Threading.CancellationToken)
   id: Wait(System.Threading.CancellationToken)
@@ -3515,7 +3645,6 @@ items:
   - csharp
   - vb
   name: Wait(CancellationToken)
-  nameWithType: Task.Wait(CancellationToken)
   fullName: System.Threading.Tasks.Task.Wait(System.Threading.CancellationToken)
   type: Method
   source:
@@ -3530,6 +3659,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to complete execution. The wait terminates if a cancellation token is canceled before the task completes. </p>\n"
+  example:
+  - "\n<p>The following example illustrates the simple use of a cancellation token to cancel waiting for a task's completion. A task is launched, calls the <xref href=\"System.Threading.CancellationTokenSource.Cancel\" data-throw-if-not-resolved=\"false\"></xref> method to cancel any of the token source's cancellation tokens, and then delays for five seconds. Note that the task itself has not been passed the cancellation token and is not cancelable. The application thread calls the task's <xref href=\"System.Threading.Tasks.Task.Wait(System.Threading.CancellationToken)\" data-throw-if-not-resolved=\"false\"></xref> method to wait for the task to complete, but the wait is canceled once the cancellation token is cancelled and an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> is thrown. The exception handler reports the exception and then sleeps for six seconds. As the output from the example shows, that delay allows the task to complete in the <xref href=\"System.Threading.Tasks.TaskStatus.RanToCompletion\" data-throw-if-not-resolved=\"false\"></xref> state. </p>System.Threading.Tasks.Task.Wait#3"
   syntax:
     content: public void Wait(CancellationToken cancellationToken)
     content.vb: Public Sub Wait(cancellationToken As CancellationToken)
@@ -3551,6 +3682,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Wait(CancellationToken)
 - uid: System.Threading.Tasks.Task.Wait(System.TimeSpan)
   commentId: M:System.Threading.Tasks.Task.Wait(System.TimeSpan)
   id: Wait(System.TimeSpan)
@@ -3559,7 +3691,6 @@ items:
   - csharp
   - vb
   name: Wait(TimeSpan)
-  nameWithType: Task.Wait(TimeSpan)
   fullName: System.Threading.Tasks.Task.Wait(System.TimeSpan)
   type: Method
   source:
@@ -3574,6 +3705,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> to complete execution within a specified time interval.</p>\n"
+  example:
+  - "\n<p>The following example starts a task that generates five million random integers between 0 and 100 and computes their mean. The example uses the <xref href=\"System.Threading.Tasks.Task.Wait(System.TimeSpan)\" data-throw-if-not-resolved=\"false\"></xref> method to wait for the application to complete within 150 milliseconds. If the application completes normally, the task displays the sum and mean of the random numbers that it has generated. If the timeout interval has elapsed, the example displays a message before it terminates. </p>System.Threading.Tasks.Task.Wait#6"
   syntax:
     content: public bool Wait(TimeSpan timeout)
     content.vb: Public Function Wait(timeout As TimeSpan) As Boolean
@@ -3598,6 +3731,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: Task.Wait(TimeSpan)
 - uid: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])
   commentId: M:System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])
   id: WaitAll(System.Threading.Tasks.Task[])
@@ -3606,7 +3740,6 @@ items:
   - csharp
   - vb
   name: WaitAll(Task[])
-  nameWithType: Task.WaitAll(Task[])
   fullName: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])
   type: Method
   source:
@@ -3621,6 +3754,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution.</p>\n"
+  example:
+  - "\n<p>The following example starts 10 tasks, each of which is passed an index as a state object. Tasks with an index from two to five throw exceptions. The call to the <xref href=\"System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method wraps all exceptions in an <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> object and propagates it to the calling thread. </p>System.Threading.Tasks.Task#02"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -3647,7 +3782,6 @@ items:
   - type: System.AggregateException
     commentId: T:System.AggregateException
     description: "\n<p>At least one of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances was canceled. If a task was canceled, the <xref href=\"System.AggregateException\" data-throw-if-not-resolved=\"false\"></xref> exception contains an <xref href=\"System.OperationCanceledException\" data-throw-if-not-resolved=\"false\"></xref> exception in its <xref href=\"System.AggregateException.InnerExceptions\" data-throw-if-not-resolved=\"false\"></xref> collection.</p>\n<p>-or-</p>\n<p>An exception was thrown during the execution of at least one of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> instances. </p>\n"
-  nameWithType.vb: Task.WaitAll(Task())
   modifiers.csharp:
   - public
   - static
@@ -3656,6 +3790,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task())
   name.vb: WaitAll(Task())
+  nameWithType: Task.WaitAll(Task[])
+  nameWithType.vb: Task.WaitAll(Task())
 - uid: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.Int32)
   commentId: M:System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.Int32)
   id: WaitAll(System.Threading.Tasks.Task[],System.Int32)
@@ -3664,7 +3800,6 @@ items:
   - csharp
   - vb
   name: WaitAll(Task[], Int32)
-  nameWithType: Task.WaitAll(Task[], Int32)
   fullName: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[], System.Int32)
   type: Method
   source:
@@ -3679,6 +3814,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of milliseconds.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -3714,7 +3851,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> argument contains a null element.</p>\n<p>-or-</p>\n<p>The <em>tasks</em> argument is an empty array.</p>\n"
-  nameWithType.vb: Task.WaitAll(Task(), Int32)
   modifiers.csharp:
   - public
   - static
@@ -3723,6 +3859,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task(), System.Int32)
   name.vb: WaitAll(Task(), Int32)
+  nameWithType: Task.WaitAll(Task[], Int32)
+  nameWithType.vb: Task.WaitAll(Task(), Int32)
 - uid: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
   id: WaitAll(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
@@ -3731,7 +3869,6 @@ items:
   - csharp
   - vb
   name: WaitAll(Task[], Int32, CancellationToken)
-  nameWithType: Task.WaitAll(Task[], Int32, CancellationToken)
   fullName: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[], System.Int32, System.Threading.CancellationToken)
   type: Method
   source:
@@ -3746,6 +3883,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of milliseconds or until the wait is cancelled.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -3787,7 +3926,6 @@ items:
   - type: System.OperationCanceledException
     commentId: T:System.OperationCanceledException
     description: "\n<p>The <em>cancellationToken</em> was canceled. </p>\n"
-  nameWithType.vb: Task.WaitAll(Task(), Int32, CancellationToken)
   modifiers.csharp:
   - public
   - static
@@ -3796,6 +3934,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task(), System.Int32, System.Threading.CancellationToken)
   name.vb: WaitAll(Task(), Int32, CancellationToken)
+  nameWithType: Task.WaitAll(Task[], Int32, CancellationToken)
+  nameWithType.vb: Task.WaitAll(Task(), Int32, CancellationToken)
 - uid: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
   id: WaitAll(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
@@ -3804,7 +3944,6 @@ items:
   - csharp
   - vb
   name: WaitAll(Task[], CancellationToken)
-  nameWithType: Task.WaitAll(Task[], CancellationToken)
   fullName: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[], System.Threading.CancellationToken)
   type: Method
   source:
@@ -3819,6 +3958,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for all of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution unless the wait is cancelled. </p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -3851,7 +3992,6 @@ items:
   - type: System.ObjectDisposedException
     commentId: T:System.ObjectDisposedException
     description: "\n<p>One or more of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects in <em>tasks</em> has been disposed.</p>\n"
-  nameWithType.vb: Task.WaitAll(Task(), CancellationToken)
   modifiers.csharp:
   - public
   - static
@@ -3860,6 +4000,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task(), System.Threading.CancellationToken)
   name.vb: WaitAll(Task(), CancellationToken)
+  nameWithType: Task.WaitAll(Task[], CancellationToken)
+  nameWithType.vb: Task.WaitAll(Task(), CancellationToken)
 - uid: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.TimeSpan)
   commentId: M:System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[],System.TimeSpan)
   id: WaitAll(System.Threading.Tasks.Task[],System.TimeSpan)
@@ -3868,7 +4010,6 @@ items:
   - csharp
   - vb
   name: WaitAll(Task[], TimeSpan)
-  nameWithType: Task.WaitAll(Task[], TimeSpan)
   fullName: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task[], System.TimeSpan)
   type: Method
   source:
@@ -3883,6 +4024,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for all of the provided cancellable <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified time interval.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -3918,7 +4061,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> argument contains a null element.</p>\n<p>-or-</p>\n<p>The <em>tasks</em> argument is an empty array.</p>\n"
-  nameWithType.vb: Task.WaitAll(Task(), TimeSpan)
   modifiers.csharp:
   - public
   - static
@@ -3927,6 +4069,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WaitAll(System.Threading.Tasks.Task(), System.TimeSpan)
   name.vb: WaitAll(Task(), TimeSpan)
+  nameWithType: Task.WaitAll(Task[], TimeSpan)
+  nameWithType.vb: Task.WaitAll(Task(), TimeSpan)
 - uid: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[])
   commentId: M:System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[])
   id: WaitAny(System.Threading.Tasks.Task[])
@@ -3935,7 +4079,6 @@ items:
   - csharp
   - vb
   name: WaitAny(Task[])
-  nameWithType: Task.WaitAny(Task[])
   fullName: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[])
   type: Method
   source:
@@ -3950,6 +4093,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for any of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution.</p>\n"
+  example:
+  - "\n<p>The following example launches five tasks, each of which sleeps for a minimum of 50 milliseconds or a maximum of 1,050 milliseconds. The <xref href=\"System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[])\" data-throw-if-not-resolved=\"false\"></xref> method then waits for any of the tasks to complete. The example displays the task ID of the task that ended the wait, as well as the current status of all the tasks.</p>System.Threading.Tasks.Task.WaitAny#1"
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -3976,7 +4121,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> argument contains a null element.</p>\n"
-  nameWithType.vb: Task.WaitAny(Task())
   modifiers.csharp:
   - public
   - static
@@ -3985,6 +4129,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task())
   name.vb: WaitAny(Task())
+  nameWithType: Task.WaitAny(Task[])
+  nameWithType.vb: Task.WaitAny(Task())
 - uid: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.Int32)
   commentId: M:System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.Int32)
   id: WaitAny(System.Threading.Tasks.Task[],System.Int32)
@@ -3993,7 +4139,6 @@ items:
   - csharp
   - vb
   name: WaitAny(Task[], Int32)
-  nameWithType: Task.WaitAny(Task[], Int32)
   fullName: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[], System.Int32)
   type: Method
   source:
@@ -4008,6 +4153,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for any of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of milliseconds.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -4040,7 +4187,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> argument contains a null element.</p>\n"
-  nameWithType.vb: Task.WaitAny(Task(), Int32)
   modifiers.csharp:
   - public
   - static
@@ -4049,6 +4195,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task(), System.Int32)
   name.vb: WaitAny(Task(), Int32)
+  nameWithType: Task.WaitAny(Task[], Int32)
+  nameWithType.vb: Task.WaitAny(Task(), Int32)
 - uid: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
   id: WaitAny(System.Threading.Tasks.Task[],System.Int32,System.Threading.CancellationToken)
@@ -4057,7 +4205,6 @@ items:
   - csharp
   - vb
   name: WaitAny(Task[], Int32, CancellationToken)
-  nameWithType: Task.WaitAny(Task[], Int32, CancellationToken)
   fullName: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[], System.Int32, System.Threading.CancellationToken)
   type: Method
   source:
@@ -4072,6 +4219,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for any of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified number of milliseconds or until a cancellation token is cancelled.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -4110,7 +4259,6 @@ items:
   - type: System.OperationCanceledException
     commentId: T:System.OperationCanceledException
     description: "\n<p>The <em>cancellationToken</em> was canceled. </p>\n"
-  nameWithType.vb: Task.WaitAny(Task(), Int32, CancellationToken)
   modifiers.csharp:
   - public
   - static
@@ -4119,6 +4267,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task(), System.Int32, System.Threading.CancellationToken)
   name.vb: WaitAny(Task(), Int32, CancellationToken)
+  nameWithType: Task.WaitAny(Task[], Int32, CancellationToken)
+  nameWithType.vb: Task.WaitAny(Task(), Int32, CancellationToken)
 - uid: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
   commentId: M:System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
   id: WaitAny(System.Threading.Tasks.Task[],System.Threading.CancellationToken)
@@ -4127,7 +4277,6 @@ items:
   - csharp
   - vb
   name: WaitAny(Task[], CancellationToken)
-  nameWithType: Task.WaitAny(Task[], CancellationToken)
   fullName: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[], System.Threading.CancellationToken)
   type: Method
   source:
@@ -4142,6 +4291,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for any of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution unless the wait is cancelled.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -4174,7 +4325,6 @@ items:
   - type: System.OperationCanceledException
     commentId: T:System.OperationCanceledException
     description: "\n<p>The <em>cancellationToken</em> was canceled.</p>\n"
-  nameWithType.vb: Task.WaitAny(Task(), CancellationToken)
   modifiers.csharp:
   - public
   - static
@@ -4183,6 +4333,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task(), System.Threading.CancellationToken)
   name.vb: WaitAny(Task(), CancellationToken)
+  nameWithType: Task.WaitAny(Task[], CancellationToken)
+  nameWithType.vb: Task.WaitAny(Task(), CancellationToken)
 - uid: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.TimeSpan)
   commentId: M:System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[],System.TimeSpan)
   id: WaitAny(System.Threading.Tasks.Task[],System.TimeSpan)
@@ -4191,7 +4343,6 @@ items:
   - csharp
   - vb
   name: WaitAny(Task[], TimeSpan)
-  nameWithType: Task.WaitAny(Task[], TimeSpan)
   fullName: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task[], System.TimeSpan)
   type: Method
   source:
@@ -4206,6 +4357,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Waits for any of the provided <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects to complete execution within a specified time interval.</p>\n"
+  example:
+  - 
   syntax:
     content: >-
       [MethodImpl(MethodImplOptions.NoOptimization)]
@@ -4238,7 +4391,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> argument contains a null element.</p>\n"
-  nameWithType.vb: Task.WaitAny(Task(), TimeSpan)
   modifiers.csharp:
   - public
   - static
@@ -4247,6 +4399,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WaitAny(System.Threading.Tasks.Task(), System.TimeSpan)
   name.vb: WaitAny(Task(), TimeSpan)
+  nameWithType: Task.WaitAny(Task[], TimeSpan)
+  nameWithType.vb: Task.WaitAny(Task(), TimeSpan)
 - uid: System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
   commentId: M:System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
   id: WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
@@ -4255,7 +4409,6 @@ items:
   - csharp
   - vb
   name: WhenAll(IEnumerable<Task>)
-  nameWithType: Task.WhenAll(IEnumerable<Task>)
   fullName: System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>)
   type: Method
   source:
@@ -4270,6 +4423,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects in an enumerable collection have completed.</p>\n"
+  example:
+  - "\n<p>The following example creates a set of tasks that ping the URLs in an array. The tasks are stored in a <strong>List<Task></strong> collection that is passed to the <xref href=\"System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})\" data-throw-if-not-resolved=\"false\"></xref> method. After the call to the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method ensures that all threads have completed, the example examines the <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether any tasks have faulted.</p>System.Threading.Tasks.Task.WhenAll#4"
   syntax:
     content: public static Task WhenAll(IEnumerable<Task> tasks)
     content.vb: Public Shared Function WhenAll(tasks As IEnumerable(Of Task)) As Task
@@ -4287,7 +4442,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> collection contained a <strong>null</strong> task.</p>\n"
-  nameWithType.vb: Task.WhenAll(IEnumerable(Of Task))
   modifiers.csharp:
   - public
   - static
@@ -4296,6 +4450,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task))
   name.vb: WhenAll(IEnumerable(Of Task))
+  nameWithType: Task.WhenAll(IEnumerable<Task>)
+  nameWithType.vb: Task.WhenAll(IEnumerable(Of Task))
 - uid: System.Threading.Tasks.Task.WhenAll(System.Threading.Tasks.Task[])
   commentId: M:System.Threading.Tasks.Task.WhenAll(System.Threading.Tasks.Task[])
   id: WhenAll(System.Threading.Tasks.Task[])
@@ -4304,7 +4460,6 @@ items:
   - csharp
   - vb
   name: WhenAll(Task[])
-  nameWithType: Task.WhenAll(Task[])
   fullName: System.Threading.Tasks.Task.WhenAll(System.Threading.Tasks.Task[])
   type: Method
   source:
@@ -4319,6 +4474,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref> objects in an array have completed. </p>\n"
+  example:
+  - "\n<p>The following example creates a set of tasks that ping the URLs in an array. The tasks are stored in a <strong>List<Task></strong> collection that is converted to an array and passed to the <xref href=\"System.Threading.Tasks.Task.WhenAll(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})\" data-throw-if-not-resolved=\"false\"></xref> method. After the call to the <xref href=\"System.Threading.Tasks.Task.Wait\" data-throw-if-not-resolved=\"false\"></xref> method ensures that all threads have completed, the example examines the <xref href=\"System.Threading.Tasks.Task.Status\" data-throw-if-not-resolved=\"false\"></xref> property to determine whether any tasks have faulted.</p>System.Threading.Tasks.Task.WhenAll#3"
   syntax:
     content: public static Task WhenAll(params Task[] tasks)
     content.vb: Public Shared Function WhenAll(ParamArray tasks As Task()) As Task
@@ -4336,7 +4493,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> array contained a <strong>null</strong> task. </p>\n"
-  nameWithType.vb: Task.WhenAll(Task())
   modifiers.csharp:
   - public
   - static
@@ -4345,6 +4501,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WhenAll(System.Threading.Tasks.Task())
   name.vb: WhenAll(Task())
+  nameWithType: Task.WhenAll(Task[])
+  nameWithType.vb: Task.WhenAll(Task())
 - uid: System.Threading.Tasks.Task.WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
   commentId: M:System.Threading.Tasks.Task.WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
   id: WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
@@ -4353,7 +4511,6 @@ items:
   - csharp
   - vb
   name: WhenAll<TResult>(IEnumerable<Task<TResult>>)
-  nameWithType: Task.WhenAll<TResult>(IEnumerable<Task<TResult>>)
   fullName: System.Threading.Tasks.Task.WhenAll<TResult>(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>>)
   type: Method
   source:
@@ -4368,6 +4525,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> objects in an enumerable collection have completed. </p>\n"
+  example:
+  - "\n<p>The following example creates ten tasks, each of which instantiates a random number generator that creates 1,000 random numbers between 1 and 1,000 and computes their mean. The <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method is used to delay instantiation of the random number generators so that they are not created with identical seed values. The call to the <xref href=\"System.Threading.Tasks.Task.WhenAll``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})\" data-throw-if-not-resolved=\"false\"></xref> method then returns an <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref> array that contains the mean computed by each task. These are then used to calculate the overall mean.  </p>System.Threading.Tasks.Task.WhenAll#1<p>In this case, the ten individual tasks are stored in a <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref> object. <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref> implements the <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> interface. </p>"
   syntax:
     content: public static Task<TResult[]> WhenAll<TResult>(IEnumerable<Task<TResult>> tasks)
     content.vb: Public Shared Function WhenAll(Of TResult)(tasks As IEnumerable(Of Task(Of TResult))) As Task(Of TResult())
@@ -4388,7 +4547,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> collection contained a <strong>null</strong> task. </p>\n"
-  nameWithType.vb: Task.WhenAll(Of TResult)(IEnumerable(Of Task(Of TResult)))
   modifiers.csharp:
   - public
   - static
@@ -4397,6 +4555,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WhenAll(Of TResult)(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task(Of TResult)))
   name.vb: WhenAll(Of TResult)(IEnumerable(Of Task(Of TResult)))
+  nameWithType: Task.WhenAll<TResult>(IEnumerable<Task<TResult>>)
+  nameWithType.vb: Task.WhenAll(Of TResult)(IEnumerable(Of Task(Of TResult)))
 - uid: System.Threading.Tasks.Task.WhenAll``1(System.Threading.Tasks.Task{``0}[])
   commentId: M:System.Threading.Tasks.Task.WhenAll``1(System.Threading.Tasks.Task{``0}[])
   id: WhenAll``1(System.Threading.Tasks.Task{``0}[])
@@ -4405,7 +4565,6 @@ items:
   - csharp
   - vb
   name: WhenAll<TResult>(Task<TResult>[])
-  nameWithType: Task.WhenAll<TResult>(Task<TResult>[])
   fullName: System.Threading.Tasks.Task.WhenAll<TResult>(System.Threading.Tasks.Task<TResult>[])
   type: Method
   source:
@@ -4420,6 +4579,8 @@ items:
   - System.Threading.Tasks
   namespace: System.Threading.Tasks
   summary: "\n<p>Creates a task that will complete when all of the <xref href=\"System.Threading.Tasks.Task`1\" data-throw-if-not-resolved=\"false\"></xref> objects in an array have completed. </p>\n"
+  example:
+  - "\n<p>The following example creates ten tasks, each of which instantiates a random number generator that creates 1,000 random numbers between 1 and 1,000 and computes their mean. In this case, the ten individual tasks are stored in a <strong>Task<Int64></strong> array.  The <xref href=\"System.Threading.Tasks.Task.Delay(System.Int32)\" data-throw-if-not-resolved=\"false\"></xref> method is used to delay instantiation of the random number generators so that they are not created with identical seed values. The call to the <xref href=\"System.Threading.Tasks.Task.WhenAll``1(System.Threading.Tasks.Task{``0}[])\" data-throw-if-not-resolved=\"false\"></xref> method then returns an <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref> array that contains the mean computed by each task. These are then used to calculate the overall mean. </p>System.Threading.Tasks.Task.WhenAll#2"
   syntax:
     content: public static Task<TResult[]> WhenAll<TResult>(params Task<TResult>[] tasks)
     content.vb: Public Shared Function WhenAll(Of TResult)(ParamArray tasks As Task(Of TResult)()) As Task(Of TResult())
@@ -4440,7 +4601,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> array contained a <strong>null</strong> task.</p>\n"
-  nameWithType.vb: Task.WhenAll(Of TResult)(Task(Of TResult)())
   modifiers.csharp:
   - public
   - static
@@ -4449,6 +4609,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WhenAll(Of TResult)(System.Threading.Tasks.Task(Of TResult)())
   name.vb: WhenAll(Of TResult)(Task(Of TResult)())
+  nameWithType: Task.WhenAll<TResult>(Task<TResult>[])
+  nameWithType.vb: Task.WhenAll(Of TResult)(Task(Of TResult)())
 - uid: System.Threading.Tasks.Task.WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
   commentId: M:System.Threading.Tasks.Task.WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
   id: WhenAny(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task})
@@ -4457,7 +4619,6 @@ items:
   - csharp
   - vb
   name: WhenAny(IEnumerable<Task>)
-  nameWithType: Task.WhenAny(IEnumerable<Task>)
   fullName: System.Threading.Tasks.Task.WhenAny(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>)
   type: Method
   source:
@@ -4489,7 +4650,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> array contained a null task, or was empty.</p>\n"
-  nameWithType.vb: Task.WhenAny(IEnumerable(Of Task))
   modifiers.csharp:
   - public
   - static
@@ -4498,6 +4658,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WhenAny(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task))
   name.vb: WhenAny(IEnumerable(Of Task))
+  nameWithType: Task.WhenAny(IEnumerable<Task>)
+  nameWithType.vb: Task.WhenAny(IEnumerable(Of Task))
 - uid: System.Threading.Tasks.Task.WhenAny(System.Threading.Tasks.Task[])
   commentId: M:System.Threading.Tasks.Task.WhenAny(System.Threading.Tasks.Task[])
   id: WhenAny(System.Threading.Tasks.Task[])
@@ -4506,7 +4668,6 @@ items:
   - csharp
   - vb
   name: WhenAny(Task[])
-  nameWithType: Task.WhenAny(Task[])
   fullName: System.Threading.Tasks.Task.WhenAny(System.Threading.Tasks.Task[])
   type: Method
   source:
@@ -4538,7 +4699,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> array contained a null task, or was empty.</p>\n"
-  nameWithType.vb: Task.WhenAny(Task())
   modifiers.csharp:
   - public
   - static
@@ -4547,6 +4707,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WhenAny(System.Threading.Tasks.Task())
   name.vb: WhenAny(Task())
+  nameWithType: Task.WhenAny(Task[])
+  nameWithType.vb: Task.WhenAny(Task())
 - uid: System.Threading.Tasks.Task.WhenAny``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
   commentId: M:System.Threading.Tasks.Task.WhenAny``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
   id: WhenAny``1(System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}})
@@ -4555,7 +4717,6 @@ items:
   - csharp
   - vb
   name: WhenAny<TResult>(IEnumerable<Task<TResult>>)
-  nameWithType: Task.WhenAny<TResult>(IEnumerable<Task<TResult>>)
   fullName: System.Threading.Tasks.Task.WhenAny<TResult>(System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>>)
   type: Method
   source:
@@ -4590,7 +4751,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> array contained a null task, or was empty.</p>\n"
-  nameWithType.vb: Task.WhenAny(Of TResult)(IEnumerable(Of Task(Of TResult)))
   modifiers.csharp:
   - public
   - static
@@ -4599,6 +4759,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WhenAny(Of TResult)(System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task(Of TResult)))
   name.vb: WhenAny(Of TResult)(IEnumerable(Of Task(Of TResult)))
+  nameWithType: Task.WhenAny<TResult>(IEnumerable<Task<TResult>>)
+  nameWithType.vb: Task.WhenAny(Of TResult)(IEnumerable(Of Task(Of TResult)))
 - uid: System.Threading.Tasks.Task.WhenAny``1(System.Threading.Tasks.Task{``0}[])
   commentId: M:System.Threading.Tasks.Task.WhenAny``1(System.Threading.Tasks.Task{``0}[])
   id: WhenAny``1(System.Threading.Tasks.Task{``0}[])
@@ -4607,7 +4769,6 @@ items:
   - csharp
   - vb
   name: WhenAny<TResult>(Task<TResult>[])
-  nameWithType: Task.WhenAny<TResult>(Task<TResult>[])
   fullName: System.Threading.Tasks.Task.WhenAny<TResult>(System.Threading.Tasks.Task<TResult>[])
   type: Method
   source:
@@ -4642,7 +4803,6 @@ items:
   - type: System.ArgumentException
     commentId: T:System.ArgumentException
     description: "\n<p>The <em>tasks</em> array contained a null task, or was empty.</p>\n"
-  nameWithType.vb: Task.WhenAny(Of TResult)(Task(Of TResult)())
   modifiers.csharp:
   - public
   - static
@@ -4651,6 +4811,8 @@ items:
   - Shared
   fullName.vb: System.Threading.Tasks.Task.WhenAny(Of TResult)(System.Threading.Tasks.Task(Of TResult)())
   name.vb: WhenAny(Of TResult)(Task(Of TResult)())
+  nameWithType: Task.WhenAny<TResult>(Task<TResult>[])
+  nameWithType.vb: Task.WhenAny(Of TResult)(Task(Of TResult)())
 - uid: System.Threading.Tasks.Task.Yield
   commentId: M:System.Threading.Tasks.Task.Yield
   id: Yield
@@ -4659,7 +4821,6 @@ items:
   - csharp
   - vb
   name: Yield()
-  nameWithType: Task.Yield()
   fullName: System.Threading.Tasks.Task.Yield()
   type: Method
   source:
@@ -4686,1681 +4847,1376 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: Task.Yield()
 references:
 - uid: System.Threading.Tasks
   isExternal: false
   name: System.Threading.Tasks
-  nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
 - uid: System.Object
   parent: System
   isExternal: false
   name: Object
-  nameWithType: Object
   fullName: System.Object
+  nameWithType: Object
   commentId: T:System.Object
 - uid: System.IAsyncResult
   parent: System
   isExternal: false
   name: IAsyncResult
-  nameWithType: IAsyncResult
   fullName: System.IAsyncResult
+  nameWithType: IAsyncResult
   commentId: T:System.IAsyncResult
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
   name: ToString()
-  nameWithType: Object.ToString()
   fullName: System.Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
     fullName: System.Object.ToString
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
     fullName: System.Object.ToString
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Object.ToString()
   commentId: M:System.Object.ToString
 - uid: System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
   name: Equals(Object)
-  nameWithType: Object.Equals(Object)
   fullName: System.Object.Equals(System.Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
     fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
     fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Object.Equals(Object)
   commentId: M:System.Object.Equals(System.Object)
 - uid: System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
   name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
   fullName: System.Object.Equals(System.Object, System.Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
     fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
     fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Object.Equals(Object, Object)
   commentId: M:System.Object.Equals(System.Object,System.Object)
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
   name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
   fullName: System.Object.ReferenceEquals(System.Object, System.Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
     fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
     fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Object.ReferenceEquals(Object, Object)
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
 - uid: System.Object.GetHashCode
   parent: System.Object
   isExternal: true
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
   fullName: System.Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
     fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
     fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Object.GetHashCode()
   commentId: M:System.Object.GetHashCode
 - uid: System.Object.GetType
   parent: System.Object
   isExternal: true
   name: GetType()
-  nameWithType: Object.GetType()
   fullName: System.Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
     fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
     fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Object.GetType()
   commentId: M:System.Object.GetType
 - uid: System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
   fullName: System.Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Object.MemberwiseClone()
   commentId: M:System.Object.MemberwiseClone
 - uid: System
   isExternal: false
   name: System
-  nameWithType: System
   fullName: System
+  nameWithType: System
   commentId: N:System
 - uid: System.Action
   parent: System
   isExternal: false
   name: Action
-  nameWithType: Action
   fullName: System.Action
+  nameWithType: Action
   commentId: T:System.Action
 - uid: System.Threading.CancellationToken
   parent: System.Threading
   isExternal: false
   name: CancellationToken
-  nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
+  nameWithType: CancellationToken
   commentId: T:System.Threading.CancellationToken
 - uid: System.Threading
   isExternal: false
   name: System.Threading
-  nameWithType: System.Threading
   fullName: System.Threading
+  nameWithType: System.Threading
   commentId: N:System.Threading
 - uid: System.Threading.Tasks.TaskCreationOptions
   parent: System.Threading.Tasks
   isExternal: false
   name: TaskCreationOptions
-  nameWithType: TaskCreationOptions
   fullName: System.Threading.Tasks.TaskCreationOptions
+  nameWithType: TaskCreationOptions
   commentId: T:System.Threading.Tasks.TaskCreationOptions
 - uid: System.Action{System.Object}
   parent: System
   definition: System.Action`1
   name: Action<Object>
-  nameWithType: Action<Object>
   fullName: System.Action<System.Object>
-  nameWithType.vb: Action(Of Object)
   fullname.vb: System.Action(Of System.Object)
   name.vb: Action(Of Object)
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
     fullName: System.Action
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
     fullName: System.Action
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Action<Object>
+  nameWithType.vb: Action(Of Object)
   commentId: T:System.Action{System.Object}
 - uid: System.Action`1
   isExternal: false
   name: Action<T>
-  nameWithType: Action<T>
   fullName: System.Action<T>
-  nameWithType.vb: Action(Of T)
   fullname.vb: System.Action(Of T)
   name.vb: Action(Of T)
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
     fullName: System.Action
   - name: <
-    nameWithType: <
     fullName: <
   - name: T
-    nameWithType: T
     fullName: T
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
     fullName: System.Action
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: T
-    nameWithType: T
     fullName: T
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Action<T>
+  nameWithType.vb: Action(Of T)
   commentId: T:System.Action`1
 - uid: System.IAsyncResult.AsyncState
   parent: System.IAsyncResult
   isExternal: true
   name: AsyncState
-  nameWithType: IAsyncResult.AsyncState
   fullName: System.IAsyncResult.AsyncState
+  nameWithType: IAsyncResult.AsyncState
   commentId: P:System.IAsyncResult.AsyncState
 - uid: System.Threading.Tasks.Task
   parent: System.Threading.Tasks
   isExternal: false
   name: Task
-  nameWithType: Task
   fullName: System.Threading.Tasks.Task
+  nameWithType: Task
   commentId: T:System.Threading.Tasks.Task
 - uid: System.Nullable{System.Int32}
   parent: System
   definition: System.Nullable`1
   name: Nullable<Int32>
-  nameWithType: Nullable<Int32>
   fullName: System.Nullable<System.Int32>
-  nameWithType.vb: Nullable(Of Int32)
   fullname.vb: System.Nullable(Of System.Int32)
   name.vb: Nullable(Of Int32)
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
     fullName: System.Nullable
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Int32
     name: Int32
-    nameWithType: Int32
     fullName: System.Int32
     isExternal: true
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
     fullName: System.Nullable
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Int32
     name: Int32
-    nameWithType: Int32
     fullName: System.Int32
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Nullable<Int32>
+  nameWithType.vb: Nullable(Of Int32)
   commentId: T:System.Nullable{System.Int32}
 - uid: System.Nullable`1
   parent: System
   isExternal: false
   name: Nullable<T>
-  nameWithType: Nullable<T>
   fullName: System.Nullable<T>
-  nameWithType.vb: Nullable(Of T)
   fullname.vb: System.Nullable(Of T)
   name.vb: Nullable(Of T)
   spec.csharp:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
     fullName: System.Nullable
   - name: <
-    nameWithType: <
     fullName: <
   - name: T
-    nameWithType: T
     fullName: T
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Nullable`1
     name: Nullable
-    nameWithType: Nullable
     fullName: System.Nullable
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: T
-    nameWithType: T
     fullName: T
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Nullable<T>
+  nameWithType.vb: Nullable(Of T)
   commentId: T:System.Nullable`1
 - uid: System.AggregateException
   parent: System
   isExternal: false
   name: AggregateException
-  nameWithType: AggregateException
   fullName: System.AggregateException
+  nameWithType: AggregateException
   commentId: T:System.AggregateException
 - uid: System.Threading.Tasks.TaskFactory
   parent: System.Threading.Tasks
   isExternal: false
   name: TaskFactory
-  nameWithType: TaskFactory
   fullName: System.Threading.Tasks.TaskFactory
+  nameWithType: TaskFactory
   commentId: T:System.Threading.Tasks.TaskFactory
 - uid: System.Int32
   parent: System
   isExternal: false
   name: Int32
-  nameWithType: Int32
   fullName: System.Int32
+  nameWithType: Int32
   commentId: T:System.Int32
 - uid: System.Boolean
   parent: System
   isExternal: false
   name: Boolean
-  nameWithType: Boolean
   fullName: System.Boolean
+  nameWithType: Boolean
   commentId: T:System.Boolean
 - uid: System.IAsyncResult.IsCompleted
   parent: System.IAsyncResult
   isExternal: true
   name: IsCompleted
-  nameWithType: IAsyncResult.IsCompleted
   fullName: System.IAsyncResult.IsCompleted
+  nameWithType: IAsyncResult.IsCompleted
   commentId: P:System.IAsyncResult.IsCompleted
 - uid: System.Threading.Tasks.TaskStatus
   parent: System.Threading.Tasks
   isExternal: false
   name: TaskStatus
-  nameWithType: TaskStatus
   fullName: System.Threading.Tasks.TaskStatus
+  nameWithType: TaskStatus
   commentId: T:System.Threading.Tasks.TaskStatus
 - uid: System.IAsyncResult.AsyncWaitHandle
   parent: System.IAsyncResult
   isExternal: true
   name: AsyncWaitHandle
-  nameWithType: IAsyncResult.AsyncWaitHandle
   fullName: System.IAsyncResult.AsyncWaitHandle
+  nameWithType: IAsyncResult.AsyncWaitHandle
   commentId: P:System.IAsyncResult.AsyncWaitHandle
 - uid: System.Threading.WaitHandle
   parent: System.Threading
   isExternal: false
   name: WaitHandle
-  nameWithType: WaitHandle
   fullName: System.Threading.WaitHandle
+  nameWithType: WaitHandle
   commentId: T:System.Threading.WaitHandle
 - uid: System.IAsyncResult.CompletedSynchronously
   parent: System.IAsyncResult
   isExternal: true
   name: CompletedSynchronously
-  nameWithType: IAsyncResult.CompletedSynchronously
   fullName: System.IAsyncResult.CompletedSynchronously
+  nameWithType: IAsyncResult.CompletedSynchronously
   commentId: P:System.IAsyncResult.CompletedSynchronously
 - uid: System.Runtime.CompilerServices.ConfiguredTaskAwaitable
   parent: System.Runtime.CompilerServices
   isExternal: false
   name: ConfiguredTaskAwaitable
-  nameWithType: ConfiguredTaskAwaitable
   fullName: System.Runtime.CompilerServices.ConfiguredTaskAwaitable
+  nameWithType: ConfiguredTaskAwaitable
   commentId: T:System.Runtime.CompilerServices.ConfiguredTaskAwaitable
 - uid: System.Runtime.CompilerServices
   isExternal: false
   name: System.Runtime.CompilerServices
-  nameWithType: System.Runtime.CompilerServices
   fullName: System.Runtime.CompilerServices
+  nameWithType: System.Runtime.CompilerServices
   commentId: N:System.Runtime.CompilerServices
 - uid: System.Action{System.Threading.Tasks.Task,System.Object}
   parent: System
   definition: System.Action`2
   name: Action<Task, Object>
-  nameWithType: Action<Task, Object>
   fullName: System.Action<System.Threading.Tasks.Task, System.Object>
-  nameWithType.vb: Action(Of Task, Object)
   fullname.vb: System.Action(Of System.Threading.Tasks.Task, System.Object)
   name.vb: Action(Of Task, Object)
   spec.csharp:
   - uid: System.Action`2
     name: Action
-    nameWithType: Action
     fullName: System.Action
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Action`2
     name: Action
-    nameWithType: Action
     fullName: System.Action
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Action<Task, Object>
+  nameWithType.vb: Action(Of Task, Object)
   commentId: T:System.Action{System.Threading.Tasks.Task,System.Object}
 - uid: System.Action`2
   isExternal: false
   name: Action<T1, T2>
-  nameWithType: Action<T1, T2>
   fullName: System.Action<T1, T2>
-  nameWithType.vb: Action(Of T1, T2)
   fullname.vb: System.Action(Of T1, T2)
   name.vb: Action(Of T1, T2)
   spec.csharp:
   - uid: System.Action`2
     name: Action
-    nameWithType: Action
     fullName: System.Action
   - name: <
-    nameWithType: <
     fullName: <
   - name: T1
-    nameWithType: T1
     fullName: T1
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: T2
-    nameWithType: T2
     fullName: T2
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Action`2
     name: Action
-    nameWithType: Action
     fullName: System.Action
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: T1
-    nameWithType: T1
     fullName: T1
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: T2
-    nameWithType: T2
     fullName: T2
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Action<T1, T2>
+  nameWithType.vb: Action(Of T1, T2)
   commentId: T:System.Action`2
 - uid: System.Threading.Tasks.TaskContinuationOptions
   parent: System.Threading.Tasks
   isExternal: false
   name: TaskContinuationOptions
-  nameWithType: TaskContinuationOptions
   fullName: System.Threading.Tasks.TaskContinuationOptions
+  nameWithType: TaskContinuationOptions
   commentId: T:System.Threading.Tasks.TaskContinuationOptions
 - uid: System.Threading.Tasks.TaskScheduler
   parent: System.Threading.Tasks
   isExternal: false
   name: TaskScheduler
-  nameWithType: TaskScheduler
   fullName: System.Threading.Tasks.TaskScheduler
+  nameWithType: TaskScheduler
   commentId: T:System.Threading.Tasks.TaskScheduler
 - uid: System.Action{System.Threading.Tasks.Task}
   parent: System
   definition: System.Action`1
   name: Action<Task>
-  nameWithType: Action<Task>
   fullName: System.Action<System.Threading.Tasks.Task>
-  nameWithType.vb: Action(Of Task)
   fullname.vb: System.Action(Of System.Threading.Tasks.Task)
   name.vb: Action(Of Task)
   spec.csharp:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
     fullName: System.Action
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Action`1
     name: Action
-    nameWithType: Action
     fullName: System.Action
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Action<Task>
+  nameWithType.vb: Action(Of Task)
   commentId: T:System.Action{System.Threading.Tasks.Task}
 - uid: System.Func{System.Threading.Tasks.Task,{TResult}}
   parent: System
   definition: System.Func`2
   name: Func<Task, TResult>
-  nameWithType: Func<Task, TResult>
   fullName: System.Func<System.Threading.Tasks.Task, TResult>
-  nameWithType.vb: Func(Of Task, TResult)
   fullname.vb: System.Func(Of System.Threading.Tasks.Task, TResult)
   name.vb: Func(Of Task, TResult)
   spec.csharp:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
     fullName: System.Func
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
     fullName: System.Func
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Func<Task, TResult>
+  nameWithType.vb: Func(Of Task, TResult)
   commentId: T:System.Func{System.Threading.Tasks.Task,``0}
 - uid: System.Threading.Tasks.Task{{TResult}}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<TResult>
-  nameWithType: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
-  nameWithType.vb: Task(Of TResult)
   fullname.vb: System.Threading.Tasks.Task(Of TResult)
   name.vb: Task(Of TResult)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: <
-    nameWithType: <
     fullName: <
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<TResult>
+  nameWithType.vb: Task(Of TResult)
   commentId: T:System.Threading.Tasks.Task{`0}
 - uid: System.Func`2
   isExternal: false
   name: Func<T, TResult>
-  nameWithType: Func<T, TResult>
   fullName: System.Func<T, TResult>
-  nameWithType.vb: Func(Of T, TResult)
   fullname.vb: System.Func(Of T, TResult)
   name.vb: Func(Of T, TResult)
   spec.csharp:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
     fullName: System.Func
   - name: <
-    nameWithType: <
     fullName: <
   - name: T
-    nameWithType: T
     fullName: T
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Func`2
     name: Func
-    nameWithType: Func
     fullName: System.Func
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: T
-    nameWithType: T
     fullName: T
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Func<T, TResult>
+  nameWithType.vb: Func(Of T, TResult)
   commentId: T:System.Func`2
 - uid: System.Threading.Tasks.Task`1
   isExternal: false
   name: Task<TResult>
-  nameWithType: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
-  nameWithType.vb: Task(Of TResult)
   fullname.vb: System.Threading.Tasks.Task(Of TResult)
   name.vb: Task(Of TResult)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: <
-    nameWithType: <
     fullName: <
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<TResult>
+  nameWithType.vb: Task(Of TResult)
   commentId: T:System.Threading.Tasks.Task`1
 - uid: System.Func{System.Threading.Tasks.Task,System.Object,{TResult}}
   parent: System
   definition: System.Func`3
   name: Func<Task, Object, TResult>
-  nameWithType: Func<Task, Object, TResult>
   fullName: System.Func<System.Threading.Tasks.Task, System.Object, TResult>
-  nameWithType.vb: Func(Of Task, Object, TResult)
   fullname.vb: System.Func(Of System.Threading.Tasks.Task, System.Object, TResult)
   name.vb: Func(Of Task, Object, TResult)
   spec.csharp:
   - uid: System.Func`3
     name: Func
-    nameWithType: Func
     fullName: System.Func
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Func`3
     name: Func
-    nameWithType: Func
     fullName: System.Func
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Func<Task, Object, TResult>
+  nameWithType.vb: Func(Of Task, Object, TResult)
   commentId: T:System.Func{System.Threading.Tasks.Task,System.Object,``0}
 - uid: System.Func`3
   isExternal: false
   name: Func<T1, T2, TResult>
-  nameWithType: Func<T1, T2, TResult>
   fullName: System.Func<T1, T2, TResult>
-  nameWithType.vb: Func(Of T1, T2, TResult)
   fullname.vb: System.Func(Of T1, T2, TResult)
   name.vb: Func(Of T1, T2, TResult)
   spec.csharp:
   - uid: System.Func`3
     name: Func
-    nameWithType: Func
     fullName: System.Func
   - name: <
-    nameWithType: <
     fullName: <
   - name: T1
-    nameWithType: T1
     fullName: T1
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: T2
-    nameWithType: T2
     fullName: T2
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Func`3
     name: Func
-    nameWithType: Func
     fullName: System.Func
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: T1
-    nameWithType: T1
     fullName: T1
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: T2
-    nameWithType: T2
     fullName: T2
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Func<T1, T2, TResult>
+  nameWithType.vb: Func(Of T1, T2, TResult)
   commentId: T:System.Func`3
 - uid: System.TimeSpan
   parent: System
   isExternal: false
   name: TimeSpan
-  nameWithType: TimeSpan
   fullName: System.TimeSpan
+  nameWithType: TimeSpan
   commentId: T:System.TimeSpan
 - uid: System.Exception
   parent: System
   isExternal: false
   name: Exception
-  nameWithType: Exception
   fullName: System.Exception
+  nameWithType: Exception
   commentId: T:System.Exception
 - uid: '{TResult}'
   definition: TResult
   name: TResult
-  nameWithType: TResult
   fullName: TResult
+  nameWithType: TResult
   commentId: '!:TResult'
 - uid: TResult
   isExternal: false
   name: TResult
-  nameWithType: TResult
   fullName: TResult
+  nameWithType: TResult
 - uid: System.Runtime.CompilerServices.TaskAwaiter
   parent: System.Runtime.CompilerServices
   isExternal: false
   name: TaskAwaiter
-  nameWithType: TaskAwaiter
   fullName: System.Runtime.CompilerServices.TaskAwaiter
+  nameWithType: TaskAwaiter
   commentId: T:System.Runtime.CompilerServices.TaskAwaiter
 - uid: System.Func{System.Threading.Tasks.Task}
   parent: System
   definition: System.Func`1
   name: Func<Task>
-  nameWithType: Func<Task>
   fullName: System.Func<System.Threading.Tasks.Task>
-  nameWithType.vb: Func(Of Task)
   fullname.vb: System.Func(Of System.Threading.Tasks.Task)
   name.vb: Func(Of Task)
   spec.csharp:
   - uid: System.Func`1
     name: Func
-    nameWithType: Func
     fullName: System.Func
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Func`1
     name: Func
-    nameWithType: Func
     fullName: System.Func
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Func<Task>
+  nameWithType.vb: Func(Of Task)
   commentId: T:System.Func{System.Threading.Tasks.Task}
 - uid: System.Func`1
   isExternal: false
   name: Func<TResult>
-  nameWithType: Func<TResult>
   fullName: System.Func<TResult>
-  nameWithType.vb: Func(Of TResult)
   fullname.vb: System.Func(Of TResult)
   name.vb: Func(Of TResult)
   spec.csharp:
   - uid: System.Func`1
     name: Func
-    nameWithType: Func
     fullName: System.Func
   - name: <
-    nameWithType: <
     fullName: <
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Func`1
     name: Func
-    nameWithType: Func
     fullName: System.Func
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Func<TResult>
+  nameWithType.vb: Func(Of TResult)
   commentId: T:System.Func`1
 - uid: System.Func{{TResult}}
   parent: System
   definition: System.Func`1
   name: Func<TResult>
-  nameWithType: Func<TResult>
   fullName: System.Func<TResult>
-  nameWithType.vb: Func(Of TResult)
   fullname.vb: System.Func(Of TResult)
   name.vb: Func(Of TResult)
   spec.csharp:
   - uid: System.Func`1
     name: Func
-    nameWithType: Func
     fullName: System.Func
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Func`1
     name: Func
-    nameWithType: Func
     fullName: System.Func
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Func<TResult>
+  nameWithType.vb: Func(Of TResult)
   commentId: T:System.Func{``0}
 - uid: System.Func{System.Threading.Tasks.Task{{TResult}}}
   parent: System
   definition: System.Func`1
   name: Func<Task<TResult>>
-  nameWithType: Func<Task<TResult>>
   fullName: System.Func<System.Threading.Tasks.Task<TResult>>
-  nameWithType.vb: Func(Of Task(Of TResult))
   fullname.vb: System.Func(Of System.Threading.Tasks.Task(Of TResult))
   name.vb: Func(Of Task(Of TResult))
   spec.csharp:
   - uid: System.Func`1
     name: Func
-    nameWithType: Func
     fullName: System.Func
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: <
-    nameWithType: <
     fullName: <
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Func`1
     name: Func
-    nameWithType: Func
     fullName: System.Func
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Func<Task<TResult>>
+  nameWithType.vb: Func(Of Task(Of TResult))
   commentId: T:System.Func{System.Threading.Tasks.Task{``0}}
 - uid: System.Threading.Tasks.Task[]
   name: Task[]
-  nameWithType: Task[]
   fullName: System.Threading.Tasks.Task[]
-  nameWithType.vb: Task()
   fullname.vb: System.Threading.Tasks.Task()
   name.vb: Task()
   spec.csharp:
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '[]'
-    nameWithType: '[]'
     fullName: '[]'
   spec.vb:
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: ()
-    nameWithType: ()
     fullName: ()
+  nameWithType: Task[]
+  nameWithType.vb: Task()
 - uid: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<Task>
-  nameWithType: IEnumerable<Task>
   fullName: System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task>
-  nameWithType.vb: IEnumerable(Of Task)
   fullname.vb: System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task)
   name.vb: IEnumerable(Of Task)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: IEnumerable<Task>
+  nameWithType.vb: IEnumerable(Of Task)
   commentId: T:System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task}
 - uid: System.Collections.Generic.IEnumerable`1
   isExternal: false
   name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
   fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
   fullname.vb: System.Collections.Generic.IEnumerable(Of T)
   name.vb: IEnumerable(Of T)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
   - name: <
-    nameWithType: <
     fullName: <
   - name: T
-    nameWithType: T
     fullName: T
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: T
-    nameWithType: T
     fullName: T
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
   commentId: T:System.Collections.Generic.IEnumerable`1
 - uid: System.Collections.Generic
   isExternal: false
   name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
+  nameWithType: System.Collections.Generic
   commentId: N:System.Collections.Generic
 - uid: System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{{TResult}}}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<Task<TResult>>
-  nameWithType: IEnumerable<Task<TResult>>
   fullName: System.Collections.Generic.IEnumerable<System.Threading.Tasks.Task<TResult>>
-  nameWithType.vb: IEnumerable(Of Task(Of TResult))
   fullname.vb: System.Collections.Generic.IEnumerable(Of System.Threading.Tasks.Task(Of TResult))
   name.vb: IEnumerable(Of Task(Of TResult))
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: <
-    nameWithType: <
     fullName: <
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: IEnumerable<Task<TResult>>
+  nameWithType.vb: IEnumerable(Of Task(Of TResult))
   commentId: T:System.Collections.Generic.IEnumerable{System.Threading.Tasks.Task{``0}}
 - uid: System.Threading.Tasks.Task{{TResult}[]}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<TResult[]>
-  nameWithType: Task<TResult[]>
   fullName: System.Threading.Tasks.Task<TResult[]>
-  nameWithType.vb: Task(Of TResult())
   fullname.vb: System.Threading.Tasks.Task(Of TResult())
   name.vb: Task(Of TResult())
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: <
-    nameWithType: <
     fullName: <
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '[]'
-    nameWithType: '[]'
     fullName: '[]'
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: ()
-    nameWithType: ()
     fullName: ()
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<TResult[]>
+  nameWithType.vb: Task(Of TResult())
   commentId: T:System.Threading.Tasks.Task{``0[]}
 - uid: System.Threading.Tasks.Task{{TResult}}[]
   name: Task<TResult>[]
-  nameWithType: Task<TResult>[]
   fullName: System.Threading.Tasks.Task<TResult>[]
-  nameWithType.vb: Task(Of TResult)()
   fullname.vb: System.Threading.Tasks.Task(Of TResult)()
   name.vb: Task(Of TResult)()
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: <
-    nameWithType: <
     fullName: <
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   - name: '[]'
-    nameWithType: '[]'
     fullName: '[]'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
   - name: ()
-    nameWithType: ()
     fullName: ()
+  nameWithType: Task<TResult>[]
+  nameWithType.vb: Task(Of TResult)()
 - uid: System.Threading.Tasks.Task{System.Threading.Tasks.Task}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<Task>
-  nameWithType: Task<Task>
   fullName: System.Threading.Tasks.Task<System.Threading.Tasks.Task>
-  nameWithType.vb: Task(Of Task)
   fullname.vb: System.Threading.Tasks.Task(Of System.Threading.Tasks.Task)
   name.vb: Task(Of Task)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Threading.Tasks.Task
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<Task>
+  nameWithType.vb: Task(Of Task)
   commentId: T:System.Threading.Tasks.Task{System.Threading.Tasks.Task}
 - uid: System.Threading.Tasks.Task{System.Threading.Tasks.Task{{TResult}}}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<Task<TResult>>
-  nameWithType: Task<Task<TResult>>
   fullName: System.Threading.Tasks.Task<System.Threading.Tasks.Task<TResult>>
-  nameWithType.vb: Task(Of Task(Of TResult))
   fullname.vb: System.Threading.Tasks.Task(Of System.Threading.Tasks.Task(Of TResult))
   name.vb: Task(Of Task(Of TResult))
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: <
-    nameWithType: <
     fullName: <
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<Task<TResult>>
+  nameWithType.vb: Task(Of Task(Of TResult))
   commentId: T:System.Threading.Tasks.Task{System.Threading.Tasks.Task{``0}}
 - uid: System.Runtime.CompilerServices.YieldAwaitable
   parent: System.Runtime.CompilerServices
   isExternal: false
   name: YieldAwaitable
-  nameWithType: YieldAwaitable
   fullName: System.Runtime.CompilerServices.YieldAwaitable
+  nameWithType: YieldAwaitable
   commentId: T:System.Runtime.CompilerServices.YieldAwaitable
 - uid: System.ArgumentNullException
   isExternal: false
   name: ArgumentNullException
-  nameWithType: ArgumentNullException
   fullName: System.ArgumentNullException
+  nameWithType: ArgumentNullException
   commentId: T:System.ArgumentNullException
 - uid: System.ObjectDisposedException
   isExternal: false
   name: ObjectDisposedException
-  nameWithType: ObjectDisposedException
   fullName: System.ObjectDisposedException
+  nameWithType: ObjectDisposedException
   commentId: T:System.ObjectDisposedException
 - uid: System.ArgumentOutOfRangeException
   isExternal: false
   name: ArgumentOutOfRangeException
-  nameWithType: ArgumentOutOfRangeException
   fullName: System.ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
   commentId: T:System.ArgumentOutOfRangeException
 - uid: System.Threading.Tasks.TaskCanceledException
   isExternal: false
   name: TaskCanceledException
-  nameWithType: TaskCanceledException
   fullName: System.Threading.Tasks.TaskCanceledException
+  nameWithType: TaskCanceledException
   commentId: T:System.Threading.Tasks.TaskCanceledException
 - uid: System.InvalidOperationException
   parent: System
   isExternal: false
   name: InvalidOperationException
-  nameWithType: InvalidOperationException
   fullName: System.InvalidOperationException
+  nameWithType: InvalidOperationException
   commentId: T:System.InvalidOperationException
 - uid: System.Threading.Tasks.TaskSchedulerException
   isExternal: false
   name: TaskSchedulerException
-  nameWithType: TaskSchedulerException
   fullName: System.Threading.Tasks.TaskSchedulerException
+  nameWithType: TaskSchedulerException
   commentId: T:System.Threading.Tasks.TaskSchedulerException
 - uid: System.OperationCanceledException
   parent: System
   isExternal: false
   name: OperationCanceledException
-  nameWithType: OperationCanceledException
   fullName: System.OperationCanceledException
+  nameWithType: OperationCanceledException
   commentId: T:System.OperationCanceledException
 - uid: System.ArgumentException
   parent: System
   isExternal: false
   name: ArgumentException
-  nameWithType: ArgumentException
   fullName: System.ArgumentException
+  nameWithType: ArgumentException
   commentId: T:System.ArgumentException

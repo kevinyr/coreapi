@@ -44,7 +44,6 @@ items:
   - csharp
   - vb
   name: SqlCommand
-  nameWithType: SqlCommand
   fullName: System.Data.SqlClient.SqlCommand
   type: Class
   source:
@@ -59,6 +58,9 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Represents a Transact-SQL statement or stored procedure to execute against a SQL Server database. This class cannot be inherited.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref>, a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref>, and a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref>. The example reads through the data, writing it to the console. Finally, the example closes the <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> and then the <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> as it exits the <strong>Using</strong> code blocks.</p>Classic WebData SqlCommand Example#1"
+  - "\n<p>The following sample shows how to create and execute different types of SqlCommand objects.</p>\n<p>First you must create the sample database, by executing the following script: </p>\n<pre><code>USE [master]\nGO\n\nCREATE DATABASE [MySchool]\nGO\n\nUSE [MySchool]\nGO\n\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\nCREATE procedure [dbo].[CourseExtInfo] @CourseId int\nas\nselect c.CourseID,c.Title,c.Credits,d.Name as DepartmentName\nfrom Course as c left outer join Department as d on c.DepartmentID=d.DepartmentID\nwhere c.CourseID=@CourseId\n\nGO\n\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\ncreate procedure [dbo].[DepartmentInfo] @DepartmentId int,@CourseCount int output\nas\nselect @CourseCount=Count(c.CourseID)\nfrom course as c\nwhere c.DepartmentID=@DepartmentId\n\nselect d.DepartmentID,d.Name,d.Budget,d.StartDate,d.Administrator\nfrom Department as d\nwhere d.DepartmentID=@DepartmentId\n\nGO\n\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\nCreate PROCEDURE [dbo].[GetDepartmentsOfSpecifiedYear] \n@Year int,@BudgetSum money output\nAS\nBEGIN\nSELECT @BudgetSum=SUM([Budget])\nFROM [MySchool].[dbo].[Department]\nWhere YEAR([StartDate])=@Year \n\nSELECT [DepartmentID]\n,[Name]\n,[Budget]\n,[StartDate]\n,[Administrator]\nFROM [MySchool].[dbo].[Department]\nWhere YEAR([StartDate])=@Year\n\nEND\nGO\n\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\nCREATE TABLE [dbo].[Course](\n[CourseID] [nvarchar](10) NOT NULL,\n[Year] [smallint] NOT NULL,\n[Title] [nvarchar](100) NOT NULL,\n[Credits] [int] NOT NULL,\n[DepartmentID] [int] NOT NULL,\nCONSTRAINT [PK_Course] PRIMARY KEY CLUSTERED \n(\n[CourseID] ASC,\n[Year] ASC\n)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]\n) ON [PRIMARY]\n\nGO\n\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\nCREATE TABLE [dbo].[Department](\n[DepartmentID] [int] IDENTITY(1,1) NOT NULL,\n[Name] [nvarchar](50) NOT NULL,\n[Budget] [money] NOT NULL,\n[StartDate] [datetime] NOT NULL,\n[Administrator] [int] NULL,\nCONSTRAINT [PK_Department] PRIMARY KEY CLUSTERED \n(\n[DepartmentID] ASC\n)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]\n) ON [PRIMARY]\n\nGO\n\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\nCREATE TABLE [dbo].[Person](\n[PersonID] [int] IDENTITY(1,1) NOT NULL,\n[LastName] [nvarchar](50) NOT NULL,\n[FirstName] [nvarchar](50) NOT NULL,\n[HireDate] [datetime] NULL,\n[EnrollmentDate] [datetime] NULL,\nCONSTRAINT [PK_School.Student] PRIMARY KEY CLUSTERED \n(\n[PersonID] ASC\n)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]\n) ON [PRIMARY]\n\nGO\n\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\nCREATE TABLE [dbo].[StudentGrade](\n[EnrollmentID] [int] IDENTITY(1,1) NOT NULL,\n[CourseID] [nvarchar](10) NOT NULL,\n[StudentID] [int] NOT NULL,\n[Grade] [decimal](3, 2) NOT NULL,\nCONSTRAINT [PK_StudentGrade] PRIMARY KEY CLUSTERED \n(\n[EnrollmentID] ASC\n)WITH (PAD_INDEX = OFF, STATISTICS_NORECOMPUTE = OFF, IGNORE_DUP_KEY = OFF, ALLOW_ROW_LOCKS = ON, ALLOW_PAGE_LOCKS = ON) ON [PRIMARY]\n) ON [PRIMARY]\n\nGO\n\nSET ANSI_NULLS ON\nGO\nSET QUOTED_IDENTIFIER ON\nGO\ncreate view [dbo].[EnglishCourse]\nas\nselect c.CourseID,c.Title,c.Credits,c.DepartmentID\nfrom Course as c join Department as d on c.DepartmentID=d.DepartmentID\nwhere d.Name=N'English'\n\nGO\nINSERT [dbo].[Course] ([CourseID], [Year], [Title], [Credits], [DepartmentID]) VALUES (N'C1045', 2012, N'Calculus', 4, 7)\nINSERT [dbo].[Course] ([CourseID], [Year], [Title], [Credits], [DepartmentID]) VALUES (N'C1061', 2012, N'Physics', 4, 1)\nINSERT [dbo].[Course] ([CourseID], [Year], [Title], [Credits], [DepartmentID]) VALUES (N'C2021', 2012, N'Composition', 3, 2)\nINSERT [dbo].[Course] ([CourseID], [Year], [Title], [Credits], [DepartmentID]) VALUES (N'C2042', 2012, N'Literature', 4, 2)\nSET IDENTITY_INSERT [dbo].[Department] ON \n\nINSERT [dbo].[Department] ([DepartmentID], [Name], [Budget], [StartDate], [Administrator]) VALUES (1, N'Engineering', 350000.0000, CAST(0x0000999C00000000 AS DateTime), 2)\nINSERT [dbo].[Department] ([DepartmentID], [Name], [Budget], [StartDate], [Administrator]) VALUES (2, N'English', 120000.0000, CAST(0x0000999C00000000 AS DateTime), 6)\nINSERT [dbo].[Department] ([DepartmentID], [Name], [Budget], [StartDate], [Administrator]) VALUES (4, N'Economics', 200000.0000, CAST(0x0000999C00000000 AS DateTime), 4)\nINSERT [dbo].[Department] ([DepartmentID], [Name], [Budget], [StartDate], [Administrator]) VALUES (7, N'Mathematics', 250024.0000, CAST(0x0000999C00000000 AS DateTime), 3)\nSET IDENTITY_INSERT [dbo].[Department] OFF\nSET IDENTITY_INSERT [dbo].[Person] ON \n\nINSERT [dbo].[Person] ([PersonID], [LastName], [FirstName], [HireDate], [EnrollmentDate]) VALUES (1, N'Hu', N'Nan', NULL, CAST(0x0000A0BF00000000 AS DateTime))\nINSERT [dbo].[Person] ([PersonID], [LastName], [FirstName], [HireDate], [EnrollmentDate]) VALUES (2, N'Norman', N'Laura', NULL, CAST(0x0000A0BF00000000 AS DateTime))\nINSERT [dbo].[Person] ([PersonID], [LastName], [FirstName], [HireDate], [EnrollmentDate]) VALUES (3, N'Olivotto', N'Nino', NULL, CAST(0x0000A0BF00000000 AS DateTime))\nINSERT [dbo].[Person] ([PersonID], [LastName], [FirstName], [HireDate], [EnrollmentDate]) VALUES (4, N'Anand', N'Arturo', NULL, CAST(0x0000A0BF00000000 AS DateTime))\nINSERT [dbo].[Person] ([PersonID], [LastName], [FirstName], [HireDate], [EnrollmentDate]) VALUES (5, N'Jai', N'Damien', NULL, CAST(0x0000A0BF00000000 AS DateTime))\nINSERT [dbo].[Person] ([PersonID], [LastName], [FirstName], [HireDate], [EnrollmentDate]) VALUES (6, N'Holt', N'Roger', CAST(0x000097F100000000 AS DateTime), NULL)\nINSERT [dbo].[Person] ([PersonID], [LastName], [FirstName], [HireDate], [EnrollmentDate]) VALUES (7, N'Martin', N'Randall', CAST(0x00008B1A00000000 AS DateTime), NULL)\nSET IDENTITY_INSERT [dbo].[Person] OFF\nSET IDENTITY_INSERT [dbo].[StudentGrade] ON \n\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (1, N'C1045', 1, CAST(3.50 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (2, N'C1045', 2, CAST(3.00 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (3, N'C1045', 3, CAST(2.50 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (4, N'C1045', 4, CAST(4.00 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (5, N'C1045', 5, CAST(3.50 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (6, N'C1061', 1, CAST(4.00 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (7, N'C1061', 3, CAST(3.50 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (8, N'C1061', 4, CAST(2.50 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (9, N'C1061', 5, CAST(1.50 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (10, N'C2021', 1, CAST(2.50 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (11, N'C2021', 2, CAST(3.50 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (12, N'C2021', 4, CAST(3.00 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (13, N'C2021', 5, CAST(3.00 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (14, N'C2042', 1, CAST(2.00 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (15, N'C2042', 2, CAST(3.50 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (16, N'C2042', 3, CAST(4.00 AS Decimal(3, 2)))\nINSERT [dbo].[StudentGrade] ([EnrollmentID], [CourseID], [StudentID], [Grade]) VALUES (17, N'C2042', 5, CAST(3.00 AS Decimal(3, 2)))\nSET IDENTITY_INSERT [dbo].[StudentGrade] OFF\nALTER TABLE [dbo].[Course]  WITH CHECK ADD  CONSTRAINT [FK_Course_Department] FOREIGN KEY([DepartmentID])\nREFERENCES [dbo].[Department] ([DepartmentID])\nGO\nALTER TABLE [dbo].[Course] CHECK CONSTRAINT [FK_Course_Department]\nGO\nALTER TABLE [dbo].[StudentGrade]  WITH CHECK ADD  CONSTRAINT [FK_StudentGrade_Student] FOREIGN KEY([StudentID])\nREFERENCES [dbo].[Person] ([PersonID])\nGO\nALTER TABLE [dbo].[StudentGrade] CHECK CONSTRAINT [FK_StudentGrade_Student]\nGO</code></pre>\n<p>Next, compile and execute the following:</p>\n<pre><code>using System;\nusing System.Data;\nusing System.Data.SqlClient;\nusing System.Threading.Tasks;\n\nclass Program {\n\nstatic class SqlHelper {\n// Set the connection, command, and then execute the command with non query.\npublic static Int32 ExecuteNonQuery(String connectionString, String commandText,\n  CommandType commandType, params SqlParameter[] parameters) {\n using (SqlConnection conn = new SqlConnection(connectionString)) {\n    using (SqlCommand cmd = new SqlCommand(commandText, conn)) {\n       // There're three command types: StoredProcedure, Text, TableDirect. The TableDirect \n       // type is only for OLE DB.  \n       cmd.CommandType = commandType;\n       cmd.Parameters.AddRange(parameters);\n\n       conn.Open();\n       return cmd.ExecuteNonQuery();\n    }\n }\n}\n\n// Set the connection, command, and then execute the command and only return one value.\npublic static Object ExecuteScalar(String connectionString, String commandText,\n  CommandType commandType, params SqlParameter[] parameters) {\n using (SqlConnection conn = new SqlConnection(connectionString)) {\n    using (SqlCommand cmd = new SqlCommand(commandText, conn)) {\n       cmd.CommandType = commandType;\n       cmd.Parameters.AddRange(parameters);\n\n       conn.Open();\n       return cmd.ExecuteScalar();\n    }\n }\n}\n\n// Set the connection, command, and then execute the command with query and return the reader.\npublic static SqlDataReader ExecuteReader(String connectionString, String commandText,\n  CommandType commandType, params SqlParameter[] parameters) {\n SqlConnection conn = new SqlConnection(connectionString);\n\n using (SqlCommand cmd = new SqlCommand(commandText, conn)) {\n    cmd.CommandType = commandType;\n    cmd.Parameters.AddRange(parameters);\n\n    conn.Open();\n    // When using CommandBehavior.CloseConnection, the connection will be closed when the \n    // IDataReader is closed.\n    SqlDataReader reader = cmd.ExecuteReader(CommandBehavior.CloseConnection);\n\n    return reader;\n }\n}\n}\n\nstatic void Main(string[] args) {\nString connectionString = \"Data Source=(local);Initial Catalog=MySchool;Integrated Security=True;Asynchronous Processing=true;\";\n\nCountCourses(connectionString, 2012);\nConsole.WriteLine();\n\nConsole.WriteLine(\"Following result is the departments that started from 2007:\");\nGetDepartments(connectionString, 2007);\nConsole.WriteLine();\n\nConsole.WriteLine(\"Add the credits when the credits of course is lower than 4.\");\nAddCredits(connectionString, 4);\nConsole.WriteLine();\n\nConsole.WriteLine(\"Please press any key to exit...\");\nConsole.ReadKey();\n}\n\nstatic void CountCourses(String connectionString, Int32 year) {\nString commandText = \"Select Count([CourseID]) FROM [MySchool].[dbo].[Course] Where Year=@Year\";\nSqlParameter parameterYear = new SqlParameter(\"@Year\", SqlDbType.Int);\nparameterYear.Value = year;\n\nObject oValue = SqlHelper.ExecuteScalar(connectionString, commandText, CommandType.Text, parameterYear);\nInt32 count;\nif (Int32.TryParse(oValue.ToString(), out count))\n Console.WriteLine(\"There {0} {1} course{2} in {3}.\", count > 1 ? \"are\" : \"is\", count, count > 1 ? \"s\" : null, year);\n}\n\n// Display the Departments that start from the specified year.\nstatic void GetDepartments(String connectionString, Int32 year) {\nString commandText = \"dbo.GetDepartmentsOfSpecifiedYear\";\n\n// Specify the year of StartDate\nSqlParameter parameterYear = new SqlParameter(\"@Year\", SqlDbType.Int);\nparameterYear.Value = year;\n\n// When the direction of parameter is set as Output, you can get the value after \n// executing the command.\nSqlParameter parameterBudget = new SqlParameter(\"@BudgetSum\", SqlDbType.Money);\nparameterBudget.Direction = ParameterDirection.Output;\n\nusing (SqlDataReader reader = SqlHelper.ExecuteReader(connectionString, commandText,\n  CommandType.StoredProcedure, parameterYear, parameterBudget)) {\n Console.WriteLine(\"{0,-20}{1,-20}{2,-20}{3,-20}\", \"Name\", \"Budget\", \"StartDate\",\n     \"Administrator\");\n while (reader.Read()) {\n    Console.WriteLine(\"{0,-20}{1,-20:C}{2,-20:d}{3,-20}\", reader[\"Name\"],\n        reader[\"Budget\"], reader[\"StartDate\"], reader[\"Administrator\"]);\n }\n}\nConsole.WriteLine(\"{0,-20}{1,-20:C}\", \"Sum:\", parameterBudget.Value);\n}\n\n// If credits of course is lower than the certain value, the method will add the credits.\nstatic void AddCredits(String connectionString, Int32 creditsLow) {\nString commandText = \"Update [MySchool].[dbo].[Course] Set Credits=Credits+1 Where Credits<@Credits\";\n\nSqlParameter parameterCredits = new SqlParameter(\"@Credits\", creditsLow);\n\nInt32 rows = SqlHelper.ExecuteNonQuery(connectionString, commandText, CommandType.Text, parameterCredits);\n\nConsole.WriteLine(\"{0} row{1} {2} updated.\", rows, rows > 1 ? \"s\" : null, rows > 1 ? \"are\" : \"is\");\n}\n}</code></pre>\n"
   syntax:
     content: 'public sealed class SqlCommand : DbCommand'
     content.vb: >-
@@ -76,6 +78,7 @@ items:
   - Public
   - NotInheritable
   - Class
+  nameWithType: SqlCommand
 - uid: System.Data.SqlClient.SqlCommand.#ctor
   commentId: M:System.Data.SqlClient.SqlCommand.#ctor
   id: '#ctor'
@@ -84,7 +87,6 @@ items:
   - csharp
   - vb
   name: SqlCommand()
-  nameWithType: SqlCommand.SqlCommand()
   fullName: System.Data.SqlClient.SqlCommand.SqlCommand()
   type: Constructor
   source:
@@ -99,6 +101,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> and sets the <strong>CommandTimeout</strong> property.</p>Classic WebData IDbCommand.CommandTimeout Example#1"
   syntax:
     content: public SqlCommand()
     content.vb: Public Sub New
@@ -106,6 +110,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.SqlCommand()
 - uid: System.Data.SqlClient.SqlCommand.#ctor(System.String)
   commentId: M:System.Data.SqlClient.SqlCommand.#ctor(System.String)
   id: '#ctor(System.String)'
@@ -114,7 +119,6 @@ items:
   - csharp
   - vb
   name: SqlCommand(String)
-  nameWithType: SqlCommand.SqlCommand(String)
   fullName: System.Data.SqlClient.SqlCommand.SqlCommand(System.String)
   type: Constructor
   source:
@@ -129,6 +133,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> class with the text of the query.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref>, passing in the connection string and command text.</p>Classic WebData SqlCommand.SqlCommand1 Example#1"
   syntax:
     content: public SqlCommand(string cmdText)
     content.vb: Public Sub New(cmdText As String)
@@ -140,6 +146,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.SqlCommand(String)
 - uid: System.Data.SqlClient.SqlCommand.#ctor(System.String,System.Data.SqlClient.SqlConnection)
   commentId: M:System.Data.SqlClient.SqlCommand.#ctor(System.String,System.Data.SqlClient.SqlConnection)
   id: '#ctor(System.String,System.Data.SqlClient.SqlConnection)'
@@ -148,7 +155,6 @@ items:
   - csharp
   - vb
   name: SqlCommand(String, SqlConnection)
-  nameWithType: SqlCommand.SqlCommand(String, SqlConnection)
   fullName: System.Data.SqlClient.SqlCommand.SqlCommand(System.String, System.Data.SqlClient.SqlConnection)
   type: Constructor
   source:
@@ -163,6 +169,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> class with the text of the query and a <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> and sets some of its properties.</p>Classic WebData SqlCommand.SqlCommand2 Example#1"
   syntax:
     content: public SqlCommand(string cmdText, SqlConnection connection)
     content.vb: Public Sub New(cmdText As String, connection As SqlConnection)
@@ -177,6 +185,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.SqlCommand(String, SqlConnection)
 - uid: System.Data.SqlClient.SqlCommand.#ctor(System.String,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlTransaction)
   commentId: M:System.Data.SqlClient.SqlCommand.#ctor(System.String,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlTransaction)
   id: '#ctor(System.String,System.Data.SqlClient.SqlConnection,System.Data.SqlClient.SqlTransaction)'
@@ -185,7 +194,6 @@ items:
   - csharp
   - vb
   name: SqlCommand(String, SqlConnection, SqlTransaction)
-  nameWithType: SqlCommand.SqlCommand(String, SqlConnection, SqlTransaction)
   fullName: System.Data.SqlClient.SqlCommand.SqlCommand(System.String, System.Data.SqlClient.SqlConnection, System.Data.SqlClient.SqlTransaction)
   type: Constructor
   source:
@@ -217,6 +225,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.SqlCommand(String, SqlConnection, SqlTransaction)
 - uid: System.Data.SqlClient.SqlCommand.CommandText
   commentId: P:System.Data.SqlClient.SqlCommand.CommandText
   id: CommandText
@@ -225,7 +234,6 @@ items:
   - csharp
   - vb
   name: CommandText
-  nameWithType: SqlCommand.CommandText
   fullName: System.Data.SqlClient.SqlCommand.CommandText
   type: Property
   source:
@@ -240,6 +248,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets or sets the Transact-SQL statement, table name or stored procedure to execute at the data source.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> and sets some of its properties.</p>Classic WebData SqlCommand.CommandText Example#1"
   syntax:
     content: public override string CommandText { get; set; }
     content.vb: Public Overrides Property CommandText As String
@@ -255,6 +265,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.CommandText
 - uid: System.Data.SqlClient.SqlCommand.CommandTimeout
   commentId: P:System.Data.SqlClient.SqlCommand.CommandTimeout
   id: CommandTimeout
@@ -263,7 +274,6 @@ items:
   - csharp
   - vb
   name: CommandTimeout
-  nameWithType: SqlCommand.CommandTimeout
   fullName: System.Data.SqlClient.SqlCommand.CommandTimeout
   type: Property
   source:
@@ -293,6 +303,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.CommandTimeout
 - uid: System.Data.SqlClient.SqlCommand.CommandType
   commentId: P:System.Data.SqlClient.SqlCommand.CommandType
   id: CommandType
@@ -301,7 +312,6 @@ items:
   - csharp
   - vb
   name: CommandType
-  nameWithType: SqlCommand.CommandType
   fullName: System.Data.SqlClient.SqlCommand.CommandType
   type: Property
   source:
@@ -316,6 +326,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets or sets a value indicating how the <xref href=\"System.Data.SqlClient.SqlCommand.CommandText\" data-throw-if-not-resolved=\"false\"></xref> property is to be interpreted.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> and sets some of its properties.</p>Classic WebData IDbCommand.CommandTimeout Example#1"
   syntax:
     content: public override CommandType CommandType { get; set; }
     content.vb: Public Overrides Property CommandType As CommandType
@@ -335,6 +347,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.CommandType
 - uid: System.Data.SqlClient.SqlCommand.Connection
   commentId: P:System.Data.SqlClient.SqlCommand.Connection
   id: Connection
@@ -343,7 +356,6 @@ items:
   - csharp
   - vb
   name: Connection
-  nameWithType: SqlCommand.Connection
   fullName: System.Data.SqlClient.SqlCommand.Connection
   type: Property
   source:
@@ -358,6 +370,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets or sets the <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> used by this instance of the <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> and sets some of its properties.</p>Classic WebData SqlCommand.Connection Example#1"
   syntax:
     content: public SqlConnection Connection { get; set; }
     content.vb: Public Property Connection As SqlConnection
@@ -382,6 +396,7 @@ items:
   - set
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.Connection
 - uid: System.Data.SqlClient.SqlCommand.DbConnection
   commentId: P:System.Data.SqlClient.SqlCommand.DbConnection
   id: DbConnection
@@ -390,7 +405,6 @@ items:
   - csharp
   - vb
   name: DbConnection
-  nameWithType: SqlCommand.DbConnection
   fullName: System.Data.SqlClient.SqlCommand.DbConnection
   type: Property
   source:
@@ -418,6 +432,7 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
+  nameWithType: SqlCommand.DbConnection
 - uid: System.Data.SqlClient.SqlCommand.DbParameterCollection
   commentId: P:System.Data.SqlClient.SqlCommand.DbParameterCollection
   id: DbParameterCollection
@@ -426,7 +441,6 @@ items:
   - csharp
   - vb
   name: DbParameterCollection
-  nameWithType: SqlCommand.DbParameterCollection
   fullName: System.Data.SqlClient.SqlCommand.DbParameterCollection
   type: Property
   source:
@@ -454,6 +468,7 @@ items:
   - Protected
   - Overrides
   - ReadOnly
+  nameWithType: SqlCommand.DbParameterCollection
 - uid: System.Data.SqlClient.SqlCommand.DbTransaction
   commentId: P:System.Data.SqlClient.SqlCommand.DbTransaction
   id: DbTransaction
@@ -462,7 +477,6 @@ items:
   - csharp
   - vb
   name: DbTransaction
-  nameWithType: SqlCommand.DbTransaction
   fullName: System.Data.SqlClient.SqlCommand.DbTransaction
   type: Property
   source:
@@ -490,6 +504,7 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
+  nameWithType: SqlCommand.DbTransaction
 - uid: System.Data.SqlClient.SqlCommand.DesignTimeVisible
   commentId: P:System.Data.SqlClient.SqlCommand.DesignTimeVisible
   id: DesignTimeVisible
@@ -498,7 +513,6 @@ items:
   - csharp
   - vb
   name: DesignTimeVisible
-  nameWithType: SqlCommand.DesignTimeVisible
   fullName: System.Data.SqlClient.SqlCommand.DesignTimeVisible
   type: Property
   source:
@@ -528,6 +542,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.DesignTimeVisible
 - uid: System.Data.SqlClient.SqlCommand.Parameters
   commentId: P:System.Data.SqlClient.SqlCommand.Parameters
   id: Parameters
@@ -536,7 +551,6 @@ items:
   - csharp
   - vb
   name: Parameters
-  nameWithType: SqlCommand.Parameters
   fullName: System.Data.SqlClient.SqlCommand.Parameters
   type: Property
   source:
@@ -551,6 +565,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Gets the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates how to create a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> and add parameters to the <xref href=\"System.Data.SqlClient.SqlParameterCollection\" data-throw-if-not-resolved=\"false\"></xref>.</p>DataWorks SqlParameterCollection.AddWithValue#1"
   syntax:
     content: public SqlParameterCollection Parameters { get; }
     content.vb: Public ReadOnly Property Parameters As SqlParameterCollection
@@ -564,6 +580,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: SqlCommand.Parameters
 - uid: System.Data.SqlClient.SqlCommand.Transaction
   commentId: P:System.Data.SqlClient.SqlCommand.Transaction
   id: Transaction
@@ -572,7 +589,6 @@ items:
   - csharp
   - vb
   name: Transaction
-  nameWithType: SqlCommand.Transaction
   fullName: System.Data.SqlClient.SqlCommand.Transaction
   type: Property
   source:
@@ -600,6 +616,7 @@ items:
   - set
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.Transaction
 - uid: System.Data.SqlClient.SqlCommand.UpdatedRowSource
   commentId: P:System.Data.SqlClient.SqlCommand.UpdatedRowSource
   id: UpdatedRowSource
@@ -608,7 +625,6 @@ items:
   - csharp
   - vb
   name: UpdatedRowSource
-  nameWithType: SqlCommand.UpdatedRowSource
   fullName: System.Data.SqlClient.SqlCommand.UpdatedRowSource
   type: Property
   source:
@@ -638,6 +654,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.UpdatedRowSource
 - uid: System.Data.SqlClient.SqlCommand.StatementCompleted
   commentId: E:System.Data.SqlClient.SqlCommand.StatementCompleted
   id: StatementCompleted
@@ -646,7 +663,6 @@ items:
   - csharp
   - vb
   name: StatementCompleted
-  nameWithType: SqlCommand.StatementCompleted
   fullName: System.Data.SqlClient.SqlCommand.StatementCompleted
   type: Event
   source:
@@ -670,6 +686,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.StatementCompleted
 - uid: System.Data.SqlClient.SqlCommand.Cancel
   commentId: M:System.Data.SqlClient.SqlCommand.Cancel
   id: Cancel
@@ -678,7 +695,6 @@ items:
   - csharp
   - vb
   name: Cancel()
-  nameWithType: SqlCommand.Cancel()
   fullName: System.Data.SqlClient.SqlCommand.Cancel()
   type: Method
   source:
@@ -693,6 +709,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Tries to cancel the execution of a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates the use of the <xref href=\"System.Data.SqlClient.SqlCommand.Cancel\" data-throw-if-not-resolved=\"false\"></xref> method.</p>Classic WebData SqlCommand.Cancel#1"
   syntax:
     content: public override void Cancel()
     content.vb: Public Overrides Sub Cancel
@@ -702,6 +720,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.Cancel()
 - uid: System.Data.SqlClient.SqlCommand.CreateDbParameter
   commentId: M:System.Data.SqlClient.SqlCommand.CreateDbParameter
   id: CreateDbParameter
@@ -710,7 +729,6 @@ items:
   - csharp
   - vb
   name: CreateDbParameter()
-  nameWithType: SqlCommand.CreateDbParameter()
   fullName: System.Data.SqlClient.SqlCommand.CreateDbParameter()
   type: Method
   source:
@@ -735,6 +753,7 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
+  nameWithType: SqlCommand.CreateDbParameter()
 - uid: System.Data.SqlClient.SqlCommand.CreateParameter
   commentId: M:System.Data.SqlClient.SqlCommand.CreateParameter
   id: CreateParameter
@@ -743,7 +762,6 @@ items:
   - csharp
   - vb
   name: CreateParameter()
-  nameWithType: SqlCommand.CreateParameter()
   fullName: System.Data.SqlClient.SqlCommand.CreateParameter()
   type: Method
   source:
@@ -768,6 +786,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.CreateParameter()
 - uid: System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(System.Data.CommandBehavior)
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(System.Data.CommandBehavior)
   id: ExecuteDbDataReader(System.Data.CommandBehavior)
@@ -776,7 +795,6 @@ items:
   - csharp
   - vb
   name: ExecuteDbDataReader(CommandBehavior)
-  nameWithType: SqlCommand.ExecuteDbDataReader(CommandBehavior)
   fullName: System.Data.SqlClient.SqlCommand.ExecuteDbDataReader(System.Data.CommandBehavior)
   type: Method
   source:
@@ -804,6 +822,7 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
+  nameWithType: SqlCommand.ExecuteDbDataReader(CommandBehavior)
 - uid: System.Data.SqlClient.SqlCommand.ExecuteDbDataReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteDbDataReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)
   id: ExecuteDbDataReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)
@@ -812,7 +831,6 @@ items:
   - csharp
   - vb
   name: ExecuteDbDataReaderAsync(CommandBehavior, CancellationToken)
-  nameWithType: SqlCommand.ExecuteDbDataReaderAsync(CommandBehavior, CancellationToken)
   fullName: System.Data.SqlClient.SqlCommand.ExecuteDbDataReaderAsync(System.Data.CommandBehavior, System.Threading.CancellationToken)
   type: Method
   source:
@@ -842,6 +860,7 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
+  nameWithType: SqlCommand.ExecuteDbDataReaderAsync(CommandBehavior, CancellationToken)
 - uid: System.Data.SqlClient.SqlCommand.ExecuteNonQuery
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteNonQuery
   id: ExecuteNonQuery
@@ -850,7 +869,6 @@ items:
   - csharp
   - vb
   name: ExecuteNonQuery()
-  nameWithType: SqlCommand.ExecuteNonQuery()
   fullName: System.Data.SqlClient.SqlCommand.ExecuteNonQuery()
   type: Method
   source:
@@ -865,6 +883,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Executes a Transact-SQL statement against the connection and returns the number of rows affected.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> and then executes it using <xref href=\"System.Data.SqlClient.SqlCommand.ExecuteNonQuery\" data-throw-if-not-resolved=\"false\"></xref>. The example is passed a string that is a Transact-SQL statement (such as UPDATE, INSERT, or DELETE) and a string to use to connect to the data source.</p>Classic WebData SqlCommand.ExecuteNonQuery Example#1"
   syntax:
     content: public override int ExecuteNonQuery()
     content.vb: Public Overrides Function ExecuteNonQuery As Integer
@@ -893,6 +913,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.ExecuteNonQuery()
 - uid: System.Data.SqlClient.SqlCommand.ExecuteNonQueryAsync(System.Threading.CancellationToken)
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteNonQueryAsync(System.Threading.CancellationToken)
   id: ExecuteNonQueryAsync(System.Threading.CancellationToken)
@@ -901,7 +922,6 @@ items:
   - csharp
   - vb
   name: ExecuteNonQueryAsync(CancellationToken)
-  nameWithType: SqlCommand.ExecuteNonQueryAsync(CancellationToken)
   fullName: System.Data.SqlClient.SqlCommand.ExecuteNonQueryAsync(System.Threading.CancellationToken)
   type: Method
   source:
@@ -948,6 +968,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.ExecuteNonQueryAsync(CancellationToken)
 - uid: System.Data.SqlClient.SqlCommand.ExecuteReader
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteReader
   id: ExecuteReader
@@ -956,7 +977,6 @@ items:
   - csharp
   - vb
   name: ExecuteReader()
-  nameWithType: SqlCommand.ExecuteReader()
   fullName: System.Data.SqlClient.SqlCommand.ExecuteReader()
   type: Method
   source:
@@ -971,6 +991,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Sends the <xref href=\"System.Data.SqlClient.SqlCommand.CommandText\" data-throw-if-not-resolved=\"false\"></xref> to the <xref href=\"System.Data.SqlClient.SqlCommand.Connection\" data-throw-if-not-resolved=\"false\"></xref> and builds a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref>, and then executes it by passing a string that is a Transact-SQL SELECT statement, and a string to use to connect to the data source.</p>Classic WebData SqlCommand.ExecuteReader Example#1"
   syntax:
     content: public SqlDataReader ExecuteReader()
     content.vb: Public Function ExecuteReader As SqlDataReader
@@ -997,6 +1019,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.ExecuteReader()
 - uid: System.Data.SqlClient.SqlCommand.ExecuteReader(System.Data.CommandBehavior)
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteReader(System.Data.CommandBehavior)
   id: ExecuteReader(System.Data.CommandBehavior)
@@ -1005,7 +1028,6 @@ items:
   - csharp
   - vb
   name: ExecuteReader(CommandBehavior)
-  nameWithType: SqlCommand.ExecuteReader(CommandBehavior)
   fullName: System.Data.SqlClient.SqlCommand.ExecuteReader(System.Data.CommandBehavior)
   type: Method
   source:
@@ -1020,6 +1042,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Sends the <xref href=\"System.Data.SqlClient.SqlCommand.CommandText\" data-throw-if-not-resolved=\"false\"></xref> to the <xref href=\"System.Data.SqlClient.SqlCommand.Connection\" data-throw-if-not-resolved=\"false\"></xref>, and builds a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> using one of the <xref href=\"System.Data.CommandBehavior\" data-throw-if-not-resolved=\"false\"></xref> values.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref>, and then executes it by passing a string that is a Transact-SQL SELECT statement, and a string to use to connect to the data source. <xref href=\"System.Data.CommandBehavior\" data-throw-if-not-resolved=\"false\"></xref> is set to <xref href=\"System.Data.CommandBehavior.CloseConnection\" data-throw-if-not-resolved=\"false\"></xref>.</p>Classic WebData SqlCommand.ExecuteReader2#1"
   syntax:
     content: public SqlDataReader ExecuteReader(CommandBehavior behavior)
     content.vb: Public Function ExecuteReader(behavior As CommandBehavior) As SqlDataReader
@@ -1050,6 +1074,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.ExecuteReader(CommandBehavior)
 - uid: System.Data.SqlClient.SqlCommand.ExecuteReaderAsync
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync
   id: ExecuteReaderAsync
@@ -1058,7 +1083,6 @@ items:
   - csharp
   - vb
   name: ExecuteReaderAsync()
-  nameWithType: SqlCommand.ExecuteReaderAsync()
   fullName: System.Data.SqlClient.SqlCommand.ExecuteReaderAsync()
   type: Method
   source:
@@ -1102,6 +1126,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.ExecuteReaderAsync()
 - uid: System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Data.CommandBehavior)
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Data.CommandBehavior)
   id: ExecuteReaderAsync(System.Data.CommandBehavior)
@@ -1110,7 +1135,6 @@ items:
   - csharp
   - vb
   name: ExecuteReaderAsync(CommandBehavior)
-  nameWithType: SqlCommand.ExecuteReaderAsync(CommandBehavior)
   fullName: System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Data.CommandBehavior)
   type: Method
   source:
@@ -1158,6 +1182,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.ExecuteReaderAsync(CommandBehavior)
 - uid: System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)
   id: ExecuteReaderAsync(System.Data.CommandBehavior,System.Threading.CancellationToken)
@@ -1166,7 +1191,6 @@ items:
   - csharp
   - vb
   name: ExecuteReaderAsync(CommandBehavior, CancellationToken)
-  nameWithType: SqlCommand.ExecuteReaderAsync(CommandBehavior, CancellationToken)
   fullName: System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Data.CommandBehavior, System.Threading.CancellationToken)
   type: Method
   source:
@@ -1217,6 +1241,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.ExecuteReaderAsync(CommandBehavior, CancellationToken)
 - uid: System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Threading.CancellationToken)
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Threading.CancellationToken)
   id: ExecuteReaderAsync(System.Threading.CancellationToken)
@@ -1225,7 +1250,6 @@ items:
   - csharp
   - vb
   name: ExecuteReaderAsync(CancellationToken)
-  nameWithType: SqlCommand.ExecuteReaderAsync(CancellationToken)
   fullName: System.Data.SqlClient.SqlCommand.ExecuteReaderAsync(System.Threading.CancellationToken)
   type: Method
   source:
@@ -1273,6 +1297,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.ExecuteReaderAsync(CancellationToken)
 - uid: System.Data.SqlClient.SqlCommand.ExecuteScalar
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteScalar
   id: ExecuteScalar
@@ -1281,7 +1306,6 @@ items:
   - csharp
   - vb
   name: ExecuteScalar()
-  nameWithType: SqlCommand.ExecuteScalar()
   fullName: System.Data.SqlClient.SqlCommand.ExecuteScalar()
   type: Method
   source:
@@ -1296,6 +1320,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Executes the query, and returns the first column of the first row in the result set returned by the query. Additional columns or rows are ignored.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> and then executes it using <xref href=\"System.Data.SqlClient.SqlCommand.ExecuteScalar\" data-throw-if-not-resolved=\"false\"></xref>. The example is passed a string representing a new value to be inserted into a table, and a string to use to connect to the data source. The function returns the new <strong>Identity</strong> column value if a new row was inserted, 0 on failure.</p>DataWorks SqlCommand.ExecuteScalar#1"
   syntax:
     content: public override object ExecuteScalar()
     content.vb: Public Overrides Function ExecuteScalar As Object
@@ -1324,6 +1350,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.ExecuteScalar()
 - uid: System.Data.SqlClient.SqlCommand.ExecuteScalarAsync(System.Threading.CancellationToken)
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteScalarAsync(System.Threading.CancellationToken)
   id: ExecuteScalarAsync(System.Threading.CancellationToken)
@@ -1332,7 +1359,6 @@ items:
   - csharp
   - vb
   name: ExecuteScalarAsync(CancellationToken)
-  nameWithType: SqlCommand.ExecuteScalarAsync(CancellationToken)
   fullName: System.Data.SqlClient.SqlCommand.ExecuteScalarAsync(System.Threading.CancellationToken)
   type: Method
   source:
@@ -1379,6 +1405,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.ExecuteScalarAsync(CancellationToken)
 - uid: System.Data.SqlClient.SqlCommand.ExecuteXmlReader
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteXmlReader
   id: ExecuteXmlReader
@@ -1387,7 +1414,6 @@ items:
   - csharp
   - vb
   name: ExecuteXmlReader()
-  nameWithType: SqlCommand.ExecuteXmlReader()
   fullName: System.Data.SqlClient.SqlCommand.ExecuteXmlReader()
   type: Method
   source:
@@ -1402,6 +1428,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Sends the <xref href=\"System.Data.SqlClient.SqlCommand.CommandText\" data-throw-if-not-resolved=\"false\"></xref> to the <xref href=\"System.Data.SqlClient.SqlCommand.Connection\" data-throw-if-not-resolved=\"false\"></xref> and builds an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> object.</p>\n"
+  example:
+  - "\n<p>The following example creates a <xref href=\"System.Data.SqlClient.SqlCommand\" data-throw-if-not-resolved=\"false\"></xref> and then executes it using <xref href=\"System.Data.SqlClient.SqlCommand.ExecuteXmlReader\" data-throw-if-not-resolved=\"false\"></xref>. The example is passed a string that is a Transact-SQL FOR XML SELECT statement, and a string to use to connect to the data source.</p>Classic WebData SqlCommand.ExecuteXmlReader#1"
   syntax:
     content: public XmlReader ExecuteXmlReader()
     content.vb: Public Function ExecuteXmlReader As XmlReader
@@ -1428,6 +1456,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.ExecuteXmlReader()
 - uid: System.Data.SqlClient.SqlCommand.ExecuteXmlReaderAsync
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteXmlReaderAsync
   id: ExecuteXmlReaderAsync
@@ -1436,7 +1465,6 @@ items:
   - csharp
   - vb
   name: ExecuteXmlReaderAsync()
-  nameWithType: SqlCommand.ExecuteXmlReaderAsync()
   fullName: System.Data.SqlClient.SqlCommand.ExecuteXmlReaderAsync()
   type: Method
   source:
@@ -1477,6 +1505,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.ExecuteXmlReaderAsync()
 - uid: System.Data.SqlClient.SqlCommand.ExecuteXmlReaderAsync(System.Threading.CancellationToken)
   commentId: M:System.Data.SqlClient.SqlCommand.ExecuteXmlReaderAsync(System.Threading.CancellationToken)
   id: ExecuteXmlReaderAsync(System.Threading.CancellationToken)
@@ -1485,7 +1514,6 @@ items:
   - csharp
   - vb
   name: ExecuteXmlReaderAsync(CancellationToken)
-  nameWithType: SqlCommand.ExecuteXmlReaderAsync(CancellationToken)
   fullName: System.Data.SqlClient.SqlCommand.ExecuteXmlReaderAsync(System.Threading.CancellationToken)
   type: Method
   source:
@@ -1530,6 +1558,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: SqlCommand.ExecuteXmlReaderAsync(CancellationToken)
 - uid: System.Data.SqlClient.SqlCommand.Prepare
   commentId: M:System.Data.SqlClient.SqlCommand.Prepare
   id: Prepare
@@ -1538,7 +1567,6 @@ items:
   - csharp
   - vb
   name: Prepare()
-  nameWithType: SqlCommand.Prepare()
   fullName: System.Data.SqlClient.SqlCommand.Prepare()
   type: Method
   source:
@@ -1553,6 +1581,8 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Creates a prepared version of the command on an instance of SQL Server.</p>\n"
+  example:
+  - "\n<p>The following example demonstrates the use of the <xref href=\"System.Data.SqlClient.SqlCommand.Prepare\" data-throw-if-not-resolved=\"false\"></xref> method.</p>Classic WebData SqlCommand.Prepare#1"
   syntax:
     content: public override void Prepare()
     content.vb: Public Overrides Sub Prepare
@@ -1562,6 +1592,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: SqlCommand.Prepare()
 - uid: System.Data.SqlClient.SqlCommand.Dispose(System.Boolean)
   commentId: M:System.Data.SqlClient.SqlCommand.Dispose(System.Boolean)
   id: Dispose(System.Boolean)
@@ -1570,7 +1601,6 @@ items:
   - csharp
   - vb
   name: Dispose(Boolean)
-  nameWithType: SqlCommand.Dispose(Boolean)
   fullName: System.Data.SqlClient.SqlCommand.Dispose(System.Boolean)
   type: Method
   source:
@@ -1596,485 +1626,438 @@ items:
   modifiers.vb:
   - Protected
   - Overrides
+  nameWithType: SqlCommand.Dispose(Boolean)
 references:
 - uid: System.Data.SqlClient
   isExternal: false
   name: System.Data.SqlClient
-  nameWithType: System.Data.SqlClient
   fullName: System.Data.SqlClient
+  nameWithType: System.Data.SqlClient
   commentId: N:System.Data.SqlClient
 - uid: System.Object
   parent: System
   isExternal: false
   name: Object
-  nameWithType: Object
   fullName: System.Object
+  nameWithType: Object
   commentId: T:System.Object
 - uid: System.Data.Common.DbCommand
   parent: System.Data.Common
   isExternal: false
   name: DbCommand
-  nameWithType: DbCommand
   fullName: System.Data.Common.DbCommand
+  nameWithType: DbCommand
   commentId: T:System.Data.Common.DbCommand
 - uid: System
   isExternal: false
   name: System
-  nameWithType: System
   fullName: System
+  nameWithType: System
   commentId: N:System
 - uid: System.Data.Common
   isExternal: false
   name: System.Data.Common
-  nameWithType: System.Data.Common
   fullName: System.Data.Common
+  nameWithType: System.Data.Common
   commentId: N:System.Data.Common
 - uid: System.String
   parent: System
   isExternal: false
   name: String
-  nameWithType: String
   fullName: System.String
+  nameWithType: String
   commentId: T:System.String
 - uid: System.Data.SqlClient.SqlConnection
   parent: System.Data.SqlClient
   isExternal: false
   name: SqlConnection
-  nameWithType: SqlConnection
   fullName: System.Data.SqlClient.SqlConnection
+  nameWithType: SqlConnection
   commentId: T:System.Data.SqlClient.SqlConnection
 - uid: System.Data.SqlClient.SqlTransaction
   parent: System.Data.SqlClient
   isExternal: false
   name: SqlTransaction
-  nameWithType: SqlTransaction
   fullName: System.Data.SqlClient.SqlTransaction
+  nameWithType: SqlTransaction
   commentId: T:System.Data.SqlClient.SqlTransaction
 - uid: System.Int32
   parent: System
   isExternal: false
   name: Int32
-  nameWithType: Int32
   fullName: System.Int32
+  nameWithType: Int32
   commentId: T:System.Int32
 - uid: System.Data.CommandType
   parent: System.Data
   isExternal: false
   name: CommandType
-  nameWithType: CommandType
   fullName: System.Data.CommandType
+  nameWithType: CommandType
   commentId: T:System.Data.CommandType
 - uid: System.Data
   isExternal: false
   name: System.Data
-  nameWithType: System.Data
   fullName: System.Data
+  nameWithType: System.Data
   commentId: N:System.Data
 - uid: System.Data.Common.DbConnection
   parent: System.Data.Common
   isExternal: false
   name: DbConnection
-  nameWithType: DbConnection
   fullName: System.Data.Common.DbConnection
+  nameWithType: DbConnection
   commentId: T:System.Data.Common.DbConnection
 - uid: System.Data.Common.DbParameterCollection
   parent: System.Data.Common
   isExternal: false
   name: DbParameterCollection
-  nameWithType: DbParameterCollection
   fullName: System.Data.Common.DbParameterCollection
+  nameWithType: DbParameterCollection
   commentId: T:System.Data.Common.DbParameterCollection
 - uid: System.Data.Common.DbTransaction
   parent: System.Data.Common
   isExternal: false
   name: DbTransaction
-  nameWithType: DbTransaction
   fullName: System.Data.Common.DbTransaction
+  nameWithType: DbTransaction
   commentId: T:System.Data.Common.DbTransaction
 - uid: System.Boolean
   parent: System
   isExternal: false
   name: Boolean
-  nameWithType: Boolean
   fullName: System.Boolean
+  nameWithType: Boolean
   commentId: T:System.Boolean
 - uid: System.Data.SqlClient.SqlParameterCollection
   parent: System.Data.SqlClient
   isExternal: false
   name: SqlParameterCollection
-  nameWithType: SqlParameterCollection
   fullName: System.Data.SqlClient.SqlParameterCollection
+  nameWithType: SqlParameterCollection
   commentId: T:System.Data.SqlClient.SqlParameterCollection
 - uid: System.Data.UpdateRowSource
   parent: System.Data
   isExternal: false
   name: UpdateRowSource
-  nameWithType: UpdateRowSource
   fullName: System.Data.UpdateRowSource
+  nameWithType: UpdateRowSource
   commentId: T:System.Data.UpdateRowSource
 - uid: System.Data.StatementCompletedEventHandler
   parent: System.Data
   isExternal: false
   name: StatementCompletedEventHandler
-  nameWithType: StatementCompletedEventHandler
   fullName: System.Data.StatementCompletedEventHandler
+  nameWithType: StatementCompletedEventHandler
   commentId: T:System.Data.StatementCompletedEventHandler
 - uid: System.Data.Common.DbParameter
   parent: System.Data.Common
   isExternal: false
   name: DbParameter
-  nameWithType: DbParameter
   fullName: System.Data.Common.DbParameter
+  nameWithType: DbParameter
   commentId: T:System.Data.Common.DbParameter
 - uid: System.Data.SqlClient.SqlParameter
   parent: System.Data.SqlClient
   isExternal: false
   name: SqlParameter
-  nameWithType: SqlParameter
   fullName: System.Data.SqlClient.SqlParameter
+  nameWithType: SqlParameter
   commentId: T:System.Data.SqlClient.SqlParameter
 - uid: System.Data.CommandBehavior
   parent: System.Data
   isExternal: false
   name: CommandBehavior
-  nameWithType: CommandBehavior
   fullName: System.Data.CommandBehavior
+  nameWithType: CommandBehavior
   commentId: T:System.Data.CommandBehavior
 - uid: System.Data.Common.DbDataReader
   parent: System.Data.Common
   isExternal: false
   name: DbDataReader
-  nameWithType: DbDataReader
   fullName: System.Data.Common.DbDataReader
+  nameWithType: DbDataReader
   commentId: T:System.Data.Common.DbDataReader
 - uid: System.Threading.CancellationToken
   parent: System.Threading
   isExternal: false
   name: CancellationToken
-  nameWithType: CancellationToken
   fullName: System.Threading.CancellationToken
+  nameWithType: CancellationToken
   commentId: T:System.Threading.CancellationToken
 - uid: System.Threading.Tasks.Task{System.Data.Common.DbDataReader}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<DbDataReader>
-  nameWithType: Task<DbDataReader>
   fullName: System.Threading.Tasks.Task<System.Data.Common.DbDataReader>
-  nameWithType.vb: Task(Of DbDataReader)
   fullname.vb: System.Threading.Tasks.Task(Of System.Data.Common.DbDataReader)
   name.vb: Task(Of DbDataReader)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Data.Common.DbDataReader
     name: DbDataReader
-    nameWithType: DbDataReader
     fullName: System.Data.Common.DbDataReader
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Data.Common.DbDataReader
     name: DbDataReader
-    nameWithType: DbDataReader
     fullName: System.Data.Common.DbDataReader
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<DbDataReader>
+  nameWithType.vb: Task(Of DbDataReader)
   commentId: T:System.Threading.Tasks.Task{System.Data.Common.DbDataReader}
 - uid: System.Threading
   isExternal: false
   name: System.Threading
-  nameWithType: System.Threading
   fullName: System.Threading
+  nameWithType: System.Threading
   commentId: N:System.Threading
 - uid: System.Threading.Tasks.Task`1
   isExternal: false
   name: Task<TResult>
-  nameWithType: Task<TResult>
   fullName: System.Threading.Tasks.Task<TResult>
-  nameWithType.vb: Task(Of TResult)
   fullname.vb: System.Threading.Tasks.Task(Of TResult)
   name.vb: Task(Of TResult)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: <
-    nameWithType: <
     fullName: <
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TResult
-    nameWithType: TResult
     fullName: TResult
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<TResult>
+  nameWithType.vb: Task(Of TResult)
   commentId: T:System.Threading.Tasks.Task`1
 - uid: System.Threading.Tasks
   isExternal: false
   name: System.Threading.Tasks
-  nameWithType: System.Threading.Tasks
   fullName: System.Threading.Tasks
+  nameWithType: System.Threading.Tasks
   commentId: N:System.Threading.Tasks
 - uid: System.Threading.Tasks.Task{System.Int32}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<Int32>
-  nameWithType: Task<Int32>
   fullName: System.Threading.Tasks.Task<System.Int32>
-  nameWithType.vb: Task(Of Int32)
   fullname.vb: System.Threading.Tasks.Task(Of System.Int32)
   name.vb: Task(Of Int32)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Int32
     name: Int32
-    nameWithType: Int32
     fullName: System.Int32
     isExternal: true
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Int32
     name: Int32
-    nameWithType: Int32
     fullName: System.Int32
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<Int32>
+  nameWithType.vb: Task(Of Int32)
   commentId: T:System.Threading.Tasks.Task{System.Int32}
 - uid: System.Data.SqlClient.SqlDataReader
   parent: System.Data.SqlClient
   isExternal: false
   name: SqlDataReader
-  nameWithType: SqlDataReader
   fullName: System.Data.SqlClient.SqlDataReader
+  nameWithType: SqlDataReader
   commentId: T:System.Data.SqlClient.SqlDataReader
 - uid: System.Threading.Tasks.Task{System.Data.SqlClient.SqlDataReader}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<SqlDataReader>
-  nameWithType: Task<SqlDataReader>
   fullName: System.Threading.Tasks.Task<System.Data.SqlClient.SqlDataReader>
-  nameWithType.vb: Task(Of SqlDataReader)
   fullname.vb: System.Threading.Tasks.Task(Of System.Data.SqlClient.SqlDataReader)
   name.vb: Task(Of SqlDataReader)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Data.SqlClient.SqlDataReader
     name: SqlDataReader
-    nameWithType: SqlDataReader
     fullName: System.Data.SqlClient.SqlDataReader
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Data.SqlClient.SqlDataReader
     name: SqlDataReader
-    nameWithType: SqlDataReader
     fullName: System.Data.SqlClient.SqlDataReader
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<SqlDataReader>
+  nameWithType.vb: Task(Of SqlDataReader)
   commentId: T:System.Threading.Tasks.Task{System.Data.SqlClient.SqlDataReader}
 - uid: System.Threading.Tasks.Task{System.Object}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<Object>
-  nameWithType: Task<Object>
   fullName: System.Threading.Tasks.Task<System.Object>
-  nameWithType.vb: Task(Of Object)
   fullname.vb: System.Threading.Tasks.Task(Of System.Object)
   name.vb: Task(Of Object)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<Object>
+  nameWithType.vb: Task(Of Object)
   commentId: T:System.Threading.Tasks.Task{System.Object}
 - uid: System.Xml.XmlReader
   parent: System.Xml
   isExternal: false
   name: XmlReader
-  nameWithType: XmlReader
   fullName: System.Xml.XmlReader
+  nameWithType: XmlReader
   commentId: T:System.Xml.XmlReader
 - uid: System.Xml
   isExternal: false
   name: System.Xml
-  nameWithType: System.Xml
   fullName: System.Xml
+  nameWithType: System.Xml
   commentId: N:System.Xml
 - uid: System.Threading.Tasks.Task{System.Xml.XmlReader}
   parent: System.Threading.Tasks
   definition: System.Threading.Tasks.Task`1
   name: Task<Xml.XmlReader>
-  nameWithType: Task<Xml.XmlReader>
   fullName: System.Threading.Tasks.Task<System.Xml.XmlReader>
-  nameWithType.vb: Task(Of Xml.XmlReader)
   fullname.vb: System.Threading.Tasks.Task(Of System.Xml.XmlReader)
   name.vb: Task(Of Xml.XmlReader)
   spec.csharp:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Xml.XmlReader
     name: Xml.XmlReader
-    nameWithType: Xml.XmlReader
     fullName: System.Xml.XmlReader
     isExternal: true
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Threading.Tasks.Task`1
     name: Task
-    nameWithType: Task
     fullName: System.Threading.Tasks.Task
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Xml.XmlReader
     name: Xml.XmlReader
-    nameWithType: Xml.XmlReader
     fullName: System.Xml.XmlReader
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
+  nameWithType: Task<Xml.XmlReader>
+  nameWithType.vb: Task(Of Xml.XmlReader)
   commentId: T:System.Threading.Tasks.Task{System.Xml.XmlReader}
 - uid: System.ArgumentException
   parent: System
   isExternal: false
   name: ArgumentException
-  nameWithType: ArgumentException
   fullName: System.ArgumentException
+  nameWithType: ArgumentException
   commentId: T:System.ArgumentException
 - uid: System.InvalidOperationException
   parent: System
   isExternal: false
   name: InvalidOperationException
-  nameWithType: InvalidOperationException
   fullName: System.InvalidOperationException
+  nameWithType: InvalidOperationException
   commentId: T:System.InvalidOperationException
 - uid: System.InvalidCastException
   isExternal: false
   name: InvalidCastException
-  nameWithType: InvalidCastException
   fullName: System.InvalidCastException
+  nameWithType: InvalidCastException
   commentId: T:System.InvalidCastException
 - uid: System.Data.SqlClient.SqlException
   isExternal: false
   name: SqlException
-  nameWithType: SqlException
   fullName: System.Data.SqlClient.SqlException
+  nameWithType: SqlException
   commentId: T:System.Data.SqlClient.SqlException
 - uid: System.IO.IOException
   parent: System.IO
   isExternal: false
   name: IOException
-  nameWithType: IOException
   fullName: System.IO.IOException
+  nameWithType: IOException
   commentId: T:System.IO.IOException
 - uid: System.ObjectDisposedException
   isExternal: false
   name: ObjectDisposedException
-  nameWithType: ObjectDisposedException
   fullName: System.ObjectDisposedException
+  nameWithType: ObjectDisposedException
   commentId: T:System.ObjectDisposedException

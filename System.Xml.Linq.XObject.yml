@@ -21,7 +21,6 @@ items:
   - csharp
   - vb
   name: XObject
-  nameWithType: XObject
   fullName: System.Xml.Linq.XObject
   type: Class
   source:
@@ -36,6 +35,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Represents a node or an attribute in an XML tree. </p>\n"
+  example:
+  - 
   syntax:
     content: 'public abstract class XObject : IXmlLineInfo'
     content.vb: >-
@@ -51,6 +52,7 @@ items:
   - Public
   - MustInherit
   - Class
+  nameWithType: XObject
 - uid: System.Xml.Linq.XObject.BaseUri
   commentId: P:System.Xml.Linq.XObject.BaseUri
   id: BaseUri
@@ -59,7 +61,6 @@ items:
   - csharp
   - vb
   name: BaseUri
-  nameWithType: XObject.BaseUri
   fullName: System.Xml.Linq.XObject.BaseUri
   type: Property
   source:
@@ -74,6 +75,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the base URI for this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example loads the base URI and line information as it loads the file. It then prints the base URI and the line information.</p>\n<p>This example uses the following XML document: Sample XML File: Typical Purchase Order (LINQ to XML).</p>\n<pre><code class=\"c#\">XElement po = XElement.Load(\"PurchaseOrder.xml\",\nLoadOptions.SetBaseUri | LoadOptions.SetLineInfo);\nstring[] splitUri = po.BaseUri.Split('/');\nConsole.WriteLine(\"BaseUri: {0}\", splitUri[splitUri.Length - 1]);\nConsole.WriteLine();\nConsole.WriteLine(\"{0}{1}{2}\",\n\"Element Name\".PadRight(20),\n\"Line\".PadRight(5),\n\"Position\");\nConsole.WriteLine(\"{0}{1}{2}\",\n\"------------\".PadRight(20),\n\"----\".PadRight(5),\n\"--------\");\nforeach (XElement e in po.DescendantsAndSelf())\nConsole.WriteLine(\"{0}{1}{2}\",\n(\"\".PadRight(e.Ancestors().Count() * 2) + e.Name).PadRight(20),\n((IXmlLineInfo)e).LineNumber.ToString().PadRight(5),\n((IXmlLineInfo)e).LinePosition);</code></pre>\n<pre><code class=\"vb\">Dim po As XElement = XElement.Load(\"PurchaseOrder.xml\", LoadOptions.SetBaseUri Or LoadOptions.SetLineInfo)\nDim splitUri() As String = po.BaseUri.Split(\"/\"c)\nConsole.WriteLine(\"BaseUri: {0}\", splitUri(splitUri.Length - 1))\nConsole.WriteLine()\nConsole.WriteLine(\"{0}{1}{2}\", _\n\"Element Name\".PadRight(20), _\n\"Line\".PadRight(5), _\n\"Position\")\nConsole.WriteLine(\"{0}{1}{2}\", _\n\"------------\".PadRight(20), _\n\"----\".PadRight(5), _\n\"--------\")\nFor Each e As XElement In po.DescendantsAndSelf()\nConsole.WriteLine(\"{0}{1}{2}\", _\n(\"\".PadRight(e.Ancestors().Count() * 2) & e.Name.ToString).PadRight(20), _\nDirectCast(e, IXmlLineInfo).LineNumber.ToString().PadRight(5), _\nDirectCast(e, IXmlLineInfo).LinePosition)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>BaseUri: PurchaseOrder.xml\n\nElement Name        Line Position\n------------        ---- --------\nPurchaseOrder       2    2\nAddress           3    4\nName            4    6\nStreet          5    6\nCity            6    6\nState           7    6\nZip             8    6\nCountry         9    6\nAddress           11   4\nName            12   6\nStreet          13   6\nCity            14   6\nState           15   6\nZip             16   6\nCountry         17   6\nDeliveryNotes     19   4\nItems             20   4\nItem            21   6\nProductName   22   8\nQuantity      23   8\nUSPrice       24   8\nComment       25   8\nItem            27   6\nProductName   28   8\nQuantity      29   8\nUSPrice       30   8\nShipDate      31   8</code></pre>\n"
   syntax:
     content: public string BaseUri { get; }
     content.vb: Public ReadOnly Property BaseUri As String
@@ -87,6 +90,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: XObject.BaseUri
 - uid: System.Xml.Linq.XObject.Document
   commentId: P:System.Xml.Linq.XObject.Document
   id: Document
@@ -95,7 +99,6 @@ items:
   - csharp
   - vb
   name: Document
-  nameWithType: XObject.Document
   fullName: System.Xml.Linq.XObject.Document
   type: Property
   source:
@@ -110,6 +113,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> for this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example creates a document with some complex content. It then uses this property to retrieve the document for the <code>Child</code> element.</p>\n<pre><code class=\"c#\">XDocument doc = new XDocument(\nnew XComment(\"A comment in the document.\"),\nnew XElement(\"Root\",\nnew XElement(\"Child\", \"content\")\n)\n);\nXElement child = doc.Descendants(\"Child\").First();\nXDocument documentOfChild = child.Document;\nConsole.WriteLine(documentOfChild.FirstNode);</code></pre>\n<pre><code class=\"vb\">Dim doc As XDocument = _\n<?xml version=\"1.0\"?>\n<!--A comment in the document.-->\n<Root>\n    <Child>content</Child>\n </Root>\nDim child As XElement = doc.Descendants(\"Child\").First()\nDim documentOfChild As XDocument = child.Document\nConsole.WriteLine(documentOfChild.FirstNode)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><!--A comment in the document.--></code></pre>\n"
   syntax:
     content: public XDocument Document { get; }
     content.vb: Public ReadOnly Property Document As XDocument
@@ -123,6 +128,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: XObject.Document
 - uid: System.Xml.Linq.XObject.NodeType
   commentId: P:System.Xml.Linq.XObject.NodeType
   id: NodeType
@@ -131,7 +137,6 @@ items:
   - csharp
   - vb
   name: NodeType
-  nameWithType: XObject.NodeType
   fullName: System.Xml.Linq.XObject.NodeType
   type: Property
   source:
@@ -146,6 +151,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the node type for this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to retrieve the node type for a variety of nodes.</p>\n<pre><code class=\"c#\">// Note that XNode uses XmlNodeType, which is in the System.Xml namespace.\nXDocument xmlTree = new XDocument(\nnew XComment(\"a comment\"),\nnew XProcessingInstruction(\"xml-stylesheet\", \"type=\\\"text/xsl\\\" href=\\\"hello.xsl\\\"\"),\nnew XElement(\"Root\",\nnew XAttribute(\"Att\", \"attContent\"),\nnew XElement(\"Child1\",\n    new XCData(\"CDATA content\")\n),\nnew XElement(\"Child2\",\n    new XText(\"Text content\")\n)\n)\n);\n\nforeach (XNode node in xmlTree.DescendantNodes())\n{\nConsole.WriteLine(node.NodeType);\nif (node.NodeType == XmlNodeType.Element)\n{\nforeach (XAttribute att in ((XElement)node).Attributes())\n    Console.WriteLine(att.NodeType);\n}\n}</code></pre>\n<pre><code class=\"vb\">' Note that XNode uses XmlNodeType, which is in the System.Xml  namespace.\nDim xmlTree As XDocument = _ \n<?xml version=\"1.0\"?>\n<!--a comment-->\n<?xml-stylesheet type=\"text/xsl\" href=\"hello.xsl\"?>\n<Root Att=\"attContent\">\n<Child1><![CDATA[CDATA content]]></Child1>\n<Child2>Text content</Child2>\n</Root>\n\nFor Each node As XNode In xmlTree.DescendantNodes\nConsole.WriteLine(node.NodeType.ToString())\nIf node.NodeType = XmlNodeType.Element Then\nFor Each att In DirectCast(node, XElement).Attributes\n    Console.WriteLine(att.NodeType.ToString())\nNext\nEnd If\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Comment\nProcessingInstruction\nElement\nAttribute\nElement\nCDATA\nElement\nText</code></pre>\n"
   syntax:
     content: public abstract XmlNodeType NodeType { get; }
     content.vb: Public MustOverride ReadOnly Property NodeType As XmlNodeType
@@ -161,6 +168,7 @@ items:
   - Public
   - MustOverride
   - ReadOnly
+  nameWithType: XObject.NodeType
 - uid: System.Xml.Linq.XObject.Parent
   commentId: P:System.Xml.Linq.XObject.Parent
   id: Parent
@@ -169,7 +177,6 @@ items:
   - csharp
   - vb
   name: Parent
-  nameWithType: XObject.Parent
   fullName: System.Xml.Linq.XObject.Parent
   type: Property
   source:
@@ -184,6 +191,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the parent <xref href=\"System.Xml.Linq.XElement\" data-throw-if-not-resolved=\"false\"></xref> of this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example uses this method.</p>\n<pre><code class=\"c#\">XDocument doc = new XDocument(\nnew XComment(\"A comment in the document.\"),\nnew XElement(\"Root\",\nnew XElement(\"Child\", \"content\")\n)\n);\nXElement child = doc.Descendants(\"Child\").First();\nXElement root = child.Parent;\nConsole.WriteLine(root.Name);</code></pre>\n<pre><code class=\"vb\">Dim doc As XDocument = _ \n<?xml version=\"1.0\"?>\n<!--A comment in the document.-->\n<Root>\n<Child>content</Child>\n</Root>\nDim child As XElement = doc.Descendants(\"Child\").First()\nDim root As XElement = child.Parent\nConsole.WriteLine(root.Name)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Root</code></pre>\n"
   syntax:
     content: public XElement Parent { get; }
     content.vb: Public ReadOnly Property Parent As XElement
@@ -197,6 +206,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: XObject.Parent
 - uid: System.Xml.Linq.XObject.Changed
   commentId: E:System.Xml.Linq.XObject.Changed
   id: Changed
@@ -205,7 +215,6 @@ items:
   - csharp
   - vb
   name: Changed
-  nameWithType: XObject.Changed
   fullName: System.Xml.Linq.XObject.Changed
   type: Event
   source:
@@ -220,6 +229,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Raised when this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref> or any of its descendants have changed.</p>\n"
+  example:
+  - "\n<p>The following example adds an event handler to the root element of an XML tree. It then modifies the tree, causing LINQ to XML to raise some events.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \"content\");\nroot.Changing += new EventHandler<XObjectChangeEventArgs>(\n(sender, cea) =>\n{\nConsole.WriteLine(\"Changing event raised\");\nXElement xSender = (XElement)sender;\nConsole.WriteLine(\"  Sender: {0}\", xSender.Name);\nConsole.WriteLine(\"  ObjectChange: {0}\", cea.ObjectChange);\n}\n);\nroot.Changed += new EventHandler<XObjectChangeEventArgs>(\n(sender, cea) =>\n{\nConsole.WriteLine(\"Changed event raised\");\nXElement xSender = (XElement)sender;\nConsole.WriteLine(\"  Sender: {0}\", xSender.Name);\nConsole.WriteLine(\"  ObjectChange: {0}\", cea.ObjectChange);\n}\n);\nroot.Add(new XElement(\"Child\", \"child content\"));</code></pre>\n<pre><code class=\"vb\">Module Module1\nWithEvents root As XElement = <Root>content</Root>\n\nSub Main()\nroot.Add(<Child>child content</Child>)\nEnd Sub\n\nPrivate Sub root_Changing( _\n    ByVal sender As Object, _\n    ByVal e As XObjectChangeEventArgs) _\n    Handles root.Changing\nDim xSender As XElement = DirectCast(sender, XElement)\nConsole.WriteLine(\"Changing event raised\")\nConsole.WriteLine(\"  Sender: {0}\", xSender.Name)\nConsole.WriteLine(\"  ObjectChange: {0}\", e.ObjectChange)\nEnd Sub\n\nPrivate Sub root_Changed( _\n    ByVal sender As Object, _\n    ByVal e As XObjectChangeEventArgs) _\n    Handles root.Changed\nDim xSender As XElement = DirectCast(sender, XElement)\nConsole.WriteLine(\"Changed event raised\")\nConsole.WriteLine(\"  Sender: {0}\", xSender.Name)\nConsole.WriteLine(\"  ObjectChange: {0}\", e.ObjectChange)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Changing event raised\nSender: Child\nObjectChange: Add\nChanged event raised\nSender: Child\nObjectChange: Add</code></pre>\n<p>Events are useful when you want to maintain some aggregate information in an XML tree. For example, you may want maintain an invoice total that is the sum of the line items of the invoice. This example uses events to maintain the total of all of the child elements under the complex element <code>Items</code>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XElement(\"Total\", 0),\nnew XElement(\"Items\")\n);\nXElement total = root.Element(\"Total\");\nXElement items = root.Element(\"Items\");\nitems.Changed += (object sender, XObjectChangeEventArgs cea) =>\n{\nswitch (cea.ObjectChange)\n{\ncase XObjectChange.Add:\n    if (sender is XElement)\n        total.Value = ((int)total + (int)(XElement)sender).ToString();\n    if (sender is XText)\n        total.Value = ((int)total + (int)((XText)sender).Parent).ToString();\n    break;\ncase XObjectChange.Remove:\n    if (sender is XElement)\n        total.Value = ((int)total - (int)(XElement)sender).ToString();\n    if (sender is XText)\n        total.Value = ((int)total - Int32.Parse(((XText)sender).Value)).ToString();\n    break;\n}\nConsole.WriteLine(\"Changed {0} {1}\", sender.GetType().ToString(), cea.ObjectChange.ToString());\n};\nitems.SetElementValue(\"Item1\", 25);\nitems.SetElementValue(\"Item2\", 50);\nitems.SetElementValue(\"Item2\", 75);\nitems.SetElementValue(\"Item3\", 133);\nitems.SetElementValue(\"Item1\", null);\nitems.SetElementValue(\"Item4\", 100);\nConsole.WriteLine(\"Total:{0}\", (int)total);\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Module Module1\nPrivate total As XElement = Nothing\nPrivate WithEvents items As XElement = Nothing\nPrivate root As XElement = _\n    <Root>\n        <Total>0</Total>\n        <Items></Items>\n    </Root>\n\nSub Main()\ntotal = root.<Total>(0)\nitems = root.<Items>(0)\nitems.SetElementValue(\"Item1\", 25)\nitems.SetElementValue(\"Item2\", 50)\nitems.SetElementValue(\"Item2\", 75)\nitems.SetElementValue(\"Item3\", 133)\nitems.SetElementValue(\"Item1\", Nothing)\nitems.SetElementValue(\"Item4\", 100)\nConsole.WriteLine(\"Total:{0}\", CInt(total))\nConsole.WriteLine(root)\nEnd Sub\n\nPrivate Sub XObjectChanged( _\n    ByVal sender As Object, _\n    ByVal cea As XObjectChangeEventArgs) _\n    Handles items.Changed\nSelect Case cea.ObjectChange\n    Case XObjectChange.Add\n        If sender.GetType() Is GetType(XElement) Then\n            total.Value = CStr(CInt(total.Value) + _\n                    CInt((DirectCast(sender, XElement)).Value))\n        End If\n        If sender.GetType() Is GetType(XText) Then\n            total.Value = CStr(CInt(total.Value) + _\n                    CInt((DirectCast(sender, XText)).Value))\n        End If\n    Case XObjectChange.Remove\n        If sender.GetType() Is GetType(XElement) Then\n            total.Value = CStr(CInt(total.Value) - _\n                    CInt((DirectCast(sender, XElement)).Value))\n        End If\n        If sender.GetType() Is GetType(XText) Then\n            total.Value = CStr(CInt(total.Value) - _\n                    CInt((DirectCast(sender, XText)).Value))\n        End If\nEnd Select\nConsole.WriteLine(\"Changed {0} {1}\", _\n                    sender.GetType().ToString(), _\n                    cea.ObjectChange.ToString())\nEnd Sub\nEnd Module</code></pre>\n<p>This code produces the following output:</p>\n<pre><code>Changed System.Xml.Linq.XElement Add\nChanged System.Xml.Linq.XElement Add\nChanged System.Xml.Linq.XText Remove\nChanged System.Xml.Linq.XText Add\nChanged System.Xml.Linq.XElement Add\nChanged System.Xml.Linq.XElement Remove\nChanged System.Xml.Linq.XElement Add\nTotal:308\n<Root>\n<Total>308</Total>\n<Items>\n<Item2>75</Item2>\n<Item3>133</Item3>\n<Item4>100</Item4>\n</Items>\n</Root></code></pre>\n"
   syntax:
     content: public event EventHandler<XObjectChangeEventArgs> Changed
     content.vb: Public Event Changed As EventHandler(Of XObjectChangeEventArgs)
@@ -229,6 +240,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XObject.Changed
 - uid: System.Xml.Linq.XObject.Changing
   commentId: E:System.Xml.Linq.XObject.Changing
   id: Changing
@@ -237,7 +249,6 @@ items:
   - csharp
   - vb
   name: Changing
-  nameWithType: XObject.Changing
   fullName: System.Xml.Linq.XObject.Changing
   type: Event
   source:
@@ -252,6 +263,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Raised when this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref> or any of its descendants are about to change.</p>\n"
+  example:
+  - "\n<p>The following example adds an event handler to the root element of an XML tree. It then modifies the tree, causing LINQ to XML to raise some events.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \"content\");\nroot.Changing += new EventHandler<XObjectChangeEventArgs>(\n(sender, cea) =>\n{\nConsole.WriteLine(\"Changing event raised\");\nXElement xSender = (XElement)sender;\nConsole.WriteLine(\"  Sender: {0}\", xSender.Name);\nConsole.WriteLine(\"  ObjectChange: {0}\", cea.ObjectChange);\n}\n);\nroot.Changed += new EventHandler<XObjectChangeEventArgs>(\n(sender, cea) =>\n{\nConsole.WriteLine(\"Changed event raised\");\nXElement xSender = (XElement)sender;\nConsole.WriteLine(\"  Sender: {0}\", xSender.Name);\nConsole.WriteLine(\"  ObjectChange: {0}\", cea.ObjectChange);\n}\n);\nroot.Add(new XElement(\"Child\", \"child content\"));</code></pre>\n<pre><code class=\"vb\">Module Module1\nWithEvents root As XElement = <Root>content</Root>\n\nSub Main()\nroot.Add(<Child>child content</Child>)\nEnd Sub\n\nPrivate Sub root_Changing( _\n    ByVal sender As Object, _\n    ByVal e As XObjectChangeEventArgs) _\n    Handles root.Changing\nDim xSender As XElement = CType(sender, XElement)\nConsole.WriteLine(\"Changing event raised\")\nConsole.WriteLine(\"  Sender: {0}\", xSender.Name)\nConsole.WriteLine(\"  ObjectChange: {0}\", e.ObjectChange)\nEnd Sub\n\nPrivate Sub root_Changed( _\n    ByVal sender As Object, _\n    ByVal e As XObjectChangeEventArgs) _\n    Handles root.Changed\nDim xSender As XElement = CType(sender, XElement)\nConsole.WriteLine(\"Changed event raised\")\nConsole.WriteLine(\"  Sender: {0}\", xSender.Name)\nConsole.WriteLine(\"  ObjectChange: {0}\", e.ObjectChange)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Changing event raised\nSender: Child\nObjectChange: Add\nChanged event raised\nSender: Child\nObjectChange: Add</code></pre>\n"
   syntax:
     content: public event EventHandler<XObjectChangeEventArgs> Changing
     content.vb: Public Event Changing As EventHandler(Of XObjectChangeEventArgs)
@@ -261,6 +274,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XObject.Changing
 - uid: System.Xml.Linq.XObject.AddAnnotation(System.Object)
   commentId: M:System.Xml.Linq.XObject.AddAnnotation(System.Object)
   id: AddAnnotation(System.Object)
@@ -269,7 +283,6 @@ items:
   - csharp
   - vb
   name: AddAnnotation(Object)
-  nameWithType: XObject.AddAnnotation(Object)
   fullName: System.Xml.Linq.XObject.AddAnnotation(System.Object)
   type: Method
   source:
@@ -284,6 +297,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Adds an object to the annotation list of this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example adds an annotation to an <xref href=\"System.Xml.Linq.XElement\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">public class MyAnnotation {\nprivate string tag;\npublic string Tag {get{return tag;} set{tag=value;}}\npublic MyAnnotation(string tag) {\nthis.tag = tag;\n}\n}\n\npublic class Program {\npublic static void Main(string[] args) {   \nMyAnnotation ma = new MyAnnotation(\"T1\");\nXElement root = new XElement(\"Root\", \"content\");\nroot.AddAnnotation(ma);\n\nMyAnnotation ma2 = (MyAnnotation)root.Annotation<MyAnnotation>();\nConsole.WriteLine(ma2.Tag);\n}\n}</code></pre>\n<pre><code class=\"vb\">Public Class MyAnnotation\nPrivate _tag As String\n\nProperty Tag() As String\nGet\n    Return Me._tag\nEnd Get\nSet(ByVal Value As String)\n    Me._tag = Value\nEnd Set\nEnd Property\n\nPublic Sub New(ByVal tag As String)\nMe._tag = tag\nEnd Sub\nEnd Class\n\nModule Module1\nSub Main()\nDim ma As MyAnnotation = New MyAnnotation(\"T1\")\nDim root As XElement = <Root>content</Root>\nroot.AddAnnotation(ma)\n\nDim ma2 As MyAnnotation = DirectCast(root.Annotation(Of MyAnnotation)(), MyAnnotation)\nConsole.WriteLine(ma2.Tag)\nEnd Sub\n\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>T1</code></pre>\n"
   syntax:
     content: public void AddAnnotation(object annotation)
     content.vb: Public Sub AddAnnotation(annotation As Object)
@@ -295,6 +310,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XObject.AddAnnotation(Object)
 - uid: System.Xml.Linq.XObject.Annotation(System.Type)
   commentId: M:System.Xml.Linq.XObject.Annotation(System.Type)
   id: Annotation(System.Type)
@@ -303,7 +319,6 @@ items:
   - csharp
   - vb
   name: Annotation(Type)
-  nameWithType: XObject.Annotation(Type)
   fullName: System.Xml.Linq.XObject.Annotation(System.Type)
   type: Method
   source:
@@ -318,6 +333,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the first annotation object of the specified type from this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example adds an annotation to an <xref href=\"System.Xml.Linq.XElement\" data-throw-if-not-resolved=\"false\"></xref>. It then retrieves the annotation, specifying the type to retrieve.</p>\n<pre><code class=\"c#\">public class MyAnnotation {\nprivate string tag;\npublic string Tag {get{return tag;} set{tag=value;}}\npublic MyAnnotation(string tag) {\nthis.tag = tag;\n}\n}\n\npublic class Program {\npublic static void Main(string[] args) {   \nMyAnnotation ma = new MyAnnotation(\"T1\");\nXElement root = new XElement(\"Root\", \"content\");\nroot.AddAnnotation(ma);\n\nMyAnnotation ma2 = (MyAnnotation)root.Annotation(typeof(MyAnnotation));\nConsole.WriteLine(ma2.Tag);\n}\n}</code></pre>\n<pre><code class=\"vb\">Public Class MyAnnotation\nPrivate _tag As String\n\nProperty Tag() As String\nGet\n    Return Me._tag\nEnd Get\nSet(ByVal Value As String)\n    Me._tag = Value\nEnd Set\nEnd Property\n\nPublic Sub New(ByVal tag As String)\nMe._tag = tag\nEnd Sub\nEnd Class\n\nModule Module1\nSub Main()\nDim ma As MyAnnotation = New MyAnnotation(\"T1\")\nDim root As XElement = <Root>content</Root>\nroot.AddAnnotation(ma)\n\nDim ma2 As MyAnnotation = DirectCast(root.Annotation(GetType(MyAnnotation)), MyAnnotation)\nConsole.WriteLine(ma2.Tag)\nEnd Sub\n\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>T1</code></pre>\n"
   syntax:
     content: public object Annotation(Type type)
     content.vb: Public Function Annotation(type As Type) As Object
@@ -332,6 +349,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XObject.Annotation(Type)
 - uid: System.Xml.Linq.XObject.Annotation``1
   commentId: M:System.Xml.Linq.XObject.Annotation``1
   id: Annotation``1
@@ -340,7 +358,6 @@ items:
   - csharp
   - vb
   name: Annotation<T>()
-  nameWithType: XObject.Annotation<T>()
   fullName: System.Xml.Linq.XObject.Annotation<T>()
   type: Method
   source:
@@ -355,6 +372,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Get the first annotation object of the specified type from this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
+  example:
+  - "\n<p>The following example adds an annotation to an element, and then retrieves it through this method.</p>\n<pre><code class=\"c#\">public class MyAnnotation {\nprivate string tag;\npublic string Tag {get{return tag;} set{tag=value;}}\npublic MyAnnotation(string tag) {\nthis.tag = tag;\n}\n}\n\npublic class Program {\npublic static void Main(string[] args) {   \nMyAnnotation ma = new MyAnnotation(\"T1\");\nXElement root = new XElement(\"Root\", \"content\");\nroot.AddAnnotation(ma);\n\nMyAnnotation ma2 = root.Annotation<MyAnnotation>();\nConsole.WriteLine(ma2.Tag);\n}\n}</code></pre>\n<pre><code class=\"vb\">Public Class MyAnnotation\nPrivate _tag As String\n\nProperty Tag() As String\nGet\n    Return Me._tag\nEnd Get\nSet(ByVal Value As String)\n    Me._tag = Value\nEnd Set\nEnd Property\n\nPublic Sub New(ByVal tag As String)\nMe._tag = tag\nEnd Sub\nEnd Class\n\nModule Module1\nSub Main()\nDim ma As MyAnnotation = New MyAnnotation(\"T1\")\nDim root As XElement = <Root>content</Root>\nroot.AddAnnotation(ma)\n\nDim ma2 As MyAnnotation = root.Annotation(Of MyAnnotation)()\nConsole.WriteLine(ma2.Tag)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>T1</code></pre>\n"
   syntax:
     content: 'public T Annotation<T>()where T : class'
     content.vb: Public Function Annotation(Of T As Class) As T
@@ -364,13 +383,14 @@ items:
     return:
       type: '{T}'
       description: "\n<p>The first annotation object that matches the specified type, or <strong>null</strong> if no annotation is of the specified type.</p>\n"
-  nameWithType.vb: XObject.Annotation(Of T)()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Xml.Linq.XObject.Annotation(Of T)()
   name.vb: Annotation(Of T)()
+  nameWithType: XObject.Annotation<T>()
+  nameWithType.vb: XObject.Annotation(Of T)()
 - uid: System.Xml.Linq.XObject.Annotations(System.Type)
   commentId: M:System.Xml.Linq.XObject.Annotations(System.Type)
   id: Annotations(System.Type)
@@ -379,7 +399,6 @@ items:
   - csharp
   - vb
   name: Annotations(Type)
-  nameWithType: XObject.Annotations(Type)
   fullName: System.Xml.Linq.XObject.Annotations(System.Type)
   type: Method
   source:
@@ -394,6 +413,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets a collection of annotations of the specified type for this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example adds some annotations to an <xref href=\"System.Xml.Linq.XElement\" data-throw-if-not-resolved=\"false\"></xref>, then retrieves a collection of annotations by using this method.</p>\n<pre><code class=\"c#\">public class MyAnnotation\n{\nprivate string tag;\npublic string Tag { get { return tag; } set { tag = value; } }\npublic MyAnnotation(string tag)\n{\nthis.tag = tag;\n}\n}\n\nclass Program\n{\nstatic void Main(string[] args)\n{\nXElement root = new XElement(\"Root\", \"content\");\nroot.AddAnnotation(new MyAnnotation(\"T1\"));\nroot.AddAnnotation(new MyAnnotation(\"T2\"));\nroot.AddAnnotation(\"abc\");\nroot.AddAnnotation(\"def\");\n\nIEnumerable<object> annotationList;\nannotationList = root.Annotations(typeof(MyAnnotation));\nforeach (object ma in annotationList)\n    Console.WriteLine(((MyAnnotation)ma).Tag);\nConsole.WriteLine(\"----\");\n\nIEnumerable<object> stringAnnotationList;\nstringAnnotationList = root.Annotations(typeof(string));\nforeach (object str in stringAnnotationList)\n    Console.WriteLine((string)str);\n}\n}</code></pre>\n<pre><code class=\"vb\">Public Class MyAnnotation\nPrivate _tag As String\n\nProperty Tag() As String\nGet\n    Return Me._tag\nEnd Get\nSet(ByVal Value As String)\n    Me._tag = Value\nEnd Set\nEnd Property\n\nPublic Sub New(ByVal tag As String)\nMe._tag = tag\nEnd Sub\nEnd Class\n\nModule Module1\nSub Main()\nDim root As XElement = <Root>content</Root>\nroot.AddAnnotation(New MyAnnotation(\"T1\"))\nroot.AddAnnotation(New MyAnnotation(\"T2\"))\nroot.AddAnnotation(\"abc\")\nroot.AddAnnotation(\"def\")\n\nDim annotationList As IEnumerable(Of Object)\nannotationList = root.Annotations(GetType(MyAnnotation))\nFor Each ma As MyAnnotation In annotationList\n    Console.WriteLine(ma.Tag)\nNext\n\nConsole.WriteLine(\"----\")\n\nDim stringAnnotationList As IEnumerable(Of Object)\nstringAnnotationList = root.Annotations(GetType(String))\nFor Each str As String In stringAnnotationList\n    Console.WriteLine(str)\nNext\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>T1\nT2\n----\nabc\ndef</code></pre>\n"
   syntax:
     content: public IEnumerable<object> Annotations(Type type)
     content.vb: Public Function Annotations(type As Type) As IEnumerable(Of Object)
@@ -408,6 +429,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XObject.Annotations(Type)
 - uid: System.Xml.Linq.XObject.Annotations``1
   commentId: M:System.Xml.Linq.XObject.Annotations``1
   id: Annotations``1
@@ -416,7 +438,6 @@ items:
   - csharp
   - vb
   name: Annotations<T>()
-  nameWithType: XObject.Annotations<T>()
   fullName: System.Xml.Linq.XObject.Annotations<T>()
   type: Method
   source:
@@ -431,6 +452,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets a collection of annotations of the specified type for this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to retrieve annotations on an element.</p>\n<pre><code class=\"c#\">public class MyAnnotation {\nprivate string tag;\npublic string Tag {get{return tag;} set{tag=value;}}\npublic MyAnnotation(string tag) {\nthis.tag = tag;\n}\n}\n\nclass Program {\nstatic void Main(string[] args) {   \nXElement root = new XElement(\"Root\", \"content\");\nroot.AddAnnotation(new MyAnnotation(\"T1\"));\nroot.AddAnnotation(new MyAnnotation(\"T2\"));\nroot.AddAnnotation(\"abc\");\nroot.AddAnnotation(\"def\");\n\nIEnumerable<MyAnnotation> annotationList;\nannotationList = root.Annotations<MyAnnotation>();\nforeach (MyAnnotation ma in annotationList)\n    Console.WriteLine(ma.Tag);\nConsole.WriteLine(\"----\");\n\nIEnumerable<string> stringAnnotationList;\nstringAnnotationList = root.Annotations<string>();\nforeach (string str in stringAnnotationList)\n    Console.WriteLine(str);\n}\n}</code></pre>\n<pre><code class=\"vb\">Public Class MyAnnotation\nPrivate _tag As String\n\nProperty Tag() As String\nGet\n    Return Me._tag\nEnd Get\nSet(ByVal Value As String)\n    Me._tag = Value\nEnd Set\nEnd Property\n\nPublic Sub New(ByVal tag As String)\nMe._tag = tag\nEnd Sub\nEnd Class\n\nModule Module1\nSub Main()\nDim root As XElement = <Root>content</Root>\nroot.AddAnnotation(New MyAnnotation(\"T1\"))\nroot.AddAnnotation(New MyAnnotation(\"T2\"))\nroot.AddAnnotation(\"abc\")\nroot.AddAnnotation(\"def\")\n\nDim annotationList As IEnumerable(Of MyAnnotation)\nannotationList = root.Annotations(Of MyAnnotation)()\nFor Each ma As MyAnnotation In annotationList\n    Console.WriteLine(ma.Tag)\nNext\nConsole.WriteLine(\"----\")\n\nDim stringAnnotationList As IEnumerable(Of String)\nstringAnnotationList = root.Annotations(Of String)()\nFor Each str As String In stringAnnotationList\n    Console.WriteLine(str)\nNext\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>T1\nT2\n----\nabc\ndef</code></pre>\n"
   syntax:
     content: 'public IEnumerable<T> Annotations<T>()where T : class'
     content.vb: Public Function Annotations(Of T As Class) As IEnumerable(Of T)
@@ -440,13 +463,14 @@ items:
     return:
       type: System.Collections.Generic.IEnumerable{{T}}
       description: "\n<p>An <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> that contains the annotations for this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  nameWithType.vb: XObject.Annotations(Of T)()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Xml.Linq.XObject.Annotations(Of T)()
   name.vb: Annotations(Of T)()
+  nameWithType: XObject.Annotations<T>()
+  nameWithType.vb: XObject.Annotations(Of T)()
 - uid: System.Xml.Linq.XObject.RemoveAnnotations(System.Type)
   commentId: M:System.Xml.Linq.XObject.RemoveAnnotations(System.Type)
   id: RemoveAnnotations(System.Type)
@@ -455,7 +479,6 @@ items:
   - csharp
   - vb
   name: RemoveAnnotations(Type)
-  nameWithType: XObject.RemoveAnnotations(Type)
   fullName: System.Xml.Linq.XObject.RemoveAnnotations(System.Type)
   type: Method
   source:
@@ -470,6 +493,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Removes the annotations of the specified type from this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example creates an element with four annotations on it. It then uses this method to remove two of them.</p>\n<pre><code class=\"c#\">public class MyAnnotation {\nprivate string tag;\npublic string Tag {get{return tag;} set{tag=value;}}\npublic MyAnnotation(string tag) {\nthis.tag = tag;\n}\n}\n\nclass Program\n{\nstatic void Main(string[] args)\n{   \nXElement root = new XElement(\"Root\", \"content\");\nroot.AddAnnotation(new MyAnnotation(\"T1\"));\nroot.AddAnnotation(new MyAnnotation(\"T2\"));\nroot.AddAnnotation(\"abc\");\nroot.AddAnnotation(\"def\");\n\nConsole.WriteLine(\"Count before removing: {0}\", root.Annotations<object>().Count());\nroot.RemoveAnnotations(typeof(MyAnnotation));\nConsole.WriteLine(\"Count after removing: {0}\", root.Annotations<object>().Count());\n}\n}</code></pre>\n<pre><code class=\"vb\">Public Class MyAnnotation\nPrivate _tag As String\n\nProperty Tag() As String\nGet\n    Return Me._tag\nEnd Get\nSet(ByVal Value As String)\n    Me._tag = Value\nEnd Set\nEnd Property\n\nPublic Sub New(ByVal tag As String)\nMe._tag = tag\nEnd Sub\nEnd Class\n\nModule Module1\nSub Main()\nDim root As XElement = <Root>content</Root>\nroot.AddAnnotation(New MyAnnotation(\"T1\"))\nroot.AddAnnotation(New MyAnnotation(\"T2\"))\nroot.AddAnnotation(\"abc\")\nroot.AddAnnotation(\"def\")\n\nConsole.WriteLine(\"Count before removing: {0}\", root.Annotations(Of Object)().Count())\nroot.RemoveAnnotations(GetType(MyAnnotation))\nConsole.WriteLine(\"Count after removing: {0}\", root.Annotations(Of Object)().Count())\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Count before removing: 4\nCount after removing: 2</code></pre>\n"
   syntax:
     content: public void RemoveAnnotations(Type type)
     content.vb: Public Sub RemoveAnnotations(type As Type)
@@ -481,6 +506,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XObject.RemoveAnnotations(Type)
 - uid: System.Xml.Linq.XObject.RemoveAnnotations``1
   commentId: M:System.Xml.Linq.XObject.RemoveAnnotations``1
   id: RemoveAnnotations``1
@@ -489,7 +515,6 @@ items:
   - csharp
   - vb
   name: RemoveAnnotations<T>()
-  nameWithType: XObject.RemoveAnnotations<T>()
   fullName: System.Xml.Linq.XObject.RemoveAnnotations<T>()
   type: Method
   source:
@@ -504,292 +529,255 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Removes the annotations of the specified type from this <xref href=\"System.Xml.Linq.XObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example creates an element with four annotations on it. It then uses this method to remove two of them.</p>\n<pre><code class=\"c#\">public class MyAnnotation {\nprivate string tag;\npublic string Tag {get{return tag;} set{tag=value;}}\npublic MyAnnotation(string tag) {\nthis.tag = tag;\n}\n}\n\nclass Program {\nstatic void Main(string[] args) {   \nXElement root = new XElement(\"Root\", \"content\");\nroot.AddAnnotation(new MyAnnotation(\"T1\"));\nroot.AddAnnotation(new MyAnnotation(\"T2\"));\nroot.AddAnnotation(\"abc\");\nroot.AddAnnotation(\"def\");\n\nConsole.WriteLine(\"Count before removing: {0}\", root.Annotations<object>().Count());\nroot.RemoveAnnotations<MyAnnotation>();\nConsole.WriteLine(\"Count after removing: {0}\", root.Annotations<object>().Count());\n}\n}</code></pre>\n<pre><code class=\"vb\">Public Class MyAnnotation\nPrivate _tag As String\n\nProperty Tag() As String\nGet\n    Return Me._tag\nEnd Get\nSet(ByVal Value As String)\n    Me._tag = Value\nEnd Set\nEnd Property\n\nPublic Sub New(ByVal tag As String)\nMe._tag = tag\nEnd Sub\nEnd Class\n\nModule Module1\nSub Main()\nDim root As XElement = <Root>content</Root>\nroot.AddAnnotation(New MyAnnotation(\"T1\"))\nroot.AddAnnotation(New MyAnnotation(\"T2\"))\nroot.AddAnnotation(\"abc\")\nroot.AddAnnotation(\"def\")\n\nConsole.WriteLine(\"Count before removing: {0}\", root.Annotations(Of Object)().Count())\nroot.RemoveAnnotations(Of MyAnnotation)()\nConsole.WriteLine(\"Count after removing: {0}\", root.Annotations(Of Object)().Count())\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Count before removing: 4\nCount after removing: 2</code></pre>\n"
   syntax:
     content: 'public void RemoveAnnotations<T>()where T : class'
     content.vb: Public Sub RemoveAnnotations(Of T As Class)
     typeParameters:
     - id: T
       description: "\n<p>The type of annotations to remove.</p>\n"
-  nameWithType.vb: XObject.RemoveAnnotations(Of T)()
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Xml.Linq.XObject.RemoveAnnotations(Of T)()
   name.vb: RemoveAnnotations(Of T)()
+  nameWithType: XObject.RemoveAnnotations<T>()
+  nameWithType.vb: XObject.RemoveAnnotations(Of T)()
 references:
 - uid: System.Xml.Linq
   isExternal: false
   name: System.Xml.Linq
-  nameWithType: System.Xml.Linq
   fullName: System.Xml.Linq
   commentId: N:System.Xml.Linq
+  nameWithType: System.Xml.Linq
 - uid: System.Object
   parent: System
   isExternal: false
   name: Object
-  nameWithType: Object
   fullName: System.Object
   commentId: T:System.Object
+  nameWithType: Object
 - uid: System
   isExternal: false
   name: System
-  nameWithType: System
   fullName: System
   commentId: N:System
+  nameWithType: System
 - uid: System.String
   parent: System
   isExternal: false
   name: String
-  nameWithType: String
   fullName: System.String
   commentId: T:System.String
+  nameWithType: String
 - uid: System.Xml.Linq.XDocument
   parent: System.Xml.Linq
   isExternal: false
   name: XDocument
-  nameWithType: XDocument
   fullName: System.Xml.Linq.XDocument
   commentId: T:System.Xml.Linq.XDocument
+  nameWithType: XDocument
 - uid: System.Xml.XmlNodeType
   parent: System.Xml
   isExternal: false
   name: XmlNodeType
-  nameWithType: XmlNodeType
   fullName: System.Xml.XmlNodeType
   commentId: T:System.Xml.XmlNodeType
+  nameWithType: XmlNodeType
 - uid: System.Xml
   isExternal: false
   name: System.Xml
-  nameWithType: System.Xml
   fullName: System.Xml
   commentId: N:System.Xml
+  nameWithType: System.Xml
 - uid: System.Xml.Linq.XElement
   parent: System.Xml.Linq
   isExternal: false
   name: XElement
-  nameWithType: XElement
   fullName: System.Xml.Linq.XElement
   commentId: T:System.Xml.Linq.XElement
+  nameWithType: XElement
 - uid: System.EventHandler{System.Xml.Linq.XObjectChangeEventArgs}
   parent: System
   definition: System.EventHandler`1
   name: EventHandler<XObjectChangeEventArgs>
-  nameWithType: EventHandler<XObjectChangeEventArgs>
   fullName: System.EventHandler<System.Xml.Linq.XObjectChangeEventArgs>
-  nameWithType.vb: EventHandler(Of XObjectChangeEventArgs)
   fullname.vb: System.EventHandler(Of System.Xml.Linq.XObjectChangeEventArgs)
   name.vb: EventHandler(Of XObjectChangeEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
     name: EventHandler
-    nameWithType: EventHandler
     fullName: System.EventHandler
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Xml.Linq.XObjectChangeEventArgs
     name: XObjectChangeEventArgs
-    nameWithType: XObjectChangeEventArgs
     fullName: System.Xml.Linq.XObjectChangeEventArgs
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.EventHandler`1
     name: EventHandler
-    nameWithType: EventHandler
     fullName: System.EventHandler
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Xml.Linq.XObjectChangeEventArgs
     name: XObjectChangeEventArgs
-    nameWithType: XObjectChangeEventArgs
     fullName: System.Xml.Linq.XObjectChangeEventArgs
   - name: )
-    nameWithType: )
     fullName: )
   commentId: T:System.EventHandler{System.Xml.Linq.XObjectChangeEventArgs}
+  nameWithType: EventHandler<XObjectChangeEventArgs>
+  nameWithType.vb: EventHandler(Of XObjectChangeEventArgs)
 - uid: System.EventHandler`1
   isExternal: false
   name: EventHandler<TEventArgs>
-  nameWithType: EventHandler<TEventArgs>
   fullName: System.EventHandler<TEventArgs>
-  nameWithType.vb: EventHandler(Of TEventArgs)
   fullname.vb: System.EventHandler(Of TEventArgs)
   name.vb: EventHandler(Of TEventArgs)
   spec.csharp:
   - uid: System.EventHandler`1
     name: EventHandler
-    nameWithType: EventHandler
     fullName: System.EventHandler
   - name: <
-    nameWithType: <
     fullName: <
   - name: TEventArgs
-    nameWithType: TEventArgs
     fullName: TEventArgs
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.EventHandler`1
     name: EventHandler
-    nameWithType: EventHandler
     fullName: System.EventHandler
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: TEventArgs
-    nameWithType: TEventArgs
     fullName: TEventArgs
   - name: )
-    nameWithType: )
     fullName: )
   commentId: T:System.EventHandler`1
+  nameWithType: EventHandler<TEventArgs>
+  nameWithType.vb: EventHandler(Of TEventArgs)
 - uid: System.Type
   parent: System
   isExternal: false
   name: Type
-  nameWithType: Type
   fullName: System.Type
   commentId: T:System.Type
+  nameWithType: Type
 - uid: '{T}'
   definition: T
   name: T
-  nameWithType: T
   fullName: T
   commentId: '!:T'
+  nameWithType: T
 - uid: T
   isExternal: false
   name: T
-  nameWithType: T
   fullName: T
+  nameWithType: T
 - uid: System.Collections.Generic.IEnumerable{System.Object}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<Object>
-  nameWithType: IEnumerable<Object>
   fullName: System.Collections.Generic.IEnumerable<System.Object>
-  nameWithType.vb: IEnumerable(Of Object)
   fullname.vb: System.Collections.Generic.IEnumerable(Of System.Object)
   name.vb: IEnumerable(Of Object)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   commentId: T:System.Collections.Generic.IEnumerable{System.Object}
+  nameWithType: IEnumerable<Object>
+  nameWithType.vb: IEnumerable(Of Object)
 - uid: System.Collections.Generic.IEnumerable`1
   isExternal: false
   name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
   fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
   fullname.vb: System.Collections.Generic.IEnumerable(Of T)
   name.vb: IEnumerable(Of T)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
   - name: <
-    nameWithType: <
     fullName: <
   - name: T
-    nameWithType: T
     fullName: T
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: T
-    nameWithType: T
     fullName: T
   - name: )
-    nameWithType: )
     fullName: )
   commentId: T:System.Collections.Generic.IEnumerable`1
+  nameWithType: IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
 - uid: System.Collections.Generic
   isExternal: false
   name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
   commentId: N:System.Collections.Generic
+  nameWithType: System.Collections.Generic
 - uid: System.Collections.Generic.IEnumerable{{T}}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
   fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
   fullname.vb: System.Collections.Generic.IEnumerable(Of T)
   name.vb: IEnumerable(Of T)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
   - name: <
-    nameWithType: <
     fullName: <
   - name: T
-    nameWithType: T
     fullName: T
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: T
-    nameWithType: T
     fullName: T
   - name: )
-    nameWithType: )
     fullName: )
   commentId: T:System.Collections.Generic.IEnumerable{`0}
+  nameWithType: IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)

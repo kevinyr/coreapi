@@ -21,7 +21,6 @@ items:
   - csharp
   - vb
   name: XNamespace
-  nameWithType: XNamespace
   fullName: System.Xml.Linq.XNamespace
   type: Class
   source:
@@ -54,6 +53,7 @@ items:
   - Public
   - NotInheritable
   - Class
+  nameWithType: XNamespace
 - uid: System.Xml.Linq.XNamespace.NamespaceName
   commentId: P:System.Xml.Linq.XNamespace.NamespaceName
   id: NamespaceName
@@ -62,7 +62,6 @@ items:
   - csharp
   - vb
   name: NamespaceName
-  nameWithType: XNamespace.NamespaceName
   fullName: System.Xml.Linq.XNamespace.NamespaceName
   type: Property
   source:
@@ -77,6 +76,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the Uniform Resource Identifier (URI) of this namespace.</p>\n"
+  example:
+  - "\n<p>The following example shows how to use this property:</p>\n<pre><code class=\"c#\">string markup =\n@\"<aw:Root\nxmlns:aw='http://www.adventure-works.com'/>\";\nXElement root = XElement.Parse(markup);\nConsole.WriteLine(root.Name.Namespace.NamespaceName);</code></pre>\n<pre><code class=\"vb\">Imports <xmlns:aw=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace(aw)\nDim root As XElement = <aw:Root/>\nConsole.WriteLine(root.Name.Namespace.NamespaceName)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output: </p>\n<pre><code>http://www.adventure-works.com</code></pre>\n"
   syntax:
     content: public string NamespaceName { get; }
     content.vb: Public ReadOnly Property NamespaceName As String
@@ -90,6 +91,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: XNamespace.NamespaceName
 - uid: System.Xml.Linq.XNamespace.None
   commentId: P:System.Xml.Linq.XNamespace.None
   id: None
@@ -98,7 +100,6 @@ items:
   - csharp
   - vb
   name: None
-  nameWithType: XNamespace.None
   fullName: System.Xml.Linq.XNamespace.None
   type: Property
   source:
@@ -113,6 +114,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> object that corresponds to no namespace.</p>\n"
+  example:
+  - "\n<p>The following example shows uses this property to determine which elements are in no namespace.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\n\nXElement root = new XElement(\"Root\",\nnew XElement(aw + \"ChildInNamespace\", \"content\"),\nnew XElement(\"ChildInNoNamespace\", \"content\")\n);\n\nif (root.Name.Namespace == XNamespace.None)\nConsole.WriteLine(\"Root element is in no namespace\");\nelse\nConsole.WriteLine(\"Root element is in a namespace\");\n\nif (root.Element(aw + \"ChildInNamespace\").Name.Namespace == XNamespace.None)\nConsole.WriteLine(\"ChildInNamespace element is in no namespace\");\nelse\nConsole.WriteLine(\"ChildInNamespace element is in a namespace\");\n\nif (root.Element(\"ChildInNoNamespace\").Name.Namespace == XNamespace.None)\nConsole.WriteLine(\"ChildInNoNamespace element is in no namespace\");\nelse\nConsole.WriteLine(\"ChildInNoNamespace element is in a namespace\");</code></pre>\n<pre><code class=\"vb\">Imports <xmlns:aw=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim root As XElement = _\n    <Root>\n        <aw:ChildInNamespace>content</aw:ChildInNamespace>\n        <ChildInNoNamespace>content</ChildInNoNamespace>\n    </Root>\n\nIf (root.Name.Namespace Is XNamespace.None) Then\n    Console.WriteLine(\"Root element is in no namespace\")\nElse\n    Console.WriteLine(\"Root element is in a namespace\")\nEnd If\n\nIf (root.Element(GetXmlNamespace(aw) + \"ChildInNamespace\") _\n        .Name.Namespace Is XNamespace.None) Then\n    Console.WriteLine(\"ChildInNamespace element is in no namespace\")\nElse\n    Console.WriteLine(\"ChildInNamespace element is in a namespace\")\nEnd If\n\nIf (root.Element(\"ChildInNoNamespace\") _\n        .Name.Namespace Is XNamespace.None) Then\n    Console.WriteLine(\"ChildInNoNamespace element is in no namespace\")\nElse\n    Console.WriteLine(\"ChildInNoNamespace element is in a namespace\")\nEnd If\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Root element is in no namespace\nChildInNamespace element is in a namespace\nChildInNoNamespace element is in no namespace</code></pre>\n"
   syntax:
     content: public static XNamespace None { get; }
     content.vb: Public Shared ReadOnly Property None As XNamespace
@@ -128,6 +131,7 @@ items:
   - Public
   - Shared
   - ReadOnly
+  nameWithType: XNamespace.None
 - uid: System.Xml.Linq.XNamespace.Xml
   commentId: P:System.Xml.Linq.XNamespace.Xml
   id: Xml
@@ -136,7 +140,6 @@ items:
   - csharp
   - vb
   name: Xml
-  nameWithType: XNamespace.Xml
   fullName: System.Xml.Linq.XNamespace.Xml
   type: Property
   source:
@@ -151,6 +154,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> object that corresponds to the XML URI (<code>http://www.w3.org/XML/1998/namespace</code>).</p>\n"
+  example:
+  - "\n<p>The following example shows how to create an <code>xml:space=\"preserve\"</code> attribute in an XML tree:</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(XNamespace.Xml + \"space\", \"preserve\"),\nnew XElement(\"Child\", \"content\")\n);\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = _\n<Root xml:space=\"preserve\">\n<Child>content</Child>\n</Root>\nConsole.WriteLine(root)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Root xml:space=\"preserve\">\n<Child>content</Child>\n</Root></code></pre>\n"
   syntax:
     content: public static XNamespace Xml { get; }
     content.vb: Public Shared ReadOnly Property Xml As XNamespace
@@ -166,6 +171,7 @@ items:
   - Public
   - Shared
   - ReadOnly
+  nameWithType: XNamespace.Xml
 - uid: System.Xml.Linq.XNamespace.Xmlns
   commentId: P:System.Xml.Linq.XNamespace.Xmlns
   id: Xmlns
@@ -174,7 +180,6 @@ items:
   - csharp
   - vb
   name: Xmlns
-  nameWithType: XNamespace.Xmlns
   fullName: System.Xml.Linq.XNamespace.Xmlns
   type: Property
   source:
@@ -189,6 +194,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> object that corresponds to the xmlns URI (<code>http://www.w3.org/2000/xmlns/</code>).</p>\n"
+  example:
+  - "\n<p>The following example shows how to add a namespace to an XML tree. The namespace for the attribute that declares the namespace is the namespace returned by this property.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nXElement root = new XElement(aw + \"Root\",\nnew XAttribute(XNamespace.Xmlns + \"aw\", \"http://www.adventure-works.com\"),\nnew XElement(aw + \"Child\", \"content\")\n);\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Dim root = <aw:Root xmlns:aw=\"http://www.adventure-works.com\">\n       <aw:Child>content</aw:Child>\n   </aw:Root>\nConsole.WriteLine(root)</code></pre>\n<p>In Visual Basic, the preferred idiom is:</p>\n<p>[vb]</p>\n<pre><code>Imports <xmlns:aw='http://www.adventure-works.com'>\n\nModule Module1\nSub Main()\nDim root As XElement = _\n    <aw:Root>\n        <aw:Child>content</aw:Child>\n    </aw:Root>\nConsole.WriteLine(root)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><aw:Root xmlns:aw=\"http://www.adventure-works.com\">\n<aw:Child>content</aw:Child>\n</aw:Root></code></pre>\n"
   syntax:
     content: public static XNamespace Xmlns { get; }
     content.vb: Public Shared ReadOnly Property Xmlns As XNamespace
@@ -204,6 +211,7 @@ items:
   - Public
   - Shared
   - ReadOnly
+  nameWithType: XNamespace.Xmlns
 - uid: System.Xml.Linq.XNamespace.Equals(System.Object)
   commentId: M:System.Xml.Linq.XNamespace.Equals(System.Object)
   id: Equals(System.Object)
@@ -212,7 +220,6 @@ items:
   - csharp
   - vb
   name: Equals(Object)
-  nameWithType: XNamespace.Equals(Object)
   fullName: System.Xml.Linq.XNamespace.Equals(System.Object)
   type: Method
   source:
@@ -227,6 +234,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Determines whether the specified <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> is equal to the current <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example compares two namespaces that refer to the same URI.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nConsole.WriteLine(aw == \"http://www.adventure-works.com\");</code></pre>\n<pre><code class=\"vb\">Imports <xmlns:aw=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nConsole.WriteLine(GetXmlNamespace(aw) = \"http://www.adventure-works.com\")\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>True</code></pre>\n"
   syntax:
     content: public override bool Equals(object obj)
     content.vb: Public Overrides Function Equals(obj As Object) As Boolean
@@ -244,6 +253,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: XNamespace.Equals(Object)
 - uid: System.Xml.Linq.XNamespace.Get(System.String)
   commentId: M:System.Xml.Linq.XNamespace.Get(System.String)
   id: Get(System.String)
@@ -252,7 +262,6 @@ items:
   - csharp
   - vb
   name: Get(String)
-  nameWithType: XNamespace.Get(String)
   fullName: System.Xml.Linq.XNamespace.Get(System.String)
   type: Method
   source:
@@ -267,6 +276,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> for the specified Uniform Resource Identifier (URI).</p>\n"
+  example:
+  - "\n<p>The following example gets a <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> from a specified URI.</p>\n<pre><code class=\"c#\">XNamespace aw = XNamespace.Get(\"http://www.adventure-works.com\");\n\n// This is the preferred form.\nXNamespace aw2 = \"http://www.adventure-works.com\";\nConsole.WriteLine(aw);\nConsole.WriteLine(aw2);</code></pre>\n<pre><code class=\"vb\">Imports <xmlns:aw=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = XNamespace.Get(\"http://www.adventure-works.com\")\n\n' This is the preferred form.\nDim aw2 As XNamespace = GetXmlNamespace(aw)\nConsole.WriteLine(aw)\nConsole.WriteLine(aw2)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>http://www.adventure-works.com\nhttp://www.adventure-works.com</code></pre>\n"
   syntax:
     content: public static XNamespace Get(string namespaceName)
     content.vb: Public Shared Function Get(namespaceName As String) As XNamespace
@@ -283,6 +294,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: XNamespace.Get(String)
 - uid: System.Xml.Linq.XNamespace.GetHashCode
   commentId: M:System.Xml.Linq.XNamespace.GetHashCode
   id: GetHashCode
@@ -291,7 +303,6 @@ items:
   - csharp
   - vb
   name: GetHashCode()
-  nameWithType: XNamespace.GetHashCode()
   fullName: System.Xml.Linq.XNamespace.GetHashCode()
   type: Method
   source:
@@ -319,6 +330,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: XNamespace.GetHashCode()
 - uid: System.Xml.Linq.XNamespace.GetName(System.String)
   commentId: M:System.Xml.Linq.XNamespace.GetName(System.String)
   id: GetName(System.String)
@@ -327,7 +339,6 @@ items:
   - csharp
   - vb
   name: GetName(String)
-  nameWithType: XNamespace.GetName(String)
   fullName: System.Xml.Linq.XNamespace.GetName(System.String)
   type: Method
   source:
@@ -342,6 +353,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns an <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> object created from this <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> and the specified local name.</p>\n"
+  example:
+  - "\n<p>The following example uses this property to retrieve an <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nXName name = aw.GetName(\"Root\");\nConsole.WriteLine(\"{0}\", name);</code></pre>\n<pre><code class=\"vb\">Imports <xmlns:aw=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace(aw)\nDim name As XName = aw.GetName(\"Root\")\nConsole.WriteLine(\"{0}\", name)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>{http://www.adventure-works.com}Root</code></pre>\n"
   syntax:
     content: public XName GetName(string localName)
     content.vb: Public Function GetName(localName As String) As XName
@@ -356,6 +369,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNamespace.GetName(String)
 - uid: System.Xml.Linq.XNamespace.op_Addition(System.Xml.Linq.XNamespace,System.String)
   commentId: M:System.Xml.Linq.XNamespace.op_Addition(System.Xml.Linq.XNamespace,System.String)
   id: op_Addition(System.Xml.Linq.XNamespace,System.String)
@@ -364,7 +378,6 @@ items:
   - csharp
   - vb
   name: Addition(XNamespace, String)
-  nameWithType: XNamespace.Addition(XNamespace, String)
   fullName: System.Xml.Linq.XNamespace.Addition(System.Xml.Linq.XNamespace, System.String)
   type: Operator
   source:
@@ -379,6 +392,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Combines an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> object with a local name to create an <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example shows the use of the <strong>+</strong> operator to create an <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> from an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> and a local name.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nXElement root = new XElement(aw + \"Root\",\nnew XElement(aw + \"Child\")\n);\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Dim aw As XNamespace = \"http://www.adventure-works.com\"\nDim root As XElement = New XElement(aw + \"Root\", _\nNew XElement(aw + \"Child\") _\n)\nConsole.WriteLine(root)</code></pre>\n<p>In Visual Basic, this is the preferred idiom:</p>\n<pre><code class=\"vb\">Imports <xmlns=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace()\nDim root As XElement = _\n    <Root>\n        <Child/>\n    </Root>\nConsole.WriteLine(root)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Root xmlns=\"http://www.adventure-works.com\">\n<Child />\n</Root></code></pre>\n"
   syntax:
     content: public static XName operator +(XNamespace ns, string localName)
     content.vb: Public Shared Operator +(ns As XNamespace, localName As String) As XName
@@ -398,6 +413,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: XNamespace.Addition(XNamespace, String)
 - uid: System.Xml.Linq.XNamespace.op_Equality(System.Xml.Linq.XNamespace,System.Xml.Linq.XNamespace)
   commentId: M:System.Xml.Linq.XNamespace.op_Equality(System.Xml.Linq.XNamespace,System.Xml.Linq.XNamespace)
   id: op_Equality(System.Xml.Linq.XNamespace,System.Xml.Linq.XNamespace)
@@ -406,7 +422,6 @@ items:
   - csharp
   - vb
   name: Equality(XNamespace, XNamespace)
-  nameWithType: XNamespace.Equality(XNamespace, XNamespace)
   fullName: System.Xml.Linq.XNamespace.Equality(System.Xml.Linq.XNamespace, System.Xml.Linq.XNamespace)
   type: Operator
   source:
@@ -421,6 +436,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns a value indicating whether two instances of <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> are equal.</p>\n"
+  example:
+  - "\n<p>The following example shows the comparison of an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> and a string.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nConsole.WriteLine(aw == \"http://www.adventure-works.com\");</code></pre>\n<pre><code class=\"vb\">Imports <xmlns=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace()\nConsole.WriteLine(aw = \"http://www.adventure-works.com\")\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>True</code></pre>\n"
   syntax:
     content: public static bool operator ==(XNamespace left, XNamespace right)
     content.vb: Public Shared Operator =(left As XNamespace, right As XNamespace) As Boolean
@@ -440,6 +457,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: XNamespace.Equality(XNamespace, XNamespace)
 - uid: System.Xml.Linq.XNamespace.op_Implicit(System.String)~System.Xml.Linq.XNamespace
   commentId: M:System.Xml.Linq.XNamespace.op_Implicit(System.String)~System.Xml.Linq.XNamespace
   id: op_Implicit(System.String)~System.Xml.Linq.XNamespace
@@ -448,7 +466,6 @@ items:
   - csharp
   - vb
   name: Implicit(String to XNamespace)
-  nameWithType: XNamespace.Implicit(String to XNamespace)
   fullName: System.Xml.Linq.XNamespace.Implicit(System.String to System.Xml.Linq.XNamespace)
   type: Operator
   source:
@@ -463,6 +480,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Converts a string containing a Uniform Resource Identifier (URI) to an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example shows the initialization of an <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> variable by assigning a string to it.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nConsole.WriteLine(aw);</code></pre>\n<pre><code class=\"vb\">Imports <xmlns=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace()\nConsole.WriteLine(aw)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>http://www.adventure-works.com</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -485,7 +504,6 @@ items:
     arguments:
     - type: System.Boolean
       value: false
-  nameWithType.vb: XNamespace.Widening(String to XNamespace)
   modifiers.csharp:
   - public
   - static
@@ -494,6 +512,8 @@ items:
   - Shared
   fullName.vb: System.Xml.Linq.XNamespace.Widening(System.String to System.Xml.Linq.XNamespace)
   name.vb: Widening(String to XNamespace)
+  nameWithType: XNamespace.Implicit(String to XNamespace)
+  nameWithType.vb: XNamespace.Widening(String to XNamespace)
 - uid: System.Xml.Linq.XNamespace.op_Inequality(System.Xml.Linq.XNamespace,System.Xml.Linq.XNamespace)
   commentId: M:System.Xml.Linq.XNamespace.op_Inequality(System.Xml.Linq.XNamespace,System.Xml.Linq.XNamespace)
   id: op_Inequality(System.Xml.Linq.XNamespace,System.Xml.Linq.XNamespace)
@@ -502,7 +522,6 @@ items:
   - csharp
   - vb
   name: Inequality(XNamespace, XNamespace)
-  nameWithType: XNamespace.Inequality(XNamespace, XNamespace)
   fullName: System.Xml.Linq.XNamespace.Inequality(System.Xml.Linq.XNamespace, System.Xml.Linq.XNamespace)
   type: Operator
   source:
@@ -517,6 +536,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns a value indicating whether two instances of <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> are not equal.</p>\n"
+  example:
+  - "\n<p>The following example shows a comparison of a <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref> to a string.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nConsole.WriteLine(aw != \"http://www.adventure-works.com\");</code></pre>\n<pre><code class=\"vb\">Imports <xmlns=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace()\nConsole.WriteLine(aw <> \"http://www.adventure-works.com\")\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>False</code></pre>\n"
   syntax:
     content: public static bool operator !=(XNamespace left, XNamespace right)
     content.vb: Public Shared Operator <>(left As XNamespace, right As XNamespace) As Boolean
@@ -536,6 +557,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: XNamespace.Inequality(XNamespace, XNamespace)
 - uid: System.Xml.Linq.XNamespace.ToString
   commentId: M:System.Xml.Linq.XNamespace.ToString
   id: ToString
@@ -544,7 +566,6 @@ items:
   - csharp
   - vb
   name: ToString()
-  nameWithType: XNamespace.ToString()
   fullName: System.Xml.Linq.XNamespace.ToString()
   type: Method
   source:
@@ -559,6 +580,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns the URI of this <xref href=\"System.Xml.Linq.XNamespace\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to print a namespace on the console.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nConsole.WriteLine(\"{0}\", aw.ToString());</code></pre>\n<pre><code class=\"vb\">Imports <xmlns=\"http://www.adventure-works.com\">\n\nModule Module1\nSub Main()\nDim aw As XNamespace = GetXmlNamespace()\nConsole.WriteLine(\"{0}\", aw)\nEnd Sub\nEnd Module</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>http://www.adventure-works.com</code></pre>\n"
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
@@ -572,337 +595,282 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: XNamespace.ToString()
 references:
 - uid: System.Xml.Linq
   isExternal: false
   name: System.Xml.Linq
-  nameWithType: System.Xml.Linq
   fullName: System.Xml.Linq
   commentId: N:System.Xml.Linq
+  nameWithType: System.Xml.Linq
 - uid: System.Object
   parent: System
   isExternal: false
   name: Object
-  nameWithType: Object
   fullName: System.Object
   commentId: T:System.Object
+  nameWithType: Object
 - uid: System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
   name: Equals(Object, Object)
-  nameWithType: Object.Equals(Object, Object)
   fullName: System.Object.Equals(System.Object, System.Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
     fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object,System.Object)
     name: Equals
-    nameWithType: Object.Equals
     fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Object.Equals(System.Object,System.Object)
+  nameWithType: Object.Equals(Object, Object)
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
   name: ReferenceEquals(Object, Object)
-  nameWithType: Object.ReferenceEquals(Object, Object)
   fullName: System.Object.ReferenceEquals(System.Object, System.Object)
   spec.csharp:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
     fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.ReferenceEquals(System.Object,System.Object)
     name: ReferenceEquals
-    nameWithType: Object.ReferenceEquals
     fullName: System.Object.ReferenceEquals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ', '
-    nameWithType: ', '
     fullName: ', '
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
+  nameWithType: Object.ReferenceEquals(Object, Object)
 - uid: System.Object.GetType
   parent: System.Object
   isExternal: true
   name: GetType()
-  nameWithType: Object.GetType()
   fullName: System.Object.GetType()
   spec.csharp:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
     fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.GetType
     name: GetType
-    nameWithType: Object.GetType
     fullName: System.Object.GetType
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Object.GetType
+  nameWithType: Object.GetType()
 - uid: System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
   name: MemberwiseClone()
-  nameWithType: Object.MemberwiseClone()
   fullName: System.Object.MemberwiseClone()
   spec.csharp:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.MemberwiseClone
     name: MemberwiseClone
-    nameWithType: Object.MemberwiseClone
     fullName: System.Object.MemberwiseClone
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Object.MemberwiseClone
+  nameWithType: Object.MemberwiseClone()
 - uid: System
   isExternal: false
   name: System
-  nameWithType: System
   fullName: System
   commentId: N:System
+  nameWithType: System
 - uid: System.String
   parent: System
   isExternal: false
   name: String
-  nameWithType: String
   fullName: System.String
   commentId: T:System.String
+  nameWithType: String
 - uid: System.Xml.Linq.XNamespace
   parent: System.Xml.Linq
   isExternal: false
   name: XNamespace
-  nameWithType: XNamespace
   fullName: System.Xml.Linq.XNamespace
   commentId: T:System.Xml.Linq.XNamespace
+  nameWithType: XNamespace
 - uid: System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
   name: Equals(Object)
-  nameWithType: Object.Equals(Object)
   fullName: System.Object.Equals(System.Object)
   spec.csharp:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
     fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.Equals(System.Object)
     name: Equals
-    nameWithType: Object.Equals
     fullName: System.Object.Equals
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Object.Equals(System.Object)
+  nameWithType: Object.Equals(Object)
 - uid: System.Boolean
   parent: System
   isExternal: false
   name: Boolean
-  nameWithType: Boolean
   fullName: System.Boolean
   commentId: T:System.Boolean
+  nameWithType: Boolean
 - uid: System.Object.GetHashCode
   parent: System.Object
   isExternal: true
   name: GetHashCode()
-  nameWithType: Object.GetHashCode()
   fullName: System.Object.GetHashCode()
   spec.csharp:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
     fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.GetHashCode
     name: GetHashCode
-    nameWithType: Object.GetHashCode
     fullName: System.Object.GetHashCode
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Object.GetHashCode
+  nameWithType: Object.GetHashCode()
 - uid: System.Int32
   parent: System
   isExternal: false
   name: Int32
-  nameWithType: Int32
   fullName: System.Int32
   commentId: T:System.Int32
+  nameWithType: Int32
 - uid: System.Xml.Linq.XName
   parent: System.Xml.Linq
   isExternal: false
   name: XName
-  nameWithType: XName
   fullName: System.Xml.Linq.XName
   commentId: T:System.Xml.Linq.XName
+  nameWithType: XName
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
   name: ToString()
-  nameWithType: Object.ToString()
   fullName: System.Object.ToString()
   spec.csharp:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
     fullName: System.Object.ToString
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Object.ToString
     name: ToString
-    nameWithType: Object.ToString
     fullName: System.Object.ToString
     isExternal: true
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Object.ToString
+  nameWithType: Object.ToString()

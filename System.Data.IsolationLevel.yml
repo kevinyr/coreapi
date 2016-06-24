@@ -15,7 +15,6 @@ items:
   - csharp
   - vb
   name: IsolationLevel
-  nameWithType: IsolationLevel
   fullName: System.Data.IsolationLevel
   type: Enum
   source:
@@ -30,6 +29,8 @@ items:
   - System.Data.Common
   namespace: System.Data
   summary: "\n<p>Specifies the transaction locking behavior for the connection.</p>\n"
+  example:
+  - "\n<p>This application demonstrates how to use <xref href=\"System.Data.IsolationLevel\" data-throw-if-not-resolved=\"false\"></xref> in <xref href=\"System.Data.Common.DbTransaction\" data-throw-if-not-resolved=\"false\"></xref>. The sample will demonstrate which of the following behaviors are allowed in the different isolation levels:</p>\n<ul><li>\n<p>Dirty reads.</p>\n</li><li>\n<p>Non-repeatable reads.</p>\n</li><li>\n<p>Phantoms.</p>\n</li></ul>\n<p>This application will execute in the following isolation levels:</p>\n<ul><li>\n<p>ReadUncommitted</p>\n</li><li>\n<p>ReadCommitted</p>\n</li><li>\n<p>RepeatableRead</p>\n</li><li>\n<p>Serializable</p>\n</li><li>\n<p>Snapshot</p>\n</li></ul>\n<p>The PhantomReadThreads class demonstrates if the specific transaction allows the Phantom Read behavior. If the transaction allows the behavior, the threads will operate in the following order:</p>\n<ul><li>\n<p>In first thread, select the products(All).</p>\n</li><li>\n<p>In the second thread, insert a new product.</p>\n</li><li>\n<p>Commit the transaction in second thread.</p>\n</li><li>\n<p>Select the products again.</p>\n</li><li>\n<p>Commit the transaction in first thread.</p>\n</li></ul>\n<p>If the transaction allows the behavior, the two Select operations will get the different results.</p>\n<p>The NonrepeatableReadThreads class demonstrates if the specific transaction allows the Nonrepeatable Read behavior. If the transaction allows the behavior, the threads will operate in the following order:</p>\n<ul><li>\n<p>In first thread, select the product(ProductId=1).</p>\n</li><li>\n<p>In the second thread, update the Quantity value(ProductId=1).</p>\n</li><li>\n<p>Commit the transaction in second thread.</p>\n</li><li>\n<p>Select the product again.</p>\n</li><li>\n<p>Commit the transaction in first thread.</p>\n</li></ul>\n<p>If the transaction allows the behavior, the two Select operations will get the different results.</p>\n<p>The ExchangeValuesThreads class demonstrates the difference between the Serializable and Snapshot transaction. For the the Serializable transaction, threads will operate in the following order:</p>\n<ul><li>\n<p>In first thread, get the Price of product(ProductId=2) and store in the variable.</p>\n</li><li>\n<p>In first thread, update the Price of product(ProductId=1) with the price of product(ProductId=2).</p>\n</li><li>\n<p>Commit the transaction in first thread.</p>\n</li><li>\n<p>In second thread, get the Price of product(ProductId=1) and store in the variable.</p>\n</li><li>\n<p>In second thread, update the Price of product(ProductId=2) with the price of product(ProductId=1).</p>\n</li><li>\n<p>Commit the transaction in second thread.</p>\n</li></ul>\n<p>Now the values of the Price(ProductId=1 and ProductId=2) are as same as the original Price of Product(ProductId=2).</p>\n<p>For the Snapshot transaction, threads will operate in the following order:</p>\n<ul><li>\n<p>In first thread, get the Price of product(ProductId=2) and store in the variable;</p>\n</li><li>\n<p>In first thread, update the Price of product(ProductId=1) with the price of product(ProductId=2).</p>\n</li><li>\n<p>In second thread, get the Price of product(ProductId=1) from the snapshot and store in the variable.</p>\n</li><li>\n<p>In second thread, update the Price of product(ProductId=2) with the price of product(ProductId=1).</p>\n</li><li>\n<p>Commit the transaction in second thread.</p>\n</li><li>\n<p>Commit the transaction in first thread.</p>\n</li></ul>\n<p>Now exchange the Price of products(ProductId=1 and ProductId=2).</p>\n<p>The DirtyReadThreads class demonstrates if the specific transaction allows the Dirty Read behavior. If the transaction allows the behavior, the threads will operate in the following order:</p>\n<ul><li>\n<p>In first thread, begin a transaction and add the Quantity value(ProductId=1).</p>\n</li><li>\n<p>In the second thread, read the Quantity value and add the value again.</p>\n</li><li>\n<p>Commit the transaction in second thread.</p>\n</li><li>\n<p>Roll back the transaction in first thread.</p>\n</li></ul>\n<p>If the transaction allows the behavior, the Quantity value will be added twice.</p>\n<p>C# and Visual Basic projects with this code sample can be found on <see href=\"http://code.msdn.microsoft.com/site/search?query=How%20to%20use%20IsolationLevel%20Enumeration%20in%20DbTransaction&f%5B0%5D.Value=How%20to%20use%20IsolationLevel%20Enumeration%20in%20DbTransaction&f%5B0%5D.Type=SearchText&ac=4\">Developer Code Samples</see>.</p>system_data_IsolationLevel#1"
   syntax:
     content: public enum IsolationLevel
     content.vb: Public Enum IsolationLevel
@@ -39,6 +40,7 @@ items:
   modifiers.vb:
   - Public
   - Enum
+  nameWithType: IsolationLevel
 - uid: System.Data.IsolationLevel.Chaos
   commentId: F:System.Data.IsolationLevel.Chaos
   id: Chaos
@@ -47,7 +49,6 @@ items:
   - csharp
   - vb
   name: Chaos
-  nameWithType: IsolationLevel.Chaos
   fullName: System.Data.IsolationLevel.Chaos
   type: Field
   source:
@@ -72,6 +73,7 @@ items:
   modifiers.vb:
   - Public
   - Const
+  nameWithType: IsolationLevel.Chaos
 - uid: System.Data.IsolationLevel.ReadCommitted
   commentId: F:System.Data.IsolationLevel.ReadCommitted
   id: ReadCommitted
@@ -80,7 +82,6 @@ items:
   - csharp
   - vb
   name: ReadCommitted
-  nameWithType: IsolationLevel.ReadCommitted
   fullName: System.Data.IsolationLevel.ReadCommitted
   type: Field
   source:
@@ -105,6 +106,7 @@ items:
   modifiers.vb:
   - Public
   - Const
+  nameWithType: IsolationLevel.ReadCommitted
 - uid: System.Data.IsolationLevel.ReadUncommitted
   commentId: F:System.Data.IsolationLevel.ReadUncommitted
   id: ReadUncommitted
@@ -113,7 +115,6 @@ items:
   - csharp
   - vb
   name: ReadUncommitted
-  nameWithType: IsolationLevel.ReadUncommitted
   fullName: System.Data.IsolationLevel.ReadUncommitted
   type: Field
   source:
@@ -138,6 +139,7 @@ items:
   modifiers.vb:
   - Public
   - Const
+  nameWithType: IsolationLevel.ReadUncommitted
 - uid: System.Data.IsolationLevel.RepeatableRead
   commentId: F:System.Data.IsolationLevel.RepeatableRead
   id: RepeatableRead
@@ -146,7 +148,6 @@ items:
   - csharp
   - vb
   name: RepeatableRead
-  nameWithType: IsolationLevel.RepeatableRead
   fullName: System.Data.IsolationLevel.RepeatableRead
   type: Field
   source:
@@ -171,6 +172,7 @@ items:
   modifiers.vb:
   - Public
   - Const
+  nameWithType: IsolationLevel.RepeatableRead
 - uid: System.Data.IsolationLevel.Serializable
   commentId: F:System.Data.IsolationLevel.Serializable
   id: Serializable
@@ -179,7 +181,6 @@ items:
   - csharp
   - vb
   name: Serializable
-  nameWithType: IsolationLevel.Serializable
   fullName: System.Data.IsolationLevel.Serializable
   type: Field
   source:
@@ -204,6 +205,7 @@ items:
   modifiers.vb:
   - Public
   - Const
+  nameWithType: IsolationLevel.Serializable
 - uid: System.Data.IsolationLevel.Snapshot
   commentId: F:System.Data.IsolationLevel.Snapshot
   id: Snapshot
@@ -212,7 +214,6 @@ items:
   - csharp
   - vb
   name: Snapshot
-  nameWithType: IsolationLevel.Snapshot
   fullName: System.Data.IsolationLevel.Snapshot
   type: Field
   source:
@@ -237,6 +238,7 @@ items:
   modifiers.vb:
   - Public
   - Const
+  nameWithType: IsolationLevel.Snapshot
 - uid: System.Data.IsolationLevel.Unspecified
   commentId: F:System.Data.IsolationLevel.Unspecified
   id: Unspecified
@@ -245,7 +247,6 @@ items:
   - csharp
   - vb
   name: Unspecified
-  nameWithType: IsolationLevel.Unspecified
   fullName: System.Data.IsolationLevel.Unspecified
   type: Field
   source:
@@ -270,17 +271,18 @@ items:
   modifiers.vb:
   - Public
   - Const
+  nameWithType: IsolationLevel.Unspecified
 references:
 - uid: System.Data
   isExternal: false
   name: System.Data
-  nameWithType: System.Data
   fullName: System.Data
+  nameWithType: System.Data
   commentId: N:System.Data
 - uid: System.Data.IsolationLevel
   parent: System.Data
   isExternal: false
   name: IsolationLevel
-  nameWithType: IsolationLevel
   fullName: System.Data.IsolationLevel
+  nameWithType: IsolationLevel
   commentId: T:System.Data.IsolationLevel

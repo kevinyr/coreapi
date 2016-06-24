@@ -37,7 +37,6 @@ items:
   - csharp
   - vb
   name: XNode
-  nameWithType: XNode
   fullName: System.Xml.Linq.XNode
   type: Class
   source:
@@ -52,6 +51,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Represents the abstract concept of a node (element, comment, document type, processing instruction, or text node) in the XML tree.  </p>\n"
+  example:
+  - 
   syntax:
     content: 'public abstract class XNode : XObject'
     content.vb: >-
@@ -82,6 +83,7 @@ items:
   - Public
   - MustInherit
   - Class
+  nameWithType: XNode
 - uid: System.Xml.Linq.XNode.DocumentOrderComparer
   commentId: P:System.Xml.Linq.XNode.DocumentOrderComparer
   id: DocumentOrderComparer
@@ -90,7 +92,6 @@ items:
   - csharp
   - vb
   name: DocumentOrderComparer
-  nameWithType: XNode.DocumentOrderComparer
   fullName: System.Xml.Linq.XNode.DocumentOrderComparer
   type: Property
   source:
@@ -105,6 +106,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets a comparer that can compare the relative position of two nodes.</p>\n"
+  example:
+  - "\n<p>The following example creates an XML tree with some elements. It then creates a <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Xml.Linq.XNode\" data-throw-if-not-resolved=\"false\"></xref> that contains some elements from the XML tree at random. It sorts the list, using this property to retrieve a <xref href=\"System.Xml.Linq.XNodeDocumentOrderComparer\" data-throw-if-not-resolved=\"false\"></xref>, which implements the <xref href=\"System.Collections.IComparer\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Collections.Generic.IComparer`1\" data-throw-if-not-resolved=\"false\"></xref> interfaces.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", 2),\nnew XElement(\"Child3\", 3),\nnew XElement(\"Child4\", 4),\nnew XElement(\"Child5\", 5)\n);\n\nList<XNode> nodeList = new List<XNode>();\nnodeList.Add(xmlTree.Element(\"Child5\"));\nnodeList.Add(xmlTree.Element(\"Child3\"));\nnodeList.Add(xmlTree.Element(\"Child1\"));\n\n// Sort nodes in document order.\nnodeList.Sort(XNode.DocumentOrderComparer);\n\nforeach (XElement el in nodeList)\nConsole.WriteLine(el);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child1>1</Child1>\n    <Child2>2</Child2>\n    <Child3>3</Child3>\n    <Child4>4</Child4>\n    <Child5>5</Child5>\n</Root>\n\nDim nodeList As List(Of XNode) = New List(Of XNode)()\nnodeList.Add(xmlTree.Element(\"Child5\"))\nnodeList.Add(xmlTree.Element(\"Child3\"))\nnodeList.Add(xmlTree.Element(\"Child1\"))\n\n' Sort nodes in document order.\nnodeList.Sort(XNode.DocumentOrderComparer)\n\nFor Each el In nodeList\nConsole.WriteLine(el)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Child1>1</Child1>\n<Child3>3</Child3>\n<Child5>5</Child5></code></pre>\n"
   syntax:
     content: public static XNodeDocumentOrderComparer DocumentOrderComparer { get; }
     content.vb: Public Shared ReadOnly Property DocumentOrderComparer As XNodeDocumentOrderComparer
@@ -120,6 +123,7 @@ items:
   - Public
   - Shared
   - ReadOnly
+  nameWithType: XNode.DocumentOrderComparer
 - uid: System.Xml.Linq.XNode.EqualityComparer
   commentId: P:System.Xml.Linq.XNode.EqualityComparer
   id: EqualityComparer
@@ -128,7 +132,6 @@ items:
   - csharp
   - vb
   name: EqualityComparer
-  nameWithType: XNode.EqualityComparer
   fullName: System.Xml.Linq.XNode.EqualityComparer
   type: Property
   source:
@@ -143,6 +146,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets a comparer that can compare two nodes for value equality.</p>\n"
+  example:
+  - "\n<p>The following example uses this property to retrieve an <xref href=\"System.Xml.Linq.XNodeEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref>, which implements the <xref href=\"System.Collections.IEqualityComparer\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Collections.Generic.IEqualityComparer`1\" data-throw-if-not-resolved=\"false\"></xref> interfaces. It creates a dictionary that uses this property.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", 2),\nnew XElement(\"Child3\", 3),\nnew XElement(\"Child4\", 4),\nnew XElement(\"Child5\", 5)\n);\n\nDictionary<XNode, string> nodeDictionary = new Dictionary<XNode, string>(XNode.EqualityComparer);\nnodeDictionary.Add(xmlTree.Element(\"Child5\"), \"Child 5 Information\");\nnodeDictionary.Add(xmlTree.Element(\"Child3\"), \"Child 3 Information\");\nnodeDictionary.Add(xmlTree.Element(\"Child1\"), \"Child 1 Information\");\n\nstring str = nodeDictionary[xmlTree.Element(\"Child3\")];\nConsole.WriteLine(str);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child1>1</Child1>\n    <Child2>2</Child2>\n    <Child3>3</Child3>\n    <Child4>4</Child4>\n    <Child5>5</Child5>\n</Root>\n\nDim nodeDictionary As Dictionary(Of XNode, String) = New Dictionary(Of XNode, String)(XNode.EqualityComparer)\nnodeDictionary.Add(xmlTree.Element(\"Child5\"), \"Child 5 Information\")\nnodeDictionary.Add(xmlTree.Element(\"Child3\"), \"Child 3 Information\")\nnodeDictionary.Add(xmlTree.Element(\"Child1\"), \"Child 1 Information\")\n\nDim str As String = nodeDictionary(xmlTree.Element(\"Child3\"))\nConsole.WriteLine(str)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Child 3 Information</code></pre>\n"
   syntax:
     content: public static XNodeEqualityComparer EqualityComparer { get; }
     content.vb: Public Shared ReadOnly Property EqualityComparer As XNodeEqualityComparer
@@ -158,6 +163,7 @@ items:
   - Public
   - Shared
   - ReadOnly
+  nameWithType: XNode.EqualityComparer
 - uid: System.Xml.Linq.XNode.NextNode
   commentId: P:System.Xml.Linq.XNode.NextNode
   id: NextNode
@@ -166,7 +172,6 @@ items:
   - csharp
   - vb
   name: NextNode
-  nameWithType: XNode.NextNode
   fullName: System.Xml.Linq.XNode.NextNode
   type: Property
   source:
@@ -181,6 +186,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the next sibling node of this node.</p>\n"
+  example:
+  - "\n<p>The following example uses this property to loop through nodes.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", 1),\nnew XText(\"Some Text\"),\nnew XElement(\"Child2\",\n2,\nnew XElement(\"GrandChild\", \"GrandChild Content\")\n),\nnew XComment(\"a comment\"),\nnew XElement(\"Child3\")\n);\nXNode node = xmlTree.Element(\"Child2\");\ndo {\nStringBuilder sb = new StringBuilder();\nsb.Append(String.Format(\"NodeType: {0}\", node.NodeType.ToString().PadRight(10)));\nswitch (node.NodeType)\n{\ncase XmlNodeType.Text:\n    sb.Append((node as XText).Value);\n    break;\ncase XmlNodeType.Element:\n    sb.Append((node as XElement).Name);\n    break;\ncase XmlNodeType.Comment:\n    sb.Append((node as XComment).Value);\n    break;\n}\nConsole.WriteLine(sb.ToString());\n}\nwhile ((node = node.NextNode) != null);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child1>1</Child1>Some Text\n    <Child2>2\n        <GrandChild>GrandChild Content</GrandChild>\n    </Child2>\n    <!--a comment-->\n    <Child3>3</Child3>\n</Root>\n\nDim node As XNode = xmlTree.Element(\"Child2\")\nDo\nDim sb As StringBuilder = New StringBuilder()\nsb.Append(String.Format(\"NodeType: {0}\", node.NodeType.ToString().PadRight(10)))\nSelect Case node.NodeType\nCase XmlNodeType.Text\n    sb.Append(DirectCast(node, XText).Value)\nCase XmlNodeType.Element\n    sb.Append(DirectCast(node, XElement).Name)\nCase XmlNodeType.Comment\n    sb.Append(DirectCast(node, XComment).Value)\nEnd Select\nConsole.WriteLine(sb.ToString())\n\nnode = node.NextNode\nLoop While (Not (node Is Nothing))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>NodeType: Element   Child2\nNodeType: Comment   a comment\nNodeType: Element   Child3</code></pre>\n"
   syntax:
     content: public XNode NextNode { get; }
     content.vb: Public ReadOnly Property NextNode As XNode
@@ -194,6 +201,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: XNode.NextNode
 - uid: System.Xml.Linq.XNode.PreviousNode
   commentId: P:System.Xml.Linq.XNode.PreviousNode
   id: PreviousNode
@@ -202,7 +210,6 @@ items:
   - csharp
   - vb
   name: PreviousNode
-  nameWithType: XNode.PreviousNode
   fullName: System.Xml.Linq.XNode.PreviousNode
   type: Property
   source:
@@ -217,6 +224,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the previous sibling node of this node.</p>\n"
+  example:
+  - "\n<p>The following example uses this property to loop through nodes.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", 1),\nnew XText(\"Some Text\"),\nnew XElement(\"Child2\",\n2,\nnew XElement(\"GrandChild\", \"GrandChild Content\")\n),\nnew XComment(\"a comment\"),\nnew XElement(\"Child3\")\n);\nXNode node = xmlTree.Element(\"Child2\");\ndo {\nStringBuilder sb = new StringBuilder();\nsb.Append(String.Format(\"NodeType: {0}\", node.NodeType.ToString().PadRight(10)));\nswitch (node.NodeType)\n{\ncase XmlNodeType.Text:\n    sb.Append((node as XText).Value);\n    break;\ncase XmlNodeType.Element:\n    sb.Append((node as XElement).Name);\n    break;\ncase XmlNodeType.Comment:\n    sb.Append((node as XComment).Value);\n    break;\n}\nConsole.WriteLine(sb.ToString());\n}\nwhile ((node = node.PreviousNode) != null);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _\n<Root>\n<Child1>1</Child1>Some Text<Child2>2\n    <GrandChild>GrandChild Content</GrandChild>\n</Child2>\n<!--a comment-->\n<Child3>3</Child3>\n</Root>\n\nDim node As XNode = xmlTree.Element(\"Child2\")\nDo\nDim sb As StringBuilder = New StringBuilder()\nsb.Append(String.Format(\"NodeType: {0}\", node.NodeType.ToString().PadRight(10)))\nSelect Case node.NodeType\nCase XmlNodeType.Text\n    sb.Append(DirectCast(node, XText).Value)\nCase XmlNodeType.Element\n    sb.Append(DirectCast(node, XElement).Name)\nCase XmlNodeType.Comment\n    sb.Append(DirectCast(node, XComment).Value)\nEnd Select\nConsole.WriteLine(sb.ToString())\n\nnode = node.PreviousNode\nLoop While (Not (node Is Nothing))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>NodeType: Element   Child2\nNodeType: Text      Some Text\nNodeType: Element   Child1</code></pre>\n"
   syntax:
     content: public XNode PreviousNode { get; }
     content.vb: Public ReadOnly Property PreviousNode As XNode
@@ -230,6 +239,7 @@ items:
   modifiers.vb:
   - Public
   - ReadOnly
+  nameWithType: XNode.PreviousNode
 - uid: System.Xml.Linq.XNode.AddAfterSelf(System.Object)
   commentId: M:System.Xml.Linq.XNode.AddAfterSelf(System.Object)
   id: AddAfterSelf(System.Object)
@@ -238,7 +248,6 @@ items:
   - csharp
   - vb
   name: AddAfterSelf(Object)
-  nameWithType: XNode.AddAfterSelf(Object)
   fullName: System.Xml.Linq.XNode.AddAfterSelf(System.Object)
   type: Method
   source:
@@ -253,6 +262,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Adds the specified content immediately after this node.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to add an element into the tree.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", 2),\nnew XElement(\"Child3\", 3),\nnew XElement(\"Child4\", 4),\nnew XElement(\"Child5\", 5)\n);\nXElement child1 = xmlTree.Element(\"Child1\");\nchild1.AddAfterSelf(\nnew XElement(\"NewChild\", 10)\n);\nConsole.WriteLine(xmlTree);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child1>1</Child1>\n    <Child2>2</Child2>\n    <Child3>3</Child3>\n    <Child4>4</Child4>\n    <Child5>5</Child5>\n</Root>\n\n\nDim child1 As XElement = xmlTree.<Child1>(0)\nchild1.AddAfterSelf(New XElement(\"NewChild\", 10))\nConsole.WriteLine(xmlTree)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<Child1>1</Child1>\n<NewChild>10</NewChild>\n<Child2>2</Child2>\n<Child3>3</Child3>\n<Child4>4</Child4>\n<Child5>5</Child5>\n</Root></code></pre>\n"
   syntax:
     content: public void AddAfterSelf(object content)
     content.vb: Public Sub AddAfterSelf(content As Object)
@@ -268,6 +279,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.AddAfterSelf(Object)
 - uid: System.Xml.Linq.XNode.AddAfterSelf(System.Object[])
   commentId: M:System.Xml.Linq.XNode.AddAfterSelf(System.Object[])
   id: AddAfterSelf(System.Object[])
@@ -276,7 +288,6 @@ items:
   - csharp
   - vb
   name: AddAfterSelf(Object[])
-  nameWithType: XNode.AddAfterSelf(Object[])
   fullName: System.Xml.Linq.XNode.AddAfterSelf(System.Object[])
   type: Method
   source:
@@ -291,6 +302,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Adds the specified content immediately after this node.</p>\n"
+  example:
+  - "\n<p>The following example uses a LINQ query to create an <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Xml.Linq.XElement\" data-throw-if-not-resolved=\"false\"></xref>, which it then passes to this method. This adds the results of a query to the tree in the desired location.</p>\n<pre><code class=\"c#\">XElement srcTree = new XElement(\"Root\",\nnew XElement(\"Element1\", 1),\nnew XElement(\"Element2\", 2),\nnew XElement(\"Element3\", 3),\nnew XElement(\"Element4\", 4),\nnew XElement(\"Element5\", 5)\n);\nXElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", 2),\nnew XElement(\"Child3\", 3),\nnew XElement(\"Child4\", 4),\nnew XElement(\"Child5\", 5)\n);\nXElement child1 = xmlTree.Element(\"Child1\");\nchild1.AddAfterSelf(\nfrom el in srcTree.Elements()\nwhere (int)el > 3\nselect el\n);\nConsole.WriteLine(xmlTree);</code></pre>\n<pre><code class=\"vb\">Dim srcTree As XElement = _ \n<Root>\n    <Element1>1</Element1>\n    <Element2>2</Element2>\n    <Element3>3</Element3>\n    <Element4>4</Element4>\n    <Element5>5</Element5>\n</Root>\n\nDim xmlTree As XElement = _ \n<Root>\n    <Child1>1</Child1>\n    <Child2>2</Child2>\n    <Child3>3</Child3>\n    <Child4>4</Child4>\n    <Child5>5</Child5>\n</Root>\n\nDim child1 As XElement = xmlTree.<Child1>(0)\nchild1.AddAfterSelf( _\nFrom el In srcTree.Elements() _\nWhere CInt(el) > 3 _\nSelect el)\nConsole.WriteLine(xmlTree)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<Child1>1</Child1>\n<Element4>4</Element4>\n<Element5>5</Element5>\n<Child2>2</Child2>\n<Child3>3</Child3>\n<Child4>4</Child4>\n<Child5>5</Child5>\n</Root></code></pre>\n"
   syntax:
     content: public void AddAfterSelf(params object[] content)
     content.vb: Public Sub AddAfterSelf(ParamArray content As Object())
@@ -302,13 +315,14 @@ items:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: "\n<p>The parent is <strong>null</strong>.</p>\n"
-  nameWithType.vb: XNode.AddAfterSelf(Object())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Xml.Linq.XNode.AddAfterSelf(System.Object())
   name.vb: AddAfterSelf(Object())
+  nameWithType: XNode.AddAfterSelf(Object[])
+  nameWithType.vb: XNode.AddAfterSelf(Object())
 - uid: System.Xml.Linq.XNode.AddBeforeSelf(System.Object)
   commentId: M:System.Xml.Linq.XNode.AddBeforeSelf(System.Object)
   id: AddBeforeSelf(System.Object)
@@ -317,7 +331,6 @@ items:
   - csharp
   - vb
   name: AddBeforeSelf(Object)
-  nameWithType: XNode.AddBeforeSelf(Object)
   fullName: System.Xml.Linq.XNode.AddBeforeSelf(System.Object)
   type: Method
   source:
@@ -332,6 +345,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Adds the specified content immediately before this node.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to add an element into the tree.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", 2),\nnew XElement(\"Child3\", 3),\nnew XElement(\"Child4\", 4),\nnew XElement(\"Child5\", 5)\n);\nXElement child1 = xmlTree.Element(\"Child1\");\nchild1.AddBeforeSelf(\nnew XElement(\"NewChild\", 10)\n);\nConsole.WriteLine(xmlTree);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child1>1</Child1>\n    <Child2>2</Child2>\n    <Child3>3</Child3>\n    <Child4>4</Child4>\n    <Child5>5</Child5>\n</Root>\n\nDim child1 As XElement = xmlTree.<Child1>(0)\nchild1.AddBeforeSelf(New XElement(\"NewChild\", 10))\nConsole.WriteLine(xmlTree)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<NewChild>10</NewChild>\n<Child1>1</Child1>\n<Child2>2</Child2>\n<Child3>3</Child3>\n<Child4>4</Child4>\n<Child5>5</Child5>\n</Root></code></pre>\n"
   syntax:
     content: public void AddBeforeSelf(object content)
     content.vb: Public Sub AddBeforeSelf(content As Object)
@@ -347,6 +362,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.AddBeforeSelf(Object)
 - uid: System.Xml.Linq.XNode.AddBeforeSelf(System.Object[])
   commentId: M:System.Xml.Linq.XNode.AddBeforeSelf(System.Object[])
   id: AddBeforeSelf(System.Object[])
@@ -355,7 +371,6 @@ items:
   - csharp
   - vb
   name: AddBeforeSelf(Object[])
-  nameWithType: XNode.AddBeforeSelf(Object[])
   fullName: System.Xml.Linq.XNode.AddBeforeSelf(System.Object[])
   type: Method
   source:
@@ -370,6 +385,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Adds the specified content immediately before this node.</p>\n"
+  example:
+  - "\n<p>The following example uses a LINQ query to create an <xref href=\"System.Collections.Generic.IEnumerable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Xml.Linq.XElement\" data-throw-if-not-resolved=\"false\"></xref>, which it then passes to this method. This adds the results of a query to the tree in the desired location.</p>\n<pre><code class=\"c#\">XElement srcTree = new XElement(\"Root\",\nnew XElement(\"Element1\", 1),\nnew XElement(\"Element2\", 2),\nnew XElement(\"Element3\", 3),\nnew XElement(\"Element4\", 4),\nnew XElement(\"Element5\", 5)\n);\nXElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", 2),\nnew XElement(\"Child3\", 3),\nnew XElement(\"Child4\", 4),\nnew XElement(\"Child5\", 5)\n);\nXElement child1 = xmlTree.Element(\"Child1\");\nchild1.AddBeforeSelf(\nfrom el in srcTree.Elements()\nwhere (int)el > 3\nselect el\n);\nConsole.WriteLine(xmlTree);</code></pre>\n<pre><code class=\"vb\">Dim srcTree As XElement = _ \n<Root>\n    <Element1>1</Element1>\n    <Element2>2</Element2>\n    <Element3>3</Element3>\n    <Element4>4</Element4>\n    <Element5>5</Element5>\n</Root>\n\nDim xmlTree As XElement = _ \n<Root>\n    <Child1>1</Child1>\n    <Child2>2</Child2>\n    <Child3>3</Child3>\n    <Child4>4</Child4>\n    <Child5>5</Child5>\n</Root>\n\nDim child1 As XElement = xmlTree.<Child1>(0)\nchild1.AddBeforeSelf( _\nFrom el In srcTree.Elements() _\nWhere CInt(el) > 3 _\nSelect el)\n\nConsole.WriteLine(xmlTree)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<Element4>4</Element4>\n<Element5>5</Element5>\n<Child1>1</Child1>\n<Child2>2</Child2>\n<Child3>3</Child3>\n<Child4>4</Child4>\n<Child5>5</Child5>\n</Root></code></pre>\n"
   syntax:
     content: public void AddBeforeSelf(params object[] content)
     content.vb: Public Sub AddBeforeSelf(ParamArray content As Object())
@@ -381,13 +398,14 @@ items:
   - type: System.InvalidOperationException
     commentId: T:System.InvalidOperationException
     description: "\n<p>The parent is <strong>null</strong>.</p>\n"
-  nameWithType.vb: XNode.AddBeforeSelf(Object())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Xml.Linq.XNode.AddBeforeSelf(System.Object())
   name.vb: AddBeforeSelf(Object())
+  nameWithType: XNode.AddBeforeSelf(Object[])
+  nameWithType.vb: XNode.AddBeforeSelf(Object())
 - uid: System.Xml.Linq.XNode.Ancestors
   commentId: M:System.Xml.Linq.XNode.Ancestors
   id: Ancestors
@@ -396,7 +414,6 @@ items:
   - csharp
   - vb
   name: Ancestors()
-  nameWithType: XNode.Ancestors()
   fullName: System.Xml.Linq.XNode.Ancestors()
   type: Method
   source:
@@ -411,6 +428,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns a collection of the ancestor elements of this node.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to enumerate the ancestors of a node.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child\", \nnew XElement(\"GrandChild\", \"content\")\n)\n);\nIEnumerable<XElement> grandChild = xmlTree.Descendants(\"GrandChild\");\nforeach (XElement el in grandChild.Ancestors())\nConsole.WriteLine(el.Name);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child>\n        <GrandChild>content</GrandChild>\n    </Child>\n</Root>\n\nDim grandChild As IEnumerable(Of XElement) = xmlTree...<GrandChild>\nFor Each el In grandChild.Ancestors()\nConsole.WriteLine(el.Name)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Child\nRoot</code></pre>\n"
   syntax:
     content: public IEnumerable<XElement> Ancestors()
     content.vb: Public Function Ancestors As IEnumerable(Of XElement)
@@ -421,6 +440,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.Ancestors()
 - uid: System.Xml.Linq.XNode.Ancestors(System.Xml.Linq.XName)
   commentId: M:System.Xml.Linq.XNode.Ancestors(System.Xml.Linq.XName)
   id: Ancestors(System.Xml.Linq.XName)
@@ -429,7 +449,6 @@ items:
   - csharp
   - vb
   name: Ancestors(XName)
-  nameWithType: XNode.Ancestors(XName)
   fullName: System.Xml.Linq.XNode.Ancestors(System.Xml.Linq.XName)
   type: Method
   source:
@@ -444,6 +463,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns a filtered collection of the ancestor elements of this node. Only elements that have a matching <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> are included in the collection.</p>\n"
+  example:
+  - "\n<p>The following example uses this method.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child\", \nnew XElement(\"GrandChild\", \"content\")\n)\n);\nIEnumerable<XElement> grandChild = xmlTree.Descendants(\"GrandChild\");\nforeach (XElement el in grandChild.Ancestors(\"Child\"))\nConsole.WriteLine(el.Name);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child>\n        <GrandChild>content</GrandChild>\n    </Child>\n</Root>\n\nDim grandChild As IEnumerable(Of XElement) = xmlTree...<GrandChild>\nFor Each el In grandChild.Ancestors(\"Child\")\nConsole.WriteLine(el.Name)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Child</code></pre>\n"
   syntax:
     content: public IEnumerable<XElement> Ancestors(XName name)
     content.vb: Public Function Ancestors(name As XName) As IEnumerable(Of XElement)
@@ -458,6 +479,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.Ancestors(XName)
 - uid: System.Xml.Linq.XNode.CompareDocumentOrder(System.Xml.Linq.XNode,System.Xml.Linq.XNode)
   commentId: M:System.Xml.Linq.XNode.CompareDocumentOrder(System.Xml.Linq.XNode,System.Xml.Linq.XNode)
   id: CompareDocumentOrder(System.Xml.Linq.XNode,System.Xml.Linq.XNode)
@@ -466,7 +488,6 @@ items:
   - csharp
   - vb
   name: CompareDocumentOrder(XNode, XNode)
-  nameWithType: XNode.CompareDocumentOrder(XNode, XNode)
   fullName: System.Xml.Linq.XNode.CompareDocumentOrder(System.Xml.Linq.XNode, System.Xml.Linq.XNode)
   type: Method
   source:
@@ -481,6 +502,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Compares two nodes to determine their relative XML document order.</p>\n"
+  example:
+  - "\n<p>The following example uses this method.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\",\nnew XElement(\"GrandChild1\", 1),\nnew XElement(\"GrandChild2\", 2),\nnew XElement(\"GrandChild3\", 3)\n),\nnew XElement(\"Child2\",\nnew XElement(\"GrandChild4\", 4),\nnew XElement(\"GrandChild5\", 5),\nnew XElement(\"GrandChild6\", 6)\n)\n);\nXElement el1 = xmlTree.Descendants(\"GrandChild2\").First();\nXElement el2 = xmlTree.Descendants(\"GrandChild6\").First();\nif (XElement.CompareDocumentOrder(el1, el2) == 0)\nConsole.WriteLine(\"Compared elements are the same element\");\nelse if (XElement.CompareDocumentOrder(el1, el2) > 0)\nConsole.WriteLine(\"el1 is after el2\");\nelse\nConsole.WriteLine(\"el1 is before el2\");</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child1>\n        <GrandChild1>1</GrandChild1>\n        <GrandChild2>2</GrandChild2>\n        <GrandChild3>3</GrandChild3>\n    </Child1>\n    <Child2>\n        <GrandChild4>4</GrandChild4>\n        <GrandChild5>5</GrandChild5>\n        <GrandChild6>6</GrandChild6>\n    </Child2>\n</Root>\n\nDim el1 As XElement = xmlTree...<GrandChild2>(0)\nDim el2 As XElement = xmlTree...<GrandChild6>(0)\n\nIf (XElement.CompareDocumentOrder(el1, el2) = 0) Then\nConsole.WriteLine(\"Compared elements are the same element\")\nElseIf (XElement.CompareDocumentOrder(el1, el2) > 0) Then\nConsole.WriteLine(\"el1 is after el2\")\nElse\nConsole.WriteLine(\"el1 is before el2\")\nEnd If</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>el1 is before el2</code></pre>\n"
   syntax:
     content: public static int CompareDocumentOrder(XNode n1, XNode n2)
     content.vb: Public Shared Function CompareDocumentOrder(n1 As XNode, n2 As XNode) As Integer
@@ -504,6 +527,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: XNode.CompareDocumentOrder(XNode, XNode)
 - uid: System.Xml.Linq.XNode.CreateReader
   commentId: M:System.Xml.Linq.XNode.CreateReader
   id: CreateReader
@@ -512,7 +536,6 @@ items:
   - csharp
   - vb
   name: CreateReader()
-  nameWithType: XNode.CreateReader()
   fullName: System.Xml.Linq.XNode.CreateReader()
   type: Method
   source:
@@ -527,6 +550,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> for this node.</p>\n"
+  example:
+  - "\n<p>The following example creates an XML tree, creates an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> by using the <xref href=\"System.Xml.Linq.XNode.CreateReader\" data-throw-if-not-resolved=\"false\"></xref> method, and creates an <xref href=\"System.Xml.XmlDocument\" data-throw-if-not-resolved=\"false\"></xref> by using the reader.</p>\n<pre><code class=\"c#\">XDocument xmlTree = new XDocument(\nnew XElement(\"Root\",\nnew XAttribute(\"Att1\", \"Attribute Content\"),\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", 2)\n)\n);\nXmlReader reader = xmlTree.CreateReader();\nreader.MoveToContent();\nXmlDocument doc = new XmlDocument();\nXmlNode cd = doc.ReadNode(reader);\ndoc.AppendChild(cd);\nConsole.WriteLine(doc.OuterXml);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XDocument =  _ \n<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<Root Att1=\"Attribute Content\">\n    <Child1>1</Child1>\n    <Child2>2</Child2>\n</Root>\nDim reader As XmlReader = xmlTree.CreateReader()\nreader.MoveToContent()\nDim doc As XmlDocument = New XmlDocument()\nDim cd As XmlNode = doc.ReadNode(reader)\ndoc.AppendChild(cd)\nConsole.WriteLine(doc.OuterXml)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root Att1=\"Attribute Content\"><Child1>1</Child1><Child2>2</Child2></Root></code></pre>\n<p>Another use for this method is to do an XSLT transformation. You can create an XML tree, create an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> from the XML tree, create a new document, and create an <xref href=\"System.Xml.XmlWriter\" data-throw-if-not-resolved=\"false\"></xref> that will write into the new document. Then, you can invoke the XSLT transformation, passing the <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Xml.XmlWriter\" data-throw-if-not-resolved=\"false\"></xref> to the transformation. After the transformation successfully completes, the new XML tree is populated with the results of the transform.</p>\n<pre><code class=\"c#\">string xslMarkup = @\"<?xml version='1.0'?>\n<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0'>\n<xsl:template match='/Parent'>\n<Root>\n    <C1>\n    <xsl:value-of select='Child1'/>\n    </C1>\n    <C2>\n    <xsl:value-of select='Child2'/>\n    </C2>\n</Root>\n</xsl:template>\n</xsl:stylesheet>\";\n\nXDocument xmlTree = new XDocument(\nnew XElement(\"Parent\",\nnew XElement(\"Child1\", \"Child1 data\"),\nnew XElement(\"Child2\", \"Child2 data\")\n)\n);\n\nXDocument newTree = new XDocument();\nusing (XmlWriter writer = newTree.CreateWriter()) {\n// Load the style sheet.\nXslCompiledTransform xslt = new XslCompiledTransform();\nxslt.Load(XmlReader.Create(new StringReader(xslMarkup)));\n\n// Execute the transform and output the results to a writer.\nxslt.Transform(xmlTree.CreateReader(), writer);\n}\n\nConsole.WriteLine(newTree);</code></pre>\n<pre><code class=\"vb\">Dim xslMarkup As XDocument = _ \n<?xml version='1.0'?>\n<xsl:stylesheet xmlns:xsl='http://www.w3.org/1999/XSL/Transform' version='1.0'>\n<xsl:template match='/Parent'>\n    <Root>\n        <C1>\n            <xsl:value-of select='Child1'/>\n        </C1>\n        <C2>\n            <xsl:value-of select='Child2'/>\n        </C2>\n    </Root>\n</xsl:template>\n</xsl:stylesheet>\n\nDim xmlTree As XElement = _ \n<Parent>\n    <Child1>Child1 data</Child1>\n    <Child2>Child2 data</Child2>\n</Parent>\n\nDim newTree As XDocument = New XDocument()\n\nUsing writer As XmlWriter = newTree.CreateWriter()\n' Load the style sheet.\nDim xslt As XslCompiledTransform = _\nNew XslCompiledTransform()\nxslt.Load(xslMarkup.CreateReader())\n\n' Execute the transform and output the results to a writer.\nxslt.Transform(xmlTree.CreateReader(), writer)\nEnd Using\n\nConsole.WriteLine(newTree)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<C1>Child1 data</C1>\n<C2>Child2 data</C2>\n</Root></code></pre>\n"
   syntax:
     content: public XmlReader CreateReader()
     content.vb: Public Function CreateReader As XmlReader
@@ -537,6 +562,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.CreateReader()
 - uid: System.Xml.Linq.XNode.CreateReader(System.Xml.Linq.ReaderOptions)
   commentId: M:System.Xml.Linq.XNode.CreateReader(System.Xml.Linq.ReaderOptions)
   id: CreateReader(System.Xml.Linq.ReaderOptions)
@@ -545,7 +571,6 @@ items:
   - csharp
   - vb
   name: CreateReader(ReaderOptions)
-  nameWithType: XNode.CreateReader(ReaderOptions)
   fullName: System.Xml.Linq.XNode.CreateReader(System.Xml.Linq.ReaderOptions)
   type: Method
   source:
@@ -560,6 +585,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref> with the options specified by the <em>readerOptions</em> parameter.</p>\n"
+  example:
+  - "\n<p></p>\n"
   syntax:
     content: public XmlReader CreateReader(ReaderOptions readerOptions)
     content.vb: Public Function CreateReader(readerOptions As ReaderOptions) As XmlReader
@@ -574,6 +601,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.CreateReader(ReaderOptions)
 - uid: System.Xml.Linq.XNode.DeepEquals(System.Xml.Linq.XNode,System.Xml.Linq.XNode)
   commentId: M:System.Xml.Linq.XNode.DeepEquals(System.Xml.Linq.XNode,System.Xml.Linq.XNode)
   id: DeepEquals(System.Xml.Linq.XNode,System.Xml.Linq.XNode)
@@ -582,7 +610,6 @@ items:
   - csharp
   - vb
   name: DeepEquals(XNode, XNode)
-  nameWithType: XNode.DeepEquals(XNode, XNode)
   fullName: System.Xml.Linq.XNode.DeepEquals(System.Xml.Linq.XNode, System.Xml.Linq.XNode)
   type: Method
   source:
@@ -597,6 +624,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Compares the values of two nodes, including the values of all descendant nodes.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to compare two XML trees.</p>\n<pre><code class=\"c#\">XElement xmlTree1 = new XElement(\"Root\",\nnew XAttribute(\"Att1\", 1),\nnew XAttribute(\"Att2\", 2),\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", \"some content\")\n);\nXElement xmlTree2 = new XElement(\"Root\",\nnew XAttribute(\"Att1\", 1),\nnew XAttribute(\"Att2\", 2),\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", \"some content\")\n);\nConsole.WriteLine(XNode.DeepEquals(xmlTree1, xmlTree2));</code></pre>\n<pre><code class=\"vb\">Dim xmlTree1 As XElement = _ \n<Root Att1=\"1\" Att2=\"2\">\n    <Child1>1</Child1>\n    <Child2>some content</Child2>\n</Root>\n\nDim xmlTree2 As XElement = _ \n<Root Att1=\"1\" Att2=\"2\">\n    <Child1>1</Child1>\n    <Child2>some content</Child2>\n</Root>\n\nConsole.WriteLine(XNode.DeepEquals(xmlTree1, xmlTree2))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>True</code></pre>\n"
   syntax:
     content: public static bool DeepEquals(XNode n1, XNode n2)
     content.vb: Public Shared Function DeepEquals(n1 As XNode, n2 As XNode) As Boolean
@@ -616,6 +645,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: XNode.DeepEquals(XNode, XNode)
 - uid: System.Xml.Linq.XNode.ElementsAfterSelf
   commentId: M:System.Xml.Linq.XNode.ElementsAfterSelf
   id: ElementsAfterSelf
@@ -624,7 +654,6 @@ items:
   - csharp
   - vb
   name: ElementsAfterSelf()
-  nameWithType: XNode.ElementsAfterSelf()
   fullName: System.Xml.Linq.XNode.ElementsAfterSelf()
   type: Method
   source:
@@ -639,6 +668,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns a collection of the sibling elements after this node, in document order.</p>\n"
+  example:
+  - "\n<p>The following example creates an element with some complex content. It then uses this method to retrieve the nodes in document order.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XText(\"Text content.\"),\nnew XElement(\"Child1\", \"child1 content\"),\nnew XElement(\"Child2\", \"child2 content\"),\nnew XElement(\"Child3\", \"child3 content\"),\nnew XText(\"More text content.\"),\nnew XElement(\"Child4\", \"child4 content\"),\nnew XElement(\"Child5\", \"child5 content\")\n);\nXElement child = xmlTree.Element(\"Child3\");\nIEnumerable<XElement> elements = child.ElementsAfterSelf();\nforeach (XElement el in elements)\nConsole.WriteLine(el.Name);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _\n<Root>Text content.\n    <Child1>child1 content</Child1>\n    <Child2>child2 content</Child2>\n    <Child3>child3 content</Child3>More text content.\n    <Child4>child4 content</Child4>\n    <Child5>child5 content</Child5>\n</Root>\n\nDim child As XElement = xmlTree.<Child3>(0)\nDim elements As IEnumerable(Of XElement) = child.ElementsAfterSelf()\nFor Each el In elements\nConsole.WriteLine(el.Name)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Child4\nChild5</code></pre>\n"
   syntax:
     content: public IEnumerable<XElement> ElementsAfterSelf()
     content.vb: Public Function ElementsAfterSelf As IEnumerable(Of XElement)
@@ -649,6 +680,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.ElementsAfterSelf()
 - uid: System.Xml.Linq.XNode.ElementsAfterSelf(System.Xml.Linq.XName)
   commentId: M:System.Xml.Linq.XNode.ElementsAfterSelf(System.Xml.Linq.XName)
   id: ElementsAfterSelf(System.Xml.Linq.XName)
@@ -657,7 +689,6 @@ items:
   - csharp
   - vb
   name: ElementsAfterSelf(XName)
-  nameWithType: XNode.ElementsAfterSelf(XName)
   fullName: System.Xml.Linq.XNode.ElementsAfterSelf(System.Xml.Linq.XName)
   type: Method
   source:
@@ -672,6 +703,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns a filtered collection of the sibling elements after this node, in document order. Only elements that have a matching <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> are included in the collection.</p>\n"
+  example:
+  - "\n<p>The following example creates an element with some complex content. It then uses this method to retrieve the sibling elements, in document order.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XText(\"Text content.\"),\nnew XElement(\"Child1\", \"child1 content\"),\nnew XElement(\"Child2\", \"child2 content\"),\nnew XElement(\"Child3\", \"child3 content\"),\nnew XText(\"More text content.\"),\nnew XElement(\"Child4\", \"child4 content\"),\nnew XElement(\"Child5\", \"child5 content\")\n);\nXElement child = xmlTree.Element(\"Child3\");\nIEnumerable<XElement> elements = child.ElementsAfterSelf(\"Child4\");\nforeach (XElement el in elements)\nConsole.WriteLine(el.Name);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>Text content.\n    <Child1>child1 content</Child1>\n    <Child2>child2 content</Child2>\n    <Child3>child3 content</Child3>More text content.\n    <Child4>child4 content</Child4>\n    <Child5>child5 content</Child5>\n</Root>\n\nDim child As XElement = xmlTree.<Child3>(0)\nDim elements As IEnumerable(Of XElement) = child.ElementsAfterSelf(\"Child4\")\n\nFor Each el In elements\nConsole.WriteLine(el.Name)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Child4</code></pre>\n"
   syntax:
     content: public IEnumerable<XElement> ElementsAfterSelf(XName name)
     content.vb: Public Function ElementsAfterSelf(name As XName) As IEnumerable(Of XElement)
@@ -686,6 +719,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.ElementsAfterSelf(XName)
 - uid: System.Xml.Linq.XNode.ElementsBeforeSelf
   commentId: M:System.Xml.Linq.XNode.ElementsBeforeSelf
   id: ElementsBeforeSelf
@@ -694,7 +728,6 @@ items:
   - csharp
   - vb
   name: ElementsBeforeSelf()
-  nameWithType: XNode.ElementsBeforeSelf()
   fullName: System.Xml.Linq.XNode.ElementsBeforeSelf()
   type: Method
   source:
@@ -709,6 +742,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns a collection of the sibling elements before this node, in document order.</p>\n"
+  example:
+  - "\n<p>The following example uses this axis method.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XText(\"Text content.\"),\nnew XElement(\"Child1\", \"child1 content\"),\nnew XElement(\"Child2\", \"child2 content\"),\nnew XElement(\"Child3\", \"child3 content\"),\nnew XText(\"More text content.\"),\nnew XElement(\"Child4\", \"child4 content\"),\nnew XElement(\"Child5\", \"child5 content\")\n);\nXElement child = xmlTree.Element(\"Child3\");\nIEnumerable<XElement> elements = child.ElementsBeforeSelf();\nforeach (XElement el in elements)\nConsole.WriteLine(el.Name);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>Text content.\n    <Child1>child1 content</Child1>\n    <Child2>child2 content</Child2>\n    <Child3>child3 content</Child3>More text content.\n    <Child4>child4 content</Child4>\n    <Child5>child5 content</Child5>\n</Root>\n\nDim child As XElement = xmlTree.<Child3>(0)\nDim elements As IEnumerable(Of XElement) = child.ElementsBeforeSelf()\n\nFor Each el In elements\nConsole.WriteLine(el.Name)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Child1\nChild2</code></pre>\n"
   syntax:
     content: public IEnumerable<XElement> ElementsBeforeSelf()
     content.vb: Public Function ElementsBeforeSelf As IEnumerable(Of XElement)
@@ -719,6 +754,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.ElementsBeforeSelf()
 - uid: System.Xml.Linq.XNode.ElementsBeforeSelf(System.Xml.Linq.XName)
   commentId: M:System.Xml.Linq.XNode.ElementsBeforeSelf(System.Xml.Linq.XName)
   id: ElementsBeforeSelf(System.Xml.Linq.XName)
@@ -727,7 +763,6 @@ items:
   - csharp
   - vb
   name: ElementsBeforeSelf(XName)
-  nameWithType: XNode.ElementsBeforeSelf(XName)
   fullName: System.Xml.Linq.XNode.ElementsBeforeSelf(System.Xml.Linq.XName)
   type: Method
   source:
@@ -742,6 +777,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns a filtered collection of the sibling elements before this node, in document order. Only elements that have a matching <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> are included in the collection.</p>\n"
+  example:
+  - "\n<p>The following example uses this method.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XText(\"Text content.\"),\nnew XElement(\"Child1\", \"child1 content\"),\nnew XElement(\"Child2\", \"child2 content\"),\nnew XElement(\"Child3\", \"child3 content\"),\nnew XText(\"More text content.\"),\nnew XElement(\"Child4\", \"child4 content\"),\nnew XElement(\"Child5\", \"child5 content\")\n);\nXElement child = xmlTree.Element(\"Child3\");\nIEnumerable<XElement> elements = child.ElementsBeforeSelf(\"Child2\");\nforeach (XElement el in elements)\nConsole.WriteLine(el.Name);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>Text content.\n    <Child1>child1 content</Child1>\n    <Child2>child2 content</Child2>\n    <Child3>child3 content</Child3>More text content.\n    <Child4>child4 content</Child4>\n    <Child5>child5 content</Child5>\n</Root>\n\nDim child As XElement = xmlTree.<Child3>(0)\nDim elements As IEnumerable(Of XElement) = child.ElementsBeforeSelf(\"Child2\")\n\nFor Each el In elements\nConsole.WriteLine(el.Name)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Child2</code></pre>\n"
   syntax:
     content: public IEnumerable<XElement> ElementsBeforeSelf(XName name)
     content.vb: Public Function ElementsBeforeSelf(name As XName) As IEnumerable(Of XElement)
@@ -756,6 +793,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.ElementsBeforeSelf(XName)
 - uid: System.Xml.Linq.XNode.IsAfter(System.Xml.Linq.XNode)
   commentId: M:System.Xml.Linq.XNode.IsAfter(System.Xml.Linq.XNode)
   id: IsAfter(System.Xml.Linq.XNode)
@@ -764,7 +802,6 @@ items:
   - csharp
   - vb
   name: IsAfter(XNode)
-  nameWithType: XNode.IsAfter(XNode)
   fullName: System.Xml.Linq.XNode.IsAfter(System.Xml.Linq.XNode)
   type: Method
   source:
@@ -779,6 +816,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Determines if the current node appears after a specified node in terms of document order.</p>\n"
+  example:
+  - "\n<p>The following example uses this method.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XText(\"Text content.\"),\nnew XElement(\"Child1\", \"child1 content\"),\nnew XElement(\"Child2\", \"child2 content\"),\nnew XElement(\"Child3\", \"child3 content\"),\nnew XText(\"More text content.\"),\nnew XElement(\"Child4\", \"child4 content\"),\nnew XElement(\"Child5\", \"child5 content\")\n);\nXElement child3 = xmlTree.Element(\"Child3\");\nXElement child5 = xmlTree.Element(\"Child5\");\nif (child5.IsAfter(child3))\nConsole.WriteLine(\"Child5 is after Child3\");\nelse\nConsole.WriteLine(\"Child5 is not after Child3\");</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>Text content.\n    <Child1>child1 content</Child1>\n    <Child2>child2 content</Child2>\n    <Child3>child3 content</Child3>More text content.\n    <Child4>child4 content</Child4>\n    <Child5>child5 content</Child5>\n</Root>\n\nDim child3 As XElement = xmlTree.<Child3>(0)\nDim child5 As XElement = xmlTree.<Child5>(0)\nIf (child5.IsAfter(child3)) Then\nConsole.WriteLine(\"Child5 is after Child3\")\nElse\nConsole.WriteLine(\"Child5 is not after Child3\")\nEnd If</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Child5 is after Child3</code></pre>\n"
   syntax:
     content: public bool IsAfter(XNode node)
     content.vb: Public Function IsAfter(node As XNode) As Boolean
@@ -793,6 +832,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.IsAfter(XNode)
 - uid: System.Xml.Linq.XNode.IsBefore(System.Xml.Linq.XNode)
   commentId: M:System.Xml.Linq.XNode.IsBefore(System.Xml.Linq.XNode)
   id: IsBefore(System.Xml.Linq.XNode)
@@ -801,7 +841,6 @@ items:
   - csharp
   - vb
   name: IsBefore(XNode)
-  nameWithType: XNode.IsBefore(XNode)
   fullName: System.Xml.Linq.XNode.IsBefore(System.Xml.Linq.XNode)
   type: Method
   source:
@@ -816,6 +855,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Determines if the current node appears before a specified node in terms of document order.</p>\n"
+  example:
+  - "\n<p>The following example uses this method.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XText(\"Text content.\"),\nnew XElement(\"Child1\", \"child1 content\"),\nnew XElement(\"Child2\", \"child2 content\"),\nnew XElement(\"Child3\", \"child3 content\"),\nnew XText(\"More text content.\"),\nnew XElement(\"Child4\", \"child4 content\"),\nnew XElement(\"Child5\", \"child5 content\")\n);\nXElement child3 = xmlTree.Element(\"Child3\");\nXElement child5 = xmlTree.Element(\"Child5\");\nif (child5.IsBefore(child3))\nConsole.WriteLine(\"Child5 is before Child3\");\nelse\nConsole.WriteLine(\"Child5 is not before Child3\");</code></pre>\n<p>[vb]</p>\n<pre><code>Dim xmlTree As XElement = _ \n<Root>Text content.\n    <Child1>child1 content</Child1>\n    <Child2>child2 content</Child2>\n    <Child3>child3 content</Child3>More text content.\n    <Child4>child4 content</Child4>\n    <Child5>child5 content</Child5>\n</Root>\n\nDim child3 As XElement = xmlTree.<Child3>(0)\nDim child5 As XElement = xmlTree.<Child5>(0)\nIf (child5.IsBefore(child3)) Then\nConsole.WriteLine(\"Child5 is before Child3\")\nElse\nConsole.WriteLine(\"Child5 is not before Child3\")\nEnd If</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Child5 is not before Child3</code></pre>\n"
   syntax:
     content: public bool IsBefore(XNode node)
     content.vb: Public Function IsBefore(node As XNode) As Boolean
@@ -830,6 +871,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.IsBefore(XNode)
 - uid: System.Xml.Linq.XNode.NodesAfterSelf
   commentId: M:System.Xml.Linq.XNode.NodesAfterSelf
   id: NodesAfterSelf
@@ -838,7 +880,6 @@ items:
   - csharp
   - vb
   name: NodesAfterSelf()
-  nameWithType: XNode.NodesAfterSelf()
   fullName: System.Xml.Linq.XNode.NodesAfterSelf()
   type: Method
   source:
@@ -853,6 +894,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns a collection of the sibling nodes after this node, in document order.</p>\n"
+  example:
+  - "\n<p>The following example creates an XML tree, and then queries the tree using this axis method.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XText(\"Text content.\"),\nnew XElement(\"Child1\", \"child1 content\"),\nnew XElement(\"Child2\", \"child2 content\"),\nnew XText(\"More text content.\"),\nnew XElement(\"child3\", \"child3 content\")\n);\nXElement child = xmlTree.Element(\"Child2\");\nIEnumerable<XNode> nodes =\nfrom node in child.NodesAfterSelf()\nselect node;\nforeach (XNode node in nodes)\n{\nConsole.WriteLine(\"Node type: {0}  {1}\",\nnode.NodeType,\nnode.NodeType == XmlNodeType.Text ? (node as XText).Value : \"\");\n}</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = New XElement(\"Root\", _New XText(\"Text content.\"), _\nNew XElement(\"Child1\", \"child1 content\"), _\nNew XElement(\"Child2\", \"child2 content\"), _\nNew XText(\"More text content.\"), _\nNew XElement(\"child3\", \"child3 content\") _\n)\n\nDim child As XElement = xmlTree.Element(\"Child2\")\nDim nodes As IEnumerable(Of XNode) = _\nFrom node In child.NodesAfterSelf() _\nSelect node\nFor Each node As XNode In nodes\nDim s As String = \"\"\nIf node.NodeType = XmlNodeType.Text Then\ns = DirectCast(node, XText).Value\nEnd If\nConsole.WriteLine(\"Node type: {0}  {1}\", node.NodeType, s)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Node type: Text  More text content.\nNode type: Element</code></pre>\n"
   syntax:
     content: public IEnumerable<XNode> NodesAfterSelf()
     content.vb: Public Function NodesAfterSelf As IEnumerable(Of XNode)
@@ -863,6 +906,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.NodesAfterSelf()
 - uid: System.Xml.Linq.XNode.NodesBeforeSelf
   commentId: M:System.Xml.Linq.XNode.NodesBeforeSelf
   id: NodesBeforeSelf
@@ -871,7 +915,6 @@ items:
   - csharp
   - vb
   name: NodesBeforeSelf()
-  nameWithType: XNode.NodesBeforeSelf()
   fullName: System.Xml.Linq.XNode.NodesBeforeSelf()
   type: Method
   source:
@@ -886,6 +929,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns a collection of the sibling nodes before this node, in document order.</p>\n"
+  example:
+  - "\n<p>The following example creates an XML tree, and then queries the tree using this axis method.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XText(\"Text content.\"),\nnew XElement(\"Child1\", \"child1 content\"),\nnew XElement(\"Child2\", \"child2 content\"),\nnew XText(\"More text content.\"),\nnew XElement(\"child3\", \"child3 content\")\n);\nXElement child = xmlTree.Element(\"Child2\");\nIEnumerable<XNode> nodes =\nfrom node in child.NodesBeforeSelf()\nselect node;\nforeach (XNode node in nodes)\nConsole.WriteLine(\"Node type: {0}  {1}\",\nnode.NodeType,\nnode.NodeType == XmlNodeType.Text ? (node as XText).Value : \"\");</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = New XElement(\"Root\", _\nNew XText(\"Text content.\"), _\nNew XElement(\"Child1\", \"child1 content\"), _\nNew XElement(\"Child2\", \"child2 content\"), _\nNew XText(\"More text content.\"), _\nNew XElement(\"child3\", \"child3 content\") _\n)\n\nDim child As XElement = xmlTree.Element(\"Child2\")\nDim nodes As IEnumerable(Of XNode) = _\nFrom node In child.NodesBeforeSelf() _\nSelect node\nFor Each node As XNode In nodes\nDim s As String = \"\"\nIf node.NodeType = XmlNodeType.Text Then\ns = DirectCast(node, XText).Value\nEnd If\nConsole.WriteLine(\"Node type: {0}  {1}\", node.NodeType, s)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Node type: Text  Text content.\nNode type: Element</code></pre>\n"
   syntax:
     content: public IEnumerable<XNode> NodesBeforeSelf()
     content.vb: Public Function NodesBeforeSelf As IEnumerable(Of XNode)
@@ -896,6 +941,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.NodesBeforeSelf()
 - uid: System.Xml.Linq.XNode.ReadFrom(System.Xml.XmlReader)
   commentId: M:System.Xml.Linq.XNode.ReadFrom(System.Xml.XmlReader)
   id: ReadFrom(System.Xml.XmlReader)
@@ -904,7 +950,6 @@ items:
   - csharp
   - vb
   name: ReadFrom(XmlReader)
-  nameWithType: XNode.ReadFrom(XmlReader)
   fullName: System.Xml.Linq.XNode.ReadFrom(System.Xml.XmlReader)
   type: Method
   source:
@@ -919,6 +964,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates an <xref href=\"System.Xml.Linq.XNode\" data-throw-if-not-resolved=\"false\"></xref> from an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>This example uses the following XML file, named Source.xml:</p>\n<pre><code class=\"xml\"><?xml version=\"1.0\" encoding=\"utf-8\" ?> \n<Root>\n<Child Key=\"01\">\n<GrandChild>aaa</GrandChild>\n</Child>\n<Child Key=\"02\">\n<GrandChild>bbb</GrandChild>\n</Child>\n<Child Key=\"03\">\n<GrandChild>ccc</GrandChild>\n</Child>\n</Root></code></pre>\n<p>This example creates a custom axis method that uses <xref href=\"System.Xml.Linq.XNode.ReadFrom(System.Xml.XmlReader)\" data-throw-if-not-resolved=\"false\"></xref>. You can query the custom axis by using a LINQ query.</p>\n<p>The following example uses the yield return construct of C#. Because there is no equivalent feature in Visual Basic 2008, this example is provided only in C#.</p>\n<pre><code class=\"c#\">class Program\n{\nstatic IEnumerable<XElement> StreamRootChildDoc(string uri)\n{\nusing (XmlReader reader = XmlReader.Create(uri))\n{\n    reader.MoveToContent();\n    // Parse the file and display each of the nodes.\n    while (reader.Read())\n    {\n        switch (reader.NodeType)\n        {\n            case XmlNodeType.Element:\n                if (reader.Name == \"Child\")\n                {\n                    XElement el = XElement.ReadFrom(reader) as XElement;\n                    if (el != null)\n                        yield return el;\n                }\n                break;\n        }\n    }\n}\n}\n\nstatic void Main(string[] args)\n{\nIEnumerable<string> grandChildData =\n    from el in StreamRootChildDoc(\"Source.xml\")\n    where (int)el.Attribute(\"Key\") > 1\n    select (string)el.Element(\"GrandChild\");\n\nforeach (string str in grandChildData)\n    Console.WriteLine(str);\n}\n}</code></pre>\n<p>This example produces the following output.</p>\n<pre><code>bbb\nccc</code></pre>\n"
   syntax:
     content: public static XNode ReadFrom(XmlReader reader)
     content.vb: Public Shared Function ReadFrom(reader As XmlReader) As XNode
@@ -942,6 +989,7 @@ items:
   modifiers.vb:
   - Public
   - Shared
+  nameWithType: XNode.ReadFrom(XmlReader)
 - uid: System.Xml.Linq.XNode.Remove
   commentId: M:System.Xml.Linq.XNode.Remove
   id: Remove
@@ -950,7 +998,6 @@ items:
   - csharp
   - vb
   name: Remove()
-  nameWithType: XNode.Remove()
   fullName: System.Xml.Linq.XNode.Remove()
   type: Method
   source:
@@ -965,6 +1012,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Removes this node from its parent.</p>\n"
+  example:
+  - "\n<p>The following example removes a node from its parent.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", \"child1 content\"),\nnew XElement(\"Child2\", \"child2 content\"),\nnew XElement(\"Child3\", \"child3 content\"),\nnew XElement(\"Child4\", \"child4 content\"),\nnew XElement(\"Child5\", \"child5 content\")\n);\nXElement child3 = xmlTree.Element(\"Child3\");\nchild3.Remove();\nConsole.WriteLine(xmlTree);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child1>child1 content</Child1>\n    <Child2>child2 content</Child2>\n    <Child3>child3 content</Child3>\n    <Child4>child4 content</Child4>\n    <Child5>child5 content</Child5>\n</Root>\n\nDim child3 As XElement = xmlTree.<Child3>(0)\nchild3.Remove()\nConsole.WriteLine(xmlTree)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<Child1>child1 content</Child1>\n<Child2>child2 content</Child2>\n<Child4>child4 content</Child4>\n<Child5>child5 content</Child5>\n</Root></code></pre>\n"
   syntax:
     content: public void Remove()
     content.vb: Public Sub Remove
@@ -976,6 +1025,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.Remove()
 - uid: System.Xml.Linq.XNode.ReplaceWith(System.Object)
   commentId: M:System.Xml.Linq.XNode.ReplaceWith(System.Object)
   id: ReplaceWith(System.Object)
@@ -984,7 +1034,6 @@ items:
   - csharp
   - vb
   name: ReplaceWith(Object)
-  nameWithType: XNode.ReplaceWith(Object)
   fullName: System.Xml.Linq.XNode.ReplaceWith(System.Object)
   type: Method
   source:
@@ -999,6 +1048,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Replaces this node with the specified content.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to replace the contents of a node with different content.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", \"child1 content\"),\nnew XElement(\"Child2\", \"child2 content\"),\nnew XElement(\"Child3\", \"child3 content\"),\nnew XElement(\"Child4\", \"child4 content\"),\nnew XElement(\"Child5\", \"child5 content\")\n);\nXElement child3 = xmlTree.Element(\"Child3\");\nchild3.ReplaceWith(\nnew XElement(\"NewChild\", \"new content\")\n);\nConsole.WriteLine(xmlTree);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child1>child1 content</Child1>\n    <Child2>child2 content</Child2>\n    <Child3>child3 content</Child3>\n    <Child4>child4 content</Child4>\n    <Child5>child5 content</Child5>\n</Root>\n\nDim child3 As XElement = xmlTree.<Child3>(0)\nchild3.ReplaceWith(<NewChild>new content</NewChild>)\nConsole.WriteLine(xmlTree)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<Child1>child1 content</Child1>\n<Child2>child2 content</Child2>\n<NewChild>new content</NewChild>\n<Child4>child4 content</Child4>\n<Child5>child5 content</Child5>\n</Root></code></pre>\n"
   syntax:
     content: public void ReplaceWith(object content)
     content.vb: Public Sub ReplaceWith(content As Object)
@@ -1010,6 +1061,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.ReplaceWith(Object)
 - uid: System.Xml.Linq.XNode.ReplaceWith(System.Object[])
   commentId: M:System.Xml.Linq.XNode.ReplaceWith(System.Object[])
   id: ReplaceWith(System.Object[])
@@ -1018,7 +1070,6 @@ items:
   - csharp
   - vb
   name: ReplaceWith(Object[])
-  nameWithType: XNode.ReplaceWith(Object[])
   fullName: System.Xml.Linq.XNode.ReplaceWith(System.Object[])
   type: Method
   source:
@@ -1033,6 +1084,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Replaces this node with the specified content.</p>\n"
+  example:
+  - "\n<p>The following example shows using the results of a LINQ to XML query as the input to this method.</p>\n<pre><code class=\"c#\">XElement srcTree = new XElement(\"Root\",\nnew XElement(\"Element1\", 1),\nnew XElement(\"Element2\", 2),\nnew XElement(\"Element3\", 3),\nnew XElement(\"Element4\", 4),\nnew XElement(\"Element5\", 5)\n);\nXElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", 1),\nnew XElement(\"Child2\", 2),\nnew XElement(\"Child3\", 3),\nnew XElement(\"Child4\", 4),\nnew XElement(\"Child5\", 5)\n);\nXElement child3 = xmlTree.Element(\"Child3\");\nchild3.ReplaceWith(\nfrom el in srcTree.Elements()\nwhere (int)el > 3\nselect el\n);\nConsole.WriteLine(xmlTree);</code></pre>\n<pre><code class=\"vb\">Dim srcTree As XElement = _ \n<Root>\n    <Element1>1</Element1>\n    <Element2>2</Element2>\n    <Element3>3</Element3>\n    <Element4>4</Element4>\n    <Element5>5</Element5>\n</Root>\n\nDim xmlTree As XElement = _ \n<Root>\n    <Child1>1</Child1>\n    <Child2>2</Child2>\n    <Child3>3</Child3>\n    <Child4>4</Child4>\n    <Child5>5</Child5>\n</Root>\n\nDim child3 As XElement = xmlTree.<Child3>(0)\nchild3.ReplaceWith( _\nFrom el In srcTree.Elements() _\nWhere (CInt(el) > 3) _\nSelect el)\n\nConsole.WriteLine(xmlTree)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<Child1>1</Child1>\n<Child2>2</Child2>\n<Element4>4</Element4>\n<Element5>5</Element5>\n<Child4>4</Child4>\n<Child5>5</Child5>\n</Root></code></pre>\n"
   syntax:
     content: public void ReplaceWith(params object[] content)
     content.vb: Public Sub ReplaceWith(ParamArray content As Object())
@@ -1040,13 +1093,14 @@ items:
     - id: content
       type: System.Object[]
       description: "\n<p>A parameter list of the new content.</p>\n"
-  nameWithType.vb: XNode.ReplaceWith(Object())
   modifiers.csharp:
   - public
   modifiers.vb:
   - Public
   fullName.vb: System.Xml.Linq.XNode.ReplaceWith(System.Object())
   name.vb: ReplaceWith(Object())
+  nameWithType: XNode.ReplaceWith(Object[])
+  nameWithType.vb: XNode.ReplaceWith(Object())
 - uid: System.Xml.Linq.XNode.ToString
   commentId: M:System.Xml.Linq.XNode.ToString
   id: ToString
@@ -1055,7 +1109,6 @@ items:
   - csharp
   - vb
   name: ToString()
-  nameWithType: XNode.ToString()
   fullName: System.Xml.Linq.XNode.ToString()
   type: Method
   source:
@@ -1070,6 +1123,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns the indented XML for this node.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to retrieve indented XML.</p>\n<pre><code class=\"c#\">XElement xmlTree = new XElement(\"Root\",\nnew XElement(\"Child1\", 1)\n);\nConsole.WriteLine(xmlTree);</code></pre>\n<pre><code class=\"vb\">Dim xmlTree As XElement = _ \n<Root>\n    <Child1>1</Child1>\n</Root>\n\nConsole.WriteLine(xmlTree)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<Child1>1</Child1>\n</Root></code></pre>\n"
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String
@@ -1082,6 +1137,7 @@ items:
   modifiers.vb:
   - Public
   - Overrides
+  nameWithType: XNode.ToString()
 - uid: System.Xml.Linq.XNode.ToString(System.Xml.Linq.SaveOptions)
   commentId: M:System.Xml.Linq.XNode.ToString(System.Xml.Linq.SaveOptions)
   id: ToString(System.Xml.Linq.SaveOptions)
@@ -1090,7 +1146,6 @@ items:
   - csharp
   - vb
   name: ToString(SaveOptions)
-  nameWithType: XNode.ToString(SaveOptions)
   fullName: System.Xml.Linq.XNode.ToString(System.Xml.Linq.SaveOptions)
   type: Method
   source:
@@ -1105,6 +1160,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Returns the XML for this node, optionally disabling formatting.</p>\n"
+  example:
+  - "\n<p>The following example uses this method to retrieve unformatted and formatted XML.</p>\n<pre><code class=\"c#\">XElement root = XElement.Parse(\"<Root><Child/></Root>\");\nConsole.WriteLine(root.ToString(SaveOptions.DisableFormatting));\nConsole.WriteLine(\"---\");\nConsole.WriteLine(root.ToString(SaveOptions.None));</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root>\n                   <Child/>\n               </Root>\nConsole.WriteLine(root.ToString(SaveOptions.DisableFormatting))\nConsole.WriteLine(\"---\")\nConsole.WriteLine(root.ToString(SaveOptions.None))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Root><Child /></Root>\n---\n<Root>\n<Child />\n</Root></code></pre>\n"
   syntax:
     content: public string ToString(SaveOptions options)
     content.vb: Public Function ToString(options As SaveOptions) As String
@@ -1119,6 +1176,7 @@ items:
   - public
   modifiers.vb:
   - Public
+  nameWithType: XNode.ToString(SaveOptions)
 - uid: System.Xml.Linq.XNode.WriteTo(System.Xml.XmlWriter)
   commentId: M:System.Xml.Linq.XNode.WriteTo(System.Xml.XmlWriter)
   id: WriteTo(System.Xml.XmlWriter)
@@ -1127,7 +1185,6 @@ items:
   - csharp
   - vb
   name: WriteTo(XmlWriter)
-  nameWithType: XNode.WriteTo(XmlWriter)
   fullName: System.Xml.Linq.XNode.WriteTo(System.Xml.XmlWriter)
   type: Method
   source:
@@ -1142,6 +1199,8 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Writes this node to an <xref href=\"System.Xml.XmlWriter\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
+  example:
+  - "\n<p>The following example creates an <xref href=\"System.Xml.XmlWriter\" data-throw-if-not-resolved=\"false\"></xref> that writes to a <xref href=\"System.Text.StringBuilder\" data-throw-if-not-resolved=\"false\"></xref>. It then uses this method to write two XML trees to the writer.</p>\n<pre><code class=\"c#\">StringBuilder sb = new StringBuilder();\nXmlWriterSettings xws = new XmlWriterSettings();\nxws.OmitXmlDeclaration = true;\nxws.Indent = true;\n\nusing (XmlWriter xw = XmlWriter.Create(sb, xws)) {\nxw.WriteStartElement(\"Root\");\nXElement child1 = new XElement(\"Child\",\nnew XElement(\"GrandChild\", \"some content\")\n);\nchild1.WriteTo(xw);\nXElement child2 = new XElement(\"AnotherChild\",\nnew XElement(\"GrandChild\", \"different content\")\n);\nchild2.WriteTo(xw);\nxw.WriteEndElement();\n}\nConsole.WriteLine(sb.ToString());</code></pre>\n<pre><code class=\"vb\">Dim sb As StringBuilder = New StringBuilder()\nDim xws As XmlWriterSettings = New XmlWriterSettings()\nxws.OmitXmlDeclaration = True\nxws.Indent = True\n\nUsing xw = XmlWriter.Create(sb, xws)\nxw.WriteStartElement(\"Root\")\nDim child1 As XElement = <Child>\n                         <GrandChild>some content</GrandChild>\n                     </Child>\nchild1.WriteTo(xw)\nDim child2 As XElement = <AnotherChild>\n                         <GrandChild>different content</GrandChild>\n                     </AnotherChild>\nchild2.WriteTo(xw)\nxw.WriteEndElement()\nEnd Using\n\nConsole.WriteLine(sb.ToString())</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<Child>\n<GrandChild>some content</GrandChild>\n</Child>\n<AnotherChild>\n<GrandChild>different content</GrandChild>\n</AnotherChild>\n</Root></code></pre>\n"
   syntax:
     content: public abstract void WriteTo(XmlWriter writer)
     content.vb: Public MustOverride Sub WriteTo(writer As XmlWriter)
@@ -1155,572 +1214,495 @@ items:
   modifiers.vb:
   - Public
   - MustOverride
+  nameWithType: XNode.WriteTo(XmlWriter)
 references:
 - uid: System.Xml.Linq
   isExternal: false
   name: System.Xml.Linq
-  nameWithType: System.Xml.Linq
   fullName: System.Xml.Linq
   commentId: N:System.Xml.Linq
+  nameWithType: System.Xml.Linq
 - uid: System.Object
   parent: System
   isExternal: false
   name: Object
-  nameWithType: Object
   fullName: System.Object
   commentId: T:System.Object
+  nameWithType: Object
 - uid: System.Xml.Linq.XObject
   parent: System.Xml.Linq
   isExternal: false
   name: XObject
-  nameWithType: XObject
   fullName: System.Xml.Linq.XObject
   commentId: T:System.Xml.Linq.XObject
+  nameWithType: XObject
 - uid: System.Xml.Linq.XObject.BaseUri
   parent: System.Xml.Linq.XObject
   isExternal: false
   name: BaseUri
-  nameWithType: XObject.BaseUri
   fullName: System.Xml.Linq.XObject.BaseUri
   commentId: P:System.Xml.Linq.XObject.BaseUri
+  nameWithType: XObject.BaseUri
 - uid: System.Xml.Linq.XObject.Document
   parent: System.Xml.Linq.XObject
   isExternal: false
   name: Document
-  nameWithType: XObject.Document
   fullName: System.Xml.Linq.XObject.Document
   commentId: P:System.Xml.Linq.XObject.Document
+  nameWithType: XObject.Document
 - uid: System.Xml.Linq.XObject.NodeType
   parent: System.Xml.Linq.XObject
   isExternal: false
   name: NodeType
-  nameWithType: XObject.NodeType
   fullName: System.Xml.Linq.XObject.NodeType
   commentId: P:System.Xml.Linq.XObject.NodeType
+  nameWithType: XObject.NodeType
 - uid: System.Xml.Linq.XObject.Parent
   parent: System.Xml.Linq.XObject
   isExternal: false
   name: Parent
-  nameWithType: XObject.Parent
   fullName: System.Xml.Linq.XObject.Parent
   commentId: P:System.Xml.Linq.XObject.Parent
+  nameWithType: XObject.Parent
 - uid: System.Xml.Linq.XObject.Changed
   parent: System.Xml.Linq.XObject
   isExternal: false
   name: Changed
-  nameWithType: XObject.Changed
   fullName: System.Xml.Linq.XObject.Changed
   commentId: E:System.Xml.Linq.XObject.Changed
+  nameWithType: XObject.Changed
 - uid: System.Xml.Linq.XObject.Changing
   parent: System.Xml.Linq.XObject
   isExternal: false
   name: Changing
-  nameWithType: XObject.Changing
   fullName: System.Xml.Linq.XObject.Changing
   commentId: E:System.Xml.Linq.XObject.Changing
+  nameWithType: XObject.Changing
 - uid: System.Xml.Linq.XObject.AddAnnotation(System.Object)
   parent: System.Xml.Linq.XObject
   isExternal: true
   name: AddAnnotation(Object)
-  nameWithType: XObject.AddAnnotation(Object)
   fullName: System.Xml.Linq.XObject.AddAnnotation(System.Object)
   spec.csharp:
   - uid: System.Xml.Linq.XObject.AddAnnotation(System.Object)
     name: AddAnnotation
-    nameWithType: XObject.AddAnnotation
     fullName: System.Xml.Linq.XObject.AddAnnotation
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Xml.Linq.XObject.AddAnnotation(System.Object)
     name: AddAnnotation
-    nameWithType: XObject.AddAnnotation
     fullName: System.Xml.Linq.XObject.AddAnnotation
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Xml.Linq.XObject.AddAnnotation(System.Object)
+  nameWithType: XObject.AddAnnotation(Object)
 - uid: System.Xml.Linq.XObject.Annotation(System.Type)
   parent: System.Xml.Linq.XObject
   isExternal: true
   name: Annotation(Type)
-  nameWithType: XObject.Annotation(Type)
   fullName: System.Xml.Linq.XObject.Annotation(System.Type)
   spec.csharp:
   - uid: System.Xml.Linq.XObject.Annotation(System.Type)
     name: Annotation
-    nameWithType: XObject.Annotation
     fullName: System.Xml.Linq.XObject.Annotation
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
     fullName: System.Type
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Xml.Linq.XObject.Annotation(System.Type)
     name: Annotation
-    nameWithType: XObject.Annotation
     fullName: System.Xml.Linq.XObject.Annotation
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
     fullName: System.Type
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Xml.Linq.XObject.Annotation(System.Type)
+  nameWithType: XObject.Annotation(Type)
 - uid: System.Xml.Linq.XObject.Annotation``1
   parent: System.Xml.Linq.XObject
   isExternal: false
   name: Annotation<T>()
-  nameWithType: XObject.Annotation<T>()
   fullName: System.Xml.Linq.XObject.Annotation<T>()
-  nameWithType.vb: XObject.Annotation(Of T)()
   fullname.vb: System.Xml.Linq.XObject.Annotation(Of T)()
   name.vb: Annotation(Of T)()
   spec.csharp:
   - uid: System.Xml.Linq.XObject.Annotation``1
     name: Annotation<T>
-    nameWithType: XObject.Annotation<T>
     fullName: System.Xml.Linq.XObject.Annotation<T>
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Xml.Linq.XObject.Annotation``1
     name: Annotation(Of T)
-    nameWithType: XObject.Annotation(Of T)
     fullName: System.Xml.Linq.XObject.Annotation(Of T)
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Xml.Linq.XObject.Annotation``1
+  nameWithType: XObject.Annotation<T>()
+  nameWithType.vb: XObject.Annotation(Of T)()
 - uid: System.Xml.Linq.XObject.Annotations(System.Type)
   parent: System.Xml.Linq.XObject
   isExternal: true
   name: Annotations(Type)
-  nameWithType: XObject.Annotations(Type)
   fullName: System.Xml.Linq.XObject.Annotations(System.Type)
   spec.csharp:
   - uid: System.Xml.Linq.XObject.Annotations(System.Type)
     name: Annotations
-    nameWithType: XObject.Annotations
     fullName: System.Xml.Linq.XObject.Annotations
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
     fullName: System.Type
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Xml.Linq.XObject.Annotations(System.Type)
     name: Annotations
-    nameWithType: XObject.Annotations
     fullName: System.Xml.Linq.XObject.Annotations
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
     fullName: System.Type
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Xml.Linq.XObject.Annotations(System.Type)
+  nameWithType: XObject.Annotations(Type)
 - uid: System.Xml.Linq.XObject.Annotations``1
   parent: System.Xml.Linq.XObject
   isExternal: false
   name: Annotations<T>()
-  nameWithType: XObject.Annotations<T>()
   fullName: System.Xml.Linq.XObject.Annotations<T>()
-  nameWithType.vb: XObject.Annotations(Of T)()
   fullname.vb: System.Xml.Linq.XObject.Annotations(Of T)()
   name.vb: Annotations(Of T)()
   spec.csharp:
   - uid: System.Xml.Linq.XObject.Annotations``1
     name: Annotations<T>
-    nameWithType: XObject.Annotations<T>
     fullName: System.Xml.Linq.XObject.Annotations<T>
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Xml.Linq.XObject.Annotations``1
     name: Annotations(Of T)
-    nameWithType: XObject.Annotations(Of T)
     fullName: System.Xml.Linq.XObject.Annotations(Of T)
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Xml.Linq.XObject.Annotations``1
+  nameWithType: XObject.Annotations<T>()
+  nameWithType.vb: XObject.Annotations(Of T)()
 - uid: System.Xml.Linq.XObject.RemoveAnnotations(System.Type)
   parent: System.Xml.Linq.XObject
   isExternal: true
   name: RemoveAnnotations(Type)
-  nameWithType: XObject.RemoveAnnotations(Type)
   fullName: System.Xml.Linq.XObject.RemoveAnnotations(System.Type)
   spec.csharp:
   - uid: System.Xml.Linq.XObject.RemoveAnnotations(System.Type)
     name: RemoveAnnotations
-    nameWithType: XObject.RemoveAnnotations
     fullName: System.Xml.Linq.XObject.RemoveAnnotations
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
     fullName: System.Type
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Xml.Linq.XObject.RemoveAnnotations(System.Type)
     name: RemoveAnnotations
-    nameWithType: XObject.RemoveAnnotations
     fullName: System.Xml.Linq.XObject.RemoveAnnotations
   - name: (
-    nameWithType: (
     fullName: (
   - uid: System.Type
     name: Type
-    nameWithType: Type
     fullName: System.Type
     isExternal: true
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Xml.Linq.XObject.RemoveAnnotations(System.Type)
+  nameWithType: XObject.RemoveAnnotations(Type)
 - uid: System.Xml.Linq.XObject.RemoveAnnotations``1
   parent: System.Xml.Linq.XObject
   isExternal: false
   name: RemoveAnnotations<T>()
-  nameWithType: XObject.RemoveAnnotations<T>()
   fullName: System.Xml.Linq.XObject.RemoveAnnotations<T>()
-  nameWithType.vb: XObject.RemoveAnnotations(Of T)()
   fullname.vb: System.Xml.Linq.XObject.RemoveAnnotations(Of T)()
   name.vb: RemoveAnnotations(Of T)()
   spec.csharp:
   - uid: System.Xml.Linq.XObject.RemoveAnnotations``1
     name: RemoveAnnotations<T>
-    nameWithType: XObject.RemoveAnnotations<T>
     fullName: System.Xml.Linq.XObject.RemoveAnnotations<T>
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   spec.vb:
   - uid: System.Xml.Linq.XObject.RemoveAnnotations``1
     name: RemoveAnnotations(Of T)
-    nameWithType: XObject.RemoveAnnotations(Of T)
     fullName: System.Xml.Linq.XObject.RemoveAnnotations(Of T)
   - name: (
-    nameWithType: (
     fullName: (
   - name: )
-    nameWithType: )
     fullName: )
   commentId: M:System.Xml.Linq.XObject.RemoveAnnotations``1
+  nameWithType: XObject.RemoveAnnotations<T>()
+  nameWithType.vb: XObject.RemoveAnnotations(Of T)()
 - uid: System
   isExternal: false
   name: System
-  nameWithType: System
   fullName: System
   commentId: N:System
+  nameWithType: System
 - uid: System.Xml.Linq.XNodeDocumentOrderComparer
   parent: System.Xml.Linq
   isExternal: false
   name: XNodeDocumentOrderComparer
-  nameWithType: XNodeDocumentOrderComparer
   fullName: System.Xml.Linq.XNodeDocumentOrderComparer
   commentId: T:System.Xml.Linq.XNodeDocumentOrderComparer
+  nameWithType: XNodeDocumentOrderComparer
 - uid: System.Xml.Linq.XNodeEqualityComparer
   parent: System.Xml.Linq
   isExternal: false
   name: XNodeEqualityComparer
-  nameWithType: XNodeEqualityComparer
   fullName: System.Xml.Linq.XNodeEqualityComparer
   commentId: T:System.Xml.Linq.XNodeEqualityComparer
+  nameWithType: XNodeEqualityComparer
 - uid: System.Xml.Linq.XNode
   parent: System.Xml.Linq
   isExternal: false
   name: XNode
-  nameWithType: XNode
   fullName: System.Xml.Linq.XNode
   commentId: T:System.Xml.Linq.XNode
+  nameWithType: XNode
 - uid: System.Object[]
   name: Object[]
-  nameWithType: Object[]
   fullName: System.Object[]
-  nameWithType.vb: Object()
   fullname.vb: System.Object()
   name.vb: Object()
   spec.csharp:
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: '[]'
-    nameWithType: '[]'
     fullName: '[]'
   spec.vb:
   - uid: System.Object
     name: Object
-    nameWithType: Object
     fullName: System.Object
     isExternal: true
   - name: ()
-    nameWithType: ()
     fullName: ()
+  nameWithType: Object[]
+  nameWithType.vb: Object()
 - uid: System.Collections.Generic.IEnumerable{System.Xml.Linq.XElement}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<XElement>
-  nameWithType: IEnumerable<XElement>
   fullName: System.Collections.Generic.IEnumerable<System.Xml.Linq.XElement>
-  nameWithType.vb: IEnumerable(Of XElement)
   fullname.vb: System.Collections.Generic.IEnumerable(Of System.Xml.Linq.XElement)
   name.vb: IEnumerable(Of XElement)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Xml.Linq.XElement
     name: XElement
-    nameWithType: XElement
     fullName: System.Xml.Linq.XElement
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Xml.Linq.XElement
     name: XElement
-    nameWithType: XElement
     fullName: System.Xml.Linq.XElement
   - name: )
-    nameWithType: )
     fullName: )
   commentId: T:System.Collections.Generic.IEnumerable{System.Xml.Linq.XElement}
+  nameWithType: IEnumerable<XElement>
+  nameWithType.vb: IEnumerable(Of XElement)
 - uid: System.Collections.Generic.IEnumerable`1
   isExternal: false
   name: IEnumerable<T>
-  nameWithType: IEnumerable<T>
   fullName: System.Collections.Generic.IEnumerable<T>
-  nameWithType.vb: IEnumerable(Of T)
   fullname.vb: System.Collections.Generic.IEnumerable(Of T)
   name.vb: IEnumerable(Of T)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
   - name: <
-    nameWithType: <
     fullName: <
   - name: T
-    nameWithType: T
     fullName: T
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - name: T
-    nameWithType: T
     fullName: T
   - name: )
-    nameWithType: )
     fullName: )
   commentId: T:System.Collections.Generic.IEnumerable`1
+  nameWithType: IEnumerable<T>
+  nameWithType.vb: IEnumerable(Of T)
 - uid: System.Collections.Generic
   isExternal: false
   name: System.Collections.Generic
-  nameWithType: System.Collections.Generic
   fullName: System.Collections.Generic
   commentId: N:System.Collections.Generic
+  nameWithType: System.Collections.Generic
 - uid: System.Xml.Linq.XName
   parent: System.Xml.Linq
   isExternal: false
   name: XName
-  nameWithType: XName
   fullName: System.Xml.Linq.XName
   commentId: T:System.Xml.Linq.XName
+  nameWithType: XName
 - uid: System.Int32
   parent: System
   isExternal: false
   name: Int32
-  nameWithType: Int32
   fullName: System.Int32
   commentId: T:System.Int32
+  nameWithType: Int32
 - uid: System.Xml.XmlReader
   parent: System.Xml
   isExternal: false
   name: XmlReader
-  nameWithType: XmlReader
   fullName: System.Xml.XmlReader
   commentId: T:System.Xml.XmlReader
+  nameWithType: XmlReader
 - uid: System.Xml
   isExternal: false
   name: System.Xml
-  nameWithType: System.Xml
   fullName: System.Xml
   commentId: N:System.Xml
+  nameWithType: System.Xml
 - uid: System.Xml.Linq.ReaderOptions
   parent: System.Xml.Linq
   isExternal: false
   name: ReaderOptions
-  nameWithType: ReaderOptions
   fullName: System.Xml.Linq.ReaderOptions
   commentId: T:System.Xml.Linq.ReaderOptions
+  nameWithType: ReaderOptions
 - uid: System.Boolean
   parent: System
   isExternal: false
   name: Boolean
-  nameWithType: Boolean
   fullName: System.Boolean
   commentId: T:System.Boolean
+  nameWithType: Boolean
 - uid: System.Collections.Generic.IEnumerable{System.Xml.Linq.XNode}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<XNode>
-  nameWithType: IEnumerable<XNode>
   fullName: System.Collections.Generic.IEnumerable<System.Xml.Linq.XNode>
-  nameWithType.vb: IEnumerable(Of XNode)
   fullname.vb: System.Collections.Generic.IEnumerable(Of System.Xml.Linq.XNode)
   name.vb: IEnumerable(Of XNode)
   spec.csharp:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: <
-    nameWithType: <
     fullName: <
   - uid: System.Xml.Linq.XNode
     name: XNode
-    nameWithType: XNode
     fullName: System.Xml.Linq.XNode
   - name: '>'
-    nameWithType: '>'
     fullName: '>'
   spec.vb:
   - uid: System.Collections.Generic.IEnumerable`1
     name: IEnumerable
-    nameWithType: IEnumerable
     fullName: System.Collections.Generic.IEnumerable
     isExternal: true
   - name: '(Of '
-    nameWithType: '(Of '
     fullName: '(Of '
   - uid: System.Xml.Linq.XNode
     name: XNode
-    nameWithType: XNode
     fullName: System.Xml.Linq.XNode
   - name: )
-    nameWithType: )
     fullName: )
   commentId: T:System.Collections.Generic.IEnumerable{System.Xml.Linq.XNode}
+  nameWithType: IEnumerable<XNode>
+  nameWithType.vb: IEnumerable(Of XNode)
 - uid: System.String
   parent: System
   isExternal: false
   name: String
-  nameWithType: String
   fullName: System.String
   commentId: T:System.String
+  nameWithType: String
 - uid: System.Xml.Linq.SaveOptions
   parent: System.Xml.Linq
   isExternal: false
   name: SaveOptions
-  nameWithType: SaveOptions
   fullName: System.Xml.Linq.SaveOptions
   commentId: T:System.Xml.Linq.SaveOptions
+  nameWithType: SaveOptions
 - uid: System.Xml.XmlWriter
   parent: System.Xml
   isExternal: false
   name: XmlWriter
-  nameWithType: XmlWriter
   fullName: System.Xml.XmlWriter
   commentId: T:System.Xml.XmlWriter
+  nameWithType: XmlWriter
 - uid: System.InvalidOperationException
   parent: System
   isExternal: false
   name: InvalidOperationException
-  nameWithType: InvalidOperationException
   fullName: System.InvalidOperationException
+  nameWithType: InvalidOperationException
   commentId: T:System.InvalidOperationException
 - uid: System.Xml.XmlException
   isExternal: false
   name: XmlException
-  nameWithType: XmlException
   fullName: System.Xml.XmlException
+  nameWithType: XmlException
   commentId: T:System.Xml.XmlException
