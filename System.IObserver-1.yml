@@ -25,8 +25,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Provides a mechanism for receiving push-based notifications.</p>\n"
-  example:
-  - "\n<p>The following example illustrates the observer design pattern. It defines a <code>Location</code> class that contains latitude and longitude information.</p>System.IObserver.Class#5<p>The <code>LocationReporter</code> class provides the <xref href=\"System.IObserver`1\" data-throw-if-not-resolved=\"false\"></xref> implementation. It displays information about the current location to the console. Its constructor includes a <em>name</em> parameter, which allows the <code>LocationReporter</code> instance to identify itself in its string output. It also includes a <code>Subscribe</code> method, which wraps a call to the provider's <xref href=\"System.IObservable`1.Subscribe(System.IObserver{`0})\" data-throw-if-not-resolved=\"false\"></xref> method. This enables the method to assign the returned <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> reference to a private variable. The <code>LocationReporter</code> class also includes an <code>Unsubscribe</code> method, which calls the <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> method of the object returned by the <xref href=\"System.IObservable`1.Subscribe(System.IObserver{`0})\" data-throw-if-not-resolved=\"false\"></xref> method. The following code defines the <code>LocationReporter</code> class. </p>System.IObserver.Class#8<p>The <code>LocationTracker</code> class provides the <xref href=\"System.IObservable`1\" data-throw-if-not-resolved=\"false\"></xref> implementation. Its <code>TrackLocation</code> method is passed a nullable <code>Location</code> object that contains the latitude and longitude data. If the <code>Location</code> value is not <strong>null</strong>, the <code>TrackLocation</code> method calls the <xref href=\"System.IObserver`1.OnNext(`0)\" data-throw-if-not-resolved=\"false\"></xref> method of each observer. </p>System.IObserver.Class#6<p>If the <code>Location</code> value is <strong>null</strong>, the <code>TrackLocation</code> method instantiates a <code>LocationNotFoundException</code> object, which is shown in the following example. It then calls each observer's <xref href=\"System.IObserver`1.OnError(System.Exception)\" data-throw-if-not-resolved=\"false\"></xref> method and passes it the <code>LocationNotFoundException</code> object. Note that <code>LocationNotFoundException</code> derives from <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> but does not add any new members.</p>System.IObserver.Class#7<p>Observers register to receive notifications from a <code>TrackLocation</code> object by calling its <xref href=\"System.IObservable`1.Subscribe(System.IObserver{`0})\" data-throw-if-not-resolved=\"false\"></xref> method, which assigns a reference to the observer object to a private generic <xref href=\"System.Collections.Generic.List`1\" data-throw-if-not-resolved=\"false\"></xref> object. The method returns an <code>Unsubscriber</code> object, which is an <xref href=\"System.IDisposable\" data-throw-if-not-resolved=\"false\"></xref> implementation that enables observers to stop receiving notifications. The <code>LocationTracker</code> class also includes an <code>EndTransmission</code> method. When no further location data is available, the method calls each observer's <xref href=\"System.IObserver`1.OnCompleted\" data-throw-if-not-resolved=\"false\"></xref> method and then clears the internal list of observers.</p><p>The following code then instantiates the provider and the observer.</p>System.IObserver.Class#9"
   syntax:
     content: public interface IObserver<in T>
     content.vb: Public Interface IObserver(Of In T)
@@ -68,8 +66,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Notifies the observer that the provider has finished sending push-based notifications.</p>\n"
-  example:
-  - "\n<p>The following example provides an implementation of the <xref href=\"System.IObserver`1.OnCompleted\" data-throw-if-not-resolved=\"false\"></xref> method in a latitude/longitude tracking application. The method simply reports that no further data is available and calls the provider's <xref href=\"System.IDisposable.Dispose\" data-throw-if-not-resolved=\"false\"></xref> implementation. See the Example section of the <xref href=\"System.IObserver`1\" data-throw-if-not-resolved=\"false\"></xref> topic for the complete example.</p>System.IObserver.Class#11"
   syntax:
     content: void OnCompleted()
     content.vb: Sub OnCompleted
@@ -98,8 +94,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Notifies the observer that the provider has experienced an error condition.</p>\n"
-  example:
-  - "\n<p>The following example provides an implementation of the <xref href=\"System.IObserver`1.OnError(System.Exception)\" data-throw-if-not-resolved=\"false\"></xref> method in a latitude/longitude tracking application. The method simply reports that data is currently unavailable; it does not make use of the <xref href=\"System.Exception\" data-throw-if-not-resolved=\"false\"></xref> object passed to it as a parameter. See the Example section of the <xref href=\"System.IObserver`1\" data-throw-if-not-resolved=\"false\"></xref> topic for the complete example.</p>System.IObserver.Class#10"
   syntax:
     content: void OnError(Exception error)
     content.vb: Sub OnError(error As Exception)
@@ -132,8 +126,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Provides the observer with new data.</p>\n"
-  example:
-  - "\n<p>The following example provides an implementation of the <xref href=\"System.IObserver`1.OnNext(`0)\" data-throw-if-not-resolved=\"false\"></xref> method in a latitude/longitude tracking application. See the Example section of the <xref href=\"System.IObserver`1\" data-throw-if-not-resolved=\"false\"></xref> topic for the complete example.</p>System.IObserver.Class#12"
   syntax:
     content: void OnNext(T value)
     content.vb: Sub OnNext(value As T)

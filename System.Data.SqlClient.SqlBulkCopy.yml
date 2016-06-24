@@ -38,8 +38,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Lets you efficiently bulk load a SQL Server table with data from another source.</p>\n"
-  example:
-  - "\n<p>The following console application demonstrates how to load data using the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class. In this example, a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> is used to copy data from the <strong>Production.Product</strong> table in the SQL Server<strong>AdventureWorks</strong> database to a similar table in the same database. </p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks BulkCopy.Single#1"
   syntax:
     content: 'public sealed class SqlBulkCopy : IDisposable'
     content.vb: >-
@@ -88,8 +86,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class using the specified open instance of <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  example:
-  - "\n<p>The following console application demonstrates how to bulk load data using a connection that is already open. In this example, a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> is used to copy data from the <strong>Production.Product</strong> table in the SQL Server<strong>AdventureWorks</strong> database to a similar table in the same database. This example is for demonstration purposes only. You would not use <strong>SqlBulkCopy</strong> to move data from one table to another in the same database in a production application. Note that the source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> or loaded to a <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks BulkCopy.Single#1"
   syntax:
     content: public SqlBulkCopy(SqlConnection connection)
     content.vb: Public Sub New(connection As SqlConnection)
@@ -164,8 +160,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Initializes and opens a new instance of <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> based on the supplied <em>connectionString</em>. The constructor uses the <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> to initialize a new instance of the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - "\n<p>The following console application demonstrates how to bulk load data by using a connection specified as a string. The connection is automatically closed when the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance is closed.</p>\n<p>In this example, the source data is first read from a SQL Server table to a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> instance. The source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> or loaded to a <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.ConnectionString#1"
   syntax:
     content: public SqlBulkCopy(string connectionString)
     content.vb: Public Sub New(connectionString As String)
@@ -200,8 +194,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Initializes and opens a new instance of <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> based on the supplied <em>connectionString</em>. The constructor uses that <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> to initialize a new instance of the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> class. The <xref href=\"System.Data.SqlClient.SqlConnection\" data-throw-if-not-resolved=\"false\"></xref> instance behaves according to options supplied in the <em>copyOptions</em> parameter.</p>\n"
-  example:
-  - "\n<p>The following console application demonstrates how to perform a bulk load by using a connection specified as a string. An option is set to use the value in the identity column of the source table when you load the destination table. In this example, the source data is first read from a SQL Server table to a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> instance. The source table and destination table each include an Identity column. By default, a new value for the <strong>Identity</strong> column is generated in the destination table for each row added. In this example, an option is set when the connection is opened that forces the bulk load process to use the <strong>Identity</strong> values from the source table instead. To see how the option changes the way the bulk load works, run the sample with the <strong>dbo.BulkCopyDemoMatchingColumns</strong> table empty. All rows load from the source. Then run the sample again without emptying the table. An exception is thrown and the code writes a message to the console notifying you that rows weren't added because of primary key constraint violations.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.KeepIdentity#1"
   syntax:
     content: public SqlBulkCopy(string connectionString, SqlBulkCopyOptions copyOptions)
     content.vb: Public Sub New(connectionString As String, copyOptions As SqlBulkCopyOptions)
@@ -239,8 +231,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Number of rows in each batch. At the end of each batch, the rows in the batch are sent to the server.</p>\n"
-  example:
-  - "\n<p>The following console application demonstrates how to bulk load data in batches of 50 rows. For an example illustrating how <xref href=\"System.Data.SqlClient.SqlBulkCopy.BatchSize\" data-throw-if-not-resolved=\"false\"></xref> works with a transaction, see Transaction and Bulk Copy Operations.</p>\n<p>In this example, the source data is first read from a SQL Server table to a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> instance. The source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> or loaded to a <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.BatchSize#1"
   syntax:
     content: public int BatchSize { get; set; }
     content.vb: Public Property BatchSize As Integer
@@ -277,8 +267,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Number of seconds for the operation to complete before it times out.</p>\n"
-  example:
-  - "\n<p>The following console application demonstrates how to modify the time-out to 60 seconds when bulk loading data.</p>\n<p>In this example, the source data is first read from a SQL Server table to a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> instance. The source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> or loaded to a <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL<code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.Timeout#1"
   syntax:
     content: public int BulkCopyTimeout { get; set; }
     content.vb: Public Property BulkCopyTimeout As Integer
@@ -354,8 +342,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Name of the destination table on the server. </p>\n"
-  example:
-  - "\n<p>The following console application demonstrates how to bulk load data using a connection that is already open. The destination table is a table in the <strong>AdventureWorks</strong> database.</p>\n<p>In this example, the connection is first used to read data from a SQL Server table to a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> instance. The source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> or loaded to a <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.Single#1"
   syntax:
     content: public string DestinationTableName { get; set; }
     content.vb: Public Property DestinationTableName As String
@@ -428,8 +414,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Defines the number of rows to be processed before generating a notification event.</p>\n"
-  example:
-  - "\n<p>The following console application demonstrates how to bulk load data using a connection that is already open. The <xref href=\"System.Data.SqlClient.SqlBulkCopy.NotifyAfter\" data-throw-if-not-resolved=\"false\"></xref> property is set so that the event handler is called after every 50 rows copied to the table.</p>\n<p>In this example, the connection is first used to read data from a SQL Server table to a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> instance. Then a second connection is opened to bulk copy the data. Note that the source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> or loaded to a <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.NotifyAfter#1"
   syntax:
     content: public int NotifyAfter { get; set; }
     content.vb: Public Property NotifyAfter As Integer
@@ -466,8 +450,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Occurs every time that the number of rows specified by the <xref href=\"System.Data.SqlClient.SqlBulkCopy.NotifyAfter\" data-throw-if-not-resolved=\"false\"></xref> property have been processed.</p>\n"
-  example:
-  - "\n<p>The following console application demonstrates how to bulk load data using a connection that is already open. The <xref href=\"System.Data.SqlClient.SqlBulkCopy.NotifyAfter\" data-throw-if-not-resolved=\"false\"></xref> property is set so that the event handler is called after every 50 rows copied to the table.</p>\n<p>In this example, the connection is first used to read data from a SQL Server table to a <xref href=\"System.Data.SqlClient.SqlDataReader\" data-throw-if-not-resolved=\"false\"></xref> instance. Note that the source data does not have to be located on SQL Server; you can use any data source that can be read to an <xref href=\"System.Data.IDataReader\" data-throw-if-not-resolved=\"false\"></xref> or loaded to a <xref href=\"System.Data.DataTable\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.NotifyAfter#1"
   syntax:
     content: public event SqlRowsCopiedEventHandler SqlRowsCopied
     content.vb: Public Event SqlRowsCopied As SqlRowsCopiedEventHandler
@@ -500,8 +482,6 @@ items:
   - System.Data.SqlClient
   namespace: System.Data.SqlClient
   summary: "\n<p>Closes the <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance.</p>\n"
-  example:
-  - "\n<p>The following example uses the same <xref href=\"System.Data.SqlClient.SqlBulkCopy\" data-throw-if-not-resolved=\"false\"></xref> instance to add sales orders and their associated details to two destination tables. Because the <strong>AdventureWorks</strong> sales order tables are large, the sample reads only orders placed by a certain account number and bulk copies those orders and details to the destination tables. The <xref href=\"System.Data.SqlClient.SqlBulkCopy.Close\" data-throw-if-not-resolved=\"false\"></xref> method is used only after both bulk copy operations are complete.</p>\n<p>This sample will not run unless you have created the work tables as described in Bulk Copy Example Setup. This code is provided to demonstrate the syntax for using <strong>SqlBulkCopy</strong> only. If the source and destination tables are in the same SQL Server instance, it is easier and faster to use a Transact-SQL <code>INSERT … SELECT</code> statement to copy the data.</p>DataWorks SqlBulkCopy.OrdersDetails#1"
   syntax:
     content: public void Close()
     content.vb: Public Sub Close

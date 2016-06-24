@@ -27,8 +27,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Represents a text node. </p>\n"
-  example:
-  - 
   syntax:
     content: 'public class XText : XNode'
     content.vb: >-
@@ -108,8 +106,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.Linq.XText\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
-  example:
-  - "\n<p>The following example creates an element that contains a text node.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \"Some text\");\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root>Some text</Root>\nConsole.WriteLine(root)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>Some text</Root></code></pre>\n"
   syntax:
     content: public XText(string value)
     content.vb: Public Sub New(value As String)
@@ -178,8 +174,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the node type for this node.</p>\n"
-  example:
-  - "\n<p>The following example creates an XML tree that contains a number of types of nodes. It then iterates through the tree, outputting the node type of each node.</p>\n<p>Note that <code>Child2</code> contains an <xref href=\"System.Xml.Linq.XText\" data-throw-if-not-resolved=\"false\"></xref> node, implicitly converted from the string content.</p>\n<pre><code class=\"c#\">// Note that XNode uses XmlNodeType, which is in the System.Xml namespace.\nXDocument xmlTree = new XDocument(\nnew XComment(\"a comment\"),\nnew XProcessingInstruction(\"xml-stylesheet\", \"type=\\\"text/xsl\\\" href=\\\"hello.xsl\\\"\"),\nnew XElement(\"Root\",\nnew XAttribute(\"Att\", \"attContent\"),\nnew XElement(\"Child1\",\n    new XCData(\"CDATA content\")\n),\nnew XElement(\"Child2\", \"Text content\")\n)\n);\n\nforeach (XNode node in xmlTree.DescendantNodes())\n{\nConsole.WriteLine(node.NodeType);\nif (node.NodeType == XmlNodeType.Element)\n{\nforeach (XAttribute att in ((XElement)node).Attributes())\n    Console.WriteLine(att.NodeType);\n}\n}</code></pre>\n<pre><code class=\"vb\">' Note that XNode uses XmlNodeType, which is in the System.Xml namespace.\nDim xmlTree As XDocument = _\n<?xml version='1.0'?>\n<!-- a comment -->\n<?xml-stylesheet type='text/xsl' href='hello.xsl'?>\n<Root Att=\"attContent\">\n<Child1>\n    <![CDATA[CDATA content]]>\n</Child1>\n<Child2>Text content</Child2>\n</Root>\n\nFor Each node As XNode In xmlTree.DescendantNodes\nConsole.WriteLine(node.NodeType.ToString())\nIf node.NodeType = XmlNodeType.Element Then\nFor Each att In DirectCast(node, XElement).Attributes\n    Console.WriteLine(att.NodeType.ToString())\nNext\nEnd If\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Comment\nProcessingInstruction\nElement\nAttribute\nElement\nCDATA\nElement\nText</code></pre>\n"
   syntax:
     content: public override XmlNodeType NodeType { get; }
     content.vb: Public Overrides ReadOnly Property NodeType As XmlNodeType
@@ -219,8 +213,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets or sets the value of this node.</p>\n"
-  example:
-  - "\n<p>The following example shows getting and setting this property.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \"Some text\");\nXText txtNode = root.Nodes().OfType<XText>().First();\nConsole.WriteLine(txtNode.Value);\ntxtNode.Value = \"New text\";\nConsole.WriteLine(txtNode.Value);\n\nroot.Value = \"Newer text\";\ntxtNode = root.Nodes().OfType<XText>().First();\nConsole.WriteLine(txtNode.Value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root>Some text</Root>\nDim txtNode As XText = root.Nodes().OfType(Of XText).First()\nConsole.WriteLine(txtNode.Value)\ntxtNode.Value = \"New text\"\nConsole.WriteLine(txtNode.Value)\n\nroot.Value = \"Newer text\"\ntxtNode = root.Nodes().OfType(Of XText).First()\nConsole.WriteLine(txtNode.Value)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Some text\nNew text\nNewer text</code></pre>\n"
   syntax:
     content: public string Value { get; set; }
     content.vb: Public Property Value As String

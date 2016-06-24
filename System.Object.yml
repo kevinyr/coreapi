@@ -119,10 +119,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Determines whether the specified object is equal to the current object.</p>\n"
-  example:
-  - <p>The following example shows a <code>Point</code> class that overrides the <xref href="System.Object.Equals(System.Object)" data-throw-if-not-resolved="false"></xref> method to provide value equality, and a <code>Point3D</code> class that is derived from <code>Point</code>. Because <code>Point</code> overrides <xref href="System.Object.Equals(System.Object)" data-throw-if-not-resolved="false"></xref> to test for value equality, the <xref href="System.Object.Equals(System.Object)" data-throw-if-not-resolved="false"></xref> method is not called. However, <code>Point3D.Equals</code> calls <code>Point.Equals</code> because <code>Point</code> implements <xref href="System.Object.Equals(System.Object)" data-throw-if-not-resolved="false"></xref> in a manner that provides value equality.</p>ECMA-System.Object.Equals2#1<p>The <code>Point.Equals</code> method checks to make sure that the <em>obj</em> argument is not null and that it references an instance of the same type as this object. If either check fails, the method returns <strong>false</strong>.</p><p>The <code>Point.Equals</code> method calls the <xref href="System.Object.GetType" data-throw-if-not-resolved="false"></xref> method to determine whether the run-time types of the two objects are identical. If the method used a check of the form <code>obj is Point</code> in C# or <code>TryCast(obj, Point)</code> in Visual Basic, the check would return <strong>true</strong> in cases where <em>obj</em> is an instance of a derived class of <code>Point</code>, even though <em>obj</em> and the current instance are not of the same run-time type. Having verified that both objects are of the same type, the method casts <em>obj</em> to type <code>Point</code> and returns the result of comparing the instance fields of the two objects.</p><p>In <code>Point3D.Equals</code>, the inherited <code>Point.Equals</code>  method, which overrides <xref href="System.Object.Equals(System.Object)" data-throw-if-not-resolved="false"></xref>, is invoked before anything else is done. Because <code>Point3D</code> is a sealed class (<strong>NotInheritable</strong> in Visual Basic), a check in the form <code>obj is Point</code> in C# or <code>TryCast(obj, Point)</code> in Visual Basic is adequate to ensure that <em>obj</em> is a <code>Point3D</code> object. If it is a <code>Point3D</code> object, it is cast to a <code>Point</code> object and passed to the base class implementation of <xref href="System.Object.Equals(System.Object)" data-throw-if-not-resolved="false"></xref>. Only when the inherited <code>Point.Equals</code> method returns <strong>true</strong> does the method compare the <code>z</code> instance fields introduced in the derived class. </p>
-  - <p>The following example defines a <code>Rectangle</code> class that internally implements a rectangle as two <code>Point</code> objects. The <code>Rectangle</code> class also overrides <xref href="System.Object.Equals(System.Object)" data-throw-if-not-resolved="false"></xref> to provide for value equality.</p>ECMA-System.Object.Equals3#1
-  - <p>Some languages such as C# and Visual Basic support operator overloading. When a type overloads the equality operator, it must also override the <xref href="System.Object.Equals(System.Object)" data-throw-if-not-resolved="false"></xref> method to provide the same functionality. This is typically accomplished by writing the <xref href="System.Object.Equals(System.Object)" data-throw-if-not-resolved="false"></xref> method in terms of the overloaded equality operator, as in the following example.</p>ECMA-System.Object.Equals4#1<p>Because <code>Complex</code> is a value type, it cannot be derived from.  Therefore, the override to <xref href="System.Object.Equals(System.Object)" data-throw-if-not-resolved="false"></xref> method need not call <xref href="System.Object.GetType" data-throw-if-not-resolved="false"></xref> to determine the precise run-time type of each object, but can instead use the <strong>is</strong> operator in C# or the <strong>TypeOf</strong> operator in Visual Basic to check the type of the <em>obj</em> parameter.</p>
   syntax:
     content: public virtual bool Equals(object obj)
     content.vb: Public Overridable Function Equals(obj As Object) As Boolean
@@ -175,8 +171,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Determines whether the specified object instances are considered equal.</p>\n"
-  example:
-  - "\n<p>The following example illustrates the <xref href=\"System.Object.Equals(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method and compares it with the <xref href=\"System.Object.ReferenceEquals(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> method.</p>System.Object.Equals#1"
   syntax:
     content: public static bool Equals(object objA, object objB)
     content.vb: Public Shared Function Equals(objA As Object, objB As Object) As Boolean
@@ -224,8 +218,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Allows an object to try to free resources and perform other cleanup operations before it is reclaimed by garbage collection.</p>\n"
-  example:
-  - <p>The following example verifies that the <xref href="System.Object.Finalize" data-throw-if-not-resolved="false"></xref> method is called when an object that overrides <xref href="System.Object.Finalize" data-throw-if-not-resolved="false"></xref> is destroyed. Note that, in a production application, the <xref href="System.Object.Finalize" data-throw-if-not-resolved="false"></xref> method would be overridden to release unmanaged resources held by the object. Also note that the C# example provides a destructor instead of overriding the <xref href="System.Object.Finalize" data-throw-if-not-resolved="false"></xref> method.</p>System.Object.Finalize#1<p>For an additional example that overrides the <xref href="System.Object.Finalize" data-throw-if-not-resolved="false"></xref> method, see the <xref href="System.GC.SuppressFinalize(System.Object)" data-throw-if-not-resolved="false"></xref> method. </p>
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]
@@ -275,8 +267,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Serves as the default hash function. </p>\n"
-  example:
-  - '<p>One of the simplest ways to compute a hash code for a numeric value that has the same or a smaller range than the <xref href="System.Int32" data-throw-if-not-resolved="false"></xref> type is to simply return that value. The following example shows such an implementation for a <code>Number</code> structure. </p>System.Object.GetHashCode#1<p>Frequently, a type has multiple data fields that can participate in generating the hash code. One way to generate a hash code is to combine these fields using an <strong>XOR (eXclusive OR)</strong> operation, as shown in the following example.</p>System.Object.GetHashCode#2<p>The previous example returns the same hash code for (n1, n2) and (n2, n1), and so may generate more collisions than are desirable. A number of solutions are available so that hash codes in these cases are not identical. One is to return the hash code of a <strong>Tuple</strong> object that reflects the order of each field. The following example shows a possible implementation that uses the <xref href="System.Tuple`2" data-throw-if-not-resolved="false"></xref> class. Note, though, that the performance overhead of instantiating a <strong>Tuple</strong> object may significantly impact the overall performance of an application that stores large numbers of objects in hash tables. </p>System.Object.GetHashCode#3<p>A second alternative solution involves weighting the individual hash codes by left-shifting the hash codes of successive fields by two or more bits. Optimally, instead of being discarded, bits shifted beyond bit 31 should wrap around rather than be discarded. Since bits are discarded by the left-shift operators in both C# and Visual Basic, this requires creating a left shift-and-wrap method like the following: </p>System.Object.GetHashCode#4<p>The following example then uses this shift-and-wrap method to compute the hash code of the <code>Point</code> structure used in the previous examples. </p>System.Object.GetHashCode#5'
   syntax:
     content: public virtual int GetHashCode()
     content.vb: Public Overridable Function GetHashCode As Integer
@@ -314,8 +304,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Gets the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the current instance.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates that <xref href=\"System.Object.GetType\" data-throw-if-not-resolved=\"false\"></xref> returns the runtime type of the current instance.</p>ECMA-System.Object.GetType#1"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -357,8 +345,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Creates a shallow copy of the current <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example illustrates the <xref href=\"System.Object.MemberwiseClone\" data-throw-if-not-resolved=\"false\"></xref> method. It defines a <code>ShallowCopy</code> method that calls the <xref href=\"System.Object.MemberwiseClone\" data-throw-if-not-resolved=\"false\"></xref> method to perform a shallow copy operation on a <code>Person</code> object. It also defines a <code>DeepCopy</code> method that performs a deep copy operation on a <code>Person</code> object.</p>System.Object.MemberwiseClone#1<p>In this example, the <code>Person.IdInfo</code> property returns an <code>IdInfo</code> object. As the output from the example shows, when a <code>Person</code> object is cloned by calling the <xref href=\"System.Object.MemberwiseClone\" data-throw-if-not-resolved=\"false\"></xref> method, the cloned <code>Person</code> object is an independent copy of the original object, except that they share the same <code>Person.IdInfo</code> object reference. As a result, modifying the clone's <code>Person.IdInfo</code> property changes the original object's <code>Person.IdInfo</code> property. On the other hand, when a deep copy operation is performed, the cloned <code>Person</code> object, including its <code>Person.IdInfo</code> property, can be modified without affecting the original object.</p>"
   syntax:
     content: >-
       [SecuritySafeCritical]
@@ -402,8 +388,6 @@ items:
   - System.Runtime
   namespace: System
   summary: "\n<p>Determines whether the specified <xref href=\"System.Object\" data-throw-if-not-resolved=\"false\"></xref> instances are the same instance.</p>\n"
-  example:
-  - "\n<p>The following example uses <xref href=\"System.Object.ReferenceEquals(System.Object,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> to determine if two objects are the same instance.</p>ECMA-System.Object.ReferenceEquals#1"
   syntax:
     content: >-
       [ReliabilityContract(Consistency.WillNotCorruptState, Cer.Success)]

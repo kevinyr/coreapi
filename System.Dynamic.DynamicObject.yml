@@ -27,18 +27,16 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: DynamicObject
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 113
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 21
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides a base class for specifying dynamic behavior at run time. This class must be inherited from; you cannot instantiate it directly.</p>\n"
-  example:
-  - "\n<p>Assume that you want to provide alternative syntax for accessing values in a dictionary, so that instead of writing <code>sampleDictionary[\"Text\"] = \"Sample text\"</code> (<code>sampleDictionary(\"Text\") = \"Sample text\"</code> in Visual Basic), you can write <code>sampleDictionary.Text = \"Sample text\"</code>. Also, you want this syntax to be case-insensitive, so that <code>sampleDictionary.Text</code> is equivalent to <code>sampleDictionary.text</code>.</p>\n<p>The following code example demonstrates the <code>DynamicDictionary</code> class, which is derived from the <strong>DynamicObject</strong> class. The <code>DynamicDictionary</code> class contains an object of the <code>Dictionary<string, object></code> type (<code>Dictionary(Of String, Object)</code> in Visual Basic) to store the key-value pairs, and overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to support the new syntax. It also provides a <code>Count</code> property, which shows how many dynamic properties the dictionary contains.</p>System.Dynamic.DynamicObject#1<p>For more examples, see <see href=\"http://go.microsoft.com/fwlink/?LinkId=169008\">Creating Wrappers with DynamicObject</see> on the C# Frequently Asked Questions blog.</p>"
   syntax:
     content: 'public class DynamicObject : IDynamicMetaObjectProvider'
     content.vb: >-
@@ -75,18 +73,16 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 115
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 27
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Enables derived types to initialize a new instance of the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> type.</p>\n"
-  example:
-  - "\n<p>The following code example demonstrates how to create an instance of classes that are derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n<pre><code class=\"c#\">public class SampleDynamicObject : DynamicObject {}\n//...\ndynamic sampleObject = new SampleDynamicObject ();</code></pre>\n<pre><code class=\"vb#\">Public Class SampleDynamicObject \nInherits DynamicObject\n'...\nDim sampleObject As Object = New SampleDynamicObject()</code></pre>\n"
   syntax:
     content: protected DynamicObject()
     content.vb: Protected Sub New
@@ -107,21 +103,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetDynamicMemberNames
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 116
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 215
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Returns the enumeration of all dynamic member names. </p>\n"
-  example:
-  - 
   syntax:
-    content: public virtual IEnumerable<string> GetDynamicMemberNames()
-    content.vb: Public Overridable Function GetDynamicMemberNames As IEnumerable(Of String)
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+
+      public virtual IEnumerable<string> GetDynamicMemberNames()
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")>
+
+      Public Overridable Function GetDynamicMemberNames As IEnumerable(Of String)
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
       description: "\n<p>A sequence that contains dynamic member names.</p>\n"
@@ -154,8 +154,6 @@ items:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides a <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref> that dispatches to the dynamic virtual methods. The object can be encapsulated inside another <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref> to provide custom behavior for individual actions. This method supports the Dynamic Language Runtime infrastructure for language implementers and it is not intended to be used directly from your code.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject GetMetaObject(Expression parameter)
     content.vb: Public Overridable Function GetMetaObject(parameter As Expression) As DynamicMetaObject
@@ -187,21 +185,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryBinaryOperation
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 118
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 145
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides implementation for binary operations. Classes derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class can override this method to specify dynamic behavior for operations such as addition and multiplication.</p>\n"
-  example:
-  - "\n<p>Assume that you need a data structure to store textual and numeric representations of numbers, and you want to define basic mathematical operations such as addition and subtraction for such data.</p>\n<p>The following code example demonstrates the <code>DynamicNumber</code> class, which is derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class. <code>DynamicNumber</code> overrides the <xref href=\"System.Dynamic.DynamicObject.TryBinaryOperation(System.Dynamic.BinaryOperationBinder,System.Object,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> method to enable mathematical operations. It also overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to enable access to the elements. </p>\n<p>In this example, only addition and subtraction operations are supported. If you try to write a statement like <code>resultNumber = firstNumber*secondNumber</code>, a run-time exception is thrown.</p>System.Dynamic.DynamicObject#2<p></p>"
   syntax:
-    content: public virtual bool TryBinaryOperation(BinaryOperationBinder binder, object arg, out object result)
-    content.vb: Public Overridable Function TryBinaryOperation(binder As BinaryOperationBinder, arg As Object, ByRef result As Object) As Boolean
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")]
+
+      public virtual bool TryBinaryOperation(BinaryOperationBinder binder, object arg, out object result)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")>
+
+      Public Overridable Function TryBinaryOperation(binder As BinaryOperationBinder, arg As Object, ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.BinaryOperationBinder
@@ -237,21 +239,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryConvert
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 119
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 97
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides implementation for type conversion operations. Classes derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class can override this method to specify dynamic behavior for operations that convert an object from one type to another.</p>\n"
-  example:
-  - "\n<p>Assume that you need a data structure to store textual and numeric representations of numbers, and you want to define conversions of this data structure to strings and integers.</p>\n<p>The following code example demonstrates the <code>DynamicNumber</code> class, which is derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class. <code>DynamicNumber</code> overrides the <xref href=\"System.Dynamic.DynamicObject.TryConvert(System.Dynamic.ConvertBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> method to enable type conversion. It also overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to enable access to the data elements. </p>\n<p>In this example, only conversion to strings and integers is supported. If you try to convert an object to any other type, a run-time exception is thrown.</p>System.Dynamic.DynamicObject#3"
   syntax:
-    content: public virtual bool TryConvert(ConvertBinder binder, out object result)
-    content.vb: Public Overridable Function TryConvert(binder As ConvertBinder, ByRef result As Object) As Boolean
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")]
+
+      public virtual bool TryConvert(ConvertBinder binder, out object result)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")>
+
+      Public Overridable Function TryConvert(binder As ConvertBinder, ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.ConvertBinder
@@ -284,21 +290,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryCreateInstance
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 120
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 113
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides the implementation for operations that initialize a new instance of a dynamic object. This method is not intended for use in C# or Visual Basic.</p>\n"
-  example:
-  - 
   syntax:
-    content: public virtual bool TryCreateInstance(CreateInstanceBinder binder, object[] args, out object result)
-    content.vb: Public Overridable Function TryCreateInstance(binder As CreateInstanceBinder, args As Object(), ByRef result As Object) As Boolean
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")]
+
+      public virtual bool TryCreateInstance(CreateInstanceBinder binder, object[] args, out object result)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")>
+
+      Public Overridable Function TryCreateInstance(binder As CreateInstanceBinder, args As Object(), ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.CreateInstanceBinder
@@ -334,18 +344,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryDeleteIndex
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 121
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 206
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides the implementation for operations that delete an object by index. This method is not intended for use in C# or Visual Basic.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual bool TryDeleteIndex(DeleteIndexBinder binder, object[] indexes)
     content.vb: Public Overridable Function TryDeleteIndex(binder As DeleteIndexBinder, indexes As Object()) As Boolean
@@ -381,18 +389,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryDeleteMember
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 122
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 68
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides the implementation for operations that delete an object member. This method is not intended for use in C# or Visual Basic.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual bool TryDeleteMember(DeleteMemberBinder binder)
     content.vb: Public Overridable Function TryDeleteMember(binder As DeleteMemberBinder) As Boolean
@@ -422,21 +428,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryGetIndex
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 123
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 176
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides the implementation for operations that get a value by index. Classes derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class can override this method to specify dynamic behavior for indexing operations.</p>\n"
-  example:
-  - "\n<p>Assume that you want to create an object in which properties can be accessed either by names such as <code>Property0</code>, <code>Property1</code>, and so on, or by index, so that, for example, <code>sampleObject.Property0</code> is equivalent to <code>sampleObject[0]</code> in C# or <code>sampleObject(0)</code> in Visual Basic. </p>\n<p>The following code example demonstrates the <code>SampleDynamicObject</code> class, which is derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class. The <code>SampleDynamicObject</code> class contains an object of the <code>Dictionary<string, object></code> type (<code>Dictionary(Of String, Object)</code> in Visual Basic) to store the key-value pairs. <code>SampleDynamicObject</code> overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetIndex(System.Dynamic.SetIndexBinder,System.Object[],System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetIndex(System.Dynamic.GetIndexBinder,System.Object[],System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to enable access by index. It overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to enable access by property name.</p>System.Dynamic.DynamicObject#4"
   syntax:
-    content: public virtual bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result)
-    content.vb: Public Overridable Function TryGetIndex(binder As GetIndexBinder, indexes As Object(), ByRef result As Object) As Boolean
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")]
+
+      public virtual bool TryGetIndex(GetIndexBinder binder, object[] indexes, out object result)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")>
+
+      Public Overridable Function TryGetIndex(binder As GetIndexBinder, indexes As Object(), ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.GetIndexBinder
@@ -472,21 +482,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryGetMember
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 124
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 41
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides the implementation for operations that get member values. Classes derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class can override this method to specify dynamic behavior for operations such as getting a value for a property.</p>\n"
-  example:
-  - "\n<p>Assume that you want to provide alternative syntax for accessing values in a dictionary, so that instead of writing <code>sampleDictionary[\"Text\"] = \"Sample text\"</code> (<code>sampleDictionary(\"Text\") = \"Sample text\"</code> in Visual Basic), you can write <code>sampleDictionary.Text = \"Sample text\"</code>. Also, this syntax must be case-insensitive, so that <code>sampleDictionary.Text</code> is equivalent to <code>sampleDictionary.text</code>.</p>\n<p>The following code example demonstrates the <code>DynamicDictionary</code> class, which is derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class. The <code>DynamicDictionary</code> class contains an object of the <code>Dictionary<string, object></code> type (<code>Dictionary(Of String, Object)</code> in Visual Basic) to store the key-value pairs, and overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to support the new syntax. It also provides a <code>Count</code> property, which shows how many dynamic properties the dictionary contains.</p>System.Dynamic.DynamicObject#1"
   syntax:
-    content: public virtual bool TryGetMember(GetMemberBinder binder, out object result)
-    content.vb: Public Overridable Function TryGetMember(binder As GetMemberBinder, ByRef result As Object) As Boolean
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")]
+
+      public virtual bool TryGetMember(GetMemberBinder binder, out object result)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")>
+
+      Public Overridable Function TryGetMember(binder As GetMemberBinder, ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.GetMemberBinder
@@ -519,21 +533,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryInvoke
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 125
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 129
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides the implementation for operations that invoke an object. Classes derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class can override this method to specify dynamic behavior for operations such as invoking an object or a delegate.</p>\n"
-  example:
-  - "\n<p>Assume that you need a data structure to store textual and numeric representations of numbers. You want to be able to specify the value for each property individually and also to be able to initialize all properties in a single statement.</p>\n<p>The following code example demonstrates the <code>DynamicNumber</code> class, which is derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class. <code>DynamicNumber</code> overrides the <xref href=\"System.Dynamic.DynamicObject.TryInvoke(System.Dynamic.InvokeBinder,System.Object[],System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> method to enable initialization of all properties at one time. It also overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to enable access to individual object properties. </p>System.Dynamic.DynamicObject#5"
   syntax:
-    content: public virtual bool TryInvoke(InvokeBinder binder, object[] args, out object result)
-    content.vb: Public Overridable Function TryInvoke(binder As InvokeBinder, args As Object(), ByRef result As Object) As Boolean
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")]
+
+      public virtual bool TryInvoke(InvokeBinder binder, object[] args, out object result)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")>
+
+      Public Overridable Function TryInvoke(binder As InvokeBinder, args As Object(), ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.InvokeBinder
@@ -569,21 +587,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryInvokeMember
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 126
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 82
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides the implementation for operations that invoke a member. Classes derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class can override this method to specify dynamic behavior for operations such as calling a method.</p>\n"
-  example:
-  - "\n<p>Assume that you want to provide alternative syntax for accessing values in a dictionary, so that instead of writing <code>sampleDictionary[\"Text\"] = \"Sample text\"</code> (<code>sampleDictionary(\"Text\") = \"Sample text\"</code> in Visual Basic), you can write <code>sampleDictionary.Text = \"Sample text\"</code>. Also, you want to be able to call all the standard dictionary methods on this dictionary.</p>\n<p>The following code example demonstrates the <code>DynamicDictionary</code> class, which is derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class. The <code>DynamicDictionary</code> class contains an object of the <code>Dictionary<string, object></code> type (<code>Dictionary(Of String, Object)</code> in Visual Basic) to store the key-value pairs. It overrides the <xref href=\"System.Dynamic.DynamicObject.TryInvokeMember(System.Dynamic.InvokeMemberBinder,System.Object[],System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> method to support methods of the <xref href=\"System.Collections.Generic.Dictionary`2\" data-throw-if-not-resolved=\"false\"></xref> class and overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to support the new syntax. It also provides a <code>Print</code> method, which prints out all dictionary keys and values.</p>System.Dynamic.DynamicObject#6"
   syntax:
-    content: public virtual bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
-    content.vb: Public Overridable Function TryInvokeMember(binder As InvokeMemberBinder, args As Object(), ByRef result As Object) As Boolean
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")]
+
+      public virtual bool TryInvokeMember(InvokeMemberBinder binder, object[] args, out object result)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")>
+
+      Public Overridable Function TryInvokeMember(binder As InvokeMemberBinder, args As Object(), ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.InvokeMemberBinder
@@ -619,21 +641,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TrySetIndex
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 127
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 192
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides the implementation for operations that set a value by index. Classes derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class can override this method to specify dynamic behavior for operations that access objects by a specified index.</p>\n"
-  example:
-  - "\n<p>Assume that you want to create an object in which properties can be accessed either by names such as <code>Property0</code>, <code>Property1</code>, and so on, or by index, so that, for example, <code>sampleObject.Property0</code> is equivalent to <code>sampleObject[0]</code> in C# or <code>sampleObject(0)</code> in Visual Basic. </p>\n<p>The following code example demonstrates the <code>SampleDynamicObject</code> class, which is derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class. The <code>SampleDynamicObject</code> class contains an object of the <code>Dictionary<string, object></code> type (<code>Dictionary(Of String, Object)</code> in Visual Basic) to store the key-value pairs. <code>SampleDynamicObject</code> overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetIndex(System.Dynamic.SetIndexBinder,System.Object[],System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetIndex(System.Dynamic.GetIndexBinder,System.Object[],System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to enable access by index. It overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to enable access by property name.</p>System.Dynamic.DynamicObject#4<p></p>"
   syntax:
-    content: public virtual bool TrySetIndex(SetIndexBinder binder, object[] indexes, object value)
-    content.vb: Public Overridable Function TrySetIndex(binder As SetIndexBinder, indexes As Object(), value As Object) As Boolean
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")]
+
+      public virtual bool TrySetIndex(SetIndexBinder binder, object[] indexes, object value)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")>
+
+      Public Overridable Function TrySetIndex(binder As SetIndexBinder, indexes As Object(), value As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.SetIndexBinder
@@ -669,18 +695,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TrySetMember
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 128
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 56
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides the implementation for operations that set member values. Classes derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class can override this method to specify dynamic behavior for operations such as setting a value for a property.</p>\n"
-  example:
-  - "\n<p>Assume that you want to provide alternative syntax for accessing values in a dictionary, so that instead of writing <code>sampleDictionary[\"Text\"] = \"Sample text\"</code> (<code>sampleDictionary(\"Text\") = \"Sample text\"</code> in Visual Basic), you can write <code>sampleDictionary.Text = \"Sample text\"</code>. Also, this syntax must be case-insensitive, so that <code>sampleDictionary.Text</code> is equivalent to <code>sampleDictionary.text</code>.</p>\n<p>The following code example demonstrates the <code>DynamicDictionary</code> class, which is derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class. The <code>DynamicDictionary</code> class contains an object of the <code>Dictionary<string, object></code> type (<code>Dictionary(Of String, Object)</code> in Visual Basic) to store the key-value pairs, and overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to support the new syntax. It also provides a <code>Count</code> property, which shows how many dynamic properties the dictionary contains.</p>System.Dynamic.DynamicObject#1"
   syntax:
     content: public virtual bool TrySetMember(SetMemberBinder binder, object value)
     content.vb: Public Overridable Function TrySetMember(binder As SetMemberBinder, value As Object) As Boolean
@@ -713,21 +737,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryUnaryOperation
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 129
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicObject.cs
+    startLine: 160
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Provides implementation for unary operations. Classes derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class can override this method to specify dynamic behavior for operations such as negation, increment, or decrement.</p>\n"
-  example:
-  - "\n<p>Assume that you need a data structure to store textual and numeric representations of numbers, and you want to define a mathematical negation operation for such data.</p>\n<p>The following code example demonstrates the <code>DynamicNumber</code> class, which is derived from the <xref href=\"System.Dynamic.DynamicObject\" data-throw-if-not-resolved=\"false\"></xref> class. <code>DynamicNumber</code> overrides the <xref href=\"System.Dynamic.DynamicObject.TryUnaryOperation(System.Dynamic.UnaryOperationBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> method to enable the mathematical negation operation. Is also overrides the <xref href=\"System.Dynamic.DynamicObject.TrySetMember(System.Dynamic.SetMemberBinder,System.Object)\" data-throw-if-not-resolved=\"false\"></xref> and <xref href=\"System.Dynamic.DynamicObject.TryGetMember(System.Dynamic.GetMemberBinder,System.Object@)\" data-throw-if-not-resolved=\"false\"></xref> methods to enable access to the elements. </p>\n<p>In this example, only the mathematical negation operation is supported. If you try to write a statement like <code>negativeNumber = +number</code>, a run-time exception occurs.</p>System.Dynamic.DynamicObject#7"
   syntax:
-    content: public virtual bool TryUnaryOperation(UnaryOperationBinder binder, out object result)
-    content.vb: Public Overridable Function TryUnaryOperation(binder As UnaryOperationBinder, ByRef result As Object) As Boolean
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")]
+
+      public virtual bool TryUnaryOperation(UnaryOperationBinder binder, out object result)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1007:UseGenericsWhereAppropriate")>
+
+      Public Overridable Function TryUnaryOperation(binder As UnaryOperationBinder, ByRef result As Object) As Boolean
     parameters:
     - id: binder
       type: System.Dynamic.UnaryOperationBinder
@@ -753,22 +781,22 @@ references:
   isExternal: false
   name: System.Dynamic
   fullName: System.Dynamic
-  commentId: N:System.Dynamic
   nameWithType: System.Dynamic
+  commentId: N:System.Dynamic
 - uid: System.Object
   parent: System
   isExternal: false
   name: Object
   fullName: System.Object
-  commentId: T:System.Object
   nameWithType: Object
+  commentId: T:System.Object
 - uid: System.Dynamic.IDynamicMetaObjectProvider
   parent: System.Dynamic
   isExternal: false
   name: IDynamicMetaObjectProvider
   fullName: System.Dynamic.IDynamicMetaObjectProvider
-  commentId: T:System.Dynamic.IDynamicMetaObjectProvider
   nameWithType: IDynamicMetaObjectProvider
+  commentId: T:System.Dynamic.IDynamicMetaObjectProvider
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
@@ -792,8 +820,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.ToString
   nameWithType: Object.ToString()
+  commentId: M:System.Object.ToString
 - uid: System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
@@ -825,8 +853,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object)
   nameWithType: Object.Equals(Object)
+  commentId: M:System.Object.Equals(System.Object)
 - uid: System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -870,8 +898,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object,System.Object)
   nameWithType: Object.Equals(Object, Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -915,8 +943,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   nameWithType: Object.ReferenceEquals(Object, Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
 - uid: System.Object.GetHashCode
   parent: System.Object
   isExternal: true
@@ -940,8 +968,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.GetHashCode
   nameWithType: Object.GetHashCode()
+  commentId: M:System.Object.GetHashCode
 - uid: System.Object.GetType
   parent: System.Object
   isExternal: true
@@ -965,8 +993,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.GetType
   nameWithType: Object.GetType()
+  commentId: M:System.Object.GetType
 - uid: System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
@@ -990,14 +1018,14 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.MemberwiseClone
   nameWithType: Object.MemberwiseClone()
+  commentId: M:System.Object.MemberwiseClone
 - uid: System
   isExternal: false
   name: System
   fullName: System
-  commentId: N:System
   nameWithType: System
+  commentId: N:System
 - uid: System.Collections.Generic.IEnumerable{System.String}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
@@ -1029,9 +1057,9 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: T:System.Collections.Generic.IEnumerable{System.String}
   nameWithType: IEnumerable<String>
   nameWithType.vb: IEnumerable(Of String)
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
 - uid: System.Collections.Generic.IEnumerable`1
   isExternal: false
   name: IEnumerable<T>
@@ -1058,15 +1086,15 @@ references:
     fullName: T
   - name: )
     fullName: )
-  commentId: T:System.Collections.Generic.IEnumerable`1
   nameWithType: IEnumerable<T>
   nameWithType.vb: IEnumerable(Of T)
+  commentId: T:System.Collections.Generic.IEnumerable`1
 - uid: System.Collections.Generic
   isExternal: false
   name: System.Collections.Generic
   fullName: System.Collections.Generic
-  commentId: N:System.Collections.Generic
   nameWithType: System.Collections.Generic
+  commentId: N:System.Collections.Generic
 - uid: System.Dynamic.IDynamicMetaObjectProvider.GetMetaObject(System.Linq.Expressions.Expression)
   parent: System.Dynamic.IDynamicMetaObjectProvider
   isExternal: true
@@ -1096,56 +1124,56 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Dynamic.IDynamicMetaObjectProvider.GetMetaObject(System.Linq.Expressions.Expression)
   nameWithType: IDynamicMetaObjectProvider.GetMetaObject(Expression)
+  commentId: M:System.Dynamic.IDynamicMetaObjectProvider.GetMetaObject(System.Linq.Expressions.Expression)
 - uid: System.Linq.Expressions.Expression
   parent: System.Linq.Expressions
   isExternal: false
   name: Expression
   fullName: System.Linq.Expressions.Expression
-  commentId: T:System.Linq.Expressions.Expression
   nameWithType: Expression
+  commentId: T:System.Linq.Expressions.Expression
 - uid: System.Dynamic.DynamicMetaObject
   parent: System.Dynamic
   isExternal: false
   name: DynamicMetaObject
   fullName: System.Dynamic.DynamicMetaObject
-  commentId: T:System.Dynamic.DynamicMetaObject
   nameWithType: DynamicMetaObject
+  commentId: T:System.Dynamic.DynamicMetaObject
 - uid: System.Linq.Expressions
   isExternal: false
   name: System.Linq.Expressions
   fullName: System.Linq.Expressions
-  commentId: N:System.Linq.Expressions
   nameWithType: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
 - uid: System.Dynamic.BinaryOperationBinder
   parent: System.Dynamic
   isExternal: false
   name: BinaryOperationBinder
   fullName: System.Dynamic.BinaryOperationBinder
-  commentId: T:System.Dynamic.BinaryOperationBinder
   nameWithType: BinaryOperationBinder
+  commentId: T:System.Dynamic.BinaryOperationBinder
 - uid: System.Boolean
   parent: System
   isExternal: false
   name: Boolean
   fullName: System.Boolean
-  commentId: T:System.Boolean
   nameWithType: Boolean
+  commentId: T:System.Boolean
 - uid: System.Dynamic.ConvertBinder
   parent: System.Dynamic
   isExternal: false
   name: ConvertBinder
   fullName: System.Dynamic.ConvertBinder
-  commentId: T:System.Dynamic.ConvertBinder
   nameWithType: ConvertBinder
+  commentId: T:System.Dynamic.ConvertBinder
 - uid: System.Dynamic.CreateInstanceBinder
   parent: System.Dynamic
   isExternal: false
   name: CreateInstanceBinder
   fullName: System.Dynamic.CreateInstanceBinder
-  commentId: T:System.Dynamic.CreateInstanceBinder
   nameWithType: CreateInstanceBinder
+  commentId: T:System.Dynamic.CreateInstanceBinder
 - uid: System.Object[]
   name: Object[]
   fullName: System.Object[]
@@ -1172,61 +1200,61 @@ references:
   isExternal: false
   name: DeleteIndexBinder
   fullName: System.Dynamic.DeleteIndexBinder
-  commentId: T:System.Dynamic.DeleteIndexBinder
   nameWithType: DeleteIndexBinder
+  commentId: T:System.Dynamic.DeleteIndexBinder
 - uid: System.Dynamic.DeleteMemberBinder
   parent: System.Dynamic
   isExternal: false
   name: DeleteMemberBinder
   fullName: System.Dynamic.DeleteMemberBinder
-  commentId: T:System.Dynamic.DeleteMemberBinder
   nameWithType: DeleteMemberBinder
+  commentId: T:System.Dynamic.DeleteMemberBinder
 - uid: System.Dynamic.GetIndexBinder
   parent: System.Dynamic
   isExternal: false
   name: GetIndexBinder
   fullName: System.Dynamic.GetIndexBinder
-  commentId: T:System.Dynamic.GetIndexBinder
   nameWithType: GetIndexBinder
+  commentId: T:System.Dynamic.GetIndexBinder
 - uid: System.Dynamic.GetMemberBinder
   parent: System.Dynamic
   isExternal: false
   name: GetMemberBinder
   fullName: System.Dynamic.GetMemberBinder
-  commentId: T:System.Dynamic.GetMemberBinder
   nameWithType: GetMemberBinder
+  commentId: T:System.Dynamic.GetMemberBinder
 - uid: System.Dynamic.InvokeBinder
   parent: System.Dynamic
   isExternal: false
   name: InvokeBinder
   fullName: System.Dynamic.InvokeBinder
-  commentId: T:System.Dynamic.InvokeBinder
   nameWithType: InvokeBinder
+  commentId: T:System.Dynamic.InvokeBinder
 - uid: System.Dynamic.InvokeMemberBinder
   parent: System.Dynamic
   isExternal: false
   name: InvokeMemberBinder
   fullName: System.Dynamic.InvokeMemberBinder
-  commentId: T:System.Dynamic.InvokeMemberBinder
   nameWithType: InvokeMemberBinder
+  commentId: T:System.Dynamic.InvokeMemberBinder
 - uid: System.Dynamic.SetIndexBinder
   parent: System.Dynamic
   isExternal: false
   name: SetIndexBinder
   fullName: System.Dynamic.SetIndexBinder
-  commentId: T:System.Dynamic.SetIndexBinder
   nameWithType: SetIndexBinder
+  commentId: T:System.Dynamic.SetIndexBinder
 - uid: System.Dynamic.SetMemberBinder
   parent: System.Dynamic
   isExternal: false
   name: SetMemberBinder
   fullName: System.Dynamic.SetMemberBinder
-  commentId: T:System.Dynamic.SetMemberBinder
   nameWithType: SetMemberBinder
+  commentId: T:System.Dynamic.SetMemberBinder
 - uid: System.Dynamic.UnaryOperationBinder
   parent: System.Dynamic
   isExternal: false
   name: UnaryOperationBinder
   fullName: System.Dynamic.UnaryOperationBinder
-  commentId: T:System.Dynamic.UnaryOperationBinder
   nameWithType: UnaryOperationBinder
+  commentId: T:System.Dynamic.UnaryOperationBinder

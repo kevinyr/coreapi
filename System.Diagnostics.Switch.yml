@@ -20,18 +20,16 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
+      path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Switch
-    path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
-    startLine: 56
+    path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
+    startLine: 18
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Provides an abstract base class to create new debugging and tracing switches.</p>\n"
-  example:
-  - "\n<p>The following example shows how to define a new <xref href=\"System.Diagnostics.Switch\" data-throw-if-not-resolved=\"false\"></xref> class with four levels of tracing that can be used to trace a call stack. You can use the switch to instrument your application to log each time the method is entered or exited.</p>\n<p>The first example creates the enumeration used to set the level of the switch.</p>Classic Switch Example#1<p>The following example creates the new switch. The code implements a <code>Level</code> property to set the value of the new switch. <code>Level</code> calls the protected property <xref href=\"System.Diagnostics.Switch.SwitchSetting\" data-throw-if-not-resolved=\"false\"></xref> that assigns the value to the new switch. This example also implements two assessor properties to get the assigned value of the switch.</p>Classic Switch Example#2<p>The following example creates a new switch in <code>Main</code>. It creates a new switch and assigns it a value. Then, depending on the switch settings, it outputs debugging messages for entering and leaving the method.</p>Classic Switch Example#3"
   syntax:
     content: public abstract class Switch
     content.vb: Public MustInherit Class Switch
@@ -75,12 +73,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
+      path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
-    startLine: 58
+    path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
+    startLine: 51
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
@@ -125,12 +123,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
+      path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
-    startLine: 59
+    path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
+    startLine: 55
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
@@ -165,12 +163,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
+      path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Description
-    path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
-    startLine: 60
+    path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
+    startLine: 114
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
@@ -212,18 +210,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
+      path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: DisplayName
-    path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
-    startLine: 61
+    path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
+    startLine: 103
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Gets a name used to identify the switch.</p>\n"
-  example:
-  - "\n<p>The following code example displays the display name for the switch in use by a trace source.  This code example is part of a larger example that can be found in the <xref href=\"System.Diagnostics.TraceSource\" data-throw-if-not-resolved=\"false\"></xref> class summary.</p>System.Diagnostics.TraceSource#10"
   syntax:
     content: public string DisplayName { get; }
     content.vb: Public ReadOnly Property DisplayName As String
@@ -261,18 +257,26 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
+      path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: SwitchSetting
-    path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
-    startLine: 62
+    path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
+    startLine: 127
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
   summary: "\n<p>Gets or sets the current setting for this switch.</p>\n"
   syntax:
-    content: protected int SwitchSetting { get; set; }
+    content: >-
+      protected int SwitchSetting
+
+      {
+          [SuppressMessage("Microsoft.Concurrency", "CA8001", Justification = "reviewed for thread-safety")]
+          get;
+          [SuppressMessage("Microsoft.Concurrency", "CA8001", Justification = "reviewed for thread-safety")]
+          set;
+      }
     content.vb: Protected Property SwitchSetting As Integer
     parameters: []
     return:
@@ -308,12 +312,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
+      path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Value
-    path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
-    startLine: 63
+    path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
+    startLine: 160
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
@@ -348,12 +352,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
+      path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: OnSwitchSettingChanged
-    path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
-    startLine: 64
+    path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
+    startLine: 211
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
@@ -380,12 +384,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
+      path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: OnValueChanged
-    path: src/System.Diagnostics.TraceSource/ref/System.Diagnostics.TraceSource.cs
-    startLine: 65
+    path: src/System.Diagnostics.TraceSource/src/System/Diagnostics/Switch.cs
+    startLine: 215
   assemblies:
   - System.Diagnostics.TraceSource
   namespace: System.Diagnostics
@@ -405,15 +409,15 @@ references:
   isExternal: false
   name: System.Diagnostics
   fullName: System.Diagnostics
-  commentId: N:System.Diagnostics
   nameWithType: System.Diagnostics
+  commentId: N:System.Diagnostics
 - uid: System.Object
   parent: System
   isExternal: false
   name: Object
   fullName: System.Object
-  commentId: T:System.Object
   nameWithType: Object
+  commentId: T:System.Object
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
@@ -437,8 +441,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.ToString
   nameWithType: Object.ToString()
+  commentId: M:System.Object.ToString
 - uid: System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
@@ -470,8 +474,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object)
   nameWithType: Object.Equals(Object)
+  commentId: M:System.Object.Equals(System.Object)
 - uid: System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -515,8 +519,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object,System.Object)
   nameWithType: Object.Equals(Object, Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -560,8 +564,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   nameWithType: Object.ReferenceEquals(Object, Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
 - uid: System.Object.GetHashCode
   parent: System.Object
   isExternal: true
@@ -585,8 +589,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.GetHashCode
   nameWithType: Object.GetHashCode()
+  commentId: M:System.Object.GetHashCode
 - uid: System.Object.GetType
   parent: System.Object
   isExternal: true
@@ -610,8 +614,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.GetType
   nameWithType: Object.GetType()
+  commentId: M:System.Object.GetType
 - uid: System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
@@ -635,26 +639,26 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.MemberwiseClone
   nameWithType: Object.MemberwiseClone()
+  commentId: M:System.Object.MemberwiseClone
 - uid: System
   isExternal: false
   name: System
   fullName: System
-  commentId: N:System
   nameWithType: System
+  commentId: N:System
 - uid: System.String
   parent: System
   isExternal: false
   name: String
   fullName: System.String
-  commentId: T:System.String
   nameWithType: String
+  commentId: T:System.String
 - uid: System.Int32
   parent: System
   isExternal: false
   name: Int32
   fullName: System.Int32
-  commentId: T:System.Int32
   nameWithType: Int32
+  commentId: T:System.Int32
 - uid: System.Configuration.ConfigurationErrorsException

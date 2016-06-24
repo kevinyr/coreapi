@@ -59,8 +59,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Represents an XML attribute.</p>\n"
-  example:
-  - 
   syntax:
     content: 'public class XAttribute : XObject'
     content.vb: >-
@@ -116,8 +114,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> class from another <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> object. </p>\n"
-  example:
-  - "\n<p>This example demonstrates that creating a deep copy of an XML tree creates a copy, not a clone, of an attribute in the tree.</p>\n<pre><code class=\"c#\">XElement root1 = XElement.Parse(\"<Root Att1='abc' />\");\n// Make a deep copy.\nXElement root2 = new XElement(root1);\nif (root1.Attribute(\"Att1\") == root2.Attribute(\"Att1\"))\nConsole.WriteLine(\"This will not be printed\");\nelse\nConsole.WriteLine(\"Creating a deep copy created a new attribute from the original.\");</code></pre>\n<pre><code class=\"vb\">Dim root1 As XElement = <Root Att1='abc'/>\n' Make a deep copy.\nDim root2 As XElement = New XElement(root1)\nIf root1.Attribute(\"Att1\") Is root2.Attribute(\"Att1\") Then\nConsole.WriteLine(\"This will not be printed\")\nElse\nConsole.WriteLine(\"Creating a deep copy created a new attribute from the original.\")\nEnd If</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Creating a deep copy created a new attribute from the original.</code></pre>\n"
   syntax:
     content: public XAttribute(XAttribute other)
     content.vb: Public Sub New(other As XAttribute)
@@ -163,8 +159,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> class from the specified name and value. </p>\n"
-  example:
-  - "\n<p>The following example uses this constructor to create attributes. It passes strings as the first argument to the <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> constructor, which are then implicitly converted to <xref href=\"System.Xml.Linq.XName\" data-throw-if-not-resolved=\"false\"></xref> objects. The attributes are added to an element.</p>\n<pre><code class=\"c#\">XElement root;\n\ndouble dbl = 12.345;\nXAttribute[] attArray = {\nnew XAttribute(\"Att4\", 1),\nnew XAttribute(\"Att5\", 2),\nnew XAttribute(\"Att6\", 3)\n};\nDateTime dt = new DateTime(2006, 10, 6, 12, 30, 00);\n\n// string content\nroot = new XElement(\"Root\",\nnew XAttribute(\"Att1\", \"Some text\"),\n\n// double content\nnew XAttribute(\"Att2\", dbl),\n\n// DateTime content\nnew XAttribute(\"Att3\", dt),\n\n// XAttribute array content\nattArray\n);\n\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Dim dbl As Double = 12.345\nDim attArray As XAttribute() = { _\nNew XAttribute(\"Att4\", 1), _\nNew XAttribute(\"Att5\", 2), _\nNew XAttribute(\"Att6\", 3) _\n}\nDim dt As DateTime = New DateTime(2006, 10, 6, 12, 30, 0)\nDim root As XElement = <Root Att1=\"Some text\"\n                   Att2=<%= dbl %>\n                   Att3=<%= dt %>\n                   <%= attArray %>\n               />\nConsole.WriteLine(root)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Root Att1=\"Some text\" Att2=\"12.345\" Att3=\"2006-10-06T12:30:00\" Att4=\"1\" Att5=\"2\" Att6=\"3\" /></code></pre>\n"
   syntax:
     content: public XAttribute(XName name, object value)
     content.vb: Public Sub New(name As XName, value As Object)
@@ -213,8 +207,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets an empty collection of attributes.</p>\n"
-  example:
-  - 
   syntax:
     content: public static IEnumerable<XAttribute> EmptySequence { get; }
     content.vb: Public Shared ReadOnly Property EmptySequence As IEnumerable(Of XAttribute)
@@ -258,8 +250,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Determines if this attribute is a namespace declaration.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute that is a namespace declaration and an attribute that is not. It then uses this property to display whether each attribute is a namespace declaration or not.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nXElement root = new XElement(aw + \"Root\",\nnew XAttribute(XNamespace.Xmlns + \"aw\", \"http://www.adventure-works.com\"),\nnew XAttribute(aw + \"Att\", \"content\")\n);\n\nforeach (XAttribute att in root.Attributes()) {\nif (att.IsNamespaceDeclaration)\nConsole.WriteLine(\"{0} is a namespace declaration\", att.Name);\nelse\nConsole.WriteLine(\"{0} is not a namespace declaration\", att.Name);\n}</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <aw:Root xmlns:aw='http://www.adventure-works.com'\n                   aw:Att='content'/>\n\nFor Each att As XAttribute In root.Attributes()\nIf (att.IsNamespaceDeclaration) Then\nConsole.WriteLine(\"{0} is a namespace declaration\", att.Name)\nElse\nConsole.WriteLine(\"{0} is not a namespace declaration\", att.Name)\nEnd If\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>{http://www.w3.org/2000/xmlns/}aw is a namespace declaration\n{http://www.adventure-works.com}Att is not a namespace declaration</code></pre>\n"
   syntax:
     content: public bool IsNamespaceDeclaration { get; }
     content.vb: Public ReadOnly Property IsNamespaceDeclaration As Boolean
@@ -299,8 +289,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the expanded name of this attribute.</p>\n"
-  example:
-  - "\n<p>The following example creates an element with three attributes. It then uses this property to print out the name of each attribute. The example also shows creation of a new attribute using the name of an existing attribute.</p>\n<pre><code class=\"c#\">XNamespace aw = \"http://www.adventure-works.com\";\nXElement root = new XElement(aw + \"Root\",\nnew XAttribute(XNamespace.Xmlns + \"aw\", \"http://www.adventure-works.com\"),\nnew XAttribute(aw + \"Att\", \"content\"),\nnew XAttribute(\"Att2\", \"different content\")\n);\n\nforeach (XAttribute att in root.Attributes())\nConsole.WriteLine(\"{0}={1}\", att.Name, att.Value);\nConsole.WriteLine(\"\");\n\nXElement newRoot = new XElement(aw + \"Root\",\nfrom att in root.Attributes(\"Att2\")\nselect new XAttribute(att.Name, \"new content\"));\n\nforeach (XAttribute att in newRoot.Attributes())\nConsole.WriteLine(\"{0}={1}\", att.Name, att.Value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = _ \n<aw:Root xmlns:aw='http://www.adventure-works.com'\naw:Att='content'\nAtt2='different content'/>\n\nFor Each att As XAttribute In root.Attributes()\nConsole.WriteLine(\"{0}={1}\", att.Name, att.Value)\nNext\nConsole.WriteLine(\"\")\n\nDim NewRoot As XElement = _\n<Root\n<%= _\nFrom att In root.Attributes(\"Att2\") _\nSelect New XAttribute(att.Name, \"new content\") _\n%>>_\n</Root>\n\nFor Each att As XAttribute In NewRoot.Attributes()\nConsole.WriteLine(\"{0}={1}\", att.Name, att.Value)\nNext</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>{http://www.w3.org/2000/xmlns/}aw=http://www.adventure-works.com\n{http://www.adventure-works.com}Att=content\nAtt2=different content\n\nAtt2=new content</code></pre>\n"
   syntax:
     content: public XName Name { get; }
     content.vb: Public ReadOnly Property Name As XName
@@ -344,8 +332,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the next attribute of the parent element.</p>\n"
-  example:
-  - "\n<p>The following example shows how to iterate through the attributes of an element using this property.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att1\", 1),\nnew XAttribute(\"Att2\", 2),\nnew XAttribute(\"Att3\", 3),\nnew XAttribute(\"Att4\", 4)\n);\n\nXAttribute att = root.FirstAttribute;\ndo {\nConsole.WriteLine(att);\n}\nwhile((att = att.NextAttribute) != null);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att1=\"1\" Att2=\"2\" Att3=\"3\" Att4=\"4\"/>\nDim att As XAttribute = root.FirstAttribute\nDim val As Boolean = True\nDo\nConsole.WriteLine(att)\natt = att.NextAttribute\nLoop While (Not (att Is Nothing))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Att1=\"1\"\nAtt2=\"2\"\nAtt3=\"3\"\nAtt4=\"4\"</code></pre>\n"
   syntax:
     content: public XAttribute NextAttribute { get; }
     content.vb: Public ReadOnly Property NextAttribute As XAttribute
@@ -385,8 +371,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the node type for this node.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute, and then displays the node type using this property.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", \"content\")\n);\n\nXAttribute att = root.FirstAttribute;\nConsole.WriteLine(att.NodeType);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"content\"/>\nDim att As XAttribute = root.FirstAttribute\nConsole.WriteLine(att.NodeType.ToString)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Attribute</code></pre>\n"
   syntax:
     content: public override XmlNodeType NodeType { get; }
     content.vb: Public Overrides ReadOnly Property NodeType As XmlNodeType
@@ -431,8 +415,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the previous attribute of the parent element.</p>\n"
-  example:
-  - "\n<p>The following example shows how to iterate through the attributes of an element using this property.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att1\", 1),\nnew XAttribute(\"Att2\", 2),\nnew XAttribute(\"Att3\", 3),\nnew XAttribute(\"Att4\", 4)\n);\nXAttribute att = root.LastAttribute;\ndo {\nConsole.WriteLine(att);\n}\nwhile((att = att.PreviousAttribute) != null);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att1=\"1\" Att2=\"2\" Att3=\"3\" Att4=\"4\"/>\nDim att As XAttribute = root.LastAttribute\nDim val As Boolean = True\nDo\nConsole.WriteLine(att)\natt = att.PreviousAttribute\nLoop While (Not (att Is Nothing))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Att4=\"4\"\nAtt3=\"3\"\nAtt2=\"2\"\nAtt1=\"1\"</code></pre>\n"
   syntax:
     content: public XAttribute PreviousAttribute { get; }
     content.vb: Public ReadOnly Property PreviousAttribute As XAttribute
@@ -472,8 +454,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets or sets the value of this attribute.</p>\n"
-  example:
-  - "\n<p>The following example creates an element with an attribute. It then retrieves the value of the attribute, and then sets it.</p>\n<p>Note that the Visual Basic example uses the XML attribute property.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", \"content\")\n);\nXAttribute att = root.FirstAttribute;\nConsole.WriteLine(att.Value);\natt.Value = \"new text\";\nConsole.WriteLine(att.Value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"content\"/>\nConsole.WriteLine(root.@Att)\nroot.@Att = \"new text\"\nConsole.WriteLine(root.@Att)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>content\nnew text</code></pre>\n<p>The following example shows the benefit of using the explicit conversion operators to get the value of an attribute that might not exist:</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att1\", \"attribute 1 content\"),\nnew XAttribute(\"Att2\", \"2\")\n);\n\n// The following assignments demonstrate why it is easier to use\n// casting when the attribute might or might not exist.\n\nstring c1 = (string)root.Attribute(\"Att1\");\nConsole.WriteLine(\"c1:{0}\", c1 == null ? \"attribute does not exist\" : c1);\n\nint? c2 = (int?)root.Attribute(\"Att2\");\nConsole.WriteLine(\"c2:{0}\", c2 == null ? \"attribute does not exist\" : c2.ToString());\n\nstring c3 = (string)root.Attribute(\"Att3\");\nConsole.WriteLine(\"c3:{0}\", c3 == null ? \"attribute does not exist\" : c3);\n\nint? c4 = (int?)root.Attribute(\"Att4\");\nConsole.WriteLine(\"c4:{0}\", c4 == null ? \"attribute does not exist\" : c4.ToString());\n\nConsole.WriteLine();\n\n// The following assignments show the necessary code when using\n// the value property when the attribute might or might not exist.\n\nXAttribute att1 = root.Attribute(\"Att1\");\nstring v1;\nif (att1 == null)\nv1 = null;\nelse\nv1 = att1.Value;\nConsole.WriteLine(\"v1:{0}\", v1 == null ? \"attribute does not exist\" : v1);\n\nXAttribute att2 = root.Attribute(\"Att2\");\nint? v2;\nif (att2 == null)\nv2 = null;\nelse\nv2 = Int32.Parse(att2.Value);\nConsole.WriteLine(\"v2:{0}\", v2 == null ? \"attribute does not exist\" : v2.ToString());\n\nXAttribute att3 = root.Attribute(\"Att3\");\nstring v3;\nif (att3 == null)\nv3 = null;\nelse\nv3 = att3.Value;\nConsole.WriteLine(\"v3:{0}\", v3 == null ? \"attribute does not exist\" : v3);\n\nXAttribute att4 = root.Attribute(\"Att4\");\nint? v4;\nif (att4 == null)\nv4 = null;\nelse\nv4 = Int32.Parse(att4.Value);\nConsole.WriteLine(\"v4:{0}\", v4 == null ? \"attribute does not exist\" : v4.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att1=\"attribute 1 content\" Att2=\"2\"/>\n\n' The following assignments demonstrate why it is easier to use\n' casting when the attribute might or might not exist.\n\nDim c1 As String = CStr(root.Attribute(\"Att1\"))\nConsole.WriteLine(\"c1:{0}\", IIf(c1 Is Nothing, \"attribute does not exist\", c1))\n\nDim c2 As Nullable(Of Integer) = CType(root.Attribute(\"Att2\"), Nullable(Of Integer))\nConsole.WriteLine(\"c2:{0}\", IIf(c2.HasValue, c2, \"attribute does not exist\"))\n\nDim c3 As String = CStr(root.Attribute(\"Att3\"))\nConsole.WriteLine(\"c3:{0}\", IIf(c3 Is Nothing, \"attribute does not exist\", c3))\n\nDim c4 As Nullable(Of Integer) = CType(root.Attribute(\"Att4\"), Nullable(Of Integer))\nConsole.WriteLine(\"c4:{0}\", IIf(c4.HasValue, c4, \"attribute does not exist\"))\n\nConsole.WriteLine()\n\n' The following assignments show the necessary code when using\n' the value property when the attribute might or might not exist.\n\nDim att1 As XAttribute = root.Attribute(\"Att1\")\nDim v1 As String\nIf att1 Is Nothing Then\nv1 = Nothing\nElse\nv1 = att1.Value\nEnd If\n\nConsole.WriteLine(\"v1:{0}\", IIf(v1 Is Nothing, \"attribute does not exist\", v1))\n\nDim att2 As XAttribute = root.Attribute(\"Att2\")\nDim v2 As Nullable(Of Integer)\nIf att2 Is Nothing Then\nv2 = Nothing\nElse\nv2 = Int32.Parse(att2.Value)\nEnd If\n\nConsole.WriteLine(\"v2:{0}\", IIf(v2.HasValue, v2, \"attribute does not exist\"))\n\nDim att3 As XAttribute = root.Attribute(\"Att3\")\nDim v3 As String\nIf att3 Is Nothing Then\nv3 = Nothing\nElse\nv3 = att3.Value\nEnd If\n\nConsole.WriteLine(\"v3:{0}\", IIf(v3 Is Nothing, \"attribute does not exist\", v3))\n\nDim att4 As XAttribute = root.Attribute(\"Att4\")\nDim v4 As Nullable(Of Integer)\nIf att4 Is Nothing Then\nv4 = Nothing\nElse\nv4 = Int32.Parse(att4.Value)\nEnd If\n\nConsole.WriteLine(\"v4:{0}\", IIf(v4.HasValue, v4, \"attribute does not exist\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>c1:attribute 1 content\nc2:2\nc3:attribute does not exist\nc4:attribute does not exist\n\nv1:attribute 1 content\nv2:2\nv3:attribute does not exist\nv4:attribute does not exist</code></pre>\n"
   syntax:
     content: public string Value { get; set; }
     content.vb: Public Property Value As String
@@ -521,8 +501,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with a <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref> value, then casts it to <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \nnew XAttribute(\"BoolValue\", true)\n);\nbool bv = (bool)root.Attribute(\"BoolValue\");\nConsole.WriteLine(\"(bool)BoolValue={0}\", bv);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <root BoolValue=\"true\"/>\nDim bv As Boolean = CBool(root.Attribute(\"BoolValue\"))\nConsole.WriteLine(\"(bool)BoolValue={0}\", bv)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>(bool)BoolValue=True</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -587,8 +565,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with date and time content. It then casts it to <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref> to retrieve the value. </p>\n<pre><code class=\"c#\">// Behavior is strict when formatting an XML element or attribute from a DateTime,\n// but behavior is lax when casting to a DateTime from an element or attribute.\n\nXElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", new DateTime(2006, 10, 6, 12, 30, 0))\n);\nConsole.WriteLine(root);\n\n// casting from a strictly formatted XML attribute\nDateTime dt = (DateTime)root.Attribute(\"Att\");\nConsole.WriteLine(\"dt={0}\", dt);\nConsole.WriteLine(\"-----\");\n\n// if root is formatted in some different way than the standard ISO 8601, if at all possible,\n// the value is appropriately converted to DateTime\n\nXAttribute dtAtt = new XAttribute(\"OrderDate\", \"October 6, 2006\");\nConsole.WriteLine(dtAtt);\nDateTime orderDate = (DateTime)dtAtt;\nConsole.WriteLine(\"OrderDate={0:d}\", orderDate);</code></pre>\n<pre><code class=\"vb\">' Behavior is strict when formatting an XML element or attribute from a DateTime,\n' but behavior is lax when casting to a DateTime from an element or attribute.\nDim root As XElement = <Root Att=<%= New DateTime(2006, 10, 6, 12, 30, 0) %>/>\n\nConsole.WriteLine(root)\n\n' casting from a strictly formatted XML attribute\nDim dt As DateTime = CType(root.Attribute(\"Att\"), DateTime)\nConsole.WriteLine(\"dt={0}\", dt)\nConsole.WriteLine(\"-----\")\n\n' if root is formatted in some different way than the standard ISO 8601, if at all possible,\n' the value is appropriately converted to DateTime\nDim dtAtt As XAttribute = New XAttribute(\"OrderDate\", \"October 6, 2006\")\nConsole.WriteLine(dtAtt)\nDim orderDate As DateTime = CType(dtAtt, DateTime)\nConsole.WriteLine(\"OrderDate={0:d}\", orderDate)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Root Att=\"2006-10-06T12:30:00\" />\ndt=10/6/2006 12:30:00 PM\n-----\nOrderDate=\"October 6, 2006\"\nOrderDate=10/6/2006</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -653,8 +629,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with date and time content. It then casts it to <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref> to retrieve the value. </p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", new DateTimeOffset(new DateTime(2006, 10, 6, 12, 30, 0)))\n);\nConsole.WriteLine(root);\n\n// casting from a strictly formatted XML attribute\nDateTimeOffset dt = (DateTimeOffset)root.Attribute(\"Att\");\nConsole.WriteLine(\"dt={0}\", dt);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = _\n<Root\nAtt=<%= New DateTimeOffset(New DateTime(2006, 10, 6, 12, 30, 0)) %>/>\nConsole.WriteLine(root)\n\n' casting from a strictly formatted XML attribute\nDim dt As DateTimeOffset = CType(root.Attribute(\"Att\"), DateTimeOffset)\nConsole.WriteLine(\"dt={0}\", dt)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Root Att=\"2006-10-06T12:30:00-07:00\" />\ndt=10/6/2006 12:30:00 PM -07:00</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -719,8 +693,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Decimal\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with a decimal value. It then retrieves the value of the attribute by casting to <xref href=\"System.Decimal\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", \"79228162514264337593543950335\")\n);\ndecimal value = (decimal)root.Attribute(\"Att\");\nConsole.WriteLine(\"value={0}\", value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"79228162514264337593543950335\"/>\nDim value As Decimal = CDec(root.Attribute(\"Att\"))\nConsole.WriteLine(\"value={0}\", value)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>value=79228162514264337593543950335</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -785,8 +757,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Double\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with <xref href=\"System.Double\" data-throw-if-not-resolved=\"false\"></xref> content. It then retrieves the value by casting to <xref href=\"System.Double\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", 1.79769313486231e308)\n);\ndouble value = (double)root.Attribute(\"Att\");\nConsole.WriteLine(\"value={0}\", value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"1.79769313486231E+308\"/>\nDim value As Double = CDbl(root.Attribute(\"Att\"))\nConsole.WriteLine(\"value={0}\", value)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>value=1.79769313486231E+308</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -851,8 +821,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with a GUID as content. It then retrieves the value by casting to <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", new Guid(\"3c1cc55b-baff-4b7a-9d17-077af3aa5730\"))\n);\nGuid value = (Guid)root.Attribute(\"Att\");\nConsole.WriteLine(\"value={0}\", value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=<%= New Guid(\"3c1cc55b-baff-4b7a-9d17-077af3aa5730\") %>/>\nDim value As Guid = CType(root.Attribute(\"Att\"), Guid)\nConsole.WriteLine(\"value={0}\", value)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>value=3c1cc55b-baff-4b7a-9d17-077af3aa5730</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -917,8 +885,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to an <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with an integer as content. It then retrieves the value by casting to <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", 2147483647)\n);\nint value = (int)root.Attribute(\"Att\");\nConsole.WriteLine(\"value={0}\", value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"2147483647\"/>\nDim value As Integer = CInt(root.Attribute(\"Att\"))\nConsole.WriteLine(\"value={0}\", value)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>value=2147483647</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -983,8 +949,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to an <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with a long integer as content. It then retrieves the value of the attribute by casting to <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", 9223372036854775807)\n);\nlong value = (long)root.Attribute(\"Att\");\nConsole.WriteLine(\"value={0}\", value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"9223372036854775807\"/>\nDim value As Long = CLng(root.Attribute(\"Att\"))\nConsole.WriteLine(\"value={0}\", value)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>value=9223372036854775807</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1049,8 +1013,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with Boolean content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \nnew XAttribute(\"BoolValue1\", true),\nnew XAttribute(\"BoolValue2\", false)\n);\nbool? bool1 = (bool?)root.Attribute(\"BoolValue1\");\nbool? bool2 = (bool?)root.Attribute(\"BoolValue2\");\nConsole.WriteLine(\"Nullable boolean: BoolValue1={0}\", bool1);\nConsole.WriteLine(\"Nullable boolean: BoolValue2={0}\", bool2);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root BoolValue1=\"true\" BoolValue2=\"false\"/>\nDim bool1 As Nullable(Of Boolean) = CType(root.Attribute(\"BoolValue1\"), Nullable(Of Boolean))\nDim bool2 As Nullable(Of Boolean) = CType(root.Attribute(\"BoolValue2\"), Nullable(Of Boolean))\nConsole.WriteLine(\"Nullable boolean: BoolValue1={0}\", bool1)\nConsole.WriteLine(\"Nullable boolean: BoolValue2={0}\", bool2)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable boolean: BoolValue1=True\nNullable boolean: BoolValue2=False</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1112,8 +1074,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with a date and time as content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.DateTime\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", new DateTime(2006, 10, 6, 12, 30, 0))\n);\nDateTime? value = (DateTime?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable DateTime: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=<%= New DateTime(2006, 10, 6, 12, 30, 0) %>/>\nDim value As Nullable(Of DateTime) = CType(root.Attribute(\"Att\"), Nullable(Of DateTime))\nConsole.WriteLine(\"Nullable DateTime: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable DateTime: value=10/6/2006 12:30:00 PM</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1175,8 +1135,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with a date and time as content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.DateTimeOffset\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", new DateTimeOffset(new DateTime(2006, 10, 6, 12, 30, 0)))\n);\nDateTimeOffset? value = (DateTimeOffset?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable DateTimeOffset: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = _\n<Root\nAtt=<%= New DateTimeOffset(New DateTime(2006, 10, 6, 12, 30, 0)) %>/>\nDim value As Nullable(Of DateTimeOffset) = CType(root.Attribute(\"Att\"), Nullable(Of DateTimeOffset))\nConsole.WriteLine(\"Nullable DateTimeOffset: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable DateTimeOffset: value=10/6/2006 12:30:00 PM -07:00</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1235,8 +1193,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Decimal\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with decimal content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Decimal\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", \"79228162514264337593543950335\")\n);\ndecimal? value = (decimal?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable decimal: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"79228162514264337593543950335\"/>\nDim value As Nullable(Of Decimal) = CType(root.Attribute(\"Att\"), Nullable(Of Decimal))\nConsole.WriteLine(\"Nullable decimal: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable decimal: value=79228162514264337593543950335</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1298,8 +1254,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Double\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with double precision floating point content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Double\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", 1.79769313486231e308)\n);\ndouble? value = (double?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable double: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"1.79769313486231E+308\"/>\nDim value As Nullable(Of Double) = CType(root.Attribute(\"Att\"), Nullable(Of Double))\nConsole.WriteLine(\"Nullable double: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable double: value=1.79769313486231E+308</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1361,8 +1315,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with guid content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Guid\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", new Guid(\"3c1cc55b-baff-4b7a-9d17-077af3aa5730\"))\n);\nGuid? value = (Guid?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable Guid: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=<%= New Guid(\"3c1cc55b-baff-4b7a-9d17-077af3aa5730\") %>/>\nDim value As Nullable(Of Guid) = CType(root.Attribute(\"Att\"), Nullable(Of Guid))\nConsole.WriteLine(\"Nullable Guid: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable Guid: value=3c1cc55b-baff-4b7a-9d17-077af3aa5730</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1424,8 +1376,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with integer content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Int32\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \nnew XAttribute(\"Att\", 2147483647)\n);\nint? value = (int?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable int: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"2147483647\"/>\nDim value As Nullable(Of Integer) = CType(root.Attribute(\"Att\"), Nullable(Of Integer))\nConsole.WriteLine(\"Nullable int: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable int: value=2147483647</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1483,8 +1433,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with long integer content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Int64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \nnew XAttribute(\"Att\", 9223372036854775807)\n);\nlong? value = (long?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable long: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"9223372036854775807\"/>\nDim value As Nullable(Of Long) = CType(root.Attribute(\"Att\"), Nullable(Of Long))\nConsole.WriteLine(\"Nullable long: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable long: value=9223372036854775807</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1546,8 +1494,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Single\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with single precision floating point content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.Single\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \nnew XAttribute(\"Att\", 3.402823e38)\n);\nfloat? value = (float?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable Single: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"3.402823E+38\"/>\nDim value As Nullable(Of Single) = CType(root.Attribute(\"Att\"), Nullable(Of Single))\nConsole.WriteLine(\"Nullable Single: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable Single: value=3.402823E+38</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1609,8 +1555,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with time span content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", new TimeSpan(1, 5, 30))\n);\nTimeSpan? value = (TimeSpan?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable TimeSpan: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=<%= New TimeSpan(1, 5, 30) %>/>\nDim value As Nullable(Of TimeSpan) = CType(root.Attribute(\"Att\"), Nullable(Of TimeSpan))\nConsole.WriteLine(\"Nullable TimeSpan: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable TimeSpan: value=01:05:30</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1672,8 +1616,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.UInt32\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with unsigned integer content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.UInt32\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \nnew XAttribute(\"Att\", 4294967295)\n);\nuint? value = (uint?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable uint: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"4294967295\"/>\nDim value As Nullable(Of UInteger) = CType(root.Attribute(\"Att\"), Nullable(Of UInteger))\nConsole.WriteLine(\"Nullable uint: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable uint: value=4294967295</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1735,8 +1677,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.UInt64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with unsigned long integer content. It then retrieves the value by casting to <xref href=\"System.Nullable`1\" data-throw-if-not-resolved=\"false\"></xref> of <xref href=\"System.UInt64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \nnew XAttribute(\"Att\", 9223372036854775807)\n);\nulong? value = (ulong?)root.Attribute(\"Att\");\nConsole.WriteLine(\"Nullable ulong: value={0}\", value == null ? \"null\" : value.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"9223372036854775807\"/>\nDim value As Nullable(Of ULong) = CType(root.Attribute(\"Att\"), Nullable(Of ULong))\nConsole.WriteLine(\"Nullable ulong: value={0}\", IIf(value.HasValue, value.ToString(), \"null\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Nullable ulong: value=9223372036854775807</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1798,8 +1738,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.Single\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with single precision floating point content. It then retrieves the value by casting to <xref href=\"System.Single\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", 3.402823e38)\n);\nfloat value = (float)root.Attribute(\"Att\");\nConsole.WriteLine(\"value={0}\", value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"3.402823E+38\"/>\nDim value As Single = CSng(root.Attribute(\"Att\"))\nConsole.WriteLine(\"value={0}\", value)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>value=3.402823E+38</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1864,8 +1802,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with string content. It then retrieves the value by casting to <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", \"attribute content\")\n);\nXAttribute att = root.Attribute(\"Att\");\nstring str = (string)att;\nConsole.WriteLine(\"(string)att={0}\", str);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"attribute content\"/>\nDim att As XAttribute = root.Attribute(\"Att\")\nDim str As String = CStr(att)\nConsole.WriteLine(\"(string)att={0}\", str)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>(string)att=attribute content</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1923,8 +1859,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with time span content. It then retrieves the value by casting to <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", new TimeSpan(1, 5, 30))\n);\nTimeSpan value = (TimeSpan)root.Attribute(\"Att\");\nConsole.WriteLine(\"value={0}\", value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=<%= New TimeSpan(1, 5, 30) %>/>\nDim value As TimeSpan = CType(root.Attribute(\"Att\"), TimeSpan)\nConsole.WriteLine(\"value={0}\", value)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>value=01:05:30</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -1989,8 +1923,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.UInt32\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with unsigned integer content. It then retrieves the value by casting to <xref href=\"System.UInt32\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\", \nnew XAttribute(\"Att\", 4294967295)\n);\nuint value = (uint)root.Attribute(\"Att\");\nConsole.WriteLine(\"value={0}\", value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"4294967295\"/>\nDim value As UInteger = CUInt(root.Attribute(\"Att\"))\nConsole.WriteLine(\"value={0}\", value)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>value=4294967295</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -2055,8 +1987,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Cast the value of this <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.UInt64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an attribute with unsigned long integer content. It then retrieves the value by casting to <xref href=\"System.UInt64\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att\", 1844674407370955161)\n);\nulong value = (ulong)root.Attribute(\"Att\");\nConsole.WriteLine(\"value={0}\", value);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att=\"1844674407370955161\"/>\nDim value As ULong = CULng(root.Attribute(\"Att\"))\nConsole.WriteLine(\"value={0}\", value)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>value=1844674407370955161</code></pre>\n"
   syntax:
     content: >-
       [CLSCompliant(false)]
@@ -2121,8 +2051,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Removes this attribute from its parent element.</p>\n"
-  example:
-  - "\n<p>The following example creates an element with three attributes. It then removes one of the attributes.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att1\", \"content1\"),\nnew XAttribute(\"Att2\", \"content2\"),\nnew XAttribute(\"Att3\", \"content3\")\n);\nXAttribute att = root.Attribute(\"Att2\");\natt.Remove();\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att1=\"content1\" Att2=\"content2\" Att3=\"content3\"/>\nDim att As XAttribute = root.Attribute(\"Att2\")\natt.Remove()\nConsole.WriteLine(root)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Root Att1=\"content1\" Att3=\"content3\" /></code></pre>\n"
   syntax:
     content: public void Remove()
     content.vb: Public Sub Remove
@@ -2157,8 +2085,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Sets the value of this attribute.</p>\n"
-  example:
-  - "\n<p>The following example creates an element with several attributes. It then changes the contents of one of the attributes.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att1\", \"content1\"),\nnew XAttribute(\"Att2\", \"content2\"),\nnew XAttribute(\"Att3\", \"content3\")\n);\nXAttribute att = root.Attribute(\"Att2\");\natt.SetValue(\"new content\");\nConsole.WriteLine(root);</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att1=\"content1\" Att2=\"content2\" Att3=\"content3\"/>\nDim att As XAttribute = root.Attribute(\"Att2\")\natt.SetValue(\"new content\")\nConsole.WriteLine(root)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><Root Att1=\"content1\" Att2=\"new content\" Att3=\"content3\" /></code></pre>\n"
   syntax:
     content: public void SetValue(object value)
     content.vb: Public Sub SetValue(value As Object)
@@ -2209,8 +2135,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Converts the current <xref href=\"System.Xml.Linq.XAttribute\" data-throw-if-not-resolved=\"false\"></xref> object to a string representation.</p>\n"
-  example:
-  - "\n<p>The following example creates an element with several attributes. It then gets an attribute and displays it and its content by calling this method.</p>\n<pre><code class=\"c#\">XElement root = new XElement(\"Root\",\nnew XAttribute(\"Att1\", \"content1\"),\nnew XAttribute(\"Att2\", \"content2\"),\nnew XAttribute(\"Att3\", \"content3\")\n);\nXAttribute att = root.Attribute(\"Att2\");\nConsole.WriteLine(att.ToString());</code></pre>\n<pre><code class=\"vb\">Dim root As XElement = <Root Att1=\"content1\" Att2=\"content2\" Att3=\"content3\"/>\nDim att As XAttribute = root.Attribute(\"Att2\")\nConsole.WriteLine(att.ToString())</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Att2=\"content2\"</code></pre>\n"
   syntax:
     content: public override string ToString()
     content.vb: Public Overrides Function ToString As String

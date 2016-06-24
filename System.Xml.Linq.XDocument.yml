@@ -46,8 +46,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Represents an XML document. For the components and usage of an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> object, see XDocument Class Overview.</p>\n"
-  example:
-  - "\n<p>The following example creates a document, and then adds a comment and an element to it. It then composes another document using the results of a query. </p>\n<pre><code class=\"c#\">XDocument srcTree = new XDocument(\nnew XComment(\"This is a comment\"),\nnew XElement(\"Root\",\nnew XElement(\"Child1\", \"data1\"),\nnew XElement(\"Child2\", \"data2\"),\nnew XElement(\"Child3\", \"data3\"),\nnew XElement(\"Child2\", \"data4\"),\nnew XElement(\"Info5\", \"info5\"),\nnew XElement(\"Info6\", \"info6\"),\nnew XElement(\"Info7\", \"info7\"),\nnew XElement(\"Info8\", \"info8\")\n)\n);\n\nXDocument doc = new XDocument(\nnew XComment(\"This is a comment\"),\nnew XElement(\"Root\",\nfrom el in srcTree.Element(\"Root\").Elements()\nwhere ((string)el).StartsWith(\"data\")\nselect el\n)\n);\nConsole.WriteLine(doc);</code></pre>\n<pre><code class=\"vb\">Dim srcTree As XDocument = _ \n<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<!--This is a comment-->\n<Root>\n    <Child1>data1</Child1>\n    <Child2>data2</Child2>\n    <Child3>data3</Child3>\n    <Child2>data4</Child2>\n    <Info5>info5</Info5>\n    <Info6>info6</Info6>\n    <Info7>info7</Info7>\n    <Info8>info8</Info8>\n</Root>\nDim doc As XDocument = _ \n<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<!--This is a comment-->\n<Root>\n    <%= From el In srcTree.<Root>.Elements _\n        Where CStr(el).StartsWith(\"data\") _\n        Select el %>\n</Root>\nConsole.WriteLine(doc)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><!--This is a comment-->\n<Root>\n<Child1>data1</Child1>\n<Child2>data2</Child2>\n<Child3>data3</Child3>\n<Child2>data4</Child2>\n</Root></code></pre>\n"
   syntax:
     content: 'public class XDocument : XContainer'
     content.vb: >-
@@ -154,8 +152,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> class. </p>\n"
-  example:
-  - "\n<p>The following example creates a new document, and then adds a comment and an element to it.</p>\n<pre><code class=\"c#\">XDocument doc = new XDocument();\ndoc.Add(new XComment(\"This is a comment\"));\ndoc.Add(new XElement(\"Root\", \"content\"));\nConsole.WriteLine(doc);</code></pre>\n<pre><code class=\"vb\">Dim doc As XDocument = New XDocument()\ndoc.Add(<!--This is a comment-->)\ndoc.Add(<Root>content</Root>)\nConsole.WriteLine(doc)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><!--This is a comment-->\n<Root>content</Root></code></pre>\n"
   syntax:
     content: public XDocument()
     content.vb: Public Sub New
@@ -189,8 +185,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> class with the specified content.</p>\n"
-  example:
-  - "\n<p>The following example creates a document, and then adds a comment and an element to it. It then composes another document using the results of a query.</p>\n<pre><code class=\"c#\">XDocument srcTree = new XDocument(\nnew XComment(\"This is a comment\"),\nnew XElement(\"Root\",\nnew XElement(\"Child1\", \"data1\"),\nnew XElement(\"Child2\", \"data2\"),\nnew XElement(\"Child3\", \"data3\"),\nnew XElement(\"Child2\", \"data4\"),\nnew XElement(\"Info5\", \"info5\"),\nnew XElement(\"Info6\", \"info6\"),\nnew XElement(\"Info7\", \"info7\"),\nnew XElement(\"Info8\", \"info8\")\n)\n);\n\nXDocument doc = new XDocument(\nnew XComment(\"This is a comment\"),\nnew XElement(\"Root\",\nfrom el in srcTree.Element(\"Root\").Elements()\nwhere ((string)el).StartsWith(\"data\")\nselect el\n)\n);\nConsole.WriteLine(doc);</code></pre>\n<pre><code class=\"vb\">Dim srcTree As XDocument = _\n<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<!--This is a comment-->\n<Root>\n    <Child1>data1</Child1>\n    <Child2>data2</Child2>\n    <Child3>data3</Child3>\n    <Child2>data4</Child2>\n    <Info5>info5</Info5>\n    <Info6>info6</Info6>\n    <Info7>info7</Info7>\n    <Info8>info8</Info8>\n</Root>\nDim doc As XDocument = _ \n<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<!--This is a comment-->\n<Root>\n    <%= From el In srcTree.<Root>.Elements _\n        Where CStr(el).StartsWith(\"data\") _\n        Select el %>\n</Root>\nConsole.WriteLine(doc)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><!--This is a comment-->\n<Root>\n<Child1>data1</Child1>\n<Child2>data2</Child2>\n<Child3>data3</Child3>\n<Child2>data4</Child2>\n</Root></code></pre>\n"
   syntax:
     content: public XDocument(params object[] content)
     content.vb: Public Sub New(ParamArray content As Object())
@@ -231,8 +225,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> class with the specified <xref href=\"System.Xml.Linq.XDeclaration\" data-throw-if-not-resolved=\"false\"></xref> and content.</p>\n"
-  example:
-  - "\n<p>The following example uses this constructor to create a document.</p>\n<pre><code class=\"c#\">XDocument srcTree = new XDocument(\nnew XComment(\"This is a comment\"),\nnew XElement(\"Root\",\nnew XElement(\"Child1\", \"data1\"),\nnew XElement(\"Child2\", \"data2\"),\nnew XElement(\"Child3\", \"data3\"),\nnew XElement(\"Child2\", \"data4\"),\nnew XElement(\"Info5\", \"info5\"),\nnew XElement(\"Info6\", \"info6\"),\nnew XElement(\"Info7\", \"info7\"),\nnew XElement(\"Info8\", \"info8\")\n)\n);\n\nXDocument doc = new XDocument(\nnew XDeclaration(\"1.0\", \"utf-8\", \"yes\"),\nnew XComment(\"This is a new comment\"),\nnew XElement(\"Root\",\nfrom el in srcTree.Element(\"Root\").Elements()\nwhere ((string)el).StartsWith(\"data\")\nselect el\n)\n);\ndoc.Save(\"Test.xml\");\nConsole.WriteLine(File.ReadAllText(\"Test.xml\"));</code></pre>\n<pre><code class=\"vb\">Dim srcTree As XDocument = _ \n<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<!--This is a comment-->\n<Root>\n    <Child1>data1</Child1>\n    <Child2>data2</Child2>\n    <Child3>data3</Child3>\n    <Child2>data4</Child2>\n    <Info5>info5</Info5>\n    <Info6>info6</Info6>\n    <Info7>info7</Info7>\n    <Info8>info8</Info8>\n</Root>\nDim doc As XDocument = _ \n<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<!--This is a new comment-->\n<Root>\n    <%= From el In srcTree.<Root>.Elements _\n        Where CStr(el).StartsWith(\"data\") _\n        Select el %>\n</Root>\ndoc.Save(\"Test.xml\")\nConsole.WriteLine(File.ReadAllText(\"Test.xml\"))</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<!--This is a new comment-->\n<Root>\n<Child1>data1</Child1>\n<Child2>data2</Child2>\n<Child3>data3</Child3>\n<Child2>data4</Child2>\n</Root></code></pre>\n"
   syntax:
     content: public XDocument(XDeclaration declaration, params object[] content)
     content.vb: Public Sub New(declaration As XDeclaration, ParamArray content As Object())
@@ -313,8 +305,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets or sets the XML declaration for this document.</p>\n"
-  example:
-  - "\n<p>The following example uses this property to retrieve the XML declaration of a document.</p>\n<pre><code class=\"c#\">XDocument doc = new XDocument(\nnew XDeclaration(\"1.0\", \"utf-8\", \"yes\"),\nnew XComment(\"This is a comment\"),\nnew XElement(\"Root\", \"content\")\n);\n\nConsole.WriteLine(doc.Declaration);</code></pre>\n<pre><code class=\"vb\">Dim doc As XDocument = _\n<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<!--This is a comment-->\n<Root>content</Root>\n\nConsole.WriteLine(doc.Declaration)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?></code></pre>\n"
   syntax:
     content: public XDeclaration Declaration { get; set; }
     content.vb: Public Property Declaration As XDeclaration
@@ -354,8 +344,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the Document Type Definition (DTD) for this document.</p>\n"
-  example:
-  - "\n<p>The following example creates a document that contains an <xref href=\"System.Xml.Linq.XDocumentType\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>Visual Basic does not support document types within XML literals. However, it is possible to create a document that contains a document type by first creating the document using XML literals, and then creating and adding an <xref href=\"System.Xml.Linq.XDocumentType\" data-throw-if-not-resolved=\"false\"></xref> node in the appropriate place in the XML tree.</p>\n<pre><code class=\"c#\">string internalSubset = @\"<!ELEMENT Pubs (Book+)>\n<!ELEMENT Book (Title, Author)>\n<!ELEMENT Title (#PCDATA)>\n<!ELEMENT Author (#PCDATA)>\";\n\nstring target = \"xml-stylesheet\";\nstring data = \"href='mystyle.css' title='Compact' type='text/css'\";\n\nXDocument doc = new XDocument(\nnew XComment(\"This is a comment.\"),\nnew XProcessingInstruction(target, data),\nnew XDocumentType(\"Pubs\", null, null, internalSubset),\nnew XElement(\"Pubs\", \nnew XElement(\"Book\",\n    new XElement(\"Title\", \"Artifacts of Roman Civilization\"),\n    new XElement(\"Author\", \"Moreno, Jordao\")\n),\nnew XElement(\"Book\",\n    new XElement(\"Title\", \"Midieval Tools and Implements\"),\n    new XElement(\"Author\", \"Gazit, Inbar\")\n)\n),\nnew XComment(\"This is another comment.\")\n);\ndoc.Declaration = new XDeclaration(\"1.0\", \"utf-8\", \"true\");\nConsole.WriteLine(doc);\n\ndoc.Save(\"test.xml\");</code></pre>\n<pre><code class=\"vb\">Dim internalSubset = _\n\"<!ELEMENT Pubs (Book+)>\" & Environment.NewLine & _\n\"<!ELEMENT Book (Title, Author)>\" & Environment.NewLine & _\n\"<!ELEMENT Title (#PCDATA)>\" & Environment.NewLine & _\n\"<!ELEMENT Author (#PCDATA)>\"\n\nDim doc As XDocument = _\n<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<!--This is a comment.-->\n<?xml-stylesheet href='mystyle.css' title='Compact' type='text/css'?>\n<Pubs>\n<Book>\n    <Title>Artifacts of Roman Civilization</Title>\n    <Author>Moreno, Jordao</Author>\n</Book>\n<Book>\n    <Title>Midieval Tools and Implements</Title>\n    <Author>Gazit, Inbar</Author>\n</Book>\n</Pubs>\n<!--This is another comment.-->\n\ndoc.Nodes().Skip(1).First().AddAfterSelf(New XDocumentType(\"Pubs\", Nothing, Nothing, internalSubset))\nConsole.WriteLine(doc)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><!--This is a comment.-->\n<?xml-stylesheet href='mystyle.css' title='Compact' type='text/css'?>\n<!DOCTYPE Pubs [<!ELEMENT Pubs (Book+)>\n<!ELEMENT Book (Title, Author)>\n<!ELEMENT Title (#PCDATA)>\n<!ELEMENT Author (#PCDATA)>]>\n<Pubs>\n<Book>\n<Title>Artifacts of Roman Civilization</Title>\n<Author>Moreno, Jordao</Author>\n</Book>\n<Book>\n<Title>Midieval Tools and Implements</Title>\n<Author>Gazit, Inbar</Author>\n</Book>\n</Pubs>\n<!--This is another comment.--></code></pre>\n"
   syntax:
     content: public XDocumentType DocumentType { get; }
     content.vb: Public ReadOnly Property DocumentType As XDocumentType
@@ -397,8 +385,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the node type for this node.</p>\n"
-  example:
-  - "\n<p>The following example shows the use of this property.</p>\n<pre><code class=\"c#\">// Note that this property uses XmlNodeType, which is in the System.Xml namespace.\nXDocument xmlTree = new XDocument(\nnew XDeclaration(\"1.0\", \"utf-8\", \"yes\"),\nnew XElement(\"Root\", \"content\")\n);\nConsole.WriteLine(xmlTree.NodeType);</code></pre>\n<pre><code class=\"vb\">' Note that this property uses XmlNodeType, which is in the System.Xml namespace.\nDim xmlTree As XDocument = _\n<?xml version='1.0' encoding='utf-8' standalone='yes'?>\n<Root>content</Root>\nConsole.WriteLine(\"{0}\", xmlTree.NodeType)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Document</code></pre>\n"
   syntax:
     content: public override XmlNodeType NodeType { get; }
     content.vb: Public Overrides ReadOnly Property NodeType As XmlNodeType
@@ -443,8 +429,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Gets the root element of the XML Tree for this document.</p>\n"
-  example:
-  - "\n<p>The following example uses this property to get the root element of a document.</p>\n<pre><code class=\"c#\">XDocument doc = new XDocument(\nnew XComment(\"This is a comment.\"),\nnew XElement(\"Pubs\", \nnew XElement(\"Book\",\n    new XElement(\"Title\", \"Artifacts of Roman Civilization\"),\n    new XElement(\"Author\", \"Moreno, Jordao\")\n),\nnew XElement(\"Book\",\n    new XElement(\"Title\", \"Midieval Tools and Implements\"),\n    new XElement(\"Author\", \"Gazit, Inbar\")\n)\n),\nnew XComment(\"This is another comment.\")\n);\nConsole.WriteLine(doc.Root.Name.ToString());</code></pre>\n<pre><code class=\"vb\">Dim doc As XDocument = _\n<?xml version=\"1.0\" encoding=\"utf-8\" standalone=\"yes\"?>\n<!--This is a comment.-->\n<Pubs>\n<Book>\n    <Title>Artifacts of Roman Civilization</Title>\n    <Author>Moreno, Jordao</Author>\n</Book>\n<Book>\n    <Title>Midieval Tools and Implements</Title>\n    <Author>Gazit, Inbar</Author>\n</Book>\n<!--This is another comment.-->\n</Pubs>\n\nConsole.WriteLine(doc.Root.Name.ToString())</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Pubs</code></pre>\n"
   syntax:
     content: public XElement Root { get; }
     content.vb: Public ReadOnly Property Root As XElement
@@ -481,8 +465,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates a new <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> instance by using the specified stream.</p>\n"
-  example:
-  - 
   syntax:
     content: public static XDocument Load(Stream stream)
     content.vb: Public Shared Function Load(stream As Stream) As XDocument
@@ -522,8 +504,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates a new <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> instance by using the specified stream, optionally preserving white space, setting the base URI, and retaining line information.</p>\n"
-  example:
-  - 
   syntax:
     content: public static XDocument Load(Stream stream, LoadOptions options)
     content.vb: Public Shared Function Load(stream As Stream, options As LoadOptions) As XDocument
@@ -566,8 +546,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates a new <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> from a <xref href=\"System.IO.TextReader\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  example:
-  - "\n<p>The following example creates a document from a <xref href=\"System.IO.StringReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">TextReader tr = new StringReader(\"<Root>Content</Root>\");\nXDocument doc = XDocument.Load(tr);\nConsole.WriteLine(doc);</code></pre>\n<pre><code class=\"vb\">Dim tr As TextReader = New StringReader(\"<Root>Content</Root>\")\nDim doc As XDocument = XDocument.Load(tr)\nConsole.WriteLine(doc)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>Content</Root></code></pre>\n"
   syntax:
     content: public static XDocument Load(TextReader textReader)
     content.vb: Public Shared Function Load(textReader As TextReader) As XDocument
@@ -614,8 +592,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates a new <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> from a <xref href=\"System.IO.TextReader\" data-throw-if-not-resolved=\"false\"></xref>, optionally preserving white space, setting the base URI, and retaining line information.</p>\n"
-  example:
-  - "\n<p>The following example creates a document from a <xref href=\"System.IO.StringReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">TextReader sr;\nint whiteSpaceNodes;\n\nsr = new StringReader(\"<Root> <Child> </Child> </Root>\");\nXDocument xmlTree1 = XDocument.Load(sr, LoadOptions.None);\nsr.Close();\nwhiteSpaceNodes = xmlTree1\n.Element(\"Root\")\n.DescendantNodesAndSelf()\n.OfType<XText>()\n.Where(tNode => tNode.ToString().Trim().Length == 0)\n.Count();\nConsole.WriteLine(\"Count of white space nodes (not preserving whitespace): {0}\", whiteSpaceNodes);\n\nsr = new StringReader(\"<Root> <Child> </Child> </Root>\");\nXDocument xmlTree2 = XDocument.Load(sr, LoadOptions.PreserveWhitespace);\nsr.Close();\nwhiteSpaceNodes = xmlTree2\n.Element(\"Root\")\n.DescendantNodesAndSelf()\n.OfType<XText>()\n.Where(tNode => tNode.ToString().Trim().Length == 0)\n.Count();\nConsole.WriteLine(\"Count of white space nodes (preserving whitespace): {0}\", whiteSpaceNodes);</code></pre>\n<pre><code class=\"vb\">Dim sr As TextReader\nDim whiteSpaceNodes As Integer\n\nsr = New StringReader(\"<Root> <Child> </Child> </Root>\")\nDim xmlTree1 As XDocument = XDocument.Load(sr, LoadOptions.None)\nsr.Close()\nwhiteSpaceNodes = xmlTree1 _\n      .Element(\"Root\") _\n      .DescendantNodesAndSelf() _\n      .OfType(Of XText)() _\n      .Where(Function(ByVal tNode As XNode) tNode. _\n          ToString().Trim().Length = 0).Count()\nConsole.WriteLine(\"Count of white space nodes (not preserving whitespace): {0}\", whiteSpaceNodes)\n\nsr = New StringReader(\"<Root> <Child> </Child> </Root>\")\nDim xmlTree2 As XDocument = XDocument.Load(sr, LoadOptions.PreserveWhitespace)\nsr.Close()\nwhiteSpaceNodes = xmlTree2 _\n      .Element(\"Root\") _\n      .DescendantNodesAndSelf() _\n      .OfType(Of XText)() _\n      .Where(Function(ByVal tNode As XNode) tNode. _\n          ToString().Trim().Length = 0).Count()\nConsole.WriteLine(\"Count of white space nodes (preserving whitespace): {0}\", whiteSpaceNodes)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Count of white space nodes (not preserving whitespace): 0\nCount of white space nodes (preserving whitespace): 3</code></pre>\n"
   syntax:
     content: public static XDocument Load(TextReader textReader, LoadOptions options)
     content.vb: Public Shared Function Load(textReader As TextReader, options As LoadOptions) As XDocument
@@ -665,8 +641,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates a new <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> from a file. </p>\n"
-  example:
-  - "\n<p>The following example shows how to load an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> from a file.</p>\n<p>This example uses the following XML document: </p>\n<p>Sample XML File: Typical Purchase Order (LINQ to XML)</p>\n<pre><code class=\"c#\">XDocument doc = XDocument.Load(\"PurchaseOrder.xml\");\nConsole.WriteLine(doc);</code></pre>\n<pre><code class=\"vb\">Dim doc As XDocument = XDocument.Load(\"PurchaseOrder.xml\")\nConsole.WriteLine(doc)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><PurchaseOrder PurchaseOrderNumber=\"99503\" OrderDate=\"1999-10-20\">\n<Address Type=\"Shipping\">\n<Name>Ellen Adams</Name>\n<Street>123 Maple Street</Street>\n<City>Mill Valley</City>\n<State>CA</State>\n<Zip>10999</Zip>\n<Country>USA</Country>\n</Address>\n<Address Type=\"Billing\">\n<Name>Tai Yee</Name>\n<Street>8 Oak Avenue</Street>\n<City>Old Town</City>\n<State>PA</State>\n<Zip>95819</Zip>\n<Country>USA</Country>\n</Address>\n<DeliveryNotes>Please leave packages in shed by driveway.</DeliveryNotes>\n<Items>\n<Item PartNumber=\"872-AA\">\n<ProductName>Lawnmower</ProductName>\n<Quantity>1</Quantity>\n<USPrice>148.95</USPrice>\n<Comment>Confirm this is electric</Comment>\n</Item>\n<Item PartNumber=\"926-AA\">\n<ProductName>Baby Monitor</ProductName>\n<Quantity>2</Quantity>\n<USPrice>39.98</USPrice>\n<ShipDate>1999-05-21</ShipDate>\n</Item>\n</Items>\n</PurchaseOrder></code></pre>\n"
   syntax:
     content: public static XDocument Load(string uri)
     content.vb: Public Shared Function Load(uri As String) As XDocument
@@ -713,8 +687,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates a new <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> from a file, optionally preserving white space, setting the base URI, and retaining line information.</p>\n"
-  example:
-  - "\n<p>The following example shows how to load an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> from a file.</p>\n<p>This example uses the following XML document:</p>\n<p>Sample XML File: Typical Purchase Order (LINQ to XML)</p>\n<pre><code class=\"c#\">XDocument doc1 = XDocument.Load(\"PurchaseOrder.xml\", LoadOptions.None);\nConsole.WriteLine(\"nodes if not preserving whitespace: {0}\", doc1.DescendantNodes().Count());\n\nXDocument doc2 = XDocument.Load(\"PurchaseOrder.xml\", LoadOptions.PreserveWhitespace);\nConsole.WriteLine(\"nodes if preserving whitespace: {0}\", doc2.DescendantNodes().Count());</code></pre>\n<pre><code class=\"vb\">Dim doc1 As XDocument = XDocument.Load(\"PurchaseOrder.xml\", LoadOptions.None)\nConsole.WriteLine(\"nodes if not preserving whitespace: {0}\", doc1.DescendantNodes().Count())\n\nDim doc2 As XDocument = XDocument.Load(\"PurchaseOrder.xml\", LoadOptions.PreserveWhitespace)\nConsole.WriteLine(\"nodes if preserving whitespace: {0}\", doc2.DescendantNodes().Count())</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>nodes if not preserving whitespace: 48\nnodes if preserving whitespace: 82</code></pre>\n"
   syntax:
     content: public static XDocument Load(string uri, LoadOptions options)
     content.vb: Public Shared Function Load(uri As String, options As LoadOptions) As XDocument
@@ -764,8 +736,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates a new <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> from an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>. </p>\n"
-  example:
-  - "\n<p>The following example creates a DOM document, creates an <xref href=\"System.Xml.XmlNodeReader\" data-throw-if-not-resolved=\"false\"></xref> from the DOM document, creates an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> using the <xref href=\"System.Xml.XmlNodeReader\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">// Create a DOM document with some content.\nXmlDocument doc = new XmlDocument();\nXmlElement child = doc.CreateElement(\"Child\");\nchild.InnerText = \"child contents\";\nXmlElement root = doc.CreateElement(\"Root\");\nroot.AppendChild(child);\ndoc.AppendChild(root);\n\n// create a reader and move to the content\nusing (XmlNodeReader nodeReader = new XmlNodeReader(doc)) {\n// the reader must be in the Interactive state in order to\n// create a LINQ to XML tree from it.\nnodeReader.MoveToContent();\n\nXDocument xRoot = XDocument.Load(nodeReader);\nConsole.WriteLine(xRoot);\n}</code></pre>\n<pre><code class=\"vb\">' Create a DOM document with some content.\nDim doc As XmlDocument = New XmlDocument()\nDim child As XmlElement = doc.CreateElement(\"Child\")\nchild.InnerText = \"child contents\"\nDim root As XmlElement = doc.CreateElement(\"Root\")\nroot.AppendChild(child)\ndoc.AppendChild(root)\n\n' create a reader and move to the content\nUsing nodeReader = New XmlNodeReader(doc)\n' the reader must be in the Interactive state in order to\n' create a LINQ to XML tree from it.\nnodeReader.MoveToContent()\n\nDim xRoot As XDocument = XDocument.Load(nodeReader)\nConsole.WriteLine(xRoot)\nEnd Using</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Root>\n<Child>child contents</Child>\n</Root></code></pre>\n"
   syntax:
     content: public static XDocument Load(XmlReader reader)
     content.vb: Public Shared Function Load(reader As XmlReader) As XDocument
@@ -812,8 +782,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Loads an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> from an <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>, optionally setting the base URI, and retaining line information.</p>\n"
-  example:
-  - "\n<p>The following example loads the line information that it loads from the <xref href=\"System.Xml.XmlReader\" data-throw-if-not-resolved=\"false\"></xref>. It then prints the line information.</p>\n<pre><code class=\"c#\">string markup =\n@\"<Root>\n<Child>\n<GrandChild/>\n</Child>\n</Root>\";\n\n// Create a reader and move to the content.\nusing (XmlReader nodeReader = XmlReader.Create(new StringReader(markup)))\n{\n// the reader must be in the Interactive state in order to\n// Create a LINQ to XML tree from it.\nnodeReader.MoveToContent();\n\nXDocument xRoot = XDocument.Load(nodeReader, LoadOptions.SetLineInfo);\nConsole.WriteLine(\"{0}{1}{2}\",\n\"Element Name\".PadRight(20),\n\"Line\".PadRight(5),\n\"Position\");\nConsole.WriteLine(\"{0}{1}{2}\",\n\"------------\".PadRight(20),\n\"----\".PadRight(5),\n\"--------\");\nforeach (XElement e in xRoot.Elements(\"Root\").DescendantsAndSelf())\nConsole.WriteLine(\"{0}{1}{2}\",\n    (\"\".PadRight(e.Ancestors().Count() * 2) + e.Name).PadRight(20),\n    ((IXmlLineInfo)e).LineNumber.ToString().PadRight(5),\n    ((IXmlLineInfo)e).LinePosition);\n}</code></pre>\n<pre><code class=\"vb\">Dim markup As String = _\n\"<Root>\" & Environment.NewLine & _\n\"    <Child>\" & Environment.NewLine & _\n\"        <GrandChild/>\" & Environment.NewLine & _\n\"    </Child>\" & Environment.NewLine & _\n\"</Root>\"\n\n' Create a reader and move to the content.\nUsing nodeReader As XmlReader = XmlReader.Create(New StringReader(markup))\n\n' The reader must be in the Interactive state in order to\n' create a LINQ to XML tree from it.\nnodeReader.MoveToContent()\n\nDim xRoot As XDocument = XDocument.Load(nodeReader, LoadOptions.SetLineInfo)\nConsole.WriteLine(\"{0}{1}{2}\", _\n\"Element Name\".PadRight(20), _\n\"Line\".PadRight(5), _\n\"Position\")\nConsole.WriteLine(\"{0}{1}{2}\", _\n\"------------\".PadRight(20), _\n\"----\".PadRight(5), _\n\"--------\")\nFor Each e As XElement In xRoot.Elements(\"Root\").DescendantsAndSelf()\nConsole.WriteLine(\"{0}{1}{2}\", _\n    (\"\".PadRight(e.Ancestors().Count() * 2) & e.Name.ToString()).PadRight(20), _\n    (DirectCast(e, IXmlLineInfo)).LineNumber.ToString().PadRight(5), _\n    (DirectCast(e, IXmlLineInfo)).LinePosition)\nNext\nEnd Using</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>Element Name        Line Position\n------------        ---- --------\nRoot                1    2\nChild             2    6\nGrandChild      3    10</code></pre>\n"
   syntax:
     content: public static XDocument Load(XmlReader reader, LoadOptions options)
     content.vb: Public Shared Function Load(reader As XmlReader, options As LoadOptions) As XDocument
@@ -863,8 +831,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates a new <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> from a string.</p>\n"
-  example:
-  - "\n<p>The following example creates a string that contains XML. It then parses the string into an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">string str =\n@\"<?xml version=\"\"1.0\"\"?>\n<!-- comment at the root level -->\n<Root>\n<Child>Content</Child>\n</Root>\";\nXDocument doc = XDocument.Parse(str);\nConsole.WriteLine(doc);</code></pre>\n<pre><code class=\"vb\">Dim str As String = _\n\"<?xml version= '1.0'?>\" & _\n\"<!-- comment at the root level -->\" & _\n\"<Root>\" & _\n\"  <Child>Content</Child>\" & _\n\"</Root>\"\n\nDim doc As XDocument = XDocument.Parse(str)\nConsole.WriteLine(doc)</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><!-- comment at the root level -->\n<Root>\n<Child>Content</Child>\n</Root></code></pre>\n"
   syntax:
     content: public static XDocument Parse(string text)
     content.vb: Public Shared Function Parse(text As String) As XDocument
@@ -911,8 +877,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Creates a new <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> from a string, optionally preserving white space, setting the base URI, and retaining line information.</p>\n"
-  example:
-  - "\n<p>The following example parses a string into an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">string str =\n@\"<?xml version=\"\"1.0\"\"?>\n<!-- comment at the root level -->\n<Root>\n<Child>Content</Child>\n</Root>\";\nXDocument doc1 = XDocument.Parse(str, LoadOptions.PreserveWhitespace);\nConsole.WriteLine(\"nodes when preserving whitespace: {0}\", doc1.DescendantNodes().Count());\nXDocument doc2 = XDocument.Parse(str, LoadOptions.None);\nConsole.WriteLine(\"nodes when not preserving whitespace: {0}\", doc2.DescendantNodes().Count());</code></pre>\n<pre><code class=\"vb\">Dim str As String = _\n\"<?xml version= '1.0'?>\" & Environment.NewLine & _\n\"<!-- comment at the root level -->\" & Environment.NewLine & _\n\"<Root>\" & Environment.NewLine & _\n\"    <Child>Content</Child>\"  & Environment.NewLine & _\n\"</Root>\"\n\nDim doc1 As XDocument = XDocument.Parse(str, LoadOptions.PreserveWhitespace)\nConsole.WriteLine(\"nodes when preserving whitespace: {0}\", doc1.DescendantNodes().Count())\nDim doc2 As XDocument = XDocument.Parse(str, LoadOptions.None)\nConsole.WriteLine(\"nodes when not preserving whitespace: {0}\", doc2.DescendantNodes().Count())</code></pre>\n<p>This example produces the following output:</p>\n<pre><code>nodes when preserving whitespace: 8\nnodes when not preserving whitespace: 4</code></pre>\n"
   syntax:
     content: public static XDocument Parse(string text, LoadOptions options)
     content.vb: Public Shared Function Parse(text As String, options As LoadOptions) As XDocument
@@ -962,8 +926,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Outputs this <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> to the specified <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public void Save(Stream stream)
     content.vb: Public Sub Save(stream As Stream)
@@ -998,8 +960,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Outputs this <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> to the specified <xref href=\"System.IO.Stream\" data-throw-if-not-resolved=\"false\"></xref>, optionally specifying formatting behavior.</p>\n"
-  example:
-  - 
   syntax:
     content: public void Save(Stream stream, SaveOptions options)
     content.vb: Public Sub Save(stream As Stream, options As SaveOptions)
@@ -1037,8 +997,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Serialize this <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.IO.TextWriter\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example creates an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref>, saves the document to a <xref href=\"System.IO.StringWriter\" data-throw-if-not-resolved=\"false\"></xref>, and then prints the string to the console.</p>\n<pre><code class=\"c#\">StringBuilder sb = new StringBuilder();\n\nXDocument doc = new XDocument(\nnew XElement(\"Root\",\nnew XElement(\"Child\", \"content\")\n)\n);\nTextWriter tr = new StringWriter(sb);\ndoc.Save(tr);\nConsole.WriteLine(sb.ToString());</code></pre>\n<pre><code class=\"vb\">Dim sb As StringBuilder = New StringBuilder()\n\nDim doc As XDocument = _ \n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Root><Child>content</Child></Root>\n\nDim tr As TextWriter = New StringWriter(sb)\ndoc.Save(tr)\nConsole.WriteLine(sb.ToString())</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><?xml version=\"1.0\" encoding=\"utf-16\"?>\n<Root>\n<Child>content</Child>\n</Root></code></pre>\n"
   syntax:
     content: public void Save(TextWriter textWriter)
     content.vb: Public Sub Save(textWriter As TextWriter)
@@ -1082,8 +1040,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Serialize this <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> to a <xref href=\"System.IO.TextWriter\" data-throw-if-not-resolved=\"false\"></xref>, optionally disabling formatting.</p>\n"
-  example:
-  - "\n<p>The following example shows two uses of this method. The first use serializes the <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> with formatting. The second preserves white space. Because the document has no white space in it as constructed, preserving white space outputs the XML without any indenting.</p>\n<pre><code class=\"c#\">XDocument doc = new XDocument(\nnew XElement(\"Root\",\nnew XElement(\"Child\", \"content\")\n)\n);\nStringBuilder sb1 = new StringBuilder();\nusing (StringWriter sr1 = new StringWriter(sb1)) {\ndoc.Save(sr1, SaveOptions.None);\nConsole.WriteLine(sb1.ToString());\n}\n\nStringBuilder sb2 = new StringBuilder();\nusing (StringWriter sr2 = new StringWriter(sb2)) {\ndoc.Save(sr2, SaveOptions.DisableFormatting);\nConsole.WriteLine(sb2.ToString());\n}</code></pre>\n<pre><code class=\"vb\">Dim doc As XDocument = _ \n<?xml version=\"1.0\" encoding=\"utf-8\"?>\n<Root><Child>content</Child></Root>\n\nDim sb1 As StringBuilder = New StringBuilder()\n\nUsing sr1 = New StringWriter(sb1)\ndoc.Save(sr1, SaveOptions.None)\nConsole.WriteLine(sb1.ToString())\nEnd Using\n\nDim sb2 As StringBuilder = New StringBuilder()\n\nUsing sr2 = New StringWriter(sb2)\ndoc.Save(sr2, SaveOptions.DisableFormatting)\nConsole.WriteLine(sb2.ToString())\nEnd Using</code></pre>\n<p>This example produces the following output:</p>\n<pre><code><?xml version=\"1.0\" encoding=\"utf-16\"?>\n<Root>\n<Child>content</Child>\n</Root>\n<?xml version=\"1.0\" encoding=\"utf-16\"?><Root><Child>content</Child></Root></code></pre>\n"
   syntax:
     content: public void Save(TextWriter textWriter, SaveOptions options)
     content.vb: Public Sub Save(textWriter As TextWriter, options As SaveOptions)
@@ -1130,8 +1086,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Serialize this <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> to an <xref href=\"System.Xml.XmlWriter\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example shows how to save an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> to an <xref href=\"System.Xml.XmlWriter\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<pre><code class=\"c#\">StringBuilder sb = new StringBuilder();\nXmlWriterSettings xws = new XmlWriterSettings();\nxws.OmitXmlDeclaration = true;\nxws.Indent = true;\n\nusing (XmlWriter xw = XmlWriter.Create(sb, xws)) {\nXDocument doc = new XDocument(\nnew XElement(\"Child\",\n    new XElement(\"GrandChild\", \"some content\")\n)\n);\ndoc.Save(xw);\n}\n\nConsole.WriteLine(sb.ToString());</code></pre>\n<pre><code class=\"vb\">Dim sb As StringBuilder = New StringBuilder()\nDim xws As XmlWriterSettings = New XmlWriterSettings()\nxws.OmitXmlDeclaration = True\nxws.Indent = True\n\nUsing xw = XmlWriter.Create(sb, xws)\nDim doc As XDocument = New XDocument(<Child><GrandChild>some content</GrandChild></Child>)\ndoc.Save(xw)\n\nEnd Using\n\nConsole.WriteLine(sb.ToString())</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Child>\n<GrandChild>some content</GrandChild>\n</Child></code></pre>\n"
   syntax:
     content: public void Save(XmlWriter writer)
     content.vb: Public Sub Save(writer As XmlWriter)
@@ -1175,8 +1129,6 @@ items:
   - System.Xml.XDocument
   namespace: System.Xml.Linq
   summary: "\n<p>Write this document to an <xref href=\"System.Xml.XmlWriter\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - "\n<p>The following example shows how to write an <xref href=\"System.Xml.Linq.XDocument\" data-throw-if-not-resolved=\"false\"></xref> to an <xref href=\"System.Xml.XmlWriter\" data-throw-if-not-resolved=\"false\"></xref>. Note that the example did not write an XML declaration.</p>\n<pre><code class=\"c#\">StringBuilder sb = new StringBuilder();\nXmlWriterSettings xws = new XmlWriterSettings();\nxws.OmitXmlDeclaration = true;\nxws.Indent = true;\n\nusing (XmlWriter xw = XmlWriter.Create(sb, xws))\n{\nXDocument doc = new XDocument(\nnew XElement(\"Child\",\n    new XElement(\"GrandChild\", \"some content\")\n)\n);\ndoc.WriteTo(xw);\n}\n\nConsole.WriteLine(sb.ToString());</code></pre>\n<pre><code class=\"vb\">Dim sb As StringBuilder = New StringBuilder()\nDim xws As XmlWriterSettings = New XmlWriterSettings()\nxws.OmitXmlDeclaration = True\nxws.Indent = True\n\nUsing xw = XmlWriter.Create(sb, xws)\nDim doc As XDocument = New XDocument(<Child><GrandChild>some content</GrandChild></Child>)\ndoc.WriteTo(xw)\nEnd Using\n\nConsole.WriteLine(sb.ToString())</code></pre>\n<p>This example produces the following output:</p>\n<pre><code class=\"xml\"><Child>\n<GrandChild>some content</GrandChild>\n</Child></code></pre>\n"
   syntax:
     content: public override void WriteTo(XmlWriter writer)
     content.vb: Public Overrides Sub WriteTo(writer As XmlWriter)

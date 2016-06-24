@@ -28,8 +28,6 @@ items:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
   summary: "\n<p>Enables iterations of parallel loops to interact with other iterations. An instance of this class is provided by the <xref href=\"System.Threading.Tasks.Parallel\" data-throw-if-not-resolved=\"false\"></xref> class to each loop; you can not create instances in your code. </p>\n"
-  example:
-  - "\n<p>The following example executes up to 100 iterations of a loop in parallel. Each iteration pauses for a random interval from 1 to 1,000 milliseconds. A randomly generated value determines on which iteration of the loop the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method is called. As the output from the example shows, no iterations whose index is greater than the <xref href=\"System.Threading.Tasks.ParallelLoopState.LowestBreakIteration\" data-throw-if-not-resolved=\"false\"></xref> property value start after the call to the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method. </p>System.Threading.Tasks.ParallelLoopState#2<p>Because iterations of the loop are still likely to be executing when the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method is called, each iteration calls the <xref href=\"System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration\" data-throw-if-not-resolved=\"false\"></xref> property to check whether another iteration has called the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method. If  the property value is <strong>true</strong>, the iteration checks the value of the <xref href=\"System.Threading.Tasks.ParallelLoopState.LowestBreakIteration\" data-throw-if-not-resolved=\"false\"></xref> property and, if it is greater than the current iteration's index value, returns immediately. </p>"
   syntax:
     content: >-
       [HostProtection(Synchronization = true, ExternalThreading = true)]
@@ -82,8 +80,6 @@ items:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets whether any iteration of the loop has thrown an exception that went unhandled by that iteration. </p>\n"
-  example:
-  - 
   syntax:
     content: public bool IsExceptional { get; }
     content.vb: Public ReadOnly Property IsExceptional As Boolean
@@ -120,8 +116,6 @@ items:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets whether any iteration of the loop has called the <xref href=\"System.Threading.Tasks.ParallelLoopState.Stop\" data-throw-if-not-resolved=\"false\"></xref> method. </p>\n"
-  example:
-  - "\n<p>The following example executes up to 10,000 iterations of a loop in parallel. Each iteration pauses for a random interval from 1 to 1,000 milliseconds. A randomly generated value determines on which iteration of the loop the <xref href=\"System.Threading.Tasks.ParallelLoopState.Stop\" data-throw-if-not-resolved=\"false\"></xref> method is called. Because iterations of the loop are still likely to be executing when the <xref href=\"System.Threading.Tasks.ParallelLoopState.Stop\" data-throw-if-not-resolved=\"false\"></xref> method is called, the lambda expression calls the <xref href=\"System.Threading.Tasks.ParallelLoopState.IsStopped\" data-throw-if-not-resolved=\"false\"></xref> method to check whether another iteration has called the <xref href=\"System.Threading.Tasks.ParallelLoopState.Stop\" data-throw-if-not-resolved=\"false\"></xref> method. If it returns <strong>true</strong>, the iteration returns immediately. </p>System.Threading.Tasks.ParallelLoopState#1"
   syntax:
     content: public bool IsStopped { get; }
     content.vb: Public ReadOnly Property IsStopped As Boolean
@@ -158,8 +152,6 @@ items:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets the lowest iteration of the loop from which <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> was called. </p>\n"
-  example:
-  - "\n<p>The following example executes up to 100 iterations of a loop in parallel. Each iteration pauses for a random interval from 1 to 1,000 milliseconds. A randomly generated value determines on which iteration of the loop the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method is called. This prevents iterations whose index is greater than the <xref href=\"System.Threading.Tasks.ParallelLoopState.LowestBreakIteration\" data-throw-if-not-resolved=\"false\"></xref> property value from starting after the call to the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method, but it does not affect any iterations that have already begun executing. To prevent these from completing, each iteration calls the <xref href=\"System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration\" data-throw-if-not-resolved=\"false\"></xref> method to check whether another iteration has called the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method. If so, the iteration checks the value of the <xref href=\"System.Threading.Tasks.ParallelLoopState.LowestBreakIteration\" data-throw-if-not-resolved=\"false\"></xref> property and, if it is greater than the current iteration's index value, returns immediately.  </p>System.Threading.Tasks.ParallelLoopState#2<p>Note that, because the <xref href=\"System.Threading.Tasks.ParallelLoopState.LowestBreakIteration\" data-throw-if-not-resolved=\"false\"></xref> value is out of scope outside of the parallel loop, you must assign it to a variable that is visible outside of the loop if you want to preserve its value. </p>"
   syntax:
     content: public long ? LowestBreakIteration { get; }
     content.vb: Public ReadOnly Property LowestBreakIteration As Long?
@@ -201,8 +193,6 @@ items:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
   summary: "\n<p>Gets whether the current iteration of the loop should exit based on requests made by this or other iterations.</p>\n"
-  example:
-  - "\n<p>The following example executes up to 100 iterations of a loop in parallel. Each iteration pauses for a random interval from 1 to 1,000 milliseconds. A randomly generated value determines on which iteration of the loop the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method is called. This prevents iterations whose index is greater than the <xref href=\"System.Threading.Tasks.ParallelLoopState.LowestBreakIteration\" data-throw-if-not-resolved=\"false\"></xref> property value from starting after the call to the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method, but it does not affect any iterations that have already begun executing. To prevent these from completing, each iteration calls the <xref href=\"System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration\" data-throw-if-not-resolved=\"false\"></xref> method to check whether another iteration has called the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method. If so, the iteration checks the value of the <xref href=\"System.Threading.Tasks.ParallelLoopState.LowestBreakIteration\" data-throw-if-not-resolved=\"false\"></xref> property and, if it is greater than the current iteration's index value, returns immediately.  </p>System.Threading.Tasks.ParallelLoopState#2"
   syntax:
     content: public bool ShouldExitCurrentIteration { get; }
     content.vb: Public ReadOnly Property ShouldExitCurrentIteration As Boolean
@@ -246,8 +236,6 @@ items:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
   summary: "\n<p>Communicates that the <xref href=\"System.Threading.Tasks.Parallel\" data-throw-if-not-resolved=\"false\"></xref> loop should cease execution of iterations beyond the current iteration at the system's earliest convenience. </p>\n"
-  example:
-  - "\n<p>The following example executes up to 100 iterations of a loop in parallel. Each iteration pauses for a random interval from 1 to 1,000 milliseconds. A randomly generated value determines on which iteration of the loop the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method is called. As the output from the example shows, no iterations whose index is greater than the <xref href=\"System.Threading.Tasks.ParallelLoopState.LowestBreakIteration\" data-throw-if-not-resolved=\"false\"></xref> property value start after the call to the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method. </p>System.Threading.Tasks.ParallelLoopState#2<p>Because iterations of the loop are still likely to be executing when the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method is called, each iteration calls the <xref href=\"System.Threading.Tasks.ParallelLoopState.ShouldExitCurrentIteration\" data-throw-if-not-resolved=\"false\"></xref> property to check whether another iteration has called the <xref href=\"System.Threading.Tasks.ParallelLoopState.Break\" data-throw-if-not-resolved=\"false\"></xref> method. If  the property value is <strong>true</strong>, the iteration checks the value of the <xref href=\"System.Threading.Tasks.ParallelLoopState.LowestBreakIteration\" data-throw-if-not-resolved=\"false\"></xref> property and, if it is greater than the current iteration's index value, returns immediately. </p>"
   syntax:
     content: public void Break()
     content.vb: Public Sub Break
@@ -287,8 +275,6 @@ items:
   - System.Threading.Tasks.Parallel
   namespace: System.Threading.Tasks
   summary: "\n<p>Communicates that the <xref href=\"System.Threading.Tasks.Parallel\" data-throw-if-not-resolved=\"false\"></xref> loop should cease execution at the system's earliest convenience.</p>\n"
-  example:
-  - "\n<p>The following example executes up to 10,000 iterations of a loop in parallel. Each iteration pauses for a random interval from 1 to 1,000 milliseconds. A randomly generated value determines on which iteration of the loop the <xref href=\"System.Threading.Tasks.ParallelLoopState.Stop\" data-throw-if-not-resolved=\"false\"></xref> method is called. As the output from the example shows, no iterations execute after the call to the <xref href=\"System.Threading.Tasks.ParallelLoopState.Stop\" data-throw-if-not-resolved=\"false\"></xref> method. </p>System.Threading.Tasks.ParallelLoopState#1<p>Because iterations of the loop are still likely to be executing when the <xref href=\"System.Threading.Tasks.ParallelLoopState.Stop\" data-throw-if-not-resolved=\"false\"></xref> method is called, each iteration calls the <xref href=\"System.Threading.Tasks.ParallelLoopState.IsStopped\" data-throw-if-not-resolved=\"false\"></xref> method to check whether another iteration has called the <xref href=\"System.Threading.Tasks.ParallelLoopState.Stop\" data-throw-if-not-resolved=\"false\"></xref> method. If it returns <strong>true</strong>, the iteration returns immediately. </p>"
   syntax:
     content: public void Stop()
     content.vb: Public Sub Stop

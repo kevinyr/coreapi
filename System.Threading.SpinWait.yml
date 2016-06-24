@@ -29,8 +29,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Provides support for spin-based waiting.</p>\n"
-  example:
-  - "\n<p>The following example shows how to use a <xref href=\"System.Threading.SpinWait\" data-throw-if-not-resolved=\"false\"></xref>:</p>System.Threading.SpinWait#01"
   syntax:
     content: >-
       [HostProtection(Synchronization = true, ExternalThreading = true)]
@@ -82,8 +80,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets the number of times <xref href=\"System.Threading.SpinWait.SpinOnce\" data-throw-if-not-resolved=\"false\"></xref> has been called on this instance.</p>\n"
-  example:
-  - 
   syntax:
     content: public int Count { get; }
     content.vb: Public ReadOnly Property Count As Integer
@@ -120,8 +116,6 @@ items:
   - System.Threading
   namespace: System.Threading
   summary: "\n<p>Gets whether the next call to <xref href=\"System.Threading.SpinWait.SpinOnce\" data-throw-if-not-resolved=\"false\"></xref> will yield the processor, triggering a forced context switch.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool NextSpinWillYield { get; }
     content.vb: Public ReadOnly Property NextSpinWillYield As Boolean
@@ -157,6 +151,7 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: "\n<p>Resets the spin counter.</p>\n"
   syntax:
     content: public void Reset()
     content.vb: Public Sub Reset
@@ -186,6 +181,7 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: "\n<p>Performs a single spin.</p>\n"
   syntax:
     content: public void SpinOnce()
     content.vb: Public Sub SpinOnce
@@ -215,13 +211,18 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: "\n<p>Spins until the specified condition is satisfied.</p>\n"
   syntax:
     content: public static void SpinUntil(Func<bool> condition)
     content.vb: Public Shared Sub SpinUntil(condition As Func(Of Boolean))
     parameters:
     - id: condition
       type: System.Func{System.Boolean}
-      description: A delegate to be executed over and over until it returns true.
+      description: "\n<p>A delegate to be executed over and over until it returns true.</p>\n"
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<p>The <em>condition</em> argument is null.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -253,19 +254,27 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: "\n<p>Spins until the specified condition is satisfied or until the specified timeout is expired.</p>\n"
   syntax:
     content: public static bool SpinUntil(Func<bool> condition, int millisecondsTimeout)
     content.vb: Public Shared Function SpinUntil(condition As Func(Of Boolean), millisecondsTimeout As Integer) As Boolean
     parameters:
     - id: condition
       type: System.Func{System.Boolean}
-      description: A delegate to be executed over and over until it returns true.
+      description: "\n<p>A delegate to be executed over and over until it returns true.</p>\n"
     - id: millisecondsTimeout
       type: System.Int32
-      description: The number of milliseconds to wait, or <xref href="System.Threading.Timeout.Infinite" data-throw-if-not-resolved="false"></xref> (-1) to wait indefinitely.
+      description: "\n<p>The number of milliseconds to wait, or <xref href=\"System.Threading.Timeout.Infinite\" data-throw-if-not-resolved=\"false\"></xref> (-1) to wait indefinitely.</p>\n"
     return:
       type: System.Boolean
-      description: True if the condition is satisfied within the timeout; otherwise, false
+      description: "\n<p>True if the condition is satisfied within the timeout; otherwise, false</p>\n"
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<p>The <em>condition</em> argument is null.</p>\n"
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\n<p>\n<em>millisecondsTimeout</em> is a negative number other than -1, which represents an infinite time-out.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -297,19 +306,27 @@ items:
   assemblies:
   - System.Threading
   namespace: System.Threading
+  summary: "\n<p>Spins until the specified condition is satisfied or until the specified timeout is expired.</p>\n"
   syntax:
     content: public static bool SpinUntil(Func<bool> condition, TimeSpan timeout)
     content.vb: Public Shared Function SpinUntil(condition As Func(Of Boolean), timeout As TimeSpan) As Boolean
     parameters:
     - id: condition
       type: System.Func{System.Boolean}
-      description: A delegate to be executed over and over until it returns true.
+      description: "\n<p>A delegate to be executed over and over until it returns true.</p>\n"
     - id: timeout
       type: System.TimeSpan
-      description: "\nA <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents the number of milliseconds to wait, \nor a TimeSpan that represents -1 milliseconds to wait indefinitely."
+      description: "\n<p>A <xref href=\"System.TimeSpan\" data-throw-if-not-resolved=\"false\"></xref> that represents the number of milliseconds to wait, or a TimeSpan that represents -1 milliseconds to wait indefinitely.</p>\n"
     return:
       type: System.Boolean
-      description: True if the condition is satisfied within the timeout; otherwise, false
+      description: "\n<p>True if the condition is satisfied within the timeout; otherwise, false</p>\n"
+  exceptions:
+  - type: System.ArgumentNullException
+    commentId: T:System.ArgumentNullException
+    description: "\n<p>The <em>condition</em> argument is null.</p>\n"
+  - type: System.ArgumentOutOfRangeException
+    commentId: T:System.ArgumentOutOfRangeException
+    description: "\n<p>\n<em>timeout</em> is a negative number other than -1 milliseconds, which represents an infinite time-out -or- timeout is greater than <xref href=\"System.Int32.MaxValue\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   modifiers.csharp:
   - public
   - static
@@ -625,3 +642,15 @@ references:
   fullName: System.TimeSpan
   nameWithType: TimeSpan
   commentId: T:System.TimeSpan
+- uid: System.ArgumentNullException
+  isExternal: false
+  name: ArgumentNullException
+  fullName: System.ArgumentNullException
+  nameWithType: ArgumentNullException
+  commentId: T:System.ArgumentNullException
+- uid: System.ArgumentOutOfRangeException
+  isExternal: false
+  name: ArgumentOutOfRangeException
+  fullName: System.ArgumentOutOfRangeException
+  nameWithType: ArgumentOutOfRangeException
+  commentId: T:System.ArgumentOutOfRangeException

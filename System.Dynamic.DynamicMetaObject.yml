@@ -35,18 +35,16 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: DynamicMetaObject
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 77
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 14
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Represents the dynamic binding and a binding logic of an object participating in the dynamic binding.</p>\n"
-  example:
-  - 
   syntax:
     content: public class DynamicMetaObject
     content.vb: Public Class DynamicMetaObject
@@ -79,21 +77,25 @@ items:
   type: Field
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: EmptyMetaObjects
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 79
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 25
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Represents an empty array of type <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref>. This field is read only.</p>\n"
-  example:
-  - 
   syntax:
-    content: public static readonly DynamicMetaObject[] EmptyMetaObjects
-    content.vb: Public Shared ReadOnly EmptyMetaObjects As DynamicMetaObject()
+    content: >-
+      [SuppressMessage("Microsoft.Security", "CA2105:ArrayFieldsShouldNotBeReadOnly")]
+
+      public static readonly DynamicMetaObject[] EmptyMetaObjects
+    content.vb: >-
+      <SuppressMessage("Microsoft.Security", "CA2105:ArrayFieldsShouldNotBeReadOnly")>
+
+      Public Shared ReadOnly EmptyMetaObjects As DynamicMetaObject()
     return:
       type: System.Dynamic.DynamicMetaObject[]
   modifiers.csharp:
@@ -127,8 +129,6 @@ items:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - 
   syntax:
     content: public DynamicMetaObject(Expression expression, BindingRestrictions restrictions)
     content.vb: Public Sub New(expression As Expression, restrictions As BindingRestrictions)
@@ -166,8 +166,6 @@ items:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref> class.</p>\n"
-  example:
-  - 
   syntax:
     content: public DynamicMetaObject(Expression expression, BindingRestrictions restrictions, object value)
     content.vb: Public Sub New(expression As Expression, restrictions As BindingRestrictions, value As Object)
@@ -198,24 +196,22 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Expression
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 82
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 57
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>The expression representing the <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref> during the dynamic binding process.</p>\n"
-  example:
-  - 
   syntax:
     content: public Expression Expression { get; }
     content.vb: Public ReadOnly Property Expression As Expression
     parameters: []
     return:
-      type: System.Linq.Expressions.Expression
+      type: Expression
       description: "\n<p>The expression representing the <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref> during the dynamic binding process.</p>\n"
   modifiers.csharp:
   - public
@@ -236,18 +232,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: HasValue
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 83
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 90
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Gets a value indicating whether the <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref> has the runtime value.</p>\n"
-  example:
-  - 
   syntax:
     content: public bool HasValue { get; }
     content.vb: Public ReadOnly Property HasValue As Boolean
@@ -274,18 +268,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: LimitType
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 84
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 134
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Gets the limit type of the <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public Type LimitType { get; }
     content.vb: Public ReadOnly Property LimitType As Type
@@ -312,18 +304,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Restrictions
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 85
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 68
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>The set of binding restrictions under which the binding is valid.</p>\n"
-  example:
-  - 
   syntax:
     content: public BindingRestrictions Restrictions { get; }
     content.vb: Public ReadOnly Property Restrictions As BindingRestrictions
@@ -350,18 +340,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: RuntimeType
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 86
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 102
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Gets the <xref href=\"System.Type\" data-throw-if-not-resolved=\"false\"></xref> of the runtime value or null if the <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref> has no value associated with it.</p>\n"
-  example:
-  - 
   syntax:
     content: public Type RuntimeType { get; }
     content.vb: Public ReadOnly Property RuntimeType As Type
@@ -388,18 +376,16 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Value
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 87
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 79
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>The runtime value represented by this <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  example:
-  - 
   syntax:
     content: public object Value { get; }
     content.vb: Public ReadOnly Property Value As Object
@@ -426,18 +412,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindBinaryOperation
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 88
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 277
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic binary operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindBinaryOperation(BinaryOperationBinder binder, DynamicMetaObject arg)
     content.vb: Public Overridable Function BindBinaryOperation(binder As BinaryOperationBinder, arg As DynamicMetaObject) As DynamicMetaObject
@@ -470,18 +454,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindConvert
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 89
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 147
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic conversion operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindConvert(ConvertBinder binder)
     content.vb: Public Overridable Function BindConvert(binder As ConvertBinder) As DynamicMetaObject
@@ -511,18 +493,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindCreateInstance
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 90
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 254
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic create instance operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindCreateInstance(CreateInstanceBinder binder, DynamicMetaObject[] args)
     content.vb: Public Overridable Function BindCreateInstance(binder As CreateInstanceBinder, args As DynamicMetaObject()) As DynamicMetaObject
@@ -558,18 +538,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindDeleteIndex
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 91
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 218
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic delete index operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindDeleteIndex(DeleteIndexBinder binder, DynamicMetaObject[] indexes)
     content.vb: Public Overridable Function BindDeleteIndex(binder As DeleteIndexBinder, indexes As DynamicMetaObject()) As DynamicMetaObject
@@ -605,18 +583,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindDeleteMember
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 92
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 181
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic delete member operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindDeleteMember(DeleteMemberBinder binder)
     content.vb: Public Overridable Function BindDeleteMember(binder As DeleteMemberBinder) As DynamicMetaObject
@@ -646,18 +622,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindGetIndex
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 93
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 193
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic get index operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindGetIndex(GetIndexBinder binder, DynamicMetaObject[] indexes)
     content.vb: Public Overridable Function BindGetIndex(binder As GetIndexBinder, indexes As DynamicMetaObject()) As DynamicMetaObject
@@ -693,18 +667,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindGetMember
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 94
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 158
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic get member operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindGetMember(GetMemberBinder binder)
     content.vb: Public Overridable Function BindGetMember(binder As GetMemberBinder) As DynamicMetaObject
@@ -734,18 +706,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindInvoke
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 95
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 242
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic invoke operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindInvoke(InvokeBinder binder, DynamicMetaObject[] args)
     content.vb: Public Overridable Function BindInvoke(binder As InvokeBinder, args As DynamicMetaObject()) As DynamicMetaObject
@@ -781,18 +751,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindInvokeMember
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 96
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 230
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic invoke member operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindInvokeMember(InvokeMemberBinder binder, DynamicMetaObject[] args)
     content.vb: Public Overridable Function BindInvokeMember(binder As InvokeMemberBinder, args As DynamicMetaObject()) As DynamicMetaObject
@@ -828,18 +796,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindSetIndex
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 97
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 206
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic set index operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindSetIndex(SetIndexBinder binder, DynamicMetaObject[] indexes, DynamicMetaObject value)
     content.vb: Public Overridable Function BindSetIndex(binder As SetIndexBinder, indexes As DynamicMetaObject(), value As DynamicMetaObject) As DynamicMetaObject
@@ -878,18 +844,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindSetMember
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 98
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 170
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic set member operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindSetMember(SetMemberBinder binder, DynamicMetaObject value)
     content.vb: Public Overridable Function BindSetMember(binder As SetMemberBinder, value As DynamicMetaObject) As DynamicMetaObject
@@ -922,18 +886,16 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindUnaryOperation
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 99
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 265
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Performs the binding of the dynamic unary operation.</p>\n"
-  example:
-  - 
   syntax:
     content: public virtual DynamicMetaObject BindUnaryOperation(UnaryOperationBinder binder)
     content.vb: Public Overridable Function BindUnaryOperation(binder As UnaryOperationBinder) As DynamicMetaObject
@@ -973,8 +935,6 @@ items:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Creates a meta-object for the specified object.</p>\n"
-  example:
-  - 
   syntax:
     content: public static DynamicMetaObject Create(object value, Expression expression)
     content.vb: Public Shared Function Create(value As Object, expression As Expression) As DynamicMetaObject
@@ -1007,21 +967,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetDynamicMemberNames
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 101
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/DynamicMetaObject.cs
+    startLine: 287
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Returns the enumeration of all dynamic member names.</p>\n"
-  example:
-  - 
   syntax:
-    content: public virtual IEnumerable<string> GetDynamicMemberNames()
-    content.vb: Public Overridable Function GetDynamicMemberNames As IEnumerable(Of String)
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")]
+
+      public virtual IEnumerable<string> GetDynamicMemberNames()
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1024:UsePropertiesWhereAppropriate")>
+
+      Public Overridable Function GetDynamicMemberNames As IEnumerable(Of String)
     return:
       type: System.Collections.Generic.IEnumerable{System.String}
       description: "\n<p>The list of dynamic member names.</p>\n"
@@ -1037,15 +1001,15 @@ references:
   isExternal: false
   name: System.Dynamic
   fullName: System.Dynamic
-  commentId: N:System.Dynamic
   nameWithType: System.Dynamic
+  commentId: N:System.Dynamic
 - uid: System.Object
   parent: System
   isExternal: false
   name: Object
   fullName: System.Object
-  commentId: T:System.Object
   nameWithType: Object
+  commentId: T:System.Object
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
@@ -1069,8 +1033,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.ToString
   nameWithType: Object.ToString()
+  commentId: M:System.Object.ToString
 - uid: System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
@@ -1102,8 +1066,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object)
   nameWithType: Object.Equals(Object)
+  commentId: M:System.Object.Equals(System.Object)
 - uid: System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -1147,8 +1111,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object,System.Object)
   nameWithType: Object.Equals(Object, Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -1192,8 +1156,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   nameWithType: Object.ReferenceEquals(Object, Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
 - uid: System.Object.GetHashCode
   parent: System.Object
   isExternal: true
@@ -1217,8 +1181,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.GetHashCode
   nameWithType: Object.GetHashCode()
+  commentId: M:System.Object.GetHashCode
 - uid: System.Object.GetType
   parent: System.Object
   isExternal: true
@@ -1242,8 +1206,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.GetType
   nameWithType: Object.GetType()
+  commentId: M:System.Object.GetType
 - uid: System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
@@ -1267,14 +1231,14 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.MemberwiseClone
   nameWithType: Object.MemberwiseClone()
+  commentId: M:System.Object.MemberwiseClone
 - uid: System
   isExternal: false
   name: System
   fullName: System
-  commentId: N:System
   nameWithType: System
+  commentId: N:System
 - uid: System.Dynamic.DynamicMetaObject[]
   name: DynamicMetaObject[]
   fullName: System.Dynamic.DynamicMetaObject[]
@@ -1299,126 +1263,126 @@ references:
   isExternal: false
   name: Expression
   fullName: System.Linq.Expressions.Expression
-  commentId: T:System.Linq.Expressions.Expression
   nameWithType: Expression
+  commentId: T:System.Linq.Expressions.Expression
 - uid: System.Dynamic.BindingRestrictions
   parent: System.Dynamic
   isExternal: false
   name: BindingRestrictions
   fullName: System.Dynamic.BindingRestrictions
-  commentId: T:System.Dynamic.BindingRestrictions
   nameWithType: BindingRestrictions
+  commentId: T:System.Dynamic.BindingRestrictions
 - uid: System.Linq.Expressions
   isExternal: false
   name: System.Linq.Expressions
   fullName: System.Linq.Expressions
-  commentId: N:System.Linq.Expressions
   nameWithType: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
 - uid: System.Boolean
   parent: System
   isExternal: false
   name: Boolean
   fullName: System.Boolean
-  commentId: T:System.Boolean
   nameWithType: Boolean
+  commentId: T:System.Boolean
 - uid: System.Type
   parent: System
   isExternal: false
   name: Type
   fullName: System.Type
-  commentId: T:System.Type
   nameWithType: Type
+  commentId: T:System.Type
 - uid: System.Dynamic.BinaryOperationBinder
   parent: System.Dynamic
   isExternal: false
   name: BinaryOperationBinder
   fullName: System.Dynamic.BinaryOperationBinder
-  commentId: T:System.Dynamic.BinaryOperationBinder
   nameWithType: BinaryOperationBinder
+  commentId: T:System.Dynamic.BinaryOperationBinder
 - uid: System.Dynamic.DynamicMetaObject
   parent: System.Dynamic
   isExternal: false
   name: DynamicMetaObject
   fullName: System.Dynamic.DynamicMetaObject
-  commentId: T:System.Dynamic.DynamicMetaObject
   nameWithType: DynamicMetaObject
+  commentId: T:System.Dynamic.DynamicMetaObject
 - uid: System.Dynamic.ConvertBinder
   parent: System.Dynamic
   isExternal: false
   name: ConvertBinder
   fullName: System.Dynamic.ConvertBinder
-  commentId: T:System.Dynamic.ConvertBinder
   nameWithType: ConvertBinder
+  commentId: T:System.Dynamic.ConvertBinder
 - uid: System.Dynamic.CreateInstanceBinder
   parent: System.Dynamic
   isExternal: false
   name: CreateInstanceBinder
   fullName: System.Dynamic.CreateInstanceBinder
-  commentId: T:System.Dynamic.CreateInstanceBinder
   nameWithType: CreateInstanceBinder
+  commentId: T:System.Dynamic.CreateInstanceBinder
 - uid: System.Dynamic.DeleteIndexBinder
   parent: System.Dynamic
   isExternal: false
   name: DeleteIndexBinder
   fullName: System.Dynamic.DeleteIndexBinder
-  commentId: T:System.Dynamic.DeleteIndexBinder
   nameWithType: DeleteIndexBinder
+  commentId: T:System.Dynamic.DeleteIndexBinder
 - uid: System.Dynamic.DeleteMemberBinder
   parent: System.Dynamic
   isExternal: false
   name: DeleteMemberBinder
   fullName: System.Dynamic.DeleteMemberBinder
-  commentId: T:System.Dynamic.DeleteMemberBinder
   nameWithType: DeleteMemberBinder
+  commentId: T:System.Dynamic.DeleteMemberBinder
 - uid: System.Dynamic.GetIndexBinder
   parent: System.Dynamic
   isExternal: false
   name: GetIndexBinder
   fullName: System.Dynamic.GetIndexBinder
-  commentId: T:System.Dynamic.GetIndexBinder
   nameWithType: GetIndexBinder
+  commentId: T:System.Dynamic.GetIndexBinder
 - uid: System.Dynamic.GetMemberBinder
   parent: System.Dynamic
   isExternal: false
   name: GetMemberBinder
   fullName: System.Dynamic.GetMemberBinder
-  commentId: T:System.Dynamic.GetMemberBinder
   nameWithType: GetMemberBinder
+  commentId: T:System.Dynamic.GetMemberBinder
 - uid: System.Dynamic.InvokeBinder
   parent: System.Dynamic
   isExternal: false
   name: InvokeBinder
   fullName: System.Dynamic.InvokeBinder
-  commentId: T:System.Dynamic.InvokeBinder
   nameWithType: InvokeBinder
+  commentId: T:System.Dynamic.InvokeBinder
 - uid: System.Dynamic.InvokeMemberBinder
   parent: System.Dynamic
   isExternal: false
   name: InvokeMemberBinder
   fullName: System.Dynamic.InvokeMemberBinder
-  commentId: T:System.Dynamic.InvokeMemberBinder
   nameWithType: InvokeMemberBinder
+  commentId: T:System.Dynamic.InvokeMemberBinder
 - uid: System.Dynamic.SetIndexBinder
   parent: System.Dynamic
   isExternal: false
   name: SetIndexBinder
   fullName: System.Dynamic.SetIndexBinder
-  commentId: T:System.Dynamic.SetIndexBinder
   nameWithType: SetIndexBinder
+  commentId: T:System.Dynamic.SetIndexBinder
 - uid: System.Dynamic.SetMemberBinder
   parent: System.Dynamic
   isExternal: false
   name: SetMemberBinder
   fullName: System.Dynamic.SetMemberBinder
-  commentId: T:System.Dynamic.SetMemberBinder
   nameWithType: SetMemberBinder
+  commentId: T:System.Dynamic.SetMemberBinder
 - uid: System.Dynamic.UnaryOperationBinder
   parent: System.Dynamic
   isExternal: false
   name: UnaryOperationBinder
   fullName: System.Dynamic.UnaryOperationBinder
-  commentId: T:System.Dynamic.UnaryOperationBinder
   nameWithType: UnaryOperationBinder
+  commentId: T:System.Dynamic.UnaryOperationBinder
 - uid: System.Collections.Generic.IEnumerable{System.String}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
@@ -1450,9 +1414,9 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: T:System.Collections.Generic.IEnumerable{System.String}
   nameWithType: IEnumerable<String>
   nameWithType.vb: IEnumerable(Of String)
+  commentId: T:System.Collections.Generic.IEnumerable{System.String}
 - uid: System.Collections.Generic.IEnumerable`1
   isExternal: false
   name: IEnumerable<T>
@@ -1479,12 +1443,12 @@ references:
     fullName: T
   - name: )
     fullName: )
-  commentId: T:System.Collections.Generic.IEnumerable`1
   nameWithType: IEnumerable<T>
   nameWithType.vb: IEnumerable(Of T)
+  commentId: T:System.Collections.Generic.IEnumerable`1
 - uid: System.Collections.Generic
   isExternal: false
   name: System.Collections.Generic
   fullName: System.Collections.Generic
-  commentId: N:System.Collections.Generic
   nameWithType: System.Collections.Generic
+  commentId: N:System.Collections.Generic
