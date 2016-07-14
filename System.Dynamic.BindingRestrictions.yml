@@ -19,19 +19,29 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/BindingRestrictions.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: BindingRestrictions
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 19
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/BindingRestrictions.cs
+    startLine: 15
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Represents a set of binding restrictions on the <xref href=\"System.Dynamic.DynamicMetaObject\" data-throw-if-not-resolved=\"false\"></xref> under which the dynamic binding is valid.</p>\n"
   syntax:
-    content: public abstract class BindingRestrictions
-    content.vb: Public MustInherit Class BindingRestrictions
+    content: >-
+      [DebuggerTypeProxy(typeof (BindingRestrictions.BindingRestrictionsProxy))]
+
+      [DebuggerDisplay("{DebugView}")]
+
+      public abstract class BindingRestrictions
+    content.vb: >-
+      <DebuggerTypeProxy(GetType(BindingRestrictions.BindingRestrictionsProxy))>
+
+      <DebuggerDisplay("{DebugView}")>
+
+      Public MustInherit Class BindingRestrictions
   inheritance:
   - System.Object
   inheritedMembers:
@@ -63,19 +73,25 @@ items:
   type: Field
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/BindingRestrictions.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Empty
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/BindingRestrictions.cs
     startLine: 22
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
   summary: "\n<p>Represents an empty set of binding restrictions. This field is read only.</p>\n"
   syntax:
-    content: public static readonly BindingRestrictions Empty
-    content.vb: Public Shared ReadOnly Empty As BindingRestrictions
+    content: >-
+      [SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")]
+
+      public static readonly BindingRestrictions Empty
+    content.vb: >-
+      <SuppressMessage("Microsoft.Security", "CA2104:DoNotDeclareReadOnlyMutableReferenceTypes")>
+
+      Public Shared ReadOnly Empty As BindingRestrictions
     return:
       type: System.Dynamic.BindingRestrictions
   modifiers.csharp:
@@ -99,12 +115,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/BindingRestrictions.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Combine
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 23
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/BindingRestrictions.cs
+    startLine: 118
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
@@ -264,12 +280,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/BindingRestrictions.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Merge
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 27
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/BindingRestrictions.cs
+    startLine: 40
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
@@ -301,12 +317,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
+      path: src/System.Dynamic.Runtime/src/System/Dynamic/BindingRestrictions.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ToExpression
-    path: src/System.Dynamic.Runtime/ref/System.Dynamic.Runtime.cs
-    startLine: 28
+    path: src/System.Dynamic.Runtime/src/System/Dynamic/BindingRestrictions.cs
+    startLine: 186
   assemblies:
   - System.Dynamic.Runtime
   namespace: System.Dynamic
@@ -315,7 +331,7 @@ items:
     content: public Expression ToExpression()
     content.vb: Public Function ToExpression As Expression
     return:
-      type: System.Linq.Expressions.Expression
+      type: Expression
       description: "\n<p>The expression tree representing the restrictions.</p>\n"
   modifiers.csharp:
   - public
@@ -327,15 +343,15 @@ references:
   isExternal: false
   name: System.Dynamic
   fullName: System.Dynamic
-  commentId: N:System.Dynamic
   nameWithType: System.Dynamic
+  commentId: N:System.Dynamic
 - uid: System.Object
   parent: System
   isExternal: false
   name: Object
   fullName: System.Object
-  commentId: T:System.Object
   nameWithType: Object
+  commentId: T:System.Object
 - uid: System.Object.ToString
   parent: System.Object
   isExternal: true
@@ -359,8 +375,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.ToString
   nameWithType: Object.ToString()
+  commentId: M:System.Object.ToString
 - uid: System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
@@ -392,8 +408,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object)
   nameWithType: Object.Equals(Object)
+  commentId: M:System.Object.Equals(System.Object)
 - uid: System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -437,8 +453,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.Equals(System.Object,System.Object)
   nameWithType: Object.Equals(Object, Object)
+  commentId: M:System.Object.Equals(System.Object,System.Object)
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
@@ -482,8 +498,8 @@ references:
     isExternal: true
   - name: )
     fullName: )
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   nameWithType: Object.ReferenceEquals(Object, Object)
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
 - uid: System.Object.GetHashCode
   parent: System.Object
   isExternal: true
@@ -507,8 +523,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.GetHashCode
   nameWithType: Object.GetHashCode()
+  commentId: M:System.Object.GetHashCode
 - uid: System.Object.GetType
   parent: System.Object
   isExternal: true
@@ -532,8 +548,8 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.GetType
   nameWithType: Object.GetType()
+  commentId: M:System.Object.GetType
 - uid: System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
@@ -557,21 +573,21 @@ references:
     fullName: (
   - name: )
     fullName: )
-  commentId: M:System.Object.MemberwiseClone
   nameWithType: Object.MemberwiseClone()
+  commentId: M:System.Object.MemberwiseClone
 - uid: System
   isExternal: false
   name: System
   fullName: System
-  commentId: N:System
   nameWithType: System
+  commentId: N:System
 - uid: System.Dynamic.BindingRestrictions
   parent: System.Dynamic
   isExternal: false
   name: BindingRestrictions
   fullName: System.Dynamic.BindingRestrictions
-  commentId: T:System.Dynamic.BindingRestrictions
   nameWithType: BindingRestrictions
+  commentId: T:System.Dynamic.BindingRestrictions
 - uid: System.Collections.Generic.IList{System.Dynamic.DynamicMetaObject}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IList`1
@@ -603,9 +619,9 @@ references:
     fullName: System.Dynamic.DynamicMetaObject
   - name: )
     fullName: )
-  commentId: T:System.Collections.Generic.IList{System.Dynamic.DynamicMetaObject}
   nameWithType: IList<DynamicMetaObject>
   nameWithType.vb: IList(Of DynamicMetaObject)
+  commentId: T:System.Collections.Generic.IList{System.Dynamic.DynamicMetaObject}
 - uid: System.Collections.Generic.IList`1
   isExternal: false
   name: IList<T>
@@ -632,32 +648,32 @@ references:
     fullName: T
   - name: )
     fullName: )
-  commentId: T:System.Collections.Generic.IList`1
   nameWithType: IList<T>
   nameWithType.vb: IList(Of T)
+  commentId: T:System.Collections.Generic.IList`1
 - uid: System.Collections.Generic
   isExternal: false
   name: System.Collections.Generic
   fullName: System.Collections.Generic
-  commentId: N:System.Collections.Generic
   nameWithType: System.Collections.Generic
+  commentId: N:System.Collections.Generic
 - uid: System.Linq.Expressions.Expression
   parent: System.Linq.Expressions
   isExternal: false
   name: Expressions.Expression
   fullName: System.Linq.Expressions.Expression
-  commentId: T:System.Linq.Expressions.Expression
   nameWithType: Expressions.Expression
+  commentId: T:System.Linq.Expressions.Expression
 - uid: System.Linq.Expressions
   isExternal: false
   name: System.Linq.Expressions
   fullName: System.Linq.Expressions
-  commentId: N:System.Linq.Expressions
   nameWithType: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
 - uid: System.Type
   parent: System
   isExternal: false
   name: Type
   fullName: System.Type
-  commentId: T:System.Type
   nameWithType: Type
+  commentId: T:System.Type
