@@ -54,19 +54,25 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.Serialization.Formatters/ref/System.Runtime.Serialization.Formatters.cs
+      path: src/mscorlib/src/System/Runtime/Serialization/ISerializable.cs
       branch: master
-      repo: https://github.com/dotnet/corefx.git
+      repo: https://github.com/dotnet/coreclr.git
     id: GetObjectData
-    path: src/System.Runtime.Serialization.Formatters/ref/System.Runtime.Serialization.Formatters.cs
-    startLine: 59
+    path: src/mscorlib/src/System/Runtime/Serialization/ISerializable.cs
+    startLine: 24
   assemblies:
   - System.Runtime.Serialization.Formatters
   namespace: System.Runtime.Serialization
   summary: "\n<p>Populates a <xref href=\"System.Runtime.Serialization.SerializationInfo\" data-throw-if-not-resolved=\"false\"></xref> with the data needed to serialize the target object.</p>\n"
   syntax:
-    content: void GetObjectData(SerializationInfo info, StreamingContext context)
-    content.vb: Sub GetObjectData(info As SerializationInfo, context As StreamingContext)
+    content: >-
+      [SecurityCritical]
+
+      void GetObjectData(SerializationInfo info, StreamingContext context)
+    content.vb: >-
+      <SecurityCritical>
+
+      Sub GetObjectData(info As SerializationInfo, context As StreamingContext)
     parameters:
     - id: info
       type: System.Runtime.Serialization.SerializationInfo
