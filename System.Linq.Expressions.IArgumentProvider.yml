@@ -1,3 +1,4 @@
+### YamlMime:ManagedReference
 items:
 - uid: System.Linq.Expressions.IArgumentProvider
   commentId: T:System.Linq.Expressions.IArgumentProvider
@@ -10,20 +11,21 @@ items:
   - csharp
   - vb
   name: IArgumentProvider
+  nameWithType: IArgumentProvider
   fullName: System.Linq.Expressions.IArgumentProvider
   type: Interface
   source:
     remote:
-      path: src/System.Linq.Expressions/src/System/Linq/Expressions/IArgumentProvider.cs
+      path: src/System.Linq.Expressions/ref/System.Linq.Expressions.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IArgumentProvider
-    path: src/System.Linq.Expressions/src/System/Linq/Expressions/IArgumentProvider.cs
-    startLine: 38
+    path: src/System.Linq.Expressions/ref/System.Linq.Expressions.cs
+    startLine: 585
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
-  summary: "\n<p>Provides an internal interface for accessing the arguments of multiple tree nodes (DynamicExpression, ElementInit, MethodCallExpression, InvocationExpression, NewExpression, and InexExpression).  You should not use this API.  It is only public due to DLL refactoring and exists only for internal performance optimizations.</p>\n<p>This enables two optimizations which reduce the size of expression trees.  The first enables the tree nodes to hold onto an IList<T> instead of a ReadOnlyCollection.  IList<T> saves the cost of allocating the ReadOnlyCollection for each node.  The second enables creating specialized subclasses that hold onto a specific number of arguments (for example, Block2, Block3, Block4).  Therefore, these nodes avoid allocating both a ReadOnlyCollection and an array for storing their elements, saving 32 bytes per node.</p>\n<p>The expression tree nodes continue to expose the original LINQ properties of ReadOnlyCollections.  The nodes do this by re-using a field for storing both the array or an element that would normally be stored in the array.</p>\n<p>For the array case, the collection is typed to IList<T> instead of ReadOnlyCollection<T>.  When the node is initially constructed it is an array.  When the compiler accesses the members it uses this interface.  Accessing array elements promotes the array to a ReadOnlyCollection.</p>\n<p>For the object case we store the first argument in a field typed to object.  When the node is initially constructed, the field holds the Expression.  The compiler accesses arguments through this interface, and the accessor for the first argument uses Expression.ReturnObject to return the object that handles the Expression or ReadOnlyCollection case.  When the user accesses the ReadOnlyCollection, then the object field is updated to hold directly onto the ReadOnlyCollection.</p>\n<p>It is important that the Expressions consistently return the same ReadOnlyCollection.  Otherwise, the re-writer tree walker will break.  It is a breaking change from LINQ v1 to return different ReadOnlyCollections form the same Expression node.  Currently users can rely on object identity to tell if the node has changed.  Storing the ReadOnlyCollection in an overloaded field both reduces memory usage and maintains compatibility for the public API.</p>\n"
+  summary: "\n<p>Provides an internal interface for accessing the arguments of multiple tree nodes (DynamicExpression, ElementInit, MethodCallExpression, InvocationExpression, NewExpression, and InexExpression).  You should not use this API.  It is only public due to DLL refactoring and exists only for internal performance optimizations.</p>\n<p>This enables two optimizations which reduce the size of expression trees.  The first enables the tree nodes to hold onto an IList&lt;T&gt; instead of a ReadOnlyCollection.  IList&lt;T&gt; saves the cost of allocating the ReadOnlyCollection for each node.  The second enables creating specialized subclasses that hold onto a specific number of arguments (for example, Block2, Block3, Block4).  Therefore, these nodes avoid allocating both a ReadOnlyCollection and an array for storing their elements, saving 32 bytes per node.</p>\n<p>The expression tree nodes continue to expose the original LINQ properties of ReadOnlyCollections.  The nodes do this by re-using a field for storing both the array or an element that would normally be stored in the array.</p>\n<p>For the array case, the collection is typed to IList&lt;T&gt; instead of ReadOnlyCollection&lt;T&gt;.  When the node is initially constructed it is an array.  When the compiler accesses the members it uses this interface.  Accessing array elements promotes the array to a ReadOnlyCollection.</p>\n<p>For the object case we store the first argument in a field typed to object.  When the node is initially constructed, the field holds the Expression.  The compiler accesses arguments through this interface, and the accessor for the first argument uses Expression.ReturnObject to return the object that handles the Expression or ReadOnlyCollection case.  When the user accesses the ReadOnlyCollection, then the object field is updated to hold directly onto the ReadOnlyCollection.</p>\n<p>It is important that the Expressions consistently return the same ReadOnlyCollection.  Otherwise, the re-writer tree walker will break.  It is a breaking change from LINQ v1 to return different ReadOnlyCollections form the same Expression node.  Currently users can rely on object identity to tell if the node has changed.  Storing the ReadOnlyCollection in an overloaded field both reduces memory usage and maintains compatibility for the public API.</p>\n"
   syntax:
     content: public interface IArgumentProvider
     content.vb: Public Interface IArgumentProvider
@@ -33,7 +35,6 @@ items:
   modifiers.vb:
   - Public
   - Interface
-  nameWithType: IArgumentProvider
 - uid: System.Linq.Expressions.IArgumentProvider.ArgumentCount
   commentId: P:System.Linq.Expressions.IArgumentProvider.ArgumentCount
   id: ArgumentCount
@@ -42,16 +43,17 @@ items:
   - csharp
   - vb
   name: ArgumentCount
+  nameWithType: IArgumentProvider.ArgumentCount
   fullName: System.Linq.Expressions.IArgumentProvider.ArgumentCount
   type: Property
   source:
     remote:
-      path: src/System.Linq.Expressions/src/System/Linq/Expressions/IArgumentProvider.cs
+      path: src/System.Linq.Expressions/ref/System.Linq.Expressions.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ArgumentCount
-    path: src/System.Linq.Expressions/src/System/Linq/Expressions/IArgumentProvider.cs
-    startLine: 41
+    path: src/System.Linq.Expressions/ref/System.Linq.Expressions.cs
+    startLine: 587
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
@@ -67,7 +69,6 @@ items:
   - get
   modifiers.vb:
   - ReadOnly
-  nameWithType: IArgumentProvider.ArgumentCount
 - uid: System.Linq.Expressions.IArgumentProvider.GetArgument(System.Int32)
   commentId: M:System.Linq.Expressions.IArgumentProvider.GetArgument(System.Int32)
   id: GetArgument(System.Int32)
@@ -76,16 +77,17 @@ items:
   - csharp
   - vb
   name: GetArgument(Int32)
+  nameWithType: IArgumentProvider.GetArgument(Int32)
   fullName: System.Linq.Expressions.IArgumentProvider.GetArgument(System.Int32)
   type: Method
   source:
     remote:
-      path: src/System.Linq.Expressions/src/System/Linq/Expressions/IArgumentProvider.cs
+      path: src/System.Linq.Expressions/ref/System.Linq.Expressions.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetArgument
-    path: src/System.Linq.Expressions/src/System/Linq/Expressions/IArgumentProvider.cs
-    startLine: 40
+    path: src/System.Linq.Expressions/ref/System.Linq.Expressions.cs
+    startLine: 588
   assemblies:
   - System.Linq.Expressions
   namespace: System.Linq.Expressions
@@ -100,31 +102,30 @@ items:
     return:
       type: System.Linq.Expressions.Expression
       description: "\n<p>The argument at index, throwing if index is out of bounds as <xref href=\"System.Linq.Expressions.Expression\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
-  nameWithType: IArgumentProvider.GetArgument(Int32)
 references:
 - uid: System.Linq.Expressions
+  commentId: N:System.Linq.Expressions
   isExternal: false
   name: System.Linq.Expressions
-  fullName: System.Linq.Expressions
   nameWithType: System.Linq.Expressions
-  commentId: N:System.Linq.Expressions
+  fullName: System.Linq.Expressions
 - uid: System.Int32
+  commentId: T:System.Int32
   parent: System
   isExternal: false
   name: Int32
-  fullName: System.Int32
   nameWithType: Int32
-  commentId: T:System.Int32
+  fullName: System.Int32
 - uid: System
+  commentId: N:System
   isExternal: false
   name: System
-  fullName: System
   nameWithType: System
-  commentId: N:System
+  fullName: System
 - uid: System.Linq.Expressions.Expression
+  commentId: T:System.Linq.Expressions.Expression
   parent: System.Linq.Expressions
   isExternal: false
   name: Expressions.Expression
-  fullName: System.Linq.Expressions.Expression
   nameWithType: Expressions.Expression
-  commentId: T:System.Linq.Expressions.Expression
+  fullName: System.Linq.Expressions.Expression
