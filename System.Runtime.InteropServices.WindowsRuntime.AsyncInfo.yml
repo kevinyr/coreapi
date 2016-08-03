@@ -1,4 +1,3 @@
-### YamlMime:ManagedReference
 items:
 - uid: System.Runtime.InteropServices.WindowsRuntime.AsyncInfo
   commentId: T:System.Runtime.InteropServices.WindowsRuntime.AsyncInfo
@@ -18,12 +17,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/AsyncInfo.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: AsyncInfo
-    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
-    startLine: 77
+    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/AsyncInfo.cs
+    startLine: 19
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
@@ -31,13 +30,9 @@ items:
     content: >-
       [CLSCompliant(false)]
 
-      [SecurityCritical]
-
       public static class AsyncInfo
     content.vb: >-
       <CLSCompliant(False)>
-
-      <SecurityCritical>
 
       Public Module AsyncInfo
   inheritance:
@@ -79,12 +74,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/AsyncInfo.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Run
-    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
-    startLine: 81
+    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/AsyncInfo.cs
+    startLine: 34
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
@@ -94,8 +89,17 @@ items:
     parameters:
     - id: taskProvider
       type: System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task}
+      description: >-
+        The function to invoke to create the task when the IAsyncInfo is started.
+
+        The function is passed a <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> that the task may monitor
+
+        to be notified of a cancellation request;
+
+        you may ignore the <pre><code>CancellationToken</code></pre> if your task does not support cancellation.
     return:
-      type: Windows.Foundation.IAsyncAction
+      type: IAsyncAction
+      description: 'An unstarted <see cref="!:Windows.Foundation.IAsyncAction"></see> instance. '
   nameWithType.vb: AsyncInfo.Run(Func(Of CancellationToken, Task))
   modifiers.csharp:
   - public
@@ -118,12 +122,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/AsyncInfo.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Run
-    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
-    startLine: 82
+    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/AsyncInfo.cs
+    startLine: 59
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
@@ -133,10 +137,23 @@ items:
     parameters:
     - id: taskProvider
       type: System.Func{System.Threading.CancellationToken,System.IProgress{{TProgress}},System.Threading.Tasks.Task}
+      description: >-
+        The function to invoke to create the task when the IAsyncInfo is started.
+
+        The function is passed a <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> that the task may monitor
+
+        to be notified of a cancellation request;
+
+        you may ignore the <pre><code>CancellationToken</code></pre> if your task does not support cancellation.
+
+        It is also passed a <xref href="System.IProgress`1" data-throw-if-not-resolved="false"></xref> instance to which progress updates may be published;
+
+        you may ignore the <pre><code>IProgress</code></pre> if your task does not support progress reporting.
     typeParameters:
     - id: TProgress
     return:
-      type: Windows.Foundation.IAsyncActionWithProgress{{TProgress}}
+      type: IAsyncActionWithProgress{{TProgress}}
+      description: An unstarted <see cref="!:Windows.Foundation.IAsyncActionWithProgress&lt;TProgress&gt;"></see> instance.
   nameWithType.vb: AsyncInfo.Run(Of TProgress)(Func(Of CancellationToken, IProgress(Of TProgress), Task))
   modifiers.csharp:
   - public
@@ -159,12 +176,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/AsyncInfo.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Run
-    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
-    startLine: 83
+    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/AsyncInfo.cs
+    startLine: 80
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
@@ -174,10 +191,19 @@ items:
     parameters:
     - id: taskProvider
       type: System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{{TResult}}}
+      description: >-
+        The function to invoke to create the task when the IAsyncInfo is started.
+
+        The function is passed a <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> that the task may monitor
+
+        to be notified of a cancellation request;
+
+        you may ignore the <pre><code>CancellationToken</code></pre> if your task does not support cancellation.
     typeParameters:
     - id: TResult
     return:
-      type: Windows.Foundation.IAsyncOperation{{TResult}}
+      type: IAsyncOperation{{TResult}}
+      description: An unstarted <see cref="!:Windows.Foundation.IAsyncOperation&lt;TResult&gt;"></see> instance.
   nameWithType.vb: AsyncInfo.Run(Of TResult)(Func(Of CancellationToken, Task(Of TResult)))
   modifiers.csharp:
   - public
@@ -200,12 +226,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
+      path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/AsyncInfo.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Run
-    path: src/System.Runtime.WindowsRuntime/ref/System.Runtime.WindowsRuntime.cs
-    startLine: 84
+    path: src/System.Runtime.WindowsRuntime/src/System/Runtime/InteropServices/WindowsRuntime/AsyncInfo.cs
+    startLine: 110
   assemblies:
   - System.Runtime.WindowsRuntime
   namespace: System.Runtime.InteropServices.WindowsRuntime
@@ -215,11 +241,26 @@ items:
     parameters:
     - id: taskProvider
       type: System.Func{System.Threading.CancellationToken,System.IProgress{{TProgress}},System.Threading.Tasks.Task{{TResult}}}
+      description: >-
+        The function to invoke to create the task when the IAsyncOperationWithProgress is started.<br />
+
+        The function is passed a <xref href="System.Threading.CancellationToken" data-throw-if-not-resolved="false"></xref> that the task may monitor
+
+        to be notified of a cancellation request;
+
+        you may ignore the <pre><code>CancellationToken</code></pre> if your task does not support cancellation.
+
+        It is also passed a <xref href="System.IProgress`1" data-throw-if-not-resolved="false"></xref> instance to which progress updates may be published;
+
+        you may ignore the <pre><code>IProgress</code></pre> if your task does not support progress reporting.
     typeParameters:
     - id: TResult
+      description: The result type of the task.
     - id: TProgress
+      description: The type used for progress notifications.
     return:
-      type: Windows.Foundation.IAsyncOperationWithProgress{{TResult},{TProgress}}
+      type: IAsyncOperationWithProgress{{TResult},{TProgress}}
+      description: An unstarted <see cref="!:Windows.Foundation.IAsyncOperationWithProgress&lt;TResult,TProgress&gt;"></see> instance.
   nameWithType.vb: AsyncInfo.Run(Of TResult, TProgress)(Func(Of CancellationToken, IProgress(Of TProgress), Task(Of TResult)))
   modifiers.csharp:
   - public
@@ -231,20 +272,19 @@ items:
   name.vb: Run(Of TResult, TProgress)(Func(Of CancellationToken, IProgress(Of TProgress), Task(Of TResult)))
 references:
 - uid: System.Runtime.InteropServices.WindowsRuntime
-  commentId: N:System.Runtime.InteropServices.WindowsRuntime
   isExternal: false
   name: System.Runtime.InteropServices.WindowsRuntime
   nameWithType: System.Runtime.InteropServices.WindowsRuntime
   fullName: System.Runtime.InteropServices.WindowsRuntime
+  commentId: N:System.Runtime.InteropServices.WindowsRuntime
 - uid: System.Object
-  commentId: T:System.Object
   parent: System
   isExternal: false
   name: Object
   nameWithType: Object
   fullName: System.Object
+  commentId: T:System.Object
 - uid: System.Object.ToString
-  commentId: M:System.Object.ToString
   parent: System.Object
   isExternal: true
   name: ToString()
@@ -274,8 +314,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: M:System.Object.ToString
 - uid: System.Object.Equals(System.Object)
-  commentId: M:System.Object.Equals(System.Object)
   parent: System.Object
   isExternal: true
   name: Equals(Object)
@@ -315,8 +355,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: M:System.Object.Equals(System.Object)
 - uid: System.Object.Equals(System.Object,System.Object)
-  commentId: M:System.Object.Equals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
   name: Equals(Object, Object)
@@ -372,8 +412,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: M:System.Object.Equals(System.Object,System.Object)
 - uid: System.Object.ReferenceEquals(System.Object,System.Object)
-  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
   parent: System.Object
   isExternal: true
   name: ReferenceEquals(Object, Object)
@@ -429,8 +469,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: M:System.Object.ReferenceEquals(System.Object,System.Object)
 - uid: System.Object.GetHashCode
-  commentId: M:System.Object.GetHashCode
   parent: System.Object
   isExternal: true
   name: GetHashCode()
@@ -460,8 +500,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: M:System.Object.GetHashCode
 - uid: System.Object.GetType
-  commentId: M:System.Object.GetType
   parent: System.Object
   isExternal: true
   name: GetType()
@@ -491,8 +531,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: M:System.Object.GetType
 - uid: System.Object.MemberwiseClone
-  commentId: M:System.Object.MemberwiseClone
   parent: System.Object
   isExternal: true
   name: MemberwiseClone()
@@ -522,14 +562,14 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: M:System.Object.MemberwiseClone
 - uid: System
-  commentId: N:System
   isExternal: false
   name: System
   nameWithType: System
   fullName: System
+  commentId: N:System
 - uid: System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task}
-  commentId: T:System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task}
   parent: System
   definition: System.Func`2
   name: Func<CancellationToken, Task>
@@ -588,13 +628,13 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: T:System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task}
 - uid: Windows.Foundation.IAsyncAction
   isExternal: true
   name: IAsyncAction
   nameWithType: IAsyncAction
   fullName: Windows.Foundation.IAsyncAction
 - uid: System.Func`2
-  commentId: T:System.Func`2
   isExternal: false
   name: Func<T, TResult>
   nameWithType: Func<T, TResult>
@@ -642,8 +682,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: T:System.Func`2
 - uid: System.Func{System.Threading.CancellationToken,System.IProgress{{TProgress}},System.Threading.Tasks.Task}
-  commentId: T:System.Func{System.Threading.CancellationToken,System.IProgress{``0},System.Threading.Tasks.Task}
   parent: System
   definition: System.Func`3
   name: Func<CancellationToken, IProgress<TProgress>, Task>
@@ -736,8 +776,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: T:System.Func{System.Threading.CancellationToken,System.IProgress{``0},System.Threading.Tasks.Task}
 - uid: Windows.Foundation.IAsyncActionWithProgress{{TProgress}}
-  commentId: '!:Windows.Foundation.IAsyncActionWithProgress{``0}'
   definition: Windows.Foundation.IAsyncActionWithProgress`1
   name: IAsyncActionWithProgress<TProgress>
   nameWithType: IAsyncActionWithProgress<TProgress>
@@ -775,8 +815,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: '!:Windows.Foundation.IAsyncActionWithProgress{``0}'
 - uid: System.Func`3
-  commentId: T:System.Func`3
   isExternal: false
   name: Func<T1, T2, TResult>
   nameWithType: Func<T1, T2, TResult>
@@ -836,6 +876,7 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: T:System.Func`3
 - uid: Windows.Foundation.IAsyncActionWithProgress`1
   isExternal: true
   name: IAsyncActionWithProgress<>
@@ -853,9 +894,7 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - name: 
-    nameWithType: 
-    fullName: 
+  - {}
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -868,14 +907,11 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: 
-    nameWithType: 
-    fullName: 
+  - {}
   - name: )
     nameWithType: )
     fullName: )
 - uid: System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{{TResult}}}
-  commentId: T:System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}}
   parent: System
   definition: System.Func`2
   name: Func<CancellationToken, Task<TResult>>
@@ -952,8 +988,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: T:System.Func{System.Threading.CancellationToken,System.Threading.Tasks.Task{``0}}
 - uid: Windows.Foundation.IAsyncOperation{{TResult}}
-  commentId: '!:Windows.Foundation.IAsyncOperation{``0}'
   definition: Windows.Foundation.IAsyncOperation`1
   name: IAsyncOperation<TResult>
   nameWithType: IAsyncOperation<TResult>
@@ -991,6 +1027,7 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: '!:Windows.Foundation.IAsyncOperation{``0}'
 - uid: Windows.Foundation.IAsyncOperation`1
   isExternal: true
   name: IAsyncOperation<>
@@ -1008,9 +1045,7 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - name: 
-    nameWithType: 
-    fullName: 
+  - {}
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1023,14 +1058,11 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: 
-    nameWithType: 
-    fullName: 
+  - {}
   - name: )
     nameWithType: )
     fullName: )
 - uid: System.Func{System.Threading.CancellationToken,System.IProgress{{TProgress}},System.Threading.Tasks.Task{{TResult}}}
-  commentId: T:System.Func{System.Threading.CancellationToken,System.IProgress{``1},System.Threading.Tasks.Task{``0}}
   parent: System
   definition: System.Func`3
   name: Func<CancellationToken, IProgress<TProgress>, Task<TResult>>
@@ -1141,8 +1173,8 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: T:System.Func{System.Threading.CancellationToken,System.IProgress{``1},System.Threading.Tasks.Task{``0}}
 - uid: Windows.Foundation.IAsyncOperationWithProgress{{TResult},{TProgress}}
-  commentId: '!:Windows.Foundation.IAsyncOperationWithProgress{``0,``1}'
   definition: Windows.Foundation.IAsyncOperationWithProgress`2
   name: IAsyncOperationWithProgress<TResult, TProgress>
   nameWithType: IAsyncOperationWithProgress<TResult, TProgress>
@@ -1192,6 +1224,7 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+  commentId: '!:Windows.Foundation.IAsyncOperationWithProgress{``0,``1}'
 - uid: Windows.Foundation.IAsyncOperationWithProgress`2
   isExternal: true
   name: IAsyncOperationWithProgress<, >
@@ -1209,15 +1242,11 @@ references:
   - name: <
     nameWithType: <
     fullName: <
-  - name: 
-    nameWithType: 
-    fullName: 
+  - {}
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: 
-    nameWithType: 
-    fullName: 
+  - {}
   - name: '>'
     nameWithType: '>'
     fullName: '>'
@@ -1230,15 +1259,11 @@ references:
   - name: '(Of '
     nameWithType: '(Of '
     fullName: '(Of '
-  - name: 
-    nameWithType: 
-    fullName: 
+  - {}
   - name: ', '
     nameWithType: ', '
     fullName: ', '
-  - name: 
-    nameWithType: 
-    fullName: 
+  - {}
   - name: )
     nameWithType: )
     fullName: )
