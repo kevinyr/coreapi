@@ -23,19 +23,24 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: MultipartContent
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 206
+    path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
+    startLine: 16
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
   summary: "\n<p>Provides a collection of <xref href=\"System.Net.Http.HttpContent\" data-throw-if-not-resolved=\"false\"></xref> objects that get serialized using the multipart/* content type specification.</p>\n"
   syntax:
-    content: 'public class MultipartContent : HttpContent, IDisposable, IEnumerable<HttpContent>, IEnumerable'
+    content: >-
+      [SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification = "Represents a multipart/* content. Even if a collection of HttpContent is stored, suffix Collection is not appropriate.")]
+
+      public class MultipartContent : HttpContent, IDisposable, IEnumerable<HttpContent>, IEnumerable
     content.vb: >-
+      <SuppressMessage("Microsoft.Naming", "CA1710:IdentifiersShouldHaveCorrectSuffix", Justification:="Represents a multipart/* content. Even if a collection of HttpContent is stored, suffix Collection is not appropriate.")>
+
       Public Class MultipartContent
           Inherits HttpContent
           Implements IDisposable, IEnumerable(Of HttpContent), IEnumerable
@@ -218,12 +223,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 208
+    path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
+    startLine: 37
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -248,12 +253,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 209
+    path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
+    startLine: 41
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -286,12 +291,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 210
+    path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
+    startLine: 45
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -330,12 +335,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Add
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 211
+    path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
+    startLine: 117
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -370,12 +375,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 212
+    path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
+    startLine: 132
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -407,12 +412,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: GetEnumerator
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 213
+    path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
+    startLine: 149
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -422,7 +427,7 @@ items:
     content.vb: Public Function GetEnumerator As IEnumerator(Of HttpContent)
     return:
       type: System.Collections.Generic.IEnumerator{System.Net.Http.HttpContent}
-      description: "\n<p>Returns <xref href=\"System.Collections.Generic.IEnumerator`1\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>An object that can be used to iterate through the collection.</p>\n"
+      description: "\n<p>An object that can be used to iterate through the collection.</p>\n"
   implements:
   - System.Collections.Generic.IEnumerable{System.Net.Http.HttpContent}.GetEnumerator
   modifiers.csharp:
@@ -464,7 +469,7 @@ items:
       description: "\n<p>Information about the transport (channel binding token, for example). This parameter may be <strong>null</strong>.</p>\n"
     return:
       type: System.Threading.Tasks.Task
-      description: "\n<p>Returns <xref href=\"System.Threading.Tasks.Task\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The task object representing the asynchronous operation.</p>\n"
+      description: "\n<p>The task object representing the asynchronous operation.</p>\n"
   overridden: System.Net.Http.HttpContent.SerializeToStreamAsync(System.IO.Stream,System.Net.TransportContext)
   modifiers.csharp:
   - protected
@@ -486,12 +491,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: System.Collections.IEnumerable.GetEnumerator
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 215
+    path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
+    startLine: 158
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -501,7 +506,7 @@ items:
     content.vb: Function System.Collections.IEnumerable.GetEnumerator As IEnumerator Implements IEnumerable.GetEnumerator
     return:
       type: System.Collections.IEnumerator
-      description: "\n<p>Returns <xref href=\"System.Collections.IEnumerator\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>An object that can be used to iterate through the collection.</p>\n"
+      description: "\n<p>An object that can be used to iterate through the collection.</p>\n"
   implements:
   - System.Collections.IEnumerable.GetEnumerator
   nameWithType.vb: MultipartContent.System.Collections.IEnumerable.GetEnumerator()
@@ -519,12 +524,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: TryComputeLength
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 216
+    path: src/System.Net.Http/src/System/Net/Http/MultipartContent.cs
+    startLine: 294
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -538,7 +543,7 @@ items:
       description: "\n<p>The length in bytes of the HHTP content.</p>\n"
     return:
       type: System.Boolean
-      description: "\n<p>Returns <xref href=\"System.Boolean\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>\n<strong>true</strong> if <em>length</em> is a valid length; otherwise, <strong>false</strong>.</p>\n"
+      description: "\n<p>\n<strong>true</strong> if <em>length</em> is a valid length; otherwise, <strong>false</strong>.</p>\n"
   overridden: System.Net.Http.HttpContent.TryComputeLength(System.Int64@)
   nameWithType.vb: MultipartContent.TryComputeLength(ByRef Int64)
   modifiers.csharp:

@@ -26,12 +26,12 @@ items:
   type: Class
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: HttpRequestMessage
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 167
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 12
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -71,12 +71,12 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 169
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 124
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -101,19 +101,25 @@ items:
   type: Constructor
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: .ctor
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 170
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 136
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
   summary: "\n<p>Initializes a new instance of the <xref href=\"System.Net.Http.HttpRequestMessage\" data-throw-if-not-resolved=\"false\"></xref> class with an HTTP method and a request <xref href=\"System.Uri\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
   syntax:
-    content: public HttpRequestMessage(HttpMethod method, string requestUri)
-    content.vb: Public Sub New(method As HttpMethod, requestUri As String)
+    content: >-
+      [SuppressMessage("Microsoft.Design", "CA1057:StringUriOverloadsCallSystemUriOverloads", Justification = "It is OK to provide 'null' values. A Uri instance is created from 'requestUri' if it is != null.")]
+
+      public HttpRequestMessage(HttpMethod method, string requestUri)
+    content.vb: >-
+      <SuppressMessage("Microsoft.Design", "CA1057:StringUriOverloadsCallSystemUriOverloads", Justification:="It is OK to provide 'null' values. A Uri instance is created from 'requestUri' if it is != null.")>
+
+      Public Sub New(method As HttpMethod, requestUri As String)
     parameters:
     - id: method
       type: System.Net.Http.HttpMethod
@@ -175,12 +181,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Content
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 172
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 44
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -191,7 +197,7 @@ items:
     parameters: []
     return:
       type: System.Net.Http.HttpContent
-      description: "\n<p>Returns <xref href=\"System.Net.Http.HttpContent\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The content of a message</p>\n"
+      description: "\n<p>The content of a message</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -211,12 +217,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Headers
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 173
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 100
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -227,7 +233,7 @@ items:
     parameters: []
     return:
       type: System.Net.Http.Headers.HttpRequestHeaders
-      description: "\n<p>Returns <xref href=\"System.Net.Http.Headers.HttpRequestHeaders\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The collection of HTTP request headers.</p>\n"
+      description: "\n<p>The collection of HTTP request headers.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -247,12 +253,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Method
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 174
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 68
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -263,7 +269,7 @@ items:
     parameters: []
     return:
       type: System.Net.Http.HttpMethod
-      description: "\n<p>Returns <xref href=\"System.Net.Http.HttpMethod\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The HTTP method used by the request message. The default is the GET method.</p>\n"
+      description: "\n<p>The HTTP method used by the request message. The default is the GET method.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -283,12 +289,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Properties
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 175
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 112
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -319,12 +325,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: RequestUri
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 176
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 83
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -334,8 +340,8 @@ items:
     content.vb: Public Property RequestUri As Uri
     parameters: []
     return:
-      type: System.Uri
-      description: "\n<p>Returns <xref href=\"System.Uri\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The <xref href=\"System.Uri\" data-throw-if-not-resolved=\"false\"></xref> used for the HTTP request.</p>\n"
+      type: Uri
+      description: "\n<p>The <xref href=\"System.Uri\" data-throw-if-not-resolved=\"false\"></xref> used for the HTTP request.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -355,12 +361,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Version
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 177
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 29
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -371,7 +377,7 @@ items:
     parameters: []
     return:
       type: System.Version
-      description: "\n<p>Returns <xref href=\"System.Version\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>The HTTP message version. The default is 1.1.</p>\n"
+      description: "\n<p>The HTTP message version. The default is 1.1.</p>\n"
   modifiers.csharp:
   - public
   - get
@@ -391,12 +397,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 178
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 216
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -423,12 +429,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Dispose
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 179
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 202
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -459,12 +465,12 @@ items:
   type: Method
   source:
     remote:
-      path: src/System.Net.Http/ref/System.Net.Http.cs
+      path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: ToString
-    path: src/System.Net.Http/ref/System.Net.Http.cs
-    startLine: 180
+    path: src/System.Net.Http/src/System/Net/Http/HttpRequestMessage.cs
+    startLine: 157
   assemblies:
   - System.Net.Http
   namespace: System.Net.Http
@@ -474,7 +480,7 @@ items:
     content.vb: Public Overrides Function ToString As String
     return:
       type: System.String
-      description: "\n<p>Returns <xref href=\"System.String\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n<p>A string representation of the current object.</p>\n"
+      description: "\n<p>A string representation of the current object.</p>\n"
   overridden: System.Object.ToString
   modifiers.csharp:
   - public
