@@ -15,12 +15,12 @@ items:
   type: Interface
   source:
     remote:
-      path: src/System.Linq/ref/System.Linq.cs
+      path: src/System.Linq/src/System/Linq/Grouping.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: IGrouping
-    path: src/System.Linq/ref/System.Linq.cs
-    startLine: 190
+    path: src/System.Linq/src/System/Linq/Grouping.cs
+    startLine: 52
   assemblies:
   - System.Linq
   namespace: System.Linq
@@ -29,7 +29,7 @@ items:
     content: 'public interface IGrouping<out TKey, out TElement> : IEnumerable<TElement>, IEnumerable'
     content.vb: >-
       Public Interface IGrouping(Of Out TKey, Out TElement)
-          Inherits IEnumerable(Of TElement), IEnumerable
+          Inherits IEnumerable(Of TElement)
     typeParameters:
     - id: TKey
       description: "\n<p>The type of the key of the <xref href=\"System.Linq.IGrouping`2\" data-throw-if-not-resolved=\"false\"></xref>.</p>\n"
@@ -38,8 +38,6 @@ items:
   inheritedMembers:
   - System.Collections.Generic.IEnumerable{{TElement}}.GetEnumerator
   extensionMethods:
-  - System.Collections.IEnumerable.System.Linq.Queryable.AsQueryable
-  - System.Collections.Generic.IEnumerable{`1}.System.Linq.Queryable.AsQueryable``1
   - System.Collections.IEnumerable.System.Linq.ParallelEnumerable.AsParallel
   - System.Collections.Generic.IEnumerable{`1}.System.Linq.ParallelEnumerable.AsParallel``1
   - System.Collections.Generic.IEnumerable{`1}.System.Linq.Enumerable.Aggregate``1(System.Func{{TElement},{TElement},{TElement}})
@@ -172,6 +170,8 @@ items:
   - System.Collections.Generic.IEnumerable{`1}.System.Linq.Enumerable.Where``1(System.Func{{TElement},System.Boolean})
   - System.Collections.Generic.IEnumerable{`1}.System.Linq.Enumerable.Where``1(System.Func{{TElement},System.Int32,System.Boolean})
   - System.Collections.Generic.IEnumerable{`1}.System.Linq.Enumerable.Zip``3(System.Collections.Generic.IEnumerable{{TSecond}},System.Func{{TElement},{TSecond},{TResult}})
+  - System.Collections.IEnumerable.System.Linq.Queryable.AsQueryable
+  - System.Collections.Generic.IEnumerable{`1}.System.Linq.Queryable.AsQueryable``1
   nameWithType.vb: IGrouping(Of TKey, TElement)
   modifiers.csharp:
   - public
@@ -194,12 +194,12 @@ items:
   type: Property
   source:
     remote:
-      path: src/System.Linq/ref/System.Linq.cs
+      path: src/System.Linq/src/System/Linq/Grouping.cs
       branch: master
       repo: https://github.com/dotnet/corefx.git
     id: Key
-    path: src/System.Linq/ref/System.Linq.cs
-    startLine: 192
+    path: src/System.Linq/src/System/Linq/Grouping.cs
+    startLine: 54
   assemblies:
   - System.Linq
   namespace: System.Linq
@@ -251,67 +251,6 @@ references:
     nameWithType: IEnumerable(Of TElement).GetEnumerator
     fullName: System.Collections.Generic.IEnumerable(Of TElement).GetEnumerator
     isExternal: true
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.IEnumerable.System.Linq.Queryable.AsQueryable
-  commentId: M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
-  parent: System.Linq.Queryable
-  definition: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
-  name: AsQueryable()
-  nameWithType: Queryable.AsQueryable()
-  fullName: System.Linq.Queryable.AsQueryable()
-  spec.csharp:
-  - uid: System.Linq.Queryable.AsQueryable
-    name: AsQueryable
-    nameWithType: Queryable.AsQueryable
-    fullName: System.Linq.Queryable.AsQueryable
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Queryable.AsQueryable
-    name: AsQueryable
-    nameWithType: Queryable.AsQueryable
-    fullName: System.Linq.Queryable.AsQueryable
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Collections.Generic.IEnumerable{`1}.System.Linq.Queryable.AsQueryable``1
-  commentId: M:System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
-  parent: System.Linq.Queryable
-  definition: System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
-  name: AsQueryable<TValue>()
-  nameWithType: Queryable.AsQueryable<TValue>()
-  fullName: System.Linq.Queryable.AsQueryable<TValue>()
-  nameWithType.vb: Queryable.AsQueryable(Of TValue)()
-  fullname.vb: System.Linq.Queryable.AsQueryable(Of TValue)()
-  name.vb: AsQueryable(Of TValue)()
-  spec.csharp:
-  - uid: System.Linq.Queryable.AsQueryable``1
-    name: AsQueryable<TValue>
-    nameWithType: Queryable.AsQueryable<TValue>
-    fullName: System.Linq.Queryable.AsQueryable<TValue>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Queryable.AsQueryable``1
-    name: AsQueryable(Of TValue)
-    nameWithType: Queryable.AsQueryable(Of TValue)
-    fullName: System.Linq.Queryable.AsQueryable(Of TValue)
   - name: (
     nameWithType: (
     fullName: (
@@ -11547,6 +11486,67 @@ references:
   - name: )
     nameWithType: )
     fullName: )
+- uid: System.Collections.IEnumerable.System.Linq.Queryable.AsQueryable
+  commentId: M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
+  parent: System.Linq.Queryable
+  definition: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
+  name: AsQueryable()
+  nameWithType: Queryable.AsQueryable()
+  fullName: System.Linq.Queryable.AsQueryable()
+  spec.csharp:
+  - uid: System.Linq.Queryable.AsQueryable
+    name: AsQueryable
+    nameWithType: Queryable.AsQueryable
+    fullName: System.Linq.Queryable.AsQueryable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Linq.Queryable.AsQueryable
+    name: AsQueryable
+    nameWithType: Queryable.AsQueryable
+    fullName: System.Linq.Queryable.AsQueryable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Collections.Generic.IEnumerable{`1}.System.Linq.Queryable.AsQueryable``1
+  commentId: M:System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
+  parent: System.Linq.Queryable
+  definition: System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
+  name: AsQueryable<TValue>()
+  nameWithType: Queryable.AsQueryable<TValue>()
+  fullName: System.Linq.Queryable.AsQueryable<TValue>()
+  nameWithType.vb: Queryable.AsQueryable(Of TValue)()
+  fullname.vb: System.Linq.Queryable.AsQueryable(Of TValue)()
+  name.vb: AsQueryable(Of TValue)()
+  spec.csharp:
+  - uid: System.Linq.Queryable.AsQueryable``1
+    name: AsQueryable<TValue>
+    nameWithType: Queryable.AsQueryable<TValue>
+    fullName: System.Linq.Queryable.AsQueryable<TValue>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Linq.Queryable.AsQueryable``1
+    name: AsQueryable(Of TValue)
+    nameWithType: Queryable.AsQueryable(Of TValue)
+    fullName: System.Linq.Queryable.AsQueryable(Of TValue)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - name: )
+    nameWithType: )
+    fullName: )
 - uid: System.Collections.Generic.IEnumerable`1.GetEnumerator
   commentId: M:System.Collections.Generic.IEnumerable`1.GetEnumerator
   isExternal: false
@@ -11578,7 +11578,7 @@ references:
     nameWithType: )
     fullName: )
 - uid: System.Collections.Generic.IEnumerable{{TElement}}
-  commentId: T:System.Collections.Generic.IEnumerable{``0}
+  commentId: T:System.Collections.Generic.IEnumerable{`1}
   parent: System.Collections.Generic
   definition: System.Collections.Generic.IEnumerable`1
   name: IEnumerable<TElement>
@@ -11614,110 +11614,6 @@ references:
   - name: TElement
     nameWithType: TElement
     fullName: TElement
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
-  commentId: M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
-  isExternal: true
-  name: AsQueryable(IEnumerable)
-  nameWithType: Queryable.AsQueryable(IEnumerable)
-  fullName: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
-  spec.csharp:
-  - uid: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
-    name: AsQueryable
-    nameWithType: Queryable.AsQueryable
-    fullName: System.Linq.Queryable.AsQueryable
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.IEnumerable
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.IEnumerable
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
-    name: AsQueryable
-    nameWithType: Queryable.AsQueryable
-    fullName: System.Linq.Queryable.AsQueryable
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.IEnumerable
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.IEnumerable
-    isExternal: true
-  - name: )
-    nameWithType: )
-    fullName: )
-- uid: System.Linq.Queryable
-  commentId: T:System.Linq.Queryable
-  parent: System.Linq
-  isExternal: false
-  name: Queryable
-  nameWithType: Queryable
-  fullName: System.Linq.Queryable
-- uid: System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
-  commentId: M:System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
-  isExternal: true
-  name: AsQueryable<TElement>(IEnumerable<TElement>)
-  nameWithType: Queryable.AsQueryable<TElement>(IEnumerable<TElement>)
-  fullName: System.Linq.Queryable.AsQueryable<TElement>(System.Collections.Generic.IEnumerable<TElement>)
-  nameWithType.vb: Queryable.AsQueryable(Of TElement)(IEnumerable(Of TElement))
-  fullname.vb: System.Linq.Queryable.AsQueryable(Of TElement)(System.Collections.Generic.IEnumerable(Of TElement))
-  name.vb: AsQueryable(Of TElement)(IEnumerable(Of TElement))
-  spec.csharp:
-  - uid: System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
-    name: AsQueryable<TElement>
-    nameWithType: Queryable.AsQueryable<TElement>
-    fullName: System.Linq.Queryable.AsQueryable<TElement>
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: <
-    nameWithType: <
-    fullName: <
-  - name: TElement
-    nameWithType: TElement
-    fullName: TElement
-  - name: '>'
-    nameWithType: '>'
-    fullName: '>'
-  - name: )
-    nameWithType: )
-    fullName: )
-  spec.vb:
-  - uid: System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
-    name: AsQueryable(Of TElement)
-    nameWithType: Queryable.AsQueryable(Of TElement)
-    fullName: System.Linq.Queryable.AsQueryable(Of TElement)
-  - name: (
-    nameWithType: (
-    fullName: (
-  - uid: System.Collections.Generic.IEnumerable`1
-    name: IEnumerable
-    nameWithType: IEnumerable
-    fullName: System.Collections.Generic.IEnumerable
-    isExternal: true
-  - name: '(Of '
-    nameWithType: '(Of '
-    fullName: '(Of '
-  - name: TElement
-    nameWithType: TElement
-    fullName: TElement
-  - name: )
-    nameWithType: )
-    fullName: )
   - name: )
     nameWithType: )
     fullName: )
@@ -27134,6 +27030,110 @@ references:
   - name: TResult
     nameWithType: TResult
     fullName: TResult
+  - name: )
+    nameWithType: )
+    fullName: )
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
+  commentId: M:System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
+  isExternal: true
+  name: AsQueryable(IEnumerable)
+  nameWithType: Queryable.AsQueryable(IEnumerable)
+  fullName: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
+  spec.csharp:
+  - uid: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
+    name: AsQueryable
+    nameWithType: Queryable.AsQueryable
+    fullName: System.Linq.Queryable.AsQueryable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.IEnumerable
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.IEnumerable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Linq.Queryable.AsQueryable(System.Collections.IEnumerable)
+    name: AsQueryable
+    nameWithType: Queryable.AsQueryable
+    fullName: System.Linq.Queryable.AsQueryable
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.IEnumerable
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.IEnumerable
+    isExternal: true
+  - name: )
+    nameWithType: )
+    fullName: )
+- uid: System.Linq.Queryable
+  commentId: T:System.Linq.Queryable
+  parent: System.Linq
+  isExternal: false
+  name: Queryable
+  nameWithType: Queryable
+  fullName: System.Linq.Queryable
+- uid: System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
+  commentId: M:System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
+  isExternal: true
+  name: AsQueryable<TElement>(IEnumerable<TElement>)
+  nameWithType: Queryable.AsQueryable<TElement>(IEnumerable<TElement>)
+  fullName: System.Linq.Queryable.AsQueryable<TElement>(System.Collections.Generic.IEnumerable<TElement>)
+  nameWithType.vb: Queryable.AsQueryable(Of TElement)(IEnumerable(Of TElement))
+  fullname.vb: System.Linq.Queryable.AsQueryable(Of TElement)(System.Collections.Generic.IEnumerable(Of TElement))
+  name.vb: AsQueryable(Of TElement)(IEnumerable(Of TElement))
+  spec.csharp:
+  - uid: System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
+    name: AsQueryable<TElement>
+    nameWithType: Queryable.AsQueryable<TElement>
+    fullName: System.Linq.Queryable.AsQueryable<TElement>
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: <
+    nameWithType: <
+    fullName: <
+  - name: TElement
+    nameWithType: TElement
+    fullName: TElement
+  - name: '>'
+    nameWithType: '>'
+    fullName: '>'
+  - name: )
+    nameWithType: )
+    fullName: )
+  spec.vb:
+  - uid: System.Linq.Queryable.AsQueryable``1(System.Collections.Generic.IEnumerable{``0})
+    name: AsQueryable(Of TElement)
+    nameWithType: Queryable.AsQueryable(Of TElement)
+    fullName: System.Linq.Queryable.AsQueryable(Of TElement)
+  - name: (
+    nameWithType: (
+    fullName: (
+  - uid: System.Collections.Generic.IEnumerable`1
+    name: IEnumerable
+    nameWithType: IEnumerable
+    fullName: System.Collections.Generic.IEnumerable
+    isExternal: true
+  - name: '(Of '
+    nameWithType: '(Of '
+    fullName: '(Of '
+  - name: TElement
+    nameWithType: TElement
+    fullName: TElement
   - name: )
     nameWithType: )
     fullName: )
